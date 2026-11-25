@@ -1,0 +1,765 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Legend of Mana test route",
+  "description": "A route test: a save to start from and the steps to play. Run and compared by tools/testing/lom_routes.py.",
+  "type": "object",
+  "required": [
+    "format",
+    "id",
+    "description",
+    "start",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "description": "The route file's format. Only 1 so far.",
+      "const": 1
+    },
+    "id": {
+      "description": "A name for the route, unique across all routes: lower case words joined by dashes. A run's folder is named after it.",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "description": {
+      "description": "The behavior the route proves: <what> should <result> when <condition>.",
+      "type": "string",
+      "pattern": " should "
+    },
+    "start": {
+      "description": "Where the route starts.",
+      "type": "object",
+      "required": [
+        "save"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "save": {
+          "description": "Save description, relative to this file.",
+          "type": "string"
+        }
+      }
+    },
+    "frame_limit": {
+      "description": "The whole run's budget in vblanks, title and loading included.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "card_other_game": {
+      "description": "Also put another game's save on the card, after the starting save; the Continue screen steps onto it (drawing its details) and back before loading.",
+      "type": "boolean"
+    },
+    "card_copies": {
+      "description": "Put the starting save on the card this many times (each a 2-block file), so the Continue screen has more saves than it shows at once.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 7
+    },
+    "mods": {
+      "description": "Run with a set of test mods: the name of a folder under tests/mods, with its mods.ini. Without it, a route runs with no mods at all, whatever the person running the tests has installed.",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "title": {
+      "description": "Pick New Game on the title screen instead of Continue; the save is still on the card, so New Game's save slot menu has it to offer. new_game_back also backs out of New Game's weapon screen once with Circle; continue_up picks Continue by pressing up, so the cursor wraps from New Game; continue_after_idle leaves the title idle until it plays the intro again, then picks Continue.",
+      "enum": [
+        "new_game",
+        "new_game_back",
+        "continue_up",
+        "continue_after_idle"
+      ]
+    },
+    "steps": {
+      "description": "What to do, in order.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "expect_save": {
+      "description": "The route saves: the game has to have written a save to the card that reads back (lom_saves.read) with these saved-game fields.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    }
+  },
+  "$defs": {
+    "note": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "frames": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "via": {
+      "description": "Points to walk through first, for places the pathfinder can't plan through (stairs, for example).",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+          "type": "integer"
+        }
+      }
+    },
+    "button": {
+      "enum": [
+        "up",
+        "down",
+        "left",
+        "right",
+        "cross",
+        "circle",
+        "triangle",
+        "square",
+        "start",
+        "select",
+        "l1",
+        "l2",
+        "r1",
+        "r2"
+      ]
+    },
+    "step": {
+      "oneOf": [
+        {
+          "description": "Enter a scene through a real change_scene from the game data, as a script would.",
+          "type": "object",
+          "required": [
+            "enter"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "enter": {
+              "type": "object",
+              "required": [
+                "scene"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "scene": {
+                  "$ref": "#/$defs/count"
+                },
+                "from": {
+                  "$ref": "#/$defs/count"
+                },
+                "spawn": {
+                  "$ref": "#/$defs/count"
+                },
+                "direct": {
+                  "description": "Enter a scene no change_scene in the game data enters (the engine does: the world map, a menu, the ending), at object 0, keeping the sound.",
+                  "type": "boolean"
+                },
+                "music": {
+                  "description": "Play this music id on the way in instead: the music byte of the change_scene's audio operand (other scene changes into the same scene can carry a different one).",
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 253
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Walk to an exit of the current scene (by its marker label) or to a point.",
+          "type": "object",
+          "required": [
+            "walk_to"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "walk_to": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "exit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "exit": {
+                      "$ref": "#/$defs/count"
+                    },
+                    "to": {
+                      "$ref": "#/$defs/count"
+                    },
+                    "clearance": {
+                      "description": "Keep planned paths this many map pixels from other exits' markers.",
+                      "$ref": "#/$defs/count"
+                    },
+                    "event_may_move": {
+                      "description": "An event that moves the hero elsewhere on the way (a boss's defeat, say) ends the step instead of failing it; the baseline records where.",
+                      "type": "boolean"
+                    },
+                    "via": {
+                      "$ref": "#/$defs/via"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "x",
+                    "z"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "x": {
+                      "description": "x on the map, in map pixels.",
+                      "type": "integer"
+                    },
+                    "z": {
+                      "description": "z on the map, in map pixels.",
+                      "type": "integer"
+                    },
+                    "via": {
+                      "$ref": "#/$defs/via"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Walk up to someone placed by a layout record (or at a point), press Cross and follow the conversation.",
+          "type": "object",
+          "required": [
+            "talk_to"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "talk_to": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "record"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "record": {
+                      "$ref": "#/$defs/count"
+                    },
+                    "event_may_leave": {
+                      "description": "Talking may end a quest: an event that leaves the field for a screen of its own is watched through instead of failing.",
+                      "type": "boolean"
+                    },
+                    "long": {
+                      "description": "A long conversation (a story scene): keep confirming it with Cross instead of backing out of a menu, for longer.",
+                      "type": "boolean"
+                    },
+                    "clearance": {
+                      "description": "Pick a side to talk from whose planned path keeps this many map pixels from the exits' markers.",
+                      "$ref": "#/$defs/count"
+                    },
+                    "avoid_regions": {
+                      "description": "With a clearance: also keep the walk out of the scene's script trigger regions that haven't run yet.",
+                      "type": "boolean"
+                    },
+                    "via": {
+                      "$ref": "#/$defs/via"
+                    },
+                    "until_screen": {
+                      "description": "End the talk once it opens a screen of its own (a shop, say) or the ring menu (a workshop's): the press and wait steps after it play on that screen.",
+                      "type": "boolean"
+                    },
+                    "follow": {
+                      "description": "Look the person up again before each side the talk tries: someone who walks about isn't where the talk started.",
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "x",
+                    "z"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "x": {
+                      "description": "x on the map, in map pixels.",
+                      "type": "integer"
+                    },
+                    "z": {
+                      "description": "z on the map, in map pixels.",
+                      "type": "integer"
+                    },
+                    "clearance": {
+                      "description": "Pick a side to talk from whose planned path keeps this many map pixels from the exits' markers.",
+                      "$ref": "#/$defs/count"
+                    },
+                    "avoid_regions": {
+                      "description": "With a clearance: also keep the walk out of the scene's script trigger regions that haven't run yet.",
+                      "type": "boolean"
+                    },
+                    "via": {
+                      "$ref": "#/$defs/via"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Hold buttons for some frames, then let go.",
+          "type": "object",
+          "required": [
+            "press"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "press": {
+              "type": "object",
+              "required": [
+                "buttons"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "buttons": {
+                  "description": "The buttons to hold together.",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "#/$defs/button"
+                  }
+                },
+                "frames": {
+                  "$ref": "#/$defs/frames"
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Wait a number of frames.",
+          "type": "object",
+          "required": [
+            "wait"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "wait": {
+              "$ref": "#/$defs/frames"
+            }
+          }
+        },
+        {
+          "description": "Wait until something happens, with a frame limit.",
+          "type": "object",
+          "required": [
+            "wait_until"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "wait_until": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "scene",
+                    "max_frames"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "scene": {
+                      "$ref": "#/$defs/count"
+                    },
+                    "max_frames": {
+                      "$ref": "#/$defs/frames"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "battle",
+                    "max_frames"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "battle": {
+                      "description": "Wait until a battle starts.",
+                      "const": "started"
+                    },
+                    "max_frames": {
+                      "$ref": "#/$defs/frames"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "description": "Capture a checkpoint. What it captures is always the same.",
+          "type": "object",
+          "required": [
+            "checkpoint"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "checkpoint": {
+              "$ref": "#/$defs/name"
+            }
+          }
+        },
+        {
+          "description": "Let the game run a cutscene: confirm text windows, and stop when the player gets control, after this many frames, or when the game leaves the field (which ends the route).",
+          "type": "object",
+          "required": [
+            "watch"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "watch": {
+              "$ref": "#/$defs/frames"
+            }
+          }
+        },
+        {
+          "description": "Give the hero (or another party member) experience and apply its level-ups the way the game's own award does, for routes that have to win battles.",
+          "type": "object",
+          "required": [
+            "experience"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "experience": {
+              "$ref": "#/$defs/count"
+            },
+            "character": {
+              "description": "The party slot to give it to instead of the hero (0): 1 for the second party member, 2 for a pet or golem.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            }
+          }
+        },
+        {
+          "description": "Have a guest join the party the way the game's own join command does, before entering a scene that expects them.",
+          "type": "object",
+          "required": [
+            "guest"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "guest": {
+              "$ref": "#/$defs/count"
+            }
+          }
+        },
+        {
+          "description": "Have a story pet join the party the way the game's own add and join commands do, from the current scene's companion templates, before entering a scene that expects a companion.",
+          "type": "object",
+          "required": [
+            "companion"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "companion": {
+              "$ref": "#/$defs/count"
+            }
+          }
+        },
+        {
+          "description": "Start a layout record's event script on its actor the way talking to it does, without walking there: for records the scene parks off the map until an event moves them in. Follow it with a watch step.",
+          "type": "object",
+          "required": [
+            "event"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "event": {
+              "type": "object",
+              "required": [
+                "record",
+                "slot"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "record": {
+                  "$ref": "#/$defs/count"
+                },
+                "slot": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 13
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Make one of the game's audio calls, named without akao_, with up to four arguments: an AKAO call the port provides because the game makes it (src/audio/akao_native.c), or one of FIELD's effect-table calls (load_sfx_tables, play_set_sfx, load_weapon_sfx_table, play_weapon_sfx). The sound fingerprints show what it did.",
+          "type": "object",
+          "required": [
+            "audio"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "audio": {
+              "type": "object",
+              "required": [
+                "call"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "call": {
+                  "enum": [
+                    "stop_song",
+                    "stop_all_songs",
+                    "set_song_volume",
+                    "fade_song_volume",
+                    "fade_song_volume_from",
+                    "fade_xa_volume",
+                    "pause_audio",
+                    "resume_audio",
+                    "set_mono_output",
+                    "set_master_volume",
+                    "set_master_tempo_modifier",
+                    "play_sound",
+                    "play_sfx",
+                    "stop_sfx",
+                    "fade_sfx_volume",
+                    "fade_sfx_pan",
+                    "set_all_sfx_volume",
+                    "fade_all_sfx_volume",
+                    "release_all_sfx",
+                    "load_sfx_tables",
+                    "play_set_sfx",
+                    "load_weapon_sfx_table",
+                    "play_weapon_sfx"
+                  ]
+                },
+                "args": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "Turn the Widescreen setting on or off, as the in-game menu's switch does. The next frame is drawn wide or not.",
+          "type": "object",
+          "required": [
+            "widescreen"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "widescreen": {
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "description": "Turn the Always run setting on or off, as the in-game menu's switch does. The hero then runs unless a run button (Circle or L1) is held.",
+          "type": "object",
+          "required": [
+            "always_run"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "always_run": {
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "description": "Turn one of the switches on or off, as its row in the in-game menu does, by the name it goes by in preferences and mod.json.",
+          "type": "object",
+          "required": [
+            "switch"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "switch": {
+              "type": "object",
+              "required": [
+                "name",
+                "on"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9_]+$"
+                },
+                "on": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "From here on, answer text choices with this option (0 is the first): the runner presses Down that many times before each Cross that confirms text.",
+          "type": "object",
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "answer": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            }
+          }
+        },
+        {
+          "description": "Wait up to this many frames for a battle (one already going counts), fight it, and go on when it's over.",
+          "type": "object",
+          "required": [
+            "fight"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "fight": {
+              "$ref": "#/$defs/count"
+            },
+            "confirm_text": {
+              "description": "Confirm text and events before the battle (a boss's entrance) with Cross.",
+              "type": "boolean"
+            },
+            "fight_for": {
+              "description": "Fight this many frames, then go on whether the battle has ended or not (a boss the fight step can't finish).",
+              "$ref": "#/$defs/count"
+            },
+            "rotate_targets": {
+              "description": "Go after the next monster once the target's HP hasn't dropped for a while, instead of always the nearest (a boss with parts that take no damage).",
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "description": "On the world map (after an exit to it): move the cursor to a land, travel there and enter it, as a player does.",
+          "type": "object",
+          "required": [
+            "land"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "land": {
+              "type": "object",
+              "required": [
+                "index"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "index": {
+                  "description": "The land's index (its world map land number, as g_wmap_land_lookup holds it).",
+                  "$ref": "#/$defs/count"
+                },
+                "scene": {
+                  "description": "The scene entering the land should lead to.",
+                  "$ref": "#/$defs/count"
+                }
+              }
+            }
+          }
+        },
+        {
+          "description": "On the world map (after an exit to it): put an artifact in hand on the map, as a player does (the nearest cell it may go in), and wait for its land's effect to finish.",
+          "type": "object",
+          "required": [
+            "place"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "place": {
+              "type": "object",
+              "required": [
+                "artifact"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "artifact": {
+                  "description": "The artifact's id (its land's index; WMAP places artifact 22 as land 16).",
+                  "$ref": "#/$defs/count"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+Read the GTE's H register sign-extended, as CFC2 does on the PS1, while
+projection keeps using it unsigned.
+
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -2404,7 +2404,7 @@
+     return v2;
+ }
+ 
+-void Psyz_GteStsxy(unsigned int* out) { *out = pack_xy(SXP, SYP); }
++void Psyz_GteStsxy(unsigned int* out) { *out = pack_xy(SX2, SY2); }
+ 
+ void Psyz_GteStsxy3(
+     unsigned int* out0, unsigned int* out1, unsigned int* out2) {
+@@ -2969,7 +2969,7 @@
+     case 14:
+         return pack_xy(SX2, SY2);
+     case 15:
+-        return pack_xy(SXP, SYP);
++        return pack_xy(SX2, SY2);
+     case 16:
+         return (unsigned int)SZ0;
+     case 17:
+@@ -3058,7 +3058,9 @@
+         unpack_xy(v, &SX2, &SY2);
+         break;
+     case 15:
+-        unpack_xy(v, &SXP, &SYP);
++        SX0 = SX1; SY0 = SY1;
++        SX1 = SX2; SY1 = SY2;
++        unpack_xy(v, &SX2, &SY2);
+         break;
+     case 16:
+         SZ0 = (u16)(v & 0xFFFF);
+@@ -3186,7 +3188,7 @@
+     case 25:
+         return (unsigned int)OFY << 16;
+     case 26:
+-        return (unsigned int)H;
++        return (unsigned int)(int)(short)H;
+     case 27:
+         return (unsigned int)(int)DQA;
+     case 28:
+@@ -3314,7 +3316,8 @@
+         ZSF4 = (short)(v & 0xFFFF);
+         break;
+     case 31:
+-        FLAG = v;
++        FLAG = v & 0x7ffff000u;
++        FLAG_UPDATE_ERROR();
+         break;
+     default:
+         break;

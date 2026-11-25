@@ -1,0 +1,174 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dmy-dmy-deb0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-deb0-exit-0",
+    "description": "Walking onto exit 0 of DMY_DEB0 (scene 14) should lead to scene 15",
+    "plan": "# dmy-dmy-deb0-exit-0: Walking onto exit 0 of DMY_DEB0 (scene 14) should lead to scene 15\nlimit 20000\nenter 14 0 16776959 0\ncheckpoint entered\nexit 0 15\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 14 save e80eeec696e1d082 state ef6a02b9d9e14d42 ram 0000000000000000",
+     "arrived frame 301 scene 15 save 28eb2aa911ae8c11 state cbed6154fc58ac93 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (431, 47): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 38,
+     "song": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fc51478357db5687a211a09e085f9408"
+     },
+     {
+      "frames": 72,
+      "sha256": "3d6d3fdf9f466f33688ba6aa3b625ff1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub0-exit-0",
+    "description": "Walking onto exit 0 of DMY_PUB0 (scene 538) should lead to scene 1",
+    "plan": "# dmy-dmy-pub0-exit-0: Walking onto exit 0 of DMY_PUB0 (scene 538) should lead to scene 1\nlimit 20000\nenter 33306 0 16711935 0\ncheckpoint entered\nexit 0 1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 538 save dc6104d1981d5822 state 9dbc30e7653482a0 ram 0000000000000000",
+     "arrived frame 289 scene 1 save 5d3a55af2bd070c6 state a90e891318888597 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 132): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 39,
+     "song": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb6a2915031468dff8ce9dad14698fa4"
+     },
+     {
+      "frames": 60,
+      "sha256": "929db7ff28ac8d07801a1be48e8f8e9f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub2-exit-0",
+    "description": "Walking onto exit 0 of DMY_PUB2 (scene 540) should lead to scene 1",
+    "plan": "# dmy-dmy-pub2-exit-0: Walking onto exit 0 of DMY_PUB2 (scene 540) should lead to scene 1\nlimit 20000\nenter 33308 0 16711935 0\ncheckpoint entered\nexit 0 1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 540 save e354f86245ea38bc state 4ec7981366fd22f4 ram 0000000000000000",
+     "arrived frame 292 scene 1 save 5d3a55af2bd070c6 state 91494815395605ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 38,
+     "song": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aeb0fc0f5d553b4079381ba0a7311b43"
+     },
+     {
+      "frames": 63,
+      "sha256": "6915a856559b87bee05632b18304181d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub3-exit-0",
+    "description": "Walking onto exit 0 of DMY_PUB3 (scene 541) should lead to scene 1",
+    "plan": "# dmy-dmy-pub3-exit-0: Walking onto exit 0 of DMY_PUB3 (scene 541) should lead to scene 1\nlimit 20000\nenter 33309 0 16711935 0\ncheckpoint entered\nexit 0 1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 541 save eaeac1960f87b76d state 4ec7981366fd22f4 ram 0000000000000000",
+     "arrived frame 292 scene 1 save 5d3a55af2bd070c6 state 91494815395605ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 38,
+     "instruction": 144,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c579ed1a2d039f1b36032f23f37377fc"
+     },
+     {
+      "frames": 63,
+      "sha256": "eb5dc8181df7abc85e7825812599c5e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

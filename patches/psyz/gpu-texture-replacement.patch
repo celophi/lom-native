@@ -1,0 +1,64 @@
+Let the port draw some of the game's textures from other art (the Legend of
+Mana Remaster's UI pictures, src/remaster/remaster_ui.c), the way PS1
+emulators' texture packs work: it hears what each upload and copy puts in video
+memory, and is asked before each textured sprite and four-point polygon is
+drawn, so it can draw one itself instead.
+
+--- a/psyz/src/psyz/libgpu.c
++++ b/psyz/src/psyz/libgpu.c
+@@ -64,6 +64,14 @@
+     return Draw_SetHorizontalGrid(source_width, target_width);
+ }
+ 
++void lom_gpu_image_loaded(int x, int y, int w, int h, const void* data)
++    __attribute__((weak));
++void lom_gpu_image_moved(int x, int y, int w, int h, int to_x, int to_y)
++    __attribute__((weak));
++int lom_gpu_prim_filter(
++    const unsigned int* words, int available, unsigned int texpage)
++    __attribute__((weak));
++
+ static inline int SignExtend11(int v) {
+     // on real hardware, VRAM offsets do not exactly wrap at 1024. Instead,
+     // coords are treated as a signed 11-bit value. Meaning 1025 will become
+@@ -117,6 +125,9 @@
+             x = (short)(buf[i + 2] & 0xFFFF);
+             y = (short)((buf[i + 2] >> 16) & 0xFFFF);
+             Draw_MoveImage(&rect, x, y);
++            if (lom_gpu_image_moved) {
++                lom_gpu_image_moved(rect.x, rect.y, rect.w, rect.h, x, y);
++            }
+             i += 3;
+             break;
+         case 0xA0: // write image
+@@ -161,6 +172,20 @@
+                         Draw_SetTexpageMode((ParamDrawTexpageMode*)&mode);
+                     }
+                 }
++                if (lom_gpu_prim_filter &&
++                    ((code & 0xFC) == 0x64 || (code & 0xFC) == 0x2C)) {
++                    unsigned int words[9];
++                    int n = len - i < 9 ? len - i : 9;
++                    for (int k = 0; k < n; k++) {
++                        words[k] = (unsigned int)buf[i + k];
++                    }
++                    int used = lom_gpu_prim_filter(
++                        words, n, (unsigned int)(GPU_STATUS & 0x1FFu));
++                    if (used > 0) {
++                        i += used - 1;
++                        break;
++                    }
++                }
+                 i += Draw_PushPrim(&buf[i], len - i) - 1;
+                 break;
+             }
+@@ -308,6 +333,9 @@
+         GPU_Sync();
+     }
+     Draw_LoadImage(rect, data);
++    if (lom_gpu_image_loaded) {
++        lom_gpu_image_loaded(rect->x, rect->y, rect->w, rect->h, data);
++    }
+     return 0;
+ }
+ static int GPU_DataRead(RECT* rect, u_long* data) {

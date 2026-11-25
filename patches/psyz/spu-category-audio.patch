@@ -1,0 +1,407 @@
+Separate Music and Sound effects volumes. The mixer tags each voice music or
+sound effect at key-on, from the mask the sound driver gives, and mixes the
+two with their own reverb copies. At 100% each it is the original mix.
+--- a/psyz/src/psyz/psyz_spu.c
++++ b/psyz/src/psyz/psyz_spu.c
+@@ -4,6 +4,8 @@
+ #include <string.h>
+ void Psyz_RcntAdd(int n);
+ #include "spu_voice.h"
++#include "lom_native_audio_categories.h"
++#include <stdatomic.h>
+ 
+ #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+ _Static_assert(sizeof(SPU_RXX) == 0x200, "SPU_RXX must be 0x200 bytes");
+@@ -16,6 +18,41 @@
+ #define CD_RING_MASK (CD_RING_FRAMES - 1) // ring wrapper
+ #define CD_RING_LOW_WATER 1024            // refill when short of N frames
+ 
++#define LOM_REVERB_CHANNEL_COUNT 2
++
++typedef struct {
++    unsigned cur;
++    int input[64][LOM_REVERB_CHANNEL_COUNT];
++    short output[LOM_REVERB_CHANNEL_COUNT][32];
++    unsigned ticks[LOM_REVERB_CHANNEL_COUNT];
++} NativeReverb;
++
++typedef struct {
++    NativeReverb reverb;
++    unsigned char ram[PSYZ_SPU_RAM_SIZE];
++} NativeAudioCategoryState;
++
++static NativeAudioCategoryState category[LOM_AUDIO_CATEGORY_COUNT];
++static unsigned pending_sfx_mask, sounding_sfx_mask;
++#define CATEGORY_GAIN_MAXIMUM 100
++#define CATEGORY_GAIN_SHIFT 8
++#define CATEGORY_GAIN_MASK 255u
++#define CATEGORY_TRACKING_FLAG 0x10000u
++static const unsigned voice_ownership_mask = (1u << PSYZ_SPU_NUM_VOICES) - 1u;
++static atomic_uint category_controls = CATEGORY_GAIN_MAXIMUM | (CATEGORY_GAIN_MAXIMUM << CATEGORY_GAIN_SHIFT);
++
++void lom_native_spu_set_category_volumes(int music, int sfx) {
++    if (music < 0 || music > CATEGORY_GAIN_MAXIMUM || sfx < 0 || sfx > CATEGORY_GAIN_MAXIMUM) {
++        return;
++    }
++
++    atomic_store_explicit(&category_controls, CATEGORY_TRACKING_FLAG | (unsigned)music | ((unsigned)sfx << CATEGORY_GAIN_SHIFT), memory_order_relaxed);
++}
++
++void lom_native_spu_set_sfx_mask(unsigned mask) {
++    pending_sfx_mask = mask & voice_ownership_mask;
++}
++
+ // Full SPU state
+ static struct {
+     u8 ram[PSYZ_SPU_RAM_SIZE];
+@@ -32,10 +69,7 @@
+     int noise_timer;
+     u16 noise_level;
+ 
+-    unsigned reverb_cur;
+-    int reverb_in[64][2];    // reverb input per frame
+-    short reverb_out[2][32]; // network output per channel, one every 2 frames
+-    unsigned reverb_ticks[2];
++    NativeReverb reverb;
+ 
+     VoiceState voice[PSYZ_SPU_NUM_VOICES];
+ 
+@@ -53,6 +87,8 @@
+     if (spu.initialized)
+         return;
+     memset(&spu, 0, sizeof(spu));
++    memset(category, 0, sizeof(category));
++    pending_sfx_mask = sounding_sfx_mask = 0;
+     spu.noise_level = 1;
+     spu.initialized = 1;
+     INFOF("SPU emulation initialized");
+@@ -64,6 +100,8 @@
+         _spu_RXX->rxx.voice[v].volumex = 0;
+     }
+     memset(&spu, 0, sizeof(spu));
++    memset(category, 0, sizeof(category));
++    pending_sfx_mask = sounding_sfx_mask = 0;
+     spu.noise_level = 1;
+ }
+ 
+@@ -72,6 +110,9 @@
+     memcpy(saved_ram, spu.ram, PSYZ_SPU_RAM_SIZE);
+     spu_reset();
+     memcpy(spu.ram, saved_ram, PSYZ_SPU_RAM_SIZE);
++    for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++        memcpy(category[c].ram, saved_ram, PSYZ_SPU_RAM_SIZE);
++    }
+ }
+ 
+ void Psyz_SpuReset(int hot) {
+@@ -96,6 +137,11 @@
+     spu.ram[spu.transfer_addr] = (unsigned char)(word & 0xFF);
+     spu.ram[spu.transfer_addr + 1] = (unsigned char)((word >> 8) & 0xFF);
+ #endif
++    for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++        category[c].ram[spu.transfer_addr] = spu.ram[spu.transfer_addr];
++        category[c].ram[(spu.transfer_addr + 1) & (PSYZ_SPU_RAM_SIZE - 1)] =
++            spu.ram[(spu.transfer_addr + 1) & (PSYZ_SPU_RAM_SIZE - 1)];
++    }
+     spu.transfer_addr = (spu.transfer_addr + 2) & (PSYZ_SPU_RAM_SIZE - 1);
+ }
+ 
+@@ -124,6 +170,14 @@
+         memcpy(&spu.ram[start], src, head);
+         memcpy(&spu.ram[0], (const unsigned char*)src + head, size - head);
+     }
++    for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++        unsigned chunk = size < head ? size : head;
++        memcpy(&category[c].ram[start], src, chunk);
++
++        if (size > head) {
++            memcpy(category[c].ram, (const unsigned char*)src + head, size - head);
++        }
++    }
+ }
+ 
+ static void spu_key_on_voice(int v) {
+@@ -131,6 +185,8 @@
+     unsigned wait = spu.ticks & 1;
+     spu_voice_key_on(v, vs, &_spu_RXX->rxx.voice[v], spu.ram);
+     _spu_RXX->rxx.chan_on &= ~(1u << v);
++    sounding_sfx_mask = (sounding_sfx_mask & ~(1u << v)) |
++                        (pending_sfx_mask & (1u << v));
+     vs->hold_ticks += wait;
+     vs->delay_ticks += wait;
+     vs->env_counter = spu.ticks + ENV_CLOCK_PHASE;
+@@ -172,7 +228,10 @@
+     } else if (reg_offset == offsetof(SPU_RXX, trans_addr)) {
+         Psyz_SpuSetTransferAddr((unsigned)value << 3);
+     } else if (reg_offset == offsetof(SPU_RXX, rev_work_addr)) {
+-        spu.reverb_cur = ((unsigned)value << 3) & 0x7FFFF;
++        spu.reverb.cur = ((unsigned)value << 3) & 0x7FFFF;
++        for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++            category[c].reverb.cur = spu.reverb.cur;
++        }
+     } else if (reg_offset == offsetof(SPU_RXX, trans_fifo)) {
+         Psyz_SpuFifoWrite(value);
+     }
+@@ -200,6 +259,9 @@
+     unsigned int addr = (idx * 0x400) | spu.capture_pos;
+     if (addr < PSYZ_SPU_RAM_SIZE) {
+         *(short*)&spu.ram[addr] = val;
++        for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++            *(short*)&category[c].ram[addr] = val;
++        }
+     }
+ }
+ 
+@@ -222,39 +284,39 @@
+ 
+ static inline int spu_s16(u16 value) { return (short)value; }
+ 
+-static unsigned reverb_address(u16 raw_offset, int extra_bytes) {
++static unsigned reverb_address(NativeReverb* state, u16 raw_offset, int extra_bytes) {
+     unsigned base = ((unsigned)_spu_RXX->rxx.rev_work_addr << 3) & 0x7FFFF;
+-    unsigned addr = spu.reverb_cur + ((unsigned)raw_offset << 3) + extra_bytes;
++    unsigned addr = state->cur + ((unsigned)raw_offset << 3) + extra_bytes;
+     addr &= 0x7FFFF;
+     if (addr < base)
+         addr = base + addr;
+     return addr & 0x7FFFF;
+ }
+ 
+-static short reverb_read(u16 offset, int extra_bytes) {
+-    unsigned addr = reverb_address(offset, extra_bytes);
+-    return (short)(spu.ram[addr] | (spu.ram[(addr + 1) & 0x7FFFF] << 8));
+-}
+-
+-static void reverb_write(u16 offset, int value) {
++static short reverb_read(NativeReverb* state, const u8* ram, u16 offset, int extra_bytes) {
++    unsigned addr = reverb_address(state, offset, extra_bytes);
++    return (short)(ram[addr] | (ram[(addr + 1) & 0x7FFFF] << 8));
++}
++
++static void reverb_write(NativeReverb* state, u8* ram, u16 offset, int value) {
+     unsigned addr;
+     short sample;
+     if (!(_spu_RXX->rxx.spucnt & SPU_CTRL_MASK_REVERB_MASTER_ENABLE))
+         return;
+-    addr = reverb_address(offset, 0);
++    addr = reverb_address(state, offset, 0);
+     sample = clamp16(value);
+-    spu.ram[addr] = (u8)sample;
+-    spu.ram[(addr + 1) & 0x7FFFF] = (u8)((u16)sample >> 8);
++    ram[addr] = (u8)sample;
++    ram[(addr + 1) & 0x7FFFF] = (u8)((u16)sample >> 8);
+ }
+ 
+ static int rmul(int x, int coefficient) { return (x * coefficient) >> 14; }
+ 
+-static int reverb_tap(int ch, u16 left, u16 right, u16 coefficient) {
+-    return rmul(reverb_read(ch ? right : left, 0), spu_s16(coefficient));
++static int reverb_tap(NativeReverb* state, const u8* ram, int ch, u16 left, u16 right, u16 coefficient) {
++    return rmul(reverb_read(state, ram, ch ? right : left, 0), spu_s16(coefficient));
+ }
+ 
+ // One channel of the reverb, run at 22.05 kHz
+-static short reverb_network(int ch, int in) {
++static short reverb_network(NativeReverb* state, u8* ram, int ch, int in) {
+     SPU_RXX* r = (SPU_RXX*)&_spu_RXX->rxx;
+     u16 same = ch ? r->mRSAME : r->mLSAME;
+     u16 diff = ch ? r->mRDIFF : r->mLDIFF;
+@@ -267,71 +329,71 @@
+     int vapf2 = spu_s16(r->vAPF2);
+     int a, b, fa, fb, ma, mb;
+ 
+-    a = clamp16((vin + reverb_tap(ch, r->dLSAME, r->dRSAME, r->vWALL)) >> 1);
+-    reverb_write(
+-        same, (rmul(a, iir) + rmul(reverb_read(same, -2), iir_prev)) >> 1);
+-    b = clamp16((vin + reverb_tap(ch, r->dRDIFF, r->dLDIFF, r->vWALL)) >> 1);
+-    reverb_write(
+-        diff, (rmul(b, iir) + rmul(reverb_read(diff, -2), iir_prev)) >> 1);
+-    fa = reverb_read((u16)(apf1 - r->dAPF1), 0);
+-    ma = clamp16((reverb_tap(ch, r->mLCOMB1, r->mRCOMB1, r->vCOMB1) +
+-                  reverb_tap(ch, r->mLCOMB2, r->mRCOMB2, r->vCOMB2) +
+-                  reverb_tap(ch, r->mLCOMB3, r->mRCOMB3, r->vCOMB3) +
+-                  reverb_tap(ch, r->mLCOMB4, r->mRCOMB4, r->vCOMB4) +
++    a = clamp16((vin + reverb_tap(state, ram, ch, r->dLSAME, r->dRSAME, r->vWALL)) >> 1);
++    reverb_write(state, ram,
++        same, (rmul(a, iir) + rmul(reverb_read(state, ram, same, -2), iir_prev)) >> 1);
++    b = clamp16((vin + reverb_tap(state, ram, ch, r->dRDIFF, r->dLDIFF, r->vWALL)) >> 1);
++    reverb_write(state, ram,
++        diff, (rmul(b, iir) + rmul(reverb_read(state, ram, diff, -2), iir_prev)) >> 1);
++    fa = reverb_read(state, ram, (u16)(apf1 - r->dAPF1), 0);
++    ma = clamp16((reverb_tap(state, ram, ch, r->mLCOMB1, r->mRCOMB1, r->vCOMB1) +
++                  reverb_tap(state, ram, ch, r->mLCOMB2, r->mRCOMB2, r->vCOMB2) +
++                  reverb_tap(state, ram, ch, r->mLCOMB3, r->mRCOMB3, r->vCOMB3) +
++                  reverb_tap(state, ram, ch, r->mLCOMB4, r->mRCOMB4, r->vCOMB4) +
+                   rmul(fa, -vapf1)) >>
+                  1);
+-    reverb_write(apf1, ma);
+-    fb = reverb_read((u16)(apf2 - r->dAPF2), 0);
++    reverb_write(state, ram, apf1, ma);
++    fb = reverb_read(state, ram, (u16)(apf2 - r->dAPF2), 0);
+     mb = clamp16((2 * fa + rmul(ma, vapf1) + rmul(fb, -vapf2)) >> 1);
+-    reverb_write(apf2, mb);
++    reverb_write(state, ram, apf2, mb);
+     return clamp16((2 * fb + rmul(mb, vapf2)) >> 1);
+ }
+ 
+ static const short reverb_taps[10] = {
+     20492, -5920, 2664, -1232, 532, -206, 70, -20, 4, -2};
+ 
+-static int reverb_downsample(int ch, unsigned centre) {
+-    int acc = spu.reverb_in[centre & 63][ch];
++static int reverb_downsample(NativeReverb* state, int ch, unsigned centre) {
++    int acc = state->input[centre & 63][ch];
+     for (int k = 0; k < 10; k++) {
+         unsigned d = 2 * k + 1;
+-        acc += (reverb_taps[k] * spu.reverb_in[(centre - d) & 63][ch]) >> 15;
+-        acc += (reverb_taps[k] * spu.reverb_in[(centre + d) & 63][ch]) >> 15;
++        acc += (reverb_taps[k] * state->input[(centre - d) & 63][ch]) >> 15;
++        acc += (reverb_taps[k] * state->input[(centre + d) & 63][ch]) >> 15;
+     }
+     return clamp16(acc >> 1);
+ }
+ 
+-static int reverb_upsample(int ch, int on_output_frame) {
+-    unsigned t = spu.reverb_ticks[ch];
++static int reverb_upsample(NativeReverb* state, int ch, int on_output_frame) {
++    unsigned t = state->ticks[ch];
+     int acc = 0;
+     if (on_output_frame) {
+-        return spu.reverb_out[ch][(t - 10) & 31];
++        return state->output[ch][(t - 10) & 31];
+     }
+     for (int j = 0; j < 20; j++) {
+         int d = j < 10 ? 9 - j : j - 10;
+-        acc += (spu.reverb_out[ch][(t - 1 - j) & 31] * reverb_taps[d]) >> 14;
++        acc += (state->output[ch][(t - 1 - j) & 31] * reverb_taps[d]) >> 14;
+     }
+     return clamp16(acc >> 1);
+ }
+ 
+-static void reverb_tick(int in_left, int in_right, int out[2]) {
++static void reverb_tick(NativeReverb* state, u8* ram, int in_left, int in_right, int out[2]) {
+     SPU_RXX* r = (SPU_RXX*)&_spu_RXX->rxx;
+     unsigned n = spu.ticks;
+     int ch = n & 1;
+-    spu.reverb_in[n & 63][0] = in_left;
+-    spu.reverb_in[n & 63][1] = in_right;
+-    spu.reverb_out[ch][spu.reverb_ticks[ch]++ & 31] =
+-        reverb_network(ch, reverb_downsample(ch, n - 19));
++    state->input[n & 63][0] = in_left;
++    state->input[n & 63][1] = in_right;
++    state->output[ch][state->ticks[ch]++ & 31] =
++        reverb_network(state, ram, ch, reverb_downsample(state, ch, n - 19));
+     if (ch == 1) {
+-        spu.reverb_cur = (spu.reverb_cur + 2) & 0x7FFFF;
+-        if (spu.reverb_cur < ((unsigned)r->rev_work_addr << 3))
+-            spu.reverb_cur = (unsigned)r->rev_work_addr << 3;
+-    }
+-    out[0] = reverb_upsample(0, n & 1);
+-    out[1] = reverb_upsample(1, !(n & 1));
++        state->cur = (state->cur + 2) & 0x7FFFF;
++        if (state->cur < ((unsigned)r->rev_work_addr << 3))
++            state->cur = (unsigned)r->rev_work_addr << 3;
++    }
++    out[0] = reverb_upsample(state, 0, n & 1);
++    out[1] = reverb_upsample(state, 1, !(n & 1));
+ }
+ 
+ // generate one frame at 44100hz with voices mix, cd playback and volume control
+-static void spu_tick(short* out) {
++static void spu_tick(short* out, unsigned controls) {
+     SPU_RXX* rxx = (SPU_RXX*)&_spu_RXX->rxx;
+     unsigned short spucnt = rxx->spucnt;
+ 
+@@ -339,6 +401,9 @@
+     int left_sum = 0, right_sum = 0;
+     int reverb_input_left = 0, reverb_input_right = 0;
+     int reverb_output[2];
++    int dry[LOM_AUDIO_CATEGORY_COUNT][LOM_REVERB_CHANNEL_COUNT] = {{0}};
++    int send[LOM_AUDIO_CATEGORY_COUNT][LOM_REVERB_CHANNEL_COUNT] = {{0}};
++    int tracking = (controls & CATEGORY_TRACKING_FLAG) != 0;
+ 
+     // Pre-fill CD ring buffer if running low
+     if (spu.cd_ring_count < CD_RING_LOW_WATER) {
+@@ -398,12 +463,21 @@
+                 (s * spu_volume(rxx->voice[v].volume.left, 0)) >> 14;
+             int voice_right =
+                 (s * spu_volume(rxx->voice[v].volume.right, 0)) >> 14;
++            int c = (sounding_sfx_mask & (1u << v)) != 0;
+             left_sum += voice_left;
+             right_sum += voice_right;
++            if (tracking) {
++                dry[c][0] += voice_left;
++                dry[c][1] += voice_right;
++            }
+             if ((v < 16 && (rxx->rev_mode[0] & (1u << v))) ||
+                 (v >= 16 && (rxx->rev_mode[1] & (1u << (v - 16))))) {
+                 reverb_input_left += voice_left;
+                 reverb_input_right += voice_right;
++                if (tracking) {
++                    send[c][0] += voice_left;
++                    send[c][1] += voice_right;
++                }
+             }
+         }
+     }
+@@ -412,17 +486,44 @@
+     if (!(spucnt & SPU_CTRL_MASK_MUTE_SPU)) {
+         left_sum = right_sum = 0;
+         reverb_input_left = reverb_input_right = 0;
+-    }
+-
+-    reverb_tick(clamp16(reverb_input_left >> 1),
++        memset(dry, 0, sizeof(dry));
++        memset(send, 0, sizeof(send));
++    }
++
++    reverb_tick(&spu.reverb, spu.ram, clamp16(reverb_input_left >> 1),
+                 clamp16(reverb_input_right >> 1), reverb_output);
+     left_sum += (reverb_output[0] * spu_s16(rxx->rev_vol.left)) >> 14;
+     right_sum += (reverb_output[1] * spu_s16(rxx->rev_vol.right)) >> 14;
+ 
++    if (tracking) {
++        int wet[LOM_AUDIO_CATEGORY_COUNT][LOM_REVERB_CHANNEL_COUNT];
++
++        for (int c = 0; c < LOM_AUDIO_CATEGORY_COUNT; ++c) {
++            reverb_tick(&category[c].reverb, category[c].ram, clamp16(send[c][0] >> 1), clamp16(send[c][1] >> 1), wet[c]);
++            dry[c][0] += (wet[c][0] * spu_s16(rxx->rev_vol.left)) >> 14;
++            dry[c][1] += (wet[c][1] * spu_s16(rxx->rev_vol.right)) >> 14;
++        }
++
++        unsigned music = controls & CATEGORY_GAIN_MASK, sfx = (controls >> CATEGORY_GAIN_SHIFT) & CATEGORY_GAIN_MASK;
++
++        if (music == sfx) {
++            if (music != CATEGORY_GAIN_MAXIMUM) {
++                left_sum = left_sum * (int)music / CATEGORY_GAIN_MAXIMUM;
++                right_sum = right_sum * (int)music / CATEGORY_GAIN_MAXIMUM;
++            }
++        } else {
++            left_sum = (int)(((long long)dry[0][0] * music + (long long)dry[1][0] * sfx) / CATEGORY_GAIN_MAXIMUM);
++            right_sum = (int)(((long long)dry[0][1] * music + (long long)dry[1][1] * sfx) / CATEGORY_GAIN_MAXIMUM);
++        }
++    }
++
+     // Mix CD audio per SPUCNT and cd_vol registers.
+     if (spucnt & SPU_CTRL_MASK_CD_AUDIO_ENABLE) {
+-        left_sum += (cd_left * rxx->cd_vol.left) >> 14;
+-        right_sum += (cd_right * rxx->cd_vol.right) >> 14;
++        unsigned music = controls & CATEGORY_GAIN_MASK;
++        int cd_l = (cd_left * rxx->cd_vol.left) >> 14;
++        int cd_r = (cd_right * rxx->cd_vol.right) >> 14;
++        left_sum += cd_l * (int)music / CATEGORY_GAIN_MAXIMUM;
++        right_sum += cd_r * (int)music / CATEGORY_GAIN_MAXIMUM;
+     }
+ 
+     out[0] = clamp16(
+@@ -452,8 +553,9 @@
+         memset(out, 0, num_frames * 2 * sizeof(short));
+         return;
+     }
++    unsigned controls = atomic_load_explicit(&category_controls, memory_order_relaxed);
+     for (int i = 0; i < num_frames; i++) {
+-        spu_tick(&out[i * 2]);
++        spu_tick(&out[i * 2], controls);
+         Psyz_RcntAdd(1);
+     }
+ }

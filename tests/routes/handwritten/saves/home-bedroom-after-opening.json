@@ -1,0 +1,6 @@
+{
+  "format": 1,
+  "description": "After the opening, saved at the bedroom desk",
+  "scene": {"scene": 19, "object": 0, "music": 7, "sound_bank": 65535, "secondary_music": 255, "track": 4294705152},
+  "words": {"24": "0xf2f20000", "32": "0x10000", "33": "0x8000000", "43": "0x6400"}
+}

@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "drl-drl-bs30-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs30-entry",
+    "description": "Entering DRL_BS30 (scene 735) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# drl-drl-bs30-entry: Entering DRL_BS30 (scene 735) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33503 0 16721172 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 735 save 52471e1763f0451e state 590cdb1ddf1f633f ram 0000000000000000",
+     "watched frame 262 scene 735 save 5daa08a8cb5bafcc state 45a54acc7f9da656 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a13d5b59e1d198364d4a20f4f1e1c9a1"
+     },
+     {
+      "frames": 33,
+      "sha256": "9cbeb6d6dd60c737a2849e6911d2e0d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

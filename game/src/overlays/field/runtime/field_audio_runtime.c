@@ -1,0 +1,775 @@
+#include "common.h"
+#include <memory.h>
+#include "lom_native_sound.h"
+
+#include "../internal/field_calls.h"
+#include "main/audio/akao.h"
+#include "main/audio/akao_cmd.h"
+#include "main/audio/game_audio.h"
+#include "main/cd_resources.h"
+#include "main/cdrom.h"
+#include "main/game_state.h"
+
+#define FIELD_SONG_INDEX_MAX 256
+
+#define FIELD_INSTRUMENT_BANK_RESOURCE_BASE 142
+
+#define FIELD_UPLOAD_BANK_RESOURCE 22
+
+#define FIELD_FIXED_SONG_RESOURCE 146
+
+#define FIELD_SFX_SET_RESOURCE_BASE 81
+
+#define FIELD_WEAPON_SFX_RESOURCE_BASE 131
+
+#define FIELD_SFX_SET_KEEP (-2)
+
+#define FIELD_SFX_SET_NONE (-1)
+
+#define FIELD_WEAPON_SFX_TABLE_SIZE 0x1A00
+
+#define FIELD_WEAPON_SFX_TABLE_COUNT 2
+
+#define FIELD_SFX_GROUP_COUNT 8
+
+#define FIELD_SFX_GROUP_VOICES 3
+
+#define FIELD_STREAM_SECTOR_BUFFER CD_STREAM_BUFFER_ADDRESS
+#define FIELD_STREAM_SECTOR_BUFFER_UPPER CD_STREAM_BUFFER_AT(CD_DATA_SECTOR_SIZE)
+
+#define FIELD_STREAM_BANK_BUFFER CD_STREAM_BUFFER_AT(0x1000)
+
+#define FIELD_STREAM_BANK_OVERFLOW CD_STREAM_BUFFER_AT(0x1800)
+
+#define FIELD_RING_SELECTION_COUNT 30
+
+#define FIELD_SONG_MAIN 0
+#define FIELD_SONG_SECOND 1
+
+enum
+{
+    FIELD_STREAM_IDLE = 0,
+    FIELD_STREAM_SECTOR = 1,
+    FIELD_STREAM_FIRST_SECTOR = 2,
+    FIELD_STREAM_WAIT_UPLOAD = 3,
+    FIELD_STREAM_WAIT_LAST_UPLOAD = 4
+};
+
+typedef struct
+{
+    s32 active_table_offset;
+    s32 reserved_0;
+    s32 reserved_1;
+    u8 table_data[0x2000 - 12];
+} FieldSfxTableBuffer;
+
+typedef struct
+{
+    s32 section_count;
+    s32 song_offset;
+    s32 bank_offset;
+} FieldMusicStreamHeader;
+
+extern u8 g_field_second_song[];
+
+extern u8 g_field_sfx_set_uses_slots[];
+
+extern FieldSfxTableBuffer g_field_sfx_tables;
+extern AkaoHeader* g_field_instrument_bank;
+
+extern s32 g_field_song_handles[2];
+
+#include "../internal/field_music_stream.h"
+
+static void field_stream_copy_bytes(u8* destination, u8* source, s32 count);
+static u8* field_stream_sector_callback(s32 bytes_transferred, u32 bytes_remaining);
+
+#define FIELD_MUSIC_STREAM_HEADER ((FieldMusicStreamHeader*)g_field_stream_sector)
+
+/**
+ * @brief Reload the instrument bank from EFFECT.SET unless the previous state kept it resident.
+ */
+void field_restore_entry_music(void)
+{
+    AkaoContainerHeader* container;
+    u32* off;
+
+    if ((g_previous_game_state != GAME_STATE_TITLE) && (g_previous_game_state != GAME_STATE_GNAME) && (g_previous_game_state != GAME_STATE_FIELD) &&
+        (g_previous_game_state != GAME_STATE_CHECKPS) && (g_previous_game_state != GAME_STATE_MENU_LOAD) && (g_previous_game_state != GAME_STATE_WORLD_SELECT))
+    {
+        g_field_instrument_bank = (AkaoHeader*)SOUND_BANK_ADDRESS;
+        cdrom_queue_read(CD_RES_SOUND_EFFECT_SET, (void*)LOAD_BUFFER_ADDRESS);
+        cdrom_wait_queue_empty();
+
+        container = (AkaoContainerHeader*)LOAD_BUFFER_ADDRESS;
+        off = container->section_offsets;
+        lom_sound_copy_song_data(AKAO_CONTAINER_DATA_AT(container, off[0]), (u8*)g_field_instrument_bank, (off[1] - off[0]));
+        lom_sound_register_bank(g_field_instrument_bank);
+        lom_sound_upload_bank((AkaoBankHeader*)AKAO_CONTAINER_DATA_AT(container, off[1]), 1);
+    }
+}
+
+/**
+ * @brief Load an instrument bank to its resident address and register it.
+ * @param bank_index Bank index, relative to FIELD_INSTRUMENT_BANK_RESOURCE_BASE.
+ * @return The result of akao_register_bank.
+ */
+s32 field_load_instrument_bank(s32 bank_index)
+{
+    lom_sound_release_all_effects();
+    g_field_instrument_bank = (AkaoHeader*)SOUND_BANK_ADDRESS;
+    cdrom_queue_read((bank_index + FIELD_INSTRUMENT_BANK_RESOURCE_BASE) & 0xFFFF, (void*)SOUND_BANK_ADDRESS);
+    cdrom_wait_queue_empty();
+    return lom_sound_register_bank(g_field_instrument_bank);
+}
+
+/**
+ * @brief Load CD resource 22 and upload it as an instrument bank.
+ */
+void field_upload_resource_22_bank(void)
+{
+    cdrom_queue_read(FIELD_UPLOAD_BANK_RESOURCE, (void*)LOAD_BUFFER_ADDRESS);
+    cdrom_wait_queue_empty();
+    lom_sound_upload_bank((AkaoBankHeader*)LOAD_BUFFER_ADDRESS, 1);
+}
+
+/**
+ * @brief Load a song container, copy its song to a song area and upload its bank.
+ * @details Counterpart of TITLE's load_title_seq.
+ * @param music_index Music-file index (0 selects MSC_DATA.DAT); indices above
+ *        FIELD_SONG_INDEX_MAX are ignored.
+ * @param second_song Non-zero to copy the song to g_field_second_song instead of g_resident_song_buffer.
+ */
+void field_load_song(s32 music_index, s32 second_song)
+{
+    u32* off;
+    u8* src;
+    s32 count;
+
+    if (music_index < FIELD_SONG_INDEX_MAX + 1)
+    {
+        cdrom_queue_read(CD_RES_MUSIC_FILE(music_index), LOAD_BUFFER_AKAO_CONTAINER);
+        cdrom_wait_queue_empty();
+
+        off = LOAD_BUFFER_AKAO_CONTAINER->section_offsets;
+
+        count = off[AKAO_CONTAINER_BANK_SECTION] - off[AKAO_CONTAINER_RESIDENT_SECTION];
+        src = AKAO_CONTAINER_DATA_AT(LOAD_BUFFER_AKAO_CONTAINER, off[AKAO_CONTAINER_RESIDENT_SECTION]);
+
+        if (second_song != 0)
+        {
+            lom_sound_copy_song_data(src, g_field_second_song, count);
+        }
+        else
+        {
+            lom_sound_copy_song_data(src, g_resident_song_buffer, count);
+        }
+
+        lom_sound_upload_bank((AkaoBankHeader*)AKAO_CONTAINER_DATA_AT(LOAD_BUFFER_AKAO_CONTAINER, off[AKAO_CONTAINER_BANK_SECTION]), 1);
+    }
+}
+
+/**
+ * @brief Load the fixed song container (CD resource 146) and upload its bank.
+ * @details Unlike field_load_song, the whole container up to its last section
+ *          is copied to g_resident_song_buffer, and the last section is the bank.
+ */
+void field_load_fixed_song(void)
+{
+    u8* dst;
+    u32* off_end;
+    uintptr_t count;
+
+    cdrom_queue_read(FIELD_FIXED_SONG_RESOURCE, (void*)LOAD_BUFFER_ADDRESS);
+    cdrom_wait_queue_empty();
+
+    dst = g_resident_song_buffer;
+    count = LOAD_BUFFER_ADDRESS;
+    count = *(u32*)count;
+    off_end = LOAD_BUFFER_AKAO_CONTAINER->section_offsets + count;
+
+    lom_sound_copy_song_data((u8*)LOAD_BUFFER_ADDRESS, dst, off_end[-1]);
+    lom_sound_upload_bank((AkaoBankHeader*)((u8*)LOAD_BUFFER_ADDRESS + off_end[-1]), 1);
+}
+
+/**
+ * @brief Stop the field song.
+ * @details Counterpart of stop_song.
+ */
+void field_stop_song(void)
+{
+    lom_sound_stop_song(0);
+}
+
+/**
+ * @brief Stop the field song by its handle.
+ */
+void field_stop_field_song(void)
+{
+    lom_sound_stop_song(g_field_song_handles[FIELD_SONG_MAIN]);
+}
+
+/**
+ * @brief Stop the second song by its handle.
+ */
+void field_stop_second_song(void)
+{
+    lom_sound_stop_song(g_field_song_handles[FIELD_SONG_SECOND]);
+}
+
+/**
+ * @brief Play the song in g_resident_song_buffer at the field song volume.
+ * @note GOVER calls this after staging its own song with field_load_song.
+ */
+inline void field_play_song(void)
+{
+    s32 song_handle;
+
+    song_handle = lom_sound_play_song((AkaoHeader*)g_resident_song_buffer);
+    g_field_song_handles[FIELD_SONG_MAIN] = song_handle;
+    lom_sound_set_song_volume(song_handle, g_field_song_volume);
+    lom_sound_set_master_volume(0);
+    lom_sound_set_tempo(0);
+}
+
+/**
+ * @brief Play one section of the container in g_resident_song_buffer through AKAO command 0x14.
+ * @param section_index Section of the resident container.
+ * @param channel_mask Channels to start (AKAO command 0x14); 0 starts every channel.
+ */
+void field_play_song_section(s32 section_index, s32 channel_mask)
+{
+    s32 song_handle;
+
+    song_handle = lom_sound_start_song_channels((u8*)g_resident_song_section_offsets - OFFSETOF(AkaoContainerHeader, section_offsets) +
+                                                    g_resident_song_section_offsets[section_index],
+                                                channel_mask, 0);
+    g_field_song_handles[FIELD_SONG_MAIN] = song_handle;
+
+    if (song_handle == -1)
+    {
+        g_field_song_handles[FIELD_SONG_MAIN] = 0;
+    }
+    else if (song_handle == 0)
+    {
+        g_field_song_handles[FIELD_SONG_MAIN] = 0;
+    }
+    else
+    {
+        lom_sound_set_song_volume(0, g_field_song_volume);
+        lom_sound_set_master_volume(0);
+    }
+
+    lom_sound_set_tempo(0);
+}
+
+/**
+ * @brief Play the song in g_field_second_song at the field song volume.
+ */
+void field_play_second_song(void)
+{
+    g_field_song_handles[FIELD_SONG_SECOND] = lom_sound_switch_song(g_field_second_song, g_field_song_volume);
+}
+
+/**
+ * @brief Fade a song to a volume.
+ * @param song FIELD_SONG_MAIN or FIELD_SONG_SECOND.
+ * @param frames Length of the fade.
+ * @param volume Target volume (0 to AKAO_VOLUME_MAX).
+ */
+void field_fade_song(s32 song, s32 frames, s32 volume)
+{
+    lom_sound_fade_song_volume(g_field_song_handles[song], frames, volume);
+}
+
+/**
+ * @brief Play a sound effect at full volume.
+ * @param sound_id Sound id.
+ * @param pan Pan position.
+ */
+void field_play_sound(s32 sound_id, s32 pan)
+{
+    lom_sound_play_effect(sound_id, 0, pan, AKAO_VOLUME_MAX);
+}
+
+/**
+ * @brief Play a sound effect at full volume with the pan scaled from 0-127 to 0-254.
+ * @param sound_id Sound id.
+ * @param pan Pan position in half steps.
+ */
+void field_play_sound_half_pan(s32 sound_id, s32 pan)
+{
+    lom_sound_play_effect(sound_id, 0, pan * 2, AKAO_VOLUME_MAX);
+}
+
+/**
+ * @brief Play an effect of the active effect table in channel group 0.
+ * @param sfx_index Effect index.
+ * @param pan Pan position.
+ * @param unused Forwarded to field_play_set_sfx, which ignores it.
+ */
+void field_play_set_sfx_group0(s32 sfx_index, s32 pan, s32 unused)
+{
+    field_play_set_sfx(sfx_index, pan, unused, 0);
+}
+
+/**
+ * @brief Play an effect of the active effect table on a free voice of a channel group.
+ * @param sfx_index Effect index.
+ * @param pan Pan position.
+ * @param unused Not used.
+ * @param channel_group Channel group; clamped to the last group.
+ */
+void field_play_set_sfx(s32 sfx_index, s32 pan, s32 unused, s32 channel_group)
+{
+    s32* table;
+    s32 base;
+    s32 i;
+    s32 mask;
+    u8* buf;
+
+    if (g_field_sfx_tables.active_table_offset != 0)
+    {
+        if (channel_group >= FIELD_SFX_GROUP_COUNT)
+        {
+            channel_group = FIELD_SFX_GROUP_COUNT - 1;
+        }
+
+        table = (s32*)((u8*)&g_field_sfx_tables + g_field_sfx_tables.active_table_offset);
+
+        if ((u32)sfx_index < (u32)(table[0] - 1))
+        {
+            buf = (u8*)table;
+            i = 0;
+            base = channel_group * FIELD_SFX_GROUP_VOICES;
+            buf += table[sfx_index + 1];
+
+            for (; i < FIELD_SFX_GROUP_VOICES; i++)
+            {
+                mask = 1 << (base + i);
+
+                if (!lom_sound_effect_playing(mask))
+                {
+                    lom_sound_play_effect_data((AkaoHeader*)buf, mask, pan, AKAO_VOLUME_MAX);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Play an effect of a weapon effect table on a free voice of that table's channel group.
+ * @param sfx_index Effect index.
+ * @param pan Pan position.
+ * @param table_index Weapon table (and channel group) index.
+ */
+void field_play_weapon_sfx(s32 sfx_index, s32 pan, s32 table_index)
+{
+    s32* table;
+    s32 base;
+    s32 i;
+    s32 mask;
+    u8* buf;
+    u8* p;
+
+    if (table_index < FIELD_WEAPON_SFX_TABLE_COUNT)
+    {
+        p = g_field_sound_tables;
+        table = (s32*)(p + table_index * FIELD_WEAPON_SFX_TABLE_SIZE);
+
+        if (table[0] != 0)
+        {
+            if ((u32)sfx_index < (u32)table[0])
+            {
+                i = 0;
+                base = table_index * FIELD_SFX_GROUP_VOICES;
+                buf = (u8*)table + table[sfx_index + 1];
+
+                for (; i < FIELD_SFX_GROUP_VOICES; i++)
+                {
+                    mask = 1 << (base + i);
+
+                    if (!lom_sound_effect_playing(mask))
+                    {
+                        lom_sound_play_effect_data((AkaoHeader*)buf, mask, pan, AKAO_VOLUME_MAX);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Send AKAO command 0x21 for each voice of a channel group.
+ * @param channel_group Channel group; clamped to the last group.
+ */
+void field_release_sfx_group(s32 channel_group)
+{
+    s32 bit;
+
+    if (channel_group >= FIELD_SFX_GROUP_COUNT)
+    {
+        channel_group = FIELD_SFX_GROUP_COUNT - 1;
+    }
+
+    bit = channel_group * FIELD_SFX_GROUP_VOICES;
+    lom_sound_stop_effect(0, 1 << bit);
+    lom_sound_stop_effect(0, 1 << (bit + 1));
+    lom_sound_stop_effect(0, 1 << (bit + 2));
+}
+
+/**
+ * @brief Load an effect-table set, copy its tables and upload their banks.
+ * @param set_id Effect set; FIELD_SFX_SET_KEEP keeps the loaded set and
+ *        FIELD_SFX_SET_NONE only clears it.
+ * @note The resource holds a section count and offsets; each section is an
+ *       effect table (its last offset entry marks its end) followed by its bank.
+ */
+void field_load_sfx_tables(s32 set_id)
+{
+    s32 set_index = set_id;
+    FieldSfxTableBuffer* tables;
+    u8* base;
+    u8* cursor;
+    u8* table;
+    u8* table_end;
+    u8* buffer;
+    s32* blob;
+    s32* entry;
+    s32 count;
+    s32 i;
+
+    if (set_id == FIELD_SFX_SET_KEEP)
+    {
+        return;
+    }
+
+    g_field_sfx_tables.reserved_1 = 0;
+    g_field_sfx_tables.reserved_0 = 0;
+    g_field_sfx_tables.active_table_offset = 0;
+
+    if (set_id == FIELD_SFX_SET_NONE)
+    {
+        return;
+    }
+
+    buffer = g_field_cd_buffer;
+    cdrom_queue_read((u16)(set_id + FIELD_SFX_SET_RESOURCE_BASE), buffer);
+    cdrom_wait_queue_empty();
+    blob = (s32*)buffer;
+    base = (u8*)&g_field_sfx_tables;
+    tables = (FieldSfxTableBuffer*)base;
+    cursor = tables->table_data;
+    entry = blob + 1;
+    count = blob[0];
+
+    for (i = 0; i < count; i++)
+    {
+        tables->active_table_offset = ((cursor - base) >> 2) * 4;
+        table = (u8*)blob + *entry;
+        table_end = table + ((s32*)table)[*(s32*)table];
+        {
+            u8* dst = cursor;
+
+            while (table != table_end)
+            {
+                *dst++ = *table++;
+            }
+
+            cursor = dst;
+        }
+
+        if (g_field_sfx_set_uses_slots[set_index] == 0)
+        {
+            lom_sound_upload_bank((AkaoBankHeader*)table_end, 1);
+            return;
+        }
+
+        lom_sound_load_upper_bank_slot(table_end, i, 1);
+        entry++;
+    }
+}
+
+/**
+ * @brief Load a weapon effect table and upload its bank into the weapon's slot.
+ * @param slot Weapon table slot (0 or 1).
+ * @param weapon_type Weapon type; FIELD_SFX_SET_KEEP keeps the table and
+ *        FIELD_SFX_SET_NONE only clears it.
+ */
+void field_load_weapon_sfx_table(s32 slot, s32 weapon_type)
+{
+    u8* dst;
+    u8* base;
+    u8* src;
+    u8* end;
+    u8* dst_cursor;
+
+    if (weapon_type != FIELD_SFX_SET_KEEP)
+    {
+        base = g_field_sound_tables;
+        dst = base + slot * FIELD_WEAPON_SFX_TABLE_SIZE;
+
+        *(s32*)dst = 0;
+        if (weapon_type != FIELD_SFX_SET_NONE)
+        {
+            weapon_type += FIELD_WEAPON_SFX_RESOURCE_BASE;
+            src = g_field_cd_buffer;
+            cdrom_queue_read(weapon_type & 0xFFFF, src);
+            cdrom_wait_queue_empty();
+            end = src + ((s32*)src)[*(s32*)src];
+            dst_cursor = dst;
+
+            while (src != end)
+            {
+                *dst_cursor++ = *src++;
+            }
+
+            lom_sound_load_bank_slot(end, slot, 1);
+        }
+    }
+}
+
+/**
+ * @brief Play an effect buffer on a free voice of a channel group.
+ * @param buffer Effect buffer.
+ * @param pan Pan position.
+ * @param channel_group Channel group; groups past the last one are ignored.
+ */
+void field_play_sfx_buffer(AkaoHeader* buffer, s32 pan, s32 channel_group)
+{
+    s32 base;
+    s32 i;
+    s32 mask;
+
+    if (channel_group * FIELD_SFX_GROUP_VOICES < FIELD_SFX_GROUP_COUNT * FIELD_SFX_GROUP_VOICES)
+    {
+        i = 0;
+        base = channel_group * FIELD_SFX_GROUP_VOICES;
+
+        for (; i < FIELD_SFX_GROUP_VOICES; i++)
+        {
+            mask = 1 << (base + i);
+
+            if (!lom_sound_effect_playing(mask))
+            {
+                lom_sound_play_effect_data(buffer, mask, pan, AKAO_VOLUME_MAX);
+                break;
+            }
+        }
+    }
+}
+
+/**
+ * @brief Reset the music stream state.
+ */
+inline void field_reset_music_stream(void)
+{
+    g_field_stream_sector_ready = 0;
+    g_field_stream_sector = 0;
+    g_field_stream_bytes_left = 0;
+    g_field_stream_bytes_done = 0;
+    g_field_stream_state = FIELD_STREAM_IDLE;
+    g_field_stream_read_handle = 0;
+    g_field_stream_song_remaining = 0;
+    g_field_stream_song_bytes = 0;
+    g_field_stream_bank_bytes = 0;
+    g_field_stream_bank_pending = 0;
+    g_field_stream_resource = 0;
+}
+
+/**
+ * @brief Start streaming a music file unless a stream is already running.
+ * @param music_index Music-file index (0 selects MSC_DATA.DAT).
+ */
+void field_start_music_stream(s32 music_index)
+{
+    if (g_field_stream_resource == 0)
+    {
+        field_reset_music_stream();
+        g_field_stream_resource = music_index + CD_RES_MSC_DATA;
+        g_field_stream_read_handle = lom_native_field_music_queue((u16)g_field_stream_resource, field_stream_sector_callback);
+    }
+}
+
+/**
+ * @brief Process the last streamed sector: copy song data, stage and upload bank data, then play.
+ * @note The song is assembled in g_resident_song_buffer and the bank data is staged at
+ *       FIELD_STREAM_BANK_BUFFER.
+ */
+void field_update_music_stream(void)
+{
+    s32 song_tail;
+
+    if (g_field_stream_sector_ready != 0)
+    {
+        switch (g_field_stream_state)
+        {
+        case FIELD_STREAM_SECTOR:
+            if (g_field_stream_song_remaining != 0)
+            {
+                if (g_field_stream_song_remaining < CD_DATA_SECTOR_SIZE)
+                {
+                    lom_sound_copy_song_data(g_field_stream_sector, g_field_stream_song_bytes + g_resident_song_buffer, g_field_stream_song_remaining);
+                    lom_sound_copy_song_data(g_field_stream_sector + g_field_stream_song_remaining, (void*)FIELD_STREAM_BANK_BUFFER,
+                                             CD_DATA_SECTOR_SIZE - g_field_stream_song_remaining);
+                    song_tail = g_field_stream_song_remaining;
+                    g_field_stream_bank_pending = 1;
+                    g_field_stream_song_remaining = 0;
+                    g_field_stream_bank_bytes = CD_DATA_SECTOR_SIZE - song_tail;
+                    g_field_stream_song_bytes += song_tail;
+                }
+                else
+                {
+                    lom_sound_copy_song_data(g_field_stream_sector, g_field_stream_song_bytes + g_resident_song_buffer, CD_DATA_SECTOR_SIZE);
+                    g_field_stream_song_bytes += CD_DATA_SECTOR_SIZE;
+                    g_field_stream_song_remaining -= CD_DATA_SECTOR_SIZE;
+
+                    if (g_field_stream_song_remaining == 0)
+                    {
+                        g_field_stream_bank_bytes = 0;
+                        g_field_stream_bank_pending = 1;
+                    }
+                }
+
+                g_field_stream_sector_ready = 0;
+                break;
+            }
+
+            if (g_field_stream_bank_pending != 0)
+            {
+                lom_sound_copy_song_data(g_field_stream_sector, (u8*)FIELD_STREAM_BANK_BUFFER + g_field_stream_bank_bytes, CD_DATA_SECTOR_SIZE);
+                g_field_stream_bank_bytes += CD_DATA_SECTOR_SIZE;
+                lom_sound_reset_bank_transfer();
+                lom_sound_stream_bank_chunk((u8*)FIELD_STREAM_BANK_BUFFER, CD_DATA_SECTOR_SIZE, 1);
+                g_field_stream_bank_bytes -= CD_DATA_SECTOR_SIZE;
+                field_stream_copy_bytes((u8*)FIELD_STREAM_BANK_BUFFER, (u8*)FIELD_STREAM_BANK_OVERFLOW, g_field_stream_bank_bytes);
+                g_field_stream_state = FIELD_STREAM_WAIT_UPLOAD;
+            }
+            else
+            {
+                lom_sound_copy_song_data(g_field_stream_sector, (u8*)FIELD_STREAM_BANK_BUFFER + g_field_stream_bank_bytes, CD_DATA_SECTOR_SIZE);
+
+                if (g_field_stream_bytes_left < CD_DATA_SECTOR_SIZE)
+                {
+                    g_field_stream_bank_bytes += g_field_stream_bytes_left;
+                    lom_sound_stream_bank_chunk((u8*)FIELD_STREAM_BANK_BUFFER, g_field_stream_bank_bytes, 1);
+                    g_field_stream_state = FIELD_STREAM_WAIT_LAST_UPLOAD;
+                    g_field_stream_bank_bytes = 0;
+                }
+                else
+                {
+                    g_field_stream_bank_bytes += CD_DATA_SECTOR_SIZE;
+                    lom_sound_stream_bank_chunk((u8*)FIELD_STREAM_BANK_BUFFER, CD_DATA_SECTOR_SIZE, 1);
+                    g_field_stream_state = FIELD_STREAM_WAIT_UPLOAD;
+                    g_field_stream_bank_bytes -= CD_DATA_SECTOR_SIZE;
+                    field_stream_copy_bytes((u8*)FIELD_STREAM_BANK_BUFFER, (u8*)FIELD_STREAM_BANK_OVERFLOW, g_field_stream_bank_bytes);
+                }
+            }
+
+            g_field_stream_bank_pending = 0;
+            return;
+        case FIELD_STREAM_FIRST_SECTOR:
+            g_field_stream_song_remaining = FIELD_MUSIC_STREAM_HEADER->bank_offset - FIELD_MUSIC_STREAM_HEADER->song_offset;
+            lom_sound_copy_song_data(g_field_stream_sector + FIELD_MUSIC_STREAM_HEADER->song_offset, g_resident_song_buffer,
+                                     CD_DATA_SECTOR_SIZE - FIELD_MUSIC_STREAM_HEADER->song_offset);
+            g_field_stream_sector_ready = 0;
+            g_field_stream_song_bytes = CD_DATA_SECTOR_SIZE - FIELD_MUSIC_STREAM_HEADER->song_offset;
+            g_field_stream_song_remaining -= CD_DATA_SECTOR_SIZE - FIELD_MUSIC_STREAM_HEADER->song_offset;
+            return;
+        case FIELD_STREAM_WAIT_UPLOAD:
+            if (lom_sound_bank_transfer_state() == 0)
+            {
+                g_field_stream_sector_ready = 0;
+            }
+
+            break;
+        case FIELD_STREAM_WAIT_LAST_UPLOAD:
+            if (lom_sound_bank_transfer_state() == 0)
+            {
+                g_field_stream_sector_ready = 0;
+                field_play_song();
+                g_field_stream_resource = 0;
+            }
+
+            break;
+        case FIELD_STREAM_IDLE:
+        default:
+            break;
+        }
+    }
+}
+
+/**
+ * @brief Copy bytes forward.
+ * @param destination Destination.
+ * @param source Source.
+ * @param count Number of bytes; nothing is copied when it is not positive.
+ */
+static void field_stream_copy_bytes(u8* destination, u8* source, s32 count)
+{
+    if (count <= 0)
+    {
+        return;
+    }
+
+    for (; count != 0; count--)
+    {
+        *destination++ = *source++;
+    }
+}
+
+/**
+ * @brief CD read callback of the music stream: hand out the next sector buffer.
+ * @param bytes_transferred Bytes read so far; bit 11 selects the upper sector buffer.
+ * @param bytes_remaining Bytes still to read.
+ * @return The sector buffer to read into, or NULL while the last sector is unprocessed.
+ */
+static u8* field_stream_sector_callback(s32 bytes_transferred, u32 bytes_remaining)
+{
+    u8* buffer;
+
+    if (g_field_stream_sector_ready == 0)
+    {
+        if (bytes_transferred & CD_DATA_SECTOR_SIZE)
+        {
+            g_field_stream_sector = buffer = (u8*)FIELD_STREAM_SECTOR_BUFFER_UPPER;
+        }
+        else
+        {
+            g_field_stream_sector = buffer = (u8*)FIELD_STREAM_SECTOR_BUFFER;
+        }
+
+        if (bytes_transferred == 0)
+        {
+            g_field_stream_state = FIELD_STREAM_FIRST_SECTOR;
+        }
+        else
+        {
+            g_field_stream_state = FIELD_STREAM_SECTOR;
+        }
+
+        g_field_stream_bytes_done = bytes_transferred;
+        g_field_stream_bytes_left = bytes_remaining;
+        g_field_stream_sector_ready = 1;
+        return buffer;
+    }
+
+    return NULL;
+}
+
+/**
+ * @brief Clear the saved ring menu selections, last entry first.
+ */
+void field_reset_ring_selections(void)
+{
+    s32 i = FIELD_RING_SELECTION_COUNT - 1;
+    u8* p = &g_field_ring_saved_selections[i];
+
+    for (; i >= 0; i--)
+    {
+        *p = 0;
+        p--;
+    }
+}

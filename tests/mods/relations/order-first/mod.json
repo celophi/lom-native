@@ -1,0 +1,12 @@
+{
+  "id": "order-first",
+  "name": "Order first",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2,
+  "load_after": [
+    "base"
+  ]
+}

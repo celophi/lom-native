@@ -1,0 +1,69 @@
+{
+ "route": "mid-mid-menu-record-1",
+ "description": "Entering MID_MENU (scene 2) directly and starting layout record 1's event (slot 0) as talking does should run it, through its indexed jump (opcode 0x0e)",
+ "plan": "# mid-mid-menu-record-1: Entering MID_MENU (scene 2) directly and starting layout record 1's event (slot 0) as talking does should run it, through its indexed jump (opcode 0x0e)\nlimit 60000\nenter 2 0 16711422 0\ncheckpoint entered\nwatch 600\nevent 1 32784\nwatch 3000\ncheckpoint record-1\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 2 save 587171b657337d7a state 2ac3c4d4227cbe34 ram 0000000000000000",
+  "record-1 frame 378 scene 3 save 8ad194e85c228814 state 5f0086b91ff199d9 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 2 (MID_MENU)",
+    "sound bank id 65535 to 65534",
+    "secondary music id 255 to 254",
+    "scene id 19 to 2",
+    "music id 7 to 254",
+    "actor 0 (the hero): at (160, 224), facing 0, animation 130,0, presence 0, control 0, command 0",
+    "actor 3 (layout record 0): at (128, 128), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (192, 128), facing 0, animation 0,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "record-1",
+   "changes": [
+    "frame 378, scene 3 (MID_MAP0)",
+    "sound bank id 65534 to 65535",
+    "scene id 2 to 3",
+    "music id 254 to 0",
+    "scene word 17: 00a000e0 to 0051007c",
+    "scene word 47: 00000037 to 00000178",
+    "actor 0 (the hero): moved (160, 224) to (81, 124); direction 0 to 224; animation 130,0 to 131,0",
+    "actor 3 (layout record 0): moved (128, 128) to (0, 0)",
+    "actor 4 (layout record 1): gone"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "watched until the player got control, 30 frames",
+  "started layout record 1's script 0x8010",
+  "watched until the player got control, 273 frames"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 120,
+  "instruction_end": 24,
+  "song": 2,
+  "scene": 3
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 a7cd07f2 146d11a9 87fb259c b5c9c00a e2b9cc1e 1e86bf4e ecf3cfbe bfe36daf 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 947fef06 24a5ce1e 59b7add5 da7b220d 5e9715ee 7e734ef0 ebd95d9c 2d0f7f87 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 f19dde7e 867d5791 6c0d44b5 867d5791 5673b52a 6aa66ef6 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 867d5791 6c0d44b5 11cb35b4 6d629211 a766ae62 9212ac8d 9de10b88 10aaf014 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 7f979d00 09573234 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 f19dde7e 7a977159 7f979d00 09573234 7f979d00 09573234 7f979d00 867d5791 6c0d44b5 867d5791 52c6a843 883328df 34d7b0b6 7ff64077 34d7b0b6 2b5020fa 5f1f9032 2b5020fa 5f1f9032 55f83d4e 0513b3d5 55f83d4e 0513b3d5 2b5020fa 5f1f9032 2b5020fa 5f1f9032 7ff64077 34d7b0b6 7ff64077 34d7b0b6 2b5020fa 5f1f9032 2b5020fa 5f1f9032 55f83d4e 0513b3d5 55f83d4e 0513b3d5 2b5020fa 5f1f9032 2b5020fa 5f1f9032 7ff64077 34d7b0b6 7ff64077 34d7b0b6 2b5020fa 5f1f9032 2b5020fa 5f1f9032 55f83d4e 0513b3d5 55f83d4e 0513b3d5 2b5020fa 5f1f9032 2b5020fa 5f1f9032 7ff64077 34d7b0b6 7ff64077 34d7b0b6 2b5020fa 5f1f9032 2b5020fa 5f1f9032 38293605 7a98c60a 83a4e602 1d1e7e51 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f 6622a12d 633e625f ee576034 20d01484 3bfdb97a ecf3cfbe 98653c57 0fca10e4 eb5f8d47 e2b9cc1e e43db290 c94c5f00 9067077a 87fb259c ecce8a57 bf125b61 e145dfa2 76f521fd c6a66269 76f521fd 14650fb0 b2ba5ae3 ff04d785 78b105a3 330acce7 1cfba35a 6d7fa8c9 d5eb1a8f fa5b1843 cc515bdc 01eff10e e7ab72a4 38397a30 8a6a0e5e 064530d7 34279629 ddf08c3b 30f9647f 064530d7 5f536b42 51fd6441 1a34e749 478d7ae4 7dee7b8a d326cb95 9d6a9e64 379fd6d7 cb5ecbea ee5122c7 218f3573 379fd6d7 032eb609 d326cb95",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "e1b497f1dd0015b124c247774c261cfb"
+  },
+  {
+   "frames": 322,
+   "sha256": "c0e407d1da5a14331f5cc8ccc66cddeb"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

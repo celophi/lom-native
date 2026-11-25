@@ -1,0 +1,60 @@
+Present the frame through the port's scaling (Sharp bilinear, xBR and the
+internal resolution), so no row of pixels flickers.
+
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -8,9 +8,12 @@
+ #include <string.h>
+ #include "../internal.h"
+ #include <SDL3/SDL.h>
++#include "presentation.h"
+ #include "sdl3_common.h"
+ #include "sdl3_draw.h"
+ #include "rgb24.h"
++
++static LomPresentation presentation;
+ static bool display_rgb24;
+ 
+ #if defined(_WIN32)
+@@ -1032,6 +1035,7 @@
+         return;
+     }
+ 
++    lom_present_apply_resolution(&presentation, Psyz_VideoSetInternalResolution, Psyz_VideoGetInternalResolution);
+     ApplyPendingInternalRes();
+ 
+     VideoLayout layout = ResolveVideoLayout();
+@@ -1097,23 +1101,8 @@
+                 WndSize win = {(int)sc_w, (int)sc_h};
+                 SDL_Rect dst = FitGameToWindow(game_aspect, win);
+ 
+-                const SDL_GPUBlitInfo blit = {
+-                    .source = src,
+-                    .destination =
+-                        {
+-                            .texture = swapchain,
+-                            .x = (Uint32)dst.x,
+-                            .y = (Uint32)dst.y,
+-                            .w = (Uint32)dst.w,
+-                            .h = (Uint32)dst.h,
+-                        },
+-                    // clear the swapchain to black first so the horizontal or
+-                    // vertical bars around the game output are black
+-                    .load_op = SDL_GPU_LOADOP_CLEAR,
+-                    .clear_color = {0.0f, 0.0f, 0.0f, 1.0f},
+-                    .filter = SDL_GPU_FILTER_NEAREST,
+-                };
+-                SDL_BlitGPUTexture(cmd, &blit);
++                lom_present_blit(&presentation, device, cmd, src, swapchain,
++                                 dst, game_aspect, n);
+             }
+             if (overlay_frame_cb) {
+                 overlay_frame_cb();
+@@ -1178,6 +1167,7 @@
+             SDL_ReleaseGPUTexture(device, scaled_vram_render);
+             scaled_vram_render = NULL;
+         }
++        lom_present_release(&presentation, device);
+         ReleaseCanvases();
+         if (vram_sampler) {
+             SDL_ReleaseGPUSampler(device, vram_sampler);

@@ -1,0 +1,342 @@
+#include "common.h"
+#include <abs.h>
+#include <libgte.h>
+
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_effect_render_state.h"
+#include "main/display.h"
+#include "main/scene_state.h"
+
+#define FIELD_CAMERA_MAX_STEP 0x800
+
+#define FIELD_CAMERA_DEAD_ZONE 0x2000
+
+#define FIELD_SCROLL_EASE_FRAMES 32
+
+#define FIELD_SCROLL_LOCK_FRAMES 16
+
+typedef struct
+{
+    u16 x;
+    u16 y;
+    u16 z;
+    u16 pad;
+} FieldScreenPoint;
+
+static void field_camera_step_scroll_limits(void);
+static void field_camera_step_scripted_scroll(void);
+
+/**
+ * @brief Screen x of a view-relative position.
+ * @param position View-relative position.
+ * @return Screen x in pixels.
+ */
+static inline s32 field_camera_screen_x(VECTOR* position)
+{
+    s32 view_x = g_field_view_offset_x / 256;
+    s32 offset_x = position->vx / 256 + FIELD_SCREEN_CENTER_X;
+
+    return view_x + offset_x;
+}
+
+/**
+ * @brief Screen y of a view-relative position.
+ * @param position View-relative position.
+ * @return Screen y in pixels.
+ */
+static inline s32 field_camera_screen_y(VECTOR* position)
+{
+    s32 view_y = g_field_view_offset_y / 256;
+    s32 offset_y = position->vy / 256 + FIELD_SCREEN_CENTER_Y;
+
+    return view_y + offset_y - position->vz / 512 - g_field_view_offset_z / 512;
+}
+
+/**
+ * @brief Ease the scroll limits onto the current screen.
+ * @param camera Scene camera.
+ */
+static inline void field_camera_lock_scroll(SceneState* camera)
+{
+    s32 left;
+
+    g_field_scroll_ease_timer = FIELD_SCROLL_LOCK_FRAMES;
+    left = g_field_scroll_limit_left_target = -(camera->camera_x >> 8);
+    g_field_scroll_limit_right_target = left + SCREEN_WIDTH;
+}
+
+/**
+ * @brief Move a camera follow coordinate toward its target by at most FIELD_CAMERA_MAX_STEP.
+ * @param target Coordinate it moves toward.
+ * @param current Current follow coordinate.
+ * @param follow Follow coordinate to update.
+ */
+static inline void field_camera_step_follow(s32 target, s32 current, s32* follow)
+{
+    if (target != current)
+    {
+        s32 delta = target - current;
+
+        if (abs(delta) < FIELD_CAMERA_MAX_STEP)
+        {
+            *follow = target;
+        }
+        else
+        {
+            s32 value;
+            s32* destination = follow;
+
+            if (delta < 0)
+            {
+                value = current - FIELD_CAMERA_MAX_STEP;
+            }
+            else
+            {
+                value = current + FIELD_CAMERA_MAX_STEP;
+            }
+
+            *destination = value;
+        }
+    }
+}
+
+/**
+ * @brief Aim the camera at the average party position and move the follow point toward it.
+ */
+void field_camera_track_party(void)
+{
+    s32 divisor;
+    s32 target_z;
+    s32 target_x;
+    s32 count;
+    s32 index;
+
+    count = 0;
+    target_z = 0;
+    target_x = 0;
+
+    for (index = FIELD_PLAYER_COUNT - 1; index >= 0; index--)
+    {
+        if ((g_field_actors[index].presence != FIELD_ACTOR_UNUSED) && !(g_field_object_states[index].flags & FIELD_OBJECT_IMMOBILE_FLAGS))
+        {
+            target_x -= g_field_actors[index].x;
+            target_z -= g_field_actors[index].z;
+            target_z += g_field_object_states[index].movement.half.height << 9;
+
+            if (count != 0)
+            {
+                divisor = count + 1;
+                target_x = target_x / divisor;
+                target_z = target_z / divisor;
+            }
+
+            count++;
+        }
+    }
+
+    if (count != 0)
+    {
+        g_field_camera_target_x = target_x;
+        g_field_camera_target_z = target_z;
+    }
+
+    field_camera_step_follow(g_field_camera_target_x, g_field_camera_follow_x, &g_field_camera_follow_x);
+    field_camera_step_follow(g_field_camera_target_z, g_field_camera_follow_z, &g_field_camera_follow_z);
+}
+
+/**
+ * @brief Scroll the view after the follow point, clamp it to the scroll limits and record the screen motion.
+ */
+void field_camera_update(void)
+{
+    FieldScreenPoint before;
+    FieldScreenPoint after;
+    VECTOR origin;
+    SceneState* camera = SCENE_STATE;
+    FieldMapBounds* bounds = FIELD_MAP_BOUNDS;
+    s32 follow_x;
+    s32 follow_z;
+    s32 clamp_x;
+    s32 clamp_z;
+
+    field_camera_track_party();
+    follow_x = g_field_camera_follow_x;
+    follow_z = g_field_camera_follow_z;
+    field_camera_step_scripted_scroll();
+    field_camera_step_scroll_limits();
+    origin.vx = 0;
+    origin.vy = 0;
+    origin.vz = 0;
+    before.x = field_camera_screen_x(&origin);
+    before.y = field_camera_screen_y(&origin);
+
+    if (follow_x < (g_field_view_offset_x - FIELD_CAMERA_DEAD_ZONE))
+    {
+        g_field_view_offset_x = follow_x + FIELD_CAMERA_DEAD_ZONE;
+    }
+
+    if ((g_field_view_offset_x + FIELD_CAMERA_DEAD_ZONE) < follow_x)
+    {
+        g_field_view_offset_x = follow_x - FIELD_CAMERA_DEAD_ZONE;
+    }
+
+    if (follow_z < (g_field_view_offset_z - FIELD_CAMERA_DEAD_ZONE))
+    {
+        g_field_view_offset_z = follow_z + FIELD_CAMERA_DEAD_ZONE;
+    }
+
+    if ((g_field_view_offset_z + FIELD_CAMERA_DEAD_ZONE) < follow_z)
+    {
+        g_field_view_offset_z = follow_z - FIELD_CAMERA_DEAD_ZONE;
+    }
+
+    camera->camera_x = g_field_view_offset_x + (g_field_camera_offset_x << 8) + (FIELD_SCREEN_CENTER_X << 8);
+    g_field_view_offset_y = camera->camera_y = g_field_camera_offset_y << 8;
+    camera->camera_z = g_field_view_offset_z + (g_field_camera_offset_z << 9) + (FIELD_SCREEN_CENTER_Y << 9);
+
+    if (camera->camera_x > -(g_field_scroll_limit_left << 8))
+    {
+        camera->camera_x = -(g_field_camera_offset_x << 8) - (g_field_scroll_limit_left << 8);
+        g_field_view_offset_x = camera->camera_x - (g_field_camera_offset_x << 8) - (FIELD_SCREEN_CENTER_X << 8);
+    }
+
+    if (camera->camera_x < -(g_field_scroll_limit_right << 8) + (SCREEN_WIDTH << 8))
+    {
+        clamp_x = (g_field_camera_offset_x << 8) - (SCREEN_WIDTH << 8);
+        clamp_x = -(g_field_scroll_limit_right << 8) - clamp_x;
+        camera->camera_x = clamp_x;
+        g_field_view_offset_x = camera->camera_x - (g_field_camera_offset_x << 8) - (FIELD_SCREEN_CENTER_X << 8);
+    }
+
+    if (camera->camera_z > 0)
+    {
+        camera->camera_z = -(g_field_camera_offset_z << 9);
+        g_field_view_offset_z = camera->camera_z - (g_field_camera_offset_z << 9) - (FIELD_SCREEN_CENTER_Y << 9);
+    }
+
+    if (camera->camera_z < -((s16)bounds->depth << 8) + (VRAM_DRAW_HEIGHT << 9))
+    {
+        clamp_z = (g_field_camera_offset_z << 9) - (VRAM_DRAW_HEIGHT << 9);
+        clamp_z = -((s16)bounds->depth << 8) - clamp_z;
+        camera->camera_z = clamp_z;
+        g_field_view_offset_z = camera->camera_z - (g_field_camera_offset_z << 9) - (FIELD_SCREEN_CENTER_Y << 9);
+    }
+
+    if (g_field_scripted_scroll_x != 0 || g_field_scripted_scroll_z != 0)
+    {
+        camera->camera_x = -(g_field_scripted_scroll_x << 8);
+        g_field_view_offset_x = -(g_field_scripted_scroll_x + FIELD_SCREEN_CENTER_X) << 8;
+        camera->camera_z = -(g_field_scripted_scroll_z << 9);
+        g_field_view_offset_z = -(g_field_scripted_scroll_z + FIELD_SCREEN_CENTER_Y) << 9;
+    }
+
+    after.x = field_camera_screen_x(&origin);
+    after.y = field_camera_screen_y(&origin);
+    g_field_screen_scroll.x = after.x - before.x;
+    g_field_screen_scroll.y = after.y - before.y;
+}
+
+/**
+ * @brief Ease the scroll limits back to the whole map width.
+ */
+inline void field_camera_release_scroll_limits(void)
+{
+    g_field_scroll_limit_left_target = 0;
+    g_field_scroll_ease_timer = FIELD_SCROLL_EASE_FRAMES;
+    g_field_scroll_limit_right_target = FIELD_MAP_BOUNDS->width;
+}
+
+/**
+ * @brief Ease the scroll limits to the bounds of the active actor group.
+ * @note An unknown group, or one narrower than the view, locks the scroll to the current screen.
+ */
+void field_camera_select_scroll_limits(void)
+{
+    SceneState* camera;
+    FieldGroupBounds* entry;
+    s32 group;
+    FieldGroupBounds* group_bounds;
+    s32 entry_index;
+
+    camera = SCENE_STATE;
+    group = g_field_active_group;
+
+    if (group == 0)
+    {
+        field_camera_release_scroll_limits();
+        return;
+    }
+
+    if (g_field_group_bounds_count < group)
+    {
+        field_camera_lock_scroll(camera);
+        return;
+    }
+
+    group_bounds = g_field_group_bounds;
+    entry_index = group - 1;
+    entry = &group_bounds[entry_index];
+
+    if (entry->width < SCREEN_WIDTH)
+    {
+        field_camera_lock_scroll(camera);
+        return;
+    }
+
+    g_field_scroll_ease_timer = FIELD_SCROLL_EASE_FRAMES;
+    g_field_scroll_limit_left_target = entry->left;
+    g_field_scroll_limit_right_target = entry->left + entry->width;
+}
+
+/**
+ * @brief Move the scroll limits one step toward their targets.
+ */
+static void field_camera_step_scroll_limits(void)
+{
+    if (g_field_scroll_ease_timer != 0)
+    {
+        g_field_scroll_limit_left += (g_field_scroll_limit_left_target - g_field_scroll_limit_left) / g_field_scroll_ease_timer;
+        g_field_scroll_limit_right += (g_field_scroll_limit_right_target - g_field_scroll_limit_right) / g_field_scroll_ease_timer;
+        g_field_scroll_ease_timer--;
+    }
+}
+
+/**
+ * @brief Move the scripted scroll position one step toward its target, snapping when no frames remain.
+ */
+static void field_camera_step_scripted_scroll(void)
+{
+    if (g_field_scripted_scroll_frames != 0)
+    {
+        g_field_scripted_scroll_x += (g_field_scripted_scroll_target_x - g_field_scripted_scroll_x) / g_field_scripted_scroll_frames;
+        g_field_scripted_scroll_z += (g_field_scripted_scroll_target_z - g_field_scripted_scroll_z) / g_field_scripted_scroll_frames;
+        g_field_scripted_scroll_frames--;
+    }
+    else
+    {
+        g_field_scripted_scroll_x = g_field_scripted_scroll_target_x;
+        g_field_scripted_scroll_z = g_field_scripted_scroll_target_z;
+    }
+}
+
+/**
+ * @brief Reset the scroll limits to the whole map width and clear the scripted scroll.
+ */
+void field_camera_reset(void)
+{
+    s32 map_width;
+
+    map_width = FIELD_MAP_BOUNDS->width;
+
+    g_field_scroll_limit_left_target = 0;
+    g_field_scroll_limit_left = 0;
+    g_field_scroll_ease_timer = 0;
+    g_field_scripted_scroll_z = 0;
+    g_field_scripted_scroll_x = 0;
+    g_field_scripted_scroll_target_z = 0;
+    g_field_scripted_scroll_target_x = 0;
+    g_field_scripted_scroll_frames = 0;
+    g_field_scroll_limit_right = map_width;
+    g_field_scroll_limit_right_target = map_width;
+}

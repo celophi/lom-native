@@ -1,0 +1,131 @@
+#include "common.h"
+
+#include "../internal/field_calls.h"
+#include "../internal/field_records.h"
+#include "main/audio/game_audio.h"
+
+#define FIELD_ITEM_TEMPLATE_RECORD 4
+
+#define FIELD_ITEM_SPAWN_EVENT 7
+
+#define FIELD_ITEM_SEARCH_KEY 6
+
+#define FIELD_NO_ITEM_KEY 0xFF
+
+#define FIELD_SCRIPT_ONLY_STOP_ACTOR 0x01
+#define FIELD_SCRIPT_ONLY_MOVE_AWAY 0x02
+
+#define FIELD_PARKED_X (-1024)
+
+/**
+ * @brief Spawn the actor record of a dropped item and run its spawn event, or release it.
+ * @param key Object key of the item actor.
+ * @param item Item id passed to the spawn event, or FIELD_ITEM_RELEASE to release the record.
+ */
+void field_spawn_item_record(s32 key, s32 item)
+{
+    FieldActorRecord* record;
+    s32 i;
+
+    if (item != FIELD_ITEM_RELEASE)
+    {
+        record = field_alloc_actor_record(key);
+
+        if (record == NULL)
+        {
+            record_game_diagnostic(DIAG_ERROR, 1, 1, 1);
+            return;
+        }
+
+        record->flags.bits.spawned = 1;
+        record->enabled_events = g_field_runtime->actors[FIELD_ITEM_TEMPLATE_RECORD].enabled_events;
+
+        for (i = 0; i < FIELD_ACTOR_SCRIPT_COUNT; i++)
+        {
+            record->scripts[i] = g_field_runtime->actors[FIELD_ITEM_TEMPLATE_RECORD].scripts[i];
+        }
+
+        field_run_actor_event(key, FIELD_ITEM_SPAWN_EVENT, item & 0xFF);
+        return;
+    }
+
+    record = field_find_actor_record_or_default(key);
+    record->flags.bits.active = 0;
+    record->flags.bits.spawned = 0;
+}
+
+/**
+ * @brief Find the nearest spawned item that object FIELD_ITEM_SEARCH_KEY faces.
+ * @param unused Script operand; not used.
+ * @return Key of the nearest faced item, or FIELD_NO_ITEM_KEY when there is none.
+ */
+s32 field_find_nearest_faced_item(s32 unused)
+{
+    FieldKeyedList list;
+    Vec3i search_position;
+    Vec3i item_position;
+    s32 i;
+    FieldActorRecord* record;
+
+    field_get_actor_position(FIELD_ITEM_SEARCH_KEY, &search_position);
+    list.count = 0;
+
+    for (i = FIELD_PARTY_SIZE; i < FIELD_ACTOR_RECORD_COUNT; i++)
+    {
+        record = &g_field_runtime->actors[i];
+
+        if (record->flags.bits.active)
+        {
+            if (record->flags.bits.spawned && field_actor_faces_actor(FIELD_ITEM_SEARCH_KEY, record->id) == 1)
+            {
+                field_get_actor_position(record->id, &item_position);
+                list.entries[list.count].id = record->id;
+                list.entries[list.count].distance = field_distance_xz(&search_position, &item_position);
+                list.count++;
+            }
+        }
+    }
+
+    field_sort_keyed_list(&list);
+
+    if (list.count != 0)
+    {
+        return list.entries[0].id;
+    }
+
+    return FIELD_NO_ITEM_KEY;
+}
+
+/**
+ * @brief Put an actor record into script-only mode and stop its script.
+ * @param key Actor key.
+ * @param flags FIELD_SCRIPT_ONLY_STOP_ACTOR also stops the field actor; FIELD_SCRIPT_ONLY_MOVE_AWAY parks it off the map.
+ */
+void field_set_actor_record_script_only(s32 key, s32 flags)
+{
+    FieldActorRecord* record = field_find_actor_record(key);
+
+    if (record != NULL)
+    {
+        record->flags.bits.script_only = 1;
+        field_stop_actor_script(record->id, flags);
+
+        if (flags & FIELD_SCRIPT_ONLY_MOVE_AWAY)
+        {
+            field_set_actor_position(key, FIELD_PARKED_X, 0, 0);
+        }
+    }
+}
+
+/**
+ * @brief Take an actor record out of script-only mode and stop its script.
+ * @param key Actor key.
+ */
+void field_clear_actor_record_script_only(s32 key)
+{
+    FieldActorRecord* record;
+
+    record = field_find_actor_record_or_default(key);
+    record->flags.bits.script_only = 0;
+    field_stop_actor_script(record->id, 0);
+}

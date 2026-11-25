@@ -1,0 +1,7 @@
+{
+  "format": 1,
+  "description": "After the opening, saved at the bedroom desk by the game",
+  "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+  "scene": {"scene": 19, "object": 0},
+  "card": "handwritten/saves/after-opening.card"
+}

@@ -1,0 +1,163 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "htw-htw-bzr0-story-4c4",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state HTW_BZR0's story 0x4c4 needs",
+    "source": "built from the conditions on the path to the write in scene 50 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x4bd": 1,
+     "0x25d0": 11
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-bzr0-story-4c4",
+    "description": "In HTW_BZR0 (scene 50), talking to layout record 3 should write story variable 0x4c4",
+    "plan": "# htw-htw-bzr0-story-4c4: In HTW_BZR0 (scene 50), talking to layout record 3 should write story variable 0x4c4\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 332 105 0 1 0 3 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 50 save 4e0c3ddcea3f8d42 state f4a7c609e5de4801 ram 0000000000000000",
+     "done frame 1073 scene 50 save 154955dc8886e4e6 state 49c7f899a385a646 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (332, 55): 5 waypoints",
+     "walk to (337, 132): 1 waypoints",
+     "walk to (340, 170): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "ef973b921d2e326ccf691f2d55bc67af"
+     },
+     {
+      "frames": 1017,
+      "sha256": "d93e0e1128edd00dd6e0124c5f3b685c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-frm0-story-460",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state HTW_FRM0's story 0x460 needs",
+    "source": "built from the conditions on the path to the write in scene 51 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x2560": 1,
+     "0x11e0": 7
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-frm0-story-460",
+    "description": "In HTW_FRM0 (scene 51), talking to layout record 1 should write story variable 0x460",
+    "plan": "# htw-htw-frm0-story-460: In HTW_FRM0 (scene 51), talking to layout record 1 should write story variable 0x460\nlimit 20000\nenter 51 0 16712959 0\ncheckpoint entered\ntalk 550 90 0 1 0 1 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 51 save 9ddc6f57e4917a00 state ed88ae339bfce454 ram 0000000000000000",
+     "done frame 1594 scene 51 save dda408fe5b3e23a5 state e331e22facdc413d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (509, 72): 1 waypoints",
+     "walk to (222, 111): 2 waypoints",
+     "walk to (20, 80): 3 waypoints",
+     "walk to (237, 112): 2 waypoints",
+     "walk to (127, 255): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 310,
+     "instruction_end": 99,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "4ad9a15ff683798cab130fe6c01806a1"
+     },
+     {
+      "frames": 1538,
+      "sha256": "334d325e4eaea96f9f3ac39332d66767"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sc00-story-1394",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "htw-htw-sc00-story-1394",
+    "description": "In HTW_SC00 (scene 37), talking to layout record 2 should write story variable 0x1394",
+    "plan": "# htw-htw-sc00-story-1394: In HTW_SC00 (scene 37), talking to layout record 2 should write story variable 0x1394\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 37 0 16712959 6\ncheckpoint entered\ntalk 200 380 0 1 8 2 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 141 scene 37 save dd58d8715acc9a94 state 9a20ff8d53d595ff ram 0000000000000000",
+     "done frame 1073 scene 37 save 94efab6efba95d6c state dff1bee305185919 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "walk to (166, 424): 1 waypoints",
+     "walk to (176, 492): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 352,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 142,
+      "sha256": "b8a16f459c39703582e6b8845d524e1c"
+     },
+     {
+      "frames": 932,
+      "sha256": "fdf99bc3bb4c95cfb999e15c10867bc1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

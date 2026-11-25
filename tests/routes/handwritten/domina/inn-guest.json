@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-inn-guest",
+  "description": "Talking to a guest in the inn's hall should start a conversation that ends with the player in control",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 38
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 7
+      },
+      "note": "layout record 7"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "btl-btl-smp1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp1-exit-0",
+    "description": "Walking onto exit 0 of BTL_SMP1 (scene 542) should lead to scene 15",
+    "plan": "# btl-btl-smp1-exit-0: Walking onto exit 0 of BTL_SMP1 (scene 542) should lead to scene 15\nlimit 20000\nenter 33310 0 16712448 0\ncheckpoint entered\nexit 0 15\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 542 save 4d3db6a2a6d661c5 state e1b0f7af295c3d2f ram 0000000000000000",
+     "arrived frame 293 scene 15 save 28eb2aa911ae8c11 state d6a8593e8febd549 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 161): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f55962936b83795ddb017d38b0b5ee65"
+     },
+     {
+      "frames": 64,
+      "sha256": "db2a2b4a645c78eaa5d19ea6e8cdd848"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp3-exit-0",
+    "description": "Walking onto exit 0 of BTL_SMP3 (scene 544) should lead to scene 793",
+    "plan": "# btl-btl-smp3-exit-0: Walking onto exit 0 of BTL_SMP3 (scene 544) should lead to scene 793\nlimit 20000\nenter 33312 0 16712703 0\ncheckpoint entered\nexit 0 793\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 544 save 9c10088009f446e5 state 7a2d878317efdfca ram 0000000000000000",
+     "arrived frame 296 scene 793 save c8e687354482708c state 502eb600255d5e22 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (128, 227): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 69,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3fbfb59d0a25aca5518b089a4d4a5e21"
+     },
+     {
+      "frames": 67,
+      "sha256": "f97e1d7877bd80d502e5ad81badb6d48"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp4-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp4-exit-0",
+    "description": "Walking onto exit 0 of BTL_SMP4 (scene 545) should lead to scene 15",
+    "plan": "# btl-btl-smp4-exit-0: Walking onto exit 0 of BTL_SMP4 (scene 545) should lead to scene 15\nlimit 20000\nenter 33313 0 16712191 0\ncheckpoint entered\nexit 0 15\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 545 save 4a0cd20bed4bab9e state d0f67e9fde39f06d ram 0000000000000000",
+     "arrived frame 293 scene 15 save 28eb2aa911ae8c11 state a4c2a8556518fad2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 161): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 51,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bd75f05bee593315dac7fc6a9573ab8a"
+     },
+     {
+      "frames": 64,
+      "sha256": "35c9ec2179210e9477ce7923aa3a1d6b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

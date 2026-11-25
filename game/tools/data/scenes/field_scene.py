@@ -1,0 +1,471 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+from dataclasses import dataclass
+from datetime import timedelta
+import json
+from pathlib import Path
+import struct
+import sys
+import tempfile
+import time
+
+import yaml
+
+from tools.data.formats.psx_tim import TimImage
+from tools.data.scenes.scene_resources import read_resource_directory, format_resource
+from tools.data.scenes.strings import read_strings, format_strings
+from tools.data.scenes.geometry import read_geometry, format_geometry
+from tools.data.scenes.actors import read_actors
+from tools.data.scenes.layout import LAYOUT_RECORD, FieldLayoutRecord, read_layout_records
+from tools.data.scenes.actor_scripts import format_disassembly as format_actor_scripts, read_actor_scripts
+from tools.data.scenes.event_scripts import format_disassembly as format_event_scripts, read_event_scripts
+from tools.data.scenes.chest_catalogue import (CATALOGUE_FILE, ChestIndex, ChestTotals, build_catalogue,
+                                               placement_entry, write_catalogue)
+from tools.data.scenes.presentation import dump_yaml
+from tools.data.scenes.scene_report import build_report, format_report
+from tools.data.scenes.reference_data import ReferenceData, add_reference_arguments, reference_from_arguments
+from tools.data.scenes.scene_format import SCENE_HEADER, SceneHeader, SceneSection
+from tools.data.scenes.structure import describe_scene, format_structure
+
+DESCRIPTION = """Extract scene IMG layouts, actors, scripts, battle resources and images.
+
+Every byte is preserved in the exported files. Undecoded data stays under its
+section name, and each export is reconstructed and checked before publication.
+"""
+
+
+PORTRAIT_SIZE = 1184
+LISTING_RENDERERS = {"actor_scripts": format_actor_scripts, "event_scripts": format_event_scripts,
+                     "strings": format_strings, "geometry": format_geometry, "resource": format_resource}
+
+@dataclass(frozen=True)
+class AssetRange:
+    name: str
+    offset: int
+    size: int
+    filename: str
+    layout: FieldLayoutRecord | None = None
+    document: dict | None = None
+
+
+def read_layout(data: bytes, header: SceneHeader) -> list[AssetRange]:
+    """Export every layout record, keeping recognized chests at their old paths."""
+    records = read_layout_records(data, header)
+    event_scripts = data[header.event_scripts:header.strings]
+    result = [AssetRange("layout_count", header.layout, 4, "layout/count.bin")]
+    for index, record in enumerate(records):
+        offset = header.layout + 4 + index * LAYOUT_RECORD.size
+        chest = record.is_common_chest(event_scripts)
+        folder = "chests" if chest else "layout"
+        result.append(AssetRange(
+            "chest" if chest else "layout_record", offset, LAYOUT_RECORD.size,
+            f"{folder}/{index:03d}.yaml", layout=record,
+        ))
+    return result
+
+
+def read_chests(data: bytes, header: SceneHeader) -> list[AssetRange]:
+    """Return only recognized chests from the complete layout."""
+    return [asset for asset in read_layout(data, header) if asset.name == "chest"]
+
+
+def read_resources(data: bytes, header: SceneHeader, text_encoding: str = "us") -> list[AssetRange]:
+    """Export the resource directory and each unique resource with its metadata."""
+    offsets, resources = read_resource_directory(data[header.records:header.actors])
+    if not offsets:
+        return []
+    files = {resource.offset: f"records/{resource.slots[0]:03d}.bin" for resource in resources}
+    directory = {"entries": [
+        {"index": index, "relative_offset": f"0x{offset:X}", "file": files[offset]}
+        for index, offset in enumerate(offsets)
+    ]}
+    result = [AssetRange("resource_directory", header.records, len(offsets) * 4,
+                         "records/directory.bin", document=directory)]
+    for resource in resources:
+        result.append(AssetRange(
+            "resource", header.records + resource.offset, len(resource.data),
+            files[resource.offset], document=resource.document(header.records, text_encoding),
+        ))
+    return result
+
+
+def read_group_bounds(data: bytes, header: SceneHeader) -> list[AssetRange]:
+    """Preserve the final counted word array without guessing its bit fields."""
+    bounds = data[header.group_bounds:]
+    if len(bounds) < 4:
+        raise ValueError("missing group-bounds count")
+    count = struct.unpack_from("<I", bounds)[0]
+    if len(bounds) != 4 + count * 4:
+        raise ValueError("group-bounds count does not match the section size")
+    document = {"count": count, "words": [f"0x{word:08X}" for word in struct.unpack_from(f"<{count}I", bounds, 4)]}
+    return [AssetRange("group_bounds", header.group_bounds, len(bounds),
+                       "group_bounds/data.bin", document=document)]
+
+
+def read_textures(data: bytes, header: SceneHeader) -> list[AssetRange]:
+    """Read the image section's u32 offset table and validate each complete TIM.
+
+    Offsets are relative to this section. The first offset also gives the table
+    size; there is no separate count. Repeated references share one TIM asset.
+    """
+    images = data[header.images:header.portraits]
+    if not images:
+        return []
+    table_size = struct.unpack_from("<I", images)[0]
+    if table_size < 4 or table_size % 4 or table_size > len(images):
+        raise ValueError("invalid image-offset table size")
+    offsets = struct.unpack_from(f"<{table_size // 4}I", images)
+    if any(offset < table_size or offset >= len(images) for offset in offsets):
+        raise ValueError("TIM offset outside the image section")
+    boundaries = sorted(set(offsets)) + [len(images)]
+    directory = {"entries": [
+        {"index": index, "relative_offset": f"0x{offset:X}",
+         "file": f"textures/{boundaries.index(offset):03d}.tim"}
+        for index, offset in enumerate(offsets)
+    ]}
+    textures = [AssetRange("image_directory", header.images, table_size,
+                           "textures/directory.bin", document=directory)]
+    for index, (start, end) in enumerate(zip(boundaries, boundaries[1:])):
+        TimImage.parse(images[start:end])
+        textures.append(AssetRange(
+            "tim", header.images + start, end - start, f"textures/{index:03d}.tim",
+        ))
+    return textures
+
+
+def read_portraits(data: bytes, header: SceneHeader) -> list[AssetRange]:
+    """Read a u32 count followed by 1,184-byte portrait records.
+
+    Each record has 16 little-endian BGR555 colors at 0x00 and 48x48 packed 4bpp
+    pixels at 0x20. It has no TIM header and is extracted as a whole record.
+    """
+    portraits = data[header.portraits:header.group_bounds]
+    if len(portraits) < 4:
+        raise ValueError("missing portrait count")
+    count = struct.unpack_from("<I", portraits)[0]
+    if len(portraits) != 4 + count * PORTRAIT_SIZE:
+        raise ValueError("portrait count does not match the section size")
+    result = [AssetRange("portrait_count", header.portraits, 4, "portraits/count.bin")]
+    for index in range(count):
+        offset = header.portraits + 4 + index * PORTRAIT_SIZE
+        result.append(AssetRange(
+            "portrait", offset, PORTRAIT_SIZE, f"portraits/{index:03d}.bin",
+        ))
+    return result
+
+
+def cover_section(section: SceneSection, assets: list[AssetRange]) -> list[AssetRange]:
+    """Keep known assets in file order and preserve the data between them."""
+    result = []
+    cursor = section.start
+    for asset in assets:
+        if asset.offset < cursor or asset.offset + asset.size > section.end:
+            raise ValueError(f"invalid asset range in {section.name}")
+        if cursor < asset.offset:
+            result.append(AssetRange(
+                section.name, cursor, asset.offset - cursor, f"{section.name}/{cursor:08X}.bin",
+            ))
+        result.append(asset)
+        cursor = asset.offset + asset.size
+    if cursor < section.end:
+        result.append(AssetRange(
+            section.name, cursor, section.end - cursor, f"{section.name}/{cursor:08X}.bin",
+        ))
+    return result
+
+
+def whole_section(name: str, start: int, end: int, document: dict) -> list[AssetRange]:
+    """Export a section as one binary file with its decoded document beside it."""
+    return [AssetRange(name, start, end - start, f"{name}/data.bin", document=document)]
+
+
+def split_scene(data: bytes, text_encoding: str = "us") -> list[AssetRange]:
+    """Parse the container and return a complete map of its original bytes."""
+    header = SceneHeader.parse(data)
+    assets_by_section = {
+        "layout": read_layout(data, header),
+        "records": read_resources(data, header, text_encoding),
+        "strings": whole_section("strings", header.strings, header.actor_scripts,
+                                 read_strings(data, header, text_encoding=text_encoding)),
+        "geometry": whole_section("geometry", header.geometry, header.images, read_geometry(data, header)),
+        "group_bounds": read_group_bounds(data, header),
+        "images": read_textures(data, header),
+        "portraits": read_portraits(data, header),
+        "actors": whole_section("actors", header.actors, header.geometry, read_actors(data, header)),
+        "event_scripts": whole_section("event_scripts", header.event_scripts, header.strings,
+                                       read_event_scripts(data, header)),
+        "actor_scripts": whole_section("actor_scripts", header.actor_scripts, header.records,
+                                       read_actor_scripts(data, header)),
+    }
+    result = [AssetRange("header", 0, SCENE_HEADER.size, "header.bin")]
+    for section in header.sections(len(data)):
+        result.extend(cover_section(section, assets_by_section.get(section.name, [])))
+    return result
+
+
+def write_yaml(path: Path, document: dict, kind: str = "") -> None:
+    """Write decoded fields in insertion order, using the project's YAML style."""
+    path.write_text(dump_yaml(document, kind), encoding="ascii")
+
+
+def reconstruct(output: Path) -> bytes:
+    """Recover original bytes from an export's byte map, checking every range.
+
+    Decoded fields are descriptive. Layouts use record_bytes; other ranges use
+    the original binary files, not their optional YAML companions.
+    """
+    document = yaml.safe_load((output / "byte-map.yaml").read_text(encoding="ascii"))
+    result = bytearray()
+    for entry in document["sections"]:
+        path = output / entry["file"]
+        if path.suffix == ".yaml":
+            record = yaml.safe_load(path.read_text(encoding="ascii"))
+            payload = bytes.fromhex(record["record_bytes"])
+        else:
+            payload = path.read_bytes()
+        if entry["offset"] != len(result) or entry["size"] != len(payload):
+            raise ValueError(f"byte map range does not match {entry['file']}")
+        result.extend(payload)
+    return bytes(result)
+
+
+def format_overview(source: Path, header: SceneHeader, size: int, assets: list[AssetRange]) -> str:
+    """Describe the stored structure, decoding coverage and decoded record paths."""
+    document = describe_scene(source, header, size, assets)
+    lines = [f"SCENE: {source.name}", f"Size: {size} bytes", ""]
+    lines.extend(format_structure(document))
+    lines.extend(["", "WHERE TO LOOK",
+                  "  objects.txt               Object settings, script links, monster templates and drops",
+                  "  chests/*.yaml             Recognized chest items, positions and conditions",
+                  "  layout/*.yaml             Other layout records and script/parameter slots",
+                  "  records/directory.yaml    Resource directory; follow files to their YAML companions",
+                  "  records/*.txt and .yaml    Resource fields, monster templates, actions, drops and rewards",
+                  "  actors/data.yaml          Actor descriptions, texture references and action slots",
+                  "  actor_scripts/data.txt    Actor movement/action disassembly and directory references",
+                  "  event_scripts/data.txt    Event commands, branches, calls and variable references",
+                  "  strings/data.txt          Text entries, controls and shared directory references",
+                  "  geometry/data.txt         Actor animations, timing, sprite fields and placements",
+                  "  textures/directory.yaml   Image slots and exported TIM files",
+                  "  byte-map.yaml             Original byte ranges and their exported files",
+                  "",
+                  "CHESTS"])
+    chests = [asset for asset in assets if asset.name == "chest"]
+    lines.extend(f"  {asset.filename}  IMG offset 0x{asset.offset:08X}" for asset in chests)
+    if not chests:
+        lines.append("  No recognized chest records.")
+    lines.extend(["", "MONSTER TEMPLATES"])
+    monsters = []
+    for asset in assets:
+        if asset.document is None or "battle" not in asset.document:
+            continue
+        metadata = Path(asset.filename).with_suffix(".yaml").as_posix()
+        for monster in asset.document["battle"]["monsters"]:
+            name = monster["name_ascii"] or "(see encoded name_bytes)"
+            monsters.append(f"  {metadata}  template {monster['index']}, ID {monster['id']}: {name}")
+    lines.extend(monsters or ["  No monster templates in decoded battle resources."])
+    lines.extend(["", "READING THE FORMAT",
+                  "  Offsets locate bytes in the original IMG; binary values are little-endian.",
+                  "  Directory and record indices are zero-based. Shared offsets mean shared data.",
+                  "  Decoded fields and text listings are reference exports. Editing them does not rebuild the IMG.",
+                  "  Reconstruction reads byte-map files: layout record_bytes and original binary payloads.",
+                  "  Monster stats are stored growth inputs. Drop handler/value pairs are stored choices.",
+                  "  Split flags, ASCII name previews and object summaries interpret the stored fields.",
+                  "  unknown/unresolved fields keep their stored values without a guessed interpretation.",
+                  "  Text controls, placement operands and unclassified spans retain their bytes in YAML."])
+    return "\n".join(lines) + "\n"
+
+
+def write_asset(staging: Path, data: bytes, asset: AssetRange, chest_report: dict | None) -> dict:
+    """Write one byte range and its decoded companions; return its byte-map entry."""
+    path = staging / asset.filename
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = data[asset.offset:asset.offset + asset.size]
+    if asset.layout is None:
+        path.write_bytes(payload)
+    else:
+        path.write_text(asset.layout.layout_yaml(payload, chest=asset.name == "chest", chest_report=chest_report),
+                        encoding="ascii")
+
+    entry = {"name": asset.name, "offset": asset.offset, "size": asset.size, "file": asset.filename}
+    if asset.document is not None:
+        metadata = path.with_suffix(".yaml")
+        write_yaml(metadata, asset.document, asset.name)
+        entry["metadata"] = metadata.relative_to(staging).as_posix()
+        renderer = LISTING_RENDERERS.get(asset.name)
+        if renderer is not None:
+            listing = path.with_suffix(".txt")
+            listing.write_text(renderer(asset.document), encoding="ascii")
+            entry["listing"] = listing.relative_to(staging).as_posix()
+    return entry
+
+
+def format_byte_map(source: Path, entries: list[dict]) -> str:
+    """List every exported range in IMG order; reconstruct() reads it back."""
+    lines = [f"source: {json.dumps(source.name)}",
+             "# Offsets and sizes are bytes in the original IMG.", "sections:"]
+    for entry in entries:
+        lines.extend([f"  - name: {entry['name']}", f"    offset: 0x{entry['offset']:08X}",
+                      f"    size: {entry['size']}", f"    file: {entry['file']}"])
+        lines.extend(f"    {key}: {entry[key]}" for key in ("metadata", "listing") if key in entry)
+    return "\n".join(lines) + "\n"
+
+
+def publish(staging: Path, output: Path, source: Path, data: bytes) -> None:
+    """Move a staged export into place, but only if it rebuilds the original bytes."""
+    if reconstruct(staging) != data:
+        raise ValueError(f"export does not reconstruct {source}")
+    if output.exists():
+        raise FileExistsError(f"Output already exists: {output}")
+    staging.rename(output)
+
+
+def extract(source: Path, output: Path, reference: ReferenceData | None = None, *, text_encoding: str = "us",
+            other_placements: dict[int, list[str]] | None = None) -> list[dict]:
+    """Validate, write and reconstruct one scene before publishing its directory.
+
+    other_placements maps a chest's layout index to the files of the same chest
+    in other scenes. Only a batch knows them; a single export leaves them out.
+    Returns the object report entries of the scene's chests.
+    """
+    if output.exists():
+        raise FileExistsError(f"Output already exists: {output}")
+
+    data = source.read_bytes()
+    header = SceneHeader.parse(data)
+    assets = split_scene(data, text_encoding)
+
+    documents = {asset.name: asset.document for asset in assets if asset.document is not None}
+    report = build_report(data, header, documents["event_scripts"], documents["actors"], reference)
+    chests = {obj["file"]: obj for obj in report["objects"] if "chest" in obj}
+    if other_placements is not None:
+        for obj in chests.values():
+            obj["chest"]["also_placed_in"] = other_placements.get(obj["index"], [])
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=f".{output.name}-", dir=output.parent) as temporary:
+        staging = Path(temporary) / "scene"
+        staging.mkdir()
+        entries = []
+        for asset in assets:
+            chest = chests.get(asset.filename)
+            entries.append(write_asset(staging, data, asset, chest["chest"] if chest else None))
+
+        (staging / "byte-map.yaml").write_text(format_byte_map(source, entries), encoding="ascii")
+        write_yaml(staging / "scene.yaml", describe_scene(source, header, len(data), assets))
+        (staging / "scene.txt").write_text(format_overview(source, header, len(data), assets), encoding="utf-8")
+        write_yaml(staging / "objects.yaml", report, "scene_report")
+        (staging / "objects.txt").write_text(format_report(report), encoding="utf-8")
+
+        publish(staging, output, source, data)
+    return list(chests.values())
+
+
+def find_scenes(ana_directory: Path) -> dict[str, Path]:
+    """Map batch names such as INFO_PRT/WAL_B020 to the INFO_* and MAPINFO scene files."""
+    if not ana_directory.is_dir():
+        raise ValueError(f"ANA directory not found: {ana_directory}")
+    groups = sorted(path for path in ana_directory.iterdir()
+                    if path.is_dir() and (path.name.startswith("INFO_") or path.name == "MAPINFO"))
+    scenes = sorted(path for group in groups for path in group.iterdir()
+                    if path.is_file() and path.suffix.lower() == ".img")
+    if not scenes:
+        raise ValueError(f"No INFO_* or MAPINFO scenes found under {ana_directory}")
+    return {f"{scene.parent.name}/{scene.stem}": scene for scene in scenes}
+
+
+class BatchProgress:
+    def __init__(self, total: int, enabled: bool):
+        self.total = total
+        self.enabled = enabled
+        self.count = 0
+        self.batch_started = self.scene_started = time.monotonic()
+
+    def print(self, text: str, end: str = "\n") -> None:
+        if self.enabled:
+            print(text, end=end, file=sys.stderr, flush=True)
+
+    def begin(self, output: Path) -> None:
+        self.print(f"Extracting {self.total} scenes to {output}")
+
+    def start(self, name: Path) -> None:
+        self.count += 1
+        self.scene_started = time.monotonic()
+        self.print(f"[{self.count:>{len(str(self.total))}}/{self.total}] Extracting {name} ... ", end="")
+
+    def done(self) -> None:
+        now = time.monotonic()
+        elapsed = timedelta(seconds=int(now - self.batch_started))
+        self.print(f"done ({now - self.scene_started:.1f}s; elapsed {elapsed})")
+
+    def failed(self) -> None:
+        self.print("failed")
+
+
+@dataclass(frozen=True)
+class BatchSummary:
+    scenes: int
+    chests: ChestTotals
+
+
+def extract_all(ana_directory: Path, output: Path, reference: ReferenceData | None = None, *,
+                text_encoding: str = "us", progress: bool = False) -> BatchSummary:
+    """Extract INFO_* and MAPINFO scenes and catalogue their chests; optionally report progress to stderr."""
+    scenes = find_scenes(ana_directory)
+
+    for destination in [output / name for name in scenes] + [output / CATALOGUE_FILE]:
+        if destination.exists():
+            raise FileExistsError(f"Output already exists: {destination}")
+
+    chest_index = ChestIndex.scan(scenes)
+
+    placements = []
+    status = BatchProgress(len(scenes), progress)
+    status.begin(output)
+    for name, source in scenes.items():
+        status.start(source.relative_to(ana_directory))
+        try:
+            chests = extract(source, output / name, reference, text_encoding=text_encoding,
+                             other_placements=chest_index.other_placements(name))
+        except (OSError, ValueError) as error:
+            status.failed()
+            raise ValueError(f"{source}: {error}") from error
+        status.done()
+        placements.extend(placement_entry(name, chest) for chest in chests)
+
+    catalogue = build_catalogue(placements)
+    write_catalogue(output / CATALOGUE_FILE, catalogue)
+    return BatchSummary(len(scenes), ChestTotals(**catalogue["summary"]))
+
+
+def main() -> None:
+    """Extract one scene, or all supported scenes under an ANA directory."""
+    parser = argparse.ArgumentParser(description=DESCRIPTION)
+    parser.add_argument("source", type=Path, help="scene IMG, or ANA directory with --all")
+    parser.add_argument("--all", action="store_true", help="extract every INFO_* and MAPINFO scene")
+    parser.add_argument("--no-progress", action="store_true", help="hide per-scene batch progress")
+    parser.add_argument("output", type=Path)
+    parser.add_argument("--text-encoding", choices=("us", "jp"), default="us",
+                        help="text control/glyph dialect; no external files (default: us)")
+    add_reference_arguments(parser)
+    args = parser.parse_args()
+    try:
+        reference = reference_from_arguments(args)
+        if args.all:
+            summary = extract_all(args.source, args.output, reference,
+                                  text_encoding=args.text_encoding, progress=not args.no_progress)
+            chests = summary.chests
+            print(f"Extracted {summary.scenes} scenes to {args.output}")
+            print(f"Chests: {chests.chests} ({chests.loot} loot, {chests.quest} quest) in "
+                  f"{chests.placements} placements across {chests.scenes} scenes; "
+                  f"see {args.output / CATALOGUE_FILE}")
+        else:
+            extract(args.source, args.output, reference, text_encoding=args.text_encoding)
+            print(f"Extracted to {args.output}")
+    except (OSError, ValueError) as error:
+        parser.exit(1, f"{error}\n")
+
+
+if __name__ == "__main__":
+    main()

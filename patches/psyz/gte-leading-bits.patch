@@ -1,0 +1,42 @@
+LZCR counts the leading bits that match LZCS's sign, and can't be written.
+
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -2413,6 +2413,9 @@
+     *y = (short)((v >> 16) & 0xFFFF);
+ }
+ 
++static unsigned int lom_lzcs;
++static unsigned int lom_lzcr = 32;
++
+ unsigned int Psyz_GteDataRead(unsigned idx) {
+     switch (idx) {
+     case 0:
+@@ -2471,6 +2474,10 @@
+         return (unsigned int)MAC2;
+     case 27:
+         return (unsigned int)MAC3;
++    case 30:
++        return lom_lzcs;
++    case 31:
++        return lom_lzcr;
+     default:
+         return 0;
+     }
+@@ -2565,6 +2572,16 @@
+     case 27:
+         MAC3 = (int)v;
+         break;
++    case 30: {
++        lom_lzcs = v;
++        unsigned int bits = (v & 0x80000000u) ? ~v : v;
++        lom_lzcr = 0;
++        while (lom_lzcr < 32 && !(bits & 0x80000000u)) {
++            ++lom_lzcr;
++            bits <<= 1;
++        }
++        break;
++    }
+     default:
+         break;
+     }

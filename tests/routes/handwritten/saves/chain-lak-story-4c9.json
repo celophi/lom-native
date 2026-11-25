@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of lak/story/story-4c9.json, at home",
+  "source": "written by the game during tests/routes/generated/lak/story.json#lak-lak-e070-story-4c9 (LOM_ROUTE_SAVED_GAME_DUMP)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255
+  },
+  "saved_game": "saves/chain-lak-story-4c9.bin"
+}

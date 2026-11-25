@@ -1,0 +1,79 @@
+{
+ "route": "home-continue-many-saves",
+ "description": "Continue with six saves on the card should list five and draw the scroll arrow for the rest, then load the save in the bedroom",
+ "plan": "# home-continue-many-saves: Continue with six saves on the card should list five and draw the scroll arrow for the rest, then load the save in the bedroom\nlimit 20000\ncheckpoint loaded\nwatch 300\ncheckpoint done\n",
+ "format": 3,
+ "checkpoints": [
+  "loaded frame 1 scene 19 save 50f581f02db61983 state d0a57cca422f1f2c ram 0000000000000000",
+  "done frame 208 scene 19 save 839736077fab9ace state 24389136d071e6cb ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "loaded",
+   "changes": [
+    "frame 1, scene 19 (MHM_BDRM)",
+    "spawn 0 to 6",
+    "actor 0 (the hero): at (162, 215), facing 64, animation 0,0, presence 0, control 2, command 0",
+    "actor 3 (layout record 0): at (122, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 4 (layout record 1): at (145, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 5 (layout record 2): at (169, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 6 (layout record 3): at (80, 100), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (80, 102), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 8 (layout record 5): at (278, 165), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 9 (layout record 6): at (275, 173), facing 0, animation 0,0, presence 254, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "done",
+   "changes": [
+    "frame 208, scene 19 (MHM_BDRM)",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "scene word 7: 00000000 to 37000000",
+    "scene word 9: 00000000 to 00000008",
+    "scene word 10: 00000000 to 00000100",
+    "scene word 11: 00000000 to 00000100",
+    "scene word 12: 00000000 to 00000100",
+    "scene word 17: 009600cc to 00a200d7",
+    "scene word 47: 00000001 to 000000d0",
+    "actor 0 (the hero): direction 64 to 128; control 2 to 0",
+    "actor 3 (layout record 0): animation 0,0 to 0,14; command 0 to 168",
+    "actor 4 (layout record 1): animation 0,0 to 0,14; command 0 to 168",
+    "actor 5 (layout record 2): animation 0,0 to 0,14; command 0 to 168",
+    "actor 6 (layout record 3): direction 0 to 128; animation 0,0 to 23,0; command 0 to 141",
+    "actor 7 (layout record 4): animation 0,0 to 27,0",
+    "actor 8 (layout record 5): direction 0 to 128; animation 0,0 to 26,0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "watched until the player got control, 205 frames"
+ ],
+ "end": "steps 3 of 3 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 75,
+  "instruction_end": 21,
+  "song": 2,
+  "scene": 1
+ },
+ "pictures": "e2b04756 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5",
+ "stretches": [
+  {
+   "frames": 2,
+   "sha256": "7643c5374dc0ab06dffda4826910ff03"
+  },
+  {
+   "frames": 207,
+   "sha256": "a710a7d4f603e022f90890b04b42c87d"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

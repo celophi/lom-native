@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "snw-snw-bs01-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-bs01-direct",
+    "description": "Entering SNW_BS01 (scene 255) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# snw-snw-bs01-direct: Entering SNW_BS01 (scene 255) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 255 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 255 save 7f2e6a34d72c5293 state b6f2b65289f10d08 ram 0000000000000000",
+     "watched frame 262 scene 255 save 788a25b7060b8d09 state 8fada8076d8e4191 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 112,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8fbfa67681c6b1f2f3c068473713597"
+     },
+     {
+      "frames": 33,
+      "sha256": "72c97533e5cc0b8bab17ff65da6cfb68"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

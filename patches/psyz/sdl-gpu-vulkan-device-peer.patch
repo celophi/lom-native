@@ -1,0 +1,38 @@
+Lets test runs spread over identical GPUs: LOM_TEST_GPU_PEER picks one of the
+devices that match SDL's choice (same vendor, model, driver and version).
+Without it, or with no identical device, SDL chooses as before.
+
+--- a/external/SDL/src/gpu/vulkan/SDL_gpu_vulkan.c
++++ b/external/SDL/src/gpu/vulkan/SDL_gpu_vulkan.c
+@@ -12405,6 +12405,31 @@
+         }
+     }
+ 
++    if (suitableIndex != -1 && SDL_getenv("LOM_TEST_GPU_PEER")) {
++        VkPhysicalDeviceProperties chosen, other;
++        Uint32 peerCount = 0, peerIndices[16], peerFamilies[16];
++        const Uint64 wanted = SDL_strtoull(SDL_getenv("LOM_TEST_GPU_PEER"), NULL, 10);
++        renderer->vkGetPhysicalDeviceProperties(physicalDevices[suitableIndex], &chosen);
++        for (i = 0; i < physicalDeviceCount && peerCount < SDL_arraysize(peerIndices); i += 1) {
++            Uint32 queueFamilyIndex;
++            renderer->vkGetPhysicalDeviceProperties(physicalDevices[i], &other);
++            if (other.vendorID == chosen.vendorID && other.deviceID == chosen.deviceID &&
++                other.driverVersion == chosen.driverVersion &&
++                VULKAN_INTERNAL_IsDeviceSuitable(renderer, features, physicalDevices[i], &physicalDeviceExtensions[i], &queueFamilyIndex)) {
++                peerIndices[peerCount] = i;
++                peerFamilies[peerCount] = queueFamilyIndex;
++                peerCount += 1;
++            }
++        }
++        if (peerCount > 1) {
++            const Uint32 peer = (Uint32)(wanted % peerCount);
++            suitableIndex = (Sint32)peerIndices[peer];
++            suitableQueueFamilyIndex = peerFamilies[peer];
++        }
++        SDL_LogInfo(SDL_LOG_CATEGORY_GPU, "LOM_TEST_GPU_PEER: %s, device %d of %u identical (Vulkan device %d)",
++                    chosen.deviceName, peerCount > 1 ? (int)(wanted % peerCount) : 0, peerCount ? peerCount : 1, (int)suitableIndex);
++    }
++
+     if (suitableIndex != -1) {
+         renderer->supports = physicalDeviceExtensions[suitableIndex];
+         renderer->physicalDevice = physicalDevices[suitableIndex];

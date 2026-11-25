@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "New game, right after the field's new-game command: the world select still to come (options 0x04 and 0x08)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152,
+    "options": 12
+  }
+}

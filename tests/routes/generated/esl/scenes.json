@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "esl-esl-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-bs01-entry",
+    "description": "Entering ESL_BS01 (scene 646) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# esl-esl-bs01-entry: Entering ESL_BS01 (scene 646) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33414 0 16723480 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 646 save e2e8ef73041d0526 state 297ad35f8de120f8 ram 0000000000000000",
+     "watched frame 262 scene 646 save 9bde16fde2cbc994 state cc66239b1d247a8a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "059371f955c65701faae13d6c7085b07"
+     },
+     {
+      "frames": 33,
+      "sha256": "441cc667880b94eb3d7bc688c3111032"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

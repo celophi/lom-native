@@ -1,0 +1,22 @@
+Return what Psy-Q's EnterCriticalSection does: 1 when this call entered
+the critical section, 0 when it was already in one. The game's libapi.h
+declares it int.
+
+--- a/psyz/src/psyz/kernel.c
++++ b/psyz/src/psyz/kernel.c
+@@ -339,12 +339,13 @@
+     LatchLine(IRQ_VBLANK);
+ }
+ 
+-void PS1_EnterCriticalSection(void) {
++int PS1_EnterCriticalSection(void) {
+     if (OwnsKernel()) {
+-        return; // already in one, or inside an interrupt handler
++        return 0;
+     }
+     KernelLock();
+     in_critical_section = 1;
++    return 1;
+ }
+ 
+ void PS1_ExitCriticalSection(void) {

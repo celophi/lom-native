@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mon-mon-lmp1-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-lmp1-entry",
+    "description": "Entering MON_LMP1 (scene 62) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mon-mon-lmp1-entry: Entering MON_LMP1 (scene 62) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 62 0 16722431 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 62 save 914bbdf2c7cacc1f state 7ac7042d9208fd9a ram 0000000000000000",
+     "watched frame 261 scene 62 save 914bbdf2c7cacc1f state 5719d671437ed51d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2352f0220cf04808abbcb3091a275fae"
+     },
+     {
+      "frames": 32,
+      "sha256": "eaceebe20a47ab61339eeb0f3eb2b17a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+name: Bug report
+description: Something went wrong in the game or the launcher.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. The launcher's "Report this bug" (or Help > Report a bug) saves a zip with the game's logs, a description of your PC and setup, and your memory cards. Please attach it below. It doesn't contain the game itself.
+
+        Have a look inside before you post it if you like. Your home folder is replaced with `~` in the text files, but the zip can still have other file paths in it.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: The more detail the better. A crash, a wrong picture, wrong sound, the game getting stuck...
+    validations:
+      required: true
+  - type: textarea
+    id: what-you-were-doing
+    attributes:
+      label: What were you doing?
+      description: Where you were in the game, and what you did just before. If it happens every time, the steps to make it happen.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The launcher fills this in. Otherwise it's in Help > About.
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11, macOS 26, Ubuntu 24.04...
+  - type: input
+    id: gpu
+    attributes:
+      label: Graphics card
+  - type: textarea
+    id: report
+    attributes:
+      label: Bug report zip
+      description: Drag the zip here. If it's over 25 MB, GitHub won't take it; share it some other way and paste the link. If you ran the game without the launcher, attach the crash and system reports from the logs folder instead, and say which commit you built.
+    validations:
+      required: true

@@ -1,0 +1,52 @@
+name: MENU.BIN
+compressed_sha1: efa8cccdd0549e76c59ceef24e642256836fa828
+sha1: d2fc21db50e462a413c7439d1db2b87ef21c459a
+options:
+  base_path: ../../../
+  basename: MENU.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/us/decompressed/MENU.BIN
+  asset_path: assets/us
+  elf_path: build/us/overlays/menu.elf
+
+  asm_path: asm/us/overlays/menu
+  src_path: src/overlays/menu
+  build_path: build/us/overlays/menu
+
+  ld_script_path: linker/us/overlays/menu/menu.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/us/overlays/menu/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/us/overlays/menu/undefined_syms_auto.txt
+
+  symbol_addrs_path:    
+    - config/us/symbols/shared_symbol_addrs.txt
+    - config/us/symbols/menu_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: menu
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, menu]
+      - [0x57D, rodata, card_strings]
+      - [0x5B1, c, menu]
+      - [0xF2B1, c, menu_card]
+      - [0xFBF5, databin, menu_data]
+  - [0x2B9DD]

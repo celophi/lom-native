@@ -1,0 +1,85 @@
+#ifndef WMAP_LAND_EVENT_00_A_H
+#define WMAP_LAND_EVENT_00_A_H
+
+#include "common.h"
+
+void wmap_land_event_00_a_step_01(void);
+void wmap_land_event_00_a_sequence_4_step_01(void);
+void wmap_land_event_00_a_sequence_5_step_02(void);
+void wmap_land_event_00_a_sequence_6_step_02(void);
+void wmap_land_event_00_a_sequence_6_step_04(void);
+void wmap_land_event_00_a_sequence_7_step_02(void);
+void wmap_land_event_00_a_sequence_7_step_04(void);
+void wmap_land_event_00_a_sequence_8_step_02(void);
+void wmap_land_event_00_a_sequence_8_step_04(void);
+s32 wmap_land_event_00_a_run(s32 reset);
+void wmap_land_event_00_a_reset(void);
+void wmap_land_event_00_a_step_02(void);
+void wmap_land_event_00_a_step_03(void);
+void wmap_land_event_00_a_wait_idle(void);
+void wmap_land_event_00_a_step_05(void);
+s32 wmap_land_event_00_a_run_timeline(s32 reset);
+void wmap_land_event_00_a_timeline_reset(void);
+void wmap_land_event_00_a_timeline_step_01(void);
+void wmap_land_event_00_a_timeline_wait_02(void);
+void wmap_land_event_00_a_timeline_step_03(void);
+void wmap_land_event_00_a_timeline_wait_04(void);
+void wmap_land_event_00_a_timeline_step_05(void);
+void wmap_land_event_00_a_timeline_wait_06(void);
+void wmap_land_event_00_a_timeline_step_07(void);
+void wmap_land_event_00_a_timeline_wait_08(void);
+void wmap_land_event_00_a_timeline_step_09(void);
+void wmap_land_event_00_a_timeline_wait_10(void);
+void wmap_land_event_00_a_timeline_step_11(void);
+void wmap_land_event_00_a_timeline_wait_12(void);
+void wmap_land_event_00_a_timeline_step_13(void);
+void wmap_land_event_00_a_timeline_wait_14(void);
+void wmap_land_event_00_a_timeline_step_15(void);
+void wmap_land_event_00_a_timeline_wait_16(void);
+void wmap_land_event_00_a_timeline_step_17(void);
+void wmap_land_event_00_a_timeline_wait_18(void);
+void wmap_land_event_00_a_timeline_step_19(void);
+void wmap_land_event_00_a_timeline_wait_20(void);
+void wmap_land_event_00_a_timeline_finish(void);
+s32 wmap_land_event_00_a_run_sequence_1(s32 reset);
+void wmap_land_event_00_a_sequence_1_reset(void);
+void wmap_land_event_00_a_sequence_1_step_01(void);
+void wmap_land_event_00_a_sequence_1_step_02(void);
+void wmap_land_event_00_a_sequence_1_end(void);
+s32 wmap_land_event_00_a_run_sequence_2(s32 reset);
+void wmap_land_event_00_a_sequence_2_reset(void);
+void wmap_land_event_00_a_sequence_2_step_01(void);
+void wmap_land_event_00_a_sequence_2_step_02(void);
+void wmap_land_event_00_a_sequence_2_end(void);
+s32 wmap_land_event_00_a_run_sequence_3(s32 reset);
+void wmap_land_event_00_a_sequence_3_reset(void);
+void wmap_land_event_00_a_sequence_3_step_01(void);
+void wmap_land_event_00_a_sequence_3_step_02(void);
+void wmap_land_event_00_a_sequence_3_end(void);
+s32 wmap_land_event_00_a_run_sequence_4(s32 reset);
+void wmap_land_event_00_a_sequence_4_reset(void);
+void wmap_land_event_00_a_sequence_4_step_02(void);
+void wmap_land_event_00_a_sequence_4_step_03(void);
+void wmap_land_event_00_a_sequence_4_step_04(void);
+void wmap_land_event_00_a_sequence_4_end(void);
+s32 wmap_land_event_00_a_run_sequence_5(s32 reset);
+void wmap_land_event_00_a_sequence_5_reset(void);
+void wmap_land_event_00_a_sequence_5_step_01(void);
+void wmap_land_event_00_a_sequence_5_end(void);
+s32 wmap_land_event_00_a_run_sequence_6(s32 reset);
+void wmap_land_event_00_a_sequence_6_reset(void);
+void wmap_land_event_00_a_sequence_6_step_01(void);
+void wmap_land_event_00_a_sequence_6_step_03(void);
+void wmap_land_event_00_a_sequence_6_end(void);
+s32 wmap_land_event_00_a_run_sequence_7(s32 reset);
+void wmap_land_event_00_a_sequence_7_reset(void);
+void wmap_land_event_00_a_sequence_7_step_01(void);
+void wmap_land_event_00_a_sequence_7_step_03(void);
+void wmap_land_event_00_a_sequence_7_end(void);
+s32 wmap_land_event_00_a_run_sequence_8(s32 reset);
+void wmap_land_event_00_a_sequence_8_reset(void);
+void wmap_land_event_00_a_sequence_8_step_01(void);
+void wmap_land_event_00_a_sequence_8_step_03(void);
+void wmap_land_event_00_a_sequence_8_step_05(void);
+
+#endif

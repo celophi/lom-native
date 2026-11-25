@@ -1,0 +1,2290 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jul-jul-bs33-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs33-exit-0",
+    "description": "Walking onto exit 0 of JUL_BS33 (scene 796) should lead to scene 761",
+    "plan": "# jul-jul-bs33-exit-0: Walking onto exit 0 of JUL_BS33 (scene 796) should lead to scene 761\nlimit 20000\nenter 796 0 16715263 0\ncheckpoint entered\nexit 0 761\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 796 save 42194170df6497d0 state 1fe70f9f93b23041 ram 0000000000000000",
+     "arrived frame 297 scene 761 save d4ff5469b221c85e state 3808835de1a1891c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (241, 13): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 45,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3547c24a7a168937c9ed6bcfbae16571"
+     },
+     {
+      "frames": 68,
+      "sha256": "e5c7e43a4d628df2f9c2bb5fa76a7320"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-exit-0",
+    "description": "Walking onto exit 0 of JUL_BSS0 (scene 762) should lead to scene 753",
+    "plan": "# jul-jul-bss0-exit-0: Walking onto exit 0 of JUL_BSS0 (scene 762) should lead to scene 753\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\nexit 0 753\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 223568908c0d77a2 state 75254e272d4cae4d ram 0000000000000000",
+     "arrived frame 300 scene 753 save 45a3e4e34a103004 state 1bb342e603a9c8de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (62, 360): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 44,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43fbc343bfce3aad134b3b54dacba7ae"
+     },
+     {
+      "frames": 71,
+      "sha256": "475106afab54ceeb2bc5336ded6f50d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-exit-1",
+    "description": "Walking onto exit 1 of JUL_BSS0 (scene 762) should lead to scene 755",
+    "plan": "# jul-jul-bss0-exit-1: Walking onto exit 1 of JUL_BSS0 (scene 762) should lead to scene 755\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\nexit 1 755\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 223568908c0d77a2 state 75254e272d4cae4d ram 0000000000000000",
+     "arrived frame 821 scene 755 save c641853f50306ab3 state 965571845eef1b52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 111): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43fbc343bfce3aad134b3b54dacba7ae"
+     },
+     {
+      "frames": 592,
+      "sha256": "6f3bccf53f5d55da52e479feaa25ae0f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-exit-2",
+    "description": "Walking onto exit 2 of JUL_BSS0 (scene 762) should lead to scene 751",
+    "plan": "# jul-jul-bss0-exit-2: Walking onto exit 2 of JUL_BSS0 (scene 762) should lead to scene 751\nlimit 20000\nenter 33530 0 16720127 2\ncheckpoint entered\nexit 2 751\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 02e7f2d6e4eb21f0 state 1ff4027fa8e9e1b7 ram 0000000000000000",
+     "arrived frame 335 scene 751 save 7ad26535249b0e35 state 63246b94a723251a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (198, 411): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6168245dea0bbc8209668ee23ab36e71"
+     },
+     {
+      "frames": 106,
+      "sha256": "a9d36afa26b8015c0cf3b63f3b58431e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-exit-0",
+    "description": "Walking onto exit 0 of JUL_BSS1 (scene 763) should lead to scene 757",
+    "plan": "# jul-jul-bss1-exit-0: Walking onto exit 0 of JUL_BSS1 (scene 763) should lead to scene 757\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\nexit 0 757\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "arrived frame 300 scene 757 save 645a317e0fe96008 state 8b2ee70d9f938252 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (62, 360): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 71,
+      "sha256": "e575f0b9806fa9bb85cfe130339ea12f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-exit-1",
+    "description": "Walking onto exit 1 of JUL_BSS1 (scene 763) should lead to one of scene 759, scene 789",
+    "plan": "# jul-jul-bss1-exit-1: Walking onto exit 1 of JUL_BSS1 (scene 763) should lead to one of scene 759, scene 789\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "arrived frame 828 scene 759 save 3de2a69b66475137 state d67161e1c8dd9942 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 111): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 599,
+      "sha256": "d17c9ec77e343e21dc07b7178b734ca9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-exit-2",
+    "description": "Walking onto exit 2 of JUL_BSS1 (scene 763) should lead to scene 758",
+    "plan": "# jul-jul-bss1-exit-2: Walking onto exit 2 of JUL_BSS1 (scene 763) should lead to scene 758\nlimit 20000\nenter 33531 0 16720127 2\ncheckpoint entered\nexit 2 758\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 5df3764ee854a3e1 state 6afecdc8dc474c90 ram 0000000000000000",
+     "arrived frame 336 scene 758 save 80d0e37dbe066132 state d59032b3b4e0b7c6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (198, 411): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5cfc2ee9cb9b0349f996d510c037d679"
+     },
+     {
+      "frames": 107,
+      "sha256": "4de9ed2a568158bd5abb797575f4ab14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-exit-0",
+    "description": "Walking onto exit 0 of JUL_BSS2 (scene 764) should lead to one of scene 760, scene 790",
+    "plan": "# jul-jul-bss2-exit-0: Walking onto exit 0 of JUL_BSS2 (scene 764) should lead to one of scene 760, scene 790\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "arrived frame 1390 scene 760 save e64eb36878d5af9c state 3838472da85ec5f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (62, 360): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 51,
+     "instruction": 187,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 1161,
+      "sha256": "261b363eaf80e70f14a436df4a9a45c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-exit-1",
+    "description": "Walking onto exit 1 of JUL_BSS2 (scene 764) should lead to scene 758",
+    "plan": "# jul-jul-bss2-exit-1: Walking onto exit 1 of JUL_BSS2 (scene 764) should lead to scene 758\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\nexit 1 758\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "arrived frame 297 scene 758 save 62d5dce5eb361897 state a303f5151fa0d61d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 111): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 178,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 68,
+      "sha256": "497b0477a48f52e7784669b6fae1d3ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-crwn-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-crwn-exit-0",
+    "description": "Walking onto exit 0 of JUL_CRWN (scene 761) should lead to scene 764",
+    "plan": "# jul-jul-crwn-exit-0: Walking onto exit 0 of JUL_CRWN (scene 761) should lead to scene 764\nlimit 20000\nenter 761 0 16720127 0\ncheckpoint entered\nexit 0 764\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 761 save 2ebe20d159c31869 state 3b80cb081dc68133 ram 0000000000000000",
+     "arrived frame 292 scene 764 save 1bc1e223cb00b97e state 485774b1102148ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (516, 40): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 177,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "400dfb4511e075b69becc8491b45a27f"
+     },
+     {
+      "frames": 63,
+      "sha256": "d855d2f429f94e0ed0ea7549eafe7661"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-crwn-exit-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 1 of JUL_CRWN needs",
+    "source": "built from the conditions in scene 761's script 1 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 11
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-crwn-exit-1",
+    "description": "Walking onto exit 1 of JUL_CRWN (scene 761) should lead to one of scene 765, scene 796",
+    "plan": "# jul-jul-crwn-exit-1: Walking onto exit 1 of JUL_CRWN (scene 761) should lead to one of scene 765, scene 796\nlimit 20000\nenter 761 0 16720127 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 761 save bce92d5db7e13f44 state f227eb765bd88f25 ram 0000000000000000",
+     "arrived frame 431 scene 796 save 5b653739244e5615 state e01c06ac8c92f2ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (258, 263): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 49,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7e898d69ffa392e8a670c7998e02e3ab"
+     },
+     {
+      "frames": 202,
+      "sha256": "88a8f0c5c9f8c1ed1e6a45437f2090ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dia1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-dia1-exit-0",
+    "description": "Walking onto exit 0 of JUL_DIA1 (scene 789) should lead to scene 763",
+    "plan": "# jul-jul-dia1-exit-0: Walking onto exit 0 of JUL_DIA1 (scene 789) should lead to scene 763\nlimit 20000\nenter 789 0 16720127 1\ncheckpoint entered\nexit 0 763\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 789 save 1c9917621534006f state 3d2d72ed2d431f8d ram 0000000000000000",
+     "arrived frame 675 scene 763 save 98093dac71919192 state c3847a49029423ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (51, 365): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f52b9222a2db3acd619d7458146e095"
+     },
+     {
+      "frames": 446,
+      "sha256": "737fdb68228fafc8d96f1273425520c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dia1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-dia1-exit-1",
+    "description": "Walking onto exit 1 of JUL_DIA1 (scene 789) should lead to scene 756",
+    "plan": "# jul-jul-dia1-exit-1: Walking onto exit 1 of JUL_DIA1 (scene 789) should lead to scene 756\nlimit 20000\nenter 789 0 16720127 1\ncheckpoint entered\nexit 1 756\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 789 save 1c9917621534006f state 3d2d72ed2d431f8d ram 0000000000000000",
+     "arrived frame 299 scene 756 save 6fb3794a17355d04 state 99f3590c5b02920f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (566, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f52b9222a2db3acd619d7458146e095"
+     },
+     {
+      "frames": 70,
+      "sha256": "059e772b2734f38af31be4bba8efd929"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dian-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-dian-exit-0",
+    "description": "Walking onto exit 0 of JUL_DIAN (scene 759) should lead to scene 763",
+    "plan": "# jul-jul-dian-exit-0: Walking onto exit 0 of JUL_DIAN (scene 759) should lead to scene 763\nlimit 20000\nenter 759 0 16720127 1\ncheckpoint entered\nexit 0 763\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 759 save d8c8d91d426a7e6e state d9d51c93e133a953 ram 0000000000000000",
+     "arrived frame 675 scene 763 save 98093dac71919192 state eb854d362fdb4bfe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (51, 365): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c55ff845ab3bb151e8168ee533bd6ae5"
+     },
+     {
+      "frames": 446,
+      "sha256": "3df23b1899217957a0d9cd00396dfd38"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dian-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-dian-exit-1",
+    "description": "Walking onto exit 1 of JUL_DIAN (scene 759) should lead to scene 756",
+    "plan": "# jul-jul-dian-exit-1: Walking onto exit 1 of JUL_DIAN (scene 759) should lead to scene 756\nlimit 20000\nenter 759 0 16720127 1\ncheckpoint entered\nexit 1 756\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 759 save d8c8d91d426a7e6e state d9d51c93e133a953 ram 0000000000000000",
+     "arrived frame 299 scene 756 save 6fb3794a17355d04 state 326b620382459ae1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (566, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c55ff845ab3bb151e8168ee533bd6ae5"
+     },
+     {
+      "frames": 70,
+      "sha256": "986bd16cc5782e60705a863175ef836e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en1f-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en1f-exit-0",
+    "description": "Walking onto exit 0 of JUL_EN1F (scene 750) should lead to the world map",
+    "plan": "# jul-jul-en1f-exit-0: Walking onto exit 0 of JUL_EN1F (scene 750) should lead to the world map\nlimit 20000\nenter 750 0 16720127 2\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 750 save 79b6df03a3ebedab state c569467afba89d52 ram 0000000000000000",
+     "arrived frame 563 scene 32767 save fdf4a3f4670bca83 state f073aa392283183e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 110): 4 waypoints",
+     "game state 1 at vblank 1451"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18052d223426377aff3cdeab0cc06bb9"
+     },
+     {
+      "frames": 333,
+      "sha256": "68cc90eaf1be64dabe0d848f9e95db6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en1f-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en1f-exit-1",
+    "description": "Walking onto exit 1 of JUL_EN1F (scene 750) should lead to scene 754",
+    "plan": "# jul-jul-en1f-exit-1: Walking onto exit 1 of JUL_EN1F (scene 750) should lead to scene 754\nlimit 20000\nenter 750 0 16720127 2\ncheckpoint entered\nexit 1 754\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 750 save 79b6df03a3ebedab state c569467afba89d52 ram 0000000000000000",
+     "arrived frame 532 scene 754 save fa47a3fdb65d8734 state 0cfba9d8dfd40d58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (101, 410): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18052d223426377aff3cdeab0cc06bb9"
+     },
+     {
+      "frames": 303,
+      "sha256": "7238bc73686c12d6b5780a18f7662c6f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en1f-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en1f-exit-2",
+    "description": "Walking onto exit 2 of JUL_EN1F (scene 750) should lead to scene 752",
+    "plan": "# jul-jul-en1f-exit-2: Walking onto exit 2 of JUL_EN1F (scene 750) should lead to scene 752\nlimit 20000\nenter 750 0 16720127 2\ncheckpoint entered\nexit 2 752\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 750 save 79b6df03a3ebedab state c569467afba89d52 ram 0000000000000000",
+     "arrived frame 302 scene 752 save 52d6c72c277f43f7 state 1c90f6fa44fc22b8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (596, 122): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18052d223426377aff3cdeab0cc06bb9"
+     },
+     {
+      "frames": 73,
+      "sha256": "1983c2955693add550e50b4929453448"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en2f-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en2f-exit-0",
+    "description": "Walking onto exit 0 of JUL_EN2F (scene 751) should lead to scene 756",
+    "plan": "# jul-jul-en2f-exit-0: Walking onto exit 0 of JUL_EN2F (scene 751) should lead to scene 756\nlimit 20000\nenter 751 0 16720127 0\ncheckpoint entered\nexit 0 756\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 751 save c689be1f199b246f state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 302 scene 756 save fb16225752c596f5 state 8d0f3912b19043df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d83e9066fbd1bf11cf16ce43a6151b9d"
+     },
+     {
+      "frames": 73,
+      "sha256": "7957c89bb4c7a5e03e2a66f07fecd422"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en2f-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en2f-exit-1",
+    "description": "Walking onto exit 1 of JUL_EN2F (scene 751) should lead to scene 757",
+    "plan": "# jul-jul-en2f-exit-1: Walking onto exit 1 of JUL_EN2F (scene 751) should lead to scene 757\nlimit 20000\nenter 751 0 16720127 0\ncheckpoint entered\nexit 1 757\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 751 save c689be1f199b246f state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 547 scene 757 save a97f55fde8514b95 state 1d69cf519e2084cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (598, 136): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d83e9066fbd1bf11cf16ce43a6151b9d"
+     },
+     {
+      "frames": 318,
+      "sha256": "2d0e5cca90b8c31a0dc061aa24335b1a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-en2f-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-en2f-exit-2",
+    "description": "Walking onto exit 2 of JUL_EN2F (scene 751) should lead to scene 762",
+    "plan": "# jul-jul-en2f-exit-2: Walking onto exit 2 of JUL_EN2F (scene 751) should lead to scene 762\nlimit 20000\nenter 751 0 16720127 0\ncheckpoint entered\nexit 2 762\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 751 save c689be1f199b246f state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 615 scene 762 save f168472e1d7ed7e0 state 9f3e6f09673af0cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (176, 12): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 43,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d83e9066fbd1bf11cf16ce43a6151b9d"
+     },
+     {
+      "frames": 386,
+      "sha256": "fa2cba57a577719bca8400771976882d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd00-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD00 (scene 752) should lead to scene 750",
+    "plan": "# jul-jul-fd00-exit-0: Walking onto exit 0 of JUL_FD00 (scene 752) should lead to scene 750\nlimit 20000\nenter 752 0 16720127 0\ncheckpoint entered\nexit 0 750\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 752 save b7585b462a688ea0 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 302 scene 750 save b0def57d0e88194b state 8fb2353f4a20fe09 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c964c65b051e485212e553f4b13194a7"
+     },
+     {
+      "frames": 73,
+      "sha256": "8bb0db103da27c8abf0a309cbadfda69"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd00-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD00 (scene 752) should lead to scene 753",
+    "plan": "# jul-jul-fd00-exit-1: Walking onto exit 1 of JUL_FD00 (scene 752) should lead to scene 753\nlimit 20000\nenter 752 0 16720127 0\ncheckpoint entered\nexit 1 753\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 752 save b7585b462a688ea0 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 543 scene 753 save e4ec5cdccb782a01 state 4e5b7819eef7b1d8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c964c65b051e485212e553f4b13194a7"
+     },
+     {
+      "frames": 314,
+      "sha256": "c119ca933023b9aadba48e0ea5760498"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd00-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd00-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD00 (scene 752) should lead to scene 767",
+    "plan": "# jul-jul-fd00-exit-2: Walking onto exit 2 of JUL_FD00 (scene 752) should lead to scene 767\nlimit 20000\nenter 752 0 16720127 0\ncheckpoint entered\nexit 2 767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 752 save b7585b462a688ea0 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 494 scene 767 save 9e7a02d899ec8fef state ceca046c46ef47b3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c964c65b051e485212e553f4b13194a7"
+     },
+     {
+      "frames": 265,
+      "sha256": "c4e4ed41aeb41f81d3df5ee1e242a14b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd01-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD01 (scene 753) should lead to scene 752",
+    "plan": "# jul-jul-fd01-exit-0: Walking onto exit 0 of JUL_FD01 (scene 753) should lead to scene 752\nlimit 20000\nenter 753 0 16720127 0\ncheckpoint entered\nexit 0 752\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 753 save f1888e5e6d91a791 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 302 scene 752 save cd914a972a3d7f61 state 8d0f3912b19043df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3feca8251defd273968b2f5f82440be5"
+     },
+     {
+      "frames": 73,
+      "sha256": "5f9d4d78e6ed69f95d1f731ac010fb66"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd01-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD01 (scene 753) should lead to scene 762",
+    "plan": "# jul-jul-fd01-exit-1: Walking onto exit 1 of JUL_FD01 (scene 753) should lead to scene 762\nlimit 20000\nenter 753 0 16720127 0\ncheckpoint entered\nexit 1 762\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 753 save f1888e5e6d91a791 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 543 scene 762 save 9db718ed904c7f32 state a309e2f7cd61836a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3feca8251defd273968b2f5f82440be5"
+     },
+     {
+      "frames": 314,
+      "sha256": "8fc64b215b0d8c4f85fc0bcc8cb2bee7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd01-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd01-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD01 (scene 753) should lead to scene 768",
+    "plan": "# jul-jul-fd01-exit-2: Walking onto exit 2 of JUL_FD01 (scene 753) should lead to scene 768\nlimit 20000\nenter 753 0 16720127 0\ncheckpoint entered\nexit 2 768\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 753 save f1888e5e6d91a791 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 494 scene 768 save 3845fb9a149d436b state 32c44bcae85d7e4f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3feca8251defd273968b2f5f82440be5"
+     },
+     {
+      "frames": 265,
+      "sha256": "acca93c32e5ca9cd1fd5a81dea8b51af"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd02-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD02 (scene 754) should lead to scene 755",
+    "plan": "# jul-jul-fd02-exit-0: Walking onto exit 0 of JUL_FD02 (scene 754) should lead to scene 755\nlimit 20000\nenter 754 0 16720127 1\ncheckpoint entered\nexit 0 755\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 754 save cbd24c56bc231433 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 645 scene 755 save 4ce1a7c756db099a state d547843e9355617d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0ea5a1c718cc7ce5ceb81c03b9b51653"
+     },
+     {
+      "frames": 416,
+      "sha256": "46d19a519ad75367efb96f3e0cdf5613"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd02-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd02-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD02 (scene 754) should lead to scene 750",
+    "plan": "# jul-jul-fd02-exit-1: Walking onto exit 1 of JUL_FD02 (scene 754) should lead to scene 750\nlimit 20000\nenter 754 0 16720127 1\ncheckpoint entered\nexit 1 750\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 754 save cbd24c56bc231433 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 298 scene 750 save f8015eecb7b7bec0 state d90dc7ae6e058b5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0ea5a1c718cc7ce5ceb81c03b9b51653"
+     },
+     {
+      "frames": 69,
+      "sha256": "9781a2ec076c1c10425f1a352114d18e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd02-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd02-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD02 (scene 754) should lead to scene 769",
+    "plan": "# jul-jul-fd02-exit-2: Walking onto exit 2 of JUL_FD02 (scene 754) should lead to scene 769\nlimit 20000\nenter 754 0 16720127 1\ncheckpoint entered\nexit 2 769\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 754 save cbd24c56bc231433 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 358 scene 769 save e74c02d21a0402a6 state 57d5b5392c611070 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 57,
+     "instruction": 183,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0ea5a1c718cc7ce5ceb81c03b9b51653"
+     },
+     {
+      "frames": 129,
+      "sha256": "77ad69dc5e09a0ff649dacb36fed7aa7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd03-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD03 (scene 755) should lead to scene 762",
+    "plan": "# jul-jul-fd03-exit-0: Walking onto exit 0 of JUL_FD03 (scene 755) should lead to scene 762\nlimit 20000\nenter 755 0 16720127 1\ncheckpoint entered\nexit 0 762\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 755 save 6bfef935519dc8aa state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 645 scene 762 save 79aea9eaf51f798b state a91ee9f17a6b71eb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d1765212dbee67e40dde64fc4ae923f"
+     },
+     {
+      "frames": 416,
+      "sha256": "589b87a097f8677722ad71ba575799d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd03-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd03-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD03 (scene 755) should lead to scene 754",
+    "plan": "# jul-jul-fd03-exit-1: Walking onto exit 1 of JUL_FD03 (scene 755) should lead to scene 754\nlimit 20000\nenter 755 0 16720127 1\ncheckpoint entered\nexit 1 754\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 755 save 6bfef935519dc8aa state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 298 scene 754 save e32e69f675bdf5ba state 8a21c283a6071974 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d1765212dbee67e40dde64fc4ae923f"
+     },
+     {
+      "frames": 69,
+      "sha256": "edaac2d557c7037b6672b0c3ad688d8a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd03-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd03-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD03 (scene 755) should lead to scene 770",
+    "plan": "# jul-jul-fd03-exit-2: Walking onto exit 2 of JUL_FD03 (scene 755) should lead to scene 770\nlimit 20000\nenter 755 0 16720127 1\ncheckpoint entered\nexit 2 770\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 755 save 6bfef935519dc8aa state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 358 scene 770 save 2813e5d0047046a5 state a70c8c8ce694fc44 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d1765212dbee67e40dde64fc4ae923f"
+     },
+     {
+      "frames": 129,
+      "sha256": "48830d8b6bec5fb530bdf677b06f0e5f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd04-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD04 (scene 756) should lead to one of scene 759, scene 789",
+    "plan": "# jul-jul-fd04-exit-0: Walking onto exit 0 of JUL_FD04 (scene 756) should lead to one of scene 759, scene 789\nlimit 20000\nenter 756 0 16720127 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 756 save 82b19e5e728839d5 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 645 scene 759 save 7e5bbf488a84ff7e state b0ed4eced4a8daaa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4573602d8e0764a13a3640d74323b1c0"
+     },
+     {
+      "frames": 416,
+      "sha256": "7d0713f433bf8a9d9ed86ebe5dd01cf6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd04-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd04-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD04 (scene 756) should lead to scene 751",
+    "plan": "# jul-jul-fd04-exit-1: Walking onto exit 1 of JUL_FD04 (scene 756) should lead to scene 751\nlimit 20000\nenter 756 0 16720127 1\ncheckpoint entered\nexit 1 751\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 756 save 82b19e5e728839d5 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 298 scene 751 save 12955d3828cbf2df state 8a21c283a6071974 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4573602d8e0764a13a3640d74323b1c0"
+     },
+     {
+      "frames": 69,
+      "sha256": "1097402ddbaf592f28b10db12b3ac072"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd04-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd04-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD04 (scene 756) should lead to scene 771",
+    "plan": "# jul-jul-fd04-exit-2: Walking onto exit 2 of JUL_FD04 (scene 756) should lead to scene 771\nlimit 20000\nenter 756 0 16720127 1\ncheckpoint entered\nexit 2 771\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 756 save 82b19e5e728839d5 state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 358 scene 771 save 44de50921c2046b8 state 65a0f6388d8d8188 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 58,
+     "instruction": 182,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4573602d8e0764a13a3640d74323b1c0"
+     },
+     {
+      "frames": 129,
+      "sha256": "82a424c576155af0b80f5351d67b0808"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd05-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd05-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD05 (scene 757) should lead to scene 751",
+    "plan": "# jul-jul-fd05-exit-0: Walking onto exit 0 of JUL_FD05 (scene 757) should lead to scene 751\nlimit 20000\nenter 757 0 16720127 0\ncheckpoint entered\nexit 0 751\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 757 save 66ece10177192df5 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 302 scene 751 save 369f04d77d3f3c26 state 7678ae51772759b9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "966b2eefbca2f07a3dc53a58d77859dd"
+     },
+     {
+      "frames": 73,
+      "sha256": "c7f60e4276af6fea8bb65be2a29a0ed5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd05-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd05-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD05 (scene 757) should lead to scene 763",
+    "plan": "# jul-jul-fd05-exit-1: Walking onto exit 1 of JUL_FD05 (scene 757) should lead to scene 763\nlimit 20000\nenter 757 0 16720127 0\ncheckpoint entered\nexit 1 763\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 757 save 66ece10177192df5 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 543 scene 763 save ccd024d0b620bfab state 7a724f4ec4fa1a41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "966b2eefbca2f07a3dc53a58d77859dd"
+     },
+     {
+      "frames": 314,
+      "sha256": "396d590e15e78fb08240c2be8191908b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd05-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd05-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD05 (scene 757) should lead to scene 772",
+    "plan": "# jul-jul-fd05-exit-2: Walking onto exit 2 of JUL_FD05 (scene 757) should lead to scene 772\nlimit 20000\nenter 757 0 16720127 0\ncheckpoint entered\nexit 2 772\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 757 save 66ece10177192df5 state 8187c464f64e4efb ram 0000000000000000",
+     "arrived frame 494 scene 772 save 0ebd4941ee2f15af state 6e6f8a0d982dbb1b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "966b2eefbca2f07a3dc53a58d77859dd"
+     },
+     {
+      "frames": 265,
+      "sha256": "8708c8bc09494ae20cb6c55820077a9a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd06-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd06-exit-0",
+    "description": "Walking onto exit 0 of JUL_FD06 (scene 758) should lead to scene 764",
+    "plan": "# jul-jul-fd06-exit-0: Walking onto exit 0 of JUL_FD06 (scene 758) should lead to scene 764\nlimit 20000\nenter 758 0 16720127 2\ncheckpoint entered\nexit 0 764\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 758 save eebcd1744d87ddcc state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 645 scene 764 save 4b8fcf6ba29ec46d state bf7335b07b0f0b9c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (99, 417): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 175,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88bc21e22f37710f812167873bbb1abe"
+     },
+     {
+      "frames": 416,
+      "sha256": "8877f9bd0f64949ed1e5e27cd12b09e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd06-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd06-exit-1",
+    "description": "Walking onto exit 1 of JUL_FD06 (scene 758) should lead to one of scene 760, scene 790",
+    "plan": "# jul-jul-fd06-exit-1: Walking onto exit 1 of JUL_FD06 (scene 758) should lead to one of scene 760, scene 790\nlimit 20000\nenter 758 0 16720127 2\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 758 save eebcd1744d87ddcc state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 298 scene 760 save 9079119129fed519 state a2159e23794870db ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (581, 143): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88bc21e22f37710f812167873bbb1abe"
+     },
+     {
+      "frames": 69,
+      "sha256": "d30585c9194a7b081cb97b07c1884407"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd06-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd06-exit-2",
+    "description": "Walking onto exit 2 of JUL_FD06 (scene 758) should lead to scene 773",
+    "plan": "# jul-jul-fd06-exit-2: Walking onto exit 2 of JUL_FD06 (scene 758) should lead to scene 773\nlimit 20000\nenter 758 0 16720127 2\ncheckpoint entered\nexit 2 773\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 758 save eebcd1744d87ddcc state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 358 scene 773 save a423db2d2e46040a state 93b33f68e3e943bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 212): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88bc21e22f37710f812167873bbb1abe"
+     },
+     {
+      "frames": 129,
+      "sha256": "6efdf684f0a4a828b9530ac2ddbf2332"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-fd06-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-fd06-exit-3",
+    "description": "Walking onto exit 3 of JUL_FD06 (scene 758) should lead to scene 763",
+    "plan": "# jul-jul-fd06-exit-3: Walking onto exit 3 of JUL_FD06 (scene 758) should lead to scene 763\nlimit 20000\nenter 758 0 16720127 2\ncheckpoint entered\nexit 3 763\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 758 save eebcd1744d87ddcc state 05dbf86483d17918 ram 0000000000000000",
+     "arrived frame 485 scene 763 save d4514342a92c3651 state 64fb101287138e74 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (176, 12): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88bc21e22f37710f812167873bbb1abe"
+     },
+     {
+      "frames": 256,
+      "sha256": "6913d9853570e78724ee9718f93b6943"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm00-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM00 (scene 767) should lead to scene 752",
+    "plan": "# jul-jul-rm00-exit-0: Walking onto exit 0 of JUL_RM00 (scene 767) should lead to scene 752\nlimit 20000\nenter 33535 0 16720127 0\ncheckpoint entered\nexit 0 752\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 767 save fecaa1b12005ad7f state 3f65b28c0a3e17ec ram 0000000000000000",
+     "arrived frame 305 scene 752 save 2c00a59588acb8d8 state 640e499869e9bdce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69d95f3e79fc22490dd8f707b8cb1a5d"
+     },
+     {
+      "frames": 76,
+      "sha256": "2285586507d38569195569bcaf4dd9a1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm01-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM01 (scene 768) should lead to scene 753",
+    "plan": "# jul-jul-rm01-exit-0: Walking onto exit 0 of JUL_RM01 (scene 768) should lead to scene 753\nlimit 20000\nenter 33536 0 16720127 0\ncheckpoint entered\nexit 0 753\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 768 save c6b1db1858a6194b state 7767fae7efb158d8 ram 0000000000000000",
+     "arrived frame 305 scene 753 save 757bb8d36e5f5add state f2cb250154ff92ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3251153d0cebd2355d0d0e4f9826ef3"
+     },
+     {
+      "frames": 76,
+      "sha256": "346d314a35e2329386f8fd5cb0446db7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm02-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM02 (scene 769) should lead to scene 754",
+    "plan": "# jul-jul-rm02-exit-0: Walking onto exit 0 of JUL_RM02 (scene 769) should lead to scene 754\nlimit 20000\nenter 33537 0 16720127 0\ncheckpoint entered\nexit 0 754\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 769 save 92f58873489496f6 state 6fe47ec0c564704f ram 0000000000000000",
+     "arrived frame 305 scene 754 save 72334222bd116976 state 56ff05bc9c673690 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 59,
+     "instruction": 203,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2434bf87a38adc8510e4fe435dfe64d9"
+     },
+     {
+      "frames": 76,
+      "sha256": "bd65a7ecc8af7363aa9acaf55fe8957b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm03-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM03 (scene 770) should lead to scene 755",
+    "plan": "# jul-jul-rm03-exit-0: Walking onto exit 0 of JUL_RM03 (scene 770) should lead to scene 755\nlimit 20000\nenter 33538 0 16720127 0\ncheckpoint entered\nexit 0 755\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 770 save c98ff8ef3bcd7305 state 6e1bfbda0b1084eb ram 0000000000000000",
+     "arrived frame 305 scene 755 save 754141781e2980cb state 65031dd26cc55f03 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3fe9e2e3cc233f405e6b46b912229e17"
+     },
+     {
+      "frames": 76,
+      "sha256": "8340c0607ab78c75e35b4354b83a1b34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm04-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM04 (scene 771) should lead to scene 756",
+    "plan": "# jul-jul-rm04-exit-0: Walking onto exit 0 of JUL_RM04 (scene 771) should lead to scene 756\nlimit 20000\nenter 33539 0 16720127 0\ncheckpoint entered\nexit 0 756\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 771 save cf42a66ad6dd1a28 state bf11fe0112c38be3 ram 0000000000000000",
+     "arrived frame 305 scene 756 save 3daf1d43df1e4d9c state 5218216d612bf156 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 60,
+     "instruction": 202,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0462c5fd2ea34a4d496c70a6b3c76bff"
+     },
+     {
+      "frames": 76,
+      "sha256": "50d8350a5ce65b7c0dc8865e6ec1df8a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm05-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm05-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM05 (scene 772) should lead to scene 757",
+    "plan": "# jul-jul-rm05-exit-0: Walking onto exit 0 of JUL_RM05 (scene 772) should lead to scene 757\nlimit 20000\nenter 33540 0 16720127 0\ncheckpoint entered\nexit 0 757\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 772 save 0efd31a8647a7b3f state 0a9743025214ba40 ram 0000000000000000",
+     "arrived frame 305 scene 757 save 7500edd99564a0b1 state 59337c882d227213 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7120981c170c4b110bc5c9f941f71dc9"
+     },
+     {
+      "frames": 76,
+      "sha256": "efca0e1104ca19351c286f1fbc4977d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm06-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm06-exit-0",
+    "description": "Walking onto exit 0 of JUL_RM06 (scene 773) should lead to scene 758",
+    "plan": "# jul-jul-rm06-exit-0: Walking onto exit 0 of JUL_RM06 (scene 773) should lead to scene 758\nlimit 20000\nenter 33541 0 16720127 0\ncheckpoint entered\nexit 0 758\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 773 save f8a65cc93f84521a state 324ab3d1a671b9ff ram 0000000000000000",
+     "arrived frame 305 scene 758 save ad56bc7e673bf26f state 7e51d8ebdf34fb2b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (87, 182): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "045c4e436337a06fd1e784544ba2746f"
+     },
+     {
+      "frames": 76,
+      "sha256": "37d8fa327a6340050b5d9077bb69cad1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rub1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rub1-exit-0",
+    "description": "Walking onto exit 0 of JUL_RUB1 (scene 790) should lead to scene 764",
+    "plan": "# jul-jul-rub1-exit-0: Walking onto exit 0 of JUL_RUB1 (scene 790) should lead to scene 764\nlimit 20000\nenter 790 0 16720127 1\ncheckpoint entered\nexit 0 764\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 790 save 8e5d0f666da7837c state 5b1f537542774a26 ram 0000000000000000",
+     "arrived frame 549 scene 764 save 7942c624900638ea state 1ca7515936472ee7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (520, 80): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f1236fedb42cdaf963e714b55f4753f"
+     },
+     {
+      "frames": 320,
+      "sha256": "81846bc9a085087414f3bb77f23c658b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rub1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rub1-exit-1",
+    "description": "Walking onto exit 1 of JUL_RUB1 (scene 790) should lead to scene 758",
+    "plan": "# jul-jul-rub1-exit-1: Walking onto exit 1 of JUL_RUB1 (scene 790) should lead to scene 758\nlimit 20000\nenter 790 0 16720127 1\ncheckpoint entered\nexit 1 758\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 790 save 8e5d0f666da7837c state 5b1f537542774a26 ram 0000000000000000",
+     "arrived frame 299 scene 758 save 5cc8608f7d3054ba state bc1999de83ff5b98 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (81, 357): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f1236fedb42cdaf963e714b55f4753f"
+     },
+     {
+      "frames": 70,
+      "sha256": "412d6f916c74625966a7bbf4cf3639d3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rube-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rube-exit-0",
+    "description": "Walking onto exit 0 of JUL_RUBE (scene 760) should lead to scene 764",
+    "plan": "# jul-jul-rube-exit-0: Walking onto exit 0 of JUL_RUBE (scene 760) should lead to scene 764\nlimit 20000\nenter 760 0 16720127 1\ncheckpoint entered\nexit 0 764\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 760 save c206aa7e36204ac9 state 1fa70b7c5a9f2c4c ram 0000000000000000",
+     "arrived frame 511 scene 764 save 7942c624900638ea state 1a9ee84acce9bdcc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (520, 80): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 174,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4dec4bbdb74db23951ddb31ea3747bf9"
+     },
+     {
+      "frames": 282,
+      "sha256": "f83fbf934fee0f9a6de31e69e52fb428"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rube-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rube-exit-1",
+    "description": "Walking onto exit 1 of JUL_RUBE (scene 760) should lead to scene 758",
+    "plan": "# jul-jul-rube-exit-1: Walking onto exit 1 of JUL_RUBE (scene 760) should lead to scene 758\nlimit 20000\nenter 760 0 16720127 1\ncheckpoint entered\nexit 1 758\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 760 save c206aa7e36204ac9 state 1fa70b7c5a9f2c4c ram 0000000000000000",
+     "arrived frame 299 scene 758 save 5cc8608f7d3054ba state 4c73821f1608a976 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (81, 357): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4dec4bbdb74db23951ddb31ea3747bf9"
+     },
+     {
+      "frames": 70,
+      "sha256": "2a3aef900a804ccef445472252e0d070"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

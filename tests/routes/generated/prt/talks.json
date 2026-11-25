@@ -1,0 +1,772 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "prt-prt-entr-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2628 = 1 so layout record 1 of PRT_ENTR is there",
+    "source": "built from layout record 1's condition in scene 270 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2628": 1
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-entr-talk-1",
+    "description": "Talking to layout record 1 of PRT_ENTR (scene 270) should run its event and hand control back",
+    "plan": "# prt-prt-entr-talk-1: Talking to layout record 1 of PRT_ENTR (scene 270) should run its event and hand control back\nlimit 20000\nenter 270 0 16716287 1\ncheckpoint entered\ntalk 180 80 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 270 save 7eeb40a0b5d7ffd0 state aa1cbe8a96b48ac9 ram 0000000000000000",
+     "talked frame 986 scene 270 save 1fcdfe012f037229 state 151ace7f4358febb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 60): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "34b8348c0f4604da68aa58dd449411cf"
+     },
+     {
+      "frames": 757,
+      "sha256": "403f90c42937d24a6f73423da3553dd9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1178 = 1 so layout record 1 of PRT_INLT is there",
+    "source": "built from layout record 1's condition in scene 269 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 1
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-inlt-talk-1",
+    "description": "Talking to layout record 1 of PRT_INLT (scene 269) should run its event and hand control back",
+    "plan": "# prt-prt-inlt-talk-1: Talking to layout record 1 of PRT_INLT (scene 269) should run its event and hand control back\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\ntalk 231 550 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save 18986c14a83893d6 state ef8147696cc13510 ram 0000000000000000",
+     "talked frame 1146 scene 269 save c8554f765bacb402 state 32864c46db2689e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (231, 530): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8dc430af5cfc07dd4b707333c3fc2cc0"
+     },
+     {
+      "frames": 917,
+      "sha256": "663cf4e8b6a1b46501b3780262e1926d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1170 = 4 so layout record 6 of PRT_INLT is there",
+    "source": "built from layout record 6's condition in scene 269 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 4
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-inlt-talk-6",
+    "description": "Talking to layout record 6 of PRT_INLT (scene 269) should run its event and hand control back",
+    "plan": "# prt-prt-inlt-talk-6: Talking to layout record 6 of PRT_INLT (scene 269) should run its event and hand control back\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\ntalk 537 170 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save 8579fd1a10d1b217 state 46a4c4f3a06c596e ram 0000000000000000",
+     "talked frame 1013 scene 269 save 704ef11983ce3882 state 3d4284eed27997e5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (537, 150): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "791dcfe8c20f19c286a33fa1fb88caed"
+     },
+     {
+      "frames": 784,
+      "sha256": "b9da7044fde83924779573b5dd0cb5c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1170 = 4 so layout record 7 of PRT_INLT is there",
+    "source": "built from layout record 7's condition in scene 269 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 4
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-inlt-talk-7",
+    "description": "Talking to layout record 7 of PRT_INLT (scene 269) should run its event and hand control back",
+    "plan": "# prt-prt-inlt-talk-7: Talking to layout record 7 of PRT_INLT (scene 269) should run its event and hand control back\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\ntalk 500 140 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save 8579fd1a10d1b217 state 46a4c4f3a06c596e ram 0000000000000000",
+     "talked frame 991 scene 269 save 704ef11983ce3882 state 405adbbbefee291e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 120): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "791dcfe8c20f19c286a33fa1fb88caed"
+     },
+     {
+      "frames": 762,
+      "sha256": "8840b9d1233fc38eee7db5c593099e56"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f80 = 62 so layout record 8 of PRT_INLT is there",
+    "source": "built from layout record 8's condition in scene 269 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f80": 62
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-inlt-talk-8",
+    "description": "Talking to layout record 8 of PRT_INLT (scene 269) should run its event and hand control back",
+    "plan": "# prt-prt-inlt-talk-8: Talking to layout record 8 of PRT_INLT (scene 269) should run its event and hand control back\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\ntalk 502 142 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save 284f620d437a17b5 state 4e7d993c89e9aa84 ram 0000000000000000",
+     "talked frame 642 scene 269 save 58e475fdaf915331 state 76d0e9e574115efb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (502, 122): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0c698614b6e5dfe57d203084d80bfbe0"
+     },
+     {
+      "frames": 413,
+      "sha256": "3522478690ea1e4efbcdcc3befa5e153"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lbby-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lbby-talk-2",
+    "description": "Talking to layout record 2 of PRT_LBBY (scene 271) should run its event and hand control back",
+    "plan": "# prt-prt-lbby-talk-2: Talking to layout record 2 of PRT_LBBY (scene 271) should run its event and hand control back\nlimit 20000\nenter 271 0 16716287 2\ncheckpoint entered\ntalk 220 245 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 271 save f3ff0fdfef0a876b state ac026c9897c412bf ram 0000000000000000",
+     "talked frame 1042 scene 271 save 3d4fcf10b66674f2 state e1b1da59a59887a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 225): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b1a3b61448c60bfb092a73bac88411b"
+     },
+     {
+      "frames": 813,
+      "sha256": "411469e901867533111b43a97a08e89d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lbby-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lbby-talk-4",
+    "description": "Talking to layout record 4 of PRT_LBBY (scene 271) should run its event and hand control back",
+    "plan": "# prt-prt-lbby-talk-4: Talking to layout record 4 of PRT_LBBY (scene 271) should run its event and hand control back\nlimit 20000\nenter 271 0 16716287 2\ncheckpoint entered\ntalk 355 250 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 271 save f3ff0fdfef0a876b state ac026c9897c412bf ram 0000000000000000",
+     "talked frame 752 scene 271 save 48068e9348e15f2e state e7827fba6e8697cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (355, 230): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b1a3b61448c60bfb092a73bac88411b"
+     },
+     {
+      "frames": 523,
+      "sha256": "d42c12e364cd03f757cd2aee08ed61d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lung-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1178 = 7 so layout record 6 of PRT_LUNG is there",
+    "source": "built from layout record 6's condition in scene 272 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 7
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-lung-talk-6",
+    "description": "Talking to layout record 6 of PRT_LUNG (scene 272) should run its event and hand control back",
+    "plan": "# prt-prt-lung-talk-6: Talking to layout record 6 of PRT_LUNG (scene 272) should run its event and hand control back\nlimit 20000\nenter 272 0 16716287 0\ncheckpoint entered\ntalk 223 118 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 272 save c5b3e7b82a50f471 state 08d8298764b76503 ram 0000000000000000",
+     "talked frame 847 scene 272 save d581debf409d1cdf state a52ddf5cb2f9daaa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (223, 98): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dfc5dbe8421d1dd9faa14b633bb5a166"
+     },
+     {
+      "frames": 618,
+      "sha256": "6347e6cccc72b8ae191f2330cdc18aa2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lung-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2628 = 7 so layout record 8 of PRT_LUNG is there",
+    "source": "built from layout record 8's condition in scene 272 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2628": 7
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-lung-talk-8",
+    "description": "Talking to layout record 8 of PRT_LUNG (scene 272) should run its event and hand control back",
+    "plan": "# prt-prt-lung-talk-8: Talking to layout record 8 of PRT_LUNG (scene 272) should run its event and hand control back\nlimit 20000\nenter 272 0 16716287 0\ncheckpoint entered\ntalk 285 200 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 272 save 5b53f5ac6682b34d state b5ba904faa6a0e9c ram 0000000000000000",
+     "talked frame 699 scene 272 save 45da1acce9c9a9fe state 0af5d0fb77ad5671 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (285, 180): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cdccf0fd9293f966dbdfc622bb3d7d6e"
+     },
+     {
+      "frames": 470,
+      "sha256": "acff07755d8c91a254171a5ae9748fdb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lung-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1178 = 9 so layout record 9 of PRT_LUNG is there",
+    "source": "built from layout record 9's condition in scene 272 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 9
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-lung-talk-9",
+    "description": "Talking to layout record 9 of PRT_LUNG (scene 272) should run its event and hand control back",
+    "plan": "# prt-prt-lung-talk-9: Talking to layout record 9 of PRT_LUNG (scene 272) should run its event and hand control back\nlimit 20000\nenter 272 0 16716287 0\ncheckpoint entered\ntalk 368 104 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 272 save ac8b98928055d483 state a5b643387bbe7951 ram 0000000000000000",
+     "talked frame 613 scene 272 save 5aa91bf3427fb757 state 74ee63feb92de7d3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (368, 84): 13 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9921927d8112bbf0d2281ba25938662e"
+     },
+     {
+      "frames": 384,
+      "sha256": "2645acbb59cf3dc7376f4bc22966b687"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-port-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1170 = 3 so layout record 2 of PRT_PORT is there",
+    "source": "built from layout record 2's condition in scene 267 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 3
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-port-talk-2",
+    "description": "Talking to layout record 2 of PRT_PORT (scene 267) should run its event and hand control back",
+    "plan": "# prt-prt-port-talk-2: Talking to layout record 2 of PRT_PORT (scene 267) should run its event and hand control back\nlimit 20000\nenter 267 0 16716287 0\ncheckpoint entered\ntalk 405 210 0 1 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 267 save a95d31cbb7c4cf98 state 97a9015b831c2724 ram 0000000000000000",
+     "talked frame 2498 scene 267 save 167fce8d7f20940f state 05942810e571368f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (405, 190): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 261,
+     "instruction_end": 148,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "62e660dae4f065e16e8d9fc2a15519b0"
+     },
+     {
+      "frames": 2269,
+      "sha256": "e90be56b0c949b60bbe0a0de2882021f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-rest-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-rest-talk-2",
+    "description": "Talking to layout record 2 of PRT_REST (scene 266) should run its event and hand control back",
+    "plan": "# prt-prt-rest-talk-2: Talking to layout record 2 of PRT_REST (scene 266) should run its event and hand control back\nlimit 20000\nenter 266 0 16716287 0\ncheckpoint entered\ntalk 253 199 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 266 save 004f19b5803efd28 state 40072db62307bc90 ram 0000000000000000",
+     "talked frame 952 scene 266 save acdf7fdf43528ab6 state 7c5fd2bfc0724cde ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (253, 179): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "491140a4288803d7cccde126d8e75edd"
+     },
+     {
+      "frames": 723,
+      "sha256": "6189a3d901ee79a2394bc051ed673107"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-shop-talk-1",
+    "description": "Talking to layout record 1 of PRT_SHOP (scene 268) should run its event and hand control back",
+    "plan": "# prt-prt-shop-talk-1: Talking to layout record 1 of PRT_SHOP (scene 268) should run its event and hand control back\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 140 250 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save fc1518c82e3baaa4 state 3d8b5930cb7c8a90 ram 0000000000000000",
+     "talked frame 984 scene 268 save 18586484e6409bec state 5401a0109f870b42 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 230): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c80cc40fb079dea13adcf67edb22762"
+     },
+     {
+      "frames": 755,
+      "sha256": "6d37976d0bc7d7b98f85003470501082"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2548 = 1 so layout record 4 of PRT_SHOP is there",
+    "source": "built from layout record 4's condition in scene 268 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2548": 1
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-shop-talk-4",
+    "description": "Talking to layout record 4 of PRT_SHOP (scene 268) should run its event and hand control back",
+    "plan": "# prt-prt-shop-talk-4: Talking to layout record 4 of PRT_SHOP (scene 268) should run its event and hand control back\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 95 148 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save 3ac0afd164193cc1 state d35f71a07406e73e ram 0000000000000000",
+     "talked frame 897 scene 268 save 22e7d8c25f6a574b state 16e79a197140876b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (95, 128): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f900e3f740f861f8dc01cdba1d68a55d"
+     },
+     {
+      "frames": 668,
+      "sha256": "3da47d52192e988aeac701fe434ef80e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-shop-talk-8",
+    "description": "Talking to layout record 8 of PRT_SHOP (scene 268) should run its event and hand control back",
+    "plan": "# prt-prt-shop-talk-8: Talking to layout record 8 of PRT_SHOP (scene 268) should run its event and hand control back\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 341 181 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save fc1518c82e3baaa4 state 3d8b5930cb7c8a90 ram 0000000000000000",
+     "talked frame 1492 scene 268 save 6d2123beb93cc08a state 365ce82cba32a209 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (341, 161): 7 waypoints",
+     "walk to (341, 201): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c80cc40fb079dea13adcf67edb22762"
+     },
+     {
+      "frames": 1263,
+      "sha256": "77b6267f04d7024368cdc3a8ea293cb5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

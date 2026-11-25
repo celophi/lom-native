@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-inn-upstairs-guest",
+  "description": "Talking to the guest upstairs in the inn should start a conversation that ends with the player in control",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 40
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 2
+      },
+      "note": "layout record 2"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

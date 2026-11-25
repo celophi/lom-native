@@ -1,0 +1,9 @@
+{
+  "id": "clash-b",
+  "name": "Clash b",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2
+}

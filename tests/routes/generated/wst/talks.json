@@ -1,0 +1,768 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wst-wst-bf04-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bf04-talk-6",
+    "description": "Talking to layout record 6 of WST_BF04 (scene 119) should run its event and hand control back",
+    "plan": "# wst-wst-bf04-talk-6: Talking to layout record 6 of WST_BF04 (scene 119) should run its event and hand control back\nlimit 20000\nenter 32887 2 16712191 1\ncheckpoint entered\ntalk 840 230 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 119 save 8c57a5586c362b39 state 65f6e4e8d2fd0f8e ram 0000000000000000",
+     "talked frame 986 scene 119 save 40382cf7463e6332 state 4712ae9f53f10621 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (840, 210): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9489acc202c78f6d5759c4785c3b01d2"
+     },
+     {
+      "frames": 757,
+      "sha256": "644bb17bc187d6bacbcde28561505c1e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bf06-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25f0 = 36 so layout record 2 of WST_BF06 is there",
+    "source": "built from layout record 2's condition in scene 121 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 36
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-bf06-talk-2",
+    "description": "Talking to layout record 2 of WST_BF06 (scene 121) should run its event and hand control back",
+    "plan": "# wst-wst-bf06-talk-2: Talking to layout record 2 of WST_BF06 (scene 121) should run its event and hand control back\nlimit 20000\nenter 121 0 16712191 1\ncheckpoint entered\ntalk 140 110 0 1 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 121 save c65809a8160b3a89 state cbe4fd59dffef819 ram 0000000000000000",
+     "talked frame 2347 scene 121 save 332316ca25d9a2f1 state 6c9a82c9f52b87b6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 236,
+     "instruction_end": 118,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31975cf514802e851c99d2049017ee3d"
+     },
+     {
+      "frames": 2118,
+      "sha256": "8f17816c8a2488bec1492c5d0fb30797"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bf08-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bf08-talk-5",
+    "description": "Talking to layout record 5 of WST_BF08 (scene 123) should run its event and hand control back",
+    "plan": "# wst-wst-bf08-talk-5: Talking to layout record 5 of WST_BF08 (scene 123) should run its event and hand control back\nlimit 20000\nenter 32891 1 16712191 0\ncheckpoint entered\ntalk 730 470 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 123 save d1aad01e06b6268b state 899c2b8557357d06 ram 0000000000000000",
+     "talked frame 987 scene 123 save e089ef3b5a8a34b8 state 4bfcf7ae6761895b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (730, 450): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ea91ca7e1a27ecbf7ee03ddae42ad58a"
+     },
+     {
+      "frames": 758,
+      "sha256": "302ebe5974ac57a1a8a845c788a04379"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bf09-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 38 so layout record 1 of WST_BF09 is there",
+    "source": "built from layout record 1's condition in scene 124 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 38
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-bf09-talk-1",
+    "description": "Talking to layout record 1 of WST_BF09 (scene 124) should run its event and hand control back",
+    "plan": "# wst-wst-bf09-talk-1: Talking to layout record 1 of WST_BF09 (scene 124) should run its event and hand control back\nlimit 20000\nenter 124 3 16712191 1\ncheckpoint entered\ntalk 350 140 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 124 save 21bd2bcd086592e1 state 8e86b6f78654c7ec ram 0000000000000000",
+     "talked frame 994 scene 124 save 9e6181d6e4e82bc0 state c417a0782a78a872 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (370, 140): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "79fe5e207364f1378f730532f167d0ef"
+     },
+     {
+      "frames": 765,
+      "sha256": "0877ad9d72eab6d6f6234b999c99b16b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bs03-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bs03-talk-3",
+    "description": "Talking to layout record 3 of WST_BS03 (scene 668) should run its event and hand control back",
+    "plan": "# wst-wst-bs03-talk-3: Talking to layout record 3 of WST_BS03 (scene 668) should run its event and hand control back\nlimit 20000\nenter 668 0 16717311 0\ncheckpoint entered\ntalk 303 143 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 668 save 3ebcf230ef5923d3 state 24b0abdc8f6f0427 ram 0000000000000000",
+     "talked frame 553 scene 668 save 3ebcf230ef5923d3 state a77b3e49053903f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (303, 123): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 254,
+     "instruction_end": 111,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4bd934f2970059237f894df014300403"
+     },
+     {
+      "frames": 324,
+      "sha256": "011a6a5c12c185d936391d47686248a6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bs10-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bs10-talk-2",
+    "description": "Talking to layout record 2 of WST_BS10 (scene 112) should run its event and hand control back",
+    "plan": "# wst-wst-bs10-talk-2: Talking to layout record 2 of WST_BS10 (scene 112) should run its event and hand control back\nlimit 20000\nenter 32880 0 16720676 0\ncheckpoint entered\ntalk 470 120 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 112 save f9c268ce3122e325 state 8d9ba9e08b76d982 ram 0000000000000000",
+     "talked frame 989 scene 112 save f7f5c10db82a4b38 state f46101b14b5ce80b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (470, 100): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d0bc841cc51b8a30e3f9c7218349e166"
+     },
+     {
+      "frames": 760,
+      "sha256": "e2b592ad841393117375f5c42fc000d1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bs13-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bs13-talk-3",
+    "description": "Talking to layout record 3 of WST_BS13 (scene 670) should run its event and hand control back",
+    "plan": "# wst-wst-bs13-talk-3: Talking to layout record 3 of WST_BS13 (scene 670) should run its event and hand control back\nlimit 20000\nenter 670 0 16717311 0\ncheckpoint entered\ntalk 200 140 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 670 save 08675115eb7c428d state 1ff6471a25734b19 ram 0000000000000000",
+     "talked frame 600 scene 670 save 08675115eb7c428d state b1d0e6f8cfbd21ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 120): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 263,
+     "instruction_end": 112,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b696dbe2f911b4bc9e57892a0a63f41"
+     },
+     {
+      "frames": 371,
+      "sha256": "256d9655dc5d38470b3eeec9dbb9a7c9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-evt0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fa8 = 1 so layout record 2 of WST_EVT0 is there",
+    "source": "built from layout record 2's condition in scene 106 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 1
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-evt0-talk-2",
+    "description": "Talking to layout record 2 of WST_EVT0 (scene 106) should run its event and hand control back",
+    "plan": "# wst-wst-evt0-talk-2: Talking to layout record 2 of WST_EVT0 (scene 106) should run its event and hand control back\nlimit 20000\nenter 106 0 16712191 0\ncheckpoint entered\ntalk 164 178 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 106 save 5737f4aa7aa21b26 state 74e5b98abce0739c ram 0000000000000000",
+     "talked frame 1165 scene 106 save 5eb52f50cf53fca5 state c3dd1037c262914b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 158): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "80137e6a0f1dd02886c83147dfcee3fb"
+     },
+     {
+      "frames": 936,
+      "sha256": "250e0566f7105c0e2e3bd77bdf708c22"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-evt0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x476 = 1 so layout record 5 of WST_EVT0 is there",
+    "source": "built from layout record 5's condition in scene 106 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x476": 1
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-evt0-talk-5",
+    "description": "Talking to layout record 5 of WST_EVT0 (scene 106) should run its event and hand control back",
+    "plan": "# wst-wst-evt0-talk-5: Talking to layout record 5 of WST_EVT0 (scene 106) should run its event and hand control back\nlimit 20000\nenter 106 0 16712191 0\ncheckpoint entered\ntalk 128 200 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 106 save fcf927f4012bdde3 state c3c79ffac12b42a0 ram 0000000000000000",
+     "talked frame 862 scene 108 save 0f2db348e9dfdbfb state 85f45db11a446b77 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9afeefb506bafe65f3b18a3ae7025a9c"
+     },
+     {
+      "frames": 633,
+      "sha256": "dc6f5fe239c8dbaba4fd9120a4287dab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-frk0-talk-1",
+    "description": "Talking to layout record 1 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-1: Talking to layout record 1 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 111 448 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save b152534dda45ae04 state 9d6dd57e4cb8c491 ram 0000000000000000",
+     "talked frame 1188 scene 107 save e0fd84c6331dbd55 state 62d725937d6fd000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (111, 428): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "418de1b5ab117b9fc7e3b0a565b0b6e9"
+     },
+     {
+      "frames": 959,
+      "sha256": "ec54ec69f78f1605a38d9a1578bfbd0d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-frk0-talk-2",
+    "description": "Talking to layout record 2 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-2: Talking to layout record 2 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 265 257 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save b152534dda45ae04 state 9d6dd57e4cb8c491 ram 0000000000000000",
+     "talked frame 910 scene 107 save d85a686a5565af22 state 068146ae58ef00fd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (265, 237): 1 waypoints",
+     "walk to (265, 277): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "418de1b5ab117b9fc7e3b0a565b0b6e9"
+     },
+     {
+      "frames": 681,
+      "sha256": "c7cbd8b24cb82058d22cfe5a07cd775e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 2 so layout record 3 of WST_FRK0 is there",
+    "source": "built from layout record 3's condition in scene 107 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 2
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-frk0-talk-3",
+    "description": "Talking to layout record 3 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-3: Talking to layout record 3 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 150 300 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save 4639dbd0d4a991aa state 1b54ab537dbe2c07 ram 0000000000000000",
+     "talked frame 789 scene 107 save c17a9e474e33a106 state 0fe2712fb3fa69a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a8d44abc8bb6fdb7e8a4b2e92197fd4"
+     },
+     {
+      "frames": 560,
+      "sha256": "30f66966d348a43edfc12d35c6e92b9b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 2 so layout record 4 of WST_FRK0 is there",
+    "source": "built from layout record 4's condition in scene 107 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 2
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-frk0-talk-4",
+    "description": "Talking to layout record 4 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-4: Talking to layout record 4 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 350 350 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save 4639dbd0d4a991aa state 1b54ab537dbe2c07 ram 0000000000000000",
+     "talked frame 870 scene 107 save c17a9e474e33a106 state 10de08c18f918f58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (350, 330): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a8d44abc8bb6fdb7e8a4b2e92197fd4"
+     },
+     {
+      "frames": 641,
+      "sha256": "dd0f0c1d7362a8e6e6b757aa893a4903"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 2 so layout record 5 of WST_FRK0 is there",
+    "source": "built from layout record 5's condition in scene 107 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 2
+    }
+   },
+   "baseline": {
+    "route": "wst-wst-frk0-talk-5",
+    "description": "Talking to layout record 5 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-5: Talking to layout record 5 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 340 110 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save 4639dbd0d4a991aa state 1b54ab537dbe2c07 ram 0000000000000000",
+     "talked frame 980 scene 107 save c17a9e474e33a106 state c724d775f42dffd0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (340, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a8d44abc8bb6fdb7e8a4b2e92197fd4"
+     },
+     {
+      "frames": 751,
+      "sha256": "63a2e6eb3accc318051485f3d5998cb5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk0-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-frk0-talk-6",
+    "description": "Talking to layout record 6 of WST_FRK0 (scene 107) should run its event and hand control back",
+    "plan": "# wst-wst-frk0-talk-6: Talking to layout record 6 of WST_FRK0 (scene 107) should run its event and hand control back\nlimit 20000\nenter 107 2 16712191 0\ncheckpoint entered\ntalk 460 320 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 107 save b152534dda45ae04 state 9d6dd57e4cb8c491 ram 0000000000000000",
+     "talked frame 1051 scene 107 save d48ab8638146b92d state f64c7bc9e12ba2aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (460, 300): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "418de1b5ab117b9fc7e3b0a565b0b6e9"
+     },
+     {
+      "frames": 822,
+      "sha256": "eac194e6c250a6d9e97860f30b645c9b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-frk1-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-frk1-talk-4",
+    "description": "Talking to layout record 4 of WST_FRK1 (scene 108) should run its event and hand control back",
+    "plan": "# wst-wst-frk1-talk-4: Talking to layout record 4 of WST_FRK1 (scene 108) should run its event and hand control back\nlimit 20000\nenter 108 1 16712191 3\ncheckpoint entered\ntalk 225 25 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 108 save f2ac8af6dd6805e7 state d645a32658206a25 ram 0000000000000000",
+     "talked frame 887 scene 106 save d6cbf728a3dc2b07 state 42ea2ad5f6456393 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (225, 5): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ebd786b86ad8f7ae862354554f70a8fa"
+     },
+     {
+      "frames": 658,
+      "sha256": "5226f2d129699ed302436c6035b354b0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

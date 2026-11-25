@@ -1,0 +1,2597 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "rui-rui-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b000-exit-0",
+    "description": "Walking onto exit 0 of RUI_B000 (scene 420) should lead to scene 405",
+    "plan": "# rui-rui-b000-exit-0: Walking onto exit 0 of RUI_B000 (scene 420) should lead to scene 405\nlimit 20000\nenter 33188 1 16719103 1\ncheckpoint entered\nexit 0 405\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 420 save 24197bcde44ec911 state 5927641cf84baa20 ram 0000000000000000",
+     "arrived frame 2140 scene 405 save 1be7eeb977fd04c1 state d92deafec9ee2487 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (96, 227): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 770 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 124,
+     "instruction": 412,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb04b95a1346a89defd2ae2b985ab8e5"
+     },
+     {
+      "frames": 1911,
+      "sha256": "00e0a819d288590a07188954e2c5bec7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b000-exit-1",
+    "description": "Walking onto exit 1 of RUI_B000 (scene 420) should lead to scene 404",
+    "plan": "# rui-rui-b000-exit-1: Walking onto exit 1 of RUI_B000 (scene 420) should lead to scene 404\nlimit 20000\nenter 33188 1 16719103 1\ncheckpoint entered\nexit 1 404\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 420 save 24197bcde44ec911 state 5927641cf84baa20 ram 0000000000000000",
+     "arrived frame 303 scene 404 save fc68edd8a69d8393 state 6a0af9f51a994e60 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (952, 96): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb04b95a1346a89defd2ae2b985ab8e5"
+     },
+     {
+      "frames": 74,
+      "sha256": "6037626272f4ba7c40ac0a812c074714"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b010-exit-0",
+    "description": "Walking onto exit 0 of RUI_B010 (scene 421) should lead to scene 405",
+    "plan": "# rui-rui-b010-exit-0: Walking onto exit 0 of RUI_B010 (scene 421) should lead to scene 405\nlimit 20000\nenter 33189 2 16719103 0\ncheckpoint entered\nexit 0 405\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 421 save ca1f7c8bd2ac9246 state e995fa20e7a1be47 ram 0000000000000000",
+     "arrived frame 304 scene 405 save d1250e1e3739f8e2 state 601109e7beca06c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 144): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "24002da8e5203973c5c0b492fa1401e3"
+     },
+     {
+      "frames": 75,
+      "sha256": "2e21028cb62dfdc85dcf894636320822"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b010-exit-1",
+    "description": "Walking onto exit 1 of RUI_B010 (scene 421) should lead to scene 407",
+    "plan": "# rui-rui-b010-exit-1: Walking onto exit 1 of RUI_B010 (scene 421) should lead to scene 407\nlimit 20000\nenter 33189 2 16719103 0\ncheckpoint entered\nexit 1 407\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 421 save ca1f7c8bd2ac9246 state e995fa20e7a1be47 ram 0000000000000000",
+     "arrived frame 1502 scene 407 save 65bf5817a24d7921 state 34443bb24920fd6c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (50, 224): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 352,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "24002da8e5203973c5c0b492fa1401e3"
+     },
+     {
+      "frames": 1273,
+      "sha256": "f40cc5b153772bb8589f7382bb2fe1d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b020-exit-0",
+    "description": "Walking onto exit 0 of RUI_B020 (scene 422) should lead to scene 410",
+    "plan": "# rui-rui-b020-exit-0: Walking onto exit 0 of RUI_B020 (scene 422) should lead to scene 410\nlimit 20000\nenter 33190 1 16719103 0\ncheckpoint entered\nexit 0 410\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 422 save 4cfc6ac5ecb2e436 state 1df40b3fb8dd0e6a ram 0000000000000000",
+     "arrived frame 300 scene 410 save efff3a66f31e3380 state 9e19e45394a93418 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (83, 7): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 43,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "530bba0b9e6d04077a4d909422a59b09"
+     },
+     {
+      "frames": 71,
+      "sha256": "455aabf560cb99fffe80c76cefe0c669"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b030-exit-0",
+    "description": "Walking onto exit 0 of RUI_B030 (scene 423) should lead to scene 410",
+    "plan": "# rui-rui-b030-exit-0: Walking onto exit 0 of RUI_B030 (scene 423) should lead to scene 410\nlimit 20000\nenter 33191 3 16719103 0\ncheckpoint entered\nexit 0 410\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 423 save 1055e21993bbcae5 state ebcb3cf9bcadc304 ram 0000000000000000",
+     "arrived frame 302 scene 410 save e65db528201b1934 state e3705b85956a0ccb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 112): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee99548afe82a5aadfeee31df254bcfb"
+     },
+     {
+      "frames": 73,
+      "sha256": "487af6295cab78dd1534adc9395f1422"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b030-exit-1",
+    "description": "Walking onto exit 1 of RUI_B030 (scene 423) should lead to scene 412",
+    "plan": "# rui-rui-b030-exit-1: Walking onto exit 1 of RUI_B030 (scene 423) should lead to scene 412\nlimit 20000\nenter 33191 3 16719103 0\ncheckpoint entered\nexit 1 412\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 423 save 1055e21993bbcae5 state ebcb3cf9bcadc304 ram 0000000000000000",
+     "arrived frame 1007 scene 412 save 8a472b4533eb5989 state 538d55450a34a639 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (55, 212): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 304,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee99548afe82a5aadfeee31df254bcfb"
+     },
+     {
+      "frames": 778,
+      "sha256": "9a91eadca18c77ee7ea9815d2849d86f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b040-exit-0",
+    "description": "Walking onto exit 0 of RUI_B040 (scene 424) should lead to scene 407",
+    "plan": "# rui-rui-b040-exit-0: Walking onto exit 0 of RUI_B040 (scene 424) should lead to scene 407\nlimit 20000\nenter 33192 0 16719103 0\ncheckpoint entered\nexit 0 407\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 424 save 72d7a821e96f5759 state 59cf218bd970e79e ram 0000000000000000",
+     "arrived frame 306 scene 407 save 5772fe56ff319c83 state 209918d974aee582 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (29, 224): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c9e0fadeb294c4d3e500c2d5bc8adb95"
+     },
+     {
+      "frames": 77,
+      "sha256": "51083f3dc3c5a3f2bcffcf599e1d2ee8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b050-exit-0",
+    "description": "Walking onto exit 0 of RUI_B050 (scene 425) should lead to scene 412",
+    "plan": "# rui-rui-b050-exit-0: Walking onto exit 0 of RUI_B050 (scene 425) should lead to scene 412\nlimit 20000\nenter 33193 0 16719103 0\ncheckpoint entered\nexit 0 412\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 425 save 74014bb0d4c738d8 state 163473559488c9f7 ram 0000000000000000",
+     "arrived frame 298 scene 412 save 3bcedc7c930f41ca state a5dcc2889294868c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 192): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b950ac71efbff8569ac8e0e16fb39dd"
+     },
+     {
+      "frames": 69,
+      "sha256": "26986cf6aa894439478b42b3e4f293a4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b060-exit-0",
+    "description": "Walking onto exit 0 of RUI_B060 (scene 426) should lead to scene 415",
+    "plan": "# rui-rui-b060-exit-0: Walking onto exit 0 of RUI_B060 (scene 426) should lead to scene 415\nlimit 20000\nenter 33194 2 16719103 0\ncheckpoint entered\nexit 0 415\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 426 save 8ec7af9072a1406d state 777c5070a7e483b1 ram 0000000000000000",
+     "arrived frame 299 scene 415 save 6ae5fa21dc940d8c state d416b5eeec093071 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 64): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "703adf83c630186c23a17a22fdb51744"
+     },
+     {
+      "frames": 70,
+      "sha256": "706ccaf6d5448be9bc56ee91c0a2e9db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b070-exit-0",
+    "description": "Walking onto exit 0 of RUI_B070 (scene 427) should lead to scene 428",
+    "plan": "# rui-rui-b070-exit-0: Walking onto exit 0 of RUI_B070 (scene 427) should lead to scene 428\nlimit 20000\nenter 33195 2 16719103 1\ncheckpoint entered\nexit 0 428\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 427 save a8bb01f2f148918d state 21231a20de444d5c ram 0000000000000000",
+     "arrived frame 1093 scene 428 save 472317a95c96d5ee state 3a7766cb70bab7ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 128): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 319,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8cb9a1650036254fa81f1a57364ee28"
+     },
+     {
+      "frames": 864,
+      "sha256": "49497eff1ab99b3378101a48c16263a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b070-exit-1",
+    "description": "Walking onto exit 1 of RUI_B070 (scene 427) should lead to scene 414",
+    "plan": "# rui-rui-b070-exit-1: Walking onto exit 1 of RUI_B070 (scene 427) should lead to scene 414\nlimit 20000\nenter 33195 2 16719103 1\ncheckpoint entered\nexit 1 414\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 427 save a8bb01f2f148918d state 21231a20de444d5c ram 0000000000000000",
+     "arrived frame 297 scene 414 save 7ab8ff7910e6f460 state bd5036e3dfe1abbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 117): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8cb9a1650036254fa81f1a57364ee28"
+     },
+     {
+      "frames": 68,
+      "sha256": "e6edcc954f7b4d6ad371dd79e1eb5ce9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b080-exit-0",
+    "description": "Walking onto exit 0 of RUI_B080 (scene 428) should lead to scene 427",
+    "plan": "# rui-rui-b080-exit-0: Walking onto exit 0 of RUI_B080 (scene 428) should lead to scene 427\nlimit 20000\nenter 33196 3 16719103 0\ncheckpoint entered\nexit 0 427\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 428 save c4435e886cb2470a state e700395b5b54a1bc ram 0000000000000000",
+     "arrived frame 307 scene 427 save 0b6efa1692dafdcc state 72375563c6848ff0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (25, 232): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acbb545b2afa0c1fd511fff311926766"
+     },
+     {
+      "frames": 78,
+      "sha256": "d35d79c6df679d557f5f6eb7966ffc01"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b090-exit-0",
+    "description": "Walking onto exit 0 of RUI_B090 (scene 429) should lead to scene 413",
+    "plan": "# rui-rui-b090-exit-0: Walking onto exit 0 of RUI_B090 (scene 429) should lead to scene 413\nlimit 20000\nenter 33197 0 16719103 0\ncheckpoint entered\nexit 0 413\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 429 save 271dab695aeba7f4 state 57eaba991551b90b ram 0000000000000000",
+     "arrived frame 327 scene 413 save 4b01d487cc08c476 state 93bd1413b4bf84e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (636, 86): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7db0c58f0212d532612f7913fd5a11dc"
+     },
+     {
+      "frames": 98,
+      "sha256": "fc0e2bc6fb0df98ac27682092ff5ea39"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b090-exit-1",
+    "description": "Walking onto exit 1 of RUI_B090 (scene 429) should lead to scene 430",
+    "plan": "# rui-rui-b090-exit-1: Walking onto exit 1 of RUI_B090 (scene 429) should lead to scene 430\nlimit 20000\nenter 33197 0 16719103 0\ncheckpoint entered\nexit 1 430\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 429 save 271dab695aeba7f4 state 57eaba991551b90b ram 0000000000000000",
+     "arrived frame 2077 scene 430 save a97b2ed8bfa9e434 state f92fd2c15e6de97e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 64): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1610 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 382,
+     "instruction_end": 125,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7db0c58f0212d532612f7913fd5a11dc"
+     },
+     {
+      "frames": 1848,
+      "sha256": "19d3a8ea5db9a367d8f741935c5c959f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b100-exit-0",
+    "description": "Walking onto exit 0 of RUI_B100 (scene 430) should lead to scene 429",
+    "plan": "# rui-rui-b100-exit-0: Walking onto exit 0 of RUI_B100 (scene 430) should lead to scene 429\nlimit 20000\nenter 33198 1 16719103 0\ncheckpoint entered\nexit 0 429\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 430 save 3c1685863c931e9e state 7e695c8812fc6093 ram 0000000000000000",
+     "arrived frame 303 scene 429 save a5785ce035d2b1cd state 7e6fb0037e6413c6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 72): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dcb4141d34171b416775235846f766f2"
+     },
+     {
+      "frames": 74,
+      "sha256": "350b7d0b53f77af3493ad2cc4d74a21f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b100-exit-1",
+    "description": "Walking onto exit 1 of RUI_B100 (scene 430) should lead to scene 431",
+    "plan": "# rui-rui-b100-exit-1: Walking onto exit 1 of RUI_B100 (scene 430) should lead to scene 431\nlimit 20000\nenter 33198 1 16719103 0\ncheckpoint entered\nexit 1 431\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 430 save 3c1685863c931e9e state 7e695c8812fc6093 ram 0000000000000000",
+     "arrived frame 2073 scene 431 save 2ab4cc684a38b35e state da006415e62cfba5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 64): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1550 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 323,
+     "instruction_end": 117,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dcb4141d34171b416775235846f766f2"
+     },
+     {
+      "frames": 1844,
+      "sha256": "04d1539a775227ffa81fec2c0586dd7e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b110-exit-0",
+    "description": "Walking onto exit 0 of RUI_B110 (scene 431) should lead to scene 430",
+    "plan": "# rui-rui-b110-exit-0: Walking onto exit 0 of RUI_B110 (scene 431) should lead to scene 430\nlimit 20000\nenter 33199 2 16719103 1\ncheckpoint entered\nexit 0 430\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 431 save 633f4da07cf1dc49 state ba6f88acce8795e0 ram 0000000000000000",
+     "arrived frame 2206 scene 430 save 2ba9fa00cbb9addf state 62a16fa8dd0a7b23 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 72): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 381,
+     "instruction_end": 125,
+     "exit": 1,
+     "song": 3,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5afe87ee5a65ae08085885795b303d9c"
+     },
+     {
+      "frames": 1977,
+      "sha256": "6f72eadbf26d269f9758fddd042cccee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b110-exit-1",
+    "description": "Walking onto exit 1 of RUI_B110 (scene 431) should lead to one of scene 354, scene 419, scene 912, scene 913",
+    "plan": "# rui-rui-b110-exit-1: Walking onto exit 1 of RUI_B110 (scene 431) should lead to one of scene 354, scene 419, scene 912, scene 913\nlimit 20000\nenter 33199 2 16719103 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 431 save 633f4da07cf1dc49 state ba6f88acce8795e0 ram 0000000000000000",
+     "arrived frame 305 scene 354 save e6f8f8cb9a204686 state 3f7393fe84cced18 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 64): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 61,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5afe87ee5a65ae08085885795b303d9c"
+     },
+     {
+      "frames": 76,
+      "sha256": "a64bc2d8126f119b267c5be7c0b7b0a4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs00-exit-0",
+    "description": "Walking onto exit 0 of RUI_BS00 (scene 418) should lead to scene 408",
+    "plan": "# rui-rui-bs00-exit-0: Walking onto exit 0 of RUI_BS00 (scene 418) should lead to scene 408\nlimit 20000\nenter 33186 0 16719103 0\ncheckpoint entered\nexit 0 408\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 418 save 85a5e22e3af0b247 state 4925112bbfe07187 ram 0000000000000000",
+     "arrived frame 337 scene 408 save 4066759ea0431037 state 08d138d0aa7c603e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 162,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d44591325ce0fc0b54b091d8c15e9782"
+     },
+     {
+      "frames": 108,
+      "sha256": "538df17b9ab786edbaef63ef0e0c3b66"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs00-exit-1",
+    "description": "Walking onto exit 1 of RUI_BS00 (scene 418) should lead to scene 408",
+    "plan": "# rui-rui-bs00-exit-1: Walking onto exit 1 of RUI_BS00 (scene 418) should lead to scene 408\nlimit 20000\nenter 33186 0 16719103 0\ncheckpoint entered\nexit 1 408\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 418 save 85a5e22e3af0b247 state 4925112bbfe07187 ram 0000000000000000",
+     "arrived frame 370 scene 408 save 9dfd989b3cea2b9e state 9c2c497b476c8a2f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 7): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 162,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d44591325ce0fc0b54b091d8c15e9782"
+     },
+     {
+      "frames": 141,
+      "sha256": "9406d4cae7763fa7f56e29cc30e9b7d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs00-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs00-exit-2",
+    "description": "Walking onto exit 2 of RUI_BS00 (scene 418) should lead to scene 409",
+    "plan": "# rui-rui-bs00-exit-2: Walking onto exit 2 of RUI_BS00 (scene 418) should lead to scene 409\nlimit 20000\nenter 33186 0 16719103 0\ncheckpoint entered\nexit 2 409\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 418 save 85a5e22e3af0b247 state 4925112bbfe07187 ram 0000000000000000",
+     "arrived frame 450 scene 409 save 072c6b2532fc5cbc state 19f2999b0abeb01e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (205, 366): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d44591325ce0fc0b54b091d8c15e9782"
+     },
+     {
+      "frames": 221,
+      "sha256": "bd134dbdd36e450d54cb233fca7c4be3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs10-exit-0",
+    "description": "Walking onto exit 0 of RUI_BS10 (scene 419) should lead to scene 431",
+    "plan": "# rui-rui-bs10-exit-0: Walking onto exit 0 of RUI_BS10 (scene 419) should lead to scene 431\nlimit 20000\nenter 33187 0 16719103 0\ncheckpoint entered\nexit 0 431\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 419 save 562d2a9ff30b53fe state 4b6acbbfb2f59cbb ram 0000000000000000",
+     "arrived frame 303 scene 431 save 766ff496f4f9f431 state 3a03f7b4426cd7ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (487, 58): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acdcdd2eedbf8e7188c7e4042a31801d"
+     },
+     {
+      "frames": 74,
+      "sha256": "37e92cd67a11b49e060a1acbc9540df1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs11-exit-0",
+    "description": "Walking onto exit 0 of RUI_BS11 (scene 911) should lead to scene 431",
+    "plan": "# rui-rui-bs11-exit-0: Walking onto exit 0 of RUI_BS11 (scene 911) should lead to scene 431\nlimit 20000\nenter 911 0 16711422 0\ncheckpoint entered\nexit 0 431\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 911 save 2d82888c6751675a state 91f7db19e3014407 ram 0000000000000000",
+     "arrived frame 303 scene 431 save 22b9f9971f4ead84 state cdac50a77024ce4a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (487, 58): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 57,
+     "instruction": 170,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "71f11034070f2c47698e72a8a066db94"
+     },
+     {
+      "frames": 74,
+      "sha256": "05dfce02a9f079f5127eb21bd1d90f38"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs12-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs12-exit-0",
+    "description": "Walking onto exit 0 of RUI_BS12 (scene 912) should lead to scene 431",
+    "plan": "# rui-rui-bs12-exit-0: Walking onto exit 0 of RUI_BS12 (scene 912) should lead to scene 431\nlimit 20000\nenter 912 0 16776959 0\ncheckpoint entered\nexit 0 431\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 912 save 05bf945958d42671 state 0c5cbcdb0ce2418a ram 0000000000000000",
+     "arrived frame 349 scene 431 save 766ff496f4f9f431 state d8d5c28149b1403f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (487, 58): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 238,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c544a8aa00423679ac56434fcfa1f254"
+     },
+     {
+      "frames": 120,
+      "sha256": "e30eb8f31cf8684711cb854be6c49cee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs13-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs13-exit-0",
+    "description": "Walking onto exit 0 of RUI_BS13 (scene 913) should lead to scene 431",
+    "plan": "# rui-rui-bs13-exit-0: Walking onto exit 0 of RUI_BS13 (scene 913) should lead to scene 431\nlimit 20000\nenter 913 0 16717311 0\ncheckpoint entered\nexit 0 431\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 913 save 19c292f729938c0d state 6ffffb650add7d16 ram 0000000000000000",
+     "arrived frame 414 scene 431 save 633f4da07cf1dc49 state c33bb538762d8ff1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (487, 58): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 271,
+     "instruction_end": 121,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eac1f3f3ea3e95787c0c78a0993da10d"
+     },
+     {
+      "frames": 185,
+      "sha256": "b8a7229bff76e12c0e251287642d0594"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e000-exit-0",
+    "description": "Walking onto exit 0 of RUI_E000 (scene 404) should lead to the world map",
+    "plan": "# rui-rui-e000-exit-0: Walking onto exit 0 of RUI_E000 (scene 404) should lead to the world map\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save 11e1160845f9ef9c state f54da0ffc9193bf4 ram 0000000000000000",
+     "arrived frame 449 scene 32767 save ca9a7c99771b121c state 8686f77af4af0d2b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (157, 10): 1 waypoints",
+     "game state 1 at vblank 1223"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a46f39c711fe87d54110c6fdb77a627"
+     },
+     {
+      "frames": 219,
+      "sha256": "e50172638472682082867de4594ee9d3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e000-exit-1",
+    "description": "Walking onto exit 1 of RUI_E000 (scene 404) should lead to scene 420",
+    "plan": "# rui-rui-e000-exit-1: Walking onto exit 1 of RUI_E000 (scene 404) should lead to scene 420\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\nexit 1 420\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save 11e1160845f9ef9c state f54da0ffc9193bf4 ram 0000000000000000",
+     "arrived frame 504 scene 420 save e35749ccda625fb8 state d9a80d22ab3be825 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (167, 282): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a46f39c711fe87d54110c6fdb77a627"
+     },
+     {
+      "frames": 275,
+      "sha256": "6f8454b40a721b38998adda16bd44e7c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e010-exit-0",
+    "description": "Walking onto exit 0 of RUI_E010 (scene 405) should lead to scene 421",
+    "plan": "# rui-rui-e010-exit-0: Walking onto exit 0 of RUI_E010 (scene 405) should lead to scene 421\nlimit 20000\nenter 405 0 16719103 1\ncheckpoint entered\nexit 0 421\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 405 save 077951a6c5c4e3dd state 626d0b2cd0a19262 ram 0000000000000000",
+     "arrived frame 590 scene 421 save 4fb0ca0080ab7884 state 8510553964fe257d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (545, 7): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ffed91228a9021cfde06047393f2c08e"
+     },
+     {
+      "frames": 361,
+      "sha256": "ec03ef0e88274851035961d887b925c9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e010-exit-1",
+    "description": "Walking onto exit 1 of RUI_E010 (scene 405) should lead to scene 406",
+    "plan": "# rui-rui-e010-exit-1: Walking onto exit 1 of RUI_E010 (scene 405) should lead to scene 406\nlimit 20000\nenter 405 0 16719103 1\ncheckpoint entered\nexit 1 406\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 405 save 077951a6c5c4e3dd state 626d0b2cd0a19262 ram 0000000000000000",
+     "arrived frame 315 scene 406 save de8fc0619717a0c4 state 85556a5dcbe33ab0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (586, 220): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ffed91228a9021cfde06047393f2c08e"
+     },
+     {
+      "frames": 86,
+      "sha256": "ff6a74cd439c99dc94465954f46da5ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e010-exit-2",
+    "description": "Walking onto exit 2 of RUI_E010 (scene 405) should lead to scene 408",
+    "plan": "# rui-rui-e010-exit-2: Walking onto exit 2 of RUI_E010 (scene 405) should lead to scene 408\nlimit 20000\nenter 405 0 16719103 1\ncheckpoint entered\nexit 2 408\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 405 save 077951a6c5c4e3dd state 626d0b2cd0a19262 ram 0000000000000000",
+     "arrived frame 508 scene 408 save f088bbbcda5daf1e state a5eb81b3279cc033 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 132): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 44,
+     "instruction": 181,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ffed91228a9021cfde06047393f2c08e"
+     },
+     {
+      "frames": 279,
+      "sha256": "83438f8f2005759ee17e9bf2eadd8f42"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e010-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e010-exit-3",
+    "description": "Walking onto exit 3 of RUI_E010 (scene 405) should lead to scene 420",
+    "plan": "# rui-rui-e010-exit-3: Walking onto exit 3 of RUI_E010 (scene 405) should lead to scene 420\nlimit 20000\nenter 405 0 16719103 1\ncheckpoint entered\nexit 3 420\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 405 save 077951a6c5c4e3dd state 626d0b2cd0a19262 ram 0000000000000000",
+     "arrived frame 465 scene 420 save 5ba3ce037a42599e state 5b9f235f478d032d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (119, 7): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ffed91228a9021cfde06047393f2c08e"
+     },
+     {
+      "frames": 236,
+      "sha256": "578a640a65636e7225c81105ecf5c2f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e020-exit-0",
+    "description": "Walking onto exit 0 of RUI_E020 (scene 406) should lead to scene 405",
+    "plan": "# rui-rui-e020-exit-0: Walking onto exit 0 of RUI_E020 (scene 406) should lead to scene 405\nlimit 20000\nenter 406 1 16719103 0\ncheckpoint entered\nexit 0 405\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 406 save 0f5f8ef081aec986 state eaed80708d5a5bf8 ram 0000000000000000",
+     "arrived frame 293 scene 405 save 005288431b749767 state e7416dfc2d885ba3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 133): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 38,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46963587d294ee2dadae954438b74833"
+     },
+     {
+      "frames": 64,
+      "sha256": "176e0c3d33ec53fced0ef922bd95aa65"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e030-exit-0",
+    "description": "Walking onto exit 0 of RUI_E030 (scene 407) should lead to scene 415",
+    "plan": "# rui-rui-e030-exit-0: Walking onto exit 0 of RUI_E030 (scene 407) should lead to scene 415\nlimit 20000\nenter 407 0 16719103 0\ncheckpoint entered\nexit 0 415\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save 321b6ab638d7440a state dcb51cf60f2ab062 ram 0000000000000000",
+     "arrived frame 298 scene 415 save da799147ae2881e8 state 46b74aab191f07c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (34, 67): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e8abe7c2e9a8d0888798af3de2099c21"
+     },
+     {
+      "frames": 69,
+      "sha256": "239620e10b12341a7ec981567e50c172"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e030-exit-1",
+    "description": "Walking onto exit 1 of RUI_E030 (scene 407) should lead to scene 424",
+    "plan": "# rui-rui-e030-exit-1: Walking onto exit 1 of RUI_E030 (scene 407) should lead to scene 424\nlimit 20000\nenter 407 0 16719103 2\ncheckpoint entered\nexit 1 424\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save 7722b44bfb04a074 state e2a3619946c114a4 ram 0000000000000000",
+     "arrived frame 814 scene 424 save 0a2fb111bd336fab state b8cdb8d533cb78ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (468, 40): 11 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f7bb1f10a171c32dc81b058e8ef320d2"
+     },
+     {
+      "frames": 585,
+      "sha256": "c0d082be77fea65dfad892180b4192a5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e030-exit-2",
+    "description": "Walking onto exit 2 of RUI_E030 (scene 407) should lead to scene 421",
+    "plan": "# rui-rui-e030-exit-2: Walking onto exit 2 of RUI_E030 (scene 407) should lead to scene 421\nlimit 20000\nenter 407 0 16719103 2\ncheckpoint entered\nexit 2 421\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save 7722b44bfb04a074 state e2a3619946c114a4 ram 0000000000000000",
+     "arrived frame 301 scene 421 save f54811ff10b77201 state 0f17b99cd685227f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (496, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f7bb1f10a171c32dc81b058e8ef320d2"
+     },
+     {
+      "frames": 72,
+      "sha256": "fc04ae24363f1791882dc14855ecfd6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e030-exit-3",
+    "description": "Walking onto exit 3 of RUI_E030 (scene 407) should lead to scene 413",
+    "plan": "# rui-rui-e030-exit-3: Walking onto exit 3 of RUI_E030 (scene 407) should lead to scene 413\nlimit 20000\nenter 407 0 16719103 3\ncheckpoint entered\nexit 3 413\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save d89519d941603e55 state 322874e07736ef52 ram 0000000000000000",
+     "arrived frame 295 scene 413 save 75b4d26488a31067 state 3275fb15bbfa4a63 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 292): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e611db4cc14d9f33886897de03249446"
+     },
+     {
+      "frames": 66,
+      "sha256": "02c1a34c60490b45d88a5f32f165650a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e040-exit-0",
+    "description": "Walking onto exit 0 of RUI_E040 (scene 408) should lead to scene 410",
+    "plan": "# rui-rui-e040-exit-0: Walking onto exit 0 of RUI_E040 (scene 408) should lead to scene 410\nlimit 20000\nenter 408 0 16719103 1\ncheckpoint entered\nexit 0 410\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save 57e79c1d7d8005c8 state 029527ca7ed9a07a ram 0000000000000000",
+     "arrived frame 433 scene 410 save 7799853c21370505 state 0d9f23d9ff1774d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 311): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 40,
+     "instruction": 177,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8962c1fad26e824e12a0f1b010c897b3"
+     },
+     {
+      "frames": 204,
+      "sha256": "daaa191b766e4292fb8ed43a9dbf272a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e040-exit-1",
+    "description": "Walking onto exit 1 of RUI_E040 (scene 408) should lead to scene 405",
+    "plan": "# rui-rui-e040-exit-1: Walking onto exit 1 of RUI_E040 (scene 408) should lead to scene 405\nlimit 20000\nenter 408 0 16719103 1\ncheckpoint entered\nexit 1 405\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save 57e79c1d7d8005c8 state 029527ca7ed9a07a ram 0000000000000000",
+     "arrived frame 308 scene 405 save f65e7234030be8f0 state 437eeebe2e4d4eb7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (360, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 40,
+     "instruction": 177,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8962c1fad26e824e12a0f1b010c897b3"
+     },
+     {
+      "frames": 79,
+      "sha256": "69f3f228082f485c87bf5375b6f5a842"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e040-exit-2",
+    "description": "Walking onto exit 2 of RUI_E040 (scene 408) should lead to scene 418",
+    "plan": "# rui-rui-e040-exit-2: Walking onto exit 2 of RUI_E040 (scene 408) should lead to scene 418\nlimit 20000\nenter 408 0 16719103 1\ncheckpoint entered\nexit 2 418\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save 57e79c1d7d8005c8 state 029527ca7ed9a07a ram 0000000000000000",
+     "arrived frame 789 scene 418 save 8a3c7ba1b72e248d state 9d42f8b970e36689 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (289, 436): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 167,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8962c1fad26e824e12a0f1b010c897b3"
+     },
+     {
+      "frames": 560,
+      "sha256": "5db78721cd6a7c0436b14ed9dbb0d3e2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e040-exit-3",
+    "description": "Walking onto exit 3 of RUI_E040 (scene 408) should lead to scene 418",
+    "plan": "# rui-rui-e040-exit-3: Walking onto exit 3 of RUI_E040 (scene 408) should lead to scene 418\nlimit 20000\nenter 408 0 16719103 3\ncheckpoint entered\nexit 3 418\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save bfb7b6a580b3025e state 5ff7b849781f2433 ram 0000000000000000",
+     "arrived frame 305 scene 418 save d8c025afade7fc9c state 29f7d9591fa9d952 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (363, 382): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 167,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c3862e74e7e77f32401869c2dd947541"
+     },
+     {
+      "frames": 76,
+      "sha256": "60808fcf445dba2bfa226f116670b13f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e050-exit-0",
+    "description": "Walking onto exit 0 of RUI_E050 (scene 409) should lead to scene 418",
+    "plan": "# rui-rui-e050-exit-0: Walking onto exit 0 of RUI_E050 (scene 409) should lead to scene 418\nlimit 20000\nenter 409 0 16719103 0\ncheckpoint entered\nexit 0 418\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 409 save 462c66c841a03268 state 6ece2fc9f14e557a ram 0000000000000000",
+     "arrived frame 310 scene 418 save d2cf0e830a8009cd state 1e1425c66d0446ab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c58b14f6ca31d06899f9b62dc84dde44"
+     },
+     {
+      "frames": 81,
+      "sha256": "b56256934c7fd6dc8581a7baedb9f58b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e060-exit-0",
+    "description": "Walking onto exit 0 of RUI_E060 (scene 410) should lead to scene 408",
+    "plan": "# rui-rui-e060-exit-0: Walking onto exit 0 of RUI_E060 (scene 410) should lead to scene 408\nlimit 20000\nenter 410 0 16719103 0\ncheckpoint entered\nexit 0 408\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 410 save 9b55dad28eba279f state 32777575e8754f47 ram 0000000000000000",
+     "arrived frame 309 scene 408 save c1622a53a12d7063 state c1ade3498302fb10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 42,
+     "instruction": 177,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d10e14ee18e604de438d2c8ade6c676"
+     },
+     {
+      "frames": 80,
+      "sha256": "6d5442719887c9cbfe67622426f53c80"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e060-exit-1",
+    "description": "Walking onto exit 1 of RUI_E060 (scene 410) should lead to scene 423",
+    "plan": "# rui-rui-e060-exit-1: Walking onto exit 1 of RUI_E060 (scene 410) should lead to scene 423\nlimit 20000\nenter 410 0 16719103 0\ncheckpoint entered\nexit 1 423\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 410 save 9b55dad28eba279f state 32777575e8754f47 ram 0000000000000000",
+     "arrived frame 483 scene 423 save 733926208bdfbbef state fc8fb85652ba4ff5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (92, 8): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d10e14ee18e604de438d2c8ade6c676"
+     },
+     {
+      "frames": 254,
+      "sha256": "d39bcaa5094488f9b21c43137e125b67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e060-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e060-exit-2",
+    "description": "Walking onto exit 2 of RUI_E060 (scene 410) should lead to scene 411",
+    "plan": "# rui-rui-e060-exit-2: Walking onto exit 2 of RUI_E060 (scene 410) should lead to scene 411\nlimit 20000\nenter 410 0 16719103 0\ncheckpoint entered\nexit 2 411\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 410 save 9b55dad28eba279f state 32777575e8754f47 ram 0000000000000000",
+     "arrived frame 502 scene 411 save 98374390f4a4a1a2 state 9407ba30aa2c8d87 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (84, 231): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d10e14ee18e604de438d2c8ade6c676"
+     },
+     {
+      "frames": 273,
+      "sha256": "d2011c79d06cf3cad3c91ecff7eccda1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e060-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e060-exit-3",
+    "description": "Walking onto exit 3 of RUI_E060 (scene 410) should lead to scene 422",
+    "plan": "# rui-rui-e060-exit-3: Walking onto exit 3 of RUI_E060 (scene 410) should lead to scene 422\nlimit 20000\nenter 410 0 16719103 0\ncheckpoint entered\nexit 3 422\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 410 save 9b55dad28eba279f state 32777575e8754f47 ram 0000000000000000",
+     "arrived frame 469 scene 422 save a94cde13463d1ab4 state a269ef36e6e015ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (253, 242): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 47,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d10e14ee18e604de438d2c8ade6c676"
+     },
+     {
+      "frames": 240,
+      "sha256": "2d1c5ce0f17ca4b663c978022e11caf7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e070-exit-0",
+    "description": "Walking onto exit 0 of RUI_E070 (scene 411) should lead to scene 410",
+    "plan": "# rui-rui-e070-exit-0: Walking onto exit 0 of RUI_E070 (scene 411) should lead to scene 410\nlimit 20000\nenter 411 2 16719103 0\ncheckpoint entered\nexit 0 410\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 411 save 26e28bfecc4ffd5c state d19db98528223576 ram 0000000000000000",
+     "arrived frame 295 scene 410 save fb8ca20f507fb60b state e37df8e89d36b64c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (296, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4f6082d35a985a81bdd9d04570736e0e"
+     },
+     {
+      "frames": 66,
+      "sha256": "d1db0fbcfc7b46bf99d672bdc99f4708"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e080-exit-0",
+    "description": "Walking onto exit 0 of RUI_E080 (scene 412) should lead to scene 414",
+    "plan": "# rui-rui-e080-exit-0: Walking onto exit 0 of RUI_E080 (scene 412) should lead to scene 414\nlimit 20000\nenter 412 0 16719103 0\ncheckpoint entered\nexit 0 414\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 412 save 93c2c30170bdcf85 state 065523d35253b233 ram 0000000000000000",
+     "arrived frame 298 scene 414 save a986ea793c1d30b3 state f3119d10fd6a2f7e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (34, 67): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a07a861280b42b3df365b5d7bbe10df1"
+     },
+     {
+      "frames": 69,
+      "sha256": "1e8b120eb11fb44386b8ebacc544bbe4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e080-exit-1",
+    "description": "Walking onto exit 1 of RUI_E080 (scene 412) should lead to scene 413",
+    "plan": "# rui-rui-e080-exit-1: Walking onto exit 1 of RUI_E080 (scene 412) should lead to scene 413\nlimit 20000\nenter 412 0 16719103 1\ncheckpoint entered\nexit 1 413\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 412 save 10e6812dba98b464 state 604bf2c8d42cd0e1 ram 0000000000000000",
+     "arrived frame 295 scene 413 save ca39fefdd408c1bc state a9364e246008fa1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (468, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60004f9b319f33e74efefa1ed2374002"
+     },
+     {
+      "frames": 66,
+      "sha256": "abb8423353c17b0eb09440eb2991080b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e080-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e080-exit-2",
+    "description": "Walking onto exit 2 of RUI_E080 (scene 412) should lead to scene 423",
+    "plan": "# rui-rui-e080-exit-2: Walking onto exit 2 of RUI_E080 (scene 412) should lead to scene 423\nlimit 20000\nenter 412 0 16719103 1\ncheckpoint entered\nexit 2 423\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 412 save 10e6812dba98b464 state 604bf2c8d42cd0e1 ram 0000000000000000",
+     "arrived frame 648 scene 423 save 4e3e8b931d9dda14 state fd6ed6c21fd8f264 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (496, 280): 13 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 63,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60004f9b319f33e74efefa1ed2374002"
+     },
+     {
+      "frames": 419,
+      "sha256": "fda0dd7961a63c76f171a0829a11fe67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e080-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e080-exit-3",
+    "description": "Walking onto exit 3 of RUI_E080 (scene 412) should lead to scene 425",
+    "plan": "# rui-rui-e080-exit-3: Walking onto exit 3 of RUI_E080 (scene 412) should lead to scene 425\nlimit 20000\nenter 412 0 16719103 3\ncheckpoint entered\nexit 3 425\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 412 save f360c860b4e45c9a state db1cfd177bba8ee3 ram 0000000000000000",
+     "arrived frame 295 scene 425 save da1e23a9fc9abaa0 state e159634845441867 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 292): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3719d6d938df28c6a82bd130396aa3e3"
+     },
+     {
+      "frames": 66,
+      "sha256": "5a30f4fdb355f182e40558fc86e67493"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e090-exit-0",
+    "description": "Walking onto exit 0 of RUI_E090 (scene 413) should lead to scene 412",
+    "plan": "# rui-rui-e090-exit-0: Walking onto exit 0 of RUI_E090 (scene 413) should lead to scene 412\nlimit 20000\nenter 413 0 16719103 0\ncheckpoint entered\nexit 0 412\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 413 save cba6fd0c99a60d84 state 8fd97b6b50448979 ram 0000000000000000",
+     "arrived frame 299 scene 412 save ce22be53139d3302 state 7e9cb7f782c2ab17 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 66): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7f4ae5626ec1a1e6e89becb7572177e7"
+     },
+     {
+      "frames": 70,
+      "sha256": "c6803f9c53c19f282ed8dbf690524673"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e090-exit-1",
+    "description": "Walking onto exit 1 of RUI_E090 (scene 413) should lead to scene 407",
+    "plan": "# rui-rui-e090-exit-1: Walking onto exit 1 of RUI_E090 (scene 413) should lead to scene 407\nlimit 20000\nenter 413 0 16719103 1\ncheckpoint entered\nexit 1 407\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 413 save 804ba8aaf1a89fe5 state dce3b3ab35c41727 ram 0000000000000000",
+     "arrived frame 318 scene 407 save 76d4624126c0bbe3 state 7c184e7a8510ad31 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 64): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "546265333af5957964557b79f1adcc66"
+     },
+     {
+      "frames": 89,
+      "sha256": "01fde3a8f0e9b2dffee6bfa8289dd618"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e100-exit-0",
+    "description": "Walking onto exit 0 of RUI_E100 (scene 414) should lead to scene 412",
+    "plan": "# rui-rui-e100-exit-0: Walking onto exit 0 of RUI_E100 (scene 414) should lead to scene 412\nlimit 20000\nenter 414 0 16719103 0\ncheckpoint entered\nexit 0 412\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 414 save e5df9dd8204475ab state d092b08595ae9c8e ram 0000000000000000",
+     "arrived frame 305 scene 412 save 3e83671a4bae470f state 025fcdcd85b55643 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 192): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "429539e70398f2caadd4fbba5473ce32"
+     },
+     {
+      "frames": 76,
+      "sha256": "619485e259bc3b85a4182d2f14c8f15d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e100-exit-1",
+    "description": "Walking onto exit 1 of RUI_E100 (scene 414) should lead to scene 427",
+    "plan": "# rui-rui-e100-exit-1: Walking onto exit 1 of RUI_E100 (scene 414) should lead to scene 427\nlimit 20000\nenter 414 0 16719103 0\ncheckpoint entered\nexit 1 427\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 414 save e5df9dd8204475ab state d092b08595ae9c8e ram 0000000000000000",
+     "arrived frame 474 scene 427 save a9f2bf815ce45217 state 7361749538de32d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (125, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 48,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "429539e70398f2caadd4fbba5473ce32"
+     },
+     {
+      "frames": 245,
+      "sha256": "ea21c9fd1f5c018fa723c090569fac06"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e100-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e100-exit-2",
+    "description": "Walking onto exit 2 of RUI_E100 (scene 414) should lead to scene 417",
+    "plan": "# rui-rui-e100-exit-2: Walking onto exit 2 of RUI_E100 (scene 414) should lead to scene 417\nlimit 20000\nenter 414 0 16719103 0\ncheckpoint entered\nexit 2 417\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 414 save e5df9dd8204475ab state d092b08595ae9c8e ram 0000000000000000",
+     "arrived frame 511 scene 417 save 55f7a0e0e146cedf state 930b86aeb75e080c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 218): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "429539e70398f2caadd4fbba5473ce32"
+     },
+     {
+      "frames": 282,
+      "sha256": "f77530d97576157abb96429709f21bc4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e110-exit-0",
+    "description": "Walking onto exit 0 of RUI_E110 (scene 415) should lead to scene 407",
+    "plan": "# rui-rui-e110-exit-0: Walking onto exit 0 of RUI_E110 (scene 415) should lead to scene 407\nlimit 20000\nenter 415 0 16719103 0\ncheckpoint entered\nexit 0 407\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 415 save c5c85b71b11b3712 state c7d99e73438fbdc2 ram 0000000000000000",
+     "arrived frame 298 scene 407 save 6518211dc41e3c78 state c30ec5faff4ad9ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 160): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4259f08a0b5e241fdc09975be0f64370"
+     },
+     {
+      "frames": 69,
+      "sha256": "8cf83f65066757f1604fbd31f556b069"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e110-exit-1",
+    "description": "Walking onto exit 1 of RUI_E110 (scene 415) should lead to scene 416",
+    "plan": "# rui-rui-e110-exit-1: Walking onto exit 1 of RUI_E110 (scene 415) should lead to scene 416\nlimit 20000\nenter 415 0 16719103 0\ncheckpoint entered\nexit 1 416\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 415 save c5c85b71b11b3712 state c7d99e73438fbdc2 ram 0000000000000000",
+     "arrived frame 565 scene 416 save 687c8f50675e0b32 state aa188fa475ec121a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (189, 8): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4259f08a0b5e241fdc09975be0f64370"
+     },
+     {
+      "frames": 336,
+      "sha256": "f4979ce74a8d8f44c37631095b89309e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e110-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e110-exit-2",
+    "description": "Walking onto exit 2 of RUI_E110 (scene 415) should lead to scene 426",
+    "plan": "# rui-rui-e110-exit-2: Walking onto exit 2 of RUI_E110 (scene 415) should lead to scene 426\nlimit 20000\nenter 415 0 16719103 0\ncheckpoint entered\nexit 2 426\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 415 save c5c85b71b11b3712 state c7d99e73438fbdc2 ram 0000000000000000",
+     "arrived frame 526 scene 426 save 60bcdfa464c06e77 state ba2aac87f8c361df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (73, 219): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4259f08a0b5e241fdc09975be0f64370"
+     },
+     {
+      "frames": 297,
+      "sha256": "53bed6bb310e221e53faa76390945de4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e120-exit-0",
+    "description": "Walking onto exit 0 of RUI_E120 (scene 416) should lead to scene 415",
+    "plan": "# rui-rui-e120-exit-0: Walking onto exit 0 of RUI_E120 (scene 416) should lead to scene 415\nlimit 20000\nenter 416 1 16719103 0\ncheckpoint entered\nexit 0 415\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 416 save 049688e4472aa72c state c135e4b3623d1767 ram 0000000000000000",
+     "arrived frame 297 scene 415 save 1368b12092c571bd state f8b8b382a8d5c9d3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 117): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eab3b447f1be9f5ce068d80494f58a7a"
+     },
+     {
+      "frames": 68,
+      "sha256": "7c4083b6aa55e5426fb79d39b9cc8c14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e130-exit-0",
+    "description": "Walking onto exit 0 of RUI_E130 (scene 417) should lead to scene 414",
+    "plan": "# rui-rui-e130-exit-0: Walking onto exit 0 of RUI_E130 (scene 417) should lead to scene 414\nlimit 20000\nenter 417 1 16719103 0\ncheckpoint entered\nexit 0 414\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 417 save 78b14b921fd69ed5 state 2b3d57502baac562 ram 0000000000000000",
+     "arrived frame 297 scene 414 save 82b73e3e516a5d37 state e752e66a9d783d45 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 41,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "07145d3f34dcfb16ce2e88d3b9b6931f"
+     },
+     {
+      "frames": 68,
+      "sha256": "a3dadb17c32e3e7273e8ae1f56c45e36"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

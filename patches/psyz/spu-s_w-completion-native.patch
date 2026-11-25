@@ -1,0 +1,21 @@
+Keep the completion callback chosen when an SPU write starts, since the write
+can finish before the call returns.
+
+--- a/decomp/src/libspu/s_w.c
++++ b/decomp/src/libspu/s_w.c
+@@ -4,8 +4,15 @@
+     if (size > 0x7EFF0) {
+         size = 0x7EFF0;
+     }
++#ifdef __psyz
++    int callback_at_submit = _spu_transferCallback != NULL;
++#endif
+     _spu_Fw(addr, size);
++#ifdef __psyz
++    if (!callback_at_submit) {
++#else
+     if (_spu_transferCallback == NULL) {
++#endif
+         _spu_inTransfer = 0;
+     }
+     return size;

@@ -1,0 +1,40 @@
+Let the port replace the music in the mix (the Legend of Mana Remaster's
+recordings, src/remaster/remaster_music.c): a source of stereo frames that,
+while it plays, stands in for the music voices, under the Music volume.
+--- a/psyz/src/psyz/psyz_spu.c
++++ b/psyz/src/psyz/psyz_spu.c
+@@ -47,6 +47,12 @@
+     }
+ 
+     atomic_store_explicit(&category_controls, CATEGORY_TRACKING_FLAG | (unsigned)music | ((unsigned)sfx << CATEGORY_GAIN_SHIFT), memory_order_relaxed);
++}
++
++static int (*music_source)(int frame[2]);
++
++void lom_native_spu_set_music_source(int (*source)(int frame[2])) {
++    music_source = source;
+ }
+ 
+ void lom_native_spu_set_sfx_mask(unsigned mask) {
+@@ -404,6 +410,9 @@
+     int dry[LOM_AUDIO_CATEGORY_COUNT][LOM_REVERB_CHANNEL_COUNT] = {{0}};
+     int send[LOM_AUDIO_CATEGORY_COUNT][LOM_REVERB_CHANNEL_COUNT] = {{0}};
+     int tracking = (controls & CATEGORY_TRACKING_FLAG) != 0;
++    int replaced[2] = {0, 0};
++    int replacing = music_source && music_source(replaced);
++    tracking |= replacing;
+ 
+     // Pre-fill CD ring buffer if running low
+     if (spu.cd_ring_count < CD_RING_LOW_WATER) {
+@@ -506,7 +515,10 @@
+ 
+         unsigned music = controls & CATEGORY_GAIN_MASK, sfx = (controls >> CATEGORY_GAIN_SHIFT) & CATEGORY_GAIN_MASK;
+ 
+-        if (music == sfx) {
++        if (replacing) {
++            left_sum = (int)(((long long)replaced[0] * music + (long long)dry[LOM_AUDIO_SFX][0] * sfx) / CATEGORY_GAIN_MAXIMUM);
++            right_sum = (int)(((long long)replaced[1] * music + (long long)dry[LOM_AUDIO_SFX][1] * sfx) / CATEGORY_GAIN_MAXIMUM);
++        } else if (music == sfx) {
+             if (music != CATEGORY_GAIN_MAXIMUM) {
+                 left_sum = left_sum * (int)music / CATEGORY_GAIN_MAXIMUM;
+                 right_sum = right_sum * (int)music / CATEGORY_GAIN_MAXIMUM;

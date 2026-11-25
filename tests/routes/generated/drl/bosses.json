@@ -1,0 +1,169 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "drl-drl-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs00-boss",
+    "description": "Entering DRL_BS00 (scene 732) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# drl-drl-bs00-boss: Entering DRL_BS00 (scene 732) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33500 0 16712703 0\ncheckpoint entered\nwalk 400 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 732 save 8700f17e40bd54be state dc7320d9cc87fbf4 ram 0000000000000000",
+     "fought frame 2039 scene 732 save e5f965ece1044d20 state 40b7a1dd94f14ab0 ram 0000000000000000",
+     "after frame 2222 scene 732 save e7839f3ccb716b6e state e8fcd0045ffbcaeb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 140): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1670 frames",
+     "watched until the player got control, 181 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 353,
+     "instruction_end": 135,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "43f645d0a6217f632fd6f1148bac6cf1"
+     },
+     {
+      "frames": 1779,
+      "sha256": "4440b5fe65ea3bbe1b3bdfddaa1e8ede"
+     },
+     {
+      "frames": 183,
+      "sha256": "a9d6251de2d9659fbb6fd57a46ed0624"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs10-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs10-boss",
+    "description": "Entering DRL_BS10 (scene 733) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# drl-drl-bs10-boss: Entering DRL_BS10 (scene 733) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33501 0 16712703 0\ncheckpoint entered\nwalk 492 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 733 save f07c0fa0ce970973 state 8623c270b3a189da ram 0000000000000000",
+     "fought frame 2736 scene 733 save b27618604ca3bff5 state c71ea004eb767e2a ram 0000000000000000",
+     "after frame 2874 scene 733 save fcb2fd236acb94d9 state fcd1090145711330 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (492, 42): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2330 frames",
+     "watched until the player got control, 136 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 378,
+     "instruction_end": 129,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "51d67a1bb7075c0930ff5d86982b826f"
+     },
+     {
+      "frames": 2476,
+      "sha256": "7def7c2857123f430a5b276b5612737f"
+     },
+     {
+      "frames": 138,
+      "sha256": "eb4047823195de62fc44bea54a63beb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs30-boss",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state DRL_BS30's battle needs",
+    "source": "built from the conditions on the path to start_battle in scene 735 (lom_routes.py generate-bosses)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 7
+    }
+   },
+   "baseline": {
+    "route": "drl-drl-bs30-boss",
+    "description": "Entering DRL_BS30 (scene 735) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# drl-drl-bs30-boss: Entering DRL_BS30 (scene 735) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33503 0 16721172 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 735 save ca01ce2010e58290 state 9d8d1ffa9d14d0a3 ram 0000000000000000",
+     "fought frame 6176 scene 735 save e887a98f3b5d47f9 state de78db42a723edc6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 5630 frames",
+     "game state 1 at vblank 13188",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 480,
+     "instruction_end": 200,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f8b975344838bc3e71ceb940b293f622"
+     },
+     {
+      "frames": 5916,
+      "sha256": "affe9239b18b0655a9e65ae670706c8b"
+     },
+     {
+      "frames": 254,
+      "sha256": "4f15ab0154319bcfb0e79a5fe6c02c3e"
+     }
+    ]
+   }
+  }
+ ]
+}

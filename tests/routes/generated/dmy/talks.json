@@ -1,0 +1,908 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dmy-dmy-map1-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-talk-1",
+    "description": "Talking to layout record 1 of DMY_MAP1 (scene 532) should run its event and hand control back",
+    "plan": "# dmy-dmy-map1-talk-1: Talking to layout record 1 of DMY_MAP1 (scene 532) should run its event and hand control back\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\ntalk 375 200 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "talked frame 870 scene 532 save 83eb061eb5d604e4 state bd7efbd0f18be93f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (375, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 641,
+      "sha256": "d7818930000d886a81118cbe1b04b6ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-talk-2",
+    "description": "Talking to layout record 2 of DMY_MAP1 (scene 532) should run its event and hand control back",
+    "plan": "# dmy-dmy-map1-talk-2: Talking to layout record 2 of DMY_MAP1 (scene 532) should run its event and hand control back\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\ntalk 220 140 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "talked frame 728 scene 532 save 83eb061eb5d604e4 state acf58eeafcb3e829 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 39,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 499,
+      "sha256": "fa6ac194217bd1cc5c227619721571e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-talk-3",
+    "description": "Talking to layout record 3 of DMY_MAP1 (scene 532) should run its event and hand control back",
+    "plan": "# dmy-dmy-map1-talk-3: Talking to layout record 3 of DMY_MAP1 (scene 532) should run its event and hand control back\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\ntalk 300 170 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "talked frame 914 scene 602 save 1572f405d286d00b state 3bf7bf4bc760cac1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 150): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 685,
+      "sha256": "265cf88a4d6c801cdfa3c69c802b99ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-talk-5",
+    "description": "Talking to layout record 5 of DMY_MAP1 (scene 532) should run its event and hand control back",
+    "plan": "# dmy-dmy-map1-talk-5: Talking to layout record 5 of DMY_MAP1 (scene 532) should run its event and hand control back\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\ntalk 100 200 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "talked frame 941 scene 532 save 83eb061eb5d604e4 state e43a7b3be5b105fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 180): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 126,
+     "instruction_end": 40,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 712,
+      "sha256": "4e3a142bf7b3ba40c5d8efc1be41ea14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-talk-6",
+    "description": "Talking to layout record 6 of DMY_MAP1 (scene 532) should run its event and hand control back",
+    "plan": "# dmy-dmy-map1-talk-6: Talking to layout record 6 of DMY_MAP1 (scene 532) should run its event and hand control back\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\ntalk 179 108 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "talked frame 912 scene 532 save 83eb061eb5d604e4 state 74bfb6adf772be0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 88): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 40,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 683,
+      "sha256": "5498018b7efe9fcbd77ffef05aaa616c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map2-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map2-talk-1",
+    "description": "Talking to layout record 1 of DMY_MAP2 (scene 533) should run its event and hand control back",
+    "plan": "# dmy-dmy-map2-talk-1: Talking to layout record 1 of DMY_MAP2 (scene 533) should run its event and hand control back\nlimit 20000\nenter 533 0 16711935 0\ncheckpoint entered\ntalk 300 100 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 533 save 3a25e101083a3b75 state 95defd75604d8971 ram 0000000000000000",
+     "talked frame 777 scene 533 save 3a25e101083a3b75 state ddae671f251eec14 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "78b336cedc4f320a7af6d70262bf214f"
+     },
+     {
+      "frames": 548,
+      "sha256": "4164c7de61f006e729d06b509a9a6495"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map2-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map2-talk-2",
+    "description": "Talking to layout record 2 of DMY_MAP2 (scene 533) should run its event and hand control back",
+    "plan": "# dmy-dmy-map2-talk-2: Talking to layout record 2 of DMY_MAP2 (scene 533) should run its event and hand control back\nlimit 20000\nenter 533 0 16711935 0\ncheckpoint entered\ntalk 65 86 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 533 save 3a25e101083a3b75 state 95defd75604d8971 ram 0000000000000000",
+     "talked frame 876 scene 533 save 3a25e101083a3b75 state 8bb608f258cb8909 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 66): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 126,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "78b336cedc4f320a7af6d70262bf214f"
+     },
+     {
+      "frames": 647,
+      "sha256": "dfee58719a6c114d7fdc61b5ed6545fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map2-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map2-talk-4",
+    "description": "Talking to layout record 4 of DMY_MAP2 (scene 533) should run its event and hand control back",
+    "plan": "# dmy-dmy-map2-talk-4: Talking to layout record 4 of DMY_MAP2 (scene 533) should run its event and hand control back\nlimit 20000\nenter 533 0 16711935 0\ncheckpoint entered\ntalk 263 129 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 533 save 3a25e101083a3b75 state 95defd75604d8971 ram 0000000000000000",
+     "talked frame 606 scene 533 save 3a25e101083a3b75 state 54f7e52dddec46d9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (263, 109): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 127,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "78b336cedc4f320a7af6d70262bf214f"
+     },
+     {
+      "frames": 377,
+      "sha256": "fcdb0240f1cc66f874bc53909495b0e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-talk-3",
+    "description": "Talking to layout record 3 of DMY_MAP4 (scene 535) should run its event and hand control back",
+    "plan": "# dmy-dmy-map4-talk-3: Talking to layout record 3 of DMY_MAP4 (scene 535) should run its event and hand control back\nlimit 20000\nenter 535 0 16711935 0\ncheckpoint entered\ntalk 151 142 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "talked frame 935 scene 535 save a0a0f47cf24708b1 state b14085dc40cfa35e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (171, 142): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 45,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 706,
+      "sha256": "db223677f36fc750bddbf037bb886b75"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-talk-4",
+    "description": "Talking to layout record 4 of DMY_MAP4 (scene 535) should run its event and hand control back",
+    "plan": "# dmy-dmy-map4-talk-4: Talking to layout record 4 of DMY_MAP4 (scene 535) should run its event and hand control back\nlimit 20000\nenter 535 0 16711935 0\ncheckpoint entered\ntalk 323 300 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "talked frame 1497 scene 535 save 2a5e7d8f77cdadb1 state 91fed0c56a0bc13b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (343, 300): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 1268,
+      "sha256": "ddd302857bee83aa7f227c7a126678cb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-talk-7",
+    "description": "Talking to layout record 7 of DMY_MAP4 (scene 535) should run its event and hand control back",
+    "plan": "# dmy-dmy-map4-talk-7: Talking to layout record 7 of DMY_MAP4 (scene 535) should run its event and hand control back\nlimit 20000\nenter 535 0 16711935 0\ncheckpoint entered\ntalk 400 155 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "talked frame 978 scene 535 save 2a5e7d8f77cdadb1 state 3a8c3a476797a14b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 155): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 43,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 749,
+      "sha256": "321a84debd1cdf8d5dbe676419960428"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub0-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub0-talk-2",
+    "description": "Talking to layout record 2 of DMY_PUB0 (scene 538) should run its event and hand control back",
+    "plan": "# dmy-dmy-pub0-talk-2: Talking to layout record 2 of DMY_PUB0 (scene 538) should run its event and hand control back\nlimit 20000\nenter 33306 0 16711935 0\ncheckpoint entered\ntalk 100 200 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 538 save dc6104d1981d5822 state 9dbc30e7653482a0 ram 0000000000000000",
+     "talked frame 494 scene 538 save f03bdd6921178f32 state e46a63e6444c6260 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 120,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb6a2915031468dff8ce9dad14698fa4"
+     },
+     {
+      "frames": 265,
+      "sha256": "e51d2fa2d0d0633b0dac14aef5e848db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub1-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub1-talk-3",
+    "description": "Talking to layout record 3 of DMY_PUB1 (scene 539) should run its event and hand control back",
+    "plan": "# dmy-dmy-pub1-talk-3: Talking to layout record 3 of DMY_PUB1 (scene 539) should run its event and hand control back\nlimit 20000\nenter 33307 0 16711935 0\ncheckpoint entered\ntalk 160 110 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 539 save d8c934aa069e1c0b state 0ccbba9c3d036a56 ram 0000000000000000",
+     "talked frame 842 scene 539 save d8c934aa069e1c0b state 7d6f1dcea3c2d89f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e669c1ef29c32227fbf66430cf6b6dbe"
+     },
+     {
+      "frames": 613,
+      "sha256": "5f8456c0994a83cb4d3bcb00df0aeeef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub1-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub1-talk-4",
+    "description": "Talking to layout record 4 of DMY_PUB1 (scene 539) should run its event and hand control back",
+    "plan": "# dmy-dmy-pub1-talk-4: Talking to layout record 4 of DMY_PUB1 (scene 539) should run its event and hand control back\nlimit 20000\nenter 33307 0 16711935 0\ncheckpoint entered\ntalk 190 110 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 539 save d8c934aa069e1c0b state 0ccbba9c3d036a56 ram 0000000000000000",
+     "talked frame 863 scene 539 save d8c934aa069e1c0b state 66733633354696bd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (190, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e669c1ef29c32227fbf66430cf6b6dbe"
+     },
+     {
+      "frames": 634,
+      "sha256": "477e170c168e41f48854d07d3544fea6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub1-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub1-talk-5",
+    "description": "Talking to layout record 5 of DMY_PUB1 (scene 539) should run its event and hand control back",
+    "plan": "# dmy-dmy-pub1-talk-5: Talking to layout record 5 of DMY_PUB1 (scene 539) should run its event and hand control back\nlimit 20000\nenter 33307 0 16711935 0\ncheckpoint entered\ntalk 220 110 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 539 save d8c934aa069e1c0b state 0ccbba9c3d036a56 ram 0000000000000000",
+     "talked frame 823 scene 539 save d8c934aa069e1c0b state ce9ee1e096c7f1e0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e669c1ef29c32227fbf66430cf6b6dbe"
+     },
+     {
+      "frames": 594,
+      "sha256": "c9bf1c067146ae3e3275902fb8720e58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub1-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub1-talk-6",
+    "description": "Talking to layout record 6 of DMY_PUB1 (scene 539) should run its event and hand control back",
+    "plan": "# dmy-dmy-pub1-talk-6: Talking to layout record 6 of DMY_PUB1 (scene 539) should run its event and hand control back\nlimit 20000\nenter 33307 0 16711935 0\ncheckpoint entered\ntalk 250 110 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 539 save d8c934aa069e1c0b state 0ccbba9c3d036a56 ram 0000000000000000",
+     "talked frame 783 scene 539 save d8c934aa069e1c0b state 7e93274ea9cf1c38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (250, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e669c1ef29c32227fbf66430cf6b6dbe"
+     },
+     {
+      "frames": 554,
+      "sha256": "8dd43740ea07e246c50569c5edea4917"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-3",
+    "description": "Talking to layout record 3 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-3: Talking to layout record 3 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 64 320 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 813 scene 1 save 5d3a55af2bd070c6 state de304dbb98703b95 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 584,
+      "sha256": "353821455a10012c4c82469801a154e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-5",
+    "description": "Talking to layout record 5 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-5: Talking to layout record 5 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 64 128 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 867 scene 1 save 5d3a55af2bd070c6 state a65f0229631bbed9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 122,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 638,
+      "sha256": "361a1c287d47c7e01a5db618ba575153"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-6",
+    "description": "Talking to layout record 6 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-6: Talking to layout record 6 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 96 128 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 802 scene 16 save 3c8f93355bd15576 state 02ec247c022f1da9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (96, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 55,
+     "song": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 573,
+      "sha256": "96d69df1b645ec329a0515847260a329"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-7",
+    "description": "Talking to layout record 7 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-7: Talking to layout record 7 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 128 128 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 832 scene 339 save b82c39a9ad8e1f33 state 1ed1065a00dde0ee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 603,
+      "sha256": "9b121113b5fa5d79c65cb2561b7d7173"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-8",
+    "description": "Talking to layout record 8 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-8: Talking to layout record 8 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 160 128 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 931 scene 455 save 7796078da48998b1 state 7ebc14ccc3f3fac2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 702,
+      "sha256": "39a569f48fa67b01cb35212e263a8e83"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-talk-9",
+    "description": "Talking to layout record 9 of DMY_WMP0 (scene 1) should run its event and hand control back",
+    "plan": "# dmy-dmy-wmp0-talk-9: Talking to layout record 9 of DMY_WMP0 (scene 1) should run its event and hand control back\nlimit 20000\nenter 1 0 655615 0\ncheckpoint entered\ntalk 192 128 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "talked frame 651 scene 633 save 45a539f06bafbd68 state 01a57aac3241d305 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 422,
+      "sha256": "24cb3b46f9a9a9adbf33ef1bcb93fa8d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

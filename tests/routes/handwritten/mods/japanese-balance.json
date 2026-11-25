@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "id": "mods-japanese-balance",
+  "description": "With Japanese balance on, the US game should load RUI_B000 with the Japanese version's monster numbers and play a whole fight by its rules",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "japanese-balance",
+  "steps": [
+    {
+      "experience": 9999999,
+      "note": "strong enough to win quickly"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

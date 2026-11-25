@@ -1,0 +1,1007 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wmap-event-0",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 0 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     0
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-0",
+    "description": "The world map should run its event 0 when the party comes out with it pending",
+    "plan": "# wmap-event-0: The world map should run its event 0 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 9aabac968d04f0d7 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 9aabac968d04f0d7 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save 9aabac968d04f0d7 state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "30944a0cb6e0c7c3721a0992bed8203f"
+     },
+     {
+      "frames": 153,
+      "sha256": "8c4bccc2fe7adcf8779267bb21a68f7f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-1",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 1 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     1
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-1",
+    "description": "The world map should run its event 1 when the party comes out with it pending",
+    "plan": "# wmap-event-1: The world map should run its event 1 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 3333a5d227e5115a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 3333a5d227e5115a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save f4e8b35fee123041 state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d9c599394e1ead3bafbf0dee2b3ec475"
+     },
+     {
+      "frames": 153,
+      "sha256": "ec1159f0ba785c4b2b0f2e1207be1ee3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-15",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 15 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     15
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-15",
+    "description": "The world map should run its event 15 when the party comes out with it pending",
+    "plan": "# wmap-event-15: The world map should run its event 15 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cddd09ccabd811fb state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save cddd09ccabd811fb state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save 622b1f73e5eb244e state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "992108200ebe384d09e2faa03ce2f832"
+     },
+     {
+      "frames": 153,
+      "sha256": "71c2b54bae330fd4c0db10dd150eb848"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-17",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 17 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     17
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-17",
+    "description": "The world map should run its event 17 when the party comes out with it pending",
+    "plan": "# wmap-event-17: The world map should run its event 17 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save a6fa2704e2672f2a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save a6fa2704e2672f2a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 16 save fce19fc6c7afdc7f state 405fe9957a57de9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2247",
+     "entered land 0 from the world map at scene 16"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "720cd624ab59465cb6d414e176b6ef50"
+     },
+     {
+      "frames": 153,
+      "sha256": "3a954503c2f9b3a39469447def034423"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-18",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 18 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     18
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-18",
+    "description": "The world map should run its event 18 when the party comes out with it pending",
+    "plan": "# wmap-event-18: The world map should run its event 18 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save e5f5e88abacbb0c0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save e5f5e88abacbb0c0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 16 save 80555493b673630b state 405fe9957a57de9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2247",
+     "entered land 0 from the world map at scene 16"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "a7acd0b95b1311bc5425fbe508ac564f"
+     },
+     {
+      "frames": 153,
+      "sha256": "318601647bd7f8138cde0b3db058cace"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-19",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 19 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     19
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-19",
+    "description": "The world map should run its event 19 when the party comes out with it pending",
+    "plan": "# wmap-event-19: The world map should run its event 19 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save c47638b61855aea4 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save c47638b61855aea4 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 16 save 3694606a9924e4f3 state 405fe9957a57de9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2247",
+     "entered land 0 from the world map at scene 16"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "1d3737369db091a84760ffd46683b21e"
+     },
+     {
+      "frames": 153,
+      "sha256": "d6954fefaa0c3089d7a267cc9b1b0461"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-20",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 20 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     20
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-20",
+    "description": "The world map should run its event 20 when the party comes out with it pending",
+    "plan": "# wmap-event-20: The world map should run its event 20 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 59809ed281cadacc state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 59809ed281cadacc state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 16 save d4e125c8cd18d663 state 405fe9957a57de9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2151",
+     "entered land 0 from the world map at scene 16"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "3449fc6f59dcafdec85d89fb3a9c97f4"
+     },
+     {
+      "frames": 153,
+      "sha256": "61c9349e9b3527e22bed11928d0a3518"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-21",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 21 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     21
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-21",
+    "description": "The world map should run its event 21 when the party comes out with it pending",
+    "plan": "# wmap-event-21: The world map should run its event 21 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save eb65fe25501df31c state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save eb65fe25501df31c state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save e890ff326348375d state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd63752e41f9640cf2234332f5e17508"
+     },
+     {
+      "frames": 153,
+      "sha256": "0e7d2a2419c2645e21f8a49140290e58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-22",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 22 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     22
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-22",
+    "description": "The world map should run its event 22 when the party comes out with it pending",
+    "plan": "# wmap-event-22: The world map should run its event 22 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save caa8096078e491bb state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save caa8096078e491bb state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save e31ec8f2a5e6d40e state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "654583514d221d7a2973cdc141d1586b"
+     },
+     {
+      "frames": 153,
+      "sha256": "03a64bad03cd42c8c5a57142bfe3f40b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-23",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 23 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     23
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-23",
+    "description": "The world map should run its event 23 when the party comes out with it pending",
+    "plan": "# wmap-event-23: The world map should run its event 23 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 34919e88026cc7fb state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 34919e88026cc7fb state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save 52bafbf107695dce state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "968506b97522bad727233cefd68b7457"
+     },
+     {
+      "frames": 153,
+      "sha256": "0bb5ec69e7174956b1b2a1bf38d193a6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-27",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 27 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     27
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-27",
+    "description": "The world map should run its event 27 when the party comes out with it pending",
+    "plan": "# wmap-event-27: The world map should run its event 27 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 3b765e3018c81dd4 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 3b765e3018c81dd4 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 857 save b8c4f14fd9ac4d36 state 1270f0038c9bd2c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 10 at vblank 2917",
+     "entered land 0 from the world map at scene 857"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "8db86191c4a11cf70f55b551559de98a"
+     },
+     {
+      "frames": 153,
+      "sha256": "37fc4eb74880f2e0fab32dcda9be2532"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-event-28",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and land 10 on the map, world map event 28 pending",
+    "source": "built for a world map event route (lom_routes.py generate-wmap-events)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": [
+     28
+    ]
+   },
+   "baseline": {
+    "route": "wmap-event-28",
+    "description": "The world map should run its event 28 when the party comes out with it pending",
+    "plan": "# wmap-event-28: The world map should run its event 28 when the party comes out with it pending\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 0cde3bf5be03a48c state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 0cde3bf5be03a48c state 3b75a1ea9951fda4 ram 0000000000000000",
+     "watched frame 383 scene 32767 save 0cde3bf5be03a48c state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "70cca5f8b4c235e00f549c9cc3732d75"
+     },
+     {
+      "frames": 153,
+      "sha256": "832e4a832827b65692d85c9edb8cdf7f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

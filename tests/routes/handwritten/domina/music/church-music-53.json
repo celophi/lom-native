@@ -1,0 +1,37 @@
+{
+ "format": 1,
+ "id": "domina-church-music-53",
+ "description": "Going into the church's inner room and talking to layout record 9 should play its music (song 53)",
+ "start": {
+  "save": "saves/church-1.json"
+ },
+ "steps": [
+  {
+   "enter": {
+    "scene": 48,
+    "from": 36,
+    "spawn": 0
+   }
+  },
+  {
+   "checkpoint": "entered"
+  },
+  {
+   "walk_to": {
+    "exit": 1
+   }
+  },
+  {
+   "checkpoint": "inner-room"
+  },
+  {
+   "talk_to": {
+    "record": 9,
+    "long": true
+   }
+  },
+  {
+   "checkpoint": "talked"
+  }
+ ]
+}

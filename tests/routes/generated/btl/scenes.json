@@ -1,0 +1,293 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "btl-btl-menu-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-entry",
+    "description": "Entering BTL_MENU (scene 15) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-menu-entry: Entering BTL_MENU (scene 15) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 15 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "watched frame 261 scene 15 save 28eb2aa911ae8c11 state cd50306b461a8d5c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 32,
+      "sha256": "5385b3e4b109253ff8fcbf17198d774b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp2-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp2-entry",
+    "description": "Entering BTL_SMP2 (scene 543) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp2-entry: Entering BTL_SMP2 (scene 543) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33311 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 543 save 0be316370747270e state 06d49d4316722df5 ram 0000000000000000",
+     "watched frame 261 scene 543 save 0be316370747270e state 63a0a411f4a06fba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 122,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1ea311a7caa4ed2dc4eba0876048eec7"
+     },
+     {
+      "frames": 32,
+      "sha256": "96b3aecb68dd3b39d93d3c2d738e1b86"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp5-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp5-entry",
+    "description": "Entering BTL_SMP5 (scene 546) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp5-entry: Entering BTL_SMP5 (scene 546) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33314 0 16712448 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 546 save e098700f072b1491 state b5bb74cf605940b5 ram 0000000000000000",
+     "watched frame 261 scene 546 save e098700f072b1491 state f40a0762e7dca5f0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5e555544fab0872e8f3e3e423e815dc9"
+     },
+     {
+      "frames": 32,
+      "sha256": "10e596262ce413567e04cde8722d8cf3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp6-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp6-entry",
+    "description": "Entering BTL_SMP6 (scene 547) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp6-entry: Entering BTL_SMP6 (scene 547) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33315 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 547 save a68d9e899bec1542 state 6241647162687715 ram 0000000000000000",
+     "watched frame 261 scene 547 save a68d9e899bec1542 state 8e133dd9f9659d10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 118,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4e531289014b1edb390f28628d3ad920"
+     },
+     {
+      "frames": 32,
+      "sha256": "58ecf7c181c472bfd294221ad809f2dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp7-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp7-entry",
+    "description": "Entering BTL_SMP7 (scene 548) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp7-entry: Entering BTL_SMP7 (scene 548) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33316 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 548 save 09bbe3f8310e5389 state af1f22c12ffbb3a3 ram 0000000000000000",
+     "watched frame 261 scene 548 save 09bbe3f8310e5389 state 800c81b05aa11964 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2f3b47b248c706449637a9b62685c88b"
+     },
+     {
+      "frames": 32,
+      "sha256": "03fd1b132819ed736b54651c2b78846d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp8-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp8-entry",
+    "description": "Entering BTL_SMP8 (scene 549) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp8-entry: Entering BTL_SMP8 (scene 549) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33317 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 549 save 74ea0d851ca7ea10 state 512064244a38bd0f ram 0000000000000000",
+     "watched frame 261 scene 549 save 74ea0d851ca7ea10 state 594281ef1ccfc101 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "16c918df569d4646e9e6a5774bdc0817"
+     },
+     {
+      "frames": 32,
+      "sha256": "604cd1ae13e89ad2b5468ee1085f542c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp9-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp9-entry",
+    "description": "Entering BTL_SMP9 (scene 550) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# btl-btl-smp9-entry: Entering BTL_SMP9 (scene 550) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33318 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 550 save 73e894878f0145ef state 765966dc01d632b0 ram 0000000000000000",
+     "watched frame 261 scene 550 save 73e894878f0145ef state 12e82e431fe4d47f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 42,
+     "instruction": 119,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4150b8e8d11a3f0dd85799c93794b92c"
+     },
+     {
+      "frames": 32,
+      "sha256": "0f2cf254f3e3448570c97d0b72a79e19"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

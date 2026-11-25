@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-sh00-shop",
+  "description": "Talking to the shopkeeper in SH00 should open the shop, and backing out should return to the room",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 43
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 4
+      },
+      "note": "the shopkeeper (layout record 4)"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

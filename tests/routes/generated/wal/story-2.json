@@ -1,0 +1,60 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wal-wal-way0-story-bf7",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state WAL_WAY0's story 0xbf7 needs",
+    "source": "built from the conditions on the path to the write in scene 284 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x2f90": 27,
+     "0x2608": 25
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-way0-story-bf7",
+    "description": "In WAL_WAY0 (scene 284), talking to layout record 3 should write story variable 0xbf7",
+    "plan": "# wal-wal-way0-story-bf7: In WAL_WAY0 (scene 284), talking to layout record 3 should write story variable 0xbf7\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\ntalk 320 100 0 1 0 3 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 284 save 83948b9b8b96be88 state d91f1f6a52ecc31f ram 0000000000000000",
+     "done frame 906 scene 284 save a7255f2ac57dfd64 state ca1e0730968b9c53 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (320, 450): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "2a0bb79e6edc11b43ce2104d22c3f150"
+     },
+     {
+      "frames": 850,
+      "sha256": "8099402dbd54f7fb5cd33e7be11beefa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

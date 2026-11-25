@@ -1,0 +1,2138 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "end-end-0003-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0003-entry",
+    "description": "Entering END_0003 (scene 803) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0003-entry: Entering END_0003 (scene 803) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 803 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 803 save 62d40bf55746db89 state e7d45781e1ab2403 ram 0000000000000000",
+     "watched frame 3246 scene 806 save 1ab31c3b8b1527f9 state 7a31f53b5fc3d32e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 3015 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 545,
+     "instruction_end": 348,
+     "song": 2,
+     "scene": 5
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8400c7a651b31d92617b68bed3291fec"
+     },
+     {
+      "frames": 3017,
+      "sha256": "a7eff0341e3998958638b5d35fd52c61"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0004-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0004-entry",
+    "description": "Entering END_0004 (scene 804) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0004-entry: Entering END_0004 (scene 804) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 804 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 804 save 503a2201b731e242 state 89f1794bb9c9f980 ram 0000000000000000",
+     "watched frame 2526 scene 806 save 1ab31c3b8b1527f9 state af48d057279b073b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 2295 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 416,
+     "instruction_end": 271,
+     "song": 2,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0dc602137ada1f968de50de2f643c38f"
+     },
+     {
+      "frames": 2297,
+      "sha256": "ce721ae91adf25889a0fc7dc3bde549b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0006-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0006-entry",
+    "description": "Entering END_0006 (scene 806) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0006-entry: Entering END_0006 (scene 806) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 806 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 806 save 1ab31c3b8b1527f9 state 1ed91419cfb48edc ram 0000000000000000",
+     "watched frame 1562 scene 806 save 1ab31c3b8b1527f9 state 3961ee99826174f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1331 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 147,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cbb3ce865f980a8c3448ec43489db90"
+     },
+     {
+      "frames": 1333,
+      "sha256": "c5b7ca3a21243f6c12ee7b6c47a3a23d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0007-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0007-entry",
+    "description": "Entering END_0007 (scene 807) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0007-entry: Entering END_0007 (scene 807) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 807 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 807 save 237e583816640ba1 state b09fd9fa0bc7a687 ram 0000000000000000",
+     "watched frame 6231 scene 813 save d92aa5a7d6770d2a state 2ca00ca5454bbcbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 688,
+     "instruction": 835,
+     "song": 2,
+     "scene": 8
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87ad1781f95f956f2376c46288c11883"
+     },
+     {
+      "frames": 6002,
+      "sha256": "14c440b62968c499205426628a03d9c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0008-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0008-entry",
+    "description": "Entering END_0008 (scene 808) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0008-entry: Entering END_0008 (scene 808) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 808 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 808 save 750d4cb4e069162e state eb449e593a0cf24f ram 0000000000000000",
+     "watched frame 6231 scene 815 save 43173e8ab3fc4cf5 state 67b45e407e913272 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 659,
+     "instruction": 843,
+     "song": 2,
+     "scene": 9
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "68ed50d88c3c7b4e1867b2152586a822"
+     },
+     {
+      "frames": 6002,
+      "sha256": "14af889f12e4b81d8fec2468333be9c8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0009-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0009-entry",
+    "description": "Entering END_0009 (scene 809) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0009-entry: Entering END_0009 (scene 809) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 809 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 809 save 3d36265d7bf52a63 state 5877a4c56cac8d05 ram 0000000000000000",
+     "watched frame 6231 scene 817 save 10a39096152988b3 state c683f7a157147e54 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 676,
+     "instruction": 908,
+     "song": 2,
+     "scene": 10
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f584258dee4d2a0e71c1fa2050793b69"
+     },
+     {
+      "frames": 6002,
+      "sha256": "441b71b8814b76caa7efafb1f4cd1772"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0010-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0010-entry",
+    "description": "Entering END_0010 (scene 810) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0010-entry: Entering END_0010 (scene 810) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 810 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 810 save d5168eb0bf7ec2d4 state 4ef20c271c996864 ram 0000000000000000",
+     "watched frame 6231 scene 820 save 06d6b5190680413a state 7e2565fdd98922f4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 662,
+     "instruction": 979,
+     "song": 2,
+     "scene": 12
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "368fa8c68e3d086f8d41e8189513ea85"
+     },
+     {
+      "frames": 6002,
+      "sha256": "e5690494ea70fdb8cbf68810ac52cc0e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0011-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0011-entry",
+    "description": "Entering END_0011 (scene 811) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0011-entry: Entering END_0011 (scene 811) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 811 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 811 save 1beab5feb846a3c1 state 156a2ad23df29865 ram 0000000000000000",
+     "watched frame 6231 scene 824 save 872e4e5ff62b1946 state 82c7e83b361473b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 702,
+     "instruction": 1242,
+     "song": 2,
+     "scene": 15
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9bcd32c31329c0b951047ff29bd5deb1"
+     },
+     {
+      "frames": 6002,
+      "sha256": "e38cf9cb03db085b7b900411769f1ea0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0012-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0012-entry",
+    "description": "Entering END_0012 (scene 812) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0012-entry: Entering END_0012 (scene 812) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 812 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 812 save 1ea5dbe0b23fb77a state 8f31d4339356c854 ram 0000000000000000",
+     "watched frame 6231 scene 828 save 2a04c8f20af5b422 state 556c6289a2807c2a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 1362,
+     "instruction_end": 682,
+     "song": 2,
+     "scene": 18
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2ae976c599b9cdbcf51ea863df94efad"
+     },
+     {
+      "frames": 6002,
+      "sha256": "db01d758b4763fb717820a5700c97139"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0013-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0013-entry",
+    "description": "Entering END_0013 (scene 813) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0013-entry: Entering END_0013 (scene 813) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 813 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 813 save ca3c110f73bb78ef state 6c8d14a5ae37bbf5 ram 0000000000000000",
+     "watched frame 6231 scene 828 save 2a04c8f20af5b422 state 505cdf5c816b649e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 1325,
+     "instruction_end": 680,
+     "song": 2,
+     "scene": 17
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60f7c1b4817ed8a2784a253423b989c3"
+     },
+     {
+      "frames": 6002,
+      "sha256": "ac8c921802bcbc53b1b335a800d344b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0017-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0017-entry",
+    "description": "Entering END_0017 (scene 817) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0017-entry: Entering END_0017 (scene 817) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 817 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 817 save 17bcbac2f849e0db state 5dacec6b000dd1ad ram 0000000000000000",
+     "watched frame 6231 scene 831 save 006d3a35b89f8fbd state 6c7a016bb926fecb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 1299,
+     "instruction_end": 731,
+     "song": 2,
+     "scene": 16
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c8188c459ecbe1ca980e215d10ab7cd8"
+     },
+     {
+      "frames": 6002,
+      "sha256": "c1739a43bc40466550b85a5c81876082"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0028-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0028-entry",
+    "description": "Entering END_0028 (scene 828) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0028-entry: Entering END_0028 (scene 828) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 828 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 828 save 978228e372fe5f8a state 9cc05837fadcc879 ram 0000000000000000",
+     "watched frame 6231 scene 802 save b84ba53f036eb487 state f0b0513121e4aba6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 1164,
+     "instruction_end": 919,
+     "song": 2,
+     "scene": 12
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7fc9ea4cc3e45428ab3cd0535c741edc"
+     },
+     {
+      "frames": 6002,
+      "sha256": "ea82f46aa2f60ab0ee3d82178afb763e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0032-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0032-direct",
+    "description": "Entering END_0032 (scene 832) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0032-direct: Entering END_0032 (scene 832) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 832 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 832 save 742f5a6cf380b6b9 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 832 save 742f5a6cf380b6b9 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a96d0070f6e26262d3ed105f4e6b4791"
+     },
+     {
+      "frames": 32,
+      "sha256": "2ba8515de37e8c36a33309ab2a487794"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0033-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0033-direct",
+    "description": "Entering END_0033 (scene 833) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0033-direct: Entering END_0033 (scene 833) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 833 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 833 save 93119a545eab8758 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 833 save 93119a545eab8758 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f2cfb11a67d0db020029ba15f7f611a7"
+     },
+     {
+      "frames": 32,
+      "sha256": "7ee29f452740bb3ef975465e89de2b15"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0034-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0034-direct",
+    "description": "Entering END_0034 (scene 834) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0034-direct: Entering END_0034 (scene 834) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 834 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 834 save 28b27c981c70a14f state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 834 save 28b27c981c70a14f state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e0d4deb1ed06a25654300a8159db5f7"
+     },
+     {
+      "frames": 32,
+      "sha256": "50dbec4015a148d7a117954ae4d8a964"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0035-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0035-direct",
+    "description": "Entering END_0035 (scene 835) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0035-direct: Entering END_0035 (scene 835) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 835 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 835 save dd7ded613bcf86e6 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 835 save dd7ded613bcf86e6 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4e82c5e7b774a793f56b293e38a79bd"
+     },
+     {
+      "frames": 32,
+      "sha256": "1124de265e0e4a4b389b9c852514e3eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0036-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0036-direct",
+    "description": "Entering END_0036 (scene 836) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0036-direct: Entering END_0036 (scene 836) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 836 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 836 save 0a17e481bbc4e615 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 836 save 0a17e481bbc4e615 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c90c38d8b44a32dbcbf46ac8cc78e685"
+     },
+     {
+      "frames": 32,
+      "sha256": "272c81152d408f4cead58612074073eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0037-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0037-direct",
+    "description": "Entering END_0037 (scene 837) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0037-direct: Entering END_0037 (scene 837) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 837 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 837 save 40647af23a5d32b4 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 837 save 40647af23a5d32b4 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d43dda9b1560e8e27364aa7fae4f15c"
+     },
+     {
+      "frames": 32,
+      "sha256": "c6de93bf4135aff4efd4445082dc5a4e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0038-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0038-direct",
+    "description": "Entering END_0038 (scene 838) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0038-direct: Entering END_0038 (scene 838) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 838 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 838 save 06a6e2b5e5b9e95b state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 838 save 06a6e2b5e5b9e95b state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b30927774f2891fbb0a621dea7ebfef0"
+     },
+     {
+      "frames": 32,
+      "sha256": "87cea07ed59b4a6dd321445c12a87947"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0039-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0039-direct",
+    "description": "Entering END_0039 (scene 839) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0039-direct: Entering END_0039 (scene 839) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 839 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 839 save c7526a3b60c77be2 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 839 save c7526a3b60c77be2 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e95e062567442947a0e2c07fed917a59"
+     },
+     {
+      "frames": 32,
+      "sha256": "a87f90cc6b3e75460e1095c8d6589bb5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0043-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0043-direct",
+    "description": "Entering END_0043 (scene 843) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0043-direct: Entering END_0043 (scene 843) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 843 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 843 save fe01315b1745d41e state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 843 save fe01315b1745d41e state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "44c6c98970834e645b8cbb93094a788c"
+     },
+     {
+      "frames": 32,
+      "sha256": "bf2bb3c439f3b52a6e5e0f5a2c408f67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0044-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0044-entry",
+    "description": "Entering END_0044 (scene 844) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0044-entry: Entering END_0044 (scene 844) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 844 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 844 save f14a138eb32fcf1a state 878d0cb68d6c9f9f ram 0000000000000000",
+     "watched frame 5346 scene 806 save 4b33de0b8f200d4a state 844fd3740c558b28 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 5115 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 988,
+     "instruction_end": 675,
+     "song": 2,
+     "scene": 9
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0966dbfd851c5beefcb27c606d2070a5"
+     },
+     {
+      "frames": 5117,
+      "sha256": "1c73cb7b3201eff24b6bc4f431d3be46"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0045-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0045-direct",
+    "description": "Entering END_0045 (scene 845) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0045-direct: Entering END_0045 (scene 845) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 845 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 845 save a4aba6b7cc5c0b8c state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 845 save a4aba6b7cc5c0b8c state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f12d2821295f5847b3ea16cc7154388c"
+     },
+     {
+      "frames": 32,
+      "sha256": "5c719f53f9b6ade79a390d190309703a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0046-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0046-entry",
+    "description": "Entering END_0046 (scene 846) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0046-entry: Entering END_0046 (scene 846) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 846 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 846 save ed637c873711e740 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 846 save ed637c873711e740 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5e6dcc1dd45ce164a24fa5962731a4aa"
+     },
+     {
+      "frames": 32,
+      "sha256": "5f4e5dfc12a8777641e270fb00f56f89"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0047-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0047-entry",
+    "description": "Entering END_0047 (scene 847) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0047-entry: Entering END_0047 (scene 847) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 847 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 847 save 107d704d4f16058d state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 847 save 107d704d4f16058d state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "scene": 2,
+     "song": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "311501275d4f6bbb559e5be29e0dc940"
+     },
+     {
+      "frames": 32,
+      "sha256": "6ffb31b9e86a0fb607b234f8c94425f2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0048-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0048-entry",
+    "description": "Entering END_0048 (scene 848) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0048-entry: Entering END_0048 (scene 848) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 848 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 848 save c6cc67f6b64f2066 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 848 save c6cc67f6b64f2066 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0cedaffb73f20286fad9a5e9882852b0"
+     },
+     {
+      "frames": 32,
+      "sha256": "98bf23a1917984516a9030220cb8d4a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0049-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0049-entry",
+    "description": "Entering END_0049 (scene 849) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0049-entry: Entering END_0049 (scene 849) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 849 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 849 save 8d1870454d0c957b state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 849 save 8d1870454d0c957b state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 29,
+     "instruction": 110,
+     "scene": 2,
+     "song": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a38d61fd4c9d47c1fc2c99e1210ac5a1"
+     },
+     {
+      "frames": 32,
+      "sha256": "569cd70bdf9642f88379963a54dcf099"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0050-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0050-entry",
+    "description": "Entering END_0050 (scene 850) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0050-entry: Entering END_0050 (scene 850) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 850 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 850 save a5533ddeeac62e4c state 479f8470cae09f29 ram 0000000000000000",
+     "watched frame 262 scene 850 save e40a40e6e3ed54f2 state eb8c127d743beec8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 111,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7c1b176b24141d95451a0219598d3cb6"
+     },
+     {
+      "frames": 33,
+      "sha256": "82e89f718171af1e6e1504770d43ae81"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0051-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0051-entry",
+    "description": "Entering END_0051 (scene 851) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0051-entry: Entering END_0051 (scene 851) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 851 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 851 save 50ed4bdb36dab239 state 2e7d145fa21cb787 ram 0000000000000000",
+     "watched frame 6231 scene 856 save 622abf909eb6a41b state 0ad22eb65cc80169 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 7,
+     "instruction": 427,
+     "instruction_end": 206,
+     "song": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2c8e057f129fb19dff711edc0fb26c1f"
+     },
+     {
+      "frames": 6002,
+      "sha256": "2ccde83bccee4c34d75ab9697ead01ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0054-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0054-entry",
+    "description": "Entering END_0054 (scene 854) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0054-entry: Entering END_0054 (scene 854) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 854 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 854 save 2ca83411b1501078 state c4292caeecc325e9 ram 0000000000000000",
+     "watched frame 6231 scene 853 save 7b6292e35708526a state a1495d94916f3c1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 6000 frames, still no control"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 7,
+     "instruction": 427,
+     "instruction_end": 206,
+     "song": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6b2193a0d925a97a63eff4c015cdd5f7"
+     },
+     {
+      "frames": 6002,
+      "sha256": "e620f47f7888449b3c3304467b8ce29c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0057-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0057-direct",
+    "description": "Entering END_0057 (scene 857) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0057-direct: Entering END_0057 (scene 857) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 857 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 857 save f6c15c1a46f43a80 state 7e9469d37a64c538 ram 0000000000000000",
+     "watched frame 1912 scene 19 save ba92a72b02a78203 state 38b8f7dcc83c3b79 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1681 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 69,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bd0cb7ae3c9067b36a71565dce9f3028"
+     },
+     {
+      "frames": 1683,
+      "sha256": "03a163045d5cded5d989d9d02a77582c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0058-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0058-entry",
+    "description": "Entering END_0058 (scene 858) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0058-entry: Entering END_0058 (scene 858) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 858 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 858 save 5ecc97d76c808144 state 673d615c86b9a9ab ram 0000000000000000",
+     "watched frame 262 scene 858 save 527ac65103fde742 state 151cd4fa14f12729 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 127,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "674e5f46ee782a415eeb967a64117c78"
+     },
+     {
+      "frames": 33,
+      "sha256": "fe868ccc79f268424b3f1567bf5c70de"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0059-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0059-direct",
+    "description": "Entering END_0059 (scene 859) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0059-direct: Entering END_0059 (scene 859) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 859 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 859 save 819f6cc17be78aae state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 859 save 819f6cc17be78aae state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3720567d52c552b7b585d0bd14952115"
+     },
+     {
+      "frames": 32,
+      "sha256": "c6178c5622ee0560da6bb296155abb47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0060-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0060-entry",
+    "description": "Entering END_0060 (scene 860) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0060-entry: Entering END_0060 (scene 860) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 860 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 860 save 320227e08897a92a state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 860 save 320227e08897a92a state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41835f8c7159ea82b58a0a748ed5113b"
+     },
+     {
+      "frames": 32,
+      "sha256": "fa13d9ee780b3f477fc7c58b3a668c27"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0061-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0061-entry",
+    "description": "Entering END_0061 (scene 861) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0061-entry: Entering END_0061 (scene 861) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 861 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 861 save 3157bb1e47eb4f1f state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 861 save 3157bb1e47eb4f1f state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9122d86219526ccb944ab5cb40984efc"
+     },
+     {
+      "frames": 32,
+      "sha256": "b1d85d4f846351ff7de8f1cb67587406"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0062-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0062-entry",
+    "description": "Entering END_0062 (scene 862) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0062-entry: Entering END_0062 (scene 862) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 862 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 862 save 1e9690fd37edb710 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 862 save 1e9690fd37edb710 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ae15c340fbf698c81082f367b2efd3a9"
+     },
+     {
+      "frames": 32,
+      "sha256": "c81afcda0f3e032dc0d35e771af9335f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0063-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0063-entry",
+    "description": "Entering END_0063 (scene 863) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0063-entry: Entering END_0063 (scene 863) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 863 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 863 save a8b8118d26ce135d state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 863 save a8b8118d26ce135d state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "591afc0dd7d513eca4956c4c2ec8a6fa"
+     },
+     {
+      "frames": 32,
+      "sha256": "62575cfda62617e3d820a05dfd8d3935"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0064-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0064-entry",
+    "description": "Entering END_0064 (scene 864) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0064-entry: Entering END_0064 (scene 864) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 864 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 864 save bfdce18f087dfc36 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 864 save bfdce18f087dfc36 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b51c1c9cf98b976906a7b98b5687a960"
+     },
+     {
+      "frames": 32,
+      "sha256": "0b31ff7c471fac471125dc0fdd88080b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0065-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0065-entry",
+    "description": "Entering END_0065 (scene 865) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0065-entry: Entering END_0065 (scene 865) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 865 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 865 save 8804381a9b8d128b state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 865 save 8804381a9b8d128b state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6948313dc9ca3e83308ece240f1c018"
+     },
+     {
+      "frames": 32,
+      "sha256": "8f0ad3b2a7e2623062435d64fdfe0158"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0066-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0066-entry",
+    "description": "Entering END_0066 (scene 866) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0066-entry: Entering END_0066 (scene 866) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 866 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 866 save 81042ec1f6bd7d5c state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 866 save 81042ec1f6bd7d5c state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a6a5ed033b06c7141597a3ec30fb13c"
+     },
+     {
+      "frames": 32,
+      "sha256": "1771ee4f395a90440192d452854aae4b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0067-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0067-entry",
+    "description": "Entering END_0067 (scene 867) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0067-entry: Entering END_0067 (scene 867) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 867 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 867 save 9a8225d70c9bdfc9 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 867 save 9a8225d70c9bdfc9 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e98094319c2f61db6d51bae0dcdc41b9"
+     },
+     {
+      "frames": 32,
+      "sha256": "8cd7f930d7b4c08dd3756c9443b95c5e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0068-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0068-entry",
+    "description": "Entering END_0068 (scene 868) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0068-entry: Entering END_0068 (scene 868) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 868 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 868 save f526eba9486f3f82 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 868 save f526eba9486f3f82 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f9b3bc61e3e5937da2b903d98776f560"
+     },
+     {
+      "frames": 32,
+      "sha256": "152dac569d8186aeb898a4278b52a623"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0069-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0069-entry",
+    "description": "Entering END_0069 (scene 869) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0069-entry: Entering END_0069 (scene 869) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 869 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 869 save cb97753e7b4e5d97 state b2dc8dceb4956cc8 ram 0000000000000000",
+     "watched frame 261 scene 869 save cb97753e7b4e5d97 state 607e09f3b4c4a370 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e6d42dc4d3cdaaff7271cac503ce2bd"
+     },
+     {
+      "frames": 32,
+      "sha256": "0783c0c9aa85d409e712bbbf939a6f22"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0071-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0071-direct",
+    "description": "Entering END_0071 (scene 871) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0071-direct: Entering END_0071 (scene 871) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 871 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 871 save ab02abd0529540c2 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 871 save ab02abd0529540c2 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3efaa0768abebd9f0852a878dbf67446"
+     },
+     {
+      "frames": 32,
+      "sha256": "84dbd2ca73c42ccddf21551da59cb3b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0072-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0072-direct",
+    "description": "Entering END_0072 (scene 872) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0072-direct: Entering END_0072 (scene 872) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 872 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 872 save d00ef1f83bf35911 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 872 save d00ef1f83bf35911 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "afd8e41e56d9fa169b511b01148da1c3"
+     },
+     {
+      "frames": 32,
+      "sha256": "3d137fd0aeda9e4dbab497f3d7f828b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0073-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0073-direct",
+    "description": "Entering END_0073 (scene 873) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0073-direct: Entering END_0073 (scene 873) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 873 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 873 save 4823c422b9f75450 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 873 save 4823c422b9f75450 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bd296d056ec05a2125d10d6c3df840e3"
+     },
+     {
+      "frames": 32,
+      "sha256": "d31b96769dea81523f81b45214711e4b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0074-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0074-direct",
+    "description": "Entering END_0074 (scene 874) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0074-direct: Entering END_0074 (scene 874) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 874 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 874 save 29983c8149d4b4e7 state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 874 save 29983c8149d4b4e7 state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 29,
+     "instruction": 110,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "02dba960f62d6059e2fe8a923373b01e"
+     },
+     {
+      "frames": 32,
+      "sha256": "1e7d9794f417227f711c9c413ce3ed47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0075-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0075-direct",
+    "description": "Entering END_0075 (scene 875) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0075-direct: Entering END_0075 (scene 875) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 875 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 875 save 7de171e064173d7e state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 875 save 7de171e064173d7e state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ea4a934c841dad929f66f6405706ec95"
+     },
+     {
+      "frames": 32,
+      "sha256": "6d285316b29f4b29a026993a71bd494f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0076-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0076-direct",
+    "description": "Entering END_0076 (scene 876) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0076-direct: Entering END_0076 (scene 876) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 876 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 876 save c3572e45302523ed state 50ca437f6a211380 ram 0000000000000000",
+     "watched frame 261 scene 876 save c3572e45302523ed state fc85e522a2f2fa88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "268735e6240db164bc9eb77a0169c192"
+     },
+     {
+      "frames": 32,
+      "sha256": "ed7c9597b8be78322713b9c3cef1d27a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0077-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0077-entry",
+    "description": "Entering END_0077 (scene 877) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0077-entry: Entering END_0077 (scene 877) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 877 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 877 save da43c7bd5118562f state 7f9e4c6ce3acc638 ram 0000000000000000",
+     "watched frame 261 scene 877 save da43c7bd5118562f state e140cc534ddc85eb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a7c2e5f8fb35a9bf6e66d44a9ebc475d"
+     },
+     {
+      "frames": 32,
+      "sha256": "85deca9080f1e3cd02b24442e14c8233"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0078-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0078-entry",
+    "description": "Entering END_0078 (scene 878) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0078-entry: Entering END_0078 (scene 878) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 878 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 878 save 020a74e02eac7b60 state 8d9038a7bd303af0 ram 0000000000000000",
+     "watched frame 261 scene 878 save 020a74e02eac7b60 state a98ed0daaa30ad23 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56257b52ec3a55888ff4d21716e8c850"
+     },
+     {
+      "frames": 32,
+      "sha256": "731a66d394756765b2834956b33560d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0079-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0079-entry",
+    "description": "Entering END_0079 (scene 879) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# end-end-0079-entry: Entering END_0079 (scene 879) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 879 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 879 save 44a1e484ad12baad state dbc526f8abe6cd18 ram 0000000000000000",
+     "watched frame 261 scene 879 save 44a1e484ad12baad state 05a2973d82d0e71b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c5e73a055d3c173cbe3b4366d4a5addb"
+     },
+     {
+      "frames": 32,
+      "sha256": "54becf06d74b97f1e20624567a76f80a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

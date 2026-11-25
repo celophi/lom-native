@@ -1,0 +1,1158 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mhm-mhm-bdr0-story-1164",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_BDR0's story 0x1164 needs",
+    "source": "built from the conditions on the path to the write in scene 628 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1164": 7
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdr0-story-1164",
+    "description": "In MHM_BDR0 (scene 628), entering should write story variable 0x1164",
+    "plan": "# mhm-mhm-bdr0-story-1164: In MHM_BDR0 (scene 628), entering should write story variable 0x1164\nlimit 20000\nenter 628 0 16713727 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 628 save d08c46777c88a2b4 state 9fde060a4889ab91 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1627",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 48,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3d5039fe47d90ce3a6bb0d48a5bf816"
+     },
+     {
+      "frames": 315,
+      "sha256": "6362edebfa05dc6b399e05145640ae51"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-story-1388",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_BDRM's story 0x1388 needs",
+    "source": "built from the conditions on the path to the write in scene 19 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x439": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdrm-story-1388",
+    "description": "In MHM_BDRM (scene 19), talking to layout record 4 should write story variable 0x1388",
+    "plan": "# mhm-mhm-bdrm-story-1388: In MHM_BDRM (scene 19), talking to layout record 4 should write story variable 0x1388\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 80 100 0 0 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 959059b4362fb850 state 36d63053fe5ac7f9 ram 0000000000000000",
+     "done frame 1005 scene 19 save f2ae02b65a857369 state 521062959337e14a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 80): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 282,
+     "instruction_end": 28,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "7bc64af8c9e744b148af0ee51dcefcee"
+     },
+     {
+      "frames": 796,
+      "sha256": "89a610493edf7c38f6c4f64c366cd0d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-story-56f",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state MHM_BDRM's story 0x56f needs",
+    "source": "built from the conditions on the path to the write in scene 19 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x2568": 0
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdrm-story-56f",
+    "description": "In MHM_BDRM (scene 19), talking to layout record 4 should write story variable 0x56f",
+    "plan": "# mhm-mhm-bdrm-story-56f: In MHM_BDRM (scene 19), talking to layout record 4 should write story variable 0x56f\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 80 100 0 1 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 36 scene 19 save ae2dc3c6b0a69366 state 16536de3e74e0ea3 ram 0000000000000000",
+     "done frame 832 scene 19 save acfead92e0512bb4 state 883bcb8daec589bb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 80): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 271,
+     "instruction_end": 21,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 37,
+      "sha256": "6acb2226dfd5a3f6e2cc9ae1db1893bc"
+     },
+     {
+      "frames": 796,
+      "sha256": "db41d93d39f94d57fb442497380c0421"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-gdn0-story-11fc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_GDN0's story 0x11fc needs",
+    "source": "built from the conditions on the path to the write in scene 22 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11fc": 2
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-gdn0-story-11fc",
+    "description": "In MHM_GDN0 (scene 22), entering should write story variable 0x11fc",
+    "plan": "# mhm-mhm-gdn0-story-11fc: In MHM_GDN0 (scene 22), entering should write story variable 0x11fc\nlimit 20000\nenter 22 0 16713983 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 22 save 149756c6c234ec94 state 6a81d2e3c59fd133 ram 0000000000000000",
+     "done frame 898 scene 22 save aa86513debc1ca86 state de88f5c838412759 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 667 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "song": 3,
+     "instruction": 118,
+     "instruction_end": 70,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1df223df802356f1f89bfbce4e4f0de0"
+     },
+     {
+      "frames": 669,
+      "sha256": "b4ada0abdd890f74a0a597a7ea25bc73"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-story-1104",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS00's story 0x1104 needs",
+    "source": "built from the conditions on the path to the write in scene 16 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 21,
+     "0x114c": 3,
+     "0x408": 1,
+     "0x4cb": 1,
+     "0x1134": 8,
+     "0x1128": 8,
+     "0x1104": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-story-1104",
+    "description": "In MHM_OS00 (scene 16), entering should write story variable 0x1104",
+    "plan": "# mhm-mhm-os00-story-1104: In MHM_OS00 (scene 16), entering should write story variable 0x1104\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save 61deb2bf1b1e2aab state 5257e2eedfa27fa6 ram 0000000000000000",
+     "done frame 697 scene 16 save fcdc6243a48f1a31 state 80c6420305df2558 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 466 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 58,
+     "instruction": 225,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5101ab4bfd86022cc4ffff569d932f45"
+     },
+     {
+      "frames": 468,
+      "sha256": "dc0017b709bdb9c3af3489216116356c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-story-1138",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS00's story 0x1138 needs",
+    "source": "built from the conditions on the path to the write in scene 16 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 21,
+     "0x1150": 8,
+     "0x1134": 8,
+     "0x1128": 8
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-story-1138",
+    "description": "In MHM_OS00 (scene 16), entering should write story variable 0x1138",
+    "plan": "# mhm-mhm-os00-story-1138: In MHM_OS00 (scene 16), entering should write story variable 0x1138\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save 7782e327319709c4 state 3a6afd2c584c4ff2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1189",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 67,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8a7712d27a8ef29635833348b7e2c5ea"
+     },
+     {
+      "frames": 202,
+      "sha256": "375aeff3e75bd5a3c8a02120e94b4edd"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-story-1214",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS00's story 0x1214 needs",
+    "source": "built from the conditions on the path to the write in scene 16 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 21,
+     "0x114c": 3,
+     "0x408": 1,
+     "0x4cb": 1,
+     "0x1134": 8,
+     "0x1128": 8,
+     "0x1104": 1,
+     "0x1214": 2,
+     "0x43c": 1,
+     "0x43e": 1,
+     "0x43d": 1,
+     "0x43f": 1,
+     "0x440": 1,
+     "0x441": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-story-1214",
+    "description": "In MHM_OS00 (scene 16), entering should write story variable 0x1214",
+    "plan": "# mhm-mhm-os00-story-1214: In MHM_OS00 (scene 16), entering should write story variable 0x1214\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save 97d51c586852a9bf state 5257e2eedfa27fa6 ram 0000000000000000",
+     "done frame 697 scene 16 save 232b60e9702a244d state da808944131d4621 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 466 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 59,
+     "instruction": 236,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5ad01d72b507b24f87481aac9ffdf9a3"
+     },
+     {
+      "frames": 468,
+      "sha256": "2d9ead409c550c75bdb5a61a26ba7a89"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os01-story-11f0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS01's story 0x11f0 needs",
+    "source": "built from the conditions on the path to the write in scene 17 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11f0": 1,
+     "0x11cc": 4
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os01-story-11f0",
+    "description": "In MHM_OS01 (scene 17), entering should write story variable 0x11f0",
+    "plan": "# mhm-mhm-os01-story-11f0: In MHM_OS01 (scene 17), entering should write story variable 0x11f0\nlimit 20000\nenter 17 0 16713727 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 17 save e9f87807e6831fbc state 9f9a89528e8ff628 ram 0000000000000000",
+     "done frame 3490 scene 28 save 1078ddb04b0c1899 state 4ba14bf05cbcb474 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 3259 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 371,
+     "instruction_end": 137,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b253e2c3501e51a35b1e703a3627473"
+     },
+     {
+      "frames": 3261,
+      "sha256": "7b21a97f6c03cd4608bc65cadc321a67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-42e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x42e needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-42e",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x42e",
+    "plan": "# mhm-mhm-os02-story-42e: In MHM_OS02 (scene 798), entering should write story variable 0x42e\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-42f",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x42f needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-42f",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x42f",
+    "plan": "# mhm-mhm-os02-story-42f: In MHM_OS02 (scene 798), entering should write story variable 0x42f\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-430",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x430 needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-430",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x430",
+    "plan": "# mhm-mhm-os02-story-430: In MHM_OS02 (scene 798), entering should write story variable 0x430\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-431",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x431 needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-431",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x431",
+    "plan": "# mhm-mhm-os02-story-431: In MHM_OS02 (scene 798), entering should write story variable 0x431\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-432",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x432 needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-432",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x432",
+    "plan": "# mhm-mhm-os02-story-432: In MHM_OS02 (scene 798), entering should write story variable 0x432\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-433",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x433 needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-433",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x433",
+    "plan": "# mhm-mhm-os02-story-433: In MHM_OS02 (scene 798), entering should write story variable 0x433\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-story-434",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_OS02's story 0x434 needs",
+    "source": "built from the conditions on the path to the write in scene 798 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 10
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os02-story-434",
+    "description": "In MHM_OS02 (scene 798), entering should write story variable 0x434",
+    "plan": "# mhm-mhm-os02-story-434: In MHM_OS02 (scene 798), entering should write story variable 0x434\nlimit 20000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save 3a28ea91d76ef7ae state 390790727c719bbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 220,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ad2692f150223219d5a5c737f76174"
+     },
+     {
+      "frames": 1103,
+      "sha256": "5ee07f5f14ed2c1e95503975340f17b2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-1144",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x1144 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-1144",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x1144",
+    "plan": "# mhm-mhm-rm00-story-1144: In MHM_RM00 (scene 18), entering should write story variable 0x1144\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 49a8a517c14eea1c state 7e4f3cad2865770a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1787",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 57,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "761d6ad2a77bbad25f02146920f4c519"
+     },
+     {
+      "frames": 404,
+      "sha256": "73d61b10218ade6e4af813810e547e76"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-1184",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x1184 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4,
+     "0x11e0": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-1184",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x1184",
+    "plan": "# mhm-mhm-rm00-story-1184: In MHM_RM00 (scene 18), entering should write story variable 0x1184\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 92aa8e56f0f3a3db state 60514df74c8da485 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2147",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 63,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9de20bead1c2bc3d21b0d33b062393dd"
+     },
+     {
+      "frames": 584,
+      "sha256": "fe261f566b580fc6f4b280142174a6a0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-11e0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x11e0 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4,
+     "0x11e0": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-11e0",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x11e0",
+    "plan": "# mhm-mhm-rm00-story-11e0: In MHM_RM00 (scene 18), entering should write story variable 0x11e0\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 92aa8e56f0f3a3db state 60514df74c8da485 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2147",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 63,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9de20bead1c2bc3d21b0d33b062393dd"
+     },
+     {
+      "frames": 584,
+      "sha256": "fe261f566b580fc6f4b280142174a6a0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-26b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x26b0 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4,
+     "0x11e0": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-26b0",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x26b0",
+    "plan": "# mhm-mhm-rm00-story-26b0: In MHM_RM00 (scene 18), entering should write story variable 0x26b0\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 92aa8e56f0f3a3db state 60514df74c8da485 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2147",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 63,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9de20bead1c2bc3d21b0d33b062393dd"
+     },
+     {
+      "frames": 584,
+      "sha256": "fe261f566b580fc6f4b280142174a6a0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-2fc8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x2fc8 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-2fc8",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x2fc8",
+    "plan": "# mhm-mhm-rm00-story-2fc8: In MHM_RM00 (scene 18), entering should write story variable 0x2fc8\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 49a8a517c14eea1c state 7e4f3cad2865770a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1787",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 57,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "761d6ad2a77bbad25f02146920f4c519"
+     },
+     {
+      "frames": 404,
+      "sha256": "73d61b10218ade6e4af813810e547e76"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-story-667",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MHM_RM00's story 0x667 needs",
+    "source": "built from the conditions on the path to the write in scene 18 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 21,
+     "0x1184": 8,
+     "0x1144": 4,
+     "0x11e0": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-story-667",
+    "description": "In MHM_RM00 (scene 18), entering should write story variable 0x667",
+    "plan": "# mhm-mhm-rm00-story-667: In MHM_RM00 (scene 18), entering should write story variable 0x667\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 92aa8e56f0f3a3db state 60514df74c8da485 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2147",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 63,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9de20bead1c2bc3d21b0d33b062393dd"
+     },
+     {
+      "frames": 584,
+      "sha256": "fe261f566b580fc6f4b280142174a6a0"
+     }
+    ]
+   }
+  }
+ ]
+}

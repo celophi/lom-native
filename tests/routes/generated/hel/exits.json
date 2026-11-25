@@ -1,0 +1,3923 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "hel-hel-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b000-exit-0",
+    "description": "Walking onto exit 0 of HEL_B000 (scene 482) should lead to scene 458",
+    "plan": "# hel-hel-b000-exit-0: Walking onto exit 0 of HEL_B000 (scene 482) should lead to scene 458\nlimit 20000\nenter 33250 1 16713471 0\ncheckpoint entered\nexit 0 458\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 482 save b8223c98b1312c50 state a9c94e5f858ce72b ram 0000000000000000",
+     "arrived frame 311 scene 458 save 9dfb58740834e522 state da7aab3d2d9ab0c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d64fca181d862037f30302d61d405b0"
+     },
+     {
+      "frames": 82,
+      "sha256": "a04cd15e8171fc6c07c5f1a3669f147c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b000-exit-1",
+    "description": "Walking onto exit 1 of HEL_B000 (scene 482) should lead to scene 483",
+    "plan": "# hel-hel-b000-exit-1: Walking onto exit 1 of HEL_B000 (scene 482) should lead to scene 483\nlimit 20000\nenter 33250 1 16713471 0\ncheckpoint entered\nexit 1 483\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 482 save b8223c98b1312c50 state a9c94e5f858ce72b ram 0000000000000000",
+     "arrived frame 558 scene 483 save 172515832034d74a state cd15502a9050b0a8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d64fca181d862037f30302d61d405b0"
+     },
+     {
+      "frames": 329,
+      "sha256": "bf70173a195a63e44337a5e71373b0e2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b010-exit-0",
+    "description": "Walking onto exit 0 of HEL_B010 (scene 483) should lead to scene 482",
+    "plan": "# hel-hel-b010-exit-0: Walking onto exit 0 of HEL_B010 (scene 483) should lead to scene 482\nlimit 20000\nenter 33251 0 16713471 0\ncheckpoint entered\nexit 0 482\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 483 save c1137585435f05e4 state b5ef9648106d7b86 ram 0000000000000000",
+     "arrived frame 293 scene 482 save 334dbc66f4d27343 state 1c2dd29f2e5ab24d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 132): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "exit": 1,
+     "instruction": 175,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a0edc8f9ceac5fa0e33b14b1d0a06ead"
+     },
+     {
+      "frames": 64,
+      "sha256": "42610e3d9bdd189d4aa94a416ca447ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b010-exit-1",
+    "description": "Walking onto exit 1 of HEL_B010 (scene 483) should lead to scene 484",
+    "plan": "# hel-hel-b010-exit-1: Walking onto exit 1 of HEL_B010 (scene 483) should lead to scene 484\nlimit 20000\nenter 33251 0 16713471 0\ncheckpoint entered\nexit 1 484\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 483 save c1137585435f05e4 state b5ef9648106d7b86 ram 0000000000000000",
+     "arrived frame 382 scene 484 save 440a6892b539eab0 state 0e92fa092c4ee405 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (122, 260): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a0edc8f9ceac5fa0e33b14b1d0a06ead"
+     },
+     {
+      "frames": 153,
+      "sha256": "3146ae540f0ef5bc72885ad143f4b0dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b010-exit-2",
+    "description": "Walking onto exit 2 of HEL_B010 (scene 483) should lead to scene 485",
+    "plan": "# hel-hel-b010-exit-2: Walking onto exit 2 of HEL_B010 (scene 483) should lead to scene 485\nlimit 20000\nenter 33251 0 16713471 0\ncheckpoint entered\nexit 2 485\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 483 save c1137585435f05e4 state b5ef9648106d7b86 ram 0000000000000000",
+     "arrived frame 1793 scene 485 save e06b49e698c6a71a state fc2e987cc1a5dee5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (618, 264): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1250 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 445,
+     "instruction_end": 142,
+     "scene": 3,
+     "song": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a0edc8f9ceac5fa0e33b14b1d0a06ead"
+     },
+     {
+      "frames": 1564,
+      "sha256": "a66aa2e6a71a4519ed2d5caa4cd51437"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b020-exit-0",
+    "description": "Walking onto exit 0 of HEL_B020 (scene 484) should lead to scene 483",
+    "plan": "# hel-hel-b020-exit-0: Walking onto exit 0 of HEL_B020 (scene 484) should lead to scene 483\nlimit 20000\nenter 33252 1 16713471 1\ncheckpoint entered\nexit 0 483\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 484 save 5794780257c3fd17 state 3a8c0493080087a0 ram 0000000000000000",
+     "arrived frame 390 scene 483 save 23e1206b69986bff state 85f4e830aa11afeb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (290, 7): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41cfcecdab920a74db28111aa4267dc9"
+     },
+     {
+      "frames": 161,
+      "sha256": "93fef6fa85c8fac32bb28ad29fdf2321"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b020-exit-1",
+    "description": "Walking onto exit 1 of HEL_B020 (scene 484) should lead to scene 459",
+    "plan": "# hel-hel-b020-exit-1: Walking onto exit 1 of HEL_B020 (scene 484) should lead to scene 459\nlimit 20000\nenter 33252 1 16713471 1\ncheckpoint entered\nexit 1 459\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 484 save 5794780257c3fd17 state 3a8c0493080087a0 ram 0000000000000000",
+     "arrived frame 302 scene 459 save 217556fb1f9bb942 state e6d91818826c43c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (109, 262): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 50,
+     "instruction": 156,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41cfcecdab920a74db28111aa4267dc9"
+     },
+     {
+      "frames": 73,
+      "sha256": "9fe6c400f5af51a9913b1494038134df"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b030-exit-0",
+    "description": "Walking onto exit 0 of HEL_B030 (scene 485) should lead to scene 483",
+    "plan": "# hel-hel-b030-exit-0: Walking onto exit 0 of HEL_B030 (scene 485) should lead to scene 483\nlimit 20000\nenter 33253 0 16713471 0\ncheckpoint entered\nexit 0 483\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 485 save 7a4fc000b7dd2336 state a3fcc9dbc744ca25 ram 0000000000000000",
+     "arrived frame 295 scene 483 save a927cfbe88b1bc50 state c4b09ceac8d32ad5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (61, 37): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 72,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50411ca180e1d52c3f190667727f3d46"
+     },
+     {
+      "frames": 66,
+      "sha256": "612b5b0160d3e45262b6e9c2c246bc3d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b040-exit-0",
+    "description": "Walking onto exit 0 of HEL_B040 (scene 486) should lead to scene 462",
+    "plan": "# hel-hel-b040-exit-0: Walking onto exit 0 of HEL_B040 (scene 486) should lead to scene 462\nlimit 20000\nenter 33254 0 16713471 0\ncheckpoint entered\nexit 0 462\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 486 save 59df24ab818775cd state 1f6ad7595d671048 ram 0000000000000000",
+     "arrived frame 294 scene 462 save a7f320850ab8afdf state 81fd265c12f98f3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (245, 95): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 42,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abc0a03a905187867829a8c097c0baef"
+     },
+     {
+      "frames": 65,
+      "sha256": "bd2cb18616ea6b133560660925562033"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b050-exit-0",
+    "description": "Walking onto exit 0 of HEL_B050 (scene 487) should lead to scene 462",
+    "plan": "# hel-hel-b050-exit-0: Walking onto exit 0 of HEL_B050 (scene 487) should lead to scene 462\nlimit 20000\nenter 33255 0 16713471 0\ncheckpoint entered\nexit 0 462\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 487 save 08e4f06f57570630 state e3f7a6e66aa0a1c1 ram 0000000000000000",
+     "arrived frame 293 scene 462 save c4ae62249948ddf2 state 0dbee24fdea1bbf1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (247, 97): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 42,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36c62330025a2a079ca9254b5c0cd96a"
+     },
+     {
+      "frames": 64,
+      "sha256": "17942a9975bc38c9e08a0fb25f156dbe"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b060-exit-0",
+    "description": "Walking onto exit 0 of HEL_B060 (scene 488) should lead to scene 463",
+    "plan": "# hel-hel-b060-exit-0: Walking onto exit 0 of HEL_B060 (scene 488) should lead to scene 463\nlimit 20000\nenter 33256 0 16713471 0\ncheckpoint entered\nexit 0 463\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 488 save f0113c82998d152f state 1b8ddb283f749c5f ram 0000000000000000",
+     "arrived frame 295 scene 463 save 9122dbf5c9a9e8c6 state e7c7497f2e442705 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e9a1b5d5259caa8072ff25bb3e8be35"
+     },
+     {
+      "frames": 66,
+      "sha256": "1e316aeebf6e46487a5470264a13e333"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b070-exit-0",
+    "description": "Walking onto exit 0 of HEL_B070 (scene 489) should lead to scene 465",
+    "plan": "# hel-hel-b070-exit-0: Walking onto exit 0 of HEL_B070 (scene 489) should lead to scene 465\nlimit 20000\nenter 33257 0 16713471 0\ncheckpoint entered\nexit 0 465\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 489 save bd339c92b6c79d12 state 308b6e80d14907ea ram 0000000000000000",
+     "arrived frame 305 scene 465 save 29cabc5890492b89 state 0681dbedb7929dd3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (129, 267): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 54,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dff8ba13a78bc186efb687a9e12a52c0"
+     },
+     {
+      "frames": 76,
+      "sha256": "7b364b712fb6a9f557cf36d884516669"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b070-exit-1",
+    "description": "Walking onto exit 1 of HEL_B070 (scene 489) should lead to scene 490",
+    "plan": "# hel-hel-b070-exit-1: Walking onto exit 1 of HEL_B070 (scene 489) should lead to scene 490\nlimit 20000\nenter 33257 0 16713471 1\ncheckpoint entered\nexit 1 490\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 489 save f61dd54988f3dfcf state 2405030784716f50 ram 0000000000000000",
+     "arrived frame 329 scene 490 save 7704db966735be56 state b615ea889e2ce578 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (885, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 73,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "410a11422f655fe7a04eb35b0d2bfaf5"
+     },
+     {
+      "frames": 100,
+      "sha256": "43f9eb9ef606b4f79210b855cf94adf8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b080-exit-0",
+    "description": "Walking onto exit 0 of HEL_B080 (scene 490) should lead to scene 489",
+    "plan": "# hel-hel-b080-exit-0: Walking onto exit 0 of HEL_B080 (scene 490) should lead to scene 489\nlimit 20000\nenter 33258 1 16713471 1\ncheckpoint entered\nexit 0 489\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 490 save d2cc89a0eb27531d state a056aba341512057 ram 0000000000000000",
+     "arrived frame 1993 scene 489 save 6f2374b86dfbb6e8 state f85df60f08758f92 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (89, 299): 7 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1430 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 140,
+     "instruction": 462,
+     "scene": 3,
+     "monster": 2,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42d1878b766f6ea47e5717139296553d"
+     },
+     {
+      "frames": 1764,
+      "sha256": "86099ac3812eeecc8c1dbf0518a90e62"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b080-exit-1",
+    "description": "Walking onto exit 1 of HEL_B080 (scene 490) should lead to one of scene 478, scene 479",
+    "plan": "# hel-hel-b080-exit-1: Walking onto exit 1 of HEL_B080 (scene 490) should lead to one of scene 478, scene 479\nlimit 20000\nenter 33258 1 16713471 1\ncheckpoint entered\nanswer 1\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 490 save d2cc89a0eb27531d state a056aba341512057 ram 0000000000000000",
+     "arrived frame 568 scene 478 save d3df122b7adc63b2 state dcc4ae4fe1b62f05 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (498, 267): 1 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 78,
+     "instruction": 206,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42d1878b766f6ea47e5717139296553d"
+     },
+     {
+      "frames": 339,
+      "sha256": "70b844e5e9b9ca4f66c019e2208cd0a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b100-exit-0",
+    "description": "Walking onto exit 0 of HEL_B100 (scene 491) should lead to scene 470",
+    "plan": "# hel-hel-b100-exit-0: Walking onto exit 0 of HEL_B100 (scene 491) should lead to scene 470\nlimit 20000\nenter 33259 0 16713471 0\ncheckpoint entered\nexit 0 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 491 save 0170aeb09212583c state db89643fe06da2ce ram 0000000000000000",
+     "arrived frame 294 scene 470 save 8ef348940f2f1806 state e21d35eb0f288ebd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (246, 102): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 53,
+     "scene": 3,
+     "instruction": 172,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "834e3346c731f3133883ecbe54670f2a"
+     },
+     {
+      "frames": 65,
+      "sha256": "8a9d691eb9d961a7c92a140577c310c0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b110-exit-0",
+    "description": "Walking onto exit 0 of HEL_B110 (scene 492) should lead to scene 470",
+    "plan": "# hel-hel-b110-exit-0: Walking onto exit 0 of HEL_B110 (scene 492) should lead to scene 470\nlimit 20000\nenter 33260 0 16713471 0\ncheckpoint entered\nexit 0 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 492 save 9dd1acdfe401d18b state 3a3f08c9198caa80 ram 0000000000000000",
+     "arrived frame 295 scene 470 save bc7cfe4e2de59f43 state 7e50ca1e5d5cc07f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (59, 36): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 53,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a728ca6aacd7e5edf8269929e27f0f0f"
+     },
+     {
+      "frames": 66,
+      "sha256": "5c118de5dbc02839ea994f782e69dec8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b120-exit-0",
+    "description": "Walking onto exit 0 of HEL_B120 (scene 493) should lead to scene 470",
+    "plan": "# hel-hel-b120-exit-0: Walking onto exit 0 of HEL_B120 (scene 493) should lead to scene 470\nlimit 20000\nenter 33261 0 16713471 0\ncheckpoint entered\nexit 0 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 493 save 824bd28f7940226e state 6416919891441678 ram 0000000000000000",
+     "arrived frame 296 scene 470 save efc06111239c6411 state 7e8539b934dc4718 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (63, 38): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14e115a4c2a5a7a7b33fc8693404d500"
+     },
+     {
+      "frames": 67,
+      "sha256": "d5482506c929a773fc229a2bef80fa38"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b130-exit-0",
+    "description": "Walking onto exit 0 of HEL_B130 (scene 494) should lead to scene 469",
+    "plan": "# hel-hel-b130-exit-0: Walking onto exit 0 of HEL_B130 (scene 494) should lead to scene 469\nlimit 20000\nenter 33262 0 16713471 0\ncheckpoint entered\nexit 0 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 494 save c87feff5462b0625 state fdf1853a187834ee ram 0000000000000000",
+     "arrived frame 293 scene 469 save d99ed093340689a8 state 254fdef43f01750d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (247, 97): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 50,
+     "instruction": 156,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a6625545e0c9c6a7efc442b3711c13c"
+     },
+     {
+      "frames": 64,
+      "sha256": "109b9a5a528ca4f3496f7a91b5de7362"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b140-exit-0",
+    "description": "Walking onto exit 0 of HEL_B140 (scene 495) should lead to scene 469",
+    "plan": "# hel-hel-b140-exit-0: Walking onto exit 0 of HEL_B140 (scene 495) should lead to scene 469\nlimit 20000\nenter 33263 0 16713471 0\ncheckpoint entered\nexit 0 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 495 save c8aba0e4533355a8 state 3832b64ec3a7ac20 ram 0000000000000000",
+     "arrived frame 292 scene 469 save 8a872856e11c6957 state 3678808827818d58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (244, 94): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a95676ded6c096ceff6606194b866d34"
+     },
+     {
+      "frames": 63,
+      "sha256": "09aba278359799dd1b06f529414f42fe"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b150-exit-0",
+    "description": "Walking onto exit 0 of HEL_B150 (scene 496) should lead to scene 469",
+    "plan": "# hel-hel-b150-exit-0: Walking onto exit 0 of HEL_B150 (scene 496) should lead to scene 469\nlimit 20000\nenter 33264 0 16713471 0\ncheckpoint entered\nexit 0 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 496 save 67bf00fb90d32ee7 state 598f92babf35e10c ram 0000000000000000",
+     "arrived frame 295 scene 469 save a1659359a6059bc5 state b50397e013fd641f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f96d44d87f729bf656c0bcb6df37b70d"
+     },
+     {
+      "frames": 66,
+      "sha256": "12920315fc39433ba9e5fa1570b4aa2f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b160-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b160-exit-0",
+    "description": "Walking onto exit 0 of HEL_B160 (scene 497) should lead to scene 474",
+    "plan": "# hel-hel-b160-exit-0: Walking onto exit 0 of HEL_B160 (scene 497) should lead to scene 474\nlimit 20000\nenter 33265 0 16713471 0\ncheckpoint entered\nexit 0 474\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 497 save 6dd624f0491426ca state 82745cdc7468f95b ram 0000000000000000",
+     "arrived frame 315 scene 474 save 5fbd17694f2dba34 state 75f0d1796f20dbfd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (146, 265): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 64,
+     "instruction": 175,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "93ee35a0c826eb5f1a9d0652f9e47775"
+     },
+     {
+      "frames": 86,
+      "sha256": "c20a884c1db13738a7094524f07977bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b160-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b160-exit-1",
+    "description": "Walking onto exit 1 of HEL_B160 (scene 497) should lead to scene 498",
+    "plan": "# hel-hel-b160-exit-1: Walking onto exit 1 of HEL_B160 (scene 497) should lead to scene 498\nlimit 20000\nenter 33265 0 16713471 1\ncheckpoint entered\nexit 1 498\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 497 save d45c342d2a4b5e07 state b6a694930e5ad842 ram 0000000000000000",
+     "arrived frame 332 scene 498 save acc61c8b4e6f14c0 state b386c7294f22e1b2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1105, 299): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 178,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6ed41e5a85063e33da8ac2f429cd3280"
+     },
+     {
+      "frames": 103,
+      "sha256": "f4cea6885935c3cf7044952ac0178dfc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b170-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b170-exit-0",
+    "description": "Walking onto exit 0 of HEL_B170 (scene 498) should lead to scene 497",
+    "plan": "# hel-hel-b170-exit-0: Walking onto exit 0 of HEL_B170 (scene 498) should lead to scene 497\nlimit 20000\nenter 33266 1 16713471 1\ncheckpoint entered\nexit 0 497\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 498 save f0518d9832ccd7b5 state 93972a75313ba367 ram 0000000000000000",
+     "arrived frame 1218 scene 497 save 3aaf70366fdac5e4 state e85e96a818c4bfa9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (91, 299): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 115,
+     "instruction": 283,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b284ef5a5e581698846730a334e96fb2"
+     },
+     {
+      "frames": 989,
+      "sha256": "a5ce10f8889eb0dafdb2a7d329bde274"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b170-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b170-exit-1",
+    "description": "Walking onto exit 1 of HEL_B170 (scene 498) should lead to scene 475",
+    "plan": "# hel-hel-b170-exit-1: Walking onto exit 1 of HEL_B170 (scene 498) should lead to scene 475\nlimit 20000\nenter 33266 1 16713471 1\ncheckpoint entered\nexit 1 475\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 498 save f0518d9832ccd7b5 state 93972a75313ba367 ram 0000000000000000",
+     "arrived frame 304 scene 475 save 28817713facc374c state 0100601de4bee81e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (686, 265): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b284ef5a5e581698846730a334e96fb2"
+     },
+     {
+      "frames": 75,
+      "sha256": "1b34e67a8d82f61664472bb1a3c40406"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs01-exit-0",
+    "description": "Walking onto exit 0 of HEL_BS01 (scene 479) should lead to scene 490",
+    "plan": "# hel-hel-bs01-exit-0: Walking onto exit 0 of HEL_BS01 (scene 479) should lead to scene 490\nlimit 20000\nenter 33247 0 16713471 1\ncheckpoint entered\nexit 0 490\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 479 save 87f2a5e019d2baf5 state 90a7917429d56f99 ram 0000000000000000",
+     "arrived frame 358 scene 490 save 52bbc64bb2c6b407 state f85e15b3828c45c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 59): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "95f413387db68fd95aafbce0904368aa"
+     },
+     {
+      "frames": 129,
+      "sha256": "8b0a08113fb50d112280cbcb925d556f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs01-exit-1",
+    "description": "Walking onto exit 1 of HEL_BS01 (scene 479) should lead to scene 466",
+    "plan": "# hel-hel-bs01-exit-1: Walking onto exit 1 of HEL_BS01 (scene 479) should lead to scene 466\nlimit 20000\nenter 33247 0 16713471 1\ncheckpoint entered\nexit 1 466\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 479 save 87f2a5e019d2baf5 state 90a7917429d56f99 ram 0000000000000000",
+     "arrived frame 355 scene 466 save 2e4c5a134d34effb state 00b65dbca129ff96 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (153, 170): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "95f413387db68fd95aafbce0904368aa"
+     },
+     {
+      "frames": 126,
+      "sha256": "1bba5082e6b041deecc8d8bac907cc03"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs01-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs01-exit-2",
+    "description": "Walking onto exit 2 of HEL_BS01 (scene 479) should lead to scene 466",
+    "plan": "# hel-hel-bs01-exit-2: Walking onto exit 2 of HEL_BS01 (scene 479) should lead to scene 466\nlimit 20000\nenter 33247 0 16713471 1\ncheckpoint entered\nexit 2 466\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 479 save 87f2a5e019d2baf5 state 90a7917429d56f99 ram 0000000000000000",
+     "arrived frame 356 scene 466 save 2e4c5a134d34effb state d7f478a9a1e5dfe5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (177, 126): 2 waypoints",
+     "exit 2's script took the hero out through exit 1"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "95f413387db68fd95aafbce0904368aa"
+     },
+     {
+      "frames": 127,
+      "sha256": "ea4d9126cf0680585cc4da3d4f53f68a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs10-exit-0",
+    "description": "Walking onto exit 0 of HEL_BS10 (scene 480) should lead to scene 472",
+    "plan": "# hel-hel-bs10-exit-0: Walking onto exit 0 of HEL_BS10 (scene 480) should lead to scene 472\nlimit 20000\nenter 33248 0 16720413 0\ncheckpoint entered\nexit 0 472\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 480 save 9ee30f50e2a0d1b8 state 0e764cc5238eb3c1 ram 0000000000000000",
+     "arrived frame 305 scene 472 save 85f2715cb6f946b0 state 22485e3703164d13 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 104): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 57,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cd99b53f6355aad4e66fdfcaba187174"
+     },
+     {
+      "frames": 76,
+      "sha256": "506121f34e0dff020a27117484f26d5d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs12-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs12-exit-0",
+    "description": "Walking onto exit 0 of HEL_BS12 (scene 624) should lead to scene 472",
+    "plan": "# hel-hel-bs12-exit-0: Walking onto exit 0 of HEL_BS12 (scene 624) should lead to scene 472\nlimit 20000\nenter 33392 0 16713471 0\ncheckpoint entered\nexit 0 472\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 624 save 6baf6061482bf03e state a82ab82d9e0b8586 ram 0000000000000000",
+     "arrived frame 305 scene 472 save 46f3fc0d0efdc648 state 0a3bf07f5e1628ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 104): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8def590bc720fcb2e8b93a6c36690f1f"
+     },
+     {
+      "frames": 76,
+      "sha256": "a91faf4022e960ace8a7690737ad14b7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs13-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs13-exit-0",
+    "description": "Walking onto exit 0 of HEL_BS13 (scene 926) should lead to scene 472",
+    "plan": "# hel-hel-bs13-exit-0: Walking onto exit 0 of HEL_BS13 (scene 926) should lead to scene 472\nlimit 20000\nenter 926 0 16776959 0\ncheckpoint entered\nexit 0 472\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 926 save 0b3567429d96c41b state a41e1b64d3d0cda6 ram 0000000000000000",
+     "arrived frame 351 scene 472 save 46f3fc0d0efdc648 state e30565fc09e48eb9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 104): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 63,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d5eaa0c28aad04ed255fdcab48ba14c7"
+     },
+     {
+      "frames": 122,
+      "sha256": "17a431088c0045ad835c722cc7d4c1f8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs14-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs14-exit-0",
+    "description": "Walking onto exit 0 of HEL_BS14 (scene 927) should lead to scene 472",
+    "plan": "# hel-hel-bs14-exit-0: Walking onto exit 0 of HEL_BS14 (scene 927) should lead to scene 472\nlimit 20000\nenter 927 0 16717311 0\ncheckpoint entered\nexit 0 472\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 927 save a99f426a0548bfab state 91264253576d41a4 ram 0000000000000000",
+     "arrived frame 416 scene 472 save 8801241b16e1b4a2 state 07ce9ef9696978be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 104): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 235,
+     "instruction_end": 70,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9377bfce1072d532d369c110dec03472"
+     },
+     {
+      "frames": 187,
+      "sha256": "a9c984a765cac4066947f0d2c35f2b52"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e000-exit-0",
+    "description": "Walking onto exit 0 of HEL_E000 (scene 457) should lead to scene 458",
+    "plan": "# hel-hel-e000-exit-0: Walking onto exit 0 of HEL_E000 (scene 457) should lead to scene 458\nlimit 20000\nenter 457 0 16713471 1\ncheckpoint entered\nexit 0 458\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 457 save 36fe29eca87eed6f state 27618701be6acf6f ram 0000000000000000",
+     "arrived frame 541 scene 458 save 341c8fed2fccf697 state 8c12d0c38b8cb296 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (15, 254): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "928a98744f59e30a1a72cd22c27f2ef8"
+     },
+     {
+      "frames": 312,
+      "sha256": "e00cbbfb9ac294317b2ae718894a2ac7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e010-exit-0",
+    "description": "Walking onto exit 0 of HEL_E010 (scene 458) should lead to scene 457",
+    "plan": "# hel-hel-e010-exit-0: Walking onto exit 0 of HEL_E010 (scene 458) should lead to scene 457\nlimit 20000\nenter 458 0 16713471 0\ncheckpoint entered\nexit 0 457\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 458 save 013b18c67c1789d9 state f96f5c2a078bd603 ram 0000000000000000",
+     "arrived frame 304 scene 457 save 7577c4ce79861400 state ffa4cff1f6c4b50d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9edd20515a13e905905b87e5d932adf5"
+     },
+     {
+      "frames": 75,
+      "sha256": "c6571b1228d094ab1d31bbe44decfa47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e010-exit-1",
+    "description": "Walking onto exit 1 of HEL_E010 (scene 458) should lead to scene 482",
+    "plan": "# hel-hel-e010-exit-1: Walking onto exit 1 of HEL_E010 (scene 458) should lead to scene 482\nlimit 20000\nenter 458 0 16713471 0\ncheckpoint entered\nexit 1 482\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 458 save 013b18c67c1789d9 state f96f5c2a078bd603 ram 0000000000000000",
+     "arrived frame 432 scene 482 save 984f1c1ce42a07d6 state 56638a965b5e38f4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (347, 290): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 62,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9edd20515a13e905905b87e5d932adf5"
+     },
+     {
+      "frames": 203,
+      "sha256": "eb7da7acd2e1bd591a907615867eb8fc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e020-exit-0",
+    "description": "Walking onto exit 0 of HEL_E020 (scene 459) should lead to scene 484",
+    "plan": "# hel-hel-e020-exit-0: Walking onto exit 0 of HEL_E020 (scene 459) should lead to scene 484\nlimit 20000\nenter 459 0 16713471 1\ncheckpoint entered\nexit 0 484\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 459 save 9862c17c8efdd0b9 state c6c9ef0e81e68e4d ram 0000000000000000",
+     "arrived frame 496 scene 484 save 4464fd76e513b78f state dd42d46d7cf92791 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 361): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 49,
+     "instruction": 146,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "57949c06cfa86b5c61fa720fedc6db83"
+     },
+     {
+      "frames": 267,
+      "sha256": "5cd18e267c44a6243e3c7ae1cc45b171"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e020-exit-1",
+    "description": "Walking onto exit 1 of HEL_E020 (scene 459) should lead to scene 460",
+    "plan": "# hel-hel-e020-exit-1: Walking onto exit 1 of HEL_E020 (scene 459) should lead to scene 460\nlimit 20000\nenter 459 0 16713471 1\ncheckpoint entered\nexit 1 460\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 459 save 9862c17c8efdd0b9 state c6c9ef0e81e68e4d ram 0000000000000000",
+     "arrived frame 302 scene 460 save 841fa72fb3f77a5a state aeca7bfeebcbcc0f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (462, 291): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 34,
+     "instruction": 130,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "57949c06cfa86b5c61fa720fedc6db83"
+     },
+     {
+      "frames": 73,
+      "sha256": "f6b2ae9c8d2b69a2e82975261bcf0a21"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e030-exit-0",
+    "description": "Walking onto exit 0 of HEL_E030 (scene 460) should lead to scene 459",
+    "plan": "# hel-hel-e030-exit-0: Walking onto exit 0 of HEL_E030 (scene 460) should lead to scene 459\nlimit 20000\nenter 460 1 16713471 0\ncheckpoint entered\nexit 0 459\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 460 save 2478e61156d22f3a state cb01eaecf07e9784 ram 0000000000000000",
+     "arrived frame 304 scene 459 save 5dee4026183c5c01 state d91d5a33e83296c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (234, 364): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 34,
+     "instruction": 130,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5cc72de0f92aee8bf2c28933bfa977d"
+     },
+     {
+      "frames": 75,
+      "sha256": "559948eb0c61b6aaf5335e8f27a7914f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e030-exit-1",
+    "description": "Walking onto exit 1 of HEL_E030 (scene 460) should lead to scene 461",
+    "plan": "# hel-hel-e030-exit-1: Walking onto exit 1 of HEL_E030 (scene 460) should lead to scene 461\nlimit 20000\nenter 460 1 16713471 0\ncheckpoint entered\nexit 1 461\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 460 save 2478e61156d22f3a state cb01eaecf07e9784 ram 0000000000000000",
+     "arrived frame 392 scene 461 save 9fb6547fd202d42e state a052520ac49b8a16 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (414, 212): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5cc72de0f92aee8bf2c28933bfa977d"
+     },
+     {
+      "frames": 163,
+      "sha256": "3a7171daf3a566321f3c1ccd55115515"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e030-exit-2",
+    "description": "Walking onto exit 2 of HEL_E030 (scene 460) should lead to scene 463",
+    "plan": "# hel-hel-e030-exit-2: Walking onto exit 2 of HEL_E030 (scene 460) should lead to scene 463\nlimit 20000\nenter 460 1 16713471 0\ncheckpoint entered\nexit 2 463\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 460 save 2478e61156d22f3a state cb01eaecf07e9784 ram 0000000000000000",
+     "arrived frame 661 scene 463 save 1d79181b6b3ca32d state d74b5326d704c89b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (32, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5cc72de0f92aee8bf2c28933bfa977d"
+     },
+     {
+      "frames": 432,
+      "sha256": "8fa826a52f84b104be7bf10368b63cf9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e040-exit-0",
+    "description": "Walking onto exit 0 of HEL_E040 (scene 461) should lead to scene 460",
+    "plan": "# hel-hel-e040-exit-0: Walking onto exit 0 of HEL_E040 (scene 461) should lead to scene 460\nlimit 20000\nenter 461 0 16713471 0\ncheckpoint entered\nexit 0 460\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 461 save 8b8ba49a033317ce state 78197fbc06889a7f ram 0000000000000000",
+     "arrived frame 295 scene 460 save 237777c73e886c6f state 7b0be0b89fa132a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 32): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9740e27ef81fdf0d5992ee2d92121612"
+     },
+     {
+      "frames": 66,
+      "sha256": "2782b25ed4c53c45fbaf31af0b4e372a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e050-exit-0",
+    "description": "Walking onto exit 0 of HEL_E050 (scene 462) should lead to scene 463",
+    "plan": "# hel-hel-e050-exit-0: Walking onto exit 0 of HEL_E050 (scene 462) should lead to scene 463\nlimit 20000\nenter 462 1 16713471 4\ncheckpoint entered\nexit 0 463\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 462 save 28388eda6000c770 state 616922f48a8a55f6 ram 0000000000000000",
+     "arrived frame 828 scene 463 save 1a6349af9d95a28c state c31db28ac7cbc949 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (70, 297): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eb214007faa318a1466004a1372ae772"
+     },
+     {
+      "frames": 599,
+      "sha256": "da5ed13c4661151f34ea6686247f618a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e050-exit-1",
+    "description": "Walking onto exit 1 of HEL_E050 (scene 462) should lead to scene 464",
+    "plan": "# hel-hel-e050-exit-1: Walking onto exit 1 of HEL_E050 (scene 462) should lead to scene 464\nlimit 20000\nenter 462 1 16713471 4\ncheckpoint entered\nexit 1 464\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 462 save 28388eda6000c770 state 616922f48a8a55f6 ram 0000000000000000",
+     "arrived frame 723 scene 464 save d94748bcc69efc7f state 4d45c49e389bfd51 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 267): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eb214007faa318a1466004a1372ae772"
+     },
+     {
+      "frames": 494,
+      "sha256": "df11e0a1a5c3b60e94f822f350257379"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e050-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4e2 = 1 for exit 2 of HEL_E050",
+    "source": "scene-wide search over the saved-game variables scene 462's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4e2": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e050-exit-2",
+    "description": "Walking onto exit 2 of HEL_E050 (scene 462) should lead to scene 487",
+    "plan": "# hel-hel-e050-exit-2: Walking onto exit 2 of HEL_E050 (scene 462) should lead to scene 487\nlimit 20000\nenter 462 1 16713471 4\ncheckpoint entered\nexit 2 487\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 462 save d35ee3abcc3b05dc state 616922f48a8a55f6 ram 0000000000000000",
+     "arrived frame 555 scene 487 save c998fa2fc13390d4 state 3084bb70e98b843a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (642, 259): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 47,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5d4ec949ea7238d18d00f6f7a15dcca"
+     },
+     {
+      "frames": 326,
+      "sha256": "41443b51e499ccd7c61ca2e73982f865"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e050-exit-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4e2 = 1 for exit 3 of HEL_E050",
+    "source": "scene-wide search over the saved-game variables scene 462's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4e2": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e050-exit-3",
+    "description": "Walking onto exit 3 of HEL_E050 (scene 462) should lead to scene 486",
+    "plan": "# hel-hel-e050-exit-3: Walking onto exit 3 of HEL_E050 (scene 462) should lead to scene 486\nlimit 20000\nenter 462 1 16713471 4\ncheckpoint entered\nexit 3 486\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 462 save d35ee3abcc3b05dc state 616922f48a8a55f6 ram 0000000000000000",
+     "arrived frame 463 scene 486 save bd27585deb627d51 state 33e587a1de0dedee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (877, 267): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5d4ec949ea7238d18d00f6f7a15dcca"
+     },
+     {
+      "frames": 234,
+      "sha256": "ead083d31e5549481e37c33ef5498758"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e050-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e050-exit-4",
+    "description": "Walking onto exit 4 of HEL_E050 (scene 462) should lead to scene 463",
+    "plan": "# hel-hel-e050-exit-4: Walking onto exit 4 of HEL_E050 (scene 462) should lead to scene 463\nlimit 20000\nenter 462 1 16713471 4\ncheckpoint entered\nexit 4 463\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 462 save 28388eda6000c770 state 616922f48a8a55f6 ram 0000000000000000",
+     "arrived frame 333 scene 463 save 54533929aa5db8d0 state 73cb414b091f5711 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1128, 301): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eb214007faa318a1466004a1372ae772"
+     },
+     {
+      "frames": 104,
+      "sha256": "14d7ae3e4a8275a548b6e3a57780baa1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e060-exit-0",
+    "description": "Walking onto exit 0 of HEL_E060 (scene 463) should lead to scene 462",
+    "plan": "# hel-hel-e060-exit-0: Walking onto exit 0 of HEL_E060 (scene 463) should lead to scene 462\nlimit 20000\nenter 463 0 16713471 1\ncheckpoint entered\nexit 0 462\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 463 save 0870fb9f7c97bf65 state 24cf2089572bed0a ram 0000000000000000",
+     "arrived frame 485 scene 462 save b11458de7aefd298 state 2af340b61cbe08a2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (70, 297): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a44236e921b3b2157513c5292c72263c"
+     },
+     {
+      "frames": 256,
+      "sha256": "be1514b217f8f68e7b49a70165756b32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e060-exit-1",
+    "description": "Walking onto exit 1 of HEL_E060 (scene 463) should lead to scene 460",
+    "plan": "# hel-hel-e060-exit-1: Walking onto exit 1 of HEL_E060 (scene 463) should lead to scene 460\nlimit 20000\nenter 463 0 16713471 1\ncheckpoint entered\nexit 1 460\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 463 save 0870fb9f7c97bf65 state 24cf2089572bed0a ram 0000000000000000",
+     "arrived frame 317 scene 460 save f741052ee1baaaa4 state f054301a2b9fe474 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (335, 265): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a44236e921b3b2157513c5292c72263c"
+     },
+     {
+      "frames": 88,
+      "sha256": "b8535e63e4b03ee7b384927d32a8a102"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e060-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4e2 = 1 for exit 2 of HEL_E060",
+    "source": "scene-wide search over the saved-game variables scene 463's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4e2": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e060-exit-2",
+    "description": "Walking onto exit 2 of HEL_E060 (scene 463) should lead to scene 488",
+    "plan": "# hel-hel-e060-exit-2: Walking onto exit 2 of HEL_E060 (scene 463) should lead to scene 488\nlimit 20000\nenter 463 0 16713471 1\ncheckpoint entered\nexit 2 488\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 463 save 541932a5dc55dae1 state 24cf2089572bed0a ram 0000000000000000",
+     "arrived frame 479 scene 488 save 28be519803c26143 state 912f60f79e151d29 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (626, 266): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64f56261eaf9b753b302c2f5a4acfc46"
+     },
+     {
+      "frames": 250,
+      "sha256": "17ae484cca1dc7eaadf624fd7759febd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e060-exit-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4e2 = 1 for exit 3 of HEL_E060",
+    "source": "scene-wide search over the saved-game variables scene 463's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4e2": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e060-exit-3",
+    "description": "Walking onto exit 3 of HEL_E060 (scene 463) should lead to scene 465",
+    "plan": "# hel-hel-e060-exit-3: Walking onto exit 3 of HEL_E060 (scene 463) should lead to scene 465\nlimit 20000\nenter 463 0 16713471 1\ncheckpoint entered\nexit 3 465\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 463 save 541932a5dc55dae1 state 24cf2089572bed0a ram 0000000000000000",
+     "arrived frame 608 scene 465 save 783046beec26d6f6 state 018dc1c68a408c5d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (894, 267): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64f56261eaf9b753b302c2f5a4acfc46"
+     },
+     {
+      "frames": 379,
+      "sha256": "6c7b94124437a6043e54f6c6d572e630"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e060-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e060-exit-4",
+    "description": "Walking onto exit 4 of HEL_E060 (scene 463) should lead to scene 462",
+    "plan": "# hel-hel-e060-exit-4: Walking onto exit 4 of HEL_E060 (scene 463) should lead to scene 462\nlimit 20000\nenter 463 0 16713471 1\ncheckpoint entered\nexit 4 462\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 463 save 0870fb9f7c97bf65 state 24cf2089572bed0a ram 0000000000000000",
+     "arrived frame 704 scene 462 save fe6a1b8ca6b7636c state 6a647e92ad7f4f0d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1128, 301): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a44236e921b3b2157513c5292c72263c"
+     },
+     {
+      "frames": 475,
+      "sha256": "ced3219d0e6b19d2eea1db5ced25fac1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-exit-0",
+    "description": "Walking onto exit 0 of HEL_E070 (scene 464) should lead to scene 462",
+    "plan": "# hel-hel-e070-exit-0: Walking onto exit 0 of HEL_E070 (scene 464) should lead to scene 462\nlimit 20000\nenter 464 0 16713471 0\ncheckpoint entered\nexit 0 462\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 464 save 2ec19eed134b6ec7 state 84ec8c734a86407e ram 0000000000000000",
+     "arrived frame 299 scene 462 save 84bcbaadcc510c61 state 197c27f2950052d0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (41, 19): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 43,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4ed6a5430034252e9a2acd5f3e4abae"
+     },
+     {
+      "frames": 70,
+      "sha256": "68e0d02800eb67d8f70dd3fda59c863e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e080-exit-0",
+    "description": "Walking onto exit 0 of HEL_E080 (scene 465) should lead to scene 463",
+    "plan": "# hel-hel-e080-exit-0: Walking onto exit 0 of HEL_E080 (scene 465) should lead to scene 463\nlimit 20000\nenter 465 0 16713471 0\ncheckpoint entered\nexit 0 463\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 465 save fb8a8d67c2b9ffaa state a83a96e091253ca1 ram 0000000000000000",
+     "arrived frame 306 scene 463 save 25bd3de96c949ae5 state ff76c1b6247fb3fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56220c9a96ccdd6e2fc231e39f105899"
+     },
+     {
+      "frames": 77,
+      "sha256": "9259c0de36df744976708d984efc0869"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e080-exit-1",
+    "description": "Walking onto exit 1 of HEL_E080 (scene 465) should lead to scene 489",
+    "plan": "# hel-hel-e080-exit-1: Walking onto exit 1 of HEL_E080 (scene 465) should lead to scene 489\nlimit 20000\nenter 465 0 16713471 0\ncheckpoint entered\nexit 1 489\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 465 save fb8a8d67c2b9ffaa state a83a96e091253ca1 ram 0000000000000000",
+     "arrived frame 429 scene 489 save 3bc4e495f0c49a38 state de04ae3d62cb9a82 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (334, 292): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 53,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56220c9a96ccdd6e2fc231e39f105899"
+     },
+     {
+      "frames": 200,
+      "sha256": "d8d742001a9e7d82192b0a4266a3945b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e090-exit-0",
+    "description": "Walking onto exit 0 of HEL_E090 (scene 466) should lead to scene 479",
+    "plan": "# hel-hel-e090-exit-0: Walking onto exit 0 of HEL_E090 (scene 466) should lead to scene 479\nlimit 20000\nenter 466 0 16713471 1\ncheckpoint entered\nexit 0 479\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 466 save c1542ecbdfa860b4 state 5c5f61e55ee58f39 ram 0000000000000000",
+     "arrived frame 443 scene 479 save efbe9e714b7a3a07 state 95104ff2f7f1f21b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 361): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d35cdd9d7ea5fdd4b66467895d797c8"
+     },
+     {
+      "frames": 214,
+      "sha256": "f88171494784b3c51fec416c6a9c4735"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e090-exit-1",
+    "description": "Walking onto exit 1 of HEL_E090 (scene 466) should lead to scene 469",
+    "plan": "# hel-hel-e090-exit-1: Walking onto exit 1 of HEL_E090 (scene 466) should lead to scene 469\nlimit 20000\nenter 466 0 16713471 1\ncheckpoint entered\nexit 1 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 466 save c1542ecbdfa860b4 state 5c5f61e55ee58f39 ram 0000000000000000",
+     "arrived frame 299 scene 469 save 3f522728ae091136 state 2a06a0af438724ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (334, 292): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d35cdd9d7ea5fdd4b66467895d797c8"
+     },
+     {
+      "frames": 70,
+      "sha256": "86117221a8a1ebe6bd2440fa29292387"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e100-exit-0",
+    "description": "Walking onto exit 0 of HEL_E100 (scene 467) should lead to scene 466",
+    "plan": "# hel-hel-e100-exit-0: Walking onto exit 0 of HEL_E100 (scene 467) should lead to scene 466\nlimit 20000\nenter 467 1 16713471 3\ncheckpoint entered\nexit 0 466\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 467 save 8336a5fc888b3c6e state 32cec128e003f08a ram 0000000000000000",
+     "arrived frame 436 scene 466 save f67025d3a782a2e2 state cee7bf45974428e6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (234, 364): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c21cea418e52ef64e8363b6621a05b15"
+     },
+     {
+      "frames": 207,
+      "sha256": "33b0b1f86eafd6c1393ce20539ad89e1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e100-exit-1",
+    "description": "Walking onto exit 1 of HEL_E100 (scene 467) should lead to scene 469",
+    "plan": "# hel-hel-e100-exit-1: Walking onto exit 1 of HEL_E100 (scene 467) should lead to scene 469\nlimit 20000\nenter 467 1 16713471 3\ncheckpoint entered\nexit 1 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 467 save 8336a5fc888b3c6e state 32cec128e003f08a ram 0000000000000000",
+     "arrived frame 449 scene 469 save 3f522728ae091136 state 8b7fde9735530ce4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 194): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c21cea418e52ef64e8363b6621a05b15"
+     },
+     {
+      "frames": 220,
+      "sha256": "d1e60a74942301ba68effd40eb7502fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e100-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e100-exit-2",
+    "description": "Walking onto exit 2 of HEL_E100 (scene 467) should lead to scene 469",
+    "plan": "# hel-hel-e100-exit-2: Walking onto exit 2 of HEL_E100 (scene 467) should lead to scene 469\nlimit 20000\nenter 467 1 16713471 3\ncheckpoint entered\nexit 2 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 467 save 8336a5fc888b3c6e state 32cec128e003f08a ram 0000000000000000",
+     "arrived frame 416 scene 469 save 3f522728ae091136 state baf62b3df5727345 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (35, 7): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c21cea418e52ef64e8363b6621a05b15"
+     },
+     {
+      "frames": 187,
+      "sha256": "1044bf03709c4936a13a33b5abbd26d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e100-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e100-exit-3",
+    "description": "Walking onto exit 3 of HEL_E100 (scene 467) should lead to scene 468",
+    "plan": "# hel-hel-e100-exit-3: Walking onto exit 3 of HEL_E100 (scene 467) should lead to scene 468\nlimit 20000\nenter 467 1 16713471 3\ncheckpoint entered\nexit 3 468\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 467 save 8336a5fc888b3c6e state 32cec128e003f08a ram 0000000000000000",
+     "arrived frame 298 scene 468 save e38c5c4e816a8965 state a99275f0280f4a7d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (381, 7): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c21cea418e52ef64e8363b6621a05b15"
+     },
+     {
+      "frames": 69,
+      "sha256": "2a650b4d83e42a48157b8a8e61806ee7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e100-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e100-exit-4",
+    "description": "Walking onto exit 4 of HEL_E100 (scene 467) should lead to scene 468",
+    "plan": "# hel-hel-e100-exit-4: Walking onto exit 4 of HEL_E100 (scene 467) should lead to scene 468\nlimit 20000\nenter 467 1 16713471 3\ncheckpoint entered\nexit 4 468\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 467 save 8336a5fc888b3c6e state 32cec128e003f08a ram 0000000000000000",
+     "arrived frame 357 scene 468 save e38c5c4e816a8965 state 68315b7aa950797a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (413, 208): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c21cea418e52ef64e8363b6621a05b15"
+     },
+     {
+      "frames": 128,
+      "sha256": "ca27fa76fb45b0cc7478ea390cf87ad6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e110-exit-0",
+    "description": "Walking onto exit 0 of HEL_E110 (scene 468) should lead to scene 467",
+    "plan": "# hel-hel-e110-exit-0: Walking onto exit 0 of HEL_E110 (scene 468) should lead to scene 467\nlimit 20000\nenter 468 0 16713471 0\ncheckpoint entered\nexit 0 467\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 468 save 68638dfd41e7bc03 state 3025dfbda164ef7a ram 0000000000000000",
+     "arrived frame 295 scene 467 save d668b5090d06c84e state 7488ad28656ca748 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 32): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dde46be68eeb3789cf5740ade420bd8b"
+     },
+     {
+      "frames": 66,
+      "sha256": "5501d4a3a4007e9b9a31332e4b9fb9b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-0",
+    "description": "Walking onto exit 0 of HEL_E120 (scene 469) should lead to scene 470",
+    "plan": "# hel-hel-e120-exit-0: Walking onto exit 0 of HEL_E120 (scene 469) should lead to scene 470\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 0 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 589 scene 470 save 70f47dfac800425f state c89a47f77cd147b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (74, 299): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 360,
+      "sha256": "2ede233019f9b0fe63d609c5aa7ef966"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-1",
+    "description": "Walking onto exit 1 of HEL_E120 (scene 469) should lead to scene 496",
+    "plan": "# hel-hel-e120-exit-1: Walking onto exit 1 of HEL_E120 (scene 469) should lead to scene 496\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 1 496\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 481 scene 496 save 7986a12505614e49 state 76b31e5450ded068 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (309, 265): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 252,
+      "sha256": "1f5e3ec035a3cbd490d2c6c20cedb171"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-2",
+    "description": "Walking onto exit 2 of HEL_E120 (scene 469) should lead to scene 466",
+    "plan": "# hel-hel-e120-exit-2: Walking onto exit 2 of HEL_E120 (scene 469) should lead to scene 466\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 2 466\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 303 scene 466 save 03a3892ea61a31d1 state 813ec69134196487 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (612, 284): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 74,
+      "sha256": "df56fb0ca1b99b9a5f2c628c80ef783e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-3",
+    "description": "Walking onto exit 3 of HEL_E120 (scene 469) should lead to scene 495",
+    "plan": "# hel-hel-e120-exit-3: Walking onto exit 3 of HEL_E120 (scene 469) should lead to scene 495\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 3 495\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 558 scene 495 save fe9b899d3ab515b6 state 406deeda8632a446 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (842, 258): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 329,
+      "sha256": "29edd52354351b26d7dec08ac48bed4b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-4",
+    "description": "Walking onto exit 4 of HEL_E120 (scene 469) should lead to scene 494",
+    "plan": "# hel-hel-e120-exit-4: Walking onto exit 4 of HEL_E120 (scene 469) should lead to scene 494\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 4 494\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 940 scene 494 save 59fc559297bfa8f7 state 20fe2744f801e885 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1039, 267): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 49,
+     "instruction": 146,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 711,
+      "sha256": "3b90766c9f2dfd73115539d8b2583122"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e120-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e120-exit-5",
+    "description": "Walking onto exit 5 of HEL_E120 (scene 469) should lead to scene 470",
+    "plan": "# hel-hel-e120-exit-5: Walking onto exit 5 of HEL_E120 (scene 469) should lead to scene 470\nlimit 20000\nenter 469 0 16713471 2\ncheckpoint entered\nexit 5 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 469 save 5d64f608e6fa0d28 state bbec65fdb76cfa98 ram 0000000000000000",
+     "arrived frame 645 scene 470 save ab51011f73a157ea state cb7c0f460cf33ee4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1236, 300): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "exit": 1,
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce2938c98ba9dfac981cded1e6b7d03a"
+     },
+     {
+      "frames": 416,
+      "sha256": "679779f527fb7bf8122bc04a19c8f9fb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-0",
+    "description": "Walking onto exit 0 of HEL_E130 (scene 470) should lead to scene 469",
+    "plan": "# hel-hel-e130-exit-0: Walking onto exit 0 of HEL_E130 (scene 470) should lead to scene 469\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 0 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 845 scene 469 save e4024cf5beecb6e1 state 1f1750be31132426 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (74, 299): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 616,
+      "sha256": "28be8132496276da8ec08dea5f397e05"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-1",
+    "description": "Walking onto exit 1 of HEL_E130 (scene 470) should lead to scene 492",
+    "plan": "# hel-hel-e130-exit-1: Walking onto exit 1 of HEL_E130 (scene 470) should lead to scene 492\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 1 492\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 754 scene 492 save d72560276909368d state 6234d06fdad0c156 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (291, 266): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 52,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 525,
+      "sha256": "3d1628b23c7b1e77300b2d6a1af152b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-2",
+    "description": "Walking onto exit 2 of HEL_E130 (scene 470) should lead to scene 471",
+    "plan": "# hel-hel-e130-exit-2: Walking onto exit 2 of HEL_E130 (scene 470) should lead to scene 471\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 2 471\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 664 scene 471 save f2c4ca3857da241a state 4e1cc375c2456578 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (482, 267): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 435,
+      "sha256": "7cf93597bb620da34e44d738c15de4d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-3",
+    "description": "Walking onto exit 3 of HEL_E130 (scene 470) should lead to scene 493",
+    "plan": "# hel-hel-e130-exit-3: Walking onto exit 3 of HEL_E130 (scene 470) should lead to scene 493\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 3 493\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 586 scene 493 save 188fa21c428801d4 state 3e4e22e8de19ff3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (674, 256): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 357,
+      "sha256": "973b7dc43c52f4cd933c4c764505cd4d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-4",
+    "description": "Walking onto exit 4 of HEL_E130 (scene 470) should lead to scene 491",
+    "plan": "# hel-hel-e130-exit-4: Walking onto exit 4 of HEL_E130 (scene 470) should lead to scene 491\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 4 491\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 542 scene 491 save 4fa8be1850e1da6a state 0f2c58be697ded58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (991, 266): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "exit": 1,
+     "instruction_end": 52,
+     "scene": 3,
+     "instruction": 160,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 313,
+      "sha256": "3afa0be5e183218e480e467aef7cbe5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e130-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e130-exit-5",
+    "description": "Walking onto exit 5 of HEL_E130 (scene 470) should lead to scene 469",
+    "plan": "# hel-hel-e130-exit-5: Walking onto exit 5 of HEL_E130 (scene 470) should lead to scene 469\nlimit 20000\nenter 470 1 16713471 5\ncheckpoint entered\nexit 5 469\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 470 save 04f0aa894d692c8d state 5a1b71832dbd82ee ram 0000000000000000",
+     "arrived frame 322 scene 469 save 5671694cd9f691cc state fcc021c2162b4f98 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1239, 300): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d31ba7edb7db22cc45fbc3557476380"
+     },
+     {
+      "frames": 93,
+      "sha256": "c70661463902fd9ed51b514e68ba3e9f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e140-exit-0",
+    "description": "Walking onto exit 0 of HEL_E140 (scene 471) should lead to scene 470",
+    "plan": "# hel-hel-e140-exit-0: Walking onto exit 0 of HEL_E140 (scene 471) should lead to scene 470\nlimit 20000\nenter 33239 0 16713230 0\ncheckpoint entered\nexit 0 470\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 471 save 4e19cadf446aecac state 5f5257a871ff6914 ram 0000000000000000",
+     "arrived frame 293 scene 470 save 258984665eea7d28 state 600e2696005d8b39 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 59): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69543aff7a4e7591de3417bd095e4ab1"
+     },
+     {
+      "frames": 64,
+      "sha256": "1b7debe421cf346a142d4819c002f708"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e140-exit-1",
+    "description": "Walking onto exit 1 of HEL_E140 (scene 471) should lead to scene 473",
+    "plan": "# hel-hel-e140-exit-1: Walking onto exit 1 of HEL_E140 (scene 471) should lead to scene 473\nlimit 20000\nenter 33239 0 16713230 0\ncheckpoint entered\nexit 1 473\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 471 save 4e19cadf446aecac state 5f5257a871ff6914 ram 0000000000000000",
+     "arrived frame 507 scene 473 save 86ae655bbe66b9d0 state e6f721469407ea2e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (153, 170): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69543aff7a4e7591de3417bd095e4ab1"
+     },
+     {
+      "frames": 278,
+      "sha256": "c759b6c143fdd20bd41cb6c80026e7d3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e140-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e140-exit-2",
+    "description": "Walking onto exit 2 of HEL_E140 (scene 471) should lead to scene 473",
+    "plan": "# hel-hel-e140-exit-2: Walking onto exit 2 of HEL_E140 (scene 471) should lead to scene 473\nlimit 20000\nenter 33239 0 16713230 0\ncheckpoint entered\nexit 2 473\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 471 save 4e19cadf446aecac state 5f5257a871ff6914 ram 0000000000000000",
+     "arrived frame 413 scene 473 save 86ae655bbe66b9d0 state 79c8b5d2f98c5108 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (177, 126): 3 waypoints",
+     "exit 2's script took the hero out through exit 1"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69543aff7a4e7591de3417bd095e4ab1"
+     },
+     {
+      "frames": 184,
+      "sha256": "ffe6396a0fbb250d370d3930d8e8a093"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e150-exit-0",
+    "description": "Walking onto exit 0 of HEL_E150 (scene 472) should lead to scene 476",
+    "plan": "# hel-hel-e150-exit-0: Walking onto exit 0 of HEL_E150 (scene 472) should lead to scene 476\nlimit 20000\nenter 472 0 16713471 2\ncheckpoint entered\nexit 0 476\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 472 save b9bc60305591e8a1 state 225b43bb9ff46f77 ram 0000000000000000",
+     "arrived frame 338 scene 476 save 7686ca7fa2d64181 state b33bfc8b9dceed6e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 59): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cf1551f54fe05e5f93f392ae2fa37999"
+     },
+     {
+      "frames": 109,
+      "sha256": "49e5837cab0284d19f6e33a5d333db39"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e150-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 2 of HEL_E150 needs",
+    "source": "built from the conditions in scene 472's script 2 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 2
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e150-exit-2",
+    "description": "Walking onto exit 2 of HEL_E150 (scene 472) should lead to scene 481",
+    "plan": "# hel-hel-e150-exit-2: Walking onto exit 2 of HEL_E150 (scene 472) should lead to scene 481\nlimit 20000\nenter 706 0 16716799 1\nguest 4\nenter 472 0 16713471 2\ncheckpoint entered\nanswer 1\nexit 2 481\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 472 save dec7b47ff22ecc58 state f9b3ad31c0c1e38c ram 0000000000000000",
+     "arrived frame 749 scene 481 save 791b310112ebba56 state cf7729e31e94795b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 4 joined",
+     "answering choices with option 1",
+     "walk to (177, 126): 2 waypoints"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 275,
+     "instruction_end": 86,
+     "song": 4,
+     "scene": 4,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "66a65a78d2923ca1730e15d6ac8e5f46"
+     },
+     {
+      "frames": 435,
+      "sha256": "dc2fdd4bc9a864a99ad0f5d4a7cb2b37"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-exit-0",
+    "description": "Walking onto exit 0 of HEL_E160 (scene 473) should lead to scene 471",
+    "plan": "# hel-hel-e160-exit-0: Walking onto exit 0 of HEL_E160 (scene 473) should lead to scene 471\nlimit 20000\nenter 473 0 16713471 0\ncheckpoint entered\nexit 0 471\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save c806fa3d747e84c2 state d208c4bea435c97a ram 0000000000000000",
+     "arrived frame 306 scene 471 save 8115d2b832e19993 state a2c5071e9f01ef7b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4034e4bc11c4b65b7572f1b7ae5c838"
+     },
+     {
+      "frames": 77,
+      "sha256": "8ca06e944fde5522d1eeb403265e4277"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-exit-1",
+    "description": "Walking onto exit 1 of HEL_E160 (scene 473) should lead to scene 474",
+    "plan": "# hel-hel-e160-exit-1: Walking onto exit 1 of HEL_E160 (scene 473) should lead to scene 474\nlimit 20000\nenter 473 0 16713471 1\ncheckpoint entered\nexit 1 474\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save e9202832afc94aff state 01c30b535afb5948 ram 0000000000000000",
+     "arrived frame 305 scene 474 save 71af16869f05c387 state 7633294747ae840f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (462, 291): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42a975dafd7458443d32c9ba1a8ee2fe"
+     },
+     {
+      "frames": 76,
+      "sha256": "9dc7e61aa59aeda9a113b0d46b4d5d0f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-exit-0",
+    "description": "Walking onto exit 0 of HEL_E170 (scene 474) should lead to scene 473",
+    "plan": "# hel-hel-e170-exit-0: Walking onto exit 0 of HEL_E170 (scene 474) should lead to scene 473\nlimit 20000\nenter 474 1 16713471 0\ncheckpoint entered\nexit 0 473\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save c5ec5be5fe4fc969 state 6333e6a350e7682f ram 0000000000000000",
+     "arrived frame 306 scene 473 save 9c2d4d2b42916e21 state f9fba1425c1f266f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db390df8b2ffead0ee60eae688393a6d"
+     },
+     {
+      "frames": 77,
+      "sha256": "cf5788b008afed479fdf59951a68bb4e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-exit-1",
+    "description": "Walking onto exit 1 of HEL_E170 (scene 474) should lead to scene 497",
+    "plan": "# hel-hel-e170-exit-1: Walking onto exit 1 of HEL_E170 (scene 474) should lead to scene 497\nlimit 20000\nenter 474 1 16713471 1\ncheckpoint entered\nexit 1 497\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save d2a7c05de9c21374 state cc79d12ddf636f11 ram 0000000000000000",
+     "arrived frame 305 scene 497 save d638c5fc5fc1e458 state 3022050df47bbcd1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (462, 291): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 84,
+     "instruction": 183,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ea2d87e5e3a85720bac61013fd886dc"
+     },
+     {
+      "frames": 76,
+      "sha256": "34e93a95b3ee438462257814c2cba652"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e180-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e180-exit-0",
+    "description": "Walking onto exit 0 of HEL_E180 (scene 475) should lead to scene 498",
+    "plan": "# hel-hel-e180-exit-0: Walking onto exit 0 of HEL_E180 (scene 475) should lead to scene 498\nlimit 20000\nenter 475 0 16713471 0\ncheckpoint entered\nexit 0 498\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 475 save c0af11edcbae812c state 0b8a54513e8011e8 ram 0000000000000000",
+     "arrived frame 307 scene 498 save 3ed01bb443ff2075 state bcfc83f4817d8595 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e1f5d6cf210a8716345c852683c7422f"
+     },
+     {
+      "frames": 78,
+      "sha256": "df7f253a2576936ea898eb7947108a3a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e180-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e180-exit-1",
+    "description": "Walking onto exit 1 of HEL_E180 (scene 475) should lead to scene 476",
+    "plan": "# hel-hel-e180-exit-1: Walking onto exit 1 of HEL_E180 (scene 475) should lead to scene 476\nlimit 20000\nenter 475 0 16713471 1\ncheckpoint entered\nexit 1 476\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 475 save b70615292202e209 state 47a3e01dbd962da8 ram 0000000000000000",
+     "arrived frame 302 scene 476 save 2c80a48cced894aa state 01d082874f535210 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (339, 291): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 61,
+     "instruction": 165,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d45e62c560cad6180698a7ec4a7b634e"
+     },
+     {
+      "frames": 73,
+      "sha256": "4f34105b9e3c41fbae042c843ee7b0ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-exit-0",
+    "description": "Walking onto exit 0 of HEL_E190 (scene 476) should lead to scene 475",
+    "plan": "# hel-hel-e190-exit-0: Walking onto exit 0 of HEL_E190 (scene 476) should lead to scene 475\nlimit 20000\nenter 476 1 16713471 0\ncheckpoint entered\nexit 0 475\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save cef622c24e8d7c4a state c62b3581596994e7 ram 0000000000000000",
+     "arrived frame 307 scene 475 save e6295d0bdb86b969 state bed810169b44666a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 361): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dac6107779aaf1027caf2ed8a633a9bc"
+     },
+     {
+      "frames": 78,
+      "sha256": "d89d2e727c6067c9afbc2a4a1a2adeaa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-exit-1",
+    "description": "Walking onto exit 1 of HEL_E190 (scene 476) should lead to scene 472",
+    "plan": "# hel-hel-e190-exit-1: Walking onto exit 1 of HEL_E190 (scene 476) should lead to scene 472\nlimit 20000\nenter 476 1 16713471 1\ncheckpoint entered\nexit 1 472\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save 591cc6cd200f625f state 302ed24fab6a5779 ram 0000000000000000",
+     "arrived frame 296 scene 472 save 4c6e6bf325923fbf state 56759cfec67cd268 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 216): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36e08c29ebc98cc0a4e1e14a500f90f1"
+     },
+     {
+      "frames": 67,
+      "sha256": "07da0c46fce3f8d43b1071d2971ffae9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os00-exit-0",
+    "description": "Walking onto exit 0 of HEL_OS00 (scene 455) should lead to the world map",
+    "plan": "# hel-hel-os00-exit-0: Walking onto exit 0 of HEL_OS00 (scene 455) should lead to the world map\nlimit 20000\nenter 455 0 16713471 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 455 save ef0e67efbe6dd20d state 49719c079be849d6 ram 0000000000000000",
+     "arrived frame 552 scene 32767 save e48b69a66943ef4d state ffa70ee3487e5daa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints",
+     "game state 1 at vblank 1429"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e8c2eff2dc15fb7c0512a4cd596f1a9"
+     },
+     {
+      "frames": 322,
+      "sha256": "0266075a4488fcf04e968178025fb86e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os01-exit-0",
+    "description": "Walking onto exit 0 of HEL_OS01 (scene 706) should lead to the world map",
+    "plan": "# hel-hel-os01-exit-0: Walking onto exit 0 of HEL_OS01 (scene 706) should lead to the world map\nlimit 20000\nenter 706 0 16716799 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 706 save deaf2fbb613935b2 state 5d29caa52e70979c ram 0000000000000000",
+     "arrived frame 443 scene 32767 save 95b51bab259cdda6 state ac7c54b02f46b89b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints",
+     "game state 1 at vblank 1211"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 34,
+     "song": 3,
+     "exit": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48da1a941d547151dff1b6e2ec31ef2b"
+     },
+     {
+      "frames": 213,
+      "sha256": "8e9d47c450865aea4a8169643c68eaf3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os10-exit-0",
+    "description": "Walking onto exit 0 of HEL_OS10 (scene 456) should lead to the world map",
+    "plan": "# hel-hel-os10-exit-0: Walking onto exit 0 of HEL_OS10 (scene 456) should lead to the world map\nlimit 20000\nenter 456 0 16720383 0\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 456 save 7fba2cde4f393cf2 state f55a4bef02e99e62 ram 0000000000000000",
+     "arrived frame 323 scene 32767 save f66f3e2e4a3df0e6 state 3f06a10d0eb8a634 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints",
+     "game state 1 at vblank 971"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 118,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f99a6aa8ac245d59c871d46f42fd5c10"
+     },
+     {
+      "frames": 93,
+      "sha256": "982b41586843ce3c306cc7927092deea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os11-exit-0",
+    "description": "Walking onto exit 0 of HEL_OS11 (scene 783) should lead to the world map",
+    "plan": "# hel-hel-os11-exit-0: Walking onto exit 0 of HEL_OS11 (scene 783) should lead to the world map\nlimit 20000\nenter 783 0 16716799 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 783 save 768c5ca316c6167c state ffc81492ca7fb7f8 ram 0000000000000000",
+     "arrived frame 443 scene 32767 save 17f65672e57fe6f0 state 1054ed24746757e4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 48): 2 waypoints",
+     "game state 1 at vblank 1211"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "928bce9c132e3316c3fc9fd6e6319b1d"
+     },
+     {
+      "frames": 213,
+      "sha256": "40eeb551ce4af9471286c999d4d0b56b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

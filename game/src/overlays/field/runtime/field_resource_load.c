@@ -1,0 +1,407 @@
+#include "common.h"
+#include <libetc.h>
+#include <libgpu.h>
+#include "lom_native_time.h"
+#include "lom_native_graphics.h"
+
+#include "../internal/field_actor_runtime.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_state_ops.h"
+#include "main/audio/akao.h"
+#include "main/cdrom.h"
+#include "overlays/field/field_scene_transition.h"
+
+#define FIELD_BATTLE_ENTRY_CHANGE_COUNT 8
+#define FIELD_BATTLE_ENTRY_KEEP (-1)
+
+enum
+{
+    FIELD_BATTLE_ENTRY_IDLE = 0,
+    FIELD_BATTLE_ENTRY_WAIT_BINDINGS = 1,
+    FIELD_BATTLE_ENTRY_REQUEST_RESOURCES = 2,
+    FIELD_BATTLE_ENTRY_APPLY_CHANGES = 3,
+    FIELD_BATTLE_ENTRY_WAIT_SETTLED = 4
+};
+
+#define FIELD_PARTY_RELOAD_BUFFER_OFFSET 0x8000
+#define FIELD_PARTY_RELOAD_BUFFER_SIZE 0x18000
+#define FIELD_PARTY_RELOAD_BUFFER(slot) (g_field_cd_buffer + FIELD_PARTY_RELOAD_BUFFER_OFFSET + (slot) * FIELD_PARTY_RELOAD_BUFFER_SIZE)
+
+#define FIELD_BATTLE_ENTRY_TINT_FRAMES 60
+
+#define FIELD_SOUND_BATTLE_ENTRY 0x79
+
+typedef struct
+{
+    s16 actor_index;
+    s16 animation;
+    s16 builtin_animation;
+    s16 sound;
+} FieldBattleEntryChange;
+
+extern s32 g_field_battle_entry_change_count;
+extern s32 g_field_party_reload_sizes[FIELD_PLAYER_COUNT];
+extern FieldBattleEntryChange g_field_battle_entry_changes[FIELD_BATTLE_ENTRY_CHANGE_COUNT];
+extern s32 g_field_party_reload_resource_ids[FIELD_PLAYER_COUNT];
+
+/** @brief Cancel the battle entry: drop the queued changes and the pending party reloads. */
+void field_reset_battle_entry(void)
+{
+    s32 i;
+
+    g_field_battle_entry_change_count = 0;
+    g_field_battle_entry_state = FIELD_BATTLE_ENTRY_IDLE;
+
+    for (i = FIELD_PLAYER_COUNT - 1; i >= 0; i--)
+    {
+        g_field_party_reload_resource_ids[i] = 0;
+    }
+}
+
+/**
+ * @brief Start the battle entry sequence.
+ * @return The new state, FIELD_BATTLE_ENTRY_WAIT_BINDINGS.
+ */
+s32 field_begin_battle_entry(void)
+{
+    return g_field_battle_entry_state = FIELD_BATTLE_ENTRY_WAIT_BINDINGS;
+}
+
+/** @brief Advance the battle entry sequence by one step. */
+void field_update_battle_entry(void)
+{
+    s32 state;
+    s32 i;
+
+    state = g_field_battle_entry_state;
+
+    if (state == FIELD_BATTLE_ENTRY_IDLE)
+    {
+        return;
+    }
+
+    switch (state)
+    {
+    case FIELD_BATTLE_ENTRY_WAIT_BINDINGS:
+        if ((g_field_actor_bindings[0].state | g_field_actor_bindings[1].state | g_field_actor_bindings[2].state) == FIELD_BINDING_IDLE)
+        {
+            g_field_battle_entry_state = FIELD_BATTLE_ENTRY_REQUEST_RESOURCES;
+        }
+
+        break;
+
+    case FIELD_BATTLE_ENTRY_REQUEST_RESOURCES:
+        field_request_party_reload(FIELD_WEAPON_SET_BATTLE);
+        g_field_battle_entry_state = FIELD_BATTLE_ENTRY_APPLY_CHANGES;
+        break;
+
+    case FIELD_BATTLE_ENTRY_APPLY_CHANGES:
+    {
+        FieldActor* actor;
+        s32 actor_slot;
+        u8 animation;
+
+        for (i = 0; i < g_field_battle_entry_change_count; i++)
+        {
+            actor = &g_field_actors[g_field_battle_entry_changes[i].actor_index];
+
+            if (g_field_battle_entry_changes[i].animation != FIELD_BATTLE_ENTRY_KEEP)
+            {
+                actor->presence = FIELD_ACTOR_VISIBLE;
+                actor->command = FIELD_ACTOR_COMMAND_SEQUENCE_STEP;
+                animation = g_field_battle_entry_changes[i].animation | (actor->animation & FIELD_ANIMATION_FACING);
+                actor->animation = animation;
+
+                if (animation & FIELD_ANIMATION_FACING)
+                {
+                    actor->direction = 0;
+                }
+                else
+                {
+                    actor->direction = FIELD_HEADING_HALF_TURN;
+                }
+
+                actor->animation_state = 1;
+                actor->animation_active = 1;
+                actor->control.word &= ~FIELD_CONTROL_PLAY_ONCE;
+                actor->script_offset += 3;
+                field_restart_actor_animation(actor);
+            }
+
+            if (g_field_battle_entry_changes[i].builtin_animation != FIELD_BATTLE_ENTRY_KEEP)
+            {
+                actor_slot = field_find_free_actor_slot(actor->object_index, 0);
+
+                if ((actor_slot != FIELD_ACTOR_SLOT_NONE) &&
+                    (field_start_builtin_animation(actor->object_index, actor_slot, g_field_battle_entry_changes[i].builtin_animation) != 0))
+                {
+                    field_start_actor_animation(actor_slot, 0, NULL);
+                    g_field_object_states[actor->object_index].contact.bytes.animation_actor_index = actor_slot;
+                }
+            }
+
+            if (g_field_battle_entry_changes[i].sound != FIELD_BATTLE_ENTRY_KEEP)
+            {
+                field_play_sound(g_field_battle_entry_changes[i].sound, AKAO_PAN_CENTER);
+                lom_time_wait(0);
+            }
+        }
+
+        g_field_battle_entry_state = FIELD_BATTLE_ENTRY_WAIT_SETTLED;
+        break;
+    }
+
+    case FIELD_BATTLE_ENTRY_WAIT_SETTLED:
+    {
+        s16 command;
+
+        if (field_party_reload_reading() == 0)
+        {
+            for (i = 0; i < g_field_battle_entry_change_count; i++)
+            {
+                if (field_object_has_active_actor_tracks(g_field_battle_entry_changes[i].actor_index) != 0)
+                {
+                    break;
+                }
+            }
+
+            if (i == g_field_battle_entry_change_count)
+            {
+                for (i = FIELD_PARTY_COUNT; i < FIELD_ACTOR_COUNT; i++)
+                {
+                    if (g_field_actors[i].presence != FIELD_ACTOR_UNUSED && g_field_actors[i].command == FIELD_ACTOR_COMMAND_SEQUENCE_STEP)
+                    {
+                        break;
+                    }
+                }
+
+                if (i == FIELD_ACTOR_COUNT)
+                {
+                    for (i = 1; i < FIELD_PARTY_COUNT; i++)
+                    {
+                        if (g_field_player_records[i].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+                        {
+                            command = g_field_actors[i].command;
+
+                            if ((command == FIELD_ACTOR_COMMAND_FOLLOW_LEADER) || (command == FIELD_ACTOR_COMMAND_RUN_PATH))
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (i == FIELD_PARTY_COUNT)
+                    {
+                        for (i = 0; i < FIELD_PARTY_COUNT; i++)
+                        {
+                            g_field_object_parts[i].spawn_flags.word &= ~FIELD_PART_IGNORE_MAP_COLLISION;
+                            g_field_actors[i].command = FIELD_ACTOR_COMMAND_NONE;
+                        }
+
+                        field_play_sound(FIELD_SOUND_BATTLE_ENTRY, AKAO_PAN_CENTER);
+
+                        for (i = 0; i < FIELD_PLAYER_COUNT; i++)
+                        {
+                            if (g_field_party_reload_resource_ids[i] != 0)
+                            {
+                                field_install_party_reload(FIELD_RESOURCE_HAS_ACTIONS, i);
+                                g_field_actors[i].command = FIELD_ACTOR_COMMAND_IDLE_AFTER_ANIMATION;
+                                g_field_actors[i].animation_state = 1;
+                                g_field_actors[i].animation_frame = 0;
+                                g_field_actors[i].animation_active = 1;
+                                g_field_actors[i].animation = (g_field_actors[i].animation & FIELD_ANIMATION_FACING) + FIELD_ANIMATION_BATTLE_ENTRY;
+                                g_field_actors[i].control.word &= ~FIELD_CONTROL_PLAY_ONCE;
+                                g_field_object_states[i].movement.word &= ~FIELD_MOVEMENT_SEQUENCE_MASK;
+                                field_restart_actor_animation(&g_field_actors[i]);
+                            }
+                        }
+
+                        for (i = 0; i < FIELD_PARTY_COUNT; i++)
+                        {
+                            if (g_field_player_records[i].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+                            {
+                                g_field_object_states[i].tint_timer = FIELD_BATTLE_ENTRY_TINT_FRAMES;
+                                g_field_object_states[i].movement.word |= FIELD_MOVEMENT_INVULNERABLE;
+                            }
+                        }
+
+                        lom_graphics_wait(0);
+                        field_reset_actor_resources();
+                        field_restore_default_action_animation_mappings(1);
+                        field_battle_setup(g_field_active_group);
+                        g_field_battle_entry_state = FIELD_BATTLE_ENTRY_IDLE;
+                    }
+                }
+            }
+        }
+
+        break;
+    }
+    }
+}
+
+/**
+ * @brief Queue a change to an actor for the battle entry, or replace the actor's queued change.
+ * @param actor_key Actor key resolved with field_lookup_actor.
+ * @param animation Actor animation, or FIELD_BATTLE_ENTRY_KEEP.
+ * @param builtin_animation Builtin animation to start, or FIELD_BATTLE_ENTRY_KEEP.
+ * @param sound Sound to play, or FIELD_BATTLE_ENTRY_KEEP.
+ * @return 0 on success, -1 when the queue is full or the actor does not exist.
+ */
+s32 field_queue_battle_entry_change(s32 actor_key, s32 animation, s32 builtin_animation, s32 sound)
+{
+    FieldActor* actor;
+    s32 i;
+    FieldBattleEntryChange* change;
+    FieldBattleEntryChange* changes;
+
+    if (g_field_battle_entry_change_count == FIELD_BATTLE_ENTRY_CHANGE_COUNT)
+    {
+        return -1;
+    }
+
+    actor = field_lookup_actor(actor_key);
+
+    if (actor == FIELD_ACTOR_NONE)
+    {
+        return -1;
+    }
+
+    if (actor->presence == FIELD_ACTOR_UNUSED)
+    {
+        return -1;
+    }
+
+    for (i = 0; i < g_field_battle_entry_change_count; i++)
+    {
+        change = &g_field_battle_entry_changes[i];
+
+        if (change->actor_index == actor->object_index)
+        {
+            change->actor_index = actor->object_index;
+            change->animation = animation;
+            change->builtin_animation = builtin_animation;
+
+            if (builtin_animation != FIELD_BATTLE_ENTRY_KEEP)
+            {
+                change->animation = 0;
+            }
+
+            change->sound = sound;
+            return 0;
+        }
+    }
+
+    changes = g_field_battle_entry_changes;
+    change = &changes[g_field_battle_entry_change_count];
+    change->actor_index = actor->object_index;
+    change->animation = animation;
+    change->builtin_animation = builtin_animation;
+
+    if (builtin_animation != FIELD_BATTLE_ENTRY_KEEP)
+    {
+        change->animation = FIELD_ABILITY_DEFEND;
+    }
+
+    changes[g_field_battle_entry_change_count].sound = sound;
+    g_field_battle_entry_change_count++;
+    return 0;
+}
+
+/**
+ * @brief Check whether a party reload is waiting to be installed.
+ * @return 1 if a player has a pending reload, otherwise 0.
+ */
+s32 field_party_reload_pending(void)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_PLAYER_COUNT; i++)
+    {
+        if (g_field_party_reload_resource_ids[i] != 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Check whether a pending party reload is still being read from CD.
+ * @return 1 if a read is still queued, otherwise 0.
+ */
+s32 field_party_reload_reading(void)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_PLAYER_COUNT; i++)
+    {
+        if (g_field_party_reload_resource_ids[i] != 0)
+        {
+            if (cdrom_can_queue_resource((u16)g_field_party_reload_resource_ids[i]) == 0)
+            {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Install a player's reloaded resource from its staging buffer.
+ * @param alternate_layout FIELD_RESOURCE_HAS_ACTIONS for a battle package, 0 for a field package.
+ * @param slot Player index; nothing happens without a pending reload.
+ */
+void field_install_party_reload(s32 alternate_layout, s32 slot)
+{
+    FieldResourceEntry* entry;
+    FieldResourceEntry* entries;
+    u32 flags;
+
+    if (g_field_party_reload_resource_ids[slot] != 0)
+    {
+        field_release_resource_entry(slot);
+        entries = g_field_resource_entries;
+        entry = &entries[slot];
+        entry->slot_index = slot;
+        entry->multi_image = 0;
+        field_set_party_palettes();
+        entry->bound_animation_flags = FIELD_PARTY_DEFEAT_ANIMATION;
+        flags = entry->flags;
+        flags &= ~FIELD_RESOURCE_HAS_ACTIONS;
+        flags |= alternate_layout & 1;
+        entry->flags = flags;
+        entry->start = g_field_resource_cursor;
+        field_unpack_resource_package((struct FieldCdBuffer*)FIELD_PARTY_RELOAD_BUFFER(slot), g_field_party_reload_sizes[slot], slot, slot);
+        entry->end = g_field_resource_cursor;
+        entry->flags |= FIELD_RESOURCE_LOADED;
+        g_field_party_reload_resource_ids[slot] = 0;
+    }
+}
+
+/**
+ * @brief Request the resources of both players for a weapon set; inactive players get none.
+ * @param weapon_set Weapon set passed to field_get_actor_resource_id.
+ */
+void field_request_party_reload(s32 weapon_set)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_PLAYER_COUNT; i++)
+    {
+        if (g_field_player_records[i].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+        {
+            g_field_party_reload_resource_ids[i] = field_get_actor_resource_id(i, &g_field_player_records[i], weapon_set);
+            g_field_player_records[i].resource_id = g_field_party_reload_resource_ids[i];
+            g_field_party_reload_sizes[i] = cdrom_queue_read((u16)g_field_party_reload_resource_ids[i], FIELD_PARTY_RELOAD_BUFFER(i));
+        }
+        else
+        {
+            g_field_party_reload_sizes[i] = 0;
+            g_field_party_reload_resource_ids[i] = 0;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+name: CLOAD.BIN
+compressed_sha1: b3649aa844c5d94e3da8c591a0192361031a61a2
+sha1: 0b265953a801d39410cbe3ba9f1e92268a1f234a
+options:
+  base_path: ../../../
+  basename: CLOAD.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/CLOAD.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/cload.elf
+
+  asm_path: asm/jp/overlays/cload
+  src_path: src/overlays/cload
+  build_path: build/jp/overlays/cload
+
+  ld_script_path: linker/jp/overlays/cload/cload.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/cload/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/cload/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/cload_symbol_addrs.txt
+
+  reloc_addrs_path:
+    - config/jp/relocations/cload_reloc_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: cload
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, cload]
+      - [0x25, .rodata, cload_widgets]
+      - [0x39, .rodata, cload_card]
+      - [0xC5, c, cload]
+      - [0x247D, c, cload_widgets]
+      - [0x3641, c, cload_card]
+      - [0x54B9, c, cload_glyph]
+      - [0x5E95, databin, cload_data]
+  - [0x2C039]

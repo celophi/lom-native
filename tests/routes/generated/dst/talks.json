@@ -1,0 +1,1711 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dst-dst-b000-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b000-talk-5",
+    "description": "Talking to layout record 5 of DST_B000 (scene 227) should run its event and hand control back",
+    "plan": "# dst-dst-b000-talk-5: Talking to layout record 5 of DST_B000 (scene 227) should run its event and hand control back\nlimit 20000\nenter 227 0 16719103 0\ncheckpoint entered\ntalk 320 310 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 227 save eff79324f2507099 state 0e5552288dda8aa3 ram 0000000000000000",
+     "talked frame 497 scene 227 save 282a91dac133ab69 state a2ae454963e26d6a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (320, 290): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60a336af4c1dd4489a5be4e2a9d25a66"
+     },
+     {
+      "frames": 268,
+      "sha256": "7418159e1772e78a07a1c2f82e1dc5ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 1 of DST_B010 is there",
+    "source": "built from layout record 1's condition in scene 228 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b010-talk-1",
+    "description": "Talking to layout record 1 of DST_B010 (scene 228) should run its event and hand control back",
+    "plan": "# dst-dst-b010-talk-1: Talking to layout record 1 of DST_B010 (scene 228) should run its event and hand control back\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 210 330 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 043fcedfc831f6df state 24845951cca535e1 ram 0000000000000000",
+     "talked frame 1464 scene 228 save 44ec538963c13761 state 691b5b2b55f796ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 310): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 244,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fad49a94adf86d601e5b6b980a7b6931"
+     },
+     {
+      "frames": 1235,
+      "sha256": "1656b98aac3d91ea6f69a1eb08a3f1a5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 2 of DST_B010 is there",
+    "source": "built from layout record 2's condition in scene 228 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b010-talk-2",
+    "description": "Talking to layout record 2 of DST_B010 (scene 228) should run its event and hand control back",
+    "plan": "# dst-dst-b010-talk-2: Talking to layout record 2 of DST_B010 (scene 228) should run its event and hand control back\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 240 70 0 1 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 043fcedfc831f6df state 24845951cca535e1 ram 0000000000000000",
+     "talked frame 1507 scene 228 save 44ec538963c13761 state 8e681b246cfdf4fe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 50): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 244,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fad49a94adf86d601e5b6b980a7b6931"
+     },
+     {
+      "frames": 1278,
+      "sha256": "34b5eedf86159eecda5a91cd8866b54e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 3 of DST_B010 is there",
+    "source": "built from layout record 3's condition in scene 228 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b010-talk-3",
+    "description": "Talking to layout record 3 of DST_B010 (scene 228) should run its event and hand control back",
+    "plan": "# dst-dst-b010-talk-3: Talking to layout record 3 of DST_B010 (scene 228) should run its event and hand control back\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 221 219 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 855a496c618dc08f state 62d47947a8629459 ram 0000000000000000",
+     "talked frame 664 scene 228 save 4699b45bf0522ae1 state 2d48ce934d67866c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (221, 199): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1965a720409616fa3c5ce6f5e22abf19"
+     },
+     {
+      "frames": 435,
+      "sha256": "ff5a1403a59777492b1be8e3cffc7889"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1230 = 13 so layout record 6 of DST_B010 is there",
+    "source": "built from layout record 6's condition in scene 228 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1230": 13
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b010-talk-6",
+    "description": "Talking to layout record 6 of DST_B010 (scene 228) should run its event and hand control back",
+    "plan": "# dst-dst-b010-talk-6: Talking to layout record 6 of DST_B010 (scene 228) should run its event and hand control back\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 218 254 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 188b5b0443e0fe58 state cfb5de2178dcd30a ram 0000000000000000",
+     "talked frame 709 scene 228 save 49b16fb070dd948a state c5578fd78cf5fcb0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (218, 234): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "12177ec9087e2527f7d20e0c42932ee5"
+     },
+     {
+      "frames": 480,
+      "sha256": "7876e9c28561785847202a18f0c5e917"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b010-talk-8",
+    "description": "Talking to layout record 8 of DST_B010 (scene 228) should run its event and hand control back",
+    "plan": "# dst-dst-b010-talk-8: Talking to layout record 8 of DST_B010 (scene 228) should run its event and hand control back\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 80 130 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 314792b828997dff state 5cc457cd40d7b9c3 ram 0000000000000000",
+     "talked frame 1007 scene 228 save 83b213a4a39b803a state 8da192b5691d7c6a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 110): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce4b420505ba5111a63ae94018c04f3e"
+     },
+     {
+      "frames": 778,
+      "sha256": "61b0266ddfbfb7f71d3f64f739818880"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b030-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 3 of DST_B030 is there",
+    "source": "built from layout record 3's condition in scene 230 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b030-talk-3",
+    "description": "Talking to layout record 3 of DST_B030 (scene 230) should run its event and hand control back",
+    "plan": "# dst-dst-b030-talk-3: Talking to layout record 3 of DST_B030 (scene 230) should run its event and hand control back\nlimit 20000\nenter 230 0 16715263 0\ncheckpoint entered\ntalk 206 192 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 230 save b2ba36ba0b150efb state 78df711a0565b21f ram 0000000000000000",
+     "talked frame 2601 scene 230 save e7cb0740fc283139 state 5c9326d9bcd55ff4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (206, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 166,
+     "instruction": 252,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cf6494c4979ce54d82becfb9afa31ddc"
+     },
+     {
+      "frames": 2372,
+      "sha256": "3a4ca11ddf4907307ee6f7c985ec255f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b040-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b040-talk-6",
+    "description": "Talking to layout record 6 of DST_B040 (scene 231) should run its event and hand control back",
+    "plan": "# dst-dst-b040-talk-6: Talking to layout record 6 of DST_B040 (scene 231) should run its event and hand control back\nlimit 20000\nenter 32999 0 16715263 0\ncheckpoint entered\ntalk 872 97 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 231 save cd7bc425b246eb22 state 195900e43a6167c1 ram 0000000000000000",
+     "talked frame 847 scene 231 save c7ace99257eff54f state 0ffbddc77d6dc6a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (872, 77): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 187,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1b6998ee36810b12654889aae118ac8f"
+     },
+     {
+      "frames": 618,
+      "sha256": "2ec0d23badad10c8746e2b9ae965122d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b050-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b050-talk-4",
+    "description": "Talking to layout record 4 of DST_B050 (scene 232) should run its event and hand control back",
+    "plan": "# dst-dst-b050-talk-4: Talking to layout record 4 of DST_B050 (scene 232) should run its event and hand control back\nlimit 20000\nenter 232 1 16715263 0\ncheckpoint entered\ntalk 200 360 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 232 save d88de28e0691c8d8 state f2edeb9fa02821e5 ram 0000000000000000",
+     "talked frame 962 scene 232 save 6cec54dcbfadd849 state d91214189696d6e6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 340): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3979f0dd906416f6c5de59672bfd3323"
+     },
+     {
+      "frames": 733,
+      "sha256": "3cf208e1265dfc40f95f1f3fdd46611d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b060-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b060-talk-3",
+    "description": "Talking to layout record 3 of DST_B060 (scene 233) should run its event and hand control back",
+    "plan": "# dst-dst-b060-talk-3: Talking to layout record 3 of DST_B060 (scene 233) should run its event and hand control back\nlimit 20000\nenter 33001 2 16715263 1\ncheckpoint entered\ntalk 80 70 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 233 save e8fc7b5d50d02857 state d748a42630bf3cbc ram 0000000000000000",
+     "talked frame 931 scene 233 save 0e2ae68eddebc320 state 84daa5c4577d32c5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 50): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4b79eb537ce39857c0308c787577d457"
+     },
+     {
+      "frames": 702,
+      "sha256": "601a3a8277973733ca50b95994739659"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 1 of DST_B100 is there",
+    "source": "built from layout record 1's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-1",
+    "description": "Talking to layout record 1 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-1: Talking to layout record 1 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 125 320 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save 5ac0f6a3ea55b903 state 628ed8510f78b89e ram 0000000000000000",
+     "talked frame 528 scene 237 save cc5a5385a8dd738b state 1f2b62ef7a50971f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (125, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46e060b2a1347004b2f6d118aa93c20b"
+     },
+     {
+      "frames": 299,
+      "sha256": "1d69c6f7d4b7af294d5c505ee1b41ca7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-11",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 11 of DST_B100 is there",
+    "source": "built from layout record 11's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-11",
+    "description": "Talking to layout record 11 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-11: Talking to layout record 11 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 0\ncheckpoint entered\ntalk 185 213 0 0 0 11\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save 47fd555574a1590a state 285a579bdbe23aac ram 0000000000000000",
+     "talked frame 626 scene 237 save aeddd8a0b689ba86 state 588c32486774af8f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (185, 193): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "592887c7450a0fb450c41018eb52c14a"
+     },
+     {
+      "frames": 397,
+      "sha256": "3c5af840f17d2364824166f9941fcea1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-13",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b100-talk-13",
+    "description": "Talking to layout record 13 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-13: Talking to layout record 13 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 80 280 0 0 0 13\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save e2f5a354c0205223 state f02fa9f061651312 ram 0000000000000000",
+     "talked frame 931 scene 237 save 2dcbe984c6909d46 state 8e5891d6c254e9fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 260): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "37d84b5330cea0b19591e90f5bdb20e0"
+     },
+     {
+      "frames": 702,
+      "sha256": "b5f18955fff0a084b23c889a41736ac7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 2 of DST_B100 is there",
+    "source": "built from layout record 2's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-2",
+    "description": "Talking to layout record 2 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-2: Talking to layout record 2 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 155 320 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save 5ac0f6a3ea55b903 state 628ed8510f78b89e ram 0000000000000000",
+     "talked frame 930 scene 237 save cc5a5385a8dd738b state 186eb94655e8fd93 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (155, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46e060b2a1347004b2f6d118aa93c20b"
+     },
+     {
+      "frames": 701,
+      "sha256": "2fd8a34d09aff690100f0dc980062663"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 4 of DST_B100 is there",
+    "source": "built from layout record 4's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-4",
+    "description": "Talking to layout record 4 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-4: Talking to layout record 4 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 183 325 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save cd6f233aec3ce573 state d22afdfc66f7b93d ram 0000000000000000",
+     "talked frame 490 scene 237 save 951404860dbce07b state 7d91a7e1f2ea3a46 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (183, 305): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3443a7c03e27106b77f3baef7e4bc7fc"
+     },
+     {
+      "frames": 261,
+      "sha256": "f0e366666b0ef6c3e109684d972f453e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 5 of DST_B100 is there",
+    "source": "built from layout record 5's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-5",
+    "description": "Talking to layout record 5 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-5: Talking to layout record 5 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 100 340 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save cd6f233aec3ce573 state d22afdfc66f7b93d ram 0000000000000000",
+     "talked frame 484 scene 237 save 951404860dbce07b state 47d672da5cecc2ee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 320): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3443a7c03e27106b77f3baef7e4bc7fc"
+     },
+     {
+      "frames": 255,
+      "sha256": "d13bf40ef0a480a2af59d0d37f406a04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 7 of DST_B100 is there",
+    "source": "built from layout record 7's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-7",
+    "description": "Talking to layout record 7 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-7: Talking to layout record 7 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 0\ncheckpoint entered\ntalk 220 248 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save 47fd555574a1590a state 285a579bdbe23aac ram 0000000000000000",
+     "talked frame 550 scene 237 save aeddd8a0b689ba86 state dd680a5bca7f4b5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 228): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "592887c7450a0fb450c41018eb52c14a"
+     },
+     {
+      "frames": 321,
+      "sha256": "9e5d1ae7a269ca2a3d0594e00eb041c7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 9 of DST_B100 is there",
+    "source": "built from layout record 9's condition in scene 237 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-talk-9",
+    "description": "Talking to layout record 9 of DST_B100 (scene 237) should run its event and hand control back",
+    "plan": "# dst-dst-b100-talk-9: Talking to layout record 9 of DST_B100 (scene 237) should run its event and hand control back\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\ntalk 178 138 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save cd6f233aec3ce573 state d22afdfc66f7b93d ram 0000000000000000",
+     "talked frame 697 scene 237 save 951404860dbce07b state 2d2799c145adadd4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (178, 118): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3443a7c03e27106b77f3baef7e4bc7fc"
+     },
+     {
+      "frames": 468,
+      "sha256": "854f873f1c6b1d73e4f906592386e581"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b110-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b110-talk-7",
+    "description": "Talking to layout record 7 of DST_B110 (scene 238) should run its event and hand control back",
+    "plan": "# dst-dst-b110-talk-7: Talking to layout record 7 of DST_B110 (scene 238) should run its event and hand control back\nlimit 20000\nenter 33006 0 16715263 0\ncheckpoint entered\ntalk 1155 370 0 0 0 7 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 238 save 3e3e2a4dedba1313 state 2190b6268c17c573 ram 0000000000000000",
+     "talked frame 967 scene 238 save cce8eff64a597eb0 state 8f69da6046dcad95 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "layout record 7's actor is at (1155, 370)",
+     "walk to (1155, 350): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c49a4de5bbcc5b65ac808b431f3dbf20"
+     },
+     {
+      "frames": 738,
+      "sha256": "8a7c4e8d0ed3835f81a536091ea16e5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 1 of DST_B150 is there",
+    "source": "built from layout record 1's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-1",
+    "description": "Talking to layout record 1 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-1: Talking to layout record 1 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 107 117 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 1098 scene 242 save aa6f1b684dee5446 state 16d906997755b34b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (107, 97): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 869,
+      "sha256": "67fcb37ff563d9df0981e6e0b6c165ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 10 of DST_B150 is there",
+    "source": "built from layout record 10's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-10",
+    "description": "Talking to layout record 10 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-10: Talking to layout record 10 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 135 257 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save e69a639fe00fd746 state 26a1a258d18da9b8 ram 0000000000000000",
+     "talked frame 574 scene 242 save c4bb5f30503f63f6 state 2cb1e96b9234aa48 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 237): 1 waypoints",
+     "walk to (135, 277): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb10028557ba783b1cfe8e777b4b68b0"
+     },
+     {
+      "frames": 345,
+      "sha256": "0781611cf74e578c239fcc1f87acb845"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 2 of DST_B150 is there",
+    "source": "built from layout record 2's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-2",
+    "description": "Talking to layout record 2 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-2: Talking to layout record 2 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 0\ncheckpoint entered\ntalk 144 117 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 83b9dc31115f5d70 state 2a487bd84252f99c ram 0000000000000000",
+     "talked frame 797 scene 242 save c8004239f02280a0 state e7abd125e673ebc1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (144, 97): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e45079d6cb20efad476a7fc3362faa5"
+     },
+     {
+      "frames": 568,
+      "sha256": "1f9969540dae850c1444c5a758d09572"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 3 of DST_B150 is there",
+    "source": "built from layout record 3's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-3",
+    "description": "Talking to layout record 3 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-3: Talking to layout record 3 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 128 143 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 679 scene 242 save aa6f1b684dee5446 state b47e8d8d3a113a04 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 123): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 450,
+      "sha256": "1c9ca6dd79d48562df979bdaa01b3187"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 4 of DST_B150 is there",
+    "source": "built from layout record 4's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-4",
+    "description": "Talking to layout record 4 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-4: Talking to layout record 4 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 227 184 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 999 scene 242 save aa6f1b684dee5446 state bc6f611b063084b4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (227, 164): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 770,
+      "sha256": "d102bd84cd6e973b062d7f886c3b095d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 5 of DST_B150 is there",
+    "source": "built from layout record 5's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-5",
+    "description": "Talking to layout record 5 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-5: Talking to layout record 5 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 227 214 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 1020 scene 242 save aa6f1b684dee5446 state fdc65d86fc6f4f3d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (227, 194): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 791,
+      "sha256": "eb2c691637c2a5eac3f3169c691f11aa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 6 of DST_B150 is there",
+    "source": "built from layout record 6's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-6",
+    "description": "Talking to layout record 6 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-6: Talking to layout record 6 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 227 244 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 997 scene 242 save aa6f1b684dee5446 state 33ee7d0225ac18c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (227, 224): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 768,
+      "sha256": "cfe966898326dfa878a4deefd0b80243"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 7 of DST_B150 is there",
+    "source": "built from layout record 7's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-7",
+    "description": "Talking to layout record 7 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-7: Talking to layout record 7 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 160 239 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 966 scene 242 save aa6f1b684dee5446 state 738438165d462d57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 219): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 737,
+      "sha256": "53748105abf07c0eeba84a865914a16f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 8 of DST_B150 is there",
+    "source": "built from layout record 8's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-8",
+    "description": "Talking to layout record 8 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-8: Talking to layout record 8 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 114 235 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 701 scene 242 save aa6f1b684dee5446 state 97d1ec6c7182bbc0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 215): 3 waypoints",
+     "walk to (114, 255): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 472,
+      "sha256": "ced5db6015c71e6692268cb53ecf64a4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x119c = 2 so layout record 9 of DST_B150 is there",
+    "source": "built from layout record 9's condition in scene 242 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 2
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-talk-9",
+    "description": "Talking to layout record 9 of DST_B150 (scene 242) should run its event and hand control back",
+    "plan": "# dst-dst-b150-talk-9: Talking to layout record 9 of DST_B150 (scene 242) should run its event and hand control back\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\ntalk 64 319 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 386f665aabd291d6 state db0600f6932e7f3c ram 0000000000000000",
+     "talked frame 648 scene 242 save aa6f1b684dee5446 state 6902c49d4ce501a5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 299): 1 waypoints",
+     "walk to (64, 339): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ef852f8615e2106ff3aa67ddc7f8763"
+     },
+     {
+      "frames": 419,
+      "sha256": "aff0ad40e5eee66c91da047d97705b25"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b170-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b170-talk-6",
+    "description": "Talking to layout record 6 of DST_B170 (scene 244) should run its event and hand control back",
+    "plan": "# dst-dst-b170-talk-6: Talking to layout record 6 of DST_B170 (scene 244) should run its event and hand control back\nlimit 20000\nenter 33012 2 16715263 1\ncheckpoint entered\ntalk 80 260 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 244 save 5bfb4f163cd6bf82 state 234e4de001d4d134 ram 0000000000000000",
+     "talked frame 1546 scene 244 save 84114ed57c101b09 state b44bd2519d18cfe2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 240): 4 waypoints",
+     "walk to (80, 280): 4 waypoints",
+     "walk to (60, 260): 2 waypoints",
+     "walk to (100, 260): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4620c017397f898f41f3dc0ead32f4d2"
+     },
+     {
+      "frames": 1317,
+      "sha256": "b38efed66e2afaaeb33e11720b869ac4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e010-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-e010-talk-1",
+    "description": "Talking to layout record 1 of DST_E010 (scene 223) should run its event and hand control back",
+    "plan": "# dst-dst-e010-talk-1: Talking to layout record 1 of DST_E010 (scene 223) should run its event and hand control back\nlimit 20000\nenter 223 0 16715263 0\ncheckpoint entered\ntalk 67 111 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 223 save 5253472b6edb8a7a state 6641e40db6287d63 ram 0000000000000000",
+     "talked frame 1203 scene 223 save 499d590d8ebbc4dd state 0078bf67fb0f4833 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (67, 91): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ed0e69de1e1c3827aef44870438ad22d"
+     },
+     {
+      "frames": 974,
+      "sha256": "cae1362e796a7c3dec722a43a80ea81a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e010-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-e010-talk-2",
+    "description": "Talking to layout record 2 of DST_E010 (scene 223) should run its event and hand control back",
+    "plan": "# dst-dst-e010-talk-2: Talking to layout record 2 of DST_E010 (scene 223) should run its event and hand control back\nlimit 20000\nenter 223 0 16715263 0\ncheckpoint entered\ntalk 325 50 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 223 save 5253472b6edb8a7a state 6641e40db6287d63 ram 0000000000000000",
+     "talked frame 932 scene 223 save a6d1f22ff1572a50 state 1e7ad249d6bcb52a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (325, 70): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ed0e69de1e1c3827aef44870438ad22d"
+     },
+     {
+      "frames": 703,
+      "sha256": "b36a513628ed2efeb35834afd2b3ca66"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e010-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x117c = 3 so layout record 3 of DST_E010 is there",
+    "source": "built from layout record 3's condition in scene 223 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x117c": 3
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-e010-talk-3",
+    "description": "Talking to layout record 3 of DST_E010 (scene 223) should run its event and hand control back",
+    "plan": "# dst-dst-e010-talk-3: Talking to layout record 3 of DST_E010 (scene 223) should run its event and hand control back\nlimit 20000\nenter 223 0 16715263 0\ncheckpoint entered\ntalk 104 217 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 223 save e558b8f3b3aa4b0a state c9b8ce0889b921a8 ram 0000000000000000",
+     "talked frame 1238 scene 223 save b672565eeb5468fa state b5a4dcc1b1d47fdd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 237): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36365f2bdff1f27939b96a241356e092"
+     },
+     {
+      "frames": 1009,
+      "sha256": "94bc49c16a7eebc689e56ce2bcfa6a00"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

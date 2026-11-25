@@ -1,0 +1,140 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build-and-test:
+    name: Build and test (Linux)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      DISC_IMAGE: ghcr.io/celophi/slus-01013:v6.0
+      DISC_PATH: /rom/us
+      BUILD_IMAGE: archlinux:base-20261011.0.609700@sha256:3c64b538588416593f69a1aebd2f2ec0f2541b29159f32556fa7def2167147a0
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Log in to the GitHub container registry
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy the test data out of the image
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          id=$(docker create "$DISC_IMAGE")
+          docker cp "$id:$DISC_PATH" "$RUNNER_TEMP/disc"
+          docker rm "$id"
+
+      - name: Build and test
+        run: |
+          mount=() disc=()
+          if [ -d "$RUNNER_TEMP/disc" ]; then
+            mount=(-v "$RUNNER_TEMP/disc:/disc:ro")
+            disc=(/disc)
+          fi
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            "${mount[@]}" \
+            -w /src \
+            "$BUILD_IMAGE" \
+            sh tools/ci/build-and-test.sh "${disc[@]}"
+
+  build-32:
+    name: Build (Linux, 32-bit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      BUILD_IMAGE: archlinux:base-20261011.0.609700@sha256:3c64b538588416593f69a1aebd2f2ec0f2541b29159f32556fa7def2167147a0
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Build
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src" \
+            -w /src \
+            "$BUILD_IMAGE" \
+            sh tools/ci/build-32.sh
+
+  build-and-test-macos:
+    name: Build and test (macOS)
+    if: github.event_name == 'push'
+    runs-on: macos-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Build and test
+        run: sh tools/ci/build-and-test-macos.sh
+
+  build-and-test-windows:
+    name: Build and test (Windows)
+    if: github.event_name == 'push'
+    runs-on: windows-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Keep line endings as they are
+        shell: pwsh
+        run: git config --global core.autocrlf false
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: CLANG64
+          update: true
+          install: >-
+            git
+            mingw-w64-x86_64-binutils
+            mingw-w64-clang-x86_64-toolchain
+            mingw-w64-clang-x86_64-cmake
+            mingw-w64-clang-x86_64-ninja
+            mingw-w64-clang-x86_64-python
+            mingw-w64-clang-x86_64-python-yaml
+            mingw-w64-clang-x86_64-qt6-base
+            mingw-w64-clang-x86_64-ffmpeg
+            mingw-w64-clang-x86_64-gtest
+            mingw-w64-clang-x86_64-glslang
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Build and test
+        run: sh tools/ci/build-and-test-windows.sh

@@ -1,0 +1,42 @@
+Make the GTE's IRGB and ORGB registers views of the IR vector, as on the PS1,
+clamping before shifting.
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -3350,6 +3350,12 @@
+ static unsigned int lom_lzcs;
+ static unsigned int lom_lzcr = 32;
+ 
++static unsigned int gte_irgb_channel(short value) {
++    if (value <= 0) return 0;
++    if (value >= (31 << 7)) return 31;
++    return (unsigned int)value >> 7;
++}
++
+ unsigned int Psyz_GteDataRead(unsigned idx) {
+     switch (idx) {
+     case 0:
+@@ -3408,6 +3414,10 @@
+         return (unsigned int)MAC2;
+     case 27:
+         return (unsigned int)MAC3;
++    case 28:
++    case 29:
++        return gte_irgb_channel(IR1) | (gte_irgb_channel(IR2) << 5) |
++               (gte_irgb_channel(IR3) << 10);
+     case 30:
+         return lom_lzcs;
+     case 31:
+@@ -3505,6 +3515,13 @@
+         break;
+     case 27:
+         MAC3 = (int)v;
++        break;
++    case 28:
++        IR1 = (short)((v & 31u) << 7);
++        IR2 = (short)(((v >> 5) & 31u) << 7);
++        IR3 = (short)(((v >> 10) & 31u) << 7);
++        break;
++    case 29:
+         break;
+     case 30: {
+         lom_lzcs = v;

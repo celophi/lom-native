@@ -1,0 +1,1632 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "bon-bon-b030-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b030-talk-1",
+    "description": "Talking to layout record 1 of BON_B030 (scene 608) should run its event and hand control back",
+    "plan": "# bon-bon-b030-talk-1: Talking to layout record 1 of BON_B030 (scene 608) should run its event and hand control back\nlimit 20000\nenter 33376 0 16713471 2\ncheckpoint entered\ntalk 112 192 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 608 save 6666003367a0351c state 20f56a0714520966 ram 0000000000000000",
+     "talked frame 1107 scene 608 save 17ae69dd2b510cea state ca445cbd3cbe7258 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41350b68004ec799d4e2936b188e4d27"
+     },
+     {
+      "frames": 878,
+      "sha256": "2066ea97c03b03996712a569e2455116"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b130-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b130-talk-1",
+    "description": "Talking to layout record 1 of BON_B130 (scene 612) should run its event and hand control back",
+    "plan": "# bon-bon-b130-talk-1: Talking to layout record 1 of BON_B130 (scene 612) should run its event and hand control back\nlimit 20000\nenter 33380 0 16713471 0\ncheckpoint entered\ntalk 237 216 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 612 save 203d0b76e89674ba state 46ee5aad8663f6fe ram 0000000000000000",
+     "talked frame 815 scene 612 save 203d0b76e89674ba state 4f9065888a2cd157 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (237, 196): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b257f296a8fa9a31544e9901a27bacd"
+     },
+     {
+      "frames": 586,
+      "sha256": "97d65b4535fa10ad38293de9991423c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b130-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b130-talk-2",
+    "description": "Talking to layout record 2 of BON_B130 (scene 612) should run its event and hand control back",
+    "plan": "# bon-bon-b130-talk-2: Talking to layout record 2 of BON_B130 (scene 612) should run its event and hand control back\nlimit 20000\nenter 33380 0 16713471 0\ncheckpoint entered\ntalk 165 200 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 612 save 203d0b76e89674ba state 46ee5aad8663f6fe ram 0000000000000000",
+     "talked frame 826 scene 612 save 203d0b76e89674ba state 840d545da9d14f3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b257f296a8fa9a31544e9901a27bacd"
+     },
+     {
+      "frames": 597,
+      "sha256": "108f53fb9ea03c8e5dae8df3db1c7401"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b150-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b150-talk-2",
+    "description": "Talking to layout record 2 of BON_B150 (scene 614) should run its event and hand control back",
+    "plan": "# bon-bon-b150-talk-2: Talking to layout record 2 of BON_B150 (scene 614) should run its event and hand control back\nlimit 20000\nenter 33382 0 16713471 0\ncheckpoint entered\ntalk 273 275 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 614 save 73fb799714b0b260 state 786aa431dec7e61d ram 0000000000000000",
+     "talked frame 429 scene 614 save 73fb799714b0b260 state e398116366c99922 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (273, 255): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0a5e873869dc6ff8ce6e9b43a0131631"
+     },
+     {
+      "frames": 200,
+      "sha256": "daff5905bd004c46fb348f62e6e29a2f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b150-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b150-talk-4",
+    "description": "Talking to layout record 4 of BON_B150 (scene 614) should run its event and hand control back",
+    "plan": "# bon-bon-b150-talk-4: Talking to layout record 4 of BON_B150 (scene 614) should run its event and hand control back\nlimit 20000\nenter 33382 0 16713471 1\ncheckpoint entered\ntalk 293 275 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 614 save 6c4a083dfcad2abd state e85d2c2284f84ce5 ram 0000000000000000",
+     "talked frame 333 scene 614 save 6c4a083dfcad2abd state 9a1304e7838e48cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (293, 255): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4f86d29cbd1279f26c419bd39b55340e"
+     },
+     {
+      "frames": 104,
+      "sha256": "9638250820545b0c25a3a17a2b692524"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-bs01-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11a8 = 8 so layout record 1 of BON_BS01 is there",
+    "source": "built from layout record 1's condition in scene 604 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a8": 8
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-bs01-talk-1",
+    "description": "Talking to layout record 1 of BON_BS01 (scene 604) should run its event and hand control back",
+    "plan": "# bon-bon-bs01-talk-1: Talking to layout record 1 of BON_BS01 (scene 604) should run its event and hand control back\nlimit 20000\nenter 33372 0 16713235 0\ncheckpoint entered\ntalk 312 220 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 604 save aed8a85946f2cc77 state ea623c15e73f166e ram 0000000000000000",
+     "talked frame 877 scene 604 save a09a58dcad321687 state 62463cd68d5b7563 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 200): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "26703fa452520b034b6210334fcb5990"
+     },
+     {
+      "frames": 648,
+      "sha256": "f7473261e857f26397fb4c4b593d0b87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-bs01-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11a8 = 8 so layout record 2 of BON_BS01 is there",
+    "source": "built from layout record 2's condition in scene 604 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a8": 8
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-bs01-talk-2",
+    "description": "Talking to layout record 2 of BON_BS01 (scene 604) should run its event and hand control back",
+    "plan": "# bon-bon-bs01-talk-2: Talking to layout record 2 of BON_BS01 (scene 604) should run its event and hand control back\nlimit 20000\nenter 33372 0 16713235 1\ncheckpoint entered\ntalk 312 247 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 604 save 04edc5e1031a0e72 state dcd5707dea91d7e3 ram 0000000000000000",
+     "talked frame 356 scene 604 save 4ac67c9f071c8ee6 state d83924a9082932de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 267): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9c4232bbfbd8111435ecdde716d4fcaa"
+     },
+     {
+      "frames": 127,
+      "sha256": "590ac0738c9fc159cf794b5693308b9a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-bs06-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-bs06-talk-3",
+    "description": "Talking to layout record 3 of BON_BS06 (scene 925) should run its event and hand control back",
+    "plan": "# bon-bon-bs06-talk-3: Talking to layout record 3 of BON_BS06 (scene 925) should run its event and hand control back\nlimit 20000\nenter 925 0 16717311 0\ncheckpoint entered\ntalk 344 80 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 925 save e3f37a81026dfb01 state e384cab8ce623874 ram 0000000000000000",
+     "talked frame 683 scene 925 save e3f37a81026dfb01 state 7e0a571236b5d086 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (344, 60): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 254,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dfff80918355ea12e580284422552131"
+     },
+     {
+      "frames": 454,
+      "sha256": "a381de4c6882a56cac3a43de9b181e17"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e010-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e010-talk-2",
+    "description": "Talking to layout record 2 of BON_E010 (scene 590) should run its event and hand control back",
+    "plan": "# bon-bon-e010-talk-2: Talking to layout record 2 of BON_E010 (scene 590) should run its event and hand control back\nlimit 20000\nenter 590 0 16713471 0\ncheckpoint entered\ntalk 70 240 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 590 save 86141c97f3297df8 state fce23672e32b2fe0 ram 0000000000000000",
+     "talked frame 918 scene 590 save a6d9712961c8e8b9 state 6750d5a703564bc6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (70, 220): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05d7383ae3e2ef71d15c000652686d56"
+     },
+     {
+      "frames": 689,
+      "sha256": "a36da7a84a02e1db314c1b6c9bcde4a1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e020-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e020-talk-1",
+    "description": "Talking to layout record 1 of BON_E020 (scene 591) should run its event and hand control back",
+    "plan": "# bon-bon-e020-talk-1: Talking to layout record 1 of BON_E020 (scene 591) should run its event and hand control back\nlimit 20000\nenter 591 0 16713471 1\ncheckpoint entered\ntalk 143 44 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 591 save 7187d31e724c0658 state d7093ae1b51915d4 ram 0000000000000000",
+     "talked frame 882 scene 591 save a170953dbfa3cee6 state 253398a400e7b5e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (143, 64): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50937f2d4c194bddd07605ab0a39b807"
+     },
+     {
+      "frames": 653,
+      "sha256": "053febc6272198c431b4ce6bfe6d7dd1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e040-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e040-talk-1",
+    "description": "Talking to layout record 1 of BON_E040 (scene 593) should run its event and hand control back",
+    "plan": "# bon-bon-e040-talk-1: Talking to layout record 1 of BON_E040 (scene 593) should run its event and hand control back\nlimit 20000\nenter 593 0 16713471 1\ncheckpoint entered\ntalk 210 240 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 593 save 372c5d4740647c7e state 54902ea41d7749e9 ram 0000000000000000",
+     "talked frame 842 scene 593 save 0de5bb97c468bee4 state fef50ac1e0933292 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 220): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "15c71170b0b1647d9cfa83ba4bd3b826"
+     },
+     {
+      "frames": 613,
+      "sha256": "7b6d72ed991589d3584b9fe3b12a67b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e050-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11a8 = 3 so layout record 2 of BON_E050 is there",
+    "source": "built from layout record 2's condition in scene 594 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a8": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-e050-talk-2",
+    "description": "Talking to layout record 2 of BON_E050 (scene 594) should run its event and hand control back",
+    "plan": "# bon-bon-e050-talk-2: Talking to layout record 2 of BON_E050 (scene 594) should run its event and hand control back\nlimit 20000\nenter 594 0 16713471 0\ncheckpoint entered\ntalk 195 160 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 594 save f8684d503ea22faf state adf0502333f55073 ram 0000000000000000",
+     "talked frame 405 scene 594 save 0d9cc1baa42b2b44 state 2dc9bc8168353c7f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (195, 140): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 40,
+     "instruction": 132,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "953804dca35e0b36e1819b3d3de4c646"
+     },
+     {
+      "frames": 176,
+      "sha256": "dccef74a5a011a9a19c2627fd2026795"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e050-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e050-talk-3",
+    "description": "Talking to layout record 3 of BON_E050 (scene 594) should run its event and hand control back",
+    "plan": "# bon-bon-e050-talk-3: Talking to layout record 3 of BON_E050 (scene 594) should run its event and hand control back\nlimit 20000\nenter 594 0 16713471 0\ncheckpoint entered\ntalk 230 190 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 594 save 88d4be2bb2aaecc4 state 63c34c6f900ca529 ram 0000000000000000",
+     "talked frame 867 scene 594 save 4de722c161592737 state 497b8fb982fce584 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (230, 170): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 140,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0aacc9b35d92828854d14c3438895250"
+     },
+     {
+      "frames": 638,
+      "sha256": "7f88b7e0e0f886cf4abb30adb5a8b6dd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e100-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e100-talk-1",
+    "description": "Talking to layout record 1 of BON_E100 (scene 595) should run its event and hand control back",
+    "plan": "# bon-bon-e100-talk-1: Talking to layout record 1 of BON_E100 (scene 595) should run its event and hand control back\nlimit 20000\nenter 595 0 16713471 4\ncheckpoint entered\ntalk 270 339 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 595 save e4091785f79a9b25 state 73f80719a704e4c2 ram 0000000000000000",
+     "talked frame 419 scene 595 save 43d4e178db599ca5 state 88a5ebd0ade07628 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (270, 319): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e83a4adce5ddc32b06aa0e995020daf8"
+     },
+     {
+      "frames": 190,
+      "sha256": "1fd8bfe08ced06fb08621a0ce8d22a87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e100-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e100-talk-2",
+    "description": "Talking to layout record 2 of BON_E100 (scene 595) should run its event and hand control back",
+    "plan": "# bon-bon-e100-talk-2: Talking to layout record 2 of BON_E100 (scene 595) should run its event and hand control back\nlimit 20000\nenter 595 0 16713471 3\ncheckpoint entered\ntalk 280 339 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 595 save fa778143e90be466 state 18ff033f709b2987 ram 0000000000000000",
+     "talked frame 336 scene 595 save 92247502d63ec3e6 state ba10fa2f09784ae2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 319): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "896a939e2069a813317a334cea06688e"
+     },
+     {
+      "frames": 107,
+      "sha256": "09aede50bb7224081323919dc1ad7361"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e100-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e100-talk-3",
+    "description": "Talking to layout record 3 of BON_E100 (scene 595) should run its event and hand control back",
+    "plan": "# bon-bon-e100-talk-3: Talking to layout record 3 of BON_E100 (scene 595) should run its event and hand control back\nlimit 20000\nenter 595 0 16713471 4\ncheckpoint entered\ntalk 290 339 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 595 save e4091785f79a9b25 state 73f80719a704e4c2 ram 0000000000000000",
+     "talked frame 414 scene 595 save 43d4e178db599ca5 state 573bca68e5367759 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (290, 319): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e83a4adce5ddc32b06aa0e995020daf8"
+     },
+     {
+      "frames": 185,
+      "sha256": "623749e1cc14021c1df50cb15fd816cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e100-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e100-talk-4",
+    "description": "Talking to layout record 4 of BON_E100 (scene 595) should run its event and hand control back",
+    "plan": "# bon-bon-e100-talk-4: Talking to layout record 4 of BON_E100 (scene 595) should run its event and hand control back\nlimit 20000\nenter 595 0 16713471 3\ncheckpoint entered\ntalk 300 339 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 595 save fa778143e90be466 state 18ff033f709b2987 ram 0000000000000000",
+     "talked frame 336 scene 595 save 92247502d63ec3e6 state 3e8672ba1827b686 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 319): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "896a939e2069a813317a334cea06688e"
+     },
+     {
+      "frames": 107,
+      "sha256": "aa5fd17cc0ef42e662188c2ab0207b8e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e100-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e100-talk-5",
+    "description": "Talking to layout record 5 of BON_E100 (scene 595) should run its event and hand control back",
+    "plan": "# bon-bon-e100-talk-5: Talking to layout record 5 of BON_E100 (scene 595) should run its event and hand control back\nlimit 20000\nenter 595 0 16713471 4\ncheckpoint entered\ntalk 310 339 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 595 save e4091785f79a9b25 state 73f80719a704e4c2 ram 0000000000000000",
+     "talked frame 411 scene 595 save 43d4e178db599ca5 state 414b8b278289dd23 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (310, 319): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e83a4adce5ddc32b06aa0e995020daf8"
+     },
+     {
+      "frames": 182,
+      "sha256": "92e8586f09ac0f3022be2faa0d04eb9a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e110-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e110-talk-2",
+    "description": "Talking to layout record 2 of BON_E110 (scene 596) should run its event and hand control back",
+    "plan": "# bon-bon-e110-talk-2: Talking to layout record 2 of BON_E110 (scene 596) should run its event and hand control back\nlimit 20000\nenter 596 0 16713471 0\ncheckpoint entered\ntalk 70 165 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 596 save b5cd5f223add64aa state bf8c6ae5c1ba759b ram 0000000000000000",
+     "talked frame 922 scene 596 save 1c8b61715eccad67 state 9f5e02424566083d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (70, 145): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "767f7e178f4320933a7b7ffc57649e5e"
+     },
+     {
+      "frames": 693,
+      "sha256": "13216d2c319b9032ab94493b9acaecd6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e110-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e110-talk-3",
+    "description": "Talking to layout record 3 of BON_E110 (scene 596) should run its event and hand control back",
+    "plan": "# bon-bon-e110-talk-3: Talking to layout record 3 of BON_E110 (scene 596) should run its event and hand control back\nlimit 20000\nenter 596 0 16713471 0\ncheckpoint entered\ntalk 210 225 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 596 save b5cd5f223add64aa state bf8c6ae5c1ba759b ram 0000000000000000",
+     "talked frame 915 scene 596 save 48fc7258db1ce11f state f60ec4866dfd05cb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 205): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "767f7e178f4320933a7b7ffc57649e5e"
+     },
+     {
+      "frames": 686,
+      "sha256": "d3a509723c5272614c9e248b66792ba9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e120-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11a8 = 5 so layout record 1 of BON_E120 is there",
+    "source": "built from layout record 1's condition in scene 597 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a8": 5
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-e120-talk-1",
+    "description": "Talking to layout record 1 of BON_E120 (scene 597) should run its event and hand control back",
+    "plan": "# bon-bon-e120-talk-1: Talking to layout record 1 of BON_E120 (scene 597) should run its event and hand control back\nlimit 20000\nenter 597 0 16713471 0\ncheckpoint entered\ntalk 204 185 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 597 save 4b7937aa30c9e4de state 02a3840950955647 ram 0000000000000000",
+     "talked frame 799 scene 597 save 78750416ce7b9bf0 state 2b713702896d19bf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (204, 165): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 40,
+     "instruction": 146,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b2b9921e06dbd786b85ddc408a94e965"
+     },
+     {
+      "frames": 570,
+      "sha256": "8fdb3e57426365eafab7edbee1957d62"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e120-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e120-talk-2",
+    "description": "Talking to layout record 2 of BON_E120 (scene 597) should run its event and hand control back",
+    "plan": "# bon-bon-e120-talk-2: Talking to layout record 2 of BON_E120 (scene 597) should run its event and hand control back\nlimit 20000\nenter 597 0 16713471 0\ncheckpoint entered\ntalk 80 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 597 save 4638df2e976bdf8f state 98efd481e85e8340 ram 0000000000000000",
+     "talked frame 901 scene 597 save 736c4d2ea2584388 state 6036c6e0d07a213b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 44,
+     "instruction": 135,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "94873b44c25d41ae5ef0a1ed43a7c46e"
+     },
+     {
+      "frames": 672,
+      "sha256": "3930179ab3542d5d99998cc9b7d05b25"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e130-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e130-talk-1",
+    "description": "Talking to layout record 1 of BON_E130 (scene 598) should run its event and hand control back",
+    "plan": "# bon-bon-e130-talk-1: Talking to layout record 1 of BON_E130 (scene 598) should run its event and hand control back\nlimit 20000\nenter 598 0 16713471 0\ncheckpoint entered\ntalk 220 65 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 598 save da560e31e7a3ba90 state 48800123270312d6 ram 0000000000000000",
+     "talked frame 688 scene 598 save 4ca78185f98efc44 state 72ae8a4251262b4e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 45): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "91d9ecff2f57f37d5c673a6ca07b9465"
+     },
+     {
+      "frames": 459,
+      "sha256": "e7ba7ab8a484e6355c0f65fa65bd185c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e140-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e140-talk-2",
+    "description": "Talking to layout record 2 of BON_E140 (scene 599) should run its event and hand control back",
+    "plan": "# bon-bon-e140-talk-2: Talking to layout record 2 of BON_E140 (scene 599) should run its event and hand control back\nlimit 20000\nenter 599 0 16713471 3\ncheckpoint entered\ntalk 207 167 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 599 save 6031c16c15a282f2 state 881a083a1b5c173c ram 0000000000000000",
+     "talked frame 882 scene 599 save 83033ee93d869341 state e77b3bc7cf891f6e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (207, 147): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f8aa17db098c21e509d8cfc331f6bb1"
+     },
+     {
+      "frames": 653,
+      "sha256": "292d869b55cd7688bc38a8f3f23fd7b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e150-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e150-talk-2",
+    "description": "Talking to layout record 2 of BON_E150 (scene 600) should run its event and hand control back",
+    "plan": "# bon-bon-e150-talk-2: Talking to layout record 2 of BON_E150 (scene 600) should run its event and hand control back\nlimit 20000\nenter 600 0 16713471 0\ncheckpoint entered\ntalk 235 245 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 600 save a0f962d8b91d6476 state 577cfcb993ed0cd1 ram 0000000000000000",
+     "talked frame 1013 scene 600 save 359d8e6b7622c943 state 4a4ddaa6bd4f54ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 265): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "299735ec105a983f896cd3b5b0f99d8d"
+     },
+     {
+      "frames": 784,
+      "sha256": "12f9899fe4296260b0cbc4e8687709f6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-e160-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e160-talk-2",
+    "description": "Talking to layout record 2 of BON_E160 (scene 601) should run its event and hand control back",
+    "plan": "# bon-bon-e160-talk-2: Talking to layout record 2 of BON_E160 (scene 601) should run its event and hand control back\nlimit 20000\nenter 601 0 16713471 0\ncheckpoint entered\ntalk 205 160 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 601 save be25b5cb04d749fb state 0a00810e43f23090 ram 0000000000000000",
+     "talked frame 898 scene 601 save f571af9126d1b5c3 state dfdfc5dffbd9635f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (205, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "df60faf216c86339d18dcef3f6be7380"
+     },
+     {
+      "frames": 669,
+      "sha256": "81294f1456b2a4c47c834e37b5f01264"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os00-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os00-talk-1",
+    "description": "Talking to layout record 1 of BON_OS00 (scene 587) should run its event and hand control back",
+    "plan": "# bon-bon-os00-talk-1: Talking to layout record 1 of BON_OS00 (scene 587) should run its event and hand control back\nlimit 20000\nenter 33355 0 16713471 0\ncheckpoint entered\ntalk 254 173 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 587 save c29d78e66d9cbba9 state 99cba804fd4f39b2 ram 0000000000000000",
+     "talked frame 703 scene 587 save 81ae9d1167c4b4db state b5a3c00cce00ecd2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (254, 153): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "651a92aac794517b4f8ab16bab10800b"
+     },
+     {
+      "frames": 474,
+      "sha256": "ec037931d123c242c44a2732ec28ce9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-1",
+    "description": "Talking to layout record 1 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-1: Talking to layout record 1 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 237 156 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 614 scene 627 save f11a830513afd535 state f5f42cdd8d61c755 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (237, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 385,
+      "sha256": "dfb087172bab7f666938f390b7890a0a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-10",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-10",
+    "description": "Talking to layout record 10 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-10: Talking to layout record 10 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 162 220 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 878 scene 627 save a84bb3ec4c37df13 state a2fb63b5821c69ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (162, 200): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 649,
+      "sha256": "b60aab91eea645441a470592e6a0fb78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-6",
+    "description": "Talking to layout record 6 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-6: Talking to layout record 6 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 347 85 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 584 scene 627 save f11a830513afd535 state 5203cb834b881849 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (347, 65): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 355,
+      "sha256": "8294d751114c0e097f4e689f8f7ff6e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-7",
+    "description": "Talking to layout record 7 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-7: Talking to layout record 7 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 401 44 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 1055 scene 627 save a84bb3ec4c37df13 state 312d57310ab45a09 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (381, 44): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 826,
+      "sha256": "c9359fcf658f96d58aad4995afa6d808"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-8",
+    "description": "Talking to layout record 8 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-8: Talking to layout record 8 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 121 121 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 807 scene 627 save a84bb3ec4c37df13 state 9ce810e72042f101 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (121, 101): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 578,
+      "sha256": "077069bd2342d640783d87efd8b735ec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-os01-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-os01-talk-9",
+    "description": "Talking to layout record 9 of BON_OS01 (scene 627) should run its event and hand control back",
+    "plan": "# bon-bon-os01-talk-9: Talking to layout record 9 of BON_OS01 (scene 627) should run its event and hand control back\nlimit 20000\nenter 627 0 16713471 0\ncheckpoint entered\ntalk 338 156 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 627 save c7075411f1294781 state 1f9383230698344c ram 0000000000000000",
+     "talked frame 937 scene 627 save a84bb3ec4c37df13 state 8a5405f4e57e7d0e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (338, 136): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a3c4717e5ac3c7b3c510d6b57af4efd"
+     },
+     {
+      "frames": 708,
+      "sha256": "b66429446ca706bb41a7cb83250350aa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-vllg-talk-2",
+    "description": "Talking to layout record 2 of BON_VLLG (scene 586) should run its event and hand control back",
+    "plan": "# bon-bon-vllg-talk-2: Talking to layout record 2 of BON_VLLG (scene 586) should run its event and hand control back\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\ntalk 68 170 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save d84c6622f13ac214 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "talked frame 1540 scene 586 save 13d12631f09dc4e9 state 00f0ffa945829aa9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (68, 150): 6 waypoints",
+     "walk to (68, 190): 3 waypoints",
+     "walk to (48, 170): 2 waypoints",
+     "walk to (68, 150): 2 waypoints",
+     "walk to (68, 190): 2 waypoints",
+     "walk to (48, 170): 1 waypoints",
+     "walk to (68, 150): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fae0cc20b68b88ceebfbc5d540b1efd0"
+     },
+     {
+      "frames": 1311,
+      "sha256": "055b32d35197f44c5e79f379fc7d33ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-vllg-talk-3",
+    "description": "Talking to layout record 3 of BON_VLLG (scene 586) should run its event and hand control back",
+    "plan": "# bon-bon-vllg-talk-3: Talking to layout record 3 of BON_VLLG (scene 586) should run its event and hand control back\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\ntalk 150 40 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save d84c6622f13ac214 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "talked frame 865 scene 586 save 13d12631f09dc4e9 state 1ecd4ede8fbb8e28 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 20): 2 waypoints",
+     "walk to (150, 60): 1 waypoints",
+     "walk to (130, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fae0cc20b68b88ceebfbc5d540b1efd0"
+     },
+     {
+      "frames": 636,
+      "sha256": "7e6bba517b04915e3f73fdd4c4fad9b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-vllg-talk-4",
+    "description": "Talking to layout record 4 of BON_VLLG (scene 586) should run its event and hand control back",
+    "plan": "# bon-bon-vllg-talk-4: Talking to layout record 4 of BON_VLLG (scene 586) should run its event and hand control back\nlimit 20000\nenter 586 0 16713234 1\ncheckpoint entered\ntalk 354 110 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save 0d8dde51a6194f31 state 5262563631d81a11 ram 0000000000000000",
+     "talked frame 732 scene 586 save ad3dec7c74114be6 state 46741b1aa1d6e7e8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (354, 130): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "784a16e8a22ea442cf2d2d3d63bc0b00"
+     },
+     {
+      "frames": 503,
+      "sha256": "452e7cb1b4988b9035466c780a88fca6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-vllg-talk-5",
+    "description": "Talking to layout record 5 of BON_VLLG (scene 586) should run its event and hand control back",
+    "plan": "# bon-bon-vllg-talk-5: Talking to layout record 5 of BON_VLLG (scene 586) should run its event and hand control back\nlimit 20000\nenter 586 0 16713234 1\ncheckpoint entered\ntalk 288 188 0 1 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save 0d8dde51a6194f31 state 5262563631d81a11 ram 0000000000000000",
+     "talked frame 1386 scene 586 save 702db6af232641f0 state 7cb7db21da319b1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (288, 168): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 242,
+     "instruction_end": 97,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "784a16e8a22ea442cf2d2d3d63bc0b00"
+     },
+     {
+      "frames": 1157,
+      "sha256": "1551bac95627926f99f6b00cfe40e18a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-vllg-talk-6",
+    "description": "Talking to layout record 6 of BON_VLLG (scene 586) should run its event and hand control back",
+    "plan": "# bon-bon-vllg-talk-6: Talking to layout record 6 of BON_VLLG (scene 586) should run its event and hand control back\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\ntalk 199 126 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save d84c6622f13ac214 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "talked frame 1225 scene 586 save 264f3da9549f68d7 state 3bd047fdd4d104e0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (199, 106): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fae0cc20b68b88ceebfbc5d540b1efd0"
+     },
+     {
+      "frames": 996,
+      "sha256": "8eac05c7f480f3c4a0f57a44190f5465"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

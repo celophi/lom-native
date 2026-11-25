@@ -1,0 +1,42 @@
+#ifndef FIELD_EFFECT_TRANSFORM_H
+#define FIELD_EFFECT_TRANSFORM_H
+
+#include "overlays/field/field_types.h"
+#include <libgpu.h>
+
+typedef union
+{
+    u32 word;
+    s32 signed_word;
+    u8 bytes[4];
+    CVECTOR channels;
+} FieldPrimitiveColor;
+
+typedef struct
+{
+    s8 x;
+    s8 y;
+    u8 u;
+    u8 v;
+    u8 width;
+    u8 height;
+    u8 clut_column;
+    u8 flags;
+    u8 tilt_16;
+} FieldSpriteFrame;
+
+struct FieldMotionRecord;
+struct FieldObjectPart;
+struct FieldActorSlot;
+
+u8* field_render_effect_ribbon(struct FieldMotionRecord* effect, u8* packet_cursor, GPU_OT_ENTRY(s32) * ordering_table);
+void field_build_effect_part_matrix(struct FieldMotionRecord* effect, struct FieldObjectPart* part, MATRIX* matrix, struct FieldActorSlot* actor);
+void field_resolve_effect_part_color(struct FieldActorSlot* actor, struct FieldMotionRecord* effect, struct FieldObjectPart* part, FieldPrimitiveColor* out);
+u8* field_emit_effect_texture_page(struct FieldMotionRecord* effect, struct FieldObjectPart* part, u8* packet_cursor, GPU_OT_ENTRY(s32) * ordering_table);
+void field_project_effect_sprite_quad(struct FieldMotionRecord* effect, Vec2s* origin, POLY_FT4* quad, s32 width, s32 height, s32 x, s32 y,
+                                      FieldSpriteFrame* frame, MATRIX* matrix);
+void field_unpack_effect_quad_corners8(Vec2s* out, s32 flip, s8* item);
+void field_unpack_effect_quad_corners16(Vec2s* out, s32 mirror, u8* item);
+s32 field_resolve_effect_extent(struct FieldActorSlot* actor, struct FieldObjectPart* part);
+
+#endif

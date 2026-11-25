@@ -1,0 +1,88 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sea-sea-bs10-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs10-entry",
+    "description": "Entering SEA_BS10 (scene 553) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# sea-sea-bs10-entry: Entering SEA_BS10 (scene 553) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33321 0 16712471 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 553 save df46b037beed4d61 state f30cbf7035677e8d ram 0000000000000000",
+     "watched frame 262 scene 553 save 9221c2397c6530eb state 42f1e979deefba9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "589164011a1566ba23e83d2dbabe16ef"
+     },
+     {
+      "frames": 33,
+      "sha256": "3c68483efed160e340251a8b9f1f2ac6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs11-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs11-direct",
+    "description": "Entering SEA_BS11 (scene 554) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# sea-sea-bs11-direct: Entering SEA_BS11 (scene 554) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 554 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 554 save b10399f2e1cca0ac state 648dd3c0c92851fb ram 0000000000000000",
+     "watched frame 262 scene 554 save 34132196197642d2 state d4421de9c7bdd972 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 112,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "26607709eaa7cc69225e0830b4cacd16"
+     },
+     {
+      "frames": 33,
+      "sha256": "2e6653e52d032289e2557815065fa91f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

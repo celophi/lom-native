@@ -1,0 +1,10 @@
+# Python packages the build needs.
+#
+# The build scripts in tools/build use libclang to read the decomp's C code.
+# This package comes with its own copy of libclang. If your distro's clang
+# package already installs the Python bindings (Arch does), you don't need it.
+libclang
+
+# The route tests read the disc with the scene tools in game/tools, which use
+# PyYAML.
+PyYAML

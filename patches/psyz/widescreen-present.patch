@@ -1,0 +1,85 @@
+Present the port's wide view: the middle of
+PSY-Z's native canvas, through the port's filters, and capture the same part.
+
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -13,6 +13,7 @@
+ #include "sdl3_draw.h"
+ #include "rgb24.h"
+ #include "lom_native_display.h"
++#include "lom_native_widescreen.h"
+ 
+ static LomPresentation presentation;
+ 
+@@ -910,6 +911,20 @@
+     return true;
+ }
+ 
++static bool WidescreenView(const VideoLayout* l, SDL_Rect* view, float* aspect) {
++    const int margin = lom_native_widescreen_margin();
++    const int w = l->fb.w + 2 * margin;
++    const int x = -l->screen.sx - margin;
++    if (!margin || x < 0 || x + w > l->canvas.w || l->fb.w <= 0 ||
++        l->canvas.h <= 0) {
++        return false;
++    }
++    *view = (SDL_Rect){x, 0, w, l->canvas.h};
++    *aspect = GetCurrentGameAspectRatio(l->fb.w, l->fb.h) * (float)w /
++              (float)l->fb.w * (float)l->fb.h / (float)l->canvas.h;
++    return true;
++}
++
+ // places the image in tex_upload_transfer on the canvas, past the VRAM edges
+ static void CanvasUploadImage(
+     const VideoLayout* l, int fb_index, const PS1_RECT* rect) {
+@@ -1113,10 +1128,28 @@
+                     SDL_BeginGPURenderPass(cmd, &blank_target, 1, NULL);
+                 SDL_EndGPURenderPass(blank_pass);
+             } else if (native_present) {
+-                const SDL_Rect src = {0, 0, layout.canvas.w * (int)canvas_res,
+-                                      layout.canvas.h * (int)canvas_res};
+-                Blit(canvas_tex[fb_index], src, swapchain,
+-                     GetCanvasPresentRect(&layout, (int)sc_w, (int)sc_h), true);
++                SDL_Rect view;
++                float view_aspect;
++                if (WidescreenView(&layout, &view, &view_aspect)) {
++                    const SDL_GPUBlitRegion src = {
++                        .texture = canvas_tex[fb_index],
++                        .x = (Uint32)(view.x * (int)canvas_res),
++                        .y = (Uint32)(view.y * (int)canvas_res),
++                        .w = (Uint32)(view.w * (int)canvas_res),
++                        .h = (Uint32)(view.h * (int)canvas_res),
++                    };
++                    WndSize win = {(int)sc_w, (int)sc_h};
++                    lom_present_blit(&presentation, device, cmd, src, swapchain,
++                                     FitGameToWindow(view_aspect, win),
++                                     view_aspect, canvas_res);
++                } else {
++                    const SDL_Rect src = {0, 0,
++                                          layout.canvas.w * (int)canvas_res,
++                                          layout.canvas.h * (int)canvas_res};
++                    Blit(canvas_tex[fb_index], src, swapchain,
++                         GetCanvasPresentRect(&layout, (int)sc_w, (int)sc_h),
++                         true);
++                }
+             } else {
+                 const Uint32 n = rgb24_source ? 1 : internal_res;
+                 SDL_GPUBlitRegion src = {
+@@ -1351,10 +1384,14 @@
+                        ? FindFbByOrigin(display_area.x, display_area.y)
+                        : -1;
+     if (fb_index >= 0 && PrepareCanvas(&layout, fb_index)) {
+-        *w = layout.canvas.w * (int)canvas_res;
+-        *h = layout.canvas.h * (int)canvas_res;
++        SDL_Rect view = {0, 0, layout.canvas.w, layout.canvas.h};
++        float view_aspect;
++        WidescreenView(&layout, &view, &view_aspect);
++        *w = view.w * (int)canvas_res;
++        *h = view.h * (int)canvas_res;
+         Draw_FlushBuffer();
+-        return AllocRgb888Region(canvas_tex[fb_index], 0, 0, *w, *h);
++        return AllocRgb888Region(canvas_tex[fb_index], view.x * (int)canvas_res,
++                                 view.y * (int)canvas_res, *w, *h);
+     }
+     SyncCanvasesForRead();
+     *w = display_size.x;

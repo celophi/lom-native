@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jgl-jgl-e000-story-423",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state JGL_E000's story 0x423 needs",
+    "source": "built from the conditions on the path to the write in scene 372 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 1
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e000-story-423",
+    "description": "In JGL_E000 (scene 372), talking to layout record 3 should write story variable 0x423",
+    "plan": "# jgl-jgl-e000-story-423: In JGL_E000 (scene 372), talking to layout record 3 should write story variable 0x423\nlimit 20000\nenter 372 0 16713471 1\ncheckpoint entered\ntalk 160 110 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 372 save bfe70c8fb7b9dab6 state 48d0256cf258fa49 ram 0000000000000000",
+     "done frame 2567 scene 372 save 00eaf04ec1182b99 state edf4968686b36728 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 160,
+     "instruction": 300,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ea0e867c3011ffda18b33ac599073025"
+     },
+     {
+      "frames": 2338,
+      "sha256": "d800acea135907c2d69cc9c7aa8e182d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-story-418",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e110-story-418",
+    "description": "In JGL_E110 (scene 383), entering should write story variable 0x418",
+    "plan": "# jgl-jgl-e110-story-418: In JGL_E110 (scene 383), entering should write story variable 0x418\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 383 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 383 save 2fc229c1ddec488c state 081f1b140257575b ram 0000000000000000",
+     "done frame 389 scene 383 save 8bb9c27c04d7c36d state 25f4937241cd4747 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "watched until the player got control, 75 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "79d1f1eb06cdf518adaae90f3be51005"
+     },
+     {
+      "frames": 77,
+      "sha256": "60af2e330283e046888261f647a493f8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

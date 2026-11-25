@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "id": "mods-skip-movies",
+  "description": "With Skip movies on, a new game should go from the title through name entry, weapon select and placing the Mailbox to home, with the opening's movie skipped",
+  "title": "new_game",
+  "frame_limit": 60000,
+  "start": {
+    "save": "../saves/after-opening.json"
+  },
+  "mods": "skip-movies",
+  "steps": [
+    {
+      "place": {
+        "artifact": 0
+      },
+      "note": "the Mailbox: home"
+    },
+    {
+      "land": {
+        "index": 0
+      }
+    },
+    {
+      "checkpoint": "home"
+    },
+    {
+      "watch": 20000
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

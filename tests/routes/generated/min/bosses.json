@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-b050-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b050-boss",
+    "description": "Entering MIN_B050 (scene 361) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# min-min-b050-boss: Entering MIN_B050 (scene 361) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33129 0 16718847 0\ncheckpoint entered\nwalk 160 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 361 save a7c1b2696bad10d6 state 2bc3dc0b3d650b7d ram 0000000000000000",
+     "fought frame 781 scene 361 save 3b10b16ade72231e state 3bf8e26612da6508 ram 0000000000000000",
+     "after frame 813 scene 361 save 3b10b16ade72231e state 6f7d7b8f9bbe15a8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (160, 146): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 110,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "b08f98caf0ee40d1e4ddd9b4db238a4f"
+     },
+     {
+      "frames": 521,
+      "sha256": "5a5caca08aa1ebbf83e1878e1f75d32e"
+     },
+     {
+      "frames": 32,
+      "sha256": "332d020c081372a0ccf84755fef41dfd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs00-boss",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk, with the story state MIN_BS00's battle needs",
+    "source": "built from the conditions on the path to start_battle in scene 353 (lom_routes.py generate-bosses)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2590": 1,
+     "0x1134": 7
+    }
+   },
+   "baseline": {
+    "route": "min-min-bs00-boss",
+    "description": "Entering MIN_BS00 (scene 353) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# min-min-bs00-boss: Entering MIN_BS00 (scene 353) should start its battle, which a strong hero wins, then play what follows\nlimit 120000\nexperience 9999999\nenter 33121 0 16712471 0\ncheckpoint entered\ntalk 76 210 0 1 0 1\nfight 4000 1 1 30000\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 353 save 241c54d4b8431e33 state b9f64f69f25123a9 ram 0000000000000000",
+     "fought frame 31381 scene 353 save bf26a0382940f8d1 state 0253f2c3a9c58ddf ram 0000000000000000",
+     "after frame 31413 scene 353 save bf26a0382940f8d1 state 9f6e6f91a1d58e3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (76, 190): 1 waypoints",
+     "a battle is on; fighting it",
+     "fought 30000 frames; the battle goes on",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 254,
+     "instruction": 437,
+     "song": 3,
+     "monster": 5,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "fe0993ab9ae436823d37a4008ff1b364"
+     },
+     {
+      "frames": 31121,
+      "sha256": "7642901f8be6a79cb9102cce0a19aa7e"
+     },
+     {
+      "frames": 32,
+      "sha256": "a71451b40397a0121b22cfbb9880c845"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+[submodule "external/psyz"]
+	path = external/psyz
+	url = https://github.com/Xeeynamo/psyz.git
+[submodule "external/lua"]
+	path = external/lua
+	url = https://github.com/lua/lua.git

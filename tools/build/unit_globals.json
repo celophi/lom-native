@@ -1,0 +1,288 @@
+{
+  "about": "Settings for generate_unit_globals.py, one entry per unit (the main executable or an overlay). symbols: the symbol lists it takes names from. layout: its splat yaml, for its load address and image size, with {version} for us or jp; or vram and image_size given here. bss_end: where its BSS ends, if it has globals past its image. A setting that differs between the US and Japanese games is an object keyed by version. sources: its .c files, which are parsed for declarations and compiled. exclude: files in those the port replaces. defines: extra -D for the parse. aliases: names the code uses for addresses its symbol list names differently. containers: globals the code reads past the end of, with the symbol where the data they hold ends. separate: globals the PS1 lays inside another one that keep their own storage natively, because their native size differs (WMAP's packet buffers). skip: names defined elsewhere (the port, or the game's own source natively). overlay: false for the main executable. defines_by_file: -D renames for some of its files (a pattern, relative to game/), which route calls to the port: the pad, AKAO's lock and the SPU calls PSY-Z lacks. dropped_fields (for every unit): Type.member names the native build keeps elsewhere, not decoded (FieldItemStaging.record, whose block keeps its PS1 layout for the script variables). unions (for every unit): unions of a small number or a pointer, by type name, with the value below which a word is the number. runtime: globals the code builds itself (GPU frames), zeroed on load; their bytes in the file must be zero. element_decoders: arrays that also get a one-element decoder, lom_unit_decode_element_<name>, for the native build's views of what the PS1 reads past their ends (game/src/overlays/field/actors/field_target_views.c). hosts: overlays that load beside this one, whose lists name some of its data.",
+  "dropped_fields": [
+    "FieldItemStaging.record"
+  ],
+  "units": {
+    "slus": {
+      "symbols": [
+        "shared",
+        "slus_01013"
+      ],
+      "vram": "0x80010000",
+      "image_size": "0x2F000",
+      "bss_end": {"us": "0x8004FC70", "jp": "0x8004FDD8"},
+      "sources": [
+        "src/main/*.c",
+        "src/main/audio/*.c"
+      ],
+      "overlay": false,
+      "containers": {
+        "g_resident_song_buffer": "g_transition_frames",
+        "g_saved_game": "g_akao_seq_channels"
+      },
+      "separate": [
+        "g_field_primitive_cursor",
+        "g_field_current_render_half"
+      ],
+      "skip": [
+        "g_transition_frames",
+        "g_akao_streaming_state"
+      ],
+      "exclude": [
+        "src/main/cdrom.c",
+        "src/main/field_runtime_glyph.c",
+        "src/main/field_runtime_text.c"
+      ]
+    },
+    "title": {
+      "symbols": [
+        "shared",
+        "title"
+      ],
+      "layout": "config/{version}/overlays/TITLE.BIN.yaml",
+      "sources": [
+        "src/overlays/title/**/*.c"
+      ],
+      "containers": {
+        "g_title_menu_tim_table": "g_cursor_blink_u_offsets"
+      }
+    },
+    "gname": {
+      "containers": {
+        "g_panel_data_base": "g_name_entry_tim",
+        "g_name_entry_tim": "g_layout_sprite_sequence"
+      },
+      "symbols": [
+        "shared",
+        "gname"
+      ],
+      "layout": "config/{version}/overlays/GNAME.BIN.yaml",
+      "sources": [
+        "src/overlays/gname/**/*.c"
+      ]
+    },
+    "wsel": {
+      "symbols": [
+        "shared",
+        "wsel"
+      ],
+      "layout": "config/{version}/overlays/WSEL.BIN.yaml",
+      "sources": [
+        "src/overlays/wsel/**/*.c"
+      ]
+    },
+    "field": {
+      "containers": {
+        "g_field_item_name_table": "g_field_drop_handlers",
+        "g_field_resource_blob": "g_field_hud_hp_colors",
+        "g_field_default_action_bank": "g_field_monster_level_by_rank",
+        "g_field_ui_text_table": "g_field_ability_unlock_rules"
+      },
+      "skip": [
+        "g_field_script_locals"
+      ],
+      "element_decoders": ["g_field_actors", "g_field_effect_records", "g_field_object_states", "g_field_object_parts"],
+      "symbols": [
+        "shared",
+        "field"
+      ],
+      "layout": "config/{version}/overlays/FIELD.BIN.yaml",
+      "sources": [
+        "src/overlays/field/**/*.c"
+      ],
+      "hosts": [
+        "addhero",
+        "carda",
+        "cload",
+        "golem",
+        "gosub",
+        "gover",
+        "menu",
+        "niki",
+        "shop",
+        "zukan"
+      ]
+    },
+    "wmap": {
+      "containers": {
+        "g_wmap_game_spawn_patterns": "g_wmap_sfx_buffers",
+        "g_wmap_load_buffer": "g_wmap_selection_phase",
+        "g_wmap_music_buffer": "g_wmap_land_image_pack",
+        "g_wmap_animation_bank_0": "g_wmap_pending_arrival_events",
+        "g_wmap_help_image": "g_wmap_placement_overlay_hidden"
+      },
+      "symbols": [
+        "shared",
+        "wmap"
+      ],
+      "layout": "config/{version}/overlays/WMAP.BIN.yaml",
+      "sources": [
+        "src/overlays/wmap/**/*.c"
+      ],
+      "runtime": [
+        "g_wmap_frames",
+        "g_wmap_packet_buffer_0",
+        "g_wmap_packet_buffer_1"
+      ],
+      "separate": [
+        "g_wmap_packet_buffer_0",
+        "g_wmap_packet_buffer_1",
+        "g_saved_game_ctx",
+        "g_script_repeat_count",
+        "g_active_script",
+        "g_pad_input",
+        "g_pad_input_inject"
+      ],
+      "skip": [
+        "g_wmap_vehicle_actor",
+        "g_wmap_vehicle_animation",
+        "g_wmap_spirit_sprite_positions"
+      ]
+    },
+    "addhero": {
+      "containers": {
+        "g_card_menu_text_table": "g_card_menu_location_names",
+        "g_addhero_entry_file": "g_card_step"
+      },
+      "symbols": [
+        "shared",
+        "addhero"
+      ],
+      "layout": "config/{version}/overlays/ADDHERO.BIN.yaml",
+      "sources": [
+        "src/overlays/addhero/**/*.c"
+      ]
+    },
+    "carda": {
+      "containers": {
+        "g_carda_text_checking_card": "g_carda_item_names",
+        "g_carda_selected_file": "g_card_step"
+      },
+      "symbols": [
+        "shared",
+        "carda"
+      ],
+      "layout": "config/{version}/overlays/CARDA.BIN.yaml",
+      "sources": [
+        "src/overlays/carda/**/*.c"
+      ]
+    },
+    "cload": {
+      "containers": {
+        "g_card_menu_text_table": "g_card_menu_location_names",
+        "g_cload_selected_file": "g_card_selected_save_path"
+      },
+      "symbols": [
+        "shared",
+        "cload"
+      ],
+      "layout": "config/{version}/overlays/CLOAD.BIN.yaml",
+      "sources": [
+        "src/overlays/cload/**/*.c"
+      ],
+      "runtime": [
+        "g_cload_primitive_buffers",
+        "g_cload_render_buffers"
+      ]
+    },
+    "golem": {
+      "containers": {
+        "g_golem_ui_image": "g_golem_text_archive",
+        "g_golem_text_archive": "g_golem_glyph_metrics"
+      },
+      "symbols": [
+        "shared",
+        "golem"
+      ],
+      "layout": "config/{version}/overlays/GOLEM.BIN.yaml",
+      "sources": [
+        "src/overlays/golem/**/*.c"
+      ]
+    },
+    "gosub": {
+      "containers": {
+        "g_gosub_image_archive": "g_gosub_text_archive",
+        "g_gosub_font_texture": "g_gosub_glyph_metrics"
+      },
+      "symbols": [
+        "shared",
+        "gosub"
+      ],
+      "layout": "config/{version}/overlays/GOSUB.BIN.yaml",
+      "sources": [
+        "src/overlays/gosub/**/*.c"
+      ]
+    },
+    "gover": {
+      "symbols": [
+        "shared",
+        "gover"
+      ],
+      "layout": "config/{version}/overlays/GOVER.BIN.yaml",
+      "sources": [
+        "src/overlays/gover/**/*.c"
+      ]
+    },
+    "menu": {
+      "containers": {
+        "g_menu_state_data": "g_menu_tim",
+        "g_menu_default_content_items": "g_menu_state_data",
+        "g_menu_action_icon_ids": "g_menu_content_table",
+        "g_menu_nav_nodes": "g_item_slot_data"
+      },
+      "symbols": [
+        "shared",
+        "menu"
+      ],
+      "layout": "config/{version}/overlays/MENU.BIN.yaml",
+      "sources": [
+        "src/overlays/menu/**/*.c"
+      ]
+    },
+    "niki": {
+      "containers": {
+        "g_card_menu_text_table": "g_card_menu_location_names",
+        "g_niki_entry_file": "g_card_step"
+      },
+      "symbols": [
+        "shared",
+        "niki"
+      ],
+      "layout": "config/{version}/overlays/NIKI.BIN.yaml",
+      "sources": [
+        "src/overlays/niki/**/*.c"
+      ]
+    },
+    "shop": {
+      "containers": {
+        "g_shop_text_archive": "g_shop_item_sell_prices"
+      },
+      "symbols": [
+        "shared",
+        "shop"
+      ],
+      "layout": "config/{version}/overlays/SHOP.BIN.yaml",
+      "sources": [
+        "src/overlays/shop/**/*.c"
+      ]
+    },
+    "zukan": {
+      "symbols": [
+        "shared",
+        "zukan"
+      ],
+      "layout": "config/{version}/overlays/ZUKAN.BIN.yaml",
+      "sources": [
+        "src/overlays/zukan/**/*.c"
+      ]
+    }
+  },
+  "unions": {
+    "FieldObjectFlagHandler": {
+      "split": 256,
+      "small": "animation",
+      "pointer": "function"
+    }
+  }
+}

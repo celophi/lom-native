@@ -1,0 +1,18 @@
+#include "common/glyph_cache.h"
+
+/**
+ * @brief Evict cache entries not touched this frame by zeroing any slot whose
+ *        "used" flag (GLYPH_CACHE_USED) is clear.
+ */
+void evict_unused_glyphs(void)
+{
+    s32 i;
+
+    for (i = 0; i < GLYPH_CACHE_SLOTS; i++)
+    {
+        if (!(g_glyph_cache[i].raw & GLYPH_CACHE_USED))
+        {
+            g_glyph_cache[i].raw = 0;
+        }
+    }
+}

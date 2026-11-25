@@ -1,0 +1,12 @@
+#ifndef LOM_GPU_PRESENTATION_MODE_H
+#define LOM_GPU_PRESENTATION_MODE_H
+
+typedef enum
+{
+    LOM_PRESENT_SHARP,
+    LOM_PRESENT_INTEGER,
+    LOM_PRESENT_SMOOTH,
+    LOM_PRESENT_XBR,
+    LOM_PRESENT_COUNT
+} LomPresentationMode;
+#endif

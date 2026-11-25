@@ -1,0 +1,12 @@
+{
+  "id": "optional-old",
+  "name": "Optional old",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2,
+  "optional": {
+    "base": ">=1.5.0"
+  }
+}

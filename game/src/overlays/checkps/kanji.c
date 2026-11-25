@@ -1,0 +1,110 @@
+#include "common.h"
+#include <libapi.h>
+#include <libgpu.h>
+#include <strings.h>
+
+#include "internal/checkps_internal.h"
+#include "internal/kanji.h"
+
+#define CHECKPS_KANJI_LINE_HEIGHT 18
+#define CHECKPS_KANJI_ADVANCE 17
+#define CHECKPS_KANJI_PIXELS_PER_ROW 16
+#define CHECKPS_KANJI_PACKET_WORDS 11
+#define CHECKPS_GPU_LOAD_IMAGE_COMMAND 0xA0000000
+
+static void draw_kanji_glyph(KanjiDrawState* draw_state, u8* bitmap, s32 color);
+
+/**
+ * @brief Draw a Shift-JIS string using glyphs from the PS1 Kanji ROM.
+ * @param text Null-terminated Shift-JIS text; newline resets the x cursor.
+ * @param draw_state VRAM cursor and glyph dimensions, updated while drawing.
+ * @param color Foreground pixel value.
+ */
+void draw_kanji_string(const char* text, KanjiDrawState* draw_state, s32 color)
+{
+    const u8* cursor;
+    s32 length;
+    s32 line_start_x;
+    u16 character_code;
+    s32 newline = '\n';
+    s32 glyph_color = color;
+
+    length = strlen(text);
+    line_start_x = draw_state->position.coord.x;
+
+    for (cursor = (const u8*)text; cursor < (const u8*)text + length; cursor++)
+    {
+        if (*cursor == newline)
+        {
+            draw_state->position.coord.x = line_start_x;
+            draw_state->position.coord.y += CHECKPS_KANJI_LINE_HEIGHT;
+        }
+        else
+        {
+            character_code = *cursor++ << 8;
+            character_code |= *cursor;
+            draw_kanji_glyph(draw_state, (u8*)Krom2RawAdd(character_code), glyph_color);
+            draw_state->position.coord.x += CHECKPS_KANJI_ADVANCE;
+        }
+    }
+}
+
+/**
+ * @brief Expand and upload one 1bpp Kanji-ROM glyph to VRAM.
+ * @param draw_state VRAM destination and glyph dimensions.
+ * @param bitmap Raw 1bpp glyph bitmap.
+ * @param color Foreground pixel value.
+ */
+static void draw_kanji_glyph(KanjiDrawState* draw_state, u8* bitmap, s32 color)
+{
+    struct
+    {
+        u32 tag;
+        u32 command;
+        u32 xy;
+        u32 wh;
+        s16 pixels[CHECKPS_KANJI_PIXELS_PER_ROW];
+    } packet;
+
+    s32 original_x;
+    s32 original_y;
+    s32 row;
+    s32 pass;
+    s16* write_ptr;
+    s32 bit;
+
+    original_x = draw_state->position.coord.x;
+    original_y = draw_state->position.coord.y;
+
+    packet.tag = CHECKPS_KANJI_PACKET_WORDS << 24;
+    packet.command = CHECKPS_GPU_LOAD_IMAGE_COMMAND;
+    packet.wh = draw_state->size.packed;
+
+    for (row = 0; row < GLYPH_ROWS; row++)
+    {
+        write_ptr = packet.pixels;
+
+        for (pass = 0; pass < 2; pass++)
+        {
+            for (bit = 7; bit >= 0; bit--)
+            {
+                *write_ptr++ = ((*bitmap >> bit) & 1) ? color : 0;
+            }
+
+            bitmap++;
+        }
+
+        for (pass = 0; pass < 2; pass++)
+        {
+            packet.xy = draw_state->position.packed;
+            DrawPrim(&packet);
+
+            draw_state->position.coord.x++;
+        }
+
+        draw_state->position.coord.x = original_x;
+        draw_state->position.coord.y++;
+    }
+
+    draw_state->position.coord.y = original_y;
+}

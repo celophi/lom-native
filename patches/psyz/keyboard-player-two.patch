@@ -1,0 +1,47 @@
+A second keyboard layout, for player two.
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -855,6 +855,24 @@
+     SDL_SCANCODE_DOWN,      // PAD_DOWN
+     SDL_SCANCODE_LEFT,      // PAD_LEFT
+ };
++static u_long keyb_p2[] = {
++    SDL_SCANCODE_END,
++    SDL_SCANCODE_PAGEDOWN,
++    SDL_SCANCODE_HOME,
++    SDL_SCANCODE_PAGEUP,
++    SDL_SCANCODE_KP_7,
++    SDL_SCANCODE_KP_9,
++    SDL_SCANCODE_KP_3,
++    SDL_SCANCODE_KP_1,
++    SDL_SCANCODE_KP_0,
++    SDL_SCANCODE_KP_5,
++    SDL_SCANCODE_KP_PERIOD,
++    SDL_SCANCODE_KP_ENTER,
++    SDL_SCANCODE_KP_8,
++    SDL_SCANCODE_KP_6,
++    SDL_SCANCODE_KP_2,      // PAD_DOWN
++    SDL_SCANCODE_KP_4,      // PAD_LEFT
++};
+ static unsigned int PadRead_Keyboard(u_long* config, int config_len) {
+     const bool* keyb = SDL_GetKeyboardState(NULL);
+     unsigned int r = 0;
+@@ -940,6 +958,9 @@
+         pressed |= Psyz_IosReadTouchControls();
+ #endif
+     }
++    if (id == 1 && SDL_HasKeyboard()) {
++        pressed |= PadRead_Keyboard(keyb_p2, LEN(keyb_p2));
++    }
+     return pressed | PadRead_Gamepad(&gamepads[id]);
+ }
+ 
+@@ -961,7 +982,7 @@
+     if (gamepads[port].dev) {
+         return true;
+     }
+-    if (port == 0 && SDL_HasKeyboard()) {
++    if ((port == 0 || port == 1) && SDL_HasKeyboard()) {
+         return true;
+     }
+ #ifdef PLATFORM_IOS

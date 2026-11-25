@@ -1,0 +1,28 @@
+{
+  "format": 1,
+  "id": "mhm-mhm-alc2-hatched",
+  "description": "Coming into MHM_ALC2 (scene 25) with a just-hatched pet stored and 0x1200 = 4 should run layout record 0's set-up script for it: name the pet, load its species, count and send out the grazing pets",
+  "start": {
+    "save": "saves/mhm_alc2-hatched.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 25,
+        "from": 1,
+        "spawn": 0
+      },
+      "note": "the way in from MHM"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "watch": 3000,
+      "note": "layout record 0's set-up script"
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

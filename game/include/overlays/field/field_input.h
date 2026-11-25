@@ -1,0 +1,20 @@
+#ifndef FIELD_INPUT_H
+#define FIELD_INPUT_H
+
+#include "common.h"
+
+#include "common/pad.h"
+
+/**
+ * @brief Read both controllers and apply the initial delay and key repeat to their buttons.
+ * @note A new button fires at once, waits PAD_REPEAT_INITIAL_DELAY frames, then repeats every third frame.
+ * @note While a modal screen is open, held directions repeat on their own without the other buttons.
+ */
+void field_update_input_repeat(void);
+
+/**
+ * @brief Clear delivered input and restart both controllers' held-button delays.
+ */
+void field_reset_input_repeat(void);
+
+#endif

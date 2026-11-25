@@ -1,0 +1,251 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: Check the metadata
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add the releases since the newest in the AppStream metadata
+        run: python3 packaging/linux/add-releases.py packaging/linux/io.github.celophi.lom_native.metainfo.xml
+
+      - name: Install the validators
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq appstream desktop-file-utils > /dev/null
+
+      - name: Validate the desktop file and AppStream metadata
+        run: |
+          desktop-file-validate packaging/linux/io.github.celophi.lom_native.desktop
+          appstreamcli validate --no-net --pedantic packaging/linux/io.github.celophi.lom_native.metainfo.xml
+
+      - name: Check this release is in the AppStream metadata
+        if: github.ref_type == 'tag'
+        run: |
+          version=$(sh packaging/version.sh)
+          if ! grep -q "<release version=\"$version\"" packaging/linux/io.github.celophi.lom_native.metainfo.xml; then
+            echo "::error::Add a <release> for $version to packaging/linux/io.github.celophi.lom_native.metainfo.xml"
+            exit 1
+          fi
+
+  appimage:
+    name: AppImage
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    env:
+      BUILD_IMAGE: ubuntu:22.04@sha256:9abcaffc92a5279fff3a6a41635c0800ea33e528425fb389658806476e7defde
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Add the releases since the newest in the AppStream metadata
+        run: python3 packaging/linux/add-releases.py packaging/linux/io.github.celophi.lom_native.metainfo.xml
+
+      - name: Work out the version
+        id: version
+        run: echo "version=$(sh packaging/version.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Build the AppImage
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/src:ro" \
+            -v "$RUNNER_TEMP/out:/out" \
+            -w /src \
+            "$BUILD_IMAGE" \
+            sh packaging/appimage/build.sh "${{ steps.version.outputs.version }}" /out
+
+      - name: Keep the AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: appimage
+          path: ${{ runner.temp }}/out/*.AppImage
+          if-no-files-found: error
+
+  flatpak:
+    name: Flatpak
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    env:
+      BUILD_IMAGE: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.11@sha256:b0a8a2acb9e420dd0e3e083ff552bea5a817e17e41532f1d2287ff49ef9aae0e
+
+    steps:
+      - name: Make room on the disk
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /usr/local/.ghcup
+          df -h /
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Add the releases since the newest in the AppStream metadata
+        run: python3 packaging/linux/add-releases.py packaging/linux/io.github.celophi.lom_native.metainfo.xml
+
+      - name: Work out the version
+        id: version
+        run: echo "version=$(sh packaging/version.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Build the Flatpak
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          docker run --rm --privileged \
+            -v "$GITHUB_WORKSPACE:/src:ro" \
+            -v "$RUNNER_TEMP/out:/out" \
+            -w /src \
+            "$BUILD_IMAGE" \
+            sh packaging/flatpak/build.sh "${{ steps.version.outputs.version }}" /out
+
+      - name: Keep the Flatpak
+        uses: actions/upload-artifact@v4
+        with:
+          name: flatpak
+          path: ${{ runner.temp }}/out/*.flatpak
+          if-no-files-found: error
+
+  macos:
+    name: macOS
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: macos-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Build the .dmg
+        run: sh packaging/macos/build.sh "$(sh packaging/version.sh)" "$RUNNER_TEMP/out"
+
+      - name: Keep the .dmg
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: ${{ runner.temp }}/out/*.dmg
+          if-no-files-found: error
+
+  windows:
+    name: Windows
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: windows-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Keep line endings as they are
+        shell: pwsh
+        run: git config --global core.autocrlf false
+
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: CLANG64
+          update: true
+          install: >-
+            git
+            make
+            mingw-w64-x86_64-binutils
+            mingw-w64-clang-x86_64-toolchain
+            mingw-w64-clang-x86_64-cmake
+            mingw-w64-clang-x86_64-ninja
+            mingw-w64-clang-x86_64-python
+            mingw-w64-clang-x86_64-python-yaml
+            mingw-w64-clang-x86_64-qt6-base
+            mingw-w64-clang-x86_64-qt6-tools
+
+      - name: Check out the submodules
+        run: sh tools/ci/checkout-submodules.sh
+
+      - name: Build the zip
+        run: sh packaging/windows/build.sh "$(sh packaging/version.sh)" "$RUNNER_TEMP/out"
+
+      - name: Keep the zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: ${{ runner.temp }}/out/*.zip
+          if-no-files-found: error
+
+  release:
+    name: Draft the release
+    needs: [appimage, flatpak, macos, windows]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Collect the packages
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Add FFmpeg's source
+        run: |
+          version=$(sed -n 's/^version=//p' packaging/ffmpeg/build.sh)
+          sha256=$(sed -n 's/^sha256=//p' packaging/ffmpeg/build.sh)
+          curl -sSfL -o "dist/ffmpeg-$version.tar.xz" "https://ffmpeg.org/releases/ffmpeg-$version.tar.xz"
+          echo "$sha256  dist/ffmpeg-$version.tar.xz" | sha256sum -c
+
+      - name: Write the checksums
+        run: cd dist && sha256sum -- * > SHA256SUMS
+
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --draft \
+            --verify-tag \
+            --title "$GITHUB_REF_NAME" \
+            --notes "Notes to come."

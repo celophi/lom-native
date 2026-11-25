@@ -1,0 +1,217 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jgl-jgl-b010-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b010-boss",
+    "description": "Entering JGL_B010 (scene 390) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jgl-jgl-b010-boss: Entering JGL_B010 (scene 390) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33158 1 16713471 0\ncheckpoint entered\nwalk 416 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 390 save 64c63e3e47e0d81f state a87a8624b4ad24c4 ram 0000000000000000",
+     "fought frame 1238 scene 390 save 27db6c168eb45126 state d06bfc0e0b884889 ram 0000000000000000",
+     "after frame 1270 scene 390 save 27db6c168eb45126 state 6509546377653e94 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (416, 44): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 890 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 122,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "5bfcd70e53bb9acbf325239d4cf7c7f7"
+     },
+     {
+      "frames": 978,
+      "sha256": "b78e96f8fba720b727eaa90910e1c0b7"
+     },
+     {
+      "frames": 32,
+      "sha256": "f8d524d32a17edd7919eb05c839f096b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b070-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b070-boss",
+    "description": "Entering JGL_B070 (scene 396) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jgl-jgl-b070-boss: Entering JGL_B070 (scene 396) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33164 3 16713471 0\ncheckpoint entered\nwalk 272 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 396 save a664a79296840b8b state f9dd1d218a0cabf6 ram 0000000000000000",
+     "fought frame 1185 scene 396 save fb1fd2fdeb01f15a state b6b60320c2454b83 ram 0000000000000000",
+     "after frame 1266 scene 396 save fb1fd2fdeb01f15a state 0da59c8dbb450232 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (272, 52): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames",
+     "watched until the player got control, 79 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 405,
+     "instruction_end": 127,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "9993ab7aa2f6a2e0a60005b4985e27c0"
+     },
+     {
+      "frames": 925,
+      "sha256": "94288667e29684ab9ebbdb34429208e3"
+     },
+     {
+      "frames": 81,
+      "sha256": "3c01b08926324fc381fdd965739c17c8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs00-boss",
+    "description": "Entering JGL_BS00 (scene 385) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jgl-jgl-bs00-boss: Entering JGL_BS00 (scene 385) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33153 0 16712460 0\ncheckpoint entered\nwalk 320 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 385 save 20d0587ba83ca2f8 state e9856aa145c7eef1 ram 0000000000000000",
+     "fought frame 2109 scene 385 save 15c9f3f81821e094 state af37ccb452f8a795 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (320, 60): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1490 frames",
+     "game state 1 at vblank 7906",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 230,
+     "instruction": 557,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "fcd4d34dc6383e67e199015299235a00"
+     },
+     {
+      "frames": 1849,
+      "sha256": "9fd2fe4f20e3a407335ad8f4e7327495"
+     },
+     {
+      "frames": 1578,
+      "sha256": "287b5095272ead9ebffadcfa23ad5d6b"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs10-boss",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state JGL_BS10's battle needs",
+    "source": "built from the conditions on the path to start_battle in scene 387 (lom_routes.py generate-bosses)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1120": 6
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-bs10-boss",
+    "description": "Entering JGL_BS10 (scene 387) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jgl-jgl-bs10-boss: Entering JGL_BS10 (scene 387) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33155 0 16720895 0\ncheckpoint entered\ntalk 300 100 0 1 0 1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 387 save 915cb2c6ab8cd62e state 120646d8738045e4 ram 0000000000000000",
+     "fought frame 2128 scene 387 save ca906bb9318689e1 state 734f937fd0400096 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (300, 80): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1670 frames",
+     "game state 1 at vblank 5946",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 487,
+     "instruction_end": 159,
+     "song": 4,
+     "monster": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3a1b7fcde9e636164c9b91a5729fdcd1"
+     },
+     {
+      "frames": 1868,
+      "sha256": "860c2b72a066ef69f3a2451927561c6a"
+     },
+     {
+      "frames": 584,
+      "sha256": "1e35ab7690cad647a6f99ec69f09ceb4"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,688 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wal-wal-all0-story-1214",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_ALL0's story 0x1214 needs",
+    "source": "built from the conditions on the path to the write in scene 273 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1214": 2
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-all0-story-1214",
+    "description": "In WAL_ALL0 (scene 273), entering should write story variable 0x1214",
+    "plan": "# wal-wal-all0-story-1214: In WAL_ALL0 (scene 273), entering should write story variable 0x1214\nlimit 20000\nenter 273 0 16716031 3\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save 5c98cbe2b540523b state b5517a200355be3b ram 0000000000000000",
+     "done frame 262 scene 273 save 5c98cbe2b540523b state bca5f5c45ecbe9de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 31,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4d2241ed48b7679f028bb7246c9a365"
+     },
+     {
+      "frames": 33,
+      "sha256": "1d45b569116131cd31517d1ade625cd6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-story-13dc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_ALL0's story 0x13dc needs",
+    "source": "built from the conditions on the path to the write in scene 273 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1160": 8,
+     "0x1120": 8
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-all0-story-13dc",
+    "description": "In WAL_ALL0 (scene 273), entering should write story variable 0x13dc",
+    "plan": "# wal-wal-all0-story-13dc: In WAL_ALL0 (scene 273), entering should write story variable 0x13dc\nlimit 20000\nenter 273 0 16716031 3\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save 8889f4186620f190 state d20b512cc1bbd141 ram 0000000000000000",
+     "done frame 293 scene 273 save 51a48fe1a33f7ec0 state 6e6007fea0270baf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 62 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "52e75fc9ce111f7da196bf49a2e95fd8"
+     },
+     {
+      "frames": 64,
+      "sha256": "21f74e5358b870ab5e18137dbd3b9252"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b300-story-11bc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_B300's story 0x11bc needs",
+    "source": "built from the conditions on the path to the write in scene 316 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x40c": 1
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-b300-story-11bc",
+    "description": "In WAL_B300 (scene 316), entering should write story variable 0x11bc",
+    "plan": "# wal-wal-b300-story-11bc: In WAL_B300 (scene 316), entering should write story variable 0x11bc\nlimit 20000\nenter 33084 0 16712191 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 316 save e382da5a35674eb6 state b1958b13149d39d8 ram 0000000000000000",
+     "done frame 262 scene 316 save fecf0550972cf0b4 state f2bb9cb36ed17c37 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0cad0bf7319391cc68fdb6eaab582177"
+     },
+     {
+      "frames": 33,
+      "sha256": "1f3f925d4a3b8355c0ee94eb4c495685"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm0-story-3f2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM0's story 0x3f2 needs",
+    "source": "built from the conditions on the path to the write in scene 285 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1118": 3
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm0-story-3f2",
+    "description": "In WAL_DRM0 (scene 285), entering should write story variable 0x3f2",
+    "plan": "# wal-wal-drm0-story-3f2: In WAL_DRM0 (scene 285), entering should write story variable 0x3f2\nlimit 20000\nenter 285 0 16723455 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 285 save 1fc57461e3918718 state afeef167b2122ab5 ram 0000000000000000",
+     "done frame 507 scene 285 save fb155da664f1162b state 79bff4a38a8bf047 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 276 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 56,
+     "instruction": 152,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "853cee15f81cdbbba2a81ce06fc08370"
+     },
+     {
+      "frames": 278,
+      "sha256": "8018d6634d714b5cf4d907d4e2f6f25c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-story-1100",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM1's story 0x1100 needs",
+    "source": "built from the conditions on the path to the write in scene 625 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1130": 1,
+     "0x1100": 2
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm1-story-1100",
+    "description": "In WAL_DRM1 (scene 625), entering should write story variable 0x1100",
+    "plan": "# wal-wal-drm1-story-1100: In WAL_DRM1 (scene 625), entering should write story variable 0x1100\nlimit 20000\nenter 275 0 16716031 0\nguest 0\nenter 625 0 16715007 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 625 save e2243ae99c3788b8 state 7624e4719978785e ram 0000000000000000",
+     "done frame 4557 scene 419 save d71e54251362f2a4 state 65f783a85256e60d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 4241 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 356,
+     "instruction": 654,
+     "song": 5,
+     "scene": 7
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "5235d6a0c43a45bfd694d55cb1b88b45"
+     },
+     {
+      "frames": 4243,
+      "sha256": "3e4513dc346a413f239a8ec6efcbc174"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-story-1140",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM1's story 0x1140 needs",
+    "source": "built from the conditions on the path to the write in scene 625 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1140": 1
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm1-story-1140",
+    "description": "In WAL_DRM1 (scene 625), entering should write story variable 0x1140",
+    "plan": "# wal-wal-drm1-story-1140: In WAL_DRM1 (scene 625), entering should write story variable 0x1140\nlimit 20000\nenter 625 0 16715007 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 625 save 5040f1f78b10804e state fc3ca52fa7c22c93 ram 0000000000000000",
+     "done frame 1735 scene 625 save 145730909eacb59d state ab8d2619a3ed16bd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1504 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 89,
+     "instruction": 220,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8376c72962db70aea41c93166d4d1b4"
+     },
+     {
+      "frames": 1506,
+      "sha256": "427b5aa091c3ad25c57ad7d4eae36dcd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-story-11d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM1's story 0x11d4 needs",
+    "source": "built from the conditions on the path to the write in scene 625 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1130": 1,
+     "0x11d4": 2
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm1-story-11d4",
+    "description": "In WAL_DRM1 (scene 625), entering should write story variable 0x11d4",
+    "plan": "# wal-wal-drm1-story-11d4: In WAL_DRM1 (scene 625), entering should write story variable 0x11d4\nlimit 20000\nenter 275 0 16716031 0\nguest 0\nenter 625 0 16715007 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 625 save 07c4ceec7402185a state 7624e4719978785e ram 0000000000000000",
+     "done frame 4557 scene 419 save c0be4fc0ccd4a5e3 state 65f783a85256e60d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 4241 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 356,
+     "instruction": 654,
+     "song": 5,
+     "scene": 7
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "87c36fb1dc0ebfd18ede8486b8e0de32"
+     },
+     {
+      "frames": 4243,
+      "sha256": "6b5bf59092457a1ddb700940ab35856f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-story-11d8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM1's story 0x11d8 needs",
+    "source": "built from the conditions on the path to the write in scene 625 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1130": 1,
+     "0x11d8": 2
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm1-story-11d8",
+    "description": "In WAL_DRM1 (scene 625), entering should write story variable 0x11d8",
+    "plan": "# wal-wal-drm1-story-11d8: In WAL_DRM1 (scene 625), entering should write story variable 0x11d8\nlimit 20000\nenter 275 0 16716031 0\nguest 0\nenter 625 0 16715007 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 625 save 4300b3088b8cef0c state 7624e4719978785e ram 0000000000000000",
+     "done frame 4557 scene 419 save 5b525c6b06c74b56 state 65f783a85256e60d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 4241 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 356,
+     "instruction": 654,
+     "song": 5,
+     "scene": 7
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "8343e9fc5b10a4e0c98045cf3ad0c141"
+     },
+     {
+      "frames": 4243,
+      "sha256": "32bd4884a4bbca11c533a8434c53854b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-story-450",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_DRM1's story 0x450 needs",
+    "source": "built from the conditions on the path to the write in scene 625 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1140": 2,
+     "0x1130": 1
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-drm1-story-450",
+    "description": "In WAL_DRM1 (scene 625), entering should write story variable 0x450",
+    "plan": "# wal-wal-drm1-story-450: In WAL_DRM1 (scene 625), entering should write story variable 0x450\nlimit 20000\nenter 625 0 16715007 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 625 save e1729dc910c30870 state d88f9471a95c8e51 ram 0000000000000000",
+     "done frame 4472 scene 419 save 98277ac800a9ee23 state d559cd7429fa72cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 4241 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 348,
+     "instruction": 608,
+     "song": 4,
+     "scene": 6
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ccb05d28ffdda4ac38feba84abf75454"
+     },
+     {
+      "frames": 4243,
+      "sha256": "33ff2da9299c3681b870bcfef27f6354"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-fork-story-441",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_FORK's story 0x441 needs",
+    "source": "built from the conditions on the path to the write in scene 276 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1214": 7
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-fork-story-441",
+    "description": "In WAL_FORK (scene 276), talking to layout record 3 should write story variable 0x441",
+    "plan": "# wal-wal-fork-story-441: In WAL_FORK (scene 276), talking to layout record 3 should write story variable 0x441\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 276 0 16716031 1\ncheckpoint entered\ntalk 264 370 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 276 save a4199b660005a885 state 692b2a7bd575ad41 ram 0000000000000000",
+     "done frame 1613 scene 276 save 29c24166981e027f state 09452c8e156c7df4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (264, 390): 16 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "34f179232e659e6d8d54b294e3cb9882"
+     },
+     {
+      "frames": 1301,
+      "sha256": "f01d81e3ed90824fbbadc972d247b707"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-nest-story-11dc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_NEST's story 0x11dc needs",
+    "source": "built from the conditions on the path to the write in scene 280 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11dc": 4
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-nest-story-11dc",
+    "description": "In WAL_NEST (scene 280), entering should write story variable 0x11dc",
+    "plan": "# wal-wal-nest-story-11dc: In WAL_NEST (scene 280), entering should write story variable 0x11dc\nlimit 20000\nenter 275 0 16716031 0\nguest 0\nenter 280 0 16716031 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 280 save 67e610f0efdcd825 state bfb8edb641b37fe9 ram 0000000000000000",
+     "done frame 631 scene 280 save 2c9e63369e7489ff state 766dbd235fb40bc5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 315 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "319927e05bf53c4aabe3b7dd248c8689"
+     },
+     {
+      "frames": 317,
+      "sha256": "be67d779f80ee032936b4c0d6a9afbd5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-story-3f1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WAL_WAY0's story 0x3f1 needs",
+    "source": "built from the conditions on the path to the write in scene 284 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1118": 3
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-way0-story-3f1",
+    "description": "In WAL_WAY0 (scene 284), entering should write story variable 0x3f1",
+    "plan": "# wal-wal-way0-story-3f1: In WAL_WAY0 (scene 284), entering should write story variable 0x3f1\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 4e72995db894b938 state 53b066ee8cee02ed ram 0000000000000000",
+     "done frame 404 scene 284 save 53f4e01dbfe9e558 state fb25b40da893e466 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 173 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5c4472c537af23e3387498fa4de3cd94"
+     },
+     {
+      "frames": 175,
+      "sha256": "66f1d7b3b37616a46cbeae83fb017922"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

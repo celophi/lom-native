@@ -1,0 +1,270 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wd1-wd1-evt0-story-11a0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WD1_EVT0's story 0x11a0 needs",
+    "source": "built from the conditions on the path to the write in scene 125 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a0": 1
+    }
+   },
+   "baseline": {
+    "route": "wd1-wd1-evt0-story-11a0",
+    "description": "In WD1_EVT0 (scene 125), entering should write story variable 0x11a0",
+    "plan": "# wd1-wd1-evt0-story-11a0: In WD1_EVT0 (scene 125), entering should write story variable 0x11a0\nlimit 20000\nenter 125 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 125 save fcb3ae5f95fe6512 state b09d730181630c3f ram 0000000000000000",
+     "done frame 847 scene 125 save 19fc9d2f88e68259 state 2e74337bb06fec29 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 616 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 91,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "77b659e6e7b418aaf9055ce556599815"
+     },
+     {
+      "frames": 618,
+      "sha256": "53570bd2b916591ecf43174bdab762f6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wd1-wd1-frk4-story-113c",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WD1_FRK4's story 0x113c needs",
+    "source": "built from the conditions on the path to the write in scene 131 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x113c": 8
+    }
+   },
+   "baseline": {
+    "route": "wd1-wd1-frk4-story-113c",
+    "description": "In WD1_FRK4 (scene 131), entering should write story variable 0x113c",
+    "plan": "# wd1-wd1-frk4-story-113c: In WD1_FRK4 (scene 131), entering should write story variable 0x113c\nlimit 20000\nenter 131 2 16718847 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 131 save bd220b6bb136cc36 state 1f565bf2cb2d1686 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 2,
+     "instruction": 144,
+     "instruction_end": 75,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48a998267ed32c56f04f738a675bc777"
+     },
+     {
+      "frames": 605,
+      "sha256": "e25855dec1324982542b251cca804fb2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wd1-wd1-frk4-story-5ef",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WD1_FRK4's story 0x5ef needs",
+    "source": "built from the conditions on the path to the write in scene 131 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x113c": 8
+    }
+   },
+   "baseline": {
+    "route": "wd1-wd1-frk4-story-5ef",
+    "description": "In WD1_FRK4 (scene 131), entering should write story variable 0x5ef",
+    "plan": "# wd1-wd1-frk4-story-5ef: In WD1_FRK4 (scene 131), entering should write story variable 0x5ef\nlimit 20000\nenter 131 2 16718847 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 131 save bd220b6bb136cc36 state 1f565bf2cb2d1686 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 2,
+     "instruction": 144,
+     "instruction_end": 75,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48a998267ed32c56f04f738a675bc777"
+     },
+     {
+      "frames": 605,
+      "sha256": "e25855dec1324982542b251cca804fb2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wd1-wd1-frk4-story-5f7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WD1_FRK4's story 0x5f7 needs",
+    "source": "built from the conditions on the path to the write in scene 131 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x113c": 8
+    }
+   },
+   "baseline": {
+    "route": "wd1-wd1-frk4-story-5f7",
+    "description": "In WD1_FRK4 (scene 131), entering should write story variable 0x5f7",
+    "plan": "# wd1-wd1-frk4-story-5f7: In WD1_FRK4 (scene 131), entering should write story variable 0x5f7\nlimit 20000\nenter 131 2 16718847 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 131 save bd220b6bb136cc36 state 1f565bf2cb2d1686 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 2,
+     "instruction": 144,
+     "instruction_end": 75,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48a998267ed32c56f04f738a675bc777"
+     },
+     {
+      "frames": 605,
+      "sha256": "e25855dec1324982542b251cca804fb2"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wd1-wd1-frk4-story-617",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state WD1_FRK4's story 0x617 needs",
+    "source": "built from the conditions on the path to the write in scene 131 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x113c": 8
+    }
+   },
+   "baseline": {
+    "route": "wd1-wd1-frk4-story-617",
+    "description": "In WD1_FRK4 (scene 131), entering should write story variable 0x617",
+    "plan": "# wd1-wd1-frk4-story-617: In WD1_FRK4 (scene 131), entering should write story variable 0x617\nlimit 20000\nenter 131 2 16718847 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 131 save bd220b6bb136cc36 state 1f565bf2cb2d1686 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2187",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 2,
+     "instruction": 144,
+     "instruction_end": 75,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48a998267ed32c56f04f738a675bc777"
+     },
+     {
+      "frames": 605,
+      "sha256": "e25855dec1324982542b251cca804fb2"
+     }
+    ]
+   }
+  }
+ ]
+}

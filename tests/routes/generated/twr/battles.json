@@ -1,0 +1,771 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "twr-twr-i110-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i110-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I110 (scene 181) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i110-battle-0: Walking into battle zone 0 of TWR_I110 (scene 181) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32949 1 16713471 0\ncheckpoint entered\nwalk 400 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 181 save a2076be275364f6b state 6859418a77c8ae17 ram 0000000000000000",
+     "fought frame 1786 scene 181 save d155f809558584da state fe76ed7d20648548 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 196): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1430 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 446,
+     "instruction_end": 129,
+     "song": 3,
+     "scene": 2,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8450bfaf3609e5d5ca111b53dc7512cd"
+     },
+     {
+      "frames": 1526,
+      "sha256": "de176211c34233a00e4f05b2c5b38bfb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i110-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i110-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I110 (scene 181) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i110-battle-1: Walking into battle zone 1 of TWR_I110 (scene 181) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32949 1 16713471 0\ncheckpoint entered\nwalk 720 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 181 save a2076be275364f6b state 6859418a77c8ae17 ram 0000000000000000",
+     "fought frame 3232 scene 181 save 387402543977ae87 state 48f38eb0a637c2d0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (720, 196): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2870 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 436,
+     "instruction_end": 127,
+     "song": 3,
+     "scene": 2,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8450bfaf3609e5d5ca111b53dc7512cd"
+     },
+     {
+      "frames": 2972,
+      "sha256": "a4bde31c57d845f3e066d262df059f28"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i120-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i120-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I120 (scene 182) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i120-battle-0: Walking into battle zone 0 of TWR_I120 (scene 182) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32950 2 16713471 0\ncheckpoint entered\nwalk 352 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 182 save ee3af219f704af73 state 68c8325b2449043d ram 0000000000000000",
+     "fought frame 1061 scene 182 save c29dc83a7967cd3f state 0bf7fc92e8c63c83 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 198): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 330,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "2e57743818c572d9ea2270cc0dfff147"
+     },
+     {
+      "frames": 801,
+      "sha256": "4edbb51ca18b9edbd29fb8c0bc951e49"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i130-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i130-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I130 (scene 183) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i130-battle-0: Walking into battle zone 0 of TWR_I130 (scene 183) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32951 3 16713471 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 183 save aa2907961d511f3b state 7f77b26cb7a9de8e ram 0000000000000000",
+     "fought frame 992 scene 183 save 090dba4912f9cc2f state effa03fc03c0af8e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 232): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 292,
+     "instruction_end": 99,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d9977908ea75d1ad14f7c08dccc5bd7f"
+     },
+     {
+      "frames": 732,
+      "sha256": "f4189a73ce96ccd786b55222d17d747e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i210-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i210-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I210 (scene 185) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i210-battle-0: Walking into battle zone 0 of TWR_I210 (scene 185) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32953 1 16713471 0\ncheckpoint entered\nwalk 288 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 185 save d900a092cc2ddb9f state 661ac6a0db4dda4d ram 0000000000000000",
+     "fought frame 1120 scene 185 save d1c3ea5de90c7210 state b88a878011402392 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (288, 60): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 113,
+     "instruction": 362,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d15bbadb2bf628999b411b1a94f2244b"
+     },
+     {
+      "frames": 860,
+      "sha256": "b41f3b4dd08eb664bb451f69fad26513"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i210-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i210-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I210 (scene 185) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i210-battle-1: Walking into battle zone 1 of TWR_I210 (scene 185) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32953 1 16713471 0\ncheckpoint entered\nwalk 608 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 185 save d900a092cc2ddb9f state 661ac6a0db4dda4d ram 0000000000000000",
+     "fought frame 1120 scene 185 save d1c3ea5de90c7210 state b88a878011402392 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (608, 60): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 113,
+     "instruction": 362,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d15bbadb2bf628999b411b1a94f2244b"
+     },
+     {
+      "frames": 860,
+      "sha256": "b41f3b4dd08eb664bb451f69fad26513"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i310-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i310-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I310 (scene 187) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i310-battle-0: Walking into battle zone 0 of TWR_I310 (scene 187) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32955 1 16713471 0\ncheckpoint entered\nwalk 352 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 187 save 25a6e2ceb66eb9d9 state 50affc49326d799a ram 0000000000000000",
+     "fought frame 999 scene 187 save 203dc27dbf4f6816 state d085473ae234d2ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 150): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 312,
+     "instruction_end": 109,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "6be3ade732b42d7ece9c90e170ae8944"
+     },
+     {
+      "frames": 739,
+      "sha256": "bc909d81c2551e188c9e52bdf548eda1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i310-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i310-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I310 (scene 187) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i310-battle-1: Walking into battle zone 1 of TWR_I310 (scene 187) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32955 1 16713471 0\ncheckpoint entered\nwalk 672 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 187 save 25a6e2ceb66eb9d9 state 50affc49326d799a ram 0000000000000000",
+     "fought frame 999 scene 187 save 203dc27dbf4f6816 state d085473ae234d2ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (672, 150): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 312,
+     "instruction_end": 109,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "6be3ade732b42d7ece9c90e170ae8944"
+     },
+     {
+      "frames": 739,
+      "sha256": "bc909d81c2551e188c9e52bdf548eda1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i400-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i400-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I400 (scene 188) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i400-battle-0: Walking into battle zone 0 of TWR_I400 (scene 188) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32956 0 16713471 1\ncheckpoint entered\nwalk 400 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 188 save fcd9a04de8a96fc6 state 02c3099d0548ef80 ram 0000000000000000",
+     "fought frame 1403 scene 188 save 9bdf1427a37dabc2 state b2865bcabc6e85a9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 198): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 398,
+     "instruction_end": 120,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3125a85fe3ab6477ce20d3135b6e5603"
+     },
+     {
+      "frames": 1143,
+      "sha256": "a22a719c4e2184d1fcbcb1932aa3a433"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i400-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i400-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I400 (scene 188) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i400-battle-1: Walking into battle zone 1 of TWR_I400 (scene 188) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32956 0 16713471 1\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 188 save fcd9a04de8a96fc6 state 02c3099d0548ef80 ram 0000000000000000",
+     "fought frame 1049 scene 188 save 950060050b585a8f state 141716f2f13bdb9b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 198): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 356,
+     "instruction_end": 113,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3125a85fe3ab6477ce20d3135b6e5603"
+     },
+     {
+      "frames": 789,
+      "sha256": "e64466964d61bf50942f6cd27ea1b0ad"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i500-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i500-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I500 (scene 190) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i500-battle-0: Walking into battle zone 0 of TWR_I500 (scene 190) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32958 0 16713471 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 190 save c7914627d3b4daf5 state b7ad5557d576f64d ram 0000000000000000",
+     "fought frame 1197 scene 190 save b0fda5784ec006c7 state 1453107264dc2aa7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 204): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 340,
+     "instruction_end": 107,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "fb06df437c4de7ce29c1836fb7560ad2"
+     },
+     {
+      "frames": 937,
+      "sha256": "613ef4acef40073afddd042cb9591554"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i700-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i700-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I700 (scene 195) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i700-battle-0: Walking into battle zone 0 of TWR_I700 (scene 195) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32963 0 16713471 0\ncheckpoint entered\nwalk 344 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 195 save 0221be889e6a6df4 state 541a90907214b4c7 ram 0000000000000000",
+     "fought frame 865 scene 195 save 05455fd04792edec state 52c5facaafafbe93 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (344, 132): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 323,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f8ad8dedb99734f469bb432d171b0164"
+     },
+     {
+      "frames": 605,
+      "sha256": "bd80f58c0bf3273ecc43cbbd06395715"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i700-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i700-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I700 (scene 195) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i700-battle-1: Walking into battle zone 1 of TWR_I700 (scene 195) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32963 0 16713471 0\ncheckpoint entered\nwalk 664 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 195 save 0221be889e6a6df4 state 541a90907214b4c7 ram 0000000000000000",
+     "fought frame 865 scene 195 save 05455fd04792edec state 52c5facaafafbe93 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (664, 132): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 323,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f8ad8dedb99734f469bb432d171b0164"
+     },
+     {
+      "frames": 605,
+      "sha256": "bd80f58c0bf3273ecc43cbbd06395715"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i710-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i710-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I710 (scene 196) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i710-battle-0: Walking into battle zone 0 of TWR_I710 (scene 196) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32964 1 16713471 0\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 196 save d322c734e09179c6 state 38476e4b4845a86d ram 0000000000000000",
+     "fought frame 1018 scene 196 save 3d5bb3a249bc4462 state 77295f0d2da28d1b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 150): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 287,
+     "instruction_end": 99,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "12029f2113da07e521b9e22a003ca416"
+     },
+     {
+      "frames": 758,
+      "sha256": "ac02e62ba988f7090f2f303846ad1292"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i810-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i810-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I810 (scene 198) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i810-battle-0: Walking into battle zone 0 of TWR_I810 (scene 198) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32966 1 16713471 2\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 198 save 6d4810bbb0fbacde state 18aaa258312831c2 ram 0000000000000000",
+     "fought frame 1159 scene 198 save 978fbc9a0243ef05 state 43cd6378db65f633 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 58): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 312,
+     "instruction_end": 104,
+     "monster": 1,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "a0daee7c1cad7619cff6ee468e0f6eb5"
+     },
+     {
+      "frames": 899,
+      "sha256": "09fc81b33d4b4a20f78f03a6b7ad5218"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i810-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i810-battle-1",
+    "description": "Walking into battle zone 1 of TWR_I810 (scene 198) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i810-battle-1: Walking into battle zone 1 of TWR_I810 (scene 198) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32966 1 16713471 2\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 198 save 6d4810bbb0fbacde state 18aaa258312831c2 ram 0000000000000000",
+     "fought frame 1159 scene 198 save 978fbc9a0243ef05 state 43cd6378db65f633 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 58): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 312,
+     "instruction_end": 104,
+     "monster": 1,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "a0daee7c1cad7619cff6ee468e0f6eb5"
+     },
+     {
+      "frames": 899,
+      "sha256": "09fc81b33d4b4a20f78f03a6b7ad5218"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i900-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i900-battle-0",
+    "description": "Walking into battle zone 0 of TWR_I900 (scene 199) should start a battle that a strong hero wins",
+    "plan": "# twr-twr-i900-battle-0: Walking into battle zone 0 of TWR_I900 (scene 199) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32967 0 16713471 1\ncheckpoint entered\nwalk 480 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 199 save 9bff3f2f328e33bd state 3e04448a2b4242b2 ram 0000000000000000",
+     "fought frame 3534 scene 199 save 57c30624b9ad7441 state 46ab605e143d043c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (480, 198): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3110 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 316,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "0d2ceaadef3189145b6b66d4d8029b46"
+     },
+     {
+      "frames": 3274,
+      "sha256": "38e6b4f98ebed4c8c44134de5ec1df40"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

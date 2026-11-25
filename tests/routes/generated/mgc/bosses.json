@@ -1,0 +1,53 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mgc-mgc-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-bs00-boss",
+    "description": "Entering MGC_BS00 (scene 579) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# mgc-mgc-bs00-boss: Entering MGC_BS00 (scene 579) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33347 0 16712458 1\ncheckpoint entered\nwalk 272 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 579 save c9b992657fe1ae28 state 6e0ee40da1b739c7 ram 0000000000000000",
+     "fought frame 3277 scene 579 save 0dab68696b1745a9 state 18de1425b9b483fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (272, 268): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2750 frames",
+     "game state 1 at vblank 9106",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 711,
+     "instruction_end": 231,
+     "song": 4,
+     "monster": 1,
+     "scene": 5
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d97156bea8a99ab49e842aed8bba478d"
+     },
+     {
+      "frames": 3017,
+      "sha256": "5de254c2ee16e43b049e69466e79d0f9"
+     },
+     {
+      "frames": 1004,
+      "sha256": "71a8950aa59557823418bb0d7c6dac47"
+     }
+    ]
+   }
+  }
+ ]
+}

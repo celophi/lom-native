@@ -1,0 +1,16 @@
+Make CdDataSync return its result, as libcd declares.
+
+--- a/psyz/src/psyz/libcd.c
++++ b/psyz/src/psyz/libcd.c
+@@ -925,7 +925,10 @@
+     return 0;
+ }
+ int CD_getsector2(void) { NOT_IMPLEMENTED; }
+-void CD_datasync(int mode) { NOT_IMPLEMENTED; }
++int CD_datasync(int mode) {
++    NOT_IMPLEMENTED;
++    return 0;
++}
+ 
+ int CD_initvol(void) {
+     CdlATV vol = {128, 0, 128, 0};

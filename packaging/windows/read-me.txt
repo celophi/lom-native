@@ -1,0 +1,38 @@
+Legend of Mana Native for Windows
+
+It runs on 64-bit Windows 10 or 11, with a graphics card that supports
+Direct3D 12. You also need your own copy of Legend of Mana, the US version
+(SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an
+extracted folder. No game data is included.
+
+
+Running it
+
+1. Unzip the Legend of Mana Native folder anywhere you like, like Documents
+   or a Games folder. Keep everything in it together.
+2. Double-click Legend of Mana Native.exe.
+
+The first time, Windows may say "Windows protected your PC". That's because
+the app isn't signed with a code signing certificate. Sorry, I don't want to
+pay for one right now. Click More info, then Run anyway. You only have to do
+this once for each new version.
+
+If you'd rather not see the warning at all, right-click the zip before you
+unzip it, choose Properties, tick Unblock at the bottom, and click OK.
+
+
+Where your things go
+
+Your saves, logs and launcher settings are in %LOCALAPPDATA%\lom-native, and
+the game's own settings in %APPDATA%\lom-native, not in this folder. So you
+can replace the folder with a new version without losing anything.
+
+If you'd rather keep everything in this folder, say on a USB stick, make an
+empty file called portable.txt next to Legend of Mana Native.exe. From then on
+it all goes in a "user" folder here instead. Your existing saves don't move
+over by themselves; copy the cards folder across if you want them. Remember to
+bring the user folder along when you move to a new version.
+
+
+The source is all on GitHub, if you want to see what you're running or build
+it yourself: https://github.com/celophi/lom-native

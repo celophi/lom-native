@@ -1,0 +1,55 @@
+name: SHOP.BIN
+compressed_sha1: 09645449948177200d87cb9350a87df165e34453
+sha1: 2319073c0c511c606e1c142956770a8b19708a5f
+options:
+  base_path: ../../../
+  basename: SHOP.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/us/decompressed/SHOP.BIN
+  asset_path: assets/us
+  elf_path: build/us/overlays/shop.elf
+
+  asm_path: asm/us/overlays/shop
+  src_path: src/overlays/shop
+  build_path: build/us/overlays/shop
+
+  ld_script_path: linker/us/overlays/shop/shop.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/us/overlays/shop/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/us/overlays/shop/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/us/symbols/shared_symbol_addrs.txt
+    - config/us/symbols/shop_symbol_addrs.txt
+
+  reloc_addrs_path:
+    - config/us/relocations/shop_reloc_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: shop
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, c, shop]
+      - [0xE01, c, shop_render]
+      - [0x2131, c, shop_text]
+      - [0x2285, c, shop_trade]
+      - [0x2D05, databin, shop_data]
+  - [0x5CE5]

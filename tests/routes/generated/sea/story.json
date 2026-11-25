@@ -1,0 +1,896 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sea-sea-e040-story-1100",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x1100 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x417": 1,
+     "0x1100": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-1100",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x1100",
+    "plan": "# sea-sea-e040-story-1100: In SEA_E040 (scene 552), entering should write story variable 0x1100\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save ea60f05c888d4081 state 8274b17c82106abc ram 0000000000000000",
+     "done frame 3021 scene 551 save 09f6191ba5496995 state 3f3dba3edcaae831 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2707 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 434,
+     "instruction_end": 123,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "86df8ca247382c7144726361ee25f6a0"
+     },
+     {
+      "frames": 2709,
+      "sha256": "6d06cd1c7ed07d4a2166b8dfea1bd070"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-1108",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x1108 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1224": 4,
+     "0x2f90": 128
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-1108",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x1108",
+    "plan": "# sea-sea-e040-story-1108: In SEA_E040 (scene 552), entering should write story variable 0x1108\nlimit 20000\nenter 1 0 655615 0\nguest 2\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save 3106128a35ec40d6 state 59ada44c4bce5693 ram 0000000000000000",
+     "done frame 3891 scene 551 save 9b198ead6cbff2d7 state b5790c1ef24f13f8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 2 joined",
+     "watched 3577 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 451,
+     "instruction_end": 151,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "677009c30871f295d8dfb64c09ea4788"
+     },
+     {
+      "frames": 3579,
+      "sha256": "30a531b1915d7e0367704604b3447fee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-11d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x11d4 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d4": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-11d4",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x11d4",
+    "plan": "# sea-sea-e040-story-11d4: In SEA_E040 (scene 552), entering should write story variable 0x11d4\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save c7773d297ac6616e state 8274b17c82106abc ram 0000000000000000",
+     "done frame 3021 scene 551 save ccbdf3f954bc58e7 state 3f3dba3edcaae831 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2707 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 405,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "53e6f41c340ea77c6bd6470f9b0e6bdc"
+     },
+     {
+      "frames": 2709,
+      "sha256": "cab64639b88bbab7cb7105842bff478e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-11d8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x11d8 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x417": 1,
+     "0x11d8": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-11d8",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x11d8",
+    "plan": "# sea-sea-e040-story-11d8: In SEA_E040 (scene 552), entering should write story variable 0x11d8\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save 5b462c0903f4d00d state 8274b17c82106abc ram 0000000000000000",
+     "done frame 3021 scene 551 save 4a2409122b2dce67 state 3f3dba3edcaae831 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2707 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 434,
+     "instruction_end": 123,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "f4820338639ab4d5bf76a03259a43284"
+     },
+     {
+      "frames": 2709,
+      "sha256": "211823983edb18ce7fd1cb4f33ce26eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-13e4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x13e4 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1224": 4
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-13e4",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x13e4",
+    "plan": "# sea-sea-e040-story-13e4: In SEA_E040 (scene 552), entering should write story variable 0x13e4\nlimit 20000\nenter 1 0 655615 0\nguest 1\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save e4752e14d47764d9 state 59ada44c4bce5693 ram 0000000000000000",
+     "done frame 3891 scene 551 save 8ae988cccc6fb5f6 state b5790c1ef24f13f8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 1 joined",
+     "watched 3577 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 453,
+     "instruction_end": 150,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "411e1586c1e17634391b1d57940ac8b8"
+     },
+     {
+      "frames": 3579,
+      "sha256": "bbed0d72ee7bc390e06f15fe3e5f6f63"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-2fc0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x2fc0 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1208": 8
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-2fc0",
+    "description": "In SEA_E040 (scene 552), talking to layout record 2 should write story variable 0x2fc0",
+    "plan": "# sea-sea-e040-story-2fc0: In SEA_E040 (scene 552), talking to layout record 2 should write story variable 0x2fc0\nlimit 20000\nenter 552 0 16716543 0\ncheckpoint entered\nanswer 1\ntalk 95 140 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 552 save e17b5391b7a43e22 state 936b0f05c7620fbd ram 0000000000000000",
+     "done frame 2053 scene 552 save 75a3cb04b6e06a84 state 7ab4ce69f9576f00 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (95, 120): 9 waypoints",
+     "walk to (95, 160): 2 waypoints",
+     "walk to (75, 140): 2 waypoints",
+     "walk to (115, 140): 2 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "922e1cf5c828745d4d21a7337a9bbb23"
+     },
+     {
+      "frames": 1824,
+      "sha256": "3fdf2b13f20200b676d2a9796ada2c78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-417",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x417 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x417": 1
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-417",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x417",
+    "plan": "# sea-sea-e040-story-417: In SEA_E040 (scene 552), entering should write story variable 0x417\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save 60b9e09774bed453 state 8274b17c82106abc ram 0000000000000000",
+     "done frame 3021 scene 551 save e5a30436dd7b2d7a state 3f3dba3edcaae831 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2707 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 434,
+     "instruction_end": 122,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "337d0020e93d04b4a73adb052aca8cab"
+     },
+     {
+      "frames": 2709,
+      "sha256": "76c4b20085db9b366dbf7739ce3ecaa2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-450",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-e040-story-450",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x450",
+    "plan": "# sea-sea-e040-story-450: In SEA_E040 (scene 552), entering should write story variable 0x450\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 552 save ad4e26b8468d970e state 8274b17c82106abc ram 0000000000000000",
+     "done frame 3021 scene 551 save e2af15c8fcfd7477 state 3f3dba3edcaae831 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2707 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 405,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "2807a1e72a3b0bc0e145eac63ab8c145"
+     },
+     {
+      "frames": 2709,
+      "sha256": "2082ea41907d78b3f9a66bb7f2e2ea6b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-54f",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x54f needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 9
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-54f",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x54f",
+    "plan": "# sea-sea-e040-story-54f: In SEA_E040 (scene 552), entering should write story variable 0x54f\nlimit 20000\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 552 save 5e7311d3c9315991 state a372050faf3dea8c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3227",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 85,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a2098fb3fd49b543150774ca9324b366"
+     },
+     {
+      "frames": 1124,
+      "sha256": "ab68d2122aa1f3d5d3f543408eb9b75e"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-story-6d7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_E040's story 0x6d7 needs",
+    "source": "built from the conditions on the path to the write in scene 552 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 9
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e040-story-6d7",
+    "description": "In SEA_E040 (scene 552), entering should write story variable 0x6d7",
+    "plan": "# sea-sea-e040-story-6d7: In SEA_E040 (scene 552), entering should write story variable 0x6d7\nlimit 20000\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 552 save 5e7311d3c9315991 state a372050faf3dea8c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 3227",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 85,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a2098fb3fd49b543150774ca9324b366"
+     },
+     {
+      "frames": 1124,
+      "sha256": "ab68d2122aa1f3d5d3f543408eb9b75e"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-story-13b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT0's story 0x13b0 needs",
+    "source": "built from the conditions on the path to the write in scene 63 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 10
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt0-story-13b0",
+    "description": "In SEA_EVT0 (scene 63), entering should write story variable 0x13b0",
+    "plan": "# sea-sea-evt0-story-13b0: In SEA_EVT0 (scene 63), entering should write story variable 0x13b0\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 93e91d11c9f3f572 state 2e37f1e32a2c4e8e ram 0000000000000000",
+     "done frame 2842 scene 63 save 0e8bb18120e0ca4f state 4b651d62942275a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 2611 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 356,
+     "instruction": 434,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0e64abf7b33a829f372794d49eaadebe"
+     },
+     {
+      "frames": 2613,
+      "sha256": "1dfaee3bbf21ccb3ea54d012f27a706f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-story-49b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT0's story 0x49b needs",
+    "source": "built from the conditions on the path to the write in scene 63 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 10
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt0-story-49b",
+    "description": "In SEA_EVT0 (scene 63), entering should write story variable 0x49b",
+    "plan": "# sea-sea-evt0-story-49b: In SEA_EVT0 (scene 63), entering should write story variable 0x49b\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 93e91d11c9f3f572 state 2e37f1e32a2c4e8e ram 0000000000000000",
+     "done frame 2842 scene 63 save 0e8bb18120e0ca4f state 4b651d62942275a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 2611 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 356,
+     "instruction": 434,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0e64abf7b33a829f372794d49eaadebe"
+     },
+     {
+      "frames": 2613,
+      "sha256": "1dfaee3bbf21ccb3ea54d012f27a706f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt1-story-47d",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT1's story 0x47d needs",
+    "source": "built from the conditions on the path to the write in scene 64 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 5
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt1-story-47d",
+    "description": "In SEA_EVT1 (scene 64), entering should write story variable 0x47d",
+    "plan": "# sea-sea-evt1-story-47d: In SEA_EVT1 (scene 64), entering should write story variable 0x47d\nlimit 20000\nenter 64 0 16714751 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 64 save 901fc63c365b37cc state e4502e042b1b376f ram 0000000000000000",
+     "done frame 394 scene 64 save 391223fc66e2ec70 state 4d59019d0f2c2836 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 163 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cf65dbe40202e9659a4ff31c1859b810"
+     },
+     {
+      "frames": 165,
+      "sha256": "e3c2e64cebbd20e64c2575d7c74f3183"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-story-45c",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT2's story 0x45c needs",
+    "source": "built from the conditions on the path to the write in scene 65 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 5,
+     "0x2320": 30
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt2-story-45c",
+    "description": "In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x45c",
+    "plan": "# sea-sea-evt2-story-45c: In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x45c\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\ntalk 265 137 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save 9ab695c564564fc8 state 0e71e927a0631dc4 ram 0000000000000000",
+     "done frame 555 scene 65 save 54feeffbc90f1b12 state f63621c84cb2945f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (265, 117): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 51,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "592693564dd2b09a482893da5c75a524"
+     },
+     {
+      "frames": 326,
+      "sha256": "1eecd889721f0851650319144418cc92"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-story-45d",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT2's story 0x45d needs",
+    "source": "built from the conditions on the path to the write in scene 65 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 5,
+     "0x2320": 32
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt2-story-45d",
+    "description": "In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x45d",
+    "plan": "# sea-sea-evt2-story-45d: In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x45d\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\ntalk 265 137 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save 2423e00207443e87 state 0e71e927a0631dc4 ram 0000000000000000",
+     "done frame 555 scene 65 save 68aff27e6e857549 state f63621c84cb2945f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (265, 117): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 52,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "334975ecfe5c7b0015a878c682b531ed"
+     },
+     {
+      "frames": 326,
+      "sha256": "8a284864f8d4cc2fd7607000d3f2e809"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-story-49e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SEA_EVT2's story 0x49e needs",
+    "source": "built from the conditions on the path to the write in scene 65 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 5,
+     "0x2320": 20
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt2-story-49e",
+    "description": "In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x49e",
+    "plan": "# sea-sea-evt2-story-49e: In SEA_EVT2 (scene 65), talking to layout record 1 should write story variable 0x49e\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\ntalk 265 137 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save 12e0850efa869956 state 0e71e927a0631dc4 ram 0000000000000000",
+     "done frame 555 scene 65 save 681c537c58404584 state f63621c84cb2945f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (265, 117): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 50,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a0e353cd20c40d91696669c708e17170"
+     },
+     {
+      "frames": 326,
+      "sha256": "28c8ba70faa344fa233931dd7435cef0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

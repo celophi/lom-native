@@ -1,0 +1,2119 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "htw-htw-bzr0-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-bzr0-talk-1",
+    "description": "Talking to layout record 1 of HTW_BZR0 (scene 50) should run its event and hand control back",
+    "plan": "# htw-htw-bzr0-talk-1: Talking to layout record 1 of HTW_BZR0 (scene 50) should run its event and hand control back\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 175 317 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 006d4c3cee0800b4 state b88077a4d668293d ram 0000000000000000",
+     "talked frame 536 scene 50 save 9d38bbc075337a3c state a53b02ea5d1a5894 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 297): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee23f9848e7bf3a220a92c80e64d75f9"
+     },
+     {
+      "frames": 307,
+      "sha256": "ac9c99a5e377f004d9448a57de1f1a28"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f80 = 11 so layout record 2 of HTW_BZR0 is there",
+    "source": "built from layout record 2's condition in scene 50 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f80": 11
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-bzr0-talk-2",
+    "description": "Talking to layout record 2 of HTW_BZR0 (scene 50) should run its event and hand control back",
+    "plan": "# htw-htw-bzr0-talk-2: Talking to layout record 2 of HTW_BZR0 (scene 50) should run its event and hand control back\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 300 250 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 72930c081379e609 state 480df6b7bf09de34 ram 0000000000000000",
+     "talked frame 911 scene 50 save e7d37033b71e0caf state 5555be3c450a50c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 230): 3 waypoints",
+     "walk to (300, 270): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "679e28d07dd76f702085116c60664e8e"
+     },
+     {
+      "frames": 682,
+      "sha256": "b586109ed31b0d580775ba87bf12e1e6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-bzr0-talk-4",
+    "description": "Talking to layout record 4 of HTW_BZR0 (scene 50) should run its event and hand control back",
+    "plan": "# htw-htw-bzr0-talk-4: Talking to layout record 4 of HTW_BZR0 (scene 50) should run its event and hand control back\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 457 102 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 006d4c3cee0800b4 state b88077a4d668293d ram 0000000000000000",
+     "talked frame 1292 scene 50 save 1a54f9518858718c state a78115110d7fc27b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (457, 82): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 203,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee23f9848e7bf3a220a92c80e64d75f9"
+     },
+     {
+      "frames": 1063,
+      "sha256": "096c11b288d5e8d2dcaad3383462b378"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-bzr0-talk-5",
+    "description": "Talking to layout record 5 of HTW_BZR0 (scene 50) should run its event and hand control back",
+    "plan": "# htw-htw-bzr0-talk-5: Talking to layout record 5 of HTW_BZR0 (scene 50) should run its event and hand control back\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 429 133 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 006d4c3cee0800b4 state b88077a4d668293d ram 0000000000000000",
+     "talked frame 824 scene 50 save 1a54f9518858718c state 9b01be79c0fd065e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (429, 153): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee23f9848e7bf3a220a92c80e64d75f9"
+     },
+     {
+      "frames": 595,
+      "sha256": "440a6263b45a821d6c2d60e40762c86e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr0-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2520 = 41 so layout record 1 of HTW_CHR0 is there",
+    "source": "built from layout record 1's condition in scene 48 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2520": 41
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr0-talk-1",
+    "description": "Talking to layout record 1 of HTW_CHR0 (scene 48) should run its event and hand control back",
+    "plan": "# htw-htw-chr0-talk-1: Talking to layout record 1 of HTW_CHR0 (scene 48) should run its event and hand control back\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\ntalk 300 100 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 200d8b2d32b390b9 state e16f88264984f51e ram 0000000000000000",
+     "talked frame 531 scene 48 save fbafaaa39364f3d5 state 8a1e62c880a3ab57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 80): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a40d3b6a158faf468532a02380871157"
+     },
+     {
+      "frames": 302,
+      "sha256": "c5521a8daa7c45dfb06fd781dded7625"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 1 so layout record 2 of HTW_CHR0 is there",
+    "source": "built from layout record 2's condition in scene 48 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr0-talk-2",
+    "description": "Talking to layout record 2 of HTW_CHR0 (scene 48) should run its event and hand control back",
+    "plan": "# htw-htw-chr0-talk-2: Talking to layout record 2 of HTW_CHR0 (scene 48) should run its event and hand control back\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\ntalk 300 100 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 16c804f94619e215 state e16f88264984f51e ram 0000000000000000",
+     "talked frame 620 scene 48 save 1e852e1f26f92455 state 7eb1f85582218ca9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 80): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fa66a1992f246999f672ae895feca7c2"
+     },
+     {
+      "frames": 391,
+      "sha256": "9aea38a1ab49081ee2022f53a8d4ca77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2520 = 51 so layout record 3 of HTW_CHR0 is there",
+    "source": "built from layout record 3's condition in scene 48 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2520": 51
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr0-talk-3",
+    "description": "Talking to layout record 3 of HTW_CHR0 (scene 48) should run its event and hand control back",
+    "plan": "# htw-htw-chr0-talk-3: Talking to layout record 3 of HTW_CHR0 (scene 48) should run its event and hand control back\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\ntalk 300 100 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 32583183afb6a9ef state ab15db9235d72c69 ram 0000000000000000",
+     "talked frame 832 scene 48 save 74cd311fcfe4ba33 state d93e0c5eecc05025 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 80): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cd8be33340271b51257e35ce1bcb97dd"
+     },
+     {
+      "frames": 603,
+      "sha256": "b4751dfd0350b386c316bd0ca1e17239"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-chr1-talk-1",
+    "description": "Talking to layout record 1 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-1: Talking to layout record 1 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 250 260 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save f6533eb6c300cf2a state 117a442eb80f557d ram 0000000000000000",
+     "talked frame 901 scene 49 save f8d7502df91a1c13 state 60e762babac758ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (250, 240): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 44,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "35b25498f8166c8ee802434a7bd2ee54"
+     },
+     {
+      "frames": 672,
+      "sha256": "32a470f6c738f00981f73dcdd59a916d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 51 so layout record 3 of HTW_CHR1 is there",
+    "source": "built from layout record 3's condition in scene 49 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 51
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr1-talk-3",
+    "description": "Talking to layout record 3 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-3: Talking to layout record 3 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 240 220 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save 0feb140fb744426b state 3cd32ff301d79f04 ram 0000000000000000",
+     "talked frame 966 scene 49 save 8522d2f2c6a382c1 state add507e84eeb77fe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 200): 1 waypoints",
+     "walk to (240, 240): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 260,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f2cd3c39da0e389374d9429c23deeff"
+     },
+     {
+      "frames": 737,
+      "sha256": "75086d0bc7c527d325739bce92a7b1d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 51 so layout record 4 of HTW_CHR1 is there",
+    "source": "built from layout record 4's condition in scene 49 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 51
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr1-talk-4",
+    "description": "Talking to layout record 4 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-4: Talking to layout record 4 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 240 130 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save 0feb140fb744426b state 3cd32ff301d79f04 ram 0000000000000000",
+     "talked frame 424 scene 49 save 1ffc2bc5a20ba879 state 7308dd9116c45a7a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 110): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f2cd3c39da0e389374d9429c23deeff"
+     },
+     {
+      "frames": 195,
+      "sha256": "281121455dde94975c55d71a2f1adc5d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 51 so layout record 6 of HTW_CHR1 is there",
+    "source": "built from layout record 6's condition in scene 49 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 51
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr1-talk-6",
+    "description": "Talking to layout record 6 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-6: Talking to layout record 6 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 110 110 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save 0feb140fb744426b state 3cd32ff301d79f04 ram 0000000000000000",
+     "talked frame 440 scene 49 save 1ffc2bc5a20ba879 state 4334b960a8eec5bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (110, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f2cd3c39da0e389374d9429c23deeff"
+     },
+     {
+      "frames": 211,
+      "sha256": "f98e0e0b055ed2cb75d599ead2eaea98"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 51 so layout record 7 of HTW_CHR1 is there",
+    "source": "built from layout record 7's condition in scene 49 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 51
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr1-talk-7",
+    "description": "Talking to layout record 7 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-7: Talking to layout record 7 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 220 180 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save 0feb140fb744426b state 3cd32ff301d79f04 ram 0000000000000000",
+     "talked frame 440 scene 49 save 1ffc2bc5a20ba879 state 378a152fbb68b99e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f2cd3c39da0e389374d9429c23deeff"
+     },
+     {
+      "frames": 211,
+      "sha256": "b7e5e8db0551035c531822c82f663982"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x45e = 1 so layout record 8 of HTW_CHR1 is there",
+    "source": "built from layout record 8's condition in scene 49 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x45e": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr1-talk-8",
+    "description": "Talking to layout record 8 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-8: Talking to layout record 8 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 155 270 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save 2bb71829dc6b58ea state 068aeabbbe3df17d ram 0000000000000000",
+     "talked frame 1080 scene 49 save dd8dcc1e7ea2f9b8 state 98f0b01c14e1b46d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (155, 250): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 47,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2991a650d0c8267c3c16e92c65812b57"
+     },
+     {
+      "frames": 851,
+      "sha256": "576a67d7c45217b5e46c8cb5b6a53458"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr1-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-chr1-talk-9",
+    "description": "Talking to layout record 9 of HTW_CHR1 (scene 49) should run its event and hand control back",
+    "plan": "# htw-htw-chr1-talk-9: Talking to layout record 9 of HTW_CHR1 (scene 49) should run its event and hand control back\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\ntalk 376 221 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save f6533eb6c300cf2a state 117a442eb80f557d ram 0000000000000000",
+     "talked frame 826 scene 49 save bfa3ede9de3fd8f8 state 3e1cf1d15c455b30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (376, 201): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "35b25498f8166c8ee802434a7bd2ee54"
+     },
+     {
+      "frames": 597,
+      "sha256": "b9a463e2566a80c70420ff6cd8808c22"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-frm2-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11f4 = 1 so layout record 3 of HTW_FRM2 is there",
+    "source": "built from layout record 3's condition in scene 774 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11f4": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-frm2-talk-3",
+    "description": "Talking to layout record 3 of HTW_FRM2 (scene 774) should run its event and hand control back",
+    "plan": "# htw-htw-frm2-talk-3: Talking to layout record 3 of HTW_FRM2 (scene 774) should run its event and hand control back\nlimit 20000\nenter 774 0 16776959 0\ncheckpoint entered\ntalk 354 146 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 774 save edec16a683c4eef3 state c9f57957b1b77da7 ram 0000000000000000",
+     "talked frame 2705 scene 774 save ab5174f4d8d6587b state 6d4bdd45c0b51874 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (354, 126): 1 waypoints",
+     "walk to (354, 166): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 138,
+     "instruction": 267,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42e7a0a7975a6d55e8655c4785f41ae2"
+     },
+     {
+      "frames": 2476,
+      "sha256": "0d0099db64ac5aa9bb21753577e03496"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-1",
+    "description": "Talking to layout record 1 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-1: Talking to layout record 1 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 140 160 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 584 scene 38 save 68ede681180da52c state 41bb59dd327115ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 140): 1 waypoints",
+     "walk to (140, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 355,
+      "sha256": "b3df5adf2071ecfa55a5ef0c75149aad"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-4",
+    "description": "Talking to layout record 4 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-4: Talking to layout record 4 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 176 205 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 1167 scene 38 save 480028751ef8dd52 state e0f9792058d45196 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (176, 185): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 938,
+      "sha256": "29f88163da53de199dee0685a55ba4ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-5",
+    "description": "Talking to layout record 5 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-5: Talking to layout record 5 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 226 218 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 1263 scene 38 save cbc083229b77c992 state 245c3baaccdf8e00 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (226, 198): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 1034,
+      "sha256": "7963c3498ab718829ba170b8d4bd29b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-6",
+    "description": "Talking to layout record 6 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-6: Talking to layout record 6 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 213 200 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 1239 scene 38 save fab792299a396fc2 state af3dccaa5b5cfd1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (213, 180): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 1010,
+      "sha256": "eb6569bed92ac871673745151e0d647f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-7",
+    "description": "Talking to layout record 7 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-7: Talking to layout record 7 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 185 203 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 3074 scene 38 save e2fb8a5c5a04f39d state 4003f3de42673695 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (185, 183): 2 waypoints",
+     "walk to (165, 203): 3 waypoints",
+     "walk to (205, 203): 4 waypoints",
+     "walk to (185, 183): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 2845,
+      "sha256": "a5ebd82ad8274ebeda555791c24827ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn0-talk-8",
+    "description": "Talking to layout record 8 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-8: Talking to layout record 8 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 300 254 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "talked frame 520 scene 38 save 0e41e4802b9e020b state 9eb9aba36c01fcf3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 234): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 291,
+      "sha256": "2bc9c8c6a3aa7c85758a641bd59c82f7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1234 = 8 so layout record 9 of HTW_INN0 is there",
+    "source": "built from layout record 9's condition in scene 38 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1234": 8
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn0-talk-9",
+    "description": "Talking to layout record 9 of HTW_INN0 (scene 38) should run its event and hand control back",
+    "plan": "# htw-htw-inn0-talk-9: Talking to layout record 9 of HTW_INN0 (scene 38) should run its event and hand control back\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 300 254 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save d7b43a071b580a01 state 0d1e34519d52ad43 ram 0000000000000000",
+     "talked frame 1576 scene 38 save 9e473740ae77c285 state dc45417031bd3df5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 234): 3 waypoints",
+     "walk to (300, 274): 1 waypoints",
+     "walk to (280, 254): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4af8246196baffc855f3982f7ca03892"
+     },
+     {
+      "frames": 1347,
+      "sha256": "43272409c3bcfab68544ad627ba1fe86"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn1-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f90 = 1 so layout record 1 of HTW_INN1 is there",
+    "source": "built from layout record 1's condition in scene 39 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f90": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn1-talk-1",
+    "description": "Talking to layout record 1 of HTW_INN1 (scene 39) should run its event and hand control back",
+    "plan": "# htw-htw-inn1-talk-1: Talking to layout record 1 of HTW_INN1 (scene 39) should run its event and hand control back\nlimit 20000\nenter 39 0 16712959 0\ncheckpoint entered\ntalk 212 212 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 39 save 55c14fa6c3dae7f2 state 5bdb75c3a277e74f ram 0000000000000000",
+     "talked frame 1145 scene 39 save 7e923c29e9904b5e state 789dcb557a048d14 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (212, 192): 1 waypoints",
+     "walk to (212, 232): 1 waypoints",
+     "walk to (192, 212): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cf127d84b81d090c90d6b2cfb4a068ae"
+     },
+     {
+      "frames": 916,
+      "sha256": "d65741d13e9a9ec1957c4933ff072180"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn2-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2528 = 1 so layout record 1 of HTW_INN2 is there",
+    "source": "built from layout record 1's condition in scene 40 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2528": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn2-talk-1",
+    "description": "Talking to layout record 1 of HTW_INN2 (scene 40) should run its event and hand control back",
+    "plan": "# htw-htw-inn2-talk-1: Talking to layout record 1 of HTW_INN2 (scene 40) should run its event and hand control back\nlimit 20000\nenter 40 0 16712959 0\ncheckpoint entered\ntalk 212 212 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 40 save 86acfe399c04d13b state 7c807258aa040b30 ram 0000000000000000",
+     "talked frame 646 scene 40 save d8ea2fccb2a8fca6 state 5b66b3eb52d175d6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (212, 192): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b1442821a52b602d2ca4cc4e24645d5"
+     },
+     {
+      "frames": 417,
+      "sha256": "7acaece5c91ba225d6fdf080c73f3443"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn2-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn2-talk-2",
+    "description": "Talking to layout record 2 of HTW_INN2 (scene 40) should run its event and hand control back",
+    "plan": "# htw-htw-inn2-talk-2: Talking to layout record 2 of HTW_INN2 (scene 40) should run its event and hand control back\nlimit 20000\nenter 40 0 16712959 0\ncheckpoint entered\ntalk 50 110 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 40 save ba52adf5ab96a176 state 339f326318bf421d ram 0000000000000000",
+     "talked frame 1012 scene 40 save 8c42f2b5fb8877a7 state edafa9c71379d47c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (50, 90): 14 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bae7410a06bbce784bd146fde21aa664"
+     },
+     {
+      "frames": 783,
+      "sha256": "f999f548141b9394151a61a22b23f3f7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn3-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-inn3-talk-1",
+    "description": "Talking to layout record 1 of HTW_INN3 (scene 41) should run its event and hand control back",
+    "plan": "# htw-htw-inn3-talk-1: Talking to layout record 1 of HTW_INN3 (scene 41) should run its event and hand control back\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save 08b0ff374001125b state 48a56cc4b6570e57 ram 0000000000000000",
+     "talked frame 955 scene 41 save 4076c871d66ebb9b state 60256b42d4752d57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 134): 1 waypoints",
+     "walk to (60, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5c0f8a1bf7b8c9756b9b2745c15c118c"
+     },
+     {
+      "frames": 726,
+      "sha256": "76dc961a9a4f6a1b09846c1c40919553"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn3-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 2 so layout record 2 of HTW_INN3 is there",
+    "source": "built from layout record 2's condition in scene 41 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn3-talk-2",
+    "description": "Talking to layout record 2 of HTW_INN3 (scene 41) should run its event and hand control back",
+    "plan": "# htw-htw-inn3-talk-2: Talking to layout record 2 of HTW_INN3 (scene 41) should run its event and hand control back\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save d115ee887aa068bd state 6fdf84915888ac0f ram 0000000000000000",
+     "talked frame 735 scene 41 save e645ed88d00090bd state 870440792ed5efa0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 134): 1 waypoints",
+     "walk to (60, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fff291d178b97a40c77f21e6a853c59e"
+     },
+     {
+      "frames": 506,
+      "sha256": "ad408a2e9c79172a55f0d3029589000e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn3-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2610 = 3 so layout record 5 of HTW_INN3 is there",
+    "source": "built from layout record 5's condition in scene 41 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2610": 3
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn3-talk-5",
+    "description": "Talking to layout record 5 of HTW_INN3 (scene 41) should run its event and hand control back",
+    "plan": "# htw-htw-inn3-talk-5: Talking to layout record 5 of HTW_INN3 (scene 41) should run its event and hand control back\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 266 160 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save 8e4ee4ecaeb0080a state b003942fa2cf1a8d ram 0000000000000000",
+     "talked frame 1040 scene 41 save a37ee3ed0410300a state 0f58535a3c88d6fe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (266, 140): 3 waypoints",
+     "walk to (266, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "944ac07a67e72c913132fab99179cb11"
+     },
+     {
+      "frames": 811,
+      "sha256": "36e6d21f6333b361b20de61948a96fa4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 1 so layout record 1 of HTW_PRK0 is there",
+    "source": "built from layout record 1's condition in scene 47 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-talk-1",
+    "description": "Talking to layout record 1 of HTW_PRK0 (scene 47) should run its event and hand control back",
+    "plan": "# htw-htw-prk0-talk-1: Talking to layout record 1 of HTW_PRK0 (scene 47) should run its event and hand control back\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\ntalk 149 306 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save b6a4018c5448e654 state 8028c0f441facf8f ram 0000000000000000",
+     "talked frame 811 scene 47 save 9cef273c6da8f408 state 0e64660a1b344a64 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (149, 286): 2 waypoints",
+     "walk to (149, 326): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 38,
+     "instruction": 182,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b1aa689f0503fe6d1d1bc4b755d92c6b"
+     },
+     {
+      "frames": 582,
+      "sha256": "63cee160c45c26360f837ddbf6e2c2fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25f0 = 1 so layout record 2 of HTW_PRK0 is there",
+    "source": "built from layout record 2's condition in scene 47 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-talk-2",
+    "description": "Talking to layout record 2 of HTW_PRK0 (scene 47) should run its event and hand control back",
+    "plan": "# htw-htw-prk0-talk-2: Talking to layout record 2 of HTW_PRK0 (scene 47) should run its event and hand control back\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\ntalk 173 348 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save e9a8be006d3707ed state 81c9efc51f839760 ram 0000000000000000",
+     "talked frame 903 scene 47 save ad20b84b881db255 state 64ce9da1c4ad4c9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (173, 328): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 44,
+     "instruction": 170,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "634b786554d4418351fac8c061970259"
+     },
+     {
+      "frames": 674,
+      "sha256": "f4a671fcc7efcbacec202eda6185c2ac"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 72 so layout record 3 of HTW_PRK0 is there",
+    "source": "built from layout record 3's condition in scene 47 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 72
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-talk-3",
+    "description": "Talking to layout record 3 of HTW_PRK0 (scene 47) should run its event and hand control back",
+    "plan": "# htw-htw-prk0-talk-3: Talking to layout record 3 of HTW_PRK0 (scene 47) should run its event and hand control back\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\ntalk 149 306 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save fa39dd7f6e1b6395 state bfe8b4bad0eb406d ram 0000000000000000",
+     "talked frame 766 scene 47 save b47a54dc5f4c4069 state a16f564942e669b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (149, 286): 2 waypoints",
+     "walk to (149, 326): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 39,
+     "instruction": 156,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "043e9d8f40aa0bb32265f4d7552ddc7a"
+     },
+     {
+      "frames": 537,
+      "sha256": "89c4b17eccbb73985b3cc4a462a8168e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25f0 = 72 so layout record 4 of HTW_PRK0 is there",
+    "source": "built from layout record 4's condition in scene 47 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 72
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-talk-4",
+    "description": "Talking to layout record 4 of HTW_PRK0 (scene 47) should run its event and hand control back",
+    "plan": "# htw-htw-prk0-talk-4: Talking to layout record 4 of HTW_PRK0 (scene 47) should run its event and hand control back\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\ntalk 173 348 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save fc4748db617aa6fd state 46d9ba8984748fdb ram 0000000000000000",
+     "talked frame 903 scene 47 save 303db6d37473cd1d state ccfbb4957285923a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (173, 328): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 42,
+     "instruction": 154,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "addb54f6744d91c35e597fe4f55a0998"
+     },
+     {
+      "frames": 674,
+      "sha256": "2bd0ba0000ed3cdde5061acac76e17cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fb8 = 10 so layout record 3 of HTW_PUB0 is there",
+    "source": "built from layout record 3's condition in scene 42 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 10
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-talk-3",
+    "description": "Talking to layout record 3 of HTW_PUB0 (scene 42) should run its event and hand control back",
+    "plan": "# htw-htw-pub0-talk-3: Talking to layout record 3 of HTW_PUB0 (scene 42) should run its event and hand control back\nlimit 20000\nenter 42 0 16712959 0\ncheckpoint entered\ntalk 493 228 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 42 save 5a9fb06ab9c819be state 47e6c557518a931a ram 0000000000000000",
+     "talked frame 730 scene 42 save cb7cb591abb34e20 state 563d1b480d351a94 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (493, 208): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d456333a4fde6024f521a0dc8d16351f"
+     },
+     {
+      "frames": 501,
+      "sha256": "924e2f4637e18a23842afbb0a7b0754d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fb8 = 13 so layout record 5 of HTW_PUB0 is there",
+    "source": "built from layout record 5's condition in scene 42 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 13
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-talk-5",
+    "description": "Talking to layout record 5 of HTW_PUB0 (scene 42) should run its event and hand control back",
+    "plan": "# htw-htw-pub0-talk-5: Talking to layout record 5 of HTW_PUB0 (scene 42) should run its event and hand control back\nlimit 20000\nenter 42 0 16712959 0\ncheckpoint entered\ntalk 480 230 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 42 save 4a18714933ac0b7d state 729d432f482ebe48 ram 0000000000000000",
+     "talked frame 1118 scene 42 save a5f3b1db69d4008f state 67f928904152546d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 210): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a09c1ed3489e25dbe8ada4f0985beaef"
+     },
+     {
+      "frames": 889,
+      "sha256": "63d657261da1c775976a1727fb3780fa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fa8 = 23 so layout record 6 of HTW_PUB0 is there",
+    "source": "built from layout record 6's condition in scene 42 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 23
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-talk-6",
+    "description": "Talking to layout record 6 of HTW_PUB0 (scene 42) should run its event and hand control back",
+    "plan": "# htw-htw-pub0-talk-6: Talking to layout record 6 of HTW_PUB0 (scene 42) should run its event and hand control back\nlimit 20000\nenter 42 0 16712959 0\ncheckpoint entered\ntalk 500 226 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 42 save 0983f5e686fe9c73 state 9b8b355448f4c0c2 ram 0000000000000000",
+     "talked frame 731 scene 42 save 2c0bea2e7461c589 state 260568b77b287377 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 206): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "794b5f0e26748b20aacd4513e51dbfb6"
+     },
+     {
+      "frames": 502,
+      "sha256": "8e54d2c1af7bea9a361f7b552376e663"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub1-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-pub1-talk-1",
+    "description": "Talking to layout record 1 of HTW_PUB1 (scene 929) should run its event and hand control back",
+    "plan": "# htw-htw-pub1-talk-1: Talking to layout record 1 of HTW_PUB1 (scene 929) should run its event and hand control back\nlimit 20000\nenter 929 0 16712959 0\ncheckpoint entered\ntalk 245 257 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 929 save 14e3d884b5333caa state 6bf6e85504ec97d7 ram 0000000000000000",
+     "talked frame 827 scene 929 save 9445c304d736c0c0 state 1daf96ce0bff629d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (245, 237): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bfdd8b15b3e943a844662ebb6e079f4f"
+     },
+     {
+      "frames": 598,
+      "sha256": "0ea43fdc1ad38bfae9356330a21c7a5e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh00-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4bd = 1 so layout record 2 of HTW_SH00 is there",
+    "source": "built from layout record 2's condition in scene 43 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4bd": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-sh00-talk-2",
+    "description": "Talking to layout record 2 of HTW_SH00 (scene 43) should run its event and hand control back",
+    "plan": "# htw-htw-sh00-talk-2: Talking to layout record 2 of HTW_SH00 (scene 43) should run its event and hand control back\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\ntalk 152 206 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 43 save b73fd244e6c00699 state 98d77544502b2f17 ram 0000000000000000",
+     "talked frame 827 scene 43 save 678e19dff5981821 state a4979d9b6770763b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 186): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4c709b00cece711c43ce37b1a6d2fe3"
+     },
+     {
+      "frames": 598,
+      "sha256": "32e6b17d7ed796b50a128d0f5ab20912"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh00-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-sh00-talk-3",
+    "description": "Talking to layout record 3 of HTW_SH00 (scene 43) should run its event and hand control back",
+    "plan": "# htw-htw-sh00-talk-3: Talking to layout record 3 of HTW_SH00 (scene 43) should run its event and hand control back\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\ntalk 152 206 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 43 save d03256cb7624fbb9 state 98d77544502b2f17 ram 0000000000000000",
+     "talked frame 827 scene 43 save a0bdf1da42c636a1 state a4979d9b6770763b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 186): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87056b7cd8de9bc8c592b76d41de76dc"
+     },
+     {
+      "frames": 598,
+      "sha256": "8555d124ae40c7da29670935fbf97282"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh00-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-sh00-talk-4",
+    "description": "Talking to layout record 4 of HTW_SH00 (scene 43) should run its event and hand control back",
+    "plan": "# htw-htw-sh00-talk-4: Talking to layout record 4 of HTW_SH00 (scene 43) should run its event and hand control back\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\ntalk 152 180 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 43 save d03256cb7624fbb9 state 98d77544502b2f17 ram 0000000000000000",
+     "talked frame 790 scene 43 save a0bdf1da42c636a1 state 75897c35e43b1b6e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 160): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87056b7cd8de9bc8c592b76d41de76dc"
+     },
+     {
+      "frames": 561,
+      "sha256": "1aec27ba9544c8f2d3b5529a07f79434"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh01-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25c0 = 11 so layout record 2 of HTW_SH01 is there",
+    "source": "built from layout record 2's condition in scene 44 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25c0": 11
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-sh01-talk-2",
+    "description": "Talking to layout record 2 of HTW_SH01 (scene 44) should run its event and hand control back",
+    "plan": "# htw-htw-sh01-talk-2: Talking to layout record 2 of HTW_SH01 (scene 44) should run its event and hand control back\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 220 290 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save ec19ee81fbcdb2c6 state 126c29741151c6d4 ram 0000000000000000",
+     "talked frame 1209 scene 44 save b7786a98a9afab5f state 40e40113828fbbd8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 270): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13c6d6ca07de8231f0fd8bed8e22ac73"
+     },
+     {
+      "frames": 980,
+      "sha256": "6de55ea5c9074b8007c840e437d70b69"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh01-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-sh01-talk-3",
+    "description": "Talking to layout record 3 of HTW_SH01 (scene 44) should run its event and hand control back",
+    "plan": "# htw-htw-sh01-talk-3: Talking to layout record 3 of HTW_SH01 (scene 44) should run its event and hand control back\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 189 334 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save 6b77ad131c6b0dc7 state fb10abbbdb338a5b ram 0000000000000000",
+     "talked frame 759 scene 44 save c42eda74363a3b29 state 7deb78b8565fb4bb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (189, 314): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20ef85f1b9814f4d9c8ae47f83844216"
+     },
+     {
+      "frames": 530,
+      "sha256": "411ece1b24e1f63e8496e0a4ed842547"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh01-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11c4 = 4 so layout record 5 of HTW_SH01 is there",
+    "source": "built from layout record 5's condition in scene 44 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11c4": 4
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-sh01-talk-5",
+    "description": "Talking to layout record 5 of HTW_SH01 (scene 44) should run its event and hand control back",
+    "plan": "# htw-htw-sh01-talk-5: Talking to layout record 5 of HTW_SH01 (scene 44) should run its event and hand control back\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 189 334 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save 6b239a5d1c99d207 state 06ea99c6f4027499 ram 0000000000000000",
+     "talked frame 2535 scene 44 save c6edef89663047d9 state 1491333660a921ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (189, 314): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 233,
+     "instruction_end": 99,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d6f39537095e2295a811a839d35576c"
+     },
+     {
+      "frames": 2306,
+      "sha256": "e8400aa69588ebec9573ef5c1a922746"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

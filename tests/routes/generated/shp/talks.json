@@ -1,0 +1,766 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "shp-shp-cpt0-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-cpt0-talk-2",
+    "description": "Talking to layout record 2 of SHP_CPT0 (scene 505) should run its event and hand control back",
+    "plan": "# shp-shp-cpt0-talk-2: Talking to layout record 2 of SHP_CPT0 (scene 505) should run its event and hand control back\nlimit 20000\nenter 505 0 16714751 0\ncheckpoint entered\ntalk 163 208 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 505 save 0ab8485fc87a274f state ee6d77f27f231913 ram 0000000000000000",
+     "talked frame 1089 scene 505 save c23d32cc5348e6b9 state 1511d7cc2ff149ab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (163, 188): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e92f64567a84070a4c975e39949568e4"
+     },
+     {
+      "frames": 860,
+      "sha256": "a8eb641b15a1d1bec3d22d134560bc01"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-dk00-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1224 = 5 so layout record 1 of SHP_DK00 is there",
+    "source": "built from layout record 1's condition in scene 499 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1224": 5
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-dk00-talk-1",
+    "description": "Talking to layout record 1 of SHP_DK00 (scene 499) should run its event and hand control back",
+    "plan": "# shp-shp-dk00-talk-1: Talking to layout record 1 of SHP_DK00 (scene 499) should run its event and hand control back\nlimit 20000\nenter 499 0 1638399 1\ncheckpoint entered\ntalk 120 180 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 499 save 63774cac221038c5 state 0e6f8e988d0b5c58 ram 0000000000000000",
+     "talked frame 1546 scene 499 save d09fcc653bcbf787 state b48a05dd76ef107e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 180): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 66,
+     "instruction": 191,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c880ba115b9aff19340b78659c3d1987"
+     },
+     {
+      "frames": 1317,
+      "sha256": "c817d895564f29040f01b2e14fbb6770"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-dk50-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1194 = 2 so layout record 1 of SHP_DK50 is there",
+    "source": "built from layout record 1's condition in scene 558 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1194": 2
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-dk50-talk-1",
+    "description": "Talking to layout record 1 of SHP_DK50 (scene 558) should run its event and hand control back",
+    "plan": "# shp-shp-dk50-talk-1: Talking to layout record 1 of SHP_DK50 (scene 558) should run its event and hand control back\nlimit 20000\nenter 558 0 16714751 1\ncheckpoint entered\ntalk 350 138 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 558 save ef89c39fe02ee5e6 state b7f1258d6a5f2e2d ram 0000000000000000",
+     "talked frame 905 scene 558 save 1b2df2ae4e85ca4c state 99d498e83bf5bdff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (350, 118): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "daf27e60db803264bce644454756b54f"
+     },
+     {
+      "frames": 676,
+      "sha256": "ebadbf358727fca28f34f91976f85ddd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps00-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps00-talk-2",
+    "description": "Talking to layout record 2 of SHP_PS00 (scene 506) should run its event and hand control back",
+    "plan": "# shp-shp-ps00-talk-2: Talking to layout record 2 of SHP_PS00 (scene 506) should run its event and hand control back\nlimit 20000\nenter 506 0 16714751 0\ncheckpoint entered\ntalk 140 120 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 506 save 4cdc4bf6456ac3b2 state b54cca7c495aae1a ram 0000000000000000",
+     "talked frame 424 scene 506 save 3a98faedcaecc0da state c3c20bb2d6f2db5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a43aa0782505d019a7e4808e527473ed"
+     },
+     {
+      "frames": 195,
+      "sha256": "f497adee887c17ec26f28d6fba5d1798"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps00-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps00-talk-3",
+    "description": "Talking to layout record 3 of SHP_PS00 (scene 506) should run its event and hand control back",
+    "plan": "# shp-shp-ps00-talk-3: Talking to layout record 3 of SHP_PS00 (scene 506) should run its event and hand control back\nlimit 20000\nenter 506 0 16714751 3\ncheckpoint entered\ntalk 480 100 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 506 save e600f59266ad4721 state af5b170be9a9bdaf ram 0000000000000000",
+     "talked frame 406 scene 506 save 3af0304384096d49 state de587b867e5c72cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "772ae622a67e9a9870202bb464b335bd"
+     },
+     {
+      "frames": 177,
+      "sha256": "600f7a27b2cce85e1d1dd9acd31e7fc4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps20-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps20-talk-2",
+    "description": "Talking to layout record 2 of SHP_PS20 (scene 508) should run its event and hand control back",
+    "plan": "# shp-shp-ps20-talk-2: Talking to layout record 2 of SHP_PS20 (scene 508) should run its event and hand control back\nlimit 20000\nenter 508 0 16714751 3\ncheckpoint entered\ntalk 180 145 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 508 save 5809061f49a2e547 state 8c810e8310df3f98 ram 0000000000000000",
+     "talked frame 764 scene 508 save df51b53256351b2f state 6f3c57096d2b9545 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 165): 6 waypoints",
+     "walk to (160, 145): 1 waypoints",
+     "walk to (200, 145): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1c09644eeeaa5f2e6a3154b44a6aa192"
+     },
+     {
+      "frames": 535,
+      "sha256": "79f2789e87859336f32690a5ac08dcff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps20-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps20-talk-3",
+    "description": "Talking to layout record 3 of SHP_PS20 (scene 508) should run its event and hand control back",
+    "plan": "# shp-shp-ps20-talk-3: Talking to layout record 3 of SHP_PS20 (scene 508) should run its event and hand control back\nlimit 20000\nenter 508 0 16714751 3\ncheckpoint entered\ntalk 460 145 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 508 save 5809061f49a2e547 state 8c810e8310df3f98 ram 0000000000000000",
+     "talked frame 601 scene 508 save df51b53256351b2f state be52010e4260a96c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (460, 165): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1c09644eeeaa5f2e6a3154b44a6aa192"
+     },
+     {
+      "frames": 372,
+      "sha256": "07635ded38230394ac4977e229601e52"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps30-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps30-talk-2",
+    "description": "Talking to layout record 2 of SHP_PS30 (scene 509) should run its event and hand control back",
+    "plan": "# shp-shp-ps30-talk-2: Talking to layout record 2 of SHP_PS30 (scene 509) should run its event and hand control back\nlimit 20000\nenter 509 0 16714751 2\ncheckpoint entered\ntalk 140 120 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 509 save 031fa732307acf27 state e060ddf612b67062 ram 0000000000000000",
+     "talked frame 490 scene 509 save 71ffa308ae04fdb1 state c4baa647f2f1b6b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "07c6b4f3f2094d29eb3b6f8c88d91e42"
+     },
+     {
+      "frames": 261,
+      "sha256": "18f3b2dadde209250c256676980310c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps30-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-ps30-talk-3",
+    "description": "Talking to layout record 3 of SHP_PS30 (scene 509) should run its event and hand control back",
+    "plan": "# shp-shp-ps30-talk-3: Talking to layout record 3 of SHP_PS30 (scene 509) should run its event and hand control back\nlimit 20000\nenter 509 0 16714751 1\ncheckpoint entered\ntalk 480 100 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 509 save ca17836bd5d83c8c state 3782c02e7d5b9bac ram 0000000000000000",
+     "talked frame 754 scene 509 save 36a70e6736d5a62a state a850350b7abfc7c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 80): 2 waypoints",
+     "walk to (480, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cc477e17476d7e63b98582a3b76ff008"
+     },
+     {
+      "frames": 525,
+      "sha256": "85c07f3e8da6d76657d8c7b9c424c38a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-ps30-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1194 = 4 so layout record 4 of SHP_PS30 is there",
+    "source": "built from layout record 4's condition in scene 509 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1194": 4
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-ps30-talk-4",
+    "description": "Talking to layout record 4 of SHP_PS30 (scene 509) should run its event and hand control back",
+    "plan": "# shp-shp-ps30-talk-4: Talking to layout record 4 of SHP_PS30 (scene 509) should run its event and hand control back\nlimit 20000\nenter 509 0 16714751 1\ncheckpoint entered\ntalk 330 50 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 509 save 77a263e29db4f94c state 443db736585fc775 ram 0000000000000000",
+     "talked frame 1080 scene 509 save e616df4d141633b2 state 06c3c9acb2d18884 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 70): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05d778528f80e2649e46c024a36325be"
+     },
+     {
+      "frames": 851,
+      "sha256": "825f3f754c8803e10a000fbae9676312"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r000-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r000-talk-1",
+    "description": "Talking to layout record 1 of SHP_R000 (scene 512) should run its event and hand control back",
+    "plan": "# shp-shp-r000-talk-1: Talking to layout record 1 of SHP_R000 (scene 512) should run its event and hand control back\nlimit 20000\nenter 33280 0 16714751 0\ncheckpoint entered\ntalk 267 202 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 512 save b944b26f3a05994d state 98bbaf7298685308 ram 0000000000000000",
+     "talked frame 1248 scene 512 save 62562bb43b857462 state 6e84c342f9212014 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (267, 182): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "49e889864e926a90be1d4a5a31781336"
+     },
+     {
+      "frames": 1019,
+      "sha256": "0bcc25822615a5213a5791b3608e6448"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r110-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r110-talk-2",
+    "description": "Talking to layout record 2 of SHP_R110 (scene 523) should run its event and hand control back",
+    "plan": "# shp-shp-r110-talk-2: Talking to layout record 2 of SHP_R110 (scene 523) should run its event and hand control back\nlimit 20000\nenter 33291 0 16714751 0\ncheckpoint entered\ntalk 145 160 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 523 save 7815c06d159f05d2 state 3a6e0153eddecb58 ram 0000000000000000",
+     "talked frame 871 scene 523 save d6327684438ecdcd state cbfb3428b3c8e947 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (145, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ef7b2261c7c9abfdc0adc3749ed0a84"
+     },
+     {
+      "frames": 642,
+      "sha256": "f2f9963b8be9dd723cbaaca92a08dcd3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r110-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r110-talk-3",
+    "description": "Talking to layout record 3 of SHP_R110 (scene 523) should run its event and hand control back",
+    "plan": "# shp-shp-r110-talk-3: Talking to layout record 3 of SHP_R110 (scene 523) should run its event and hand control back\nlimit 20000\nenter 33291 0 16714751 0\ncheckpoint entered\ntalk 65 70 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 523 save 7815c06d159f05d2 state 3a6e0153eddecb58 ram 0000000000000000",
+     "talked frame 886 scene 523 save 39b21aad87f5186d state 0e4b3ba9a3bc911e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ef7b2261c7c9abfdc0adc3749ed0a84"
+     },
+     {
+      "frames": 657,
+      "sha256": "a5da094f55296c9cf5b2763b6b4c5338"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r110-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r110-talk-4",
+    "description": "Talking to layout record 4 of SHP_R110 (scene 523) should run its event and hand control back",
+    "plan": "# shp-shp-r110-talk-4: Talking to layout record 4 of SHP_R110 (scene 523) should run its event and hand control back\nlimit 20000\nenter 33291 0 16714751 0\ncheckpoint entered\ntalk 100 60 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 523 save 7815c06d159f05d2 state 3a6e0153eddecb58 ram 0000000000000000",
+     "talked frame 915 scene 523 save b8242f98fd1c2e3d state f2ca3718cbea93a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ef7b2261c7c9abfdc0adc3749ed0a84"
+     },
+     {
+      "frames": 686,
+      "sha256": "4ae97ebe0a31a1622ebdd1c17e78ac13"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r110-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r110-talk-5",
+    "description": "Talking to layout record 5 of SHP_R110 (scene 523) should run its event and hand control back",
+    "plan": "# shp-shp-r110-talk-5: Talking to layout record 5 of SHP_R110 (scene 523) should run its event and hand control back\nlimit 20000\nenter 33291 0 16714751 0\ncheckpoint entered\ntalk 135 110 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 523 save 7815c06d159f05d2 state 3a6e0153eddecb58 ram 0000000000000000",
+     "talked frame 870 scene 523 save cae400f03f697b98 state f5b2b5b48409e67b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ef7b2261c7c9abfdc0adc3749ed0a84"
+     },
+     {
+      "frames": 641,
+      "sha256": "b4eff3d60ce5503a5320eb15a73587f7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r150-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x110c = 2 so layout record 1 of SHP_R150 is there",
+    "source": "built from layout record 1's condition in scene 527 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x110c": 2
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-r150-talk-1",
+    "description": "Talking to layout record 1 of SHP_R150 (scene 527) should run its event and hand control back",
+    "plan": "# shp-shp-r150-talk-1: Talking to layout record 1 of SHP_R150 (scene 527) should run its event and hand control back\nlimit 20000\nenter 527 0 16714751 1\ncheckpoint entered\ntalk 310 150 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 527 save 2a03591f973a70ff state e705975322b7f1d3 ram 0000000000000000",
+     "talked frame 1065 scene 527 save fca97c43de2c7cf9 state 7f67eb338f7f3d1a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (310, 130): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 83,
+     "instruction": 163,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5d26d207a5372996932a3d9faae03351"
+     },
+     {
+      "frames": 836,
+      "sha256": "768a291703ef7aa1f889575e655da28f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r162-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r162-talk-3",
+    "description": "Talking to layout record 3 of SHP_R162 (scene 922) should run its event and hand control back",
+    "plan": "# shp-shp-r162-talk-3: Talking to layout record 3 of SHP_R162 (scene 922) should run its event and hand control back\nlimit 20000\nenter 922 0 16717311 0\ncheckpoint entered\ntalk 128 128 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 922 save 19c83662ec6f2186 state fe1f48e7a56a2426 ram 0000000000000000",
+     "talked frame 759 scene 922 save 19c83662ec6f2186 state 93a692cfdf3fdfd2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 111,
+     "instruction": 266,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5177c3235e084defe73adbfcc69fb20e"
+     },
+     {
+      "frames": 530,
+      "sha256": "1f3efd134ac72bda24b257cb0d45d642"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

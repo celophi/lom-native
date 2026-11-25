@@ -1,0 +1,70 @@
+Add the full 16.16 screen offset before dropping the fraction, as the PS1
+does.
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -1208,8 +1208,8 @@
+ }
+ 
+ void SetGeomOffset(long ofx, long ofy) {
+-    OFX = (short)(ofx & 0xFFFF);
+-    OFY = (short)(ofy & 0xFFFF);
++    OFX = (int)((unsigned int)ofx << 16);
++    OFY = (int)((unsigned int)ofy << 16);
+ }
+ 
+ void SetGeomScreen(long h) { H = h; }
+@@ -1864,6 +1864,11 @@
+     } while (0)
+ #endif
+ 
++#define RTP_SCREEN_HI(offset, div, ir)                                         \
++    (((offset) >> 16) + MUL_DIV_HI(div, ir) +                                \
++     (int)(((((unsigned)(div) * (unsigned)(ir)) & 0xFFFFu) +                  \
++            ((unsigned)(offset) & 0xFFFFu)) >> 16))
++
+ // Perspective transformation of one vertex into caller locals.
+ #define RTP_VERTEX(                                                            \
+     sf, lm, x, y, z, f, div, mac1, mac2, mac3, ir1, ir2, ir3, sx, sy, sz)      \
+@@ -1891,10 +1896,10 @@
+         } else {                                                               \
+             GTE_DIVIDE(div, H, sz);                                            \
+         }                                                                      \
+-        (sx) = OFX + MUL_DIV_HI(div, ir1);                                     \
++        (sx) = RTP_SCREEN_HI(OFX, div, ir1);                                     \
+         MAC0_OVF(sx, f);                                                       \
+         SAT_FLAG(sx, sx, -0x400, 0x3FF, FLAG_SX2_SAT, f);                      \
+-        (sy) = OFY + MUL_DIV_HI(div, ir2);                                     \
++        (sy) = RTP_SCREEN_HI(OFY, div, ir2);                                     \
+         MAC0_OVF(sy, f);                                                       \
+         SAT_FLAG(sy, sy, -0x400, 0x3FF, FLAG_SY2_SAT, f);                      \
+     } while (0)
+@@ -3689,9 +3694,9 @@
+     case 23:
+         return (unsigned int)L2.t[2];
+     case 24:
+-        return (unsigned int)OFX << 16;
++        return (unsigned int)OFX;
+     case 25:
+-        return (unsigned int)OFY << 16;
++        return (unsigned int)OFY;
+     case 26:
+         return (unsigned int)(int)(short)H;
+     case 27:
+@@ -3795,15 +3800,11 @@
+     case 23:
+         L2.t[2] = (int)v;
+         break;
+-    // OFX/OFY are 20.12 fixed-point on the real GTE (PSY-Q's SetGeomOffset
+-    // writes `pixels << 16` into the ctrl reg). Psy-Z's RTPS math stores
+-    // them as integer pixels (it later does `OFX << 16` to align to 16.16),
+-    // so convert on the way in. Use arithmetic shift to keep sign.
+     case 24:
+-        OFX = (int)v >> 16;
++        OFX = (int)v;
+         break;
+     case 25:
+-        OFY = (int)v >> 16;
++        OFY = (int)v;
+         break;
+     case 26:
+         H = (u16)(v & 0xFFFF);

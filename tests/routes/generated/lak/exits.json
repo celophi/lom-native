@@ -1,0 +1,1916 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b000-exit-0",
+    "description": "Walking onto exit 0 of LAK_B000 (scene 329) should lead to scene 317",
+    "plan": "# lak-lak-b000-exit-0: Walking onto exit 0 of LAK_B000 (scene 329) should lead to scene 317\nlimit 20000\nenter 33097 1 16718847 0\ncheckpoint entered\nexit 0 317\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 329 save 16db757bec4ea074 state 65c59e660ab4082f ram 0000000000000000",
+     "arrived frame 295 scene 317 save fcf78f7ff4fa4582 state 7bc1e389b14c9716 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (592, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 66,
+     "instruction": 220,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e6c299d5c76207894b4d8e7a510a8e31"
+     },
+     {
+      "frames": 66,
+      "sha256": "e790c04e23f785d5ac5310c7a1cf6bc5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b010-exit-0",
+    "description": "Walking onto exit 0 of LAK_B010 (scene 330) should lead to scene 317",
+    "plan": "# lak-lak-b010-exit-0: Walking onto exit 0 of LAK_B010 (scene 330) should lead to scene 317\nlimit 20000\nenter 33098 2 16718847 0\ncheckpoint entered\nexit 0 317\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 330 save 7e8dae5bc53a6824 state 942c5b42628c7b39 ram 0000000000000000",
+     "arrived frame 295 scene 317 save 940bd2e6b6d95cfd state e13621945c15c2c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (952, 176): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c8e29a1b3d884f9c41f8ee5a21672f4f"
+     },
+     {
+      "frames": 66,
+      "sha256": "40340ede21d0b5c1825fb3ab25322257"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b010-exit-1",
+    "description": "Walking onto exit 1 of LAK_B010 (scene 330) should lead to scene 318",
+    "plan": "# lak-lak-b010-exit-1: Walking onto exit 1 of LAK_B010 (scene 330) should lead to scene 318\nlimit 20000\nenter 33098 2 16718847 1\ncheckpoint entered\nexit 1 318\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 330 save 08b806dcb5f11735 state 3f28544820f601fa ram 0000000000000000",
+     "arrived frame 299 scene 318 save e958c3bc47f3cdb5 state 2e7e41bef5d7c928 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 344): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 208,
+     "instruction_end": 66,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4b2d48214f2a021501f45d0d044180fa"
+     },
+     {
+      "frames": 70,
+      "sha256": "baca0f6683a3601f33259079103e8674"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b020-exit-0",
+    "description": "Walking onto exit 0 of LAK_B020 (scene 331) should lead to scene 318",
+    "plan": "# lak-lak-b020-exit-0: Walking onto exit 0 of LAK_B020 (scene 331) should lead to scene 318\nlimit 20000\nenter 33099 1 16718847 0\ncheckpoint entered\nexit 0 318\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 331 save f9677132c61bd7ee state 671f0142cbaeccba ram 0000000000000000",
+     "arrived frame 296 scene 318 save 26f5a42d7b213526 state fc8594ce9d8e8e9f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b32d37ebab7d42d1e1b3dcac2a2b890"
+     },
+     {
+      "frames": 67,
+      "sha256": "c13a76cbd455cd90829c90c0b4b4c715"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b030-exit-0",
+    "description": "Walking onto exit 0 of LAK_B030 (scene 332) should lead to scene 318",
+    "plan": "# lak-lak-b030-exit-0: Walking onto exit 0 of LAK_B030 (scene 332) should lead to scene 318\nlimit 20000\nenter 33100 2 16718847 0\ncheckpoint entered\nexit 0 318\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 332 save e64900e65e0cb09a state 200cf77adafcdd29 ram 0000000000000000",
+     "arrived frame 295 scene 318 save f5a2ac3ae5f3a39c state f1d326adb513afd3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (28, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "08c629af1a914dd8872803f3b77cb9d7"
+     },
+     {
+      "frames": 66,
+      "sha256": "6209363a74a7bd4b3c957fb4fb3c2f11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b030-exit-1",
+    "description": "Walking onto exit 1 of LAK_B030 (scene 332) should lead to scene 319",
+    "plan": "# lak-lak-b030-exit-1: Walking onto exit 1 of LAK_B030 (scene 332) should lead to scene 319\nlimit 20000\nenter 33100 2 16718847 0\ncheckpoint entered\nexit 1 319\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 332 save e64900e65e0cb09a state 200cf77adafcdd29 ram 0000000000000000",
+     "arrived frame 1785 scene 319 save 452df86820a1f5b9 state 8be55239a0f41a82 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (764, 32): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 403,
+     "instruction_end": 124,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "08c629af1a914dd8872803f3b77cb9d7"
+     },
+     {
+      "frames": 1556,
+      "sha256": "62ca0a4d81d11142f7ee8c38fe872205"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b040-exit-0",
+    "description": "Walking onto exit 0 of LAK_B040 (scene 333) should lead to scene 319",
+    "plan": "# lak-lak-b040-exit-0: Walking onto exit 0 of LAK_B040 (scene 333) should lead to scene 319\nlimit 20000\nenter 33101 2 16718847 0\ncheckpoint entered\nexit 0 319\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 333 save ea4ff911d1cca283 state 89822b2f634b5c12 ram 0000000000000000",
+     "arrived frame 295 scene 319 save 8e14c6d803005082 state f1b9540040da8e3b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f7a95da087f72e2c60efb42c6e5df625"
+     },
+     {
+      "frames": 66,
+      "sha256": "92f7ab80afca0ba4c0e69e05ae22b692"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b041-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b041-exit-0",
+    "description": "Walking onto exit 0 of LAK_B041 (scene 892) should lead to scene 319",
+    "plan": "# lak-lak-b041-exit-0: Walking onto exit 0 of LAK_B041 (scene 892) should lead to scene 319\nlimit 20000\nenter 892 2 16776959 0\ncheckpoint entered\nexit 0 319\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 892 save 0d46d87c39fb136f state 3e9fe5149df966ef ram 0000000000000000",
+     "arrived frame 364 scene 319 save 89158b4fa1df9f16 state c508bf1d1ef5994c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 242,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "47930bee79462f855f281d7f30764fad"
+     },
+     {
+      "frames": 135,
+      "sha256": "e062bbab3110c41286026a935b5d0f6e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b042-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b042-exit-0",
+    "description": "Walking onto exit 0 of LAK_B042 (scene 893) should lead to scene 319",
+    "plan": "# lak-lak-b042-exit-0: Walking onto exit 0 of LAK_B042 (scene 893) should lead to scene 319\nlimit 20000\nenter 893 2 16717311 0\ncheckpoint entered\nexit 0 319\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 893 save 9fdf95fcfed89517 state e0e15fc434de5cd0 ram 0000000000000000",
+     "arrived frame 406 scene 319 save 89158b4fa1df9f16 state 9aa50e0bc35d10c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 255,
+     "instruction_end": 78,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05d6d45fcea7ad56c76b8e050fcfeb1f"
+     },
+     {
+      "frames": 177,
+      "sha256": "4dc9447424c0df2e27cf1e53e9861e71"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b050-exit-0",
+    "description": "Walking onto exit 0 of LAK_B050 (scene 334) should lead to scene 319",
+    "plan": "# lak-lak-b050-exit-0: Walking onto exit 0 of LAK_B050 (scene 334) should lead to scene 319\nlimit 20000\nenter 33102 1 16718847 0\ncheckpoint entered\nexit 0 319\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 334 save 45a025118e86f373 state 1bf1297e08ace65b ram 0000000000000000",
+     "arrived frame 295 scene 319 save 5ba0d8b405c6a9d7 state a71329d020b0d1f4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 64,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "becf9eb214ac5322a9143e28fe74e636"
+     },
+     {
+      "frames": 66,
+      "sha256": "a1045186062c5549d62f3edd2f0a5fd8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b050-exit-1",
+    "description": "Walking onto exit 1 of LAK_B050 (scene 334) should lead to scene 320",
+    "plan": "# lak-lak-b050-exit-1: Walking onto exit 1 of LAK_B050 (scene 334) should lead to scene 320\nlimit 20000\nenter 33102 1 16718847 0\ncheckpoint entered\nexit 1 320\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 334 save 45a025118e86f373 state 1bf1297e08ace65b ram 0000000000000000",
+     "arrived frame 5105 scene 320 save d6d2005c48d3d8ed state 2c797d0bd350edbf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (940, 224): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2870 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1550 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 507,
+     "instruction_end": 144,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "becf9eb214ac5322a9143e28fe74e636"
+     },
+     {
+      "frames": 4876,
+      "sha256": "6a1c2381b41728aaa1cb12230011b5cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b060-exit-0",
+    "description": "Walking onto exit 0 of LAK_B060 (scene 335) should lead to scene 320",
+    "plan": "# lak-lak-b060-exit-0: Walking onto exit 0 of LAK_B060 (scene 335) should lead to scene 320\nlimit 20000\nenter 33103 1 16718847 0\ncheckpoint entered\nexit 0 320\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 335 save 54518fcde9dd6052 state dda26e160b0641a2 ram 0000000000000000",
+     "arrived frame 296 scene 320 save 3440e29aaf66cdb9 state 259490812d01bff0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 214,
+     "instruction_end": 63,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a2f71db0fee91f8cee878eda6772180"
+     },
+     {
+      "frames": 67,
+      "sha256": "66a704b3aaa24133e3ae853a23e9baac"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b060-exit-1",
+    "description": "Walking onto exit 1 of LAK_B060 (scene 335) should lead to scene 322",
+    "plan": "# lak-lak-b060-exit-1: Walking onto exit 1 of LAK_B060 (scene 335) should lead to scene 322\nlimit 20000\nenter 33103 1 16718847 0\ncheckpoint entered\nexit 1 322\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 335 save 54518fcde9dd6052 state dda26e160b0641a2 ram 0000000000000000",
+     "arrived frame 3166 scene 322 save cf4d40534a814b24 state 07192549636a9d1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (900, 24): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1550 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 515,
+     "exit": 1,
+     "instruction_end": 150,
+     "monster": 3,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a2f71db0fee91f8cee878eda6772180"
+     },
+     {
+      "frames": 2937,
+      "sha256": "fbc05739773c4b4541528ec4d45d7c45"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b070-exit-0",
+    "description": "Walking onto exit 0 of LAK_B070 (scene 336) should lead to scene 323",
+    "plan": "# lak-lak-b070-exit-0: Walking onto exit 0 of LAK_B070 (scene 336) should lead to scene 323\nlimit 20000\nenter 33104 2 16718847 0\ncheckpoint entered\nexit 0 323\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 336 save c0b7af45ff39d4be state e2ea5532d486459f ram 0000000000000000",
+     "arrived frame 296 scene 323 save 67e11d455eeacc25 state d6a14b149015d574 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (592, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b23b9f25efecfddce99d5fcf4bbbcc5a"
+     },
+     {
+      "frames": 67,
+      "sha256": "703d7291e0354f4be6d975e32d80955b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b070-exit-1",
+    "description": "Walking onto exit 1 of LAK_B070 (scene 336) should lead to scene 324",
+    "plan": "# lak-lak-b070-exit-1: Walking onto exit 1 of LAK_B070 (scene 336) should lead to scene 324\nlimit 20000\nenter 33104 2 16718847 0\ncheckpoint entered\nexit 1 324\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 336 save c0b7af45ff39d4be state e2ea5532d486459f ram 0000000000000000",
+     "arrived frame 1802 scene 324 save 1f9f58f18b8bf9f0 state dfa66d3344a34760 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 296): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 356,
+     "instruction_end": 106,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b23b9f25efecfddce99d5fcf4bbbcc5a"
+     },
+     {
+      "frames": 1573,
+      "sha256": "8f9d2623a5a2826df5693b04c02387cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b080-exit-0",
+    "description": "Walking onto exit 0 of LAK_B080 (scene 337) should lead to scene 321",
+    "plan": "# lak-lak-b080-exit-0: Walking onto exit 0 of LAK_B080 (scene 337) should lead to scene 321\nlimit 20000\nenter 33105 2 16718847 0\ncheckpoint entered\nexit 0 321\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 337 save 26e69b554f1db637 state bcab6fa8a8ce78c9 ram 0000000000000000",
+     "arrived frame 298 scene 321 save 425d09fd0c6a645e state cf0b7fc29c406d46 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (603, 245): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 59,
+     "instruction": 189,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb62c000c746315f19128c357f93f541"
+     },
+     {
+      "frames": 69,
+      "sha256": "56e1cc946cd323ad01f6821ef01a13ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b080-exit-1",
+    "description": "Walking onto exit 1 of LAK_B080 (scene 337) should lead to one of scene 327, scene 328, scene 890, scene 891",
+    "plan": "# lak-lak-b080-exit-1: Walking onto exit 1 of LAK_B080 (scene 337) should lead to one of scene 327, scene 328, scene 890, scene 891\nlimit 20000\nenter 33105 2 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 337 save 9ce1502af9376c1e state 1ce182fb88af82eb ram 0000000000000000",
+     "arrived frame 296 scene 328 save 36982580ea5e4e86 state 2de437c0e05bc50c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "da7a742ae1efec06929b24f8a4777d91"
+     },
+     {
+      "frames": 67,
+      "sha256": "918ddcc3dfe1f9790c55b61e268ef96c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b090-exit-0",
+    "description": "Walking onto exit 0 of LAK_B090 (scene 338) should lead to scene 321",
+    "plan": "# lak-lak-b090-exit-0: Walking onto exit 0 of LAK_B090 (scene 338) should lead to scene 321\nlimit 20000\nenter 33106 1 16718847 0\ncheckpoint entered\nexit 0 321\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 338 save e565dd1eea71df67 state 3cba253832fa6771 ram 0000000000000000",
+     "arrived frame 295 scene 321 save dcb8acbd36b28d1d state ebc7865f640f31b4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1203837daacfefff64196259bd5945d9"
+     },
+     {
+      "frames": 66,
+      "sha256": "eb740bdc8a95a1c95afe217cb366f7eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b090-exit-1",
+    "description": "Walking onto exit 1 of LAK_B090 (scene 338) should lead to scene 322",
+    "plan": "# lak-lak-b090-exit-1: Walking onto exit 1 of LAK_B090 (scene 338) should lead to scene 322\nlimit 20000\nenter 33106 1 16718847 0\ncheckpoint entered\nexit 1 322\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 338 save e565dd1eea71df67 state 3cba253832fa6771 ram 0000000000000000",
+     "arrived frame 2558 scene 322 save 7117676403473c7e state 6c5bfef20bd74668 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (608, 248): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2030 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 466,
+     "instruction_end": 137,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1203837daacfefff64196259bd5945d9"
+     },
+     {
+      "frames": 2329,
+      "sha256": "ec8e250f2d4e15a5905ebc0a33370475"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs10-exit-0",
+    "description": "Walking onto exit 0 of LAK_BS10 (scene 327) should lead to scene 337",
+    "plan": "# lak-lak-bs10-exit-0: Walking onto exit 0 of LAK_BS10 (scene 327) should lead to scene 337\nlimit 20000\nenter 33095 0 16718847 0\ncheckpoint entered\nexit 0 337\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 327 save 26845e4746d27597 state 4893c1b102660c7a ram 0000000000000000",
+     "arrived frame 292 scene 337 save f30fb9c2717f6924 state 767dadcb61af0654 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 82,
+     "instruction": 235,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bec2ead9e121d2fbec0dc11b4693d25e"
+     },
+     {
+      "frames": 63,
+      "sha256": "8b7edf77db84ea56bd533153308d73ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs11-exit-0",
+    "description": "Walking onto exit 0 of LAK_BS11 (scene 328) should lead to scene 337",
+    "plan": "# lak-lak-bs11-exit-0: Walking onto exit 0 of LAK_BS11 (scene 328) should lead to scene 337\nlimit 20000\nenter 33096 0 16718847 0\ncheckpoint entered\nexit 0 337\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 328 save 700322a649334f98 state 4a471d2d1dc223e5 ram 0000000000000000",
+     "arrived frame 291 scene 337 save 9ce1502af9376c1e state 08547c8d5b02bda5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "09fabefd8f35323dc26adae0e991c77c"
+     },
+     {
+      "frames": 62,
+      "sha256": "88198cd0f8ef8469513227fecdc9945e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs12-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs12-exit-0",
+    "description": "Walking onto exit 0 of LAK_BS12 (scene 626) should lead to scene 317",
+    "plan": "# lak-lak-bs12-exit-0: Walking onto exit 0 of LAK_BS12 (scene 626) should lead to scene 317\nlimit 20000\nenter 33394 1 16718847 0\ncheckpoint entered\nexit 0 317\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 626 save 2953a0260a908b26 state 3c014f988696cbba ram 0000000000000000",
+     "arrived frame 295 scene 317 save fcf78f7ff4fa4582 state 64033191a275e276 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (592, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f87a7e25e21bea4219c71fc4084b0f5c"
+     },
+     {
+      "frames": 66,
+      "sha256": "2ca84ad910fab1f2630f539fdb2e47b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs13-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs13-exit-0",
+    "description": "Walking onto exit 0 of LAK_BS13 (scene 890) should lead to scene 337",
+    "plan": "# lak-lak-bs13-exit-0: Walking onto exit 0 of LAK_BS13 (scene 890) should lead to scene 337\nlimit 20000\nenter 890 0 16776959 0\ncheckpoint entered\nexit 0 337\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 890 save 46fd45d07d12782f state 887740ee318f0399 ram 0000000000000000",
+     "arrived frame 342 scene 337 save 9ce1502af9376c1e state 0dc1eafa6f404874 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 75,
+     "instruction": 228,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5339a2439160af230913e855d9b84073"
+     },
+     {
+      "frames": 113,
+      "sha256": "2c494712c1a597cf43496cef7530d135"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs14-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs14-exit-0",
+    "description": "Walking onto exit 0 of LAK_BS14 (scene 891) should lead to scene 337",
+    "plan": "# lak-lak-bs14-exit-0: Walking onto exit 0 of LAK_BS14 (scene 891) should lead to scene 337\nlimit 20000\nenter 891 0 16717311 0\ncheckpoint entered\nexit 0 337\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 891 save 5055db4201e3accf state 1077feac02f2825c ram 0000000000000000",
+     "arrived frame 403 scene 337 save 9ce1502af9376c1e state 38cd8108c099191a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 85,
+     "instruction": 228,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a8ba94b542c0d6a76d7473e8a2f2301e"
+     },
+     {
+      "frames": 174,
+      "sha256": "e871aa31db86410b45b1e67ed52cf9e2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e000-exit-0",
+    "description": "Walking onto exit 0 of LAK_E000 (scene 317) should lead to the world map",
+    "plan": "# lak-lak-e000-exit-0: Walking onto exit 0 of LAK_E000 (scene 317) should lead to the world map\nlimit 20000\nenter 317 0 16718847 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save 8d963c507160ccbc state dedbccbcddb0e715 ram 0000000000000000",
+     "arrived frame 847 scene 32767 save d90be7ee4ecf9ed0 state de1352138d745cb6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (456, 8): 3 waypoints",
+     "game state 1 at vblank 2019"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a9932c401732655efd9fa84d8eb9adc"
+     },
+     {
+      "frames": 617,
+      "sha256": "ea99f7ef2a9829734603a7f6bfdd6979"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e000-exit-1",
+    "description": "Walking onto exit 1 of LAK_E000 (scene 317) should lead to one of scene 329, scene 626",
+    "plan": "# lak-lak-e000-exit-1: Walking onto exit 1 of LAK_E000 (scene 317) should lead to one of scene 329, scene 626\nlimit 20000\nenter 317 0 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save 8d963c507160ccbc state dedbccbcddb0e715 ram 0000000000000000",
+     "arrived frame 399 scene 329 save 84fe9721724b0e88 state 6a57b4019e947ded ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 253): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a9932c401732655efd9fa84d8eb9adc"
+     },
+     {
+      "frames": 170,
+      "sha256": "c7d24d32df19aa2ac122c29038b6ddc2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e000-exit-2",
+    "description": "Walking onto exit 2 of LAK_E000 (scene 317) should lead to scene 330",
+    "plan": "# lak-lak-e000-exit-2: Walking onto exit 2 of LAK_E000 (scene 317) should lead to scene 330\nlimit 20000\nenter 317 0 16718847 2\ncheckpoint entered\nexit 2 330\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save 91d8b29d1df7bdb7 state 3cfa92bc87350afc ram 0000000000000000",
+     "arrived frame 398 scene 330 save e8cd97865e7efc98 state 707b15131ddc52d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 203,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b2428a6deb63c6bc40d0095418f4351"
+     },
+     {
+      "frames": 169,
+      "sha256": "061165c608b850b91b1550060fda2ee8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e010-exit-0",
+    "description": "Walking onto exit 0 of LAK_E010 (scene 318) should lead to scene 331",
+    "plan": "# lak-lak-e010-exit-0: Walking onto exit 0 of LAK_E010 (scene 318) should lead to scene 331\nlimit 20000\nenter 318 0 16718847 1\ncheckpoint entered\nexit 0 331\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 318 save fe3225c55099ebcf state aa56809a3bd8e473 ram 0000000000000000",
+     "arrived frame 759 scene 331 save a6a106b91540196c state 5c9295127de6fa28 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 240): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a546c2d62fb32468390a2e078f3c98fc"
+     },
+     {
+      "frames": 530,
+      "sha256": "8889bdd632dfbc3dbce79a80b3b69784"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e010-exit-1",
+    "description": "Walking onto exit 1 of LAK_E010 (scene 318) should lead to scene 330",
+    "plan": "# lak-lak-e010-exit-1: Walking onto exit 1 of LAK_E010 (scene 318) should lead to scene 330\nlimit 20000\nenter 318 0 16718847 1\ncheckpoint entered\nexit 1 330\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 318 save fe3225c55099ebcf state aa56809a3bd8e473 ram 0000000000000000",
+     "arrived frame 294 scene 330 save ec901efc8f0f2283 state 84ac58bb2ec990d8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (463, 58): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a546c2d62fb32468390a2e078f3c98fc"
+     },
+     {
+      "frames": 65,
+      "sha256": "8195e5186e526849c467af4f99749f59"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e010-exit-2",
+    "description": "Walking onto exit 2 of LAK_E010 (scene 318) should lead to scene 332",
+    "plan": "# lak-lak-e010-exit-2: Walking onto exit 2 of LAK_E010 (scene 318) should lead to scene 332\nlimit 20000\nenter 318 0 16718847 1\ncheckpoint entered\nexit 2 332\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 318 save fe3225c55099ebcf state aa56809a3bd8e473 ram 0000000000000000",
+     "arrived frame 558 scene 332 save c73682c3cab36cc8 state 76d927d01fdc3c3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (481, 468): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a546c2d62fb32468390a2e078f3c98fc"
+     },
+     {
+      "frames": 329,
+      "sha256": "99a4f083e47eb8ba5c185fe9a15d24e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e020-exit-0",
+    "description": "Walking onto exit 0 of LAK_E020 (scene 319) should lead to scene 332",
+    "plan": "# lak-lak-e020-exit-0: Walking onto exit 0 of LAK_E020 (scene 319) should lead to scene 332\nlimit 20000\nenter 319 0 16718847 0\ncheckpoint entered\nexit 0 332\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 319 save 88b533a0ebeafeaf state e5e1dc71bc1d8b8c ram 0000000000000000",
+     "arrived frame 303 scene 332 save c6bad2d576abe9ab state 9e0eedca23b3051f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 352): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fccec28cf4a32dddec97b7d28c552ef9"
+     },
+     {
+      "frames": 74,
+      "sha256": "589b82f4a87cf675be8f60860a80d2d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e020-exit-1",
+    "description": "Walking onto exit 1 of LAK_E020 (scene 319) should lead to one of scene 333, scene 892, scene 893",
+    "plan": "# lak-lak-e020-exit-1: Walking onto exit 1 of LAK_E020 (scene 319) should lead to one of scene 333, scene 892, scene 893\nlimit 20000\nenter 319 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 319 save 88b533a0ebeafeaf state e5e1dc71bc1d8b8c ram 0000000000000000",
+     "arrived frame 740 scene 333 save d18737531655e14b state 47f57243c0b49053 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (616, 344): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fccec28cf4a32dddec97b7d28c552ef9"
+     },
+     {
+      "frames": 511,
+      "sha256": "704b62e2dfeb1c375d581672704af690"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e020-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e020-exit-2",
+    "description": "Walking onto exit 2 of LAK_E020 (scene 319) should lead to scene 334",
+    "plan": "# lak-lak-e020-exit-2: Walking onto exit 2 of LAK_E020 (scene 319) should lead to scene 334\nlimit 20000\nenter 319 0 16718847 0\ncheckpoint entered\nexit 2 334\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 319 save 88b533a0ebeafeaf state e5e1dc71bc1d8b8c ram 0000000000000000",
+     "arrived frame 766 scene 334 save 29fcd95520b06f3b state ab382a568c9a46ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fccec28cf4a32dddec97b7d28c552ef9"
+     },
+     {
+      "frames": 537,
+      "sha256": "63e5e55b767800c9a0f80c57f68f3936"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e030-exit-0",
+    "description": "Walking onto exit 0 of LAK_E030 (scene 320) should lead to scene 334",
+    "plan": "# lak-lak-e030-exit-0: Walking onto exit 0 of LAK_E030 (scene 320) should lead to scene 334\nlimit 20000\nenter 320 0 16718847 2\ncheckpoint entered\nexit 0 334\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 320 save ae734afea0580dc2 state 273db8e391374fac ram 0000000000000000",
+     "arrived frame 734 scene 334 save 6fc7aed5d86aa608 state 1466a35d92f1ee9e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 64): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d71baedcae41cde21218e6057e245742"
+     },
+     {
+      "frames": 505,
+      "sha256": "b723b3ed37ff3bf22f7d9dddf775f9ee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e030-exit-1",
+    "description": "Walking onto exit 1 of LAK_E030 (scene 320) should lead to scene 335",
+    "plan": "# lak-lak-e030-exit-1: Walking onto exit 1 of LAK_E030 (scene 320) should lead to scene 335\nlimit 20000\nenter 320 0 16718847 2\ncheckpoint entered\nexit 1 335\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 320 save ae734afea0580dc2 state 273db8e391374fac ram 0000000000000000",
+     "arrived frame 395 scene 335 save 73517fc6aef635a8 state f76774317891aa1a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 264): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d71baedcae41cde21218e6057e245742"
+     },
+     {
+      "frames": 166,
+      "sha256": "ab1547a97ccec4a92eaaa3a08c03df6b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e030-exit-2",
+    "description": "Walking onto exit 2 of LAK_E030 (scene 320) should lead to scene 321",
+    "plan": "# lak-lak-e030-exit-2: Walking onto exit 2 of LAK_E030 (scene 320) should lead to scene 321\nlimit 20000\nenter 320 0 16718847 2\ncheckpoint entered\nexit 2 321\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 320 save ae734afea0580dc2 state 273db8e391374fac ram 0000000000000000",
+     "arrived frame 299 scene 321 save 5177e85983f7d6c3 state 1afec774208fe046 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (564, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d71baedcae41cde21218e6057e245742"
+     },
+     {
+      "frames": 70,
+      "sha256": "fde9ae6e5683832445cb3637ed5b221f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e040-exit-0",
+    "description": "Walking onto exit 0 of LAK_E040 (scene 321) should lead to scene 320",
+    "plan": "# lak-lak-e040-exit-0: Walking onto exit 0 of LAK_E040 (scene 321) should lead to scene 320\nlimit 20000\nenter 321 0 16723455 0\ncheckpoint entered\nexit 0 320\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 321 save 8262919b35925ed3 state f45a333002a003fc ram 0000000000000000",
+     "arrived frame 299 scene 320 save 604f346dc708bc18 state bb0f72b602de78ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (32, 352): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 46,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa906fc9712eae6365e3daa893c79d77"
+     },
+     {
+      "frames": 70,
+      "sha256": "8465eefdc5288836c8823ec91fb0cc05"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e040-exit-1",
+    "description": "Walking onto exit 1 of LAK_E040 (scene 321) should lead to scene 337",
+    "plan": "# lak-lak-e040-exit-1: Walking onto exit 1 of LAK_E040 (scene 321) should lead to scene 337\nlimit 20000\nenter 321 0 16723455 0\ncheckpoint entered\nexit 1 337\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 321 save 8262919b35925ed3 state f45a333002a003fc ram 0000000000000000",
+     "arrived frame 421 scene 337 save 576b692a315b1809 state 10bcfec24cd78f3f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 16): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 61,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa906fc9712eae6365e3daa893c79d77"
+     },
+     {
+      "frames": 192,
+      "sha256": "a88122b74d6e2608ea3519a2349f1b13"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e040-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e040-exit-2",
+    "description": "Walking onto exit 2 of LAK_E040 (scene 321) should lead to scene 338",
+    "plan": "# lak-lak-e040-exit-2: Walking onto exit 2 of LAK_E040 (scene 321) should lead to scene 338\nlimit 20000\nenter 321 0 16723455 0\ncheckpoint entered\nexit 2 338\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 321 save 8262919b35925ed3 state f45a333002a003fc ram 0000000000000000",
+     "arrived frame 1253 scene 338 save f3c820d33c0275b9 state ab311d41c6aafda8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 65,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa906fc9712eae6365e3daa893c79d77"
+     },
+     {
+      "frames": 1024,
+      "sha256": "1ff4b07406abf26cc1515575b9b9d448"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e050-exit-0",
+    "description": "Walking onto exit 0 of LAK_E050 (scene 322) should lead to scene 335",
+    "plan": "# lak-lak-e050-exit-0: Walking onto exit 0 of LAK_E050 (scene 322) should lead to scene 335\nlimit 20000\nenter 322 0 16718847 1\ncheckpoint entered\nexit 0 335\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 322 save 891ba99dd7b2e0b3 state a236ad9d9b6cf4c5 ram 0000000000000000",
+     "arrived frame 1843 scene 335 save 4201748c6d55f105 state f0fd10fa69279195 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (49, 223): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 66,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7f9911c2c9106981bc5c983b186df83d"
+     },
+     {
+      "frames": 1614,
+      "sha256": "203c2698428a01c0a5c431f892ffdd98"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e050-exit-1",
+    "description": "Walking onto exit 1 of LAK_E050 (scene 322) should lead to scene 323",
+    "plan": "# lak-lak-e050-exit-1: Walking onto exit 1 of LAK_E050 (scene 322) should lead to scene 323\nlimit 20000\nenter 322 0 16718847 1\ncheckpoint entered\nexit 1 323\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 322 save 891ba99dd7b2e0b3 state a236ad9d9b6cf4c5 ram 0000000000000000",
+     "arrived frame 299 scene 323 save a6e0c9f4858a0b4c state ba8be0f0c1675eca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (589, 260): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 50,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7f9911c2c9106981bc5c983b186df83d"
+     },
+     {
+      "frames": 70,
+      "sha256": "d36cb666cdf9ec7be289325c4e4954d9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e050-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e050-exit-2",
+    "description": "Walking onto exit 2 of LAK_E050 (scene 322) should lead to scene 338",
+    "plan": "# lak-lak-e050-exit-2: Walking onto exit 2 of LAK_E050 (scene 322) should lead to scene 338\nlimit 20000\nenter 322 0 16718847 1\ncheckpoint entered\nexit 2 338\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 322 save 891ba99dd7b2e0b3 state a236ad9d9b6cf4c5 ram 0000000000000000",
+     "arrived frame 526 scene 338 save 061df05d92d21e9c state aa30142392fa3913 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (387, 11): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7f9911c2c9106981bc5c983b186df83d"
+     },
+     {
+      "frames": 297,
+      "sha256": "af4c4446a6a323ed82c08356881f62b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e060-exit-0",
+    "description": "Walking onto exit 0 of LAK_E060 (scene 323) should lead to scene 322",
+    "plan": "# lak-lak-e060-exit-0: Walking onto exit 0 of LAK_E060 (scene 323) should lead to scene 322\nlimit 20000\nenter 323 1 16718847 0\ncheckpoint entered\nexit 0 322\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 323 save 9227d25d7e65f406 state 3edc4d8b5ab7ee88 ram 0000000000000000",
+     "arrived frame 294 scene 322 save 096ec62132d0d511 state 40b1630ccc415fc4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "63a2fd651b091d9dc453f8cd9fe47333"
+     },
+     {
+      "frames": 65,
+      "sha256": "4acbc4858e743c1348d9f3f80241fbd2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e060-exit-1",
+    "description": "Walking onto exit 1 of LAK_E060 (scene 323) should lead to scene 336",
+    "plan": "# lak-lak-e060-exit-1: Walking onto exit 1 of LAK_E060 (scene 323) should lead to scene 336\nlimit 20000\nenter 323 1 16718847 0\ncheckpoint entered\nexit 1 336\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 323 save 9227d25d7e65f406 state 3edc4d8b5ab7ee88 ram 0000000000000000",
+     "arrived frame 437 scene 336 save 924aafdb62c69304 state f0f794ddf04a574c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 365): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "63a2fd651b091d9dc453f8cd9fe47333"
+     },
+     {
+      "frames": 208,
+      "sha256": "944853bf907f75c718894c5d79ba00be"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e070-exit-0",
+    "description": "Walking onto exit 0 of LAK_E070 (scene 324) should lead to scene 336",
+    "plan": "# lak-lak-e070-exit-0: Walking onto exit 0 of LAK_E070 (scene 324) should lead to scene 336\nlimit 20000\nenter 324 0 16718847 0\ncheckpoint entered\nexit 0 336\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 324 save 7e1923f9610d08e4 state ecba985ee903b866 ram 0000000000000000",
+     "arrived frame 292 scene 336 save bb3ba6fad0b2b687 state 646d353949ae3d0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (468, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b04185336d7fdefd9f4eb9060d5a0932"
+     },
+     {
+      "frames": 63,
+      "sha256": "37cb404242d124761f456fc33b34903c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

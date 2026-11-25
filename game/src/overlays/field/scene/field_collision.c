@@ -1,0 +1,6564 @@
+#include "lom_native_ps1_memory.h"
+#include "common.h"
+#include <abs.h>
+
+#include "../internal/field_calls.h"
+#include "../internal/field_scene_internal.h"
+#include "overlays/field/field_actor_records.h"
+#include "overlays/field/field_types.h"
+
+#define FIELD_COLLISION_TRACE_STOP_AT_GOAL 2
+
+#define FIELD_COLLISION_TRACE_TILE(ptr)                                                                                                                        \
+    {                                                                                                                                                          \
+        tile_value = *(ptr);                                                                                                                                   \
+        if (tile_value >= FIELD_COLLISION_TILE_DEFERRED || tile_value == FIELD_COLLISION_TILE_TOUCHED)                                                         \
+        {                                                                                                                                                      \
+            return 0;                                                                                                                                          \
+        }                                                                                                                                                      \
+        if (stamp != 0 && tile_value != FIELD_COLLISION_TILE_START)                                                                                            \
+        {                                                                                                                                                      \
+            *(ptr) = stamp;                                                                                                                                    \
+            if (mode == FIELD_COLLISION_TRACE_STOP_AT_GOAL && (ptr) == goal_tile)                                                                              \
+            {                                                                                                                                                  \
+                return 1;                                                                                                                                      \
+            }                                                                                                                                                  \
+        }                                                                                                                                                      \
+    }
+
+#define FIELD_COLLISION_TRACE_EDGES()                                                                                                                          \
+    {                                                                                                                                                          \
+        if (edge_state != 0)                                                                                                                                   \
+        {                                                                                                                                                      \
+            switch (edge_state)                                                                                                                                \
+            {                                                                                                                                                  \
+            case 1:                                                                                                                                            \
+                tile_ptr = tile_base;                                                                                                                          \
+                if (step_x > 0)                                                                                                                                \
+                {                                                                                                                                              \
+                    tile_ptr = tile_base + x_span;                                                                                                             \
+                }                                                                                                                                              \
+                                                                                                                                                               \
+                for (n = row_span;; n -= stride)                                                                                                               \
+                {                                                                                                                                              \
+                    FIELD_COLLISION_TRACE_TILE(tile_ptr);                                                                                                      \
+                                                                                                                                                               \
+                    if (n == 0)                                                                                                                                \
+                    {                                                                                                                                          \
+                        break;                                                                                                                                 \
+                    }                                                                                                                                          \
+                                                                                                                                                               \
+                    tile_ptr += stride;                                                                                                                        \
+                }                                                                                                                                              \
+                                                                                                                                                               \
+                break;                                                                                                                                         \
+            case 2:                                                                                                                                            \
+                tile_ptr = tile_base;                                                                                                                          \
+                if (step_z > 0)                                                                                                                                \
+                {                                                                                                                                              \
+                    tile_ptr = tile_base + row_span;                                                                                                           \
+                }                                                                                                                                              \
+                n = x_span;                                                                                                                                    \
+                do                                                                                                                                             \
+                {                                                                                                                                              \
+                    FIELD_COLLISION_TRACE_TILE(tile_ptr);                                                                                                      \
+                    tile_ptr++;                                                                                                                                \
+                } while (--n != -1);                                                                                                                           \
+                break;                                                                                                                                         \
+            case 3:                                                                                                                                            \
+                tile_ptr = tile_base;                                                                                                                          \
+                                                                                                                                                               \
+                for (n = row_span;; n -= stride)                                                                                                               \
+                {                                                                                                                                              \
+                    scan_ptr = tile_ptr;                                                                                                                       \
+                    m = x_span;                                                                                                                                \
+                    do                                                                                                                                         \
+                    {                                                                                                                                          \
+                        FIELD_COLLISION_TRACE_TILE(scan_ptr);                                                                                                  \
+                        scan_ptr++;                                                                                                                            \
+                    } while (--m != -1);                                                                                                                       \
+                                                                                                                                                               \
+                    if (n == 0)                                                                                                                                \
+                    {                                                                                                                                          \
+                        break;                                                                                                                                 \
+                    }                                                                                                                                          \
+                                                                                                                                                               \
+                    tile_ptr += stride;                                                                                                                        \
+                }                                                                                                                                              \
+                                                                                                                                                               \
+                break;                                                                                                                                         \
+            }                                                                                                                                                  \
+            if (stamp != 0 && stamp != FIELD_COLLISION_TILE_GOAL)                                                                                              \
+            {                                                                                                                                                  \
+                stamp++;                                                                                                                                       \
+            }                                                                                                                                                  \
+        }                                                                                                                                                      \
+    }
+
+#define FIELD_COLLISION_SCRATCH ((uintptr_t)SCRATCHPAD_ADDRESS)
+
+#define FIELD_COLLISION_HIT_LIST ((FieldCollisionNodeEntry*)COLLISION_LISTS_ADDRESS)
+
+#define FIELD_COLLISION_TOUCH_LIST ((FieldCollisionNodeEntry*)COLLISION_LISTS_AT(0x100))
+
+#define FIELD_COLLISION_CELL(v) (((v) >= 0) ? ((v) >> 8) : (((v) + 0xFF) >> 8))
+
+#define FIELD_COLLISION_KIND_MASK 0x3
+#define FIELD_COLLISION_KIND_FLAT 0
+#define FIELD_COLLISION_KIND_SLOPE 1
+#define FIELD_COLLISION_SURFACE_EDGE_FLAGS 0x8
+#define FIELD_COLLISION_SURFACE_SLOW 0x10
+#define FIELD_COLLISION_SURFACE_CARRY 0x40
+
+#define FIELD_COLLISION_EDGE_OPEN 0x80
+#define FIELD_COLLISION_EDGE_INDEX 0x7F
+#define FIELD_COLLISION_EDGE_WALL_X 0x7F
+#define FIELD_COLLISION_EDGE_WALL_Z 0x7E
+
+#define FIELD_COLLISION_SLIDE_NONE (-2)
+
+#define FIELD_COLLISION_FLOOR_MARGIN 20
+
+#define FIELD_COLLISION_NO_CEILING 0xFFFFFF
+
+#define FIELD_COLLISION_PUSH_BLOCKED 0x8000
+
+#define FIELD_COLLISION_CLASS_TOUCH 0x1
+#define FIELD_COLLISION_CLASS_BLOCK 0x2
+
+#define FIELD_COLLISION_SURFACE_SOLID 0x4
+
+#define FIELD_COLLISION_STEP_UP 16
+
+#define FIELD_COLLISION_SLIDE_MAX_TURN 0x472
+
+#define FIELD_COLLISION_RUN_OPEN 0x8000
+#define FIELD_COLLISION_RASTER_EMPTY_SPAN 0x80007F00
+#define FIELD_COLLISION_RASTER_EMPTY_FLAGS 0xFFFF
+
+#define FIELD_COLLISION_GROUP_SCAN_MAX 20
+#define FIELD_COLLISION_GROUP_MAX 10
+#define FIELD_COLLISION_GROUP_TILE_BUDGET 16384
+
+#define FIELD_COLLISION_GROUP_SEEN_FLAT 0x1
+#define FIELD_COLLISION_GROUP_SEEN_SLOPE 0x2
+#define FIELD_COLLISION_GROUP_FINE_TILE_SIZE 4
+#define FIELD_COLLISION_GROUP_FINE_TILE_SHIFT 2
+#define FIELD_COLLISION_GROUP_COARSE_TILE_SIZE 8
+#define FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT 3
+#define FIELD_COLLISION_GROUP_TILE_PADDING 4
+#define FIELD_COLLISION_GROUP_WORD_BITS 32
+#define FIELD_COLLISION_GROUP_WORD_SHIFT 5
+#define FIELD_COLLISION_GROUP_WORD_MASK (FIELD_COLLISION_GROUP_WORD_BITS - 1)
+
+#define FIELD_COLLISION_GROUP_ERROR_GROUPS 1
+#define FIELD_COLLISION_GROUP_ERROR_NODES 2
+#define FIELD_COLLISION_GROUP_ERROR_COLLECT 3
+#define FIELD_COLLISION_GROUP_ERROR_INTERSECT 4
+#define FIELD_COLLISION_GROUP_ERROR_UNION 5
+
+#define FIELD_COLLISION_RASTER_NODE_MAX 50
+#define FIELD_COLLISION_RASTER_SPAN_MAX 128
+#define FIELD_COLLISION_RASTER_ROW_BYTES 512
+
+#define FIELD_COLLISION_FILL_BLOCKED(out, count, remaining)                                                                                                    \
+    {                                                                                                                                                          \
+        (count) = (BYTES_PER_WORD - (uintptr_t)(out)) & BYTES_PER_WORD_MASK;                                                                                   \
+                                                                                                                                                               \
+        while (((count) != 0) && ((remaining) != 0))                                                                                                           \
+        {                                                                                                                                                      \
+            *(out) = FIELD_COLLISION_TILE_BLOCKED;                                                                                                             \
+            (out)++;                                                                                                                                           \
+            (count)--;                                                                                                                                         \
+            (remaining)--;                                                                                                                                     \
+        }                                                                                                                                                      \
+                                                                                                                                                               \
+        (count) = (remaining) >> BYTES_PER_WORD_SHIFT;                                                                                                         \
+                                                                                                                                                               \
+        for ((count)--; (count) != -1; (count)--)                                                                                                              \
+        {                                                                                                                                                      \
+            *(s32*)(out) = (s32)(FIELD_COLLISION_TILE_BLOCKED * 0x01010101U);                                                                                  \
+            (out) += BYTES_PER_WORD;                                                                                                                           \
+        }                                                                                                                                                      \
+                                                                                                                                                               \
+        (count) = (remaining) & BYTES_PER_WORD_MASK;                                                                                                           \
+                                                                                                                                                               \
+        for ((count)--; (count) != -1; (count)--)                                                                                                              \
+        {                                                                                                                                                      \
+            *(out) = FIELD_COLLISION_TILE_BLOCKED;                                                                                                             \
+            (out)++;                                                                                                                                           \
+        }                                                                                                                                                      \
+    }
+
+#define FIELD_COLLISION_TILE_FREE 0
+#define FIELD_COLLISION_TILE_BLOCKED 0xFF
+
+#define FIELD_COLLISION_TILE_TOUCHED 1
+#define FIELD_COLLISION_TILE_STAMP_MIN 4
+#define FIELD_COLLISION_TILE_STAMP_FIRST 0xFA
+#define FIELD_COLLISION_TILE_START 0xFB
+#define FIELD_COLLISION_TILE_GOAL 0xFC
+#define FIELD_COLLISION_TILE_DEFERRED 0xFD
+#define FIELD_COLLISION_TILE_MARKED 0xFE
+
+#if defined(LOM_NATIVE_POINTERS)
+typedef uint64_t FieldCollisionPathWord;
+#define FIELD_COLLISION_PATH_TILE_MASK (((uint64_t)1 << 48) - 1)
+#define FIELD_COLLISION_PATH_DIR_SHIFT 48
+#else
+typedef u32 FieldCollisionPathWord;
+#define FIELD_COLLISION_PATH_TILE_MASK 0x801FFFFF
+#define FIELD_COLLISION_PATH_DIR_SHIFT 21
+#endif
+#if defined(LOM_NATIVE_POINTERS)
+#define FIELD_COLLISION_PATH_DIRS(dirs) ((FieldCollisionPathWord)(dirs) << FIELD_COLLISION_PATH_DIR_SHIFT)
+#else
+#define FIELD_COLLISION_PATH_DIRS(dirs) ((dirs) << FIELD_COLLISION_PATH_DIR_SHIFT)
+#endif
+#define FIELD_COLLISION_DIR_UL 0x01
+#define FIELD_COLLISION_DIR_UP 0x02
+#define FIELD_COLLISION_DIR_UR 0x04
+#define FIELD_COLLISION_DIR_LEFT 0x08
+#define FIELD_COLLISION_DIR_RIGHT 0x10
+#define FIELD_COLLISION_DIR_DL 0x20
+#define FIELD_COLLISION_DIR_DOWN 0x40
+#define FIELD_COLLISION_DIR_DR 0x80
+#define FIELD_COLLISION_DIRS_TOP (FIELD_COLLISION_DIR_UL | FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_UR)
+#define FIELD_COLLISION_DIRS_BOTTOM (FIELD_COLLISION_DIR_DL | FIELD_COLLISION_DIR_DOWN | FIELD_COLLISION_DIR_DR)
+#define FIELD_COLLISION_DIRS_LEFT (FIELD_COLLISION_DIR_UL | FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_DL)
+#define FIELD_COLLISION_DIRS_RIGHT (FIELD_COLLISION_DIR_UR | FIELD_COLLISION_DIR_RIGHT | FIELD_COLLISION_DIR_DR)
+#define FIELD_COLLISION_DIRS_ALL 0xFF
+#define FIELD_COLLISION_DIR_SLOW 0x100
+#define FIELD_COLLISION_DIR_DEFERRED 0x200
+#define FIELD_COLLISION_DIR_TOUCHED(dir) ((dir) << 8)
+#define FIELD_COLLISION_PATH_BUCKET_LEN 1024
+
+#define FIELD_COLLISION_PATH_CAN_ENTER(val, limit, dirs)                                                                                                       \
+    (((val) < (limit)) && (((val) < FIELD_COLLISION_TILE_STAMP_MIN) || !((dirs) & FIELD_COLLISION_DIR_SLOW)))
+
+#define FIELD_COLLISION_CORNER_TEST(ok, side, first, second)                                                                                                   \
+    {                                                                                                                                                          \
+        (side) = (first);                                                                                                                                      \
+        (ok) = 0;                                                                                                                                              \
+        if ((side) < FIELD_COLLISION_TILE_MARKED)                                                                                                              \
+        {                                                                                                                                                      \
+            if (((side) == FIELD_COLLISION_TILE_TOUCHED) || ((side) == FIELD_COLLISION_TILE_DEFERRED))                                                         \
+            {                                                                                                                                                  \
+                (side) = (second);                                                                                                                             \
+                if (((side) == FIELD_COLLISION_TILE_TOUCHED) || ((side) == FIELD_COLLISION_TILE_DEFERRED))                                                     \
+                {                                                                                                                                              \
+                    (ok) = 1;                                                                                                                                  \
+                }                                                                                                                                              \
+            }                                                                                                                                                  \
+            else                                                                                                                                               \
+            {                                                                                                                                                  \
+                (side) = (second);                                                                                                                             \
+                if (((side) < FIELD_COLLISION_TILE_DEFERRED) && ((side) != FIELD_COLLISION_TILE_TOUCHED))                                                      \
+                {                                                                                                                                              \
+                    (ok) = 1;                                                                                                                                  \
+                }                                                                                                                                              \
+            }                                                                                                                                                  \
+        }                                                                                                                                                      \
+    }
+
+#define FIELD_COLLISION_PATH_PUSH_LIMIT (FIELD_COLLISION_PATH_BUCKET_LEN - 7)
+#define FIELD_COLLISION_PATH_OUT_MAX 16
+
+#define FIELD_COLLISION_PATH_ERROR_GROUPS (-1)
+#define FIELD_COLLISION_PATH_ERROR_BOUNDS (-2)
+#define FIELD_COLLISION_PATH_ERROR_NO_ROUTE (-3)
+#define FIELD_COLLISION_PATH_ERROR_OVERFLOW (-4)
+#define FIELD_COLLISION_PATH_ERROR_DEAD_END (-5)
+
+typedef struct FieldCollisionSpan
+{
+    s16 min_x;
+    s16 max_x;
+} FieldCollisionSpan;
+
+typedef struct FieldCollisionEdgeRun
+{
+    u16 count;
+    u16 index;
+} FieldCollisionEdgeRun;
+
+typedef struct FieldCollisionSurfaceDef
+{
+#if defined(LOM_NATIVE_POINTERS)
+    struct FieldCollisionSurfaceDef* next;
+#else
+    u8 pad0[4];
+#endif
+    s32 flags;
+    u8 pad8[2];
+    u16 vertex_c;
+    u16 vertex_b;
+    u16 vertex_a;
+    s16 height0;
+    s16 height1;
+    s16 top;
+    u8 pad16[2];
+    FieldCollisionEdgeRun runs[1];
+} FieldCollisionSurfaceDef;
+
+typedef struct FieldCollisionNode
+{
+    struct FieldCollisionNode* next;
+    FieldCollisionSurfaceDef* surface;
+    void* owner_object;
+    void* owner_part;
+    FieldCollisionSpan* spans;
+    u8* span_flags;
+    u8 active;
+    u8 pad19[3];
+    s16 min_x;
+    s16 max_x;
+    s16 max_z;
+    s16 min_z;
+    s32 motion_x;
+    s32 motion_height0;
+    s32 motion_height1;
+    s32 motion_z;
+    s32 offset_x;
+    s32 height0_offset;
+    s32 height1_offset;
+    s32 offset_z;
+} FieldCollisionNode;
+
+_Static_assert(__builtin_offsetof(FieldCollisionSurfaceDef, flags) == __builtin_offsetof(FieldNodeDef, flags) &&
+                   __builtin_offsetof(FieldCollisionSurfaceDef, vertex_c) == __builtin_offsetof(FieldNodeDef, vertex_c) &&
+                   __builtin_offsetof(FieldCollisionSurfaceDef, runs) == __builtin_offsetof(FieldNodeDef, runs),
+               "FieldCollisionSurfaceDef is FieldNodeDef's layout");
+_Static_assert(__builtin_offsetof(FieldCollisionNode, active) == __builtin_offsetof(FieldNode, active) &&
+                   __builtin_offsetof(FieldCollisionNode, min_x) == __builtin_offsetof(FieldNode, x_min) &&
+                   __builtin_offsetof(FieldCollisionNode, offset_z) == __builtin_offsetof(FieldNode, offset_z) &&
+                   sizeof(FieldCollisionNode) == sizeof(FieldNode),
+               "FieldCollisionNode is FieldNode's layout");
+
+typedef struct FieldCollisionNodeEntry
+{
+    FieldCollisionNode* node;
+} FieldCollisionNodeEntry;
+
+typedef struct FieldCollisionMoveProbe
+{
+    FieldCollisionMover* mover;
+    s32 x;
+    s32 z;
+    s16 feet;
+    s16 step_limit;
+} FieldCollisionMoveProbe;
+
+typedef struct FieldCollisionEdgePoint
+{
+    u16 x;
+    u16 z;
+} FieldCollisionEdgePoint;
+
+typedef union FieldCollisionRasterSpan
+{
+    struct
+    {
+        s16 x0;
+        s16 x1;
+    } x;
+
+    s32 word;
+} FieldCollisionRasterSpan;
+
+typedef union FieldCollisionRasterSpanFlags
+{
+    struct
+    {
+        u8 left;
+        u8 right;
+    } f;
+
+    u16 half;
+} FieldCollisionRasterSpanFlags;
+
+typedef struct
+{
+    s16 height;
+    s16 kinds;
+} FieldGroupEntry;
+
+typedef struct
+{
+    FieldNode* node;
+    s16 key;
+    s16 pad;
+} FieldCollisionRasterNode;
+
+typedef struct
+{
+    u32 solid_bits;
+    u32 touch_bits;
+    u32 interior_touch_bits;
+} FieldCollisionDilationMasks;
+
+typedef struct
+{
+    u16* src;
+    s16 count;
+    s16 step;
+    s16 skip;
+    s16 pad;
+} FieldCollisionSpanRun;
+
+#define FIELD_COLLISION_PATH_WORLD_SHIFT 8
+#define FIELD_COLLISION_PATH_TILE_MARGIN 2
+
+typedef enum
+{
+    FIELD_COLLISION_PATH_STEP_NONE = 0,
+    FIELD_COLLISION_PATH_STEP_UL,
+    FIELD_COLLISION_PATH_STEP_UP,
+    FIELD_COLLISION_PATH_STEP_UR,
+    FIELD_COLLISION_PATH_STEP_LEFT,
+    FIELD_COLLISION_PATH_STEP_RIGHT,
+    FIELD_COLLISION_PATH_STEP_DL,
+    FIELD_COLLISION_PATH_STEP_DOWN,
+    FIELD_COLLISION_PATH_STEP_DR
+} FieldCollisionPathStep;
+
+typedef union
+{
+    FieldCollisionPathWord queued_tile;
+    u8* tile;
+    s32 coordinate;
+} FieldCollisionPathEntry;
+
+typedef union
+{
+    FieldCollisionPathEntry queues[4][FIELD_COLLISION_PATH_BUCKET_LEN];
+
+    union
+    {
+        FieldCollisionPathEntry entries[3 * FIELD_COLLISION_PATH_BUCKET_LEN];
+
+        struct
+        {
+            FieldCollisionPathEntry tiles[FIELD_COLLISION_PATH_BUCKET_LEN];
+            FieldCollisionPathEntry x[FIELD_COLLISION_PATH_BUCKET_LEN];
+            FieldCollisionPathEntry z[FIELD_COLLISION_PATH_BUCKET_LEN];
+        } columns;
+    } route;
+} FieldCollisionPathWork;
+
+typedef union
+{
+    FieldCollisionPathEntry* entry;
+    s32 coordinate;
+} FieldCollisionPathCursor;
+
+typedef struct
+{
+    u8* tile_base;
+    u8* goal_tile;
+    s32 start_x;
+    s32 start_z;
+    s32 end_x;
+    s32 end_z;
+    s32 footprint_width;
+    s32 footprint_depth;
+    s32 tile_size;
+    s32 col_shift;
+    s32 mode;
+    u8 stamp;
+} FieldCollisionTraceRequest;
+
+static void field_collision_classify_nodes(FieldCollisionMoveProbe* probe, FieldCollisionNode* node, s32* out_hit, s32* out_touch);
+static s16 field_collision_slope_height(FieldCollisionNode* node, s32* position);
+static s32 field_collision_slide_angle(FieldCollisionSurfaceDef* surface, s32 edge_index, s32 move_angle, s32 best_angle);
+static void field_collision_rasterize_node(FieldCollisionNode* node, u8** alloc);
+static void field_collision_dilate_tiles(s32 footprint_width, s32 footprint_depth);
+static s32 field_collision_mark_footprint(FieldCollisionQuery* margins, FieldCollisionQuery* query);
+static s32 field_collision_trace_line(FieldCollisionTraceRequest* request);
+static void field_collision_slope_scale_move(FieldCollisionSurfaceDef* surface, s32* movement);
+
+#define FIELD_COLLISION_FIND_SPAN(span, counter, count, x, offset, found)                                                                                      \
+    for ((counter) = (count) - 1; (counter) != -1; (counter)--)                                                                                                \
+    {                                                                                                                                                          \
+        if (((x) >= ((span)->min_x + (offset))) && (((span)->max_x + (offset)) >= (x)))                                                                        \
+        {                                                                                                                                                      \
+            (found) = 1;                                                                                                                                       \
+            break;                                                                                                                                             \
+        }                                                                                                                                                      \
+        (span)++;                                                                                                                                              \
+    }
+
+#define FIELD_COLLISION_MERGE_PUSH(total, part)                                                                                                                \
+    if ((part) > 0)                                                                                                                                            \
+    {                                                                                                                                                          \
+        if ((total) >= 0)                                                                                                                                      \
+        {                                                                                                                                                      \
+            if ((total) < (part))                                                                                                                              \
+            {                                                                                                                                                  \
+                (total) = (part);                                                                                                                              \
+            }                                                                                                                                                  \
+        }                                                                                                                                                      \
+        else                                                                                                                                                   \
+        {                                                                                                                                                      \
+            (total) = FIELD_COLLISION_PUSH_BLOCKED;                                                                                                            \
+        }                                                                                                                                                      \
+    }                                                                                                                                                          \
+    else if ((total) <= 0)                                                                                                                                     \
+    {                                                                                                                                                          \
+        if ((part) < (total))                                                                                                                                  \
+        {                                                                                                                                                      \
+            (total) = (part);                                                                                                                                  \
+        }                                                                                                                                                      \
+    }                                                                                                                                                          \
+    else                                                                                                                                                       \
+    {                                                                                                                                                          \
+        (total) = FIELD_COLLISION_PUSH_BLOCKED;                                                                                                                \
+    }
+
+/**
+ * @brief Read a surface's kind from the low byte of FieldCollisionSurfaceDef::flags.
+ * @param s Surface definition.
+ * @return FIELD_COLLISION_KIND_FLAT or FIELD_COLLISION_KIND_SLOPE.
+ */
+static inline s32 field_collision_surface_kind(const FieldCollisionSurfaceDef* s)
+{
+    return ((const u8*)&s->flags)[0] & FIELD_COLLISION_KIND_MASK;
+}
+
+/**
+ * @brief Read a surface's span pairs per row from byte 2 of FieldCollisionSurfaceDef::flags.
+ * @param s Surface definition.
+ * @return Span pairs stored for each row of the node.
+ */
+static inline s32 field_collision_surface_spans(const FieldCollisionSurfaceDef* s)
+{
+    return ((const u8*)&s->flags)[2];
+}
+
+/**
+ * @brief Test whether the walk back from the goal may step onto a tile.
+ * @param v Tile value.
+ * @return Non-zero for a wave stamp or the start marker.
+ */
+static inline s32 field_collision_tile_is_step(u32 v)
+{
+    return (u8)(v - FIELD_COLLISION_TILE_STAMP_MIN) < FIELD_COLLISION_TILE_GOAL - FIELD_COLLISION_TILE_STAMP_MIN;
+}
+
+/**
+ * @brief Find the first marker volume a probe footprint overlaps.
+ * @param query Probe position, footprint and vertical tolerance.
+ * @return The overlapping marker's label, or -1 when none overlaps.
+ */
+s32 field_collision_hit_markers(FieldCollisionQuery* query)
+{
+    FieldScene* scene;
+    s32 start_x;
+    s32 end_x;
+    s32 start_z;
+    s32 end_z;
+    s32 probe_y;
+    FieldMarker* node;
+    s32 hit;
+    s32 edge_start;
+    s32 edge_end;
+
+    scene = g_field_scene.scene;
+    start_x = FIELD_COLLISION_CELL(query->x) - ((s16)query->width / 2);
+
+    end_x = start_x + (s16)query->width;
+    start_z = FIELD_COLLISION_CELL(query->z) - ((s16)query->depth / 2);
+
+    end_z = start_z + (s16)query->depth;
+
+    probe_y = FIELD_COLLISION_CELL(query->y);
+
+    for (node = scene->markers; node != NULL; node = node->next)
+    {
+        FieldMarkerDef* def;
+        s16 band_bottom;
+
+        def = node->def;
+        band_bottom = def->depth_bias;
+
+        if ((probe_y - query->height_tolerance) >= band_bottom)
+        {
+            continue;
+        }
+
+        if ((def->band_height != 1) && ((band_bottom + def->band_height) >= probe_y))
+        {
+            continue;
+        }
+
+        if (node->y_min >= end_z)
+        {
+            continue;
+        }
+
+        if (start_z >= node->y_max)
+        {
+            continue;
+        }
+
+        if (node->x_min >= end_x)
+        {
+            continue;
+        }
+
+        if (start_x >= node->x_max)
+        {
+            continue;
+        }
+
+        hit = 0;
+
+        if (node->side_dx != 0)
+        {
+            edge_start = (node->side_dy * start_x) / node->side_dx;
+            edge_end = (node->side_dy * end_x) / node->side_dx;
+
+            if (((((start_z - edge_start) >= node->side_lo) || ((end_z - edge_start) >= node->side_lo)) || ((start_z - edge_end) >= node->side_lo)) ||
+                ((end_z - edge_end) >= node->side_lo))
+            {
+                if ((((node->side_hi >= (start_z - edge_start)) || (node->side_hi >= (end_z - edge_start))) || (node->side_hi >= (start_z - edge_end))) ||
+                    (node->side_hi >= (end_z - edge_end)))
+                {
+                    hit = 1;
+                }
+            }
+        }
+        else if (end_x >= node->side_lo)
+        {
+            if (node->side_hi >= start_x)
+            {
+                hit = 1;
+            }
+        }
+
+        if (hit)
+        {
+            if (node->edge_dx != 0)
+            {
+                edge_start = (node->edge_dy * start_x) / node->edge_dx;
+                edge_end = (node->edge_dy * end_x) / node->edge_dx;
+
+                if (((((start_z - edge_start) >= node->edge_lo) || ((end_z - edge_start) >= node->edge_lo)) || ((start_z - edge_end) >= node->edge_lo)) ||
+                    ((end_z - edge_end) >= node->edge_lo))
+                {
+                    if (!((((node->edge_hi < (start_z - edge_start)) && (node->edge_hi < (end_z - edge_start))) && (node->edge_hi < (start_z - edge_end))) &&
+                          (node->edge_hi < (end_z - edge_end))))
+                    {
+                        return (s16)def->label;
+                    }
+                }
+            }
+            else if (end_x >= node->edge_lo)
+            {
+                if (node->edge_hi >= start_x)
+                {
+                    return (s16)def->label;
+                }
+            }
+        }
+    }
+
+    return -1;
+}
+
+/**
+ * @brief Move a mover for one frame, sliding along walls and settling on the floor.
+ * @param mover Mover state; position, height, floor node and flags are updated in place.
+ * @return FIELD_COLLISION_RESULT_* bits, or 0 when the mover did not move.
+ * @note The floor search, the retrace and the push-out apply the first node's offsets to every node.
+ * @note The floor search does not reset its span hit between nodes.
+ * @see decomp.me (100%) https://decomp.me/scratch/N2GNJ
+ */
+s32 field_collision_resolve_move(FieldCollisionMover* mover)
+{
+    FieldCollisionMoveProbe probe;
+    s32 hit_count;
+    s32 touch_count;
+    FieldScene* scene;
+    FieldCollisionNode* nodes;
+    u16 next_height;
+    u16 step_height;
+    s16 nodes_offset_x;
+    s32 carry_x;
+    s32 carry_z;
+    s32 result;
+    s32 step;
+    s32 move_angle;
+    s32 delta_x;
+    s32 delta_z;
+    FieldCollisionNodeEntry* hit_iter;
+    FieldCollisionNodeEntry* touch_iter;
+    s32 box_x_end;
+    s32 push_x_end;
+    s32 box_z_end;
+    s32 box_z_start;
+    s32 box_z_last;
+    s32 box_x_last;
+    s32 half_width;
+    s32 push_offset_x;
+    s32 push_offset_z;
+    s32 push_z_last;
+    s32 limit;
+    s32 span_offset_x;
+    s32 row_start;
+    s16 bias;
+    s16 span_max_x;
+    s16 x_start;
+    s16 x_end;
+    s32 floor_candidate;
+    s16 push_min_x;
+    s16 push_max_x;
+    s32 surface_floor;
+    s32 first_floor;
+    s32 footprint_w;
+    s32 move_x;
+    s32 z_start;
+    u8 left_flag;
+    u8 right_flag;
+    s32 push_x_last;
+    s32 width;
+    s32 footprint_d;
+    s16 z_end;
+    s32 span_push_z;
+    s32 push_z;
+    s32 slope_height;
+    s32 box_x_start;
+    s32 push_x_start;
+    s32 push_z_start;
+    s32 push_z_end;
+    s32 floor_height;
+    s32 ground_cell_z;
+    s32 row;
+    FieldCollisionSpan* span;
+    s16 node_offset_z;
+    s32 footprint_x_end;
+    s32 push_x_fixed;
+    s16 touch_offset_z;
+    s16 hit_offset_z;
+    s16 node_offset_x;
+    s32 hit_row_start;
+    s16 touch_offset_x;
+    s32 touch_height_raw;
+    s16 hit_offset_x;
+    s32 retry_x_start;
+    s32 row_skip;
+    s32 push_row_skip;
+    s32 sample;
+    s32 old_move_height;
+    s16 node_height16;
+    s32 touch_cell_x;
+    s32 depth;
+    s32 sweep_rise;
+    s32 steps_taken;
+    s32 offset_min_x;
+    s32 move_z;
+    s32 row_end;
+    s32 shifted_min_x;
+    s32 shifted_max_x;
+    s32 row_from_start;
+    s32 touch_row_start;
+    s16 touch_height;
+    s32 slope_floor_fixed;
+    s32 first_row_start;
+    s32 span_push_x;
+    s32 span_hit;
+    s32 on_slope;
+    s32 cell_z;
+    s32 scratch;
+    s32 floor_fixed;
+    s32 slide_angle;
+    s32 push_x;
+    s32 cell_x;
+    s32 remaining;
+    s32 hit;
+    s32 step_count;
+    s32 cell;
+    s32 first_cell_x;
+    s32 push_x_abs;
+    s32 node_top;
+    u8* right_flags;
+    FieldCollisionNode* sweep;
+    u8* left_flags;
+    s16 touch_spans;
+    u8 first_spans;
+    u8 hit_spans;
+    FieldCollisionNode* standing;
+    FieldCollisionNode* standing_node;
+    FieldSceneHeader* header;
+    FieldSceneHeader* retry_header;
+    FieldCollisionSurfaceDef* surface;
+    FieldCollisionNode* touch_node;
+    FieldCollisionNode* head;
+    FieldCollisionNode* node;
+    s16 step_limit;
+    s32 hit_row_end;
+    s32 next_row;
+    s32 rows_past_end;
+
+    carry_x = 0;
+    carry_z = 0;
+    result = 0;
+    scene = g_field_scene.scene;
+    mover->resolved_height = 0;
+    next_height = FIELD_COLLISION_CELL(-mover->height - mover->move_height);
+    step_height = FIELD_COLLISION_CELL(-mover->height) + mover->height_bias;
+    head = (FieldCollisionNode*)scene->nodes;
+    nodes = head;
+
+    if (head != NULL)
+    {
+        if (mover->collision_node == FIELD_COLLISION_NODE_SEARCH)
+        {
+            floor_height = 0;
+            on_slope = 0;
+            mover->collision_node = NULL;
+            probe.x = FIELD_COLLISION_CELL(mover->x);
+            cell = FIELD_COLLISION_CELL(mover->z);
+            node = nodes;
+            probe.z = cell;
+            span = (FieldCollisionSpan*)(uintptr_t)(u16)probe.x;
+            first_cell_x = (uintptr_t)span;
+            scratch = (u16)probe.z;
+            cell_z = scratch;
+            hit = 0;
+
+            while (node != NULL)
+            {
+                s32 first_top;
+                surface = node->surface;
+
+                if (node->active != 0)
+                {
+                    node_height16 = nodes->height0_offset >> 8;
+                    first_top = surface->top + node_height16;
+
+                    if ((first_top == 0) || (first_top < ((s16)next_height + mover->height_bias)) || (first_top < (s16)step_height))
+                    {
+                        node_offset_x = nodes->offset_x >> 8;
+                        node_offset_z = nodes->offset_z >> 8;
+                        first_row_start = node->min_z + node_offset_z;
+
+                        if (((s16)cell_z >= first_row_start) && ((node->max_z + node_offset_z) >= (s16)cell_z))
+                        {
+                            first_spans = field_collision_surface_spans(surface);
+                            span = node->spans + (((s16)cell_z - first_row_start) * first_spans);
+
+                            if (node_offset_x != 0)
+                            {
+                                FIELD_COLLISION_FIND_SPAN(span, scratch, first_spans, (s16)first_cell_x, node_offset_x, hit);
+                            }
+                            else
+                            {
+                                FIELD_COLLISION_FIND_SPAN(span, scratch, first_spans, (s16)first_cell_x, 0, hit);
+                            }
+
+                            if (hit != 0)
+                            {
+                                switch (field_collision_surface_kind(surface))
+                                {
+                                case FIELD_COLLISION_KIND_FLAT:
+                                    if ((surface->top + node_height16) < (s16)step_height)
+                                    {
+                                        if (on_slope != 0)
+                                        {
+                                            s32 first_threshold = floor_height + FIELD_COLLISION_FLOOR_MARGIN;
+                                            first_floor = surface->height0 + node_height16;
+
+                                            if (first_threshold < first_floor)
+                                            {
+                                                floor_height = first_floor;
+                                                mover->collision_node = node;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            surface_floor = surface->height0 + node_height16;
+
+                                            if (surface_floor >= floor_height)
+                                            {
+                                                floor_height = surface_floor;
+                                                mover->collision_node = node;
+                                            }
+                                        }
+                                    }
+
+                                    break;
+                                case FIELD_COLLISION_KIND_SLOPE:
+                                    if ((surface->top + node_height16) < (s16)step_height)
+                                    {
+                                        scratch = field_collision_slope_height(node, &probe.x);
+
+                                        if (on_slope != 0)
+                                        {
+                                            if (floor_height < scratch)
+                                            {
+                                                floor_height = scratch;
+                                                mover->collision_node = node;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (floor_height < (scratch + FIELD_COLLISION_FLOOR_MARGIN))
+                                            {
+                                                floor_height = scratch;
+                                                mover->collision_node = node;
+                                            }
+                                        }
+
+                                        on_slope = 1;
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                node = node->next;
+            }
+        }
+
+        standing = mover->collision_node;
+
+        if ((standing != NULL) && (standing != FIELD_COLLISION_NODE_DETACHED))
+        {
+            node = standing;
+            surface = node->surface;
+
+            if (node->active != 0)
+            {
+                if (((surface->flags & FIELD_COLLISION_KIND_MASK) == FIELD_COLLISION_KIND_SLOPE) && (surface->height0 != surface->height1))
+                {
+                    probe.x = mover->move_x;
+                    probe.z = mover->move_z;
+                    field_collision_slope_scale_move(surface, &probe.x);
+                    mover->move_x = probe.x;
+                    result |= FIELD_COLLISION_RESULT_SLOWED;
+                    mover->move_z = probe.z;
+                }
+
+                if (surface->flags & FIELD_COLLISION_SURFACE_SLOW)
+                {
+                    delta_x = mover->move_x;
+                    mover->move_x = (delta_x >= 0) ? (delta_x >> 1) : ((delta_x + 1) >> 1);
+                    delta_z = mover->move_z;
+                    mover->move_z = (delta_z >= 0) ? (delta_z >> 1) : ((delta_z + 1) >> 1);
+                    result |= FIELD_COLLISION_RESULT_SLOWED;
+                }
+
+                if (surface->flags & FIELD_COLLISION_SURFACE_CARRY)
+                {
+                    result |= FIELD_COLLISION_RESULT_CARRIED;
+                }
+
+                if (!(mover->mode.mode_flags & FIELD_COLLISION_MOVER_AIRBORNE) &&
+                    ((node->motion_x != 0) || (node->motion_height0 != 0) || (node->motion_height1 != 0) || (node->motion_z != 0)))
+                {
+                    mover->move_x += node->motion_x;
+                    old_move_height = mover->move_height;
+                    mover->move_z += node->motion_z;
+
+                    if ((surface->flags & FIELD_COLLISION_KIND_MASK) == FIELD_COLLISION_KIND_SLOPE)
+                    {
+                        probe.x = FIELD_COLLISION_CELL(mover->x);
+                        probe.z = FIELD_COLLISION_CELL(mover->z);
+                        mover->move_height = -(field_collision_slope_height(node, &probe.x) << 8) - mover->height;
+                    }
+                    else
+                    {
+                        mover->move_height = old_move_height + node->motion_height0;
+                    }
+
+                    if (old_move_height != mover->move_height)
+                    {
+                        result |= FIELD_COLLISION_RESULT_CARRIED | FIELD_COLLISION_RESULT_HEIGHT;
+                    }
+                    else if ((node->motion_x != 0) || (node->motion_z != 0))
+                    {
+                        result |= FIELD_COLLISION_RESULT_CARRIED;
+                    }
+                }
+                else
+                {
+                    sweep = (FieldCollisionNode*)scene->sweep_node;
+
+                    if ((sweep != NULL) && (sweep != node) &&
+                        ((sweep->motion_x != 0) || (sweep->motion_height0 != 0) || (sweep->motion_height1 != 0) || (sweep->motion_z != 0)))
+                    {
+                        old_move_height = mover->move_height;
+                        mover->move_x += sweep->motion_x;
+                        mover->move_z += sweep->motion_z;
+
+                        probe.x = FIELD_COLLISION_CELL(mover->x);
+                        probe.z = FIELD_COLLISION_CELL(mover->z);
+                        sample = field_collision_slope_height(sweep, &probe.x) - sweep->surface->height0;
+
+                        if ((surface->flags & FIELD_COLLISION_KIND_MASK) == FIELD_COLLISION_KIND_SLOPE)
+                        {
+                            sample += field_collision_slope_height(node, &probe.x);
+                            mover->move_height = -(sample << 8) - mover->height;
+                        }
+                        else
+                        {
+                            mover->move_height += (node->motion_height0 - (sample << 8));
+                        }
+
+                        if (old_move_height != mover->move_height)
+                        {
+                            result |= FIELD_COLLISION_RESULT_CARRIED | FIELD_COLLISION_RESULT_HEIGHT;
+                        }
+                        else if ((node->motion_x != 0) || (node->motion_z != 0))
+                        {
+                            result |= FIELD_COLLISION_RESULT_CARRIED;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if ((mover->move_x == 0) && (mover->move_height == 0) && (mover->move_z == 0))
+    {
+        if ((nodes != NULL) && (mover->height != 0))
+        {
+            if (mover->flags & FIELD_COLLISION_MOVER_SETTLED)
+            {
+                standing_node = mover->collision_node;
+
+                if (standing_node != FIELD_COLLISION_NODE_DETACHED)
+                {
+                    node = standing_node;
+
+                    if (node != NULL)
+                    {
+                        surface = node->surface;
+
+                        switch (field_collision_surface_kind(surface))
+                        {
+                        case FIELD_COLLISION_KIND_FLAT:
+                            mover->resolved_height = -(node->height0_offset + (surface->height0 << 8));
+                            break;
+                        case FIELD_COLLISION_KIND_SLOPE:
+                            probe.x = FIELD_COLLISION_CELL(mover->x);
+                            probe.z = FIELD_COLLISION_CELL(mover->z);
+                            slope_height = field_collision_slope_height(node, &probe.x);
+                            sweep = (FieldCollisionNode*)scene->sweep_node;
+
+                            if ((sweep != NULL) && (sweep != node))
+                            {
+                                slope_height += field_collision_slope_height(sweep, &probe.x) - sweep->surface->height0;
+                            }
+
+                            mover->resolved_height = -(slope_height << 8);
+                            break;
+                        }
+                    }
+
+                    return 0;
+                }
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    probe.mover = mover;
+    probe.feet = next_height;
+    probe.step_limit = step_height;
+    footprint_w = (s16)mover->footprint_width;
+    step = abs(mover->move_x) >> 8;
+
+    if (step >= footprint_w)
+    {
+        step_count = (step / footprint_w) + 1;
+    }
+    else
+    {
+        step_count = 1;
+    }
+
+    footprint_d = (s16)mover->mode.mode_flags;
+    step = abs(mover->move_z) >> 8;
+
+    if (step >= footprint_d)
+    {
+        step = (step / footprint_d) + 1;
+
+        if (step_count < step)
+        {
+            step_count = step;
+        }
+    }
+
+    if (step_count == 1)
+    {
+        probe.x = FIELD_COLLISION_CELL(mover->x + mover->move_x);
+        probe.z = FIELD_COLLISION_CELL(mover->z + mover->move_z);
+        field_collision_classify_nodes(&probe, nodes, &hit_count, &touch_count);
+    }
+    else
+    {
+        step = 0;
+
+        do
+        {
+            step++;
+            probe.x = FIELD_COLLISION_CELL(mover->x + (mover->move_x * step / step_count));
+            probe.z = FIELD_COLLISION_CELL(mover->z + (mover->move_z * step / step_count));
+            field_collision_classify_nodes(&probe, nodes, &hit_count, &touch_count);
+        } while ((step_count != step) && (hit_count == 0));
+    }
+
+    hit = 0;
+
+    if (hit_count == 0)
+    {
+        FieldSceneHeader* bound_header;
+        s32 bound_width;
+        s32 bound_x_start;
+        s32 bound_z_start;
+        s32 bound_z_end;
+        s32 bound_depth;
+        bound_header = scene->header;
+
+        if ((bound_header->flags & FIELD_SCENE_HEADER_BOUNDED) != 0)
+        {
+            bound_width = (u16)mover->footprint_width;
+            bound_depth = (u16)mover->mode.mode_flags;
+            bound_x_start = (u16)probe.x - (s16)bound_width / 2;
+            bound_z_start = (u16)probe.z - (s16)bound_depth / 2;
+            bound_z_end = bound_z_start + bound_depth;
+            footprint_x_end = bound_x_start + bound_width;
+
+            if (((s16)bound_z_start < 0) || ((s16)bound_z_end >= bound_header->map_depth) || ((s16)bound_x_start < 0) ||
+                ((s16)footprint_x_end >= bound_header->map_width))
+            {
+                hit = 1;
+            }
+        }
+    }
+
+    if ((hit_count != 0) || (hit != 0))
+    {
+        if (mover->move_x == 0)
+        {
+            move_angle = FIELD_ANGLE_TURN - FIELD_ANGLE_QUARTER_TURN;
+
+            if (mover->move_z >= 0)
+            {
+                move_angle = FIELD_ANGLE_QUARTER_TURN;
+            }
+        }
+        else
+        {
+            move_angle = ratan2(mover->move_z, mover->move_x) & FIELD_ANGLE_MASK;
+        }
+
+        step_count = abs(mover->move_x);
+        step = abs(mover->move_z);
+
+        if (step_count >= step)
+        {
+            step_count >>= 8;
+        }
+        else
+        {
+            step_count = step >> 8;
+        }
+
+        slide_angle = FIELD_COLLISION_SLIDE_NONE;
+
+        if (step_count == 0)
+        {
+            step_count = 1;
+        }
+
+        step = step_count - 1;
+
+        for (; step != -1; step--)
+        {
+            x_start = FIELD_COLLISION_CELL(mover->x + mover->move_x * (step_count - step) / step_count) - (s16)mover->footprint_width / 2;
+            width = (u16)mover->footprint_width;
+            x_end = x_start + width;
+            z_start = FIELD_COLLISION_CELL(mover->z + mover->move_z * (step_count - step) / step_count) - (s16)mover->mode.mode_flags / 2;
+            header = scene->header;
+            depth = (u16)mover->mode.mode_flags;
+            z_end = z_start + depth;
+
+            if (header->flags & FIELD_SCENE_HEADER_BOUNDED)
+            {
+                if (((s16)z_start < 0) || (z_end >= header->map_depth))
+                {
+                    slide_angle = field_collision_slide_angle(NULL, FIELD_COLLISION_EDGE_WALL_X, move_angle, slide_angle);
+                }
+
+                if ((x_start < 0) || (x_end >= scene->header->map_width))
+                {
+                    slide_angle = field_collision_slide_angle(NULL, FIELD_COLLISION_EDGE_WALL_Z, move_angle, slide_angle);
+                }
+            }
+
+            hit_iter = FIELD_COLLISION_HIT_LIST;
+            touch_iter = FIELD_COLLISION_TOUCH_LIST;
+            remaining = hit_count;
+            remaining--;
+            touch_count = 0;
+
+            if (remaining != -1)
+            {
+                box_x_start = x_start;
+                box_z_start = (s16)z_start;
+                box_z_end = z_end;
+                box_z_last = z_end - 1;
+                box_x_end = x_end;
+                box_x_last = x_end - 1;
+
+                for (; remaining != -1; remaining--)
+                {
+                    node = hit_iter->node;
+                    hit_iter++;
+                    hit_offset_z = nodes->offset_z >> 8;
+                    hit_offset_x = nodes->offset_x >> 8;
+                    surface = node->surface;
+
+                    if (((node->min_x + hit_offset_x) < box_x_end) && (((node->max_x + hit_offset_x) >= box_x_start)))
+                    {
+                        hit_row_start = node->min_z + hit_offset_z;
+
+                        if (hit_row_start < box_z_end)
+                        {
+                            hit_row_end = node->max_z + hit_offset_z;
+
+                            if (hit_row_end >= box_z_start)
+                            {
+                                row = hit_row_start;
+
+                                if (box_z_last < hit_row_end)
+                                {
+                                    scratch = box_z_last;
+                                }
+                                else
+                                {
+                                    scratch = hit_row_end;
+                                }
+
+                                if (row < box_z_start)
+                                {
+                                    row = box_z_start;
+                                }
+
+                                hit_spans = field_collision_surface_spans(surface);
+                                row_skip = (row - hit_row_start) * hit_spans;
+                                scratch = ((scratch - row) + 1) * hit_spans;
+                                hit = 0;
+                                span = node->spans + (row_skip);
+                                left_flags = node->span_flags + (row_skip * 2);
+
+                                if (surface->flags & FIELD_COLLISION_SURFACE_EDGE_FLAGS)
+                                {
+                                    scratch--;
+                                    right_flags = left_flags + 1;
+
+                                    for (; scratch != -1; scratch--)
+                                    {
+                                        s32 wall_edge;
+
+                                        if ((span->min_x < box_x_end) && (span->max_x >= box_x_start))
+                                        {
+                                            if ((box_x_start < span->min_x) && ((s8)*left_flags >= 0))
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, *left_flags & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                                hit = 2;
+                                            }
+
+                                            if ((span->max_x < box_x_last) && ((s8)*right_flags >= 0))
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, *right_flags & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                                hit = 2;
+                                            }
+
+                                            left_flag = *left_flags;
+
+                                            if ((s8)left_flag >= 0)
+                                            {
+                                                right_flag = *right_flags;
+
+                                                if ((s8)right_flag >= 0)
+                                                {
+                                                    wall_edge = FIELD_COLLISION_EDGE_WALL_X;
+
+                                                    if (((left_flag == wall_edge) || (right_flag == wall_edge)) && (span->min_x < box_x_start) &&
+                                                        (span->max_x >= box_x_end))
+                                                    {
+                                                        slide_angle =
+                                                            field_collision_slide_angle(surface, FIELD_COLLISION_EDGE_WALL_X, move_angle, slide_angle);
+                                                        hit = 2;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        span++;
+                                        right_flags += 2;
+                                        left_flags += 2;
+                                    }
+                                }
+                                else if (hit_offset_x != 0)
+                                {
+                                    scratch--;
+
+                                    for (; scratch != -1; scratch--)
+                                    {
+                                        offset_min_x = span->min_x + hit_offset_x;
+
+                                        if ((offset_min_x < box_x_end) && ((span->max_x + hit_offset_x) >= box_x_start))
+                                        {
+                                            hit = 1;
+
+                                            if (box_x_start < offset_min_x)
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, left_flags[0] & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                            }
+
+                                            if ((span->max_x + hit_offset_x) < box_x_last)
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, left_flags[1] & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                            }
+
+                                            if (((span->min_x + hit_offset_x) < box_x_start) && ((span->max_x + hit_offset_x) >= box_x_end))
+                                            {
+                                                slide_angle = field_collision_slide_angle(surface, FIELD_COLLISION_EDGE_WALL_X, move_angle, slide_angle);
+                                            }
+                                        }
+
+                                        span++;
+                                        left_flags += 2;
+                                    }
+                                }
+                                else
+                                {
+                                    scratch--;
+
+                                    for (; scratch != -1; scratch--)
+                                    {
+                                        if ((span->min_x < box_x_end) && (span->max_x >= box_x_start))
+                                        {
+                                            hit = 1;
+
+                                            if (box_x_start < span->min_x)
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, left_flags[0] & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                            }
+
+                                            if (span->max_x < box_x_last)
+                                            {
+                                                slide_angle =
+                                                    field_collision_slide_angle(surface, left_flags[1] & FIELD_COLLISION_EDGE_INDEX, move_angle, slide_angle);
+                                            }
+
+                                            if ((span->min_x < box_x_start) && (span->max_x >= box_x_end))
+                                            {
+                                                slide_angle = field_collision_slide_angle(surface, FIELD_COLLISION_EDGE_WALL_X, move_angle, slide_angle);
+                                            }
+                                        }
+
+                                        span++;
+                                        left_flags += 2;
+                                    }
+                                }
+
+                                if (hit != 0)
+                                {
+                                    touch_iter->node = node;
+                                    touch_iter++;
+                                    touch_count++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (slide_angle != FIELD_COLLISION_SLIDE_NONE)
+            {
+                break;
+            }
+        }
+
+        move_x = mover->move_x;
+        steps_taken = step_count - (step + 1);
+        delta_x = move_x * steps_taken / step_count;
+        move_z = mover->move_z;
+        delta_z = move_z * steps_taken / step_count;
+
+        if ((slide_angle >= 0) && (delta_x == 0) && (delta_z == 0))
+        {
+            sample = SquareRoot0((move_x * move_x) + (move_z * move_z));
+
+            if ((sample * rcos(slide_angle)) >= 0)
+            {
+                delta_x = (sample * rcos(slide_angle)) >> 12;
+            }
+            else
+            {
+                delta_x = ((sample * rcos(slide_angle)) + 0xFFF) >> 12;
+            }
+
+            if ((sample * rsin(slide_angle)) >= 0)
+            {
+                delta_z = (sample * rsin(slide_angle)) >> 12;
+            }
+            else
+            {
+                delta_z = ((sample * rsin(slide_angle)) + 0xFFF) >> 12;
+            }
+
+            hit_count = 1;
+            half_width = (s16)mover->footprint_width / 2;
+
+            do
+            {
+                x_start = FIELD_COLLISION_CELL(mover->x + delta_x) - half_width;
+
+                width = (u16)mover->footprint_width;
+                x_end = x_start + width;
+                z_start = FIELD_COLLISION_CELL(mover->z + delta_z) - (s16)mover->mode.mode_flags / 2;
+                touch_iter = FIELD_COLLISION_TOUCH_LIST;
+                hit = 0;
+                push_x = 0;
+                step_count = touch_count;
+                push_z = 0;
+                header = scene->header;
+                depth = (u16)mover->mode.mode_flags;
+                z_end = z_start + depth;
+
+                if (header->flags & FIELD_SCENE_HEADER_BOUNDED)
+                {
+                    if ((s16)z_start < 0)
+                    {
+                        push_z = -(s16)z_start;
+                        hit = 1;
+                    }
+                    else
+                    {
+                        if (z_end >= header->map_depth)
+                        {
+                            push_z = (header->map_depth - z_end) - 1;
+                            hit = 1;
+                        }
+                    }
+
+                    if (x_start < 0)
+                    {
+                        push_x = -x_start;
+                        hit = 1;
+                    }
+                    else
+                    {
+                        if (x_end >= scene->header->map_width)
+                        {
+                            push_x = scene->header->map_width - x_end - 1;
+                            hit = 1;
+                        }
+                    }
+                }
+
+                step_count--;
+
+                if (step_count != -1)
+                {
+                    push_x_end = x_end;
+                    push_x_start = x_start;
+                    push_z_start = (s16)z_start;
+                    push_z_end = z_end;
+                    push_z_last = push_z_end - 1;
+                    nodes_offset_x = nodes->offset_x >> 8;
+                    push_offset_x = nodes_offset_x;
+                    push_offset_z = (s16)(nodes->offset_z >> 8);
+
+                    for (; step_count != -1; step_count--)
+                    {
+                        node = touch_iter->node;
+                        touch_iter++;
+                        surface = node->surface;
+
+                        if (((node->min_x + push_offset_x) < push_x_end) && (((node->max_x + push_offset_x) >= push_x_start)))
+                        {
+                            row_start = node->min_z + push_offset_z;
+
+                            if (row_start < push_z_end)
+                            {
+                                row_end = node->max_z + push_offset_z;
+
+                                if (row_end >= push_z_start)
+                                {
+                                    scratch = row_end;
+
+                                    if (push_z_last < row_end)
+                                    {
+                                        scratch = push_z_last;
+                                    }
+
+                                    row = row_start;
+
+                                    if (row < push_z_start)
+                                    {
+                                        row = push_z_start;
+                                    }
+
+                                    push_row_skip = (row - row_start) * field_collision_surface_spans(surface);
+                                    scratch -= row;
+                                    span = node->spans + (push_row_skip);
+                                    left_flags = node->span_flags + (push_row_skip * 2);
+
+                                    if (scratch != -1)
+                                    {
+                                        push_x_last = push_x_end - 1;
+
+                                        for (; scratch != -1; scratch--)
+                                        {
+                                            remaining = field_collision_surface_spans(surface);
+                                            remaining--;
+
+                                            if (remaining != -1)
+                                            {
+                                                span_offset_x = nodes_offset_x;
+                                                next_row = row + 1;
+                                                rows_past_end = next_row - push_z_end;
+
+                                                do
+                                                {
+                                                    push_min_x = span->min_x;
+
+                                                    if (push_min_x < push_x_end)
+                                                    {
+                                                        span_max_x = span->max_x;
+
+                                                        if (span_max_x >= push_x_start)
+                                                        {
+                                                            span_hit = 0;
+
+                                                            if (surface->flags & FIELD_COLLISION_SURFACE_EDGE_FLAGS)
+                                                            {
+                                                                span_push_x = 0;
+
+                                                                if ((push_x_start < push_min_x) && !(*left_flags & FIELD_COLLISION_EDGE_OPEN))
+                                                                {
+                                                                    span_hit = 1;
+
+                                                                    if (span_max_x >= push_x_end)
+                                                                    {
+                                                                        span_push_x = push_min_x - push_x_end;
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    push_max_x = span->max_x;
+
+                                                                    if ((push_max_x < push_x_last) && !(left_flags[1] & FIELD_COLLISION_EDGE_OPEN))
+                                                                    {
+                                                                        if (span->min_x < push_x_start)
+                                                                        {
+                                                                            span_push_x = (push_max_x - push_x_start) + 1;
+                                                                        }
+
+                                                                        span_hit = 1;
+                                                                    }
+                                                                }
+
+                                                                if (!(*left_flags & FIELD_COLLISION_EDGE_OPEN) && !(left_flags[1] & FIELD_COLLISION_EDGE_OPEN))
+                                                                {
+                                                                    span_hit = 1;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                span_hit = 1;
+                                                                shifted_min_x = push_min_x + span_offset_x;
+                                                                span_push_x = 0;
+
+                                                                if ((push_x_start < shifted_min_x) && ((span_max_x + span_offset_x) >= push_x_end))
+                                                                {
+                                                                    span_push_x = shifted_min_x - push_x_end;
+                                                                }
+                                                                else if ((span->min_x + span_offset_x) < push_x_start)
+                                                                {
+                                                                    shifted_max_x = span->max_x + span_offset_x;
+
+                                                                    if (shifted_max_x < push_x_last)
+                                                                    {
+                                                                        span_push_x = (shifted_max_x - push_x_start) + 1;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            row_from_start = row - push_z_start;
+
+                                                            if (span_hit != 0)
+                                                            {
+                                                                hit = 1;
+
+                                                                if ((push_z_end - next_row) >= row_from_start)
+                                                                {
+                                                                    span_push_z = row_from_start + 1;
+                                                                }
+                                                                else
+                                                                {
+                                                                    span_push_z = rows_past_end - 1;
+                                                                }
+
+                                                                if ((push_x != 0) || (push_z != 0))
+                                                                {
+                                                                    if ((push_x != FIELD_COLLISION_PUSH_BLOCKED) && (span_push_x != 0))
+                                                                    {
+                                                                        FIELD_COLLISION_MERGE_PUSH(push_x, span_push_x);
+                                                                    }
+
+                                                                    if (push_z != FIELD_COLLISION_PUSH_BLOCKED)
+                                                                    {
+                                                                        FIELD_COLLISION_MERGE_PUSH(push_z, span_push_z);
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    push_x = span_push_x;
+                                                                    push_z = span_push_z;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    span++;
+                                                    left_flags += 2;
+                                                    remaining--;
+                                                } while (remaining != -1);
+                                            }
+
+                                            row++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (hit == 0)
+                {
+                    break;
+                }
+
+                push_x_fixed = push_x << 8;
+
+                if (hit_count == 1)
+                {
+                    span_push_z = push_z << 8;
+
+                    if ((push_x == 0) || (push_x == FIELD_COLLISION_PUSH_BLOCKED))
+                    {
+                        if (push_z != FIELD_COLLISION_PUSH_BLOCKED)
+                        {
+                            delta_z += span_push_z;
+                        }
+
+                        break;
+                    }
+                    else if ((push_z == 0) || (push_z == FIELD_COLLISION_PUSH_BLOCKED))
+                    {
+                        delta_x += push_x_fixed;
+                        break;
+                    }
+                    else
+                    {
+                        push_x_abs = abs(push_x_fixed);
+
+                        if (abs(span_push_z) < push_x_abs)
+                        {
+                            carry_x = push_x_fixed;
+                            carry_z = 0;
+                            delta_z += span_push_z;
+                        }
+                        else
+                        {
+                            carry_z = span_push_z;
+                            carry_x = 0;
+                            delta_x += push_x_fixed;
+                        }
+                    }
+                }
+                else
+                {
+                    delta_x += carry_x;
+                    delta_z += carry_z;
+                    break;
+                }
+            } while (--hit_count != -1);
+
+            result |= FIELD_COLLISION_RESULT_SLID;
+        }
+        else
+        {
+            result |= FIELD_COLLISION_RESULT_BLOCKED;
+        }
+
+        if ((delta_x != 0) || (delta_z != 0))
+        {
+            probe.x = FIELD_COLLISION_CELL(mover->x + delta_x);
+            probe.z = FIELD_COLLISION_CELL(mover->z + delta_z);
+            field_collision_classify_nodes(&probe, nodes, &hit_count, &touch_count);
+            hit = 0;
+
+            if (hit_count == 0)
+            {
+                s32 retry_z_start;
+                s32 footprint_width;
+                s32 retry_z_end;
+                s32 retry_depth;
+                retry_header = scene->header;
+
+                if (retry_header->flags & FIELD_SCENE_HEADER_BOUNDED)
+                {
+                    footprint_width = (u16)mover->footprint_width;
+                    retry_depth = (u16)mover->mode.mode_flags;
+                    retry_x_start = (u16)probe.x - (s16)footprint_width / 2;
+                    retry_z_start = (u16)probe.z - (s16)retry_depth / 2;
+                    retry_z_end = retry_z_start + retry_depth;
+                    footprint_x_end = retry_x_start + footprint_width;
+
+                    if (((s16)retry_z_start < 0) || ((s16)retry_z_end >= retry_header->map_depth) || ((s16)retry_x_start < 0) ||
+                        ((s16)footprint_x_end >= retry_header->map_width))
+                    {
+                        hit = 1;
+                    }
+                }
+            }
+
+            if ((hit_count != 0) || (hit != 0))
+            {
+                probe.x = FIELD_COLLISION_CELL(mover->x);
+                probe.z = FIELD_COLLISION_CELL(mover->z);
+                field_collision_classify_nodes(&probe, nodes, &hit_count, &touch_count);
+                result |= FIELD_COLLISION_RESULT_BLOCKED | FIELD_COLLISION_RESULT_SLID;
+            }
+            else
+            {
+                mover->x += delta_x;
+                mover->z += delta_z;
+            }
+        }
+        else
+        {
+            probe.x = FIELD_COLLISION_CELL(mover->x);
+            probe.z = FIELD_COLLISION_CELL(mover->z);
+            field_collision_classify_nodes(&probe, nodes, &hit_count, &touch_count);
+            result |= FIELD_COLLISION_RESULT_BLOCKED | FIELD_COLLISION_RESULT_SLID;
+        }
+    }
+    else
+    {
+        mover->x += mover->move_x;
+        mover->z += mover->move_z;
+    }
+
+    limit = FIELD_COLLISION_NO_CEILING;
+    floor_height = 0;
+    floor_fixed = 0;
+    on_slope = 0;
+    node = NULL;
+    mover->collision_node = NULL;
+
+    probe.x = FIELD_COLLISION_CELL(mover->x);
+    probe.z = FIELD_COLLISION_CELL(mover->z);
+    span = (FieldCollisionSpan*)(uintptr_t)(u16)probe.x;
+    cell_x = (uintptr_t)span;
+    scratch = (u16)probe.z;
+    touch_iter = FIELD_COLLISION_TOUCH_LIST;
+    sweep = (FieldCollisionNode*)scene->sweep_node;
+    touch_count--;
+
+    if (touch_count != -1)
+    {
+        ground_cell_z = (s16)scratch;
+        step_limit = (s16)step_height;
+
+        for (; touch_count != -1; touch_count--)
+        {
+            touch_node = touch_iter->node;
+            nodes = touch_node;
+            touch_cell_x = (s16)cell_x;
+            touch_iter++;
+            surface = touch_node->surface;
+            touch_offset_x = touch_node->offset_x >> 8;
+            touch_offset_z = touch_node->offset_z >> 8;
+            touch_row_start = touch_node->min_z + touch_offset_z;
+            hit = 0;
+
+            if ((ground_cell_z >= touch_row_start) && (((touch_node->max_z + touch_offset_z) >= ground_cell_z)))
+            {
+                touch_spans = field_collision_surface_spans(surface);
+                span = touch_node->spans + ((ground_cell_z - touch_row_start) * touch_spans);
+
+                if (touch_offset_x != 0)
+                {
+                    FIELD_COLLISION_FIND_SPAN(span, scratch, touch_spans, touch_cell_x, touch_offset_x, hit);
+                }
+                else
+                {
+                    FIELD_COLLISION_FIND_SPAN(span, scratch, touch_spans, touch_cell_x, 0, hit);
+                }
+            }
+
+            touch_height_raw = nodes->height0_offset;
+            touch_height = touch_height_raw >> 8;
+
+            switch (field_collision_surface_kind(surface))
+            {
+            case FIELD_COLLISION_KIND_FLAT:
+                node_top = surface->top + touch_height;
+
+                if (node_top < step_limit)
+                {
+                    if (hit != 0)
+                    {
+                        depth = -(touch_height_raw + (surface->height0 << 8));
+
+                        if (depth < mover->resolved_height)
+                        {
+                            mover->resolved_height = depth;
+                            node = nodes;
+                        }
+                    }
+
+                    if (on_slope != 0)
+                    {
+                        s32 threshold = floor_height + FIELD_COLLISION_FLOOR_MARGIN;
+                        floor_candidate = surface->height0 + touch_height;
+
+                        if (threshold < floor_candidate)
+                        {
+                            floor_height = floor_candidate;
+                            floor_fixed = nodes->height0_offset + (surface->height0 << 8);
+
+                            if (hit != 0)
+                            {
+                                mover->collision_node = nodes;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        surface_floor = surface->height0 + touch_height;
+
+                        if (surface_floor >= floor_height)
+                        {
+                            floor_height = surface_floor;
+                            floor_fixed = nodes->height0_offset + (surface->height0 << 8);
+
+                            if (hit != 0)
+                            {
+                                mover->collision_node = nodes;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (node_top < limit)
+                    {
+                        limit = node_top;
+                    }
+                }
+
+                break;
+            case FIELD_COLLISION_KIND_SLOPE:
+                node_top = surface->top + touch_height;
+
+                if (node_top < step_limit)
+                {
+                    scratch = field_collision_slope_height(nodes, &probe.x);
+
+                    if (hit != 0)
+                    {
+                        slope_floor_fixed = -(scratch << 8);
+
+                        if (slope_floor_fixed < mover->resolved_height)
+                        {
+                            mover->resolved_height = slope_floor_fixed;
+                            node = nodes;
+                        }
+                    }
+
+                    if (on_slope != 0)
+                    {
+                        if (sweep != NULL)
+                        {
+                            if (sweep == nodes)
+                            {
+                                sweep_rise = scratch - nodes->surface->height0;
+                                floor_height += sweep_rise;
+                                floor_fixed += sweep_rise << 8;
+                            }
+                            else
+                            {
+                                floor_height = (scratch + floor_height) - sweep->surface->height0;
+                                floor_fixed = floor_height << 8;
+
+                                if (hit != 0)
+                                {
+                                    mover->collision_node = nodes;
+                                }
+                            }
+
+                            mover->resolved_height = -(floor_height << 8);
+                            node = nodes;
+                        }
+                        else
+                        {
+                            if (floor_height < scratch)
+                            {
+                                floor_height = scratch;
+                                floor_fixed = floor_height << 8;
+
+                                if (hit != 0)
+                                {
+                                    mover->collision_node = nodes;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (floor_height < (scratch + FIELD_COLLISION_FLOOR_MARGIN))
+                        {
+                            floor_height = scratch;
+                            floor_fixed = floor_height << 8;
+
+                            if (hit != 0)
+                            {
+                                mover->collision_node = nodes;
+                            }
+                        }
+                    }
+
+                    on_slope = 1;
+                }
+                else
+                {
+                    if (node_top < limit)
+                    {
+                        limit = node_top;
+                    }
+                }
+
+                break;
+            }
+        }
+    }
+
+    if (mover->mode.mode_flags & FIELD_COLLISION_MOVER_AIRBORNE)
+    {
+        bias = mover->height_bias;
+
+        if (limit < ((s16)next_height + bias))
+        {
+            mover->height = -((limit - bias) << 8);
+            result |= FIELD_COLLISION_RESULT_CEILING;
+        }
+        else if (floor_height >= (s16)next_height)
+        {
+            mover->height = -floor_fixed;
+            result |= FIELD_COLLISION_RESULT_LANDED;
+        }
+        else
+        {
+            mover->height += mover->move_height;
+        }
+    }
+    else if (((s16)next_height != floor_height) || (floor_fixed != 0))
+    {
+        mover->height = -floor_fixed;
+        result |= FIELD_COLLISION_RESULT_HEIGHT;
+    }
+
+    if (node == mover->collision_node)
+    {
+        mover->flags |= FIELD_COLLISION_MOVER_SETTLED;
+    }
+    else
+    {
+        mover->flags &= (u16)~FIELD_COLLISION_MOVER_SETTLED;
+    }
+
+    return result;
+}
+
+/**
+ * @brief Collect the nodes a probe footprint touches or is blocked by.
+ * @param probe Probe position, height window and mover.
+ * @param node Head of the collision node list.
+ * @param out_hit Receives the number of nodes written to FIELD_COLLISION_HIT_LIST.
+ * @param out_touch Receives the number of nodes written to FIELD_COLLISION_TOUCH_LIST.
+ */
+static void field_collision_classify_nodes(FieldCollisionMoveProbe* probe, FieldCollisionNode* node, s32* out_hit, s32* out_touch)
+{
+    FieldCollisionNodeEntry* hit_list;
+    FieldCollisionNodeEntry* touch_list;
+    FieldCollisionSurfaceDef* surface;
+    FieldCollisionMover* mover;
+    FieldCollisionSpan* span;
+    u8* edge_flags;
+    s16 feet;
+    s16 step_limit;
+    s16 z_start;
+    s16 z_end;
+    s16 x_start;
+    s16 x_end;
+    s32 row_first;
+    s32 row_from;
+    s32 row_last;
+    s32 z_limit;
+    s16 shift_x;
+    s16 shift_z;
+    s16 shift_height;
+    s32 value;
+    s32 offset;
+    s32 count;
+    s32 result;
+    s32 ground;
+    s8 left_edge;
+    s32 z_from;
+    u8 spans_per_row;
+    u16 depth;
+    u16 width;
+
+    *out_hit = 0;
+    *out_touch = 0;
+
+    if (node != NULL)
+    {
+        hit_list = FIELD_COLLISION_HIT_LIST;
+        touch_list = FIELD_COLLISION_TOUCH_LIST;
+        step_limit = probe->step_limit;
+        mover = probe->mover;
+        feet = probe->feet;
+        depth = mover->mode.mode_flags;
+        z_start = probe->z - (s16)depth / 2;
+        z_end = z_start + depth;
+        width = mover->footprint_width;
+        x_start = probe->x - (s16)width / 2;
+        x_end = x_start + width;
+
+        for (; node != NULL; node = node->next)
+        {
+            surface = node->surface;
+
+            if (node->active == 0)
+            {
+                continue;
+            }
+
+            shift_height = node->height0_offset >> 8;
+
+            if (surface->top + shift_height != 0)
+            {
+                value = surface->top + shift_height;
+
+                if (value >= feet + mover->height_bias && value >= step_limit)
+                {
+                    continue;
+                }
+            }
+
+            shift_z = node->offset_z >> 8;
+            shift_x = node->offset_x >> 8;
+
+            if (((node->min_x + shift_x) < x_end) && ((node->max_x + shift_x) >= x_start))
+            {
+                z_limit = z_end;
+                row_first = node->min_z + shift_z;
+
+                if (row_first < z_limit)
+                {
+                    z_from = z_start;
+                    row_last = node->max_z + shift_z;
+
+                    if (row_last >= z_from)
+                    {
+                        count = row_last;
+
+                        if ((z_limit - 1) < count)
+                        {
+                            count = z_limit - 1;
+                        }
+
+                        if (row_first < z_from)
+                        {
+                            row_from = z_from;
+                        }
+                        else
+                        {
+                            row_from = row_first;
+                        }
+
+                        spans_per_row = field_collision_surface_spans(surface);
+                        offset = (row_from - row_first) * spans_per_row;
+                        count = ((count - row_from) + 1) * spans_per_row;
+                        result = 0;
+                        span = node->spans + offset;
+
+                        if (surface->flags & FIELD_COLLISION_SURFACE_EDGE_FLAGS)
+                        {
+                            edge_flags = node->span_flags + offset * 2;
+
+                            while (--count != -1)
+                            {
+                                if ((span->min_x < x_end) && (span->max_x >= x_start))
+                                {
+                                    left_edge = (s8)edge_flags[0];
+
+                                    if ((left_edge >= 0) && (x_start < span->min_x))
+                                    {
+                                        result = FIELD_COLLISION_CLASS_BLOCK;
+                                        break;
+                                    }
+
+                                    if (((s8)edge_flags[1] >= 0) && (span->max_x < x_end - 1))
+                                    {
+                                        result = FIELD_COLLISION_CLASS_BLOCK;
+                                        break;
+                                    }
+
+                                    if ((left_edge >= 0) && ((s8)edge_flags[1] >= 0) &&
+                                        ((edge_flags[0] == FIELD_COLLISION_EDGE_WALL_X) || (edge_flags[1] == FIELD_COLLISION_EDGE_WALL_X)))
+                                    {
+                                        result = FIELD_COLLISION_CLASS_BLOCK;
+                                        break;
+                                    }
+
+                                    result = FIELD_COLLISION_CLASS_TOUCH;
+                                }
+
+                                span++;
+                                edge_flags += 2;
+                            }
+                        }
+                        else if (shift_x != 0)
+                        {
+                            while (--count != -1)
+                            {
+                                if (((span->min_x + shift_x) < x_end) && ((span->max_x + shift_x) >= x_start))
+                                {
+                                    result = FIELD_COLLISION_CLASS_TOUCH;
+                                    break;
+                                }
+
+                                span++;
+                            }
+                        }
+                        else
+                        {
+                            while (--count != -1)
+                            {
+                                if ((span->min_x < x_end) && (span->max_x >= x_start))
+                                {
+                                    result = FIELD_COLLISION_CLASS_TOUCH;
+                                    break;
+                                }
+
+                                span++;
+                            }
+                        }
+
+                        if (result != 0)
+                        {
+                            switch (field_collision_surface_kind(surface))
+                            {
+                            case FIELD_COLLISION_KIND_FLAT:
+                                if ((surface->top + shift_height) < step_limit)
+                                {
+                                    if (surface->flags & FIELD_COLLISION_SURFACE_SOLID)
+                                    {
+                                        result = FIELD_COLLISION_CLASS_BLOCK;
+                                    }
+                                    else
+                                    {
+                                        if (mover->mode.mode_flags & FIELD_COLLISION_MOVER_AIRBORNE)
+                                        {
+                                            if (feet < (surface->height0 + shift_height))
+                                            {
+                                                result = FIELD_COLLISION_CLASS_BLOCK;
+                                            }
+                                            else
+                                            {
+                                                result |= FIELD_COLLISION_CLASS_TOUCH;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if ((feet + FIELD_COLLISION_STEP_UP) < (surface->height0 + shift_height))
+                                            {
+                                                result = FIELD_COLLISION_CLASS_BLOCK;
+                                            }
+                                            else
+                                            {
+                                                result |= FIELD_COLLISION_CLASS_TOUCH;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    result = FIELD_COLLISION_CLASS_TOUCH;
+                                }
+
+                                break;
+                            case FIELD_COLLISION_KIND_SLOPE:
+                                if ((surface->top + shift_height) < step_limit)
+                                {
+                                    ground = field_collision_slope_height(node, &probe->x);
+
+                                    if (mover->mode.mode_flags & FIELD_COLLISION_MOVER_AIRBORNE)
+                                    {
+                                        if (feet < ground)
+                                        {
+                                            result = FIELD_COLLISION_CLASS_BLOCK;
+                                        }
+                                        else
+                                        {
+                                            result |= FIELD_COLLISION_CLASS_TOUCH;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if ((feet + FIELD_COLLISION_STEP_UP) < ground)
+                                        {
+                                            result = FIELD_COLLISION_CLASS_BLOCK;
+                                        }
+                                        else
+                                        {
+                                            result |= FIELD_COLLISION_CLASS_TOUCH;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    result = FIELD_COLLISION_CLASS_TOUCH;
+                                }
+
+                                break;
+                            }
+
+                            if (result & FIELD_COLLISION_CLASS_BLOCK)
+                            {
+                                hit_list->node = node;
+                                hit_list++;
+                                (*out_hit)++;
+                            }
+
+                            if (result & FIELD_COLLISION_CLASS_TOUCH)
+                            {
+                                touch_list->node = node;
+                                touch_list++;
+                                (*out_touch)++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Sample a slope node's surface height at a cell position.
+ * @param node Slope node to sample.
+ * @param position Cell position: position[0] is x, position[1] is z.
+ * @return Height interpolated along the node's C->B edge, clamped to the edge's end heights.
+ * @note Negative end heights are raised to zero first.
+ */
+static s16 field_collision_slope_height(FieldCollisionNode* node, s32* position)
+{
+    FieldCollisionSurfaceDef* surface;
+    s16* vertices;
+    s16* vertex;
+    s16* vertex_b;
+    s32 height0;
+    s32 height1;
+    s32 offset_x;
+    s32 offset_z;
+    s32 ax;
+    s32 ay;
+    s32 bx;
+    s32 by;
+    s32 cx;
+    s32 cy;
+    s32 dx_ab;
+    s32 dy_bc;
+    s32 dx_bc;
+    s32 cross_xy;
+    s32 cross_yx;
+    s32 cx_world;
+    s32 cy_world;
+    s32 hit_x;
+    s32 edge_offset;
+    s32 hit_y;
+    s16 sampled_height;
+
+    surface = node->surface;
+    vertices = g_field_node_angle_table;
+    vertex = &vertices[surface->vertex_a * 2];
+    height0 = (node->height0_offset >> 8) + surface->height0;
+    height1 = (node->height1_offset >> 8) + surface->height1;
+    vertex_b = &vertices[surface->vertex_b * 2];
+    offset_x = node->offset_x >> 8;
+
+    if (height0 < 0)
+    {
+        height0 = 0;
+    }
+
+    if (height1 < 0)
+    {
+        height1 = 0;
+    }
+
+    ax = vertex[0];
+    ay = vertex[1];
+    bx = vertex_b[0];
+    by = vertex_b[1];
+    vertex = &vertices[surface->vertex_c * 2];
+    cy = vertex[1];
+    dx_ab = ax - bx;
+    dy_bc = by - cy;
+    cross_xy = dx_ab * dy_bc;
+    offset_z = node->offset_z >> 8;
+    cy_world = cy + offset_z;
+    cx = vertex[0];
+    dx_bc = bx - cx;
+    cross_yx = (ay - by) * dx_bc;
+    cx_world = cx + offset_x;
+    hit_x = ((((position[1] - cy_world) * dx_ab) * dx_bc) + (cross_xy * cx_world) - (position[0] * cross_yx)) / (cross_xy - cross_yx);
+    edge_offset = hit_x - cx_world;
+    hit_y = ((edge_offset * dy_bc) / dx_bc) + cy_world;
+
+    if (hit_x == (bx + offset_x))
+    {
+        if (hit_y == (by + offset_z))
+        {
+            sampled_height = height1;
+        }
+        else
+        {
+            sampled_height = (((hit_y - cy_world) * (height1 - height0)) / dy_bc) + height0;
+        }
+    }
+    else
+    {
+        sampled_height = ((edge_offset * (height1 - height0)) / dx_bc) + height0;
+    }
+
+    if (height0 < height1)
+    {
+        if (sampled_height > height1)
+        {
+            sampled_height = height1;
+        }
+        else if (sampled_height < height0)
+        {
+            sampled_height = height0;
+        }
+    }
+    else
+    {
+        if (sampled_height > height0)
+        {
+            sampled_height = height0;
+        }
+        else if (sampled_height < height1)
+        {
+            sampled_height = height1;
+        }
+    }
+
+    return sampled_height;
+}
+
+/**
+ * @brief Pick the slide direction along a wall edge and merge it with the best so far.
+ * @param surface Surface owning the edge list, or NULL for a map-edge wall.
+ * @param edge_index Edge number in the surface, or FIELD_COLLISION_EDGE_WALL_X/_Z for a map edge.
+ * @param move_angle Movement direction, FIELD_ANGLE_TURN per revolution.
+ * @param best_angle Slide angle so far: FIELD_COLLISION_SLIDE_NONE for none, -1 when already blocked.
+ * @return The resulting slide angle, or -1 when the move is blocked.
+ * @note A slide turning FIELD_COLLISION_SLIDE_MAX_TURN or more away from the move counts as blocked.
+ */
+static s32 field_collision_slide_angle(FieldCollisionSurfaceDef* surface, s32 edge_index, s32 move_angle, s32 best_angle)
+{
+    s16* vertices;
+    s16* previous_point;
+    s16* edge_point;
+    FieldCollisionEdgeRun* edge_run;
+    s32 delta;
+    s32 slide_angle;
+    s32 dx;
+    s32 dy;
+    s32 opposite_delta;
+    s32 work;
+    s32 wrapped_angle;
+
+    if (best_angle == -1)
+    {
+        return -1;
+    }
+
+    previous_point = NULL;
+
+    if (edge_index < FIELD_COLLISION_EDGE_WALL_Z)
+    {
+        vertices = g_field_node_angle_table;
+
+        for (edge_run = surface->runs; (delta = edge_run->count & FIELD_NODE_RUN_COUNT_MASK) != 0; edge_run++)
+        {
+            edge_point = &vertices[edge_run->index * 2];
+
+            while (--delta != -1)
+            {
+                work = previous_point != NULL;
+
+                if (work)
+                {
+                    if (edge_index == 0)
+                    {
+                        goto found;
+                    }
+
+                    edge_index--;
+                }
+
+                previous_point = edge_point;
+                edge_point += 2;
+            }
+        }
+
+        edge_point = &vertices[surface->runs[0].index * 2];
+    found:
+        dx = edge_point[0] - previous_point[0];
+        dy = edge_point[1] - previous_point[1];
+
+        if (dx == 0)
+        {
+            slide_angle = FIELD_ANGLE_QUARTER_TURN;
+        }
+        else
+        {
+            slide_angle = ratan2(dy, dx) & (FIELD_ANGLE_HALF_TURN - 1);
+        }
+    }
+    else
+    {
+        slide_angle = (edge_index == FIELD_COLLISION_EDGE_WALL_Z) << 10;
+    }
+
+    if (move_angle < slide_angle)
+    {
+        delta = slide_angle - move_angle;
+    }
+    else
+    {
+        delta = move_angle - slide_angle;
+
+        if (delta > FIELD_ANGLE_HALF_TURN)
+        {
+            wrapped_angle = move_angle - FIELD_ANGLE_TURN;
+            delta = slide_angle - wrapped_angle;
+        }
+    }
+
+    work = slide_angle + FIELD_ANGLE_HALF_TURN;
+
+    if (move_angle < work)
+    {
+        opposite_delta = work - move_angle;
+
+        if (opposite_delta > FIELD_ANGLE_HALF_TURN)
+        {
+            wrapped_angle = slide_angle - FIELD_ANGLE_HALF_TURN;
+            opposite_delta = move_angle - wrapped_angle;
+        }
+    }
+    else
+    {
+        opposite_delta = move_angle - work;
+    }
+
+    if (delta == opposite_delta)
+    {
+        return -1;
+    }
+
+    if (opposite_delta < delta)
+    {
+        slide_angle += FIELD_ANGLE_HALF_TURN;
+    }
+
+    if (best_angle == FIELD_COLLISION_SLIDE_NONE)
+    {
+        return slide_angle;
+    }
+
+    delta = slide_angle - move_angle;
+
+    if (delta > FIELD_ANGLE_HALF_TURN)
+    {
+        delta -= FIELD_ANGLE_TURN;
+    }
+    else if (delta < -FIELD_ANGLE_HALF_TURN)
+    {
+        delta += FIELD_ANGLE_TURN;
+    }
+
+    opposite_delta = best_angle - move_angle;
+
+    if (opposite_delta > FIELD_ANGLE_HALF_TURN)
+    {
+        opposite_delta -= FIELD_ANGLE_TURN;
+    }
+    else if (opposite_delta < -FIELD_ANGLE_HALF_TURN)
+    {
+        opposite_delta += FIELD_ANGLE_TURN;
+    }
+
+    if ((delta >= 0) && (opposite_delta >= 0))
+    {
+        if (delta < opposite_delta)
+        {
+            slide_angle = best_angle;
+        }
+        else if (delta >= FIELD_COLLISION_SLIDE_MAX_TURN)
+        {
+            slide_angle = -1;
+        }
+    }
+    else if ((delta <= 0) && (opposite_delta <= 0))
+    {
+        if (opposite_delta < delta)
+        {
+            slide_angle = best_angle;
+        }
+        else if (delta <= -FIELD_COLLISION_SLIDE_MAX_TURN)
+        {
+            slide_angle = -1;
+        }
+    }
+    else
+    {
+        slide_angle = -1;
+    }
+
+    return slide_angle;
+}
+
+/**
+ * @brief Build a node's per-row span and edge-flag tables from its outline.
+ * @param node Node to rasterise; its spans and span_flags are set.
+ * @param alloc Field allocator cursor, advanced past both tables (rounded up to 4 bytes).
+ */
+static void field_collision_rasterize_node(FieldCollisionNode* node, u8** alloc)
+{
+    FieldCollisionSurfaceDef* def;
+    s16* table;
+    FieldCollisionRasterSpan* spans;
+    FieldCollisionRasterSpanFlags* flags;
+    u8* counts;
+    s32 first_dir;
+    s32 edge;
+    FieldCollisionEdgeRun* run;
+    FieldCollisionEdgePoint* pt;
+    FieldCollisionEdgePoint* prev;
+    FieldCollisionRasterSpan* sp_row;
+    FieldCollisionRasterSpan* p;
+    FieldCollisionRasterSpan* a;
+    FieldCollisionRasterSpanFlags* fl_row;
+    FieldCollisionRasterSpanFlags* save_flags;
+    FieldCollisionRasterSpanFlags* q;
+    FieldCollisionRasterSpanFlags* b;
+    FieldCollisionRasterSpan tmp_span;
+    FieldCollisionRasterSpanFlags tmp_flag;
+    u8* cp;
+    s32 rows;
+    s16 capacity;
+    s32 count;
+    s32 j;
+    s32 n;
+    s32 sort_n;
+    s32 last_dir;
+    s32 attr;
+    s32 open;
+    s32 closing_open;
+    u32 prev_open;
+    s16 dx;
+    s16 dy;
+    s16 x;
+    s16 sgn;
+    s16 ystep;
+    s16 row;
+    s16 err;
+    s16 merge_row;
+    s16 merge_row2;
+
+    def = node->surface;
+    rows = node->max_z - node->min_z;
+
+    capacity = field_collision_surface_spans(def) * 2;
+    counts = (u8*)FIELD_COLLISION_SCRATCH;
+    spans = (FieldCollisionRasterSpan*)*alloc;
+    node->spans = (FieldCollisionSpan*)*alloc;
+    count = rows + 1;
+    node->span_flags = *alloc + (count * (capacity << 1));
+    flags = (FieldCollisionRasterSpanFlags*)(*alloc + (count * (capacity << 2)));
+    *alloc = *alloc + (((count * ((capacity << 1) + capacity)) + 2) & ~3);
+
+    cp = counts;
+
+    for (count = rows; count != -1; count--)
+    {
+        *cp = 0;
+        cp++;
+    }
+
+    last_dir = 0;
+    prev = NULL;
+    prev_open = 0;
+    first_dir = 0;
+    edge = 0;
+    run = def->runs;
+    table = g_field_node_angle_table;
+    count = run->count & FIELD_NODE_RUN_COUNT_MASK;
+
+    while (count != 0)
+    {
+        pt = (FieldCollisionEdgePoint*)&table[run->index * 2];
+
+        for (count--; count != -1; count--)
+        {
+            if (prev != NULL)
+            {
+                open = 0;
+
+                if (run->count & FIELD_COLLISION_RUN_OPEN)
+                {
+                    open = prev_open << 7;
+                }
+
+                attr = edge | open;
+                dx = pt->x - prev->x;
+
+                if (dx >= 0)
+                {
+                    x = prev->x;
+                    row = prev->z - node->min_z;
+                    dy = pt->z - prev->z;
+                    sgn = 1;
+                }
+                else
+                {
+                    dx = -dx;
+                    x = pt->x;
+                    row = pt->z - node->min_z;
+                    dy = prev->z - pt->z;
+                    sgn = -1;
+                }
+
+                cp = &counts[row];
+                sp_row = &spans[row * capacity];
+                fl_row = &flags[row * capacity];
+
+                if (dy != 0)
+                {
+                    ystep = 1;
+
+                    if (dy < 0)
+                    {
+                        dy = -dy;
+                        ystep = -1;
+                    }
+
+                    if ((last_dir == 2) || (((ystep * sgn) + 2) == last_dir))
+                    {
+                        merge_row = prev->z - node->min_z;
+                    }
+                    else
+                    {
+                        merge_row = -1;
+                    }
+
+                    last_dir = (ystep * sgn) + 2;
+
+                    if ((first_dir == 0) || (first_dir == 2))
+                    {
+                        first_dir = last_dir;
+                    }
+
+                    if (dy < dx)
+                    {
+                        j = dx + 1;
+                        err = -dx;
+
+                        while (j > 0)
+                        {
+                            n = *cp;
+
+                            if (row == merge_row)
+                            {
+                                if (sp_row[n - 1].x.x0 > x)
+                                {
+                                    sp_row[n - 1].x.x0 = x;
+                                    fl_row[n - 1].f.left = attr;
+                                }
+                            }
+                            else
+                            {
+                                sp_row[n].x.x0 = x;
+                                fl_row[n].f.right = attr;
+                                fl_row[n].f.left = attr;
+                            }
+
+                            do
+                            {
+                                x++;
+                                err += dy * 2;
+                                j--;
+                            } while ((err < 0) && (j > 0));
+
+                            if (row == merge_row)
+                            {
+                                if (sp_row[n - 1].x.x1 < x)
+                                {
+                                    sp_row[n - 1].x.x1 = x;
+                                    fl_row[n - 1].f.right = attr;
+                                }
+                            }
+                            else
+                            {
+                                sp_row[n].x.x1 = x - 1;
+                                *cp = n + 1;
+                            }
+
+                            cp += ystep;
+                            row += ystep;
+                            err -= dx * 2;
+                            sp_row += ystep * capacity;
+                            fl_row += ystep * capacity;
+                        }
+                    }
+                    else
+                    {
+                        err = -dy;
+
+                        for (j = dy; j != -1; j--)
+                        {
+                            n = *cp;
+
+                            if (row == merge_row)
+                            {
+                                if (sp_row[n - 1].x.x0 > x)
+                                {
+                                    sp_row[n - 1].x.x0 = x;
+                                    fl_row[n - 1].f.left = attr;
+                                }
+
+                                if (sp_row[n - 1].x.x1 < x)
+                                {
+                                    sp_row[n - 1].x.x1 = x;
+                                    fl_row[n - 1].f.right = attr;
+                                }
+                            }
+                            else
+                            {
+                                sp_row[n].x.x1 = x;
+                                sp_row[n].x.x0 = x;
+                                fl_row[n].f.right = attr;
+                                fl_row[n].f.left = attr;
+                                *cp = n + 1;
+                            }
+
+                            sp_row += ystep * capacity;
+                            fl_row += ystep * capacity;
+                            cp += ystep;
+                            row += ystep;
+                            err += dx * 2;
+
+                            if (err >= 0)
+                            {
+                                x++;
+                                err -= dy * 2;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    n = *cp;
+
+                    if (n != 0)
+                    {
+                        if (sp_row[n - 1].x.x0 >= x)
+                        {
+                            sp_row[n - 1].x.x0 = x;
+                            fl_row[n - 1].f.left = attr | FIELD_COLLISION_EDGE_WALL_X;
+                        }
+
+                        if (sp_row[n - 1].x.x1 <= (s16)(x + dx))
+                        {
+                            sp_row[n - 1].x.x1 = x + dx;
+                            fl_row[n - 1].f.right = attr | FIELD_COLLISION_EDGE_WALL_X;
+                        }
+                    }
+                    else
+                    {
+                        last_dir = 2;
+                        sp_row[0].x.x1 = x + dx;
+                        sp_row[0].x.x0 = x;
+                        fl_row[0].f.right = attr | FIELD_COLLISION_EDGE_WALL_X;
+                        fl_row[0].f.left = attr | FIELD_COLLISION_EDGE_WALL_X;
+                        *cp = 1;
+                    }
+
+                    if (first_dir == 0)
+                    {
+                        first_dir = 2;
+                    }
+                }
+
+                edge++;
+            }
+
+            prev = pt;
+            pt++;
+            prev_open = run->count >> 15;
+        }
+
+        run++;
+        count = run->count & FIELD_NODE_RUN_COUNT_MASK;
+    }
+
+    if (prev == NULL)
+    {
+        prev = (FieldCollisionEdgePoint*)LOM_PS1_RAM0;
+    }
+    closing_open = 0;
+    run = def->runs;
+
+    if (run->count & FIELD_COLLISION_RUN_OPEN)
+    {
+        closing_open = prev_open << 7;
+    }
+
+    pt = (FieldCollisionEdgePoint*)&table[run->index * 2];
+    attr = edge | closing_open;
+    dx = pt->x - prev->x;
+
+    if (dx >= 0)
+    {
+        x = prev->x;
+        row = prev->z - node->min_z;
+        dy = pt->z - prev->z;
+        sgn = 1;
+    }
+    else
+    {
+        dx = -dx;
+        x = pt->x;
+        row = pt->z - node->min_z;
+        dy = prev->z - pt->z;
+        sgn = -1;
+    }
+
+    cp = &counts[row];
+    sp_row = &spans[row * capacity];
+    fl_row = &flags[row * capacity];
+
+    if (dy != 0)
+    {
+        ystep = 1;
+
+        if (dy < 0)
+        {
+            dy = -dy;
+            ystep = -1;
+        }
+
+        if ((last_dir == 2) || (((ystep * sgn) + 2) == last_dir))
+        {
+            merge_row = prev->z - node->min_z;
+        }
+        else
+        {
+            merge_row = -1;
+        }
+
+        if (((ystep * sgn) + 2) == first_dir)
+        {
+            merge_row2 = pt->z - node->min_z;
+        }
+        else
+        {
+            merge_row2 = -1;
+        }
+
+        if (dy < dx)
+        {
+            j = dx + 1;
+            err = -dx;
+
+            while (j > 0)
+            {
+                n = *cp;
+
+                if (row == merge_row)
+                {
+                    if (sp_row[n - 1].x.x0 > x)
+                    {
+                        sp_row[n - 1].x.x0 = x;
+                        fl_row[n - 1].f.left = attr;
+                    }
+                }
+                else if (row == merge_row2)
+                {
+                    if (sp_row[0].x.x0 > x)
+                    {
+                        sp_row[0].x.x0 = x;
+                        fl_row[0].f.left = attr;
+                    }
+                }
+                else
+                {
+                    sp_row[n].x.x0 = x;
+                    fl_row[n].f.right = attr;
+                    fl_row[n].f.left = attr;
+                }
+
+                do
+                {
+                    x++;
+                    err += dy * 2;
+                    j--;
+                } while ((err < 0) && (j > 0));
+
+                if (row == merge_row)
+                {
+                    if (sp_row[n - 1].x.x1 < x)
+                    {
+                        sp_row[n - 1].x.x1 = x;
+                        fl_row[n - 1].f.right = attr;
+                    }
+                }
+                else if (row == merge_row2)
+                {
+                    if (sp_row[0].x.x1 < x)
+                    {
+                        sp_row[0].x.x1 = x;
+                        fl_row[0].f.right = attr;
+                    }
+                }
+                else
+                {
+                    sp_row[n].x.x1 = x - 1;
+                    *cp = n + 1;
+                }
+
+                cp += ystep;
+                err -= dx * 2;
+                sp_row += ystep * capacity;
+                row += ystep;
+                fl_row += ystep * capacity;
+            }
+        }
+        else
+        {
+            err = -dy;
+
+            for (j = dy; j != -1; j--)
+            {
+                n = *cp;
+
+                if (row == merge_row)
+                {
+                    if (sp_row[n - 1].x.x0 > x)
+                    {
+                        sp_row[n - 1].x.x0 = x;
+                        fl_row[n - 1].f.left = attr;
+                    }
+
+                    if (sp_row[n - 1].x.x1 < x)
+                    {
+                        sp_row[n - 1].x.x1 = x;
+                        fl_row[n - 1].f.right = attr;
+                    }
+                }
+                else if (row == merge_row2)
+                {
+                    if (sp_row[0].x.x0 > x)
+                    {
+                        sp_row[0].x.x0 = x;
+                        fl_row[0].f.left = attr;
+                    }
+
+                    if (sp_row[0].x.x1 < x)
+                    {
+                        sp_row[0].x.x1 = x;
+                        fl_row[0].f.right = attr;
+                    }
+                }
+                else
+                {
+                    sp_row[n].x.x0 = x;
+                    sp_row[n].x.x1 = x;
+                    fl_row[n].f.right = attr;
+                    fl_row[n].f.left = attr;
+                    *cp = n + 1;
+                }
+
+                sp_row += ystep * capacity;
+                fl_row += ystep * capacity;
+                cp += ystep;
+                row += ystep;
+                err += dx * 2;
+
+                if (err >= 0)
+                {
+                    x++;
+                    err -= dy * 2;
+                }
+            }
+        }
+    }
+    else
+    {
+        n = *cp;
+
+        if (first_dir == 2)
+        {
+            sp_row[n].x.x0 = x;
+            sp_row[n].x.x1 = x;
+            fl_row[n].f.right = attr | FIELD_COLLISION_EDGE_WALL_X;
+            fl_row[n].f.left = attr | FIELD_COLLISION_EDGE_WALL_X;
+            *cp = n + 1;
+        }
+        else
+        {
+            if (sp_row[n - 1].x.x0 >= x)
+            {
+                sp_row[n - 1].x.x0 = x;
+                fl_row[n - 1].f.left = attr | FIELD_COLLISION_EDGE_WALL_X;
+            }
+
+            if (sp_row[n - 1].x.x1 <= (s16)(x + dx))
+            {
+                sp_row[n - 1].x.x1 = x + dx;
+                fl_row[n - 1].f.right = attr | FIELD_COLLISION_EDGE_WALL_X;
+            }
+        }
+    }
+
+    sp_row = spans;
+    fl_row = flags;
+    save_flags = flags;
+
+    for (count = node->max_z - node->min_z; count != -1; count--)
+    {
+        p = spans;
+        q = flags;
+
+        for (j = *counts - 2; j != -1; j--)
+        {
+            sort_n = j + 1;
+            a = &p[sort_n];
+            b = &q[sort_n];
+
+            for (sort_n = j; sort_n != -1; sort_n--)
+            {
+                if (p->x.x0 > a->x.x0)
+                {
+                    tmp_span = *p;
+                    *p = *a;
+                    *a = tmp_span;
+                    tmp_flag = *q;
+                    *q = *b;
+                    *b = tmp_flag;
+                }
+
+                a--;
+                b--;
+            }
+
+            p++;
+            q++;
+        }
+
+        p = spans;
+        q = flags;
+        j = (*counts >> 1);
+        j--;
+
+        for (; j != -1; j--)
+        {
+            if (p[0].x.x1 < p[1].x.x1)
+            {
+                sp_row->x.x0 = p[0].x.x0;
+                sp_row->x.x1 = p[1].x.x1;
+                fl_row->f.left = q[0].f.left;
+                fl_row->f.right = q[1].f.right;
+            }
+            else
+            {
+                *sp_row = p[0];
+                *fl_row = q[0];
+            }
+
+            sp_row++;
+            p += 2;
+            fl_row++;
+            q += 2;
+        }
+
+        j = (capacity - *counts) / 2;
+        j--;
+
+        for (; j != -1; j--)
+        {
+            sp_row->word = FIELD_COLLISION_RASTER_EMPTY_SPAN;
+            sp_row++;
+        }
+
+        j = (capacity - *counts) / 2;
+        j--;
+
+        for (; j != -1; j--)
+        {
+            fl_row->half = FIELD_COLLISION_RASTER_EMPTY_FLAGS;
+            fl_row++;
+        }
+
+        spans += capacity;
+        flags += capacity;
+        counts++;
+    }
+
+    count = capacity * (((node->max_z - node->min_z) + 2) / 2);
+    fl_row = save_flags;
+    flags = (FieldCollisionRasterSpanFlags*)node->span_flags;
+
+    for (count--; count != -1; count--)
+    {
+        *(s32*)flags = *(s32*)fl_row;
+        fl_row += 2;
+        flags += 2;
+    }
+}
+
+/**
+ * @brief Collect floor heights and allocate the scene's collision maps.
+ * @param allocator_cursor Scene arena cursor, advanced past the tile and bitmask maps.
+ * @note Too many floor heights clear group_work and set group_count to FIELD_COLLISION_GROUP_ERROR_GROUPS.
+ */
+void field_collision_collect_groups(u8** allocator_cursor)
+{
+    FieldGroupEntry groups[FIELD_COLLISION_GROUP_SCAN_MAX];
+    FieldScene* scene;
+    FieldNode* node;
+    FieldNodeDef* def;
+    s32 work_count;
+    s32 index;
+    s32 tile_size;
+    s32 has_slopes;
+    s32 first_kinds;
+    s32 second_kinds;
+    s32 sort_index;
+    s32 scratch;
+    u32 map_columns;
+    s32 scene_depth;
+    s32 tile_shift;
+    s32 content_rows;
+    s32 map_rows;
+    s32 group_bytes;
+    s16 sorted_height;
+    s16 swap_height;
+    u32 group_count;
+
+    scene = g_field_scene.scene;
+    group_count = 0;
+    node = scene->nodes;
+
+    if (node == NULL)
+    {
+        scene->group_work = NULL;
+        scene->group_count = 0;
+        return;
+    }
+
+    has_slopes = 0;
+
+    for (; node != NULL; node = node->next)
+    {
+        def = node->def;
+
+        if ((node->active != 0) && !(def->flags & FIELD_COLLISION_SURFACE_SOLID))
+        {
+            work_count = group_count - 1;
+
+            switch ((u8)def->flags & FIELD_COLLISION_KIND_MASK)
+            {
+            case FIELD_COLLISION_KIND_FLAT:
+                scratch = 1;
+
+                for (; work_count != -1; work_count--)
+                {
+                    if (groups[work_count].height == def->height0)
+                    {
+                        scratch = 0;
+                        groups[work_count].kinds |= FIELD_COLLISION_GROUP_SEEN_FLAT;
+                        break;
+                    }
+                }
+
+                if (scratch != 0)
+                {
+                    groups[group_count].height = def->height0;
+                    groups[group_count].kinds = FIELD_COLLISION_GROUP_SEEN_FLAT;
+
+                    if (group_count >= FIELD_COLLISION_GROUP_SCAN_MAX)
+                    {
+                        goto too_many_groups;
+                    }
+
+                    group_count++;
+                }
+
+                break;
+
+            case FIELD_COLLISION_KIND_SLOPE:
+                has_slopes = 1;
+                scratch = 1;
+
+                for (; work_count != -1; work_count--)
+                {
+                    if (groups[work_count].height == def->height0)
+                    {
+                        scratch = 0;
+                        groups[work_count].kinds |= FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        break;
+                    }
+                }
+
+                if (scratch != 0)
+                {
+                    if (def->height0 != 0)
+                    {
+                        first_kinds = FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        groups[group_count].height = def->height0;
+                    }
+                    else
+                    {
+                        first_kinds = FIELD_COLLISION_GROUP_SEEN_FLAT | FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        groups[group_count].height = 0;
+                    }
+
+                    groups[group_count].kinds = first_kinds;
+
+                    if (group_count >= FIELD_COLLISION_GROUP_SCAN_MAX)
+                    {
+                        goto too_many_groups;
+                    }
+
+                    group_count++;
+                }
+
+                scratch = 1;
+
+                for (work_count = group_count - 1; work_count != -1; work_count--)
+                {
+                    if (groups[work_count].height == def->height1)
+                    {
+                        scratch = 0;
+                        groups[work_count].kinds |= FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        break;
+                    }
+                }
+
+                if (scratch != 0)
+                {
+                    if (def->height1 != 0)
+                    {
+                        second_kinds = FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        groups[group_count].height = def->height1;
+                    }
+                    else
+                    {
+                        second_kinds = FIELD_COLLISION_GROUP_SEEN_FLAT | FIELD_COLLISION_GROUP_SEEN_SLOPE;
+                        groups[group_count].height = 0;
+                    }
+
+                    groups[group_count].kinds = second_kinds;
+
+                    if (group_count >= FIELD_COLLISION_GROUP_SCAN_MAX)
+                    {
+                        goto too_many_groups;
+                    }
+
+                    group_count++;
+                }
+
+                break;
+            }
+        }
+    }
+
+    if (has_slopes != 0)
+    {
+        work_count = group_count;
+        index = 0;
+        group_count = 0;
+
+        for (work_count--; work_count != -1; index++, work_count--)
+        {
+            if (groups[index].kinds == (FIELD_COLLISION_GROUP_SEEN_FLAT | FIELD_COLLISION_GROUP_SEEN_SLOPE))
+            {
+                if (index != group_count)
+                {
+                    groups[group_count].height = groups[index].height;
+                }
+
+                group_count++;
+            }
+        }
+    }
+
+    if (group_count == 0)
+    {
+        groups[0].height = 0;
+        group_count = 1;
+    }
+    else if (group_count > FIELD_COLLISION_GROUP_MAX)
+    {
+        goto too_many_groups;
+    }
+
+    for (sort_index = group_count - 1; sort_index != 0; sort_index--)
+    {
+        sorted_height = groups[sort_index].height;
+
+        for (index = sort_index - 1; index != -1; index--)
+        {
+            if (sorted_height < groups[index].height)
+            {
+                swap_height = groups[index].height;
+                groups[index].height = sorted_height;
+                sorted_height = swap_height;
+                groups[sort_index].height = swap_height;
+            }
+        }
+
+        scene->group_ids[sort_index] = sorted_height;
+    }
+
+    scene->group_ids[0] = groups[0].height;
+
+    for (work_count = group_count - 1; work_count != -1; work_count--)
+    {
+        scene->group_counters[work_count] = 0;
+    }
+
+    scratch = scene->header->map_width;
+    scene_depth = scene->header->map_depth;
+    tile_size = FIELD_COLLISION_GROUP_FINE_TILE_SIZE;
+    tile_shift = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT;
+    work_count = ((scratch + tile_size - 1) >> tile_shift) * ((scene_depth + tile_size * 2 - 1) >> (tile_shift + 1)) * group_count;
+
+    if (work_count > FIELD_COLLISION_GROUP_TILE_BUDGET)
+    {
+        tile_size = FIELD_COLLISION_GROUP_COARSE_TILE_SIZE;
+        tile_shift = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT;
+    }
+
+    map_columns = (((scratch + tile_size) - 1) >> tile_shift) + FIELD_COLLISION_GROUP_TILE_PADDING;
+    content_rows = ((scene_depth + (tile_size * 2)) - 1) >> (tile_shift + 1);
+    map_rows = content_rows + FIELD_COLLISION_GROUP_TILE_PADDING;
+    work_count = map_columns;
+    work_count *= map_rows;
+    scene->group_tile_count = work_count;
+    work_count *= group_count;
+    scene->tile_size = tile_size;
+    scene->group_count = group_count;
+    scene->tile_cols = map_columns;
+    scene->tile_rows = map_rows;
+
+    scene->group_tiles = *allocator_cursor;
+    work_count = (work_count + sizeof(u32) - 1) & ~(sizeof(u32) - 1);
+    *allocator_cursor += work_count;
+    work_count = ((map_columns + FIELD_COLLISION_GROUP_WORD_BITS - 1) / FIELD_COLLISION_GROUP_WORD_BITS * content_rows) * 2;
+    scene->group_stride = work_count;
+    scene->group_work = *allocator_cursor;
+    group_bytes = group_count * sizeof(u32);
+    *allocator_cursor += work_count * group_bytes;
+    scene->group_work_end = *allocator_cursor;
+    field_collision_rasterize_groups(allocator_cursor, NULL);
+    return;
+
+too_many_groups:
+    scene->group_work = NULL;
+    scene->group_count = FIELD_COLLISION_GROUP_ERROR_GROUPS;
+}
+
+/**
+ * @brief Rebuild the solid and touch bitmask planes of every floor group.
+ * @param allocator_cursor Unused.
+ * @param clip Node whose rows to rebuild, or NULL to rebuild every row.
+ * @note On overflow, clears group_work and stores a FIELD_COLLISION_GROUP_ERROR_* code in group_count.
+ */
+void field_collision_rasterize_groups(u8** allocator_cursor, FieldNode* clip)
+{
+    FieldCollisionRasterSpan cur[FIELD_COLLISION_RASTER_SPAN_MAX];
+    FieldCollisionRasterSpan acc[FIELD_COLLISION_RASTER_SPAN_MAX];
+    FieldCollisionRasterNode list[FIELD_COLLISION_RASTER_NODE_MAX];
+    FieldCollisionSpanRun runs[FIELD_COLLISION_RASTER_NODE_MAX];
+    FieldScene* scene;
+    u32* saved;
+    s32 words;
+    s32 rows;
+    s32 tile;
+    s32 tile2;
+    s32 shift0;
+    s32 shift1;
+    s32 group;
+    u32 node_count;
+    u32 j;
+    s32 prev_count;
+    FieldCollisionSpanRun* runs_base;
+    FieldCollisionSpanRun* run;
+    u32* out;
+    u32 cur_count;
+    u32 acc_count;
+    s32 clip_tail;
+    s32 clip_rows;
+    s32 run_count;
+    FieldNode* node;
+    FieldNodeDef* def;
+    FieldCollisionRasterNode* p;
+    u32 list_offset;
+    s32 countdown_end;
+    s32 union_end;
+    s32 node_start;
+    FieldCollisionRasterSpan* span;
+    FieldCollisionRasterSpan* prev_span;
+    FieldCollisionRasterSpan* other;
+    FieldCollisionRasterSpan* prev;
+    FieldCollisionRasterSpan* dst;
+    u32* wp;
+    u32* wq;
+    u16* src;
+    s32 i;
+    s32 k;
+    s32 n;
+    s32 fresh;
+    s32 lo;
+    s32 hi;
+    s32 lo2;
+    s32 hi2;
+    s32 scratch;
+    s32 word;
+    s32 work;
+    s32 row_work;
+    s32 spans_left;
+    s32 tail_mask;
+    s32 lead;
+    s32 tail;
+    s16 base;
+    u16 id;
+    s32 signed_id;
+    s16 x0;
+    s16 x1;
+
+    saved = NULL;
+    prev_count = 0;
+    acc_count = 0;
+    scene = g_field_scene.scene;
+    out = (u32*)scene->group_work;
+
+    if (out == NULL)
+    {
+        return;
+    }
+
+    node = scene->nodes;
+    node_count = 0;
+
+    if (node != NULL)
+    {
+        p = list;
+
+        while (node != NULL)
+        {
+            if (node->active != 0)
+            {
+                if (node_count >= FIELD_COLLISION_RASTER_NODE_MAX)
+                {
+                    scene->group_work = NULL;
+                    scene->group_count = FIELD_COLLISION_GROUP_ERROR_NODES;
+                    return;
+                }
+
+                p->node = node;
+                node_count++;
+                p->key = node->row_start;
+                p++;
+            }
+
+            node = node->next;
+        }
+    }
+
+    if (node_count != 0)
+    {
+        for (i = node_count - 1; i != 0; i--)
+        {
+            base = list[i].key;
+
+            for (k = i - 1; k != -1; k--)
+            {
+                if ((s16)base < list[k].key)
+                {
+                    x0 = list[k].key;
+                    list[k].key = base;
+                    base = x0;
+                    list[i].key = x0;
+                    node = list[k].node;
+                    list[k].node = list[i].node;
+                    list[i].node = node;
+                }
+            }
+        }
+    }
+
+    tile = scene->tile_size;
+
+    if (tile == FIELD_COLLISION_GROUP_FINE_TILE_SIZE)
+    {
+        shift0 = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT;
+        shift1 = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT + 1;
+    }
+    else
+    {
+        shift0 = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT;
+        shift1 = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT + 1;
+    }
+
+    group = 0;
+    tile2 = tile * 2;
+    words = (scene->tile_cols + FIELD_COLLISION_GROUP_WORD_MASK) >> FIELD_COLLISION_GROUP_WORD_SHIFT;
+
+    if (scene->group_count == 0)
+    {
+        return;
+    }
+
+    countdown_end = -1;
+    runs_base = runs;
+
+    do
+    {
+        id = scene->group_ids[group];
+
+        if (clip == NULL)
+        {
+            base = 0;
+            rows = scene->tile_rows - FIELD_COLLISION_GROUP_TILE_PADDING;
+        }
+        else
+        {
+            def = clip->def;
+            saved = out + ((words * 2) * (scene->tile_rows - FIELD_COLLISION_GROUP_TILE_PADDING));
+            fresh = 0;
+
+            if (def->flags & FIELD_COLLISION_SURFACE_SOLID)
+            {
+                fresh = def->id_min <= (s16)id;
+            }
+            else if ((def->flags & FIELD_COLLISION_KIND_MASK) == FIELD_COLLISION_KIND_SLOPE)
+            {
+                lo = def->height0;
+                hi = def->height1;
+
+                if (lo < hi)
+                {
+                    if ((s16)id < lo)
+                    {
+                        if (((s16)id < def->id_min) == 0)
+                        {
+                            fresh = 1;
+                        }
+                    }
+                }
+                else if ((s16)id < hi)
+                {
+                    if (((s16)id < def->id_min) == 0)
+                    {
+                        fresh = 1;
+                    }
+                }
+            }
+            else
+            {
+                scratch = (s16)id < def->height0;
+
+                if (scratch != 0)
+                {
+                    if (((s16)id < def->id_min) == 0)
+                    {
+                        fresh = 1;
+                    }
+                }
+            }
+
+            if (fresh != 0)
+            {
+                base = 0;
+
+                if (clip->row_start >= 0)
+                {
+                    base = (u16)clip->row_start & -tile2;
+                    clip_rows = scene->tile_rows;
+                    i = clip->row_end >> shift1;
+
+                    if (i >= (clip_rows - FIELD_COLLISION_GROUP_TILE_PADDING))
+                    {
+                        clip_tail = ((s16)base >> shift1) + FIELD_COLLISION_GROUP_TILE_PADDING;
+                        rows = clip_rows - clip_tail;
+                    }
+                    else
+                    {
+                        rows = (i - ((s16)base >> shift1)) + 1;
+                    }
+                }
+                else
+                {
+                    i = clip->row_end >> shift1;
+                    rows = scene->tile_rows - FIELD_COLLISION_GROUP_TILE_PADDING;
+
+                    if (i < rows)
+                    {
+                        rows = i + 1;
+                    }
+                }
+
+                out += ((words * 2) * ((s16)base >> shift1));
+            }
+            else
+            {
+                out = saved;
+                group++;
+                continue;
+            }
+        }
+
+        run_count = 0;
+        j = 0;
+        rows--;
+
+        if (rows != countdown_end)
+        {
+            signed_id = (s16)id;
+            list_offset = 0;
+
+            for (; rows != countdown_end; out += words * 2, base += tile2, rows--)
+            {
+                if (j < node_count)
+                {
+                    def = (FieldNodeDef*)list;
+
+                    if (((FieldCollisionRasterNode*)((u8*)def + list_offset))->key < ((s16)base + tile2))
+                    {
+                        row_work = (s16)base;
+
+                        do
+                        {
+                            node = ((FieldCollisionRasterNode*)((u8*)def + list_offset))->node;
+                            def = node->def;
+                            fresh = 0;
+
+                            if (def->flags & FIELD_COLLISION_SURFACE_SOLID)
+                            {
+                                fresh = signed_id >= def->id_min;
+                            }
+                            else if ((def->flags & FIELD_COLLISION_KIND_MASK) == FIELD_COLLISION_KIND_SLOPE)
+                            {
+                                lo2 = def->height0;
+                                hi2 = def->height1;
+
+                                if (lo2 < hi2)
+                                {
+                                    if (signed_id < lo2)
+                                    {
+                                        if (signed_id >= def->id_min)
+                                        {
+                                            fresh = 1;
+                                        }
+                                    }
+                                }
+                                else if (signed_id < hi2)
+                                {
+                                    if (signed_id >= def->id_min)
+                                    {
+                                        fresh = 1;
+                                    }
+                                }
+                            }
+                            else if (signed_id < def->height0)
+                            {
+                                if (signed_id >= def->id_min)
+                                {
+                                    fresh = 1;
+                                }
+                            }
+
+                            if ((fresh != 0) && (node->row_end >= row_work))
+                            {
+                                node_start = node->row_start;
+
+                                if (row_work >= node_start)
+                                {
+                                    runs_base[run_count].src = node->spans + ((row_work - node_start) * FIELD_NODE_DEF_ROWS(node->def) * 2);
+                                    runs_base[run_count].count = ((u16)node->row_end - (s16)base) + 1;
+                                    runs_base[run_count].skip = 0;
+                                }
+                                else
+                                {
+                                    runs_base[run_count].src = node->spans;
+                                    runs_base[run_count].count = ((u16)node->row_end - (u16)node->row_start) + 1;
+                                    runs_base[run_count].skip = (u16)node->row_start - (s16)base;
+                                }
+
+                                runs_base[run_count].step = FIELD_NODE_DEF_ROWS(node->def);
+                                run_count++;
+                            }
+
+                            list_offset += sizeof(FieldCollisionRasterNode);
+                            j++;
+
+                            if (j < node_count)
+                            {
+                                def = (FieldNodeDef*)list;
+                            }
+                        } while ((j < node_count) && (list[j].key < ((s16)base + tile2)));
+                    }
+                }
+
+                wp = out;
+                wp[1] = 3;
+                i = words - 2;
+                out[0] = 3;
+
+                if (i != countdown_end)
+                {
+                    do
+                    {
+                        wp += 2;
+                        i--;
+                        wp[1] = 0;
+                        wp[0] = 0;
+                    } while (i != -1);
+                }
+
+                node_start = (scene->tile_cols - 1) & FIELD_COLLISION_GROUP_WORD_MASK;
+
+                if (node_start == 0)
+                {
+                    scratch = wp[-2] | 0x80000000;
+                    node_start = wp[0] | 1;
+                    wp[-1] = scratch;
+                    wp[-2] = scratch;
+                    wp[1] = node_start;
+                    wp[0] = node_start;
+                }
+                else
+                {
+                    row_work = 1 << node_start;
+                    scratch = wp[0] | row_work | ((u32)row_work >> 1);
+                    wp[1] = scratch;
+                    wp[0] = scratch;
+                }
+
+                if (run_count != 0)
+                {
+                    for (i = tile2 - 1; i != countdown_end; i--)
+                    {
+                        cur_count = 0;
+
+                        for (k = run_count - 1; k != countdown_end; k--)
+                        {
+                            run = &runs_base[k];
+
+                            if (run->skip == 0)
+                            {
+                                src = run->src;
+                                n = run->step;
+                                run->count--;
+                                n--;
+
+                                for (; n != countdown_end; n--)
+                                {
+                                    x0 = src[0];
+                                    x1 = src[1];
+                                    src += 2;
+
+                                    if (x0 <= x1)
+                                    {
+                                        span = cur;
+                                        work = cur_count - 1;
+                                        fresh = 1;
+
+                                        if (work != countdown_end)
+                                        {
+                                            s32 collect_end = -1;
+
+                                            do
+                                            {
+                                                if (((x1 + 1) >= span->x.x0) && ((span->x.x1 + 1) >= x0))
+                                                {
+                                                    if (x0 < span->x.x0)
+                                                    {
+                                                        span->x.x0 = x0;
+                                                    }
+
+                                                    if (span->x.x1 < x1)
+                                                    {
+                                                        span->x.x1 = x1;
+                                                    }
+
+                                                    fresh = 0;
+                                                    break;
+                                                }
+
+                                                span++;
+                                                work--;
+                                            } while (work != collect_end);
+                                        }
+
+                                        if (fresh != 0)
+                                        {
+                                            if (cur_count >= FIELD_COLLISION_RASTER_SPAN_MAX)
+                                            {
+                                                scene->group_work = NULL;
+                                                scene->group_count = FIELD_COLLISION_GROUP_ERROR_COLLECT;
+                                                return;
+                                            }
+
+                                            cur_count++;
+                                            span->x.x0 = x0;
+                                            span->x.x1 = x1;
+                                        }
+                                    }
+                                }
+
+                                if (run->count == 0)
+                                {
+                                    run_count--;
+
+                                    if (k != run_count)
+                                    {
+                                        run->src = runs_base[run_count].src;
+                                        run->count = runs_base[run_count].count;
+                                        run->step = runs_base[run_count].step;
+                                    }
+                                }
+                                else
+                                {
+                                    run->src = src;
+                                }
+                            }
+                            else
+                            {
+                                run->skip--;
+                            }
+                        }
+
+                        span = cur;
+
+                        for (k = cur_count - 1; k != countdown_end; k--)
+                        {
+                            n = k - 1;
+
+                            x0 = span->x.x0;
+
+                            x1 = span->x.x1;
+                            other = span + 1;
+
+                            if (n != countdown_end)
+                            {
+                                s32 compact_end = -1;
+
+                                do
+                                {
+                                    if (((x1 + 1) >= other->x.x0) && (x0 <= (other->x.x1 + 1)))
+                                    {
+                                        cur_count--;
+                                        k--;
+
+                                        if (other->x.x0 < x0 || x1 < other->x.x1)
+                                        {
+                                            if (other->x.x0 < x0)
+                                            {
+                                                x0 = other->x.x0;
+                                            }
+
+                                            if (x1 < other->x.x1)
+                                            {
+                                                x1 = other->x.x1;
+                                            }
+
+                                            span->x.x0 = x0;
+                                            span->x.x1 = x1;
+
+                                            if (n != 0)
+                                            {
+                                                other->word = other[n].word;
+                                            }
+
+                                            n = k;
+                                            other = span + 1;
+                                        }
+                                        else if (n != 0)
+                                        {
+                                            other->word = other[n].word;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        other++;
+                                    }
+
+                                    n--;
+                                } while (n != compact_end);
+                            }
+
+                            span++;
+                        }
+
+                        if (i == (tile2 - 1))
+                        {
+                            span = cur;
+                            other = acc;
+                            prev = (FieldCollisionRasterSpan*)FIELD_COLLISION_SCRATCH;
+                            acc_count = cur_count;
+                            prev_count = acc_count;
+                            k = acc_count - 1;
+
+                            if (k != countdown_end)
+                            {
+                                s32 copy_end = -1;
+
+                                do
+                                {
+                                    word = span->word;
+                                    span++;
+                                    k--;
+                                    other->word = word;
+                                    other++;
+                                    prev->word = word;
+                                    prev++;
+                                } while (k != copy_end);
+                            }
+                        }
+                        else
+                        {
+                            span = cur;
+
+                            if (!(i & 1))
+                            {
+                                prev = (FieldCollisionRasterSpan*)FIELD_COLLISION_SCRATCH;
+                                dst = (FieldCollisionRasterSpan*)(FIELD_COLLISION_SCRATCH + FIELD_COLLISION_RASTER_ROW_BYTES);
+                            }
+                            else
+                            {
+                                prev = (FieldCollisionRasterSpan*)(FIELD_COLLISION_SCRATCH + FIELD_COLLISION_RASTER_ROW_BYTES);
+                                dst = (FieldCollisionRasterSpan*)FIELD_COLLISION_SCRATCH;
+                            }
+
+                            k = cur_count - 1;
+                            work = 0;
+
+                            while (k != countdown_end)
+                            {
+                                x0 = span->x.x0;
+                                x1 = span->x.x1;
+                                spans_left = prev_count - 1;
+                                prev_span = prev;
+
+                                if (spans_left != countdown_end)
+                                {
+                                    s32 intersect_end;
+
+                                    do
+                                    {
+                                        if ((x1 >= prev_span->x.x0) && (prev_span->x.x1 >= x0))
+                                        {
+                                            if (work >= FIELD_COLLISION_RASTER_SPAN_MAX)
+                                            {
+                                                scene->group_work = NULL;
+                                                scene->group_count = FIELD_COLLISION_GROUP_ERROR_INTERSECT;
+                                                return;
+                                            }
+
+                                            if (x0 < prev_span->x.x0)
+                                            {
+                                                dst->x.x0 = prev_span->x.x0;
+                                            }
+                                            else
+                                            {
+                                                dst->x.x0 = x0;
+                                            }
+
+                                            if (prev_span->x.x1 < x1)
+                                            {
+                                                dst->x.x1 = prev_span->x.x1;
+                                            }
+                                            else
+                                            {
+                                                dst->x.x1 = x1;
+                                            }
+
+                                            work++;
+                                            dst++;
+                                        }
+
+                                        intersect_end = -1;
+                                        prev_span++;
+                                        spans_left--;
+                                    } while (spans_left != intersect_end);
+                                }
+
+                                other = acc;
+                                spans_left = acc_count - 1;
+                                fresh = 1;
+
+                                if (spans_left != countdown_end)
+                                {
+                                    do
+                                    {
+                                        if (((x1 + 1) >= other->x.x0) && ((other->x.x1 + 1) >= x0))
+                                        {
+                                            if (x0 < other->x.x0)
+                                            {
+                                                other->x.x0 = x0;
+                                            }
+
+                                            if (other->x.x1 < x1)
+                                            {
+                                                other->x.x1 = x1;
+                                            }
+
+                                            fresh = 0;
+                                            break;
+                                        }
+
+                                        union_end = -1;
+                                        other++;
+                                        spans_left--;
+                                    } while (spans_left != union_end);
+                                }
+
+                                if (fresh != 0)
+                                {
+                                    if (acc_count >= FIELD_COLLISION_RASTER_SPAN_MAX)
+                                    {
+                                        scene->group_work = NULL;
+                                        scene->group_count = FIELD_COLLISION_GROUP_ERROR_UNION;
+                                        return;
+                                    }
+
+                                    acc_count++;
+                                    other->x.x0 = x0;
+                                    other->x.x1 = x1;
+                                }
+
+                                k--;
+                                span++;
+                            }
+
+                            prev_count = work;
+                        }
+                    }
+
+                    prev = (FieldCollisionRasterSpan*)(FIELD_COLLISION_SCRATCH + FIELD_COLLISION_RASTER_ROW_BYTES);
+                    i = prev_count;
+                    i--;
+
+                    for (; i != countdown_end; i--, prev++)
+                    {
+                        lead = (((prev->x.x0 + tile) - 1) >> shift0) + 2;
+                        tail = ((prev->x.x1 + 1) >> shift0) + 1;
+                        n = lead >> FIELD_COLLISION_GROUP_WORD_SHIFT;
+
+                        if (tail >= lead)
+                        {
+                            k = tail >> FIELD_COLLISION_GROUP_WORD_SHIFT;
+                            wp = out + (n * 2);
+                            work = countdown_end << (lead & FIELD_COLLISION_GROUP_WORD_MASK);
+                            tail_mask = (u32)countdown_end >> (FIELD_COLLISION_GROUP_WORD_MASK - (tail & FIELD_COLLISION_GROUP_WORD_MASK));
+
+                            if (n != k)
+                            {
+                                k = (k - n) - 2;
+                                wp[0] |= work;
+                                wp += 2;
+
+                                for (; k != countdown_end; k--, wp += 2)
+                                {
+                                    wp[0] = countdown_end;
+                                }
+
+                                wp[0] |= tail_mask;
+                            }
+                            else
+                            {
+                                wp[0] |= work & tail_mask;
+                            }
+                        }
+                    }
+
+                    other = acc;
+
+                    for (i = acc_count - 1; i != countdown_end; i--, other++)
+                    {
+                        lead = (other->x.x0 >> shift0) + 2;
+                        tail = (other->x.x1 >> shift0) + 2;
+                        n = lead >> FIELD_COLLISION_GROUP_WORD_SHIFT;
+                        k = tail >> FIELD_COLLISION_GROUP_WORD_SHIFT;
+                        work = countdown_end << (lead & FIELD_COLLISION_GROUP_WORD_MASK);
+                        tail_mask = (u32)countdown_end >> (FIELD_COLLISION_GROUP_WORD_MASK - (tail & FIELD_COLLISION_GROUP_WORD_MASK));
+                        wq = out + (n * 2);
+
+                        if (n != k)
+                        {
+                            wp = wq + 3;
+                            k = (k - n) - 2;
+                            wq[1] |= work;
+
+                            while (k != countdown_end)
+                            {
+                                wp[0] = countdown_end;
+                                k--;
+                                wp += 2;
+                            }
+
+                            wp[0] |= tail_mask;
+                        }
+                        else
+                        {
+                            wq[1] |= work & tail_mask;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (clip != NULL)
+        {
+            out = saved;
+        }
+
+        group++;
+    } while (group != scene->group_count);
+}
+
+/**
+ * @brief Expand every group's bitmask planes by a footprint into the byte tile maps.
+ * @param footprint_width Footprint width in tiles.
+ * @param footprint_depth Footprint depth in tiles.
+ */
+static void field_collision_dilate_tiles(s32 footprint_width, s32 footprint_depth)
+{
+    FieldScene* scene;
+    u32* src_row;
+    s32 groups_left;
+    s32 row_words;
+    s32 ring_row_words;
+    s32 rows_left;
+    s32 spill_bits;
+    u16 cols;
+    s32 reach;
+    u32* src_word;
+    u8* out;
+    FieldCollisionDilationMasks* ring_write;
+    FieldCollisionDilationMasks* ring_read;
+    FieldCollisionDilationMasks* ring_end;
+    s32 count;
+    s32 remaining;
+    s32 row;
+    u32 in_solid;
+    u32 in_touch;
+    u32 inner_touch;
+    u32 acc_touch;
+    u32 left_bits;
+    u32 acc_solid;
+    u32 spread;
+    u32 shift_solid;
+    u32 shift_touch;
+    FieldCollisionDilationMasks* ring_scan;
+    u32 carry_touch;
+    u32 carry_solid;
+    s32 bits_left;
+    u32 entry_touch;
+    u32 entry_solid;
+    u32 entry_inner;
+    u8 cell;
+    u32 prev_touch;
+    u32 prev_solid;
+    u32 spread_solid;
+    u32 spread4;
+
+    scene = g_field_scene.scene;
+    cols = scene->tile_cols;
+    row_words = ((cols + FIELD_COLLISION_GROUP_WORD_MASK) >> FIELD_COLLISION_GROUP_WORD_SHIFT) * 2;
+    ring_row_words = (((cols - 3) >> FIELD_COLLISION_GROUP_WORD_SHIFT) + 1) * (sizeof(FieldCollisionDilationMasks) / sizeof(u32));
+    reach = footprint_width - 1;
+
+    if (footprint_depth >= 3)
+    {
+        ring_write = (FieldCollisionDilationMasks*)FIELD_COLLISION_SCRATCH;
+        ring_read = (FieldCollisionDilationMasks*)FIELD_COLLISION_SCRATCH;
+        ring_end = (FieldCollisionDilationMasks*)((u32*)FIELD_COLLISION_SCRATCH + ring_row_words * footprint_depth);
+    }
+    else
+    {
+        ring_write = NULL;
+        ring_read = NULL;
+        ring_end = NULL;
+    }
+
+    src_row = (u32*)scene->group_work;
+    groups_left = scene->group_count;
+    out = scene->group_tiles;
+    groups_left--;
+
+    for (; groups_left != -1; groups_left--)
+    {
+        remaining = scene->tile_cols * 2;
+        FIELD_COLLISION_FILL_BLOCKED(out, count, remaining);
+        rows_left = (scene->tile_rows - footprint_depth) - FIELD_COLLISION_GROUP_TILE_PADDING;
+
+        for (row = 0; rows_left != -1; row++, rows_left--)
+        {
+            src_word = src_row;
+            remaining = scene->tile_cols;
+            src_row = src_word + row_words;
+            in_solid = src_word[0];
+            in_touch = src_word[1];
+            remaining -= footprint_width + 1;
+            src_word += 2;
+
+            switch (footprint_width - 1)
+            {
+            default:
+                acc_touch = in_touch | (in_touch >> reach);
+                inner_touch = (in_touch >> 1) | (in_touch >> 2);
+                shift_touch = inner_touch;
+                shift_solid = in_solid | (in_solid >> 1);
+                spread = shift_solid >> 2;
+                acc_solid = shift_solid | spread;
+                shift_solid = spread;
+                count = (footprint_width - 6) >> 1;
+
+                do
+                {
+                    shift_touch >>= 2;
+                    inner_touch |= shift_touch;
+                    shift_solid >>= 2;
+                    count--;
+                    acc_solid |= shift_solid;
+                } while (count != -1);
+
+                if (footprint_width & 1)
+                {
+                    inner_touch |= in_touch >> (footprint_width - 2);
+                    acc_solid |= in_solid >> reach;
+                }
+
+                carry_touch = in_touch;
+                carry_solid = in_solid;
+                break;
+            case 4:
+                inner_touch = (in_touch >> 1) | (in_touch >> 2) | (in_touch >> 3);
+                acc_touch = in_touch | (in_touch >> 4);
+                shift_solid = in_solid | (in_solid >> 1);
+                acc_solid = shift_solid | (shift_solid >> 2) | (in_solid >> 4);
+                carry_touch = in_touch;
+                carry_solid = in_solid;
+                break;
+            case 3:
+                inner_touch = (in_touch >> 1) | (in_touch >> 2);
+                acc_touch = in_touch | (in_touch >> 3);
+                shift_solid = in_solid | (in_solid >> 1);
+                acc_solid = shift_solid | (shift_solid >> 2);
+                carry_touch = in_touch;
+                carry_solid = in_solid;
+                break;
+            case 2:
+                inner_touch = in_touch >> 1;
+                acc_touch = in_touch | (in_touch >> 2);
+                acc_solid = in_solid | (in_solid >> 1) | (in_solid >> 2);
+                carry_touch = in_touch;
+                carry_solid = in_solid;
+                break;
+            case 1:
+                inner_touch = 0;
+                acc_touch = in_touch | (in_touch >> 1);
+                acc_solid = in_solid | (in_solid >> 1);
+                carry_touch = in_touch;
+                carry_solid = in_solid;
+                break;
+            case 0:
+                inner_touch = 0;
+                acc_touch = in_touch;
+                acc_solid = in_solid;
+                carry_touch = 0;
+                carry_solid = 0;
+                break;
+            }
+
+            bits_left = FIELD_COLLISION_GROUP_WORD_BITS - reach;
+
+            if (footprint_depth != 1)
+            {
+                if (footprint_depth == 2)
+                {
+                    if (!(row & 1))
+                    {
+                        ring_write = (FieldCollisionDilationMasks*)FIELD_COLLISION_SCRATCH;
+                        ring_read = (FieldCollisionDilationMasks*)((u32*)FIELD_COLLISION_SCRATCH + ring_row_words);
+                    }
+                    else
+                    {
+                        ring_write = (FieldCollisionDilationMasks*)((u32*)FIELD_COLLISION_SCRATCH + ring_row_words);
+                        ring_read = (FieldCollisionDilationMasks*)FIELD_COLLISION_SCRATCH;
+                    }
+                }
+                else
+                {
+                    if (ring_write >= ring_end)
+                    {
+                        ring_write = (FieldCollisionDilationMasks*)((u32*)ring_write - ring_row_words * footprint_depth);
+                    }
+
+                    if (ring_read >= ring_end)
+                    {
+                        ring_read = (FieldCollisionDilationMasks*)((u32*)ring_read - ring_row_words * footprint_depth);
+                    }
+                }
+            }
+
+            while (remaining != 0)
+            {
+                if (bits_left < remaining)
+                {
+                    remaining -= bits_left;
+                }
+                else
+                {
+                    bits_left = remaining;
+                    remaining = 0;
+                }
+
+                acc_touch |= inner_touch;
+
+                switch (footprint_depth)
+                {
+                case 1:
+                    do
+                    {
+                        if (acc_touch & 1)
+                        {
+                            cell = FIELD_COLLISION_TILE_TOUCHED;
+
+                            if (acc_solid & 1)
+                            {
+                                cell = FIELD_COLLISION_TILE_BLOCKED;
+                            }
+                        }
+                        else
+                        {
+                            cell = FIELD_COLLISION_TILE_FREE;
+                        }
+
+                        *out = cell;
+                        out++;
+                        acc_touch >>= 1;
+                        bits_left--;
+                        acc_solid >>= 1;
+                    } while (bits_left != 0);
+
+                    break;
+                case 2:
+                    ring_write->solid_bits = acc_solid;
+                    ring_write->touch_bits = acc_touch;
+                    ring_write++;
+
+                    if (row != 0)
+                    {
+                        prev_touch = ring_read->touch_bits;
+                        prev_solid = ring_read->solid_bits;
+                        ring_read++;
+                        acc_touch |= prev_touch;
+                        acc_solid |= prev_solid;
+
+                        do
+                        {
+                            if (acc_touch & 1)
+                            {
+                                cell = FIELD_COLLISION_TILE_TOUCHED;
+
+                                if (acc_solid & 1)
+                                {
+                                    cell = FIELD_COLLISION_TILE_BLOCKED;
+                                }
+                            }
+                            else
+                            {
+                                cell = FIELD_COLLISION_TILE_FREE;
+                            }
+
+                            *out = cell;
+                            out++;
+                            acc_touch >>= 1;
+                            bits_left--;
+                            acc_solid >>= 1;
+                        } while (bits_left != 0);
+                    }
+
+                    break;
+                default:
+                    ring_write->solid_bits = acc_solid;
+                    ring_write->touch_bits = acc_touch;
+                    ring_write->interior_touch_bits = inner_touch;
+                    ring_write++;
+
+                    if (row >= (footprint_depth - 1))
+                    {
+                        ring_scan = (FieldCollisionDilationMasks*)((u32*)ring_read + ring_row_words);
+                        acc_touch |= ring_read->touch_bits;
+                        acc_solid |= ring_read->solid_bits;
+
+                        if (ring_scan >= ring_end)
+                        {
+                            ring_scan = (FieldCollisionDilationMasks*)((u32*)ring_scan - ring_row_words * footprint_depth);
+                        }
+
+                        count = footprint_depth - 2;
+
+                        do
+                        {
+                            entry_touch = ring_scan->touch_bits;
+                            entry_solid = ring_scan->solid_bits;
+                            entry_inner = ring_scan->interior_touch_bits;
+                            ring_scan = (FieldCollisionDilationMasks*)((u32*)ring_scan + ring_row_words);
+                            acc_solid |= entry_solid | entry_inner;
+                            acc_touch |= entry_touch;
+
+                            if (ring_scan >= ring_end)
+                            {
+                                ring_scan = (FieldCollisionDilationMasks*)((u32*)ring_scan - ring_row_words * footprint_depth);
+                            }
+
+                            count--;
+                        } while (count != 0);
+
+                        ring_read++;
+
+                        do
+                        {
+                            if (acc_touch & 1)
+                            {
+                                cell = FIELD_COLLISION_TILE_TOUCHED;
+
+                                if (acc_solid & 1)
+                                {
+                                    cell = FIELD_COLLISION_TILE_BLOCKED;
+                                }
+                            }
+                            else
+                            {
+                                cell = FIELD_COLLISION_TILE_FREE;
+                            }
+
+                            *out = cell;
+                            out++;
+                            acc_touch >>= 1;
+                            bits_left--;
+                            acc_solid >>= 1;
+                        } while (bits_left != 0);
+                    }
+
+                    break;
+                }
+
+                if (remaining != 0)
+                {
+                    in_solid = src_word[0];
+                    in_touch = src_word[1];
+                    src_word += 2;
+
+                    switch (footprint_width - 1)
+                    {
+                    default:
+                        acc_touch = carry_touch >> (FIELD_COLLISION_GROUP_WORD_BITS - reach);
+                        inner_touch =
+                            (carry_touch >> (FIELD_COLLISION_GROUP_WORD_BITS + 1 - reach)) | (carry_touch >> (FIELD_COLLISION_GROUP_WORD_BITS + 2 - reach));
+                        shift_touch = inner_touch;
+                        count = (footprint_width - 6) >> 1;
+
+                        do
+                        {
+                            shift_touch >>= 2;
+                            count--;
+                            inner_touch |= shift_touch;
+                        } while (count != -1);
+
+                        acc_solid = (carry_solid >> (FIELD_COLLISION_GROUP_WORD_BITS - reach)) | (carry_solid >> (FIELD_COLLISION_GROUP_WORD_BITS + 1 - reach));
+
+                        shift_solid = acc_solid;
+                        count = (reach - 4) >> 1;
+
+                        do
+                        {
+                            shift_solid >>= 2;
+                            count--;
+                            acc_solid |= shift_solid;
+                        } while (count != -1);
+
+                        if (footprint_width & 1)
+                        {
+                            inner_touch |= carry_touch >> 31;
+                        }
+                        else
+                        {
+                            acc_solid |= carry_solid >> 31;
+                        }
+
+                        if (in_touch != 0)
+                        {
+                            shift_touch = (in_touch * 2) | (in_touch * 4);
+                            inner_touch |= shift_touch;
+                            shift_solid = in_solid | (in_solid * 2);
+                            spread4 = shift_solid * 4;
+                            acc_solid |= shift_solid | spread4;
+                            shift_solid = spread4;
+                            count = (footprint_width - 6) >> 1;
+
+                            do
+                            {
+                                shift_touch *= 4;
+                                inner_touch |= shift_touch;
+                                shift_solid *= 4;
+                                count--;
+                                acc_solid |= shift_solid;
+                            } while (count != -1);
+
+                            if (footprint_width & 1)
+                            {
+                                inner_touch |= in_touch << (footprint_width - 2);
+                                acc_solid |= in_solid << reach;
+                            }
+
+                            acc_touch |= in_touch | (in_touch << reach);
+                            carry_touch = in_touch;
+                            carry_solid = in_solid;
+                        }
+                        else
+                        {
+                            carry_touch = 0;
+                            carry_solid = 0;
+                        }
+
+                        break;
+                    case 4:
+                        inner_touch = (carry_touch >> 29) | (carry_touch >> 30) | (carry_touch >> 31);
+                        acc_touch = carry_touch >> 28;
+                        shift_solid = (carry_solid >> 28) | (carry_solid >> 29);
+                        acc_solid = shift_solid | (shift_solid >> 2);
+
+                        if (in_touch != 0)
+                        {
+                            left_bits = (in_touch * 2) | (in_touch * 4) | (in_touch * 8);
+                            inner_touch |= left_bits;
+                            acc_touch |= in_touch | (in_touch * 0x10);
+                            shift_solid = in_solid | (in_solid * 2);
+                            spill_bits = shift_solid * 4;
+                            spread_solid = shift_solid | spill_bits;
+                            left_bits = in_solid * 0x10;
+                            spread_solid |= left_bits;
+                            acc_solid |= spread_solid;
+                            carry_touch = in_touch;
+                            carry_solid = in_solid;
+                        }
+                        else
+                        {
+                            carry_touch = 0;
+                            carry_solid = 0;
+                        }
+
+                        break;
+                    case 3:
+                        inner_touch = (carry_touch >> 30) | (carry_touch >> 31);
+                        acc_touch = carry_touch >> 29;
+                        left_bits = (carry_solid >> 29) | (carry_solid >> 30);
+                        carry_solid = carry_solid >> 31;
+                        acc_solid = left_bits | (carry_solid & 1);
+
+                        if (in_touch != 0)
+                        {
+                            left_bits = (in_touch * 2) | (in_touch * 4);
+                            inner_touch |= left_bits;
+                            acc_touch |= in_touch | (in_touch * 8);
+                            shift_solid = in_solid | (in_solid * 2);
+                            spread_solid = shift_solid | (shift_solid * 4);
+                            acc_solid |= spread_solid;
+                            carry_touch = in_touch;
+                            carry_solid = in_solid;
+                        }
+                        else
+                        {
+                            carry_touch = 0;
+                            carry_solid = 0;
+                        }
+
+                        break;
+                    case 2:
+                        inner_touch = carry_touch >> 31;
+                        acc_touch = carry_touch >> 30;
+                        acc_solid = (carry_solid >> 30) | (carry_solid >> 31);
+
+                        if (in_touch != 0)
+                        {
+                            inner_touch |= in_touch * 2;
+                            acc_touch |= in_touch | (in_touch * 4);
+                            spill_bits = in_solid * 2;
+                            spread_solid = in_solid | spill_bits;
+                            left_bits = in_solid * 4;
+                            spread_solid |= left_bits;
+                            acc_solid |= spread_solid;
+                            carry_touch = in_touch;
+                            carry_solid = in_solid;
+                        }
+                        else
+                        {
+                            carry_touch = 0;
+                            carry_solid = 0;
+                        }
+
+                        break;
+                    case 1:
+                        acc_touch = carry_touch >> 31;
+                        acc_solid = carry_solid >> 31;
+
+                        if (in_touch != 0)
+                        {
+                            acc_touch |= in_touch | (in_touch * 2);
+                            spread_solid = in_solid | (in_solid * 2);
+                            acc_solid |= spread_solid;
+                            carry_touch = in_touch;
+                            carry_solid = in_solid;
+                        }
+                        else
+                        {
+                            carry_touch = 0;
+                            carry_solid = 0;
+                        }
+
+                        break;
+                    case 0:
+                        acc_solid = in_solid;
+                        acc_touch = in_touch;
+                        break;
+                    }
+
+                    bits_left = FIELD_COLLISION_GROUP_WORD_BITS;
+                }
+            }
+
+            if (row >= (footprint_depth - 1))
+            {
+                for (remaining = footprint_width; remaining != -1; remaining--)
+                {
+                    *out = FIELD_COLLISION_TILE_BLOCKED;
+                    out++;
+                }
+            }
+        }
+
+        remaining = scene->tile_cols * (footprint_depth + 1);
+        FIELD_COLLISION_FILL_BLOCKED(out, count, remaining);
+    }
+}
+
+/**
+ * @brief Mark the tiles under a query footprint, plus margins, in its floor group's tile map.
+ * @param margins Query whose width and depth give the extra margin in tiles.
+ * @param query Query position and footprint.
+ * @return 0, -1 when the group maps were not built, or -2 when the footprint is off the map.
+ * @note A footprint starting above the map is not clipped by row; its column run is extended to column 1 instead.
+ */
+static s32 field_collision_mark_footprint(FieldCollisionQuery* margins, FieldCollisionQuery* query)
+{
+    FieldScene* scene;
+    u8 count;
+    s32 group;
+    s32 i;
+    s32 cell;
+    s32 floor_cell;
+    s32 half;
+    s32 margin;
+    s32 tile;
+    s32 col_shift;
+    s32 row_shift;
+    s32 col_mask;
+    s32 row_mask;
+    s32 left;
+    s32 top;
+    s32 col_start;
+    s32 row_start;
+    s32 ncol;
+    s32 nrow;
+    s32 size;
+    s32 rows;
+    s32 col;
+    s32 n;
+    s32 clipped;
+    u8* row_base;
+    u8* p;
+
+    scene = g_field_scene.scene;
+
+    if (scene->group_work == NULL)
+    {
+        if (scene->group_count == 0)
+        {
+            return 0;
+        }
+
+        return -1;
+    }
+
+    floor_cell = FIELD_COLLISION_CELL(query->y);
+
+    count = scene->group_count;
+    group = count - 1;
+
+    for (i = 0; i != count; i++)
+    {
+        s32 group_floor = scene->group_ids[i];
+
+        if (floor_cell < group_floor)
+        {
+            if (i != 0)
+            {
+                i--;
+            }
+
+            group = i;
+            break;
+        }
+        else if (group_floor == floor_cell)
+        {
+            group = i;
+            break;
+        }
+    }
+
+    tile = scene->tile_size;
+    col_shift = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT;
+
+    if (tile == FIELD_COLLISION_GROUP_FINE_TILE_SIZE)
+    {
+        col_shift = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT;
+    }
+
+    half = ((s16)query->width) >> 1;
+    margin = (s16)margins->width - 1;
+
+    left = (FIELD_COLLISION_CELL(query->x) - half) - margin;
+
+    half = ((s16)query->depth) >> 1;
+    margin = (s16)margins->depth - 1;
+
+    cell = FIELD_COLLISION_CELL(query->z);
+
+    top = (cell - half) - margin;
+
+    col_start = (left >> col_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+    row_shift = col_shift + 1;
+    row_start = (top >> row_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+    col_mask = tile - 1;
+    size = margins->width;
+    ncol = (((left & col_mask) + (s16)size + ((s16)query->width) + col_mask) - 1) >> col_shift;
+    row_mask = (tile * 2) - 1;
+    size = margins->depth;
+    nrow = (((top & row_mask) + (s16)size + ((s16)query->depth) + row_mask) - 1) >> row_shift;
+
+    size = scene->tile_cols;
+    rows = scene->tile_rows;
+
+    if (col_start <= 0)
+    {
+        clipped = ncol + (col_start - 1);
+
+        if (clipped <= 0)
+        {
+            return -2;
+        }
+
+        ncol = clipped;
+        col_start = 1;
+    }
+
+    if (row_start <= 0)
+    {
+        if ((nrow + (row_start - 1)) <= 0)
+        {
+            return -2;
+        }
+
+        ncol += col_start - 1;
+        col_start = 1;
+    }
+
+    if ((col_start >= size - 1) || (row_start >= rows - 1))
+    {
+        return -2;
+    }
+
+    top = scene->group_tile_count * group;
+    row_base = scene->group_tiles + top + (size * row_start) + col_start;
+
+    for (nrow--; nrow != -1; nrow--)
+    {
+        p = row_base;
+
+        if (row_start >= rows - 1)
+        {
+            break;
+        }
+
+        col = col_start;
+
+        for (n = ncol - 1; n != -1; n--)
+        {
+            if (col >= size - 1)
+            {
+                break;
+            }
+
+            if (*p != FIELD_COLLISION_TILE_BLOCKED)
+            {
+                *p = FIELD_COLLISION_TILE_MARKED;
+            }
+
+            p++;
+            col++;
+        }
+
+        row_start++;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Find a footprint route, remove unnecessary turns and smooth the first bend.
+ * @param start_query Starting position and footprint used throughout the search.
+ * @param goal_query Destination position; only x, y and z are used.
+ * @param output_path Receives up to FIELD_COLLISION_PATH_OUT_MAX points, start first.
+ * @param mode Collision trace mode used to test the direct route.
+ * @return Point count, or a FIELD_COLLISION_PATH_ERROR_* code when the search fails.
+ */
+s32 field_collision_find_path(FieldCollisionQuery* start_query, FieldCollisionQuery* goal_query, FieldPathPoint* output_path, s32 mode)
+{
+    FieldCollisionPathEntry* route_tiles;
+    s32 bend_x;
+    s32 raw_depth;
+    FieldCollisionPathWork work;
+    u32 queue_counts[4];
+    FieldCollisionTraceRequest trace;
+    s32 start_group;
+    s32 goal_group;
+    s32 col_shift;
+    s32 start_col;
+    s32 start_row;
+    s32 goal_col;
+    s32 goal_row;
+    s32 start_x;
+    s32 start_z;
+    s32 goal_x;
+    s32 goal_z;
+    u8 try_quarter;
+    s32 quarter_x;
+    u32 restored_x_offset;
+    FieldScene* scene;
+    u8 goal_stamp;
+    s32 row_shift;
+    u32 columns;
+    s32 rows;
+    s32 goal_height;
+    u8 goal_groups;
+    s16 goal_group_id;
+    u8* near_tile;
+    s32 start_height;
+    u8 start_groups;
+    s16 start_group_id;
+    u8* tile;
+    s32 wave_queue;
+    u32 entry_count;
+    FieldCollisionPathEntry goal_value;
+    u8 stamp;
+    s32 result;
+    u32 deferred_count;
+    FieldCollisionPathEntry* cursor;
+    s32 next_queue;
+    FieldCollisionPathCursor deferred;
+    FieldCollisionPathCursor next;
+    FieldCollisionPathWord packed_tile;
+    u32 tile_size;
+    u32 directions;
+    s32 used_directions;
+    u32 up_raw;
+    u32 up_stamp;
+    u32 down_raw;
+    u32 down_stamp;
+    u32 left_raw;
+    u32 left_stamp;
+    u32 right_raw;
+    u32 right_stamp;
+    u8* ul_row;
+    u32 ul_raw;
+    u32 side_val;
+    u8 can_connect;
+    FieldCollisionPathWord upper_left_entry;
+    u8* ur_row;
+    u32 ur_raw;
+    FieldCollisionPathWord upper_right_entry;
+    u8* dl_row;
+    u32 dl_raw;
+    FieldCollisionPathWord lower_left_entry;
+    u8* dr_row;
+    u32 dr_raw;
+    FieldCollisionPathWord lower_right_entry;
+    s32 deferred_queue;
+    s32 skip_count;
+    FieldCollisionPathWord pending_tile;
+    u32 plane_size;
+    u8* tile_map;
+    u32 route_offset;
+    FieldCollisionPathStep direction;
+    FieldCollisionPathStep previous_direction;
+    u8 current_stamp;
+    u32 neighbor_stamp;
+    u32 walk_left;
+    u32 walk_right;
+    u8* up_tile;
+    u32 walk_up;
+    u8* down_tile;
+    u32 walk_down;
+    u32 walk_ul;
+    u32 walk_ur;
+    u32 walk_dl;
+    u32 walk_dr;
+    u32 plane_len;
+    u32 cell_offset;
+    FieldCollisionPathEntry* kept_point;
+    FieldCollisionPathEntry* final_point;
+    s32 mid_x;
+    s32 mid_z;
+    s32 mid2_x;
+    s32 mid2_z;
+    s32 back_mid_x;
+    s32 back_mid_z;
+    s32 back_mid2_x;
+    s32 back_mid2_z;
+    s32 point_x;
+    s32 point_z;
+    s32 remaining;
+
+    scene = g_field_scene.scene;
+
+    if (scene->group_work == NULL)
+    {
+        if (scene->group_count != 0)
+        {
+            return FIELD_COLLISION_PATH_ERROR_GROUPS;
+        }
+    }
+    else
+    {
+        col_shift = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT;
+        tile_size = scene->tile_size;
+
+        if (tile_size == FIELD_COLLISION_GROUP_FINE_TILE_SIZE)
+        {
+            col_shift = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT;
+        }
+
+        goal_x = FIELD_COLLISION_CELL(goal_query->x) - ((s16)start_query->width >> 1);
+        goal_z = FIELD_COLLISION_CELL(goal_query->z) - ((s16)start_query->depth >> 1);
+        start_x = FIELD_COLLISION_CELL(start_query->x) - ((s16)start_query->width >> 1);
+        start_z = FIELD_COLLISION_CELL(start_query->z) - ((s16)start_query->depth >> 1);
+
+        row_shift = col_shift + 1;
+        goal_col = (goal_x >> col_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+        goal_row = (goal_z >> row_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+        start_col = (start_x >> col_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+        start_row = (start_z >> row_shift) + FIELD_COLLISION_PATH_TILE_MARGIN;
+        columns = scene->tile_cols;
+        rows = scene->tile_rows;
+
+        if ((start_col <= 0) || (start_row <= 0) || (goal_col <= 0) || (goal_row <= 0) || (start_col >= (s32)columns - 1) || (start_row >= rows - 1) ||
+            (goal_col >= (s32)columns - 1) || (goal_row >= rows - 1))
+        {
+            return FIELD_COLLISION_PATH_ERROR_BOUNDS;
+        }
+
+        goal_height = FIELD_COLLISION_CELL(goal_query->y);
+        goal_groups = scene->group_count;
+        goal_group = goal_groups - 1;
+
+        for (remaining = 0; remaining != goal_groups; remaining++)
+        {
+            goal_group_id = scene->group_ids[remaining];
+
+            if (goal_height < goal_group_id)
+            {
+                if (remaining != 0)
+                {
+                    remaining--;
+                }
+
+                goal_group = remaining;
+                break;
+            }
+
+            if (goal_group_id == goal_height)
+            {
+                goal_group = remaining;
+                break;
+            }
+        }
+
+        near_tile = scene->group_tiles + (scene->group_tile_count * goal_group) + (columns * goal_row) + goal_col;
+        *near_tile = FIELD_COLLISION_TILE_GOAL;
+        start_height = FIELD_COLLISION_CELL(start_query->y);
+        start_groups = scene->group_count;
+        start_group = start_groups - 1;
+
+        for (remaining = 0; remaining != start_groups; remaining++)
+        {
+            start_group_id = scene->group_ids[remaining];
+
+            if (start_height < start_group_id)
+            {
+                if (remaining != 0)
+                {
+                    remaining--;
+                }
+
+                start_group = remaining;
+                break;
+            }
+
+            if (start_group_id == start_height)
+            {
+                start_group = remaining;
+                break;
+            }
+        }
+
+        tile = scene->group_tiles + (scene->group_tile_count * start_group) + (columns * start_row) + start_col;
+
+        if (*tile != FIELD_COLLISION_TILE_GOAL)
+        {
+            *tile = FIELD_COLLISION_TILE_START;
+
+            trace.start_x = goal_x;
+            trace.start_z = goal_z;
+            trace.end_x = start_x;
+            work.queues[0][0].queued_tile = (uintptr_t)tile | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIRS_ALL);
+            trace.tile_base = near_tile;
+            trace.end_z = start_z;
+            trace.footprint_width = (s16)start_query->width;
+            trace.footprint_depth = (s16)start_query->depth;
+            trace.tile_size = (s32)tile_size;
+            trace.col_shift = col_shift;
+            trace.stamp = FIELD_COLLISION_TILE_GOAL;
+            trace.mode = mode;
+
+            if (field_collision_trace_line(&trace) == 0)
+            {
+                wave_queue = 0;
+                goal_stamp = FIELD_COLLISION_TILE_GOAL;
+                entry_count = queue_counts[0] = 1;
+                goal_value.tile = NULL;
+
+                stamp = FIELD_COLLISION_TILE_STAMP_FIRST;
+                queue_counts[3] = 0;
+                queue_counts[2] = 0;
+                queue_counts[1] = 0;
+
+                while (1)
+                {
+                    remaining = entry_count;
+
+                    if ((remaining == 0) && (queue_counts[0] == 0) && (queue_counts[1] == 0) && (queue_counts[2] == 0) && (queue_counts[3] == 0))
+                    {
+                        return FIELD_COLLISION_PATH_ERROR_NO_ROUTE;
+                    }
+                    cursor = (entry_count != 0) ? &work.queues[wave_queue][entry_count - 1] : work.queues[wave_queue];
+                    deferred_count = 0;
+                    remaining--;
+
+                    next_queue = (wave_queue + 1) & 3;
+                    entry_count = queue_counts[next_queue];
+                    deferred.entry = work.queues[(wave_queue + 3) & 3];
+                    next.entry = &work.queues[next_queue][entry_count];
+
+                    for (; remaining != -1; remaining--)
+                    {
+                        if ((entry_count >= FIELD_COLLISION_PATH_PUSH_LIMIT) || (deferred_count >= FIELD_COLLISION_PATH_PUSH_LIMIT))
+                        {
+                            return FIELD_COLLISION_PATH_ERROR_OVERFLOW;
+                        }
+
+                        packed_tile = (cursor--)->queued_tile;
+                        tile = (u8*)(uintptr_t)(packed_tile & FIELD_COLLISION_PATH_TILE_MASK);
+                        directions = packed_tile >> FIELD_COLLISION_PATH_DIR_SHIFT;
+                        used_directions = 0;
+
+                        if ((directions & (FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW)) ==
+                            (FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW))
+                        {
+                            deferred_count += remaining + 1;
+                            packed_tile = ~FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED);
+
+                            do
+                            {
+                                deferred.entry->queued_tile = cursor[1].queued_tile & packed_tile;
+                                cursor--;
+                                remaining--;
+                                deferred.entry++;
+                            } while (remaining != -1);
+
+                            break;
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_UP)
+                        {
+                            near_tile = tile - columns;
+                            up_raw = *near_tile;
+                            up_stamp = up_raw & 0xFF;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(up_stamp, stamp, directions))
+                            {
+                                if (up_stamp != FIELD_COLLISION_TILE_TOUCHED)
+                                {
+                                    next.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIRS_TOP | FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_RIGHT);
+                                    next.entry++;
+                                    entry_count++;
+                                    used_directions = FIELD_COLLISION_DIR_UP;
+                                    *near_tile = stamp;
+                                }
+                                else
+                                {
+                                    deferred.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW | FIELD_COLLISION_DIRS_TOP |
+                                                                  FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_RIGHT);
+                                    deferred.entry++;
+                                    deferred_count++;
+                                    used_directions = FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_TOUCHED(FIELD_COLLISION_DIR_UP);
+                                    *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                }
+                            }
+                            else if (up_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions = FIELD_COLLISION_DIR_UP;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_DOWN)
+                        {
+                            near_tile = tile + columns;
+                            down_raw = *near_tile;
+                            down_stamp = down_raw & 0xFF;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(down_stamp, stamp, directions))
+                            {
+                                if (down_stamp != FIELD_COLLISION_TILE_TOUCHED)
+                                {
+                                    next.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIRS_BOTTOM | FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_RIGHT);
+                                    next.entry++;
+                                    entry_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_DOWN;
+                                    *near_tile = stamp;
+                                }
+                                else
+                                {
+                                    deferred.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW | FIELD_COLLISION_DIRS_BOTTOM |
+                                                                  FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_RIGHT);
+                                    deferred.entry++;
+                                    deferred_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_DOWN | FIELD_COLLISION_DIR_TOUCHED(FIELD_COLLISION_DIR_DOWN);
+                                    *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                }
+                            }
+                            else if (down_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_DOWN;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_LEFT)
+                        {
+                            left_raw = tile[-1];
+                            left_stamp = left_raw & 0xFF;
+                            near_tile = tile - 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(left_stamp, stamp, directions))
+                            {
+                                if (left_stamp != FIELD_COLLISION_TILE_TOUCHED)
+                                {
+                                    next.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIRS_LEFT | FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_DOWN);
+                                    next.entry++;
+                                    entry_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_LEFT;
+                                    tile[-1] = stamp;
+                                }
+                                else
+                                {
+                                    deferred.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW | FIELD_COLLISION_DIRS_LEFT |
+                                                                  FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_DOWN);
+                                    deferred.entry++;
+                                    deferred_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_TOUCHED(FIELD_COLLISION_DIR_LEFT);
+                                    tile[-1] = FIELD_COLLISION_TILE_DEFERRED;
+                                }
+                            }
+                            else if (left_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_LEFT;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_RIGHT)
+                        {
+                            right_raw = tile[1];
+                            right_stamp = right_raw & 0xFF;
+                            near_tile = tile + 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(right_stamp, stamp, directions))
+                            {
+                                if (right_stamp != FIELD_COLLISION_TILE_TOUCHED)
+                                {
+                                    next.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIRS_RIGHT | FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_DOWN);
+                                    next.entry++;
+                                    entry_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_RIGHT;
+                                    tile[1] = stamp;
+                                }
+                                else
+                                {
+                                    deferred.entry->queued_tile =
+                                        (uintptr_t)near_tile |
+                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW | FIELD_COLLISION_DIRS_RIGHT |
+                                                                  FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_DOWN);
+                                    deferred.entry++;
+                                    deferred_count++;
+                                    used_directions |= FIELD_COLLISION_DIR_RIGHT | FIELD_COLLISION_DIR_TOUCHED(FIELD_COLLISION_DIR_RIGHT);
+                                    tile[1] = FIELD_COLLISION_TILE_DEFERRED;
+                                }
+                            }
+                            else if (right_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_RIGHT;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_UL)
+                        {
+                            ul_row = tile - columns;
+                            ul_raw = ul_row[-1];
+                            near_tile = ul_row - 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(ul_raw & 0xFF, stamp, directions))
+                            {
+                                FIELD_COLLISION_CORNER_TEST(can_connect, side_val, near_tile[1], tile[-1]);
+
+                                if (can_connect != 0)
+                                {
+                                    upper_left_entry = (uintptr_t)near_tile |
+                                                       FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UL | FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_LEFT);
+
+                                    if (!(used_directions & FIELD_COLLISION_DIR_UP))
+                                    {
+                                        upper_left_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_UR);
+                                    }
+
+                                    if ((used_directions & FIELD_COLLISION_DIR_LEFT) == 0)
+                                    {
+                                        upper_left_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_DL);
+                                    }
+
+                                    used_directions |= FIELD_COLLISION_DIR_UL;
+
+                                    if (ul_raw != FIELD_COLLISION_TILE_TOUCHED)
+                                    {
+                                        next.entry->queued_tile = upper_left_entry;
+                                        next.entry++;
+                                        entry_count++;
+                                        *near_tile = stamp;
+                                    }
+                                    else
+                                    {
+                                        deferred.entry->queued_tile =
+                                            upper_left_entry | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW);
+                                        deferred.entry++;
+                                        deferred_count++;
+                                        *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                    }
+                                }
+                            }
+                            else if (ul_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_UL;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_UR)
+                        {
+                            ur_row = tile - columns;
+                            ur_raw = ur_row[1];
+                            near_tile = ur_row + 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(ur_raw & 0xFF, stamp, directions))
+                            {
+                                FIELD_COLLISION_CORNER_TEST(can_connect, side_val, near_tile[-1], tile[1]);
+
+                                if (can_connect != 0)
+                                {
+                                    upper_right_entry = (uintptr_t)near_tile |
+                                                        FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_UR | FIELD_COLLISION_DIR_RIGHT);
+
+                                    if (!(used_directions & FIELD_COLLISION_DIR_UP))
+                                    {
+                                        upper_right_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UL | FIELD_COLLISION_DIR_UP);
+                                    }
+
+                                    if ((used_directions & FIELD_COLLISION_DIR_RIGHT) == 0)
+                                    {
+                                        upper_right_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_RIGHT | FIELD_COLLISION_DIR_DR);
+                                    }
+
+                                    used_directions |= FIELD_COLLISION_DIR_UR;
+
+                                    if (ur_raw != FIELD_COLLISION_TILE_TOUCHED)
+                                    {
+                                        next.entry->queued_tile = upper_right_entry;
+                                        next.entry++;
+                                        entry_count++;
+                                        *near_tile = stamp;
+                                    }
+                                    else
+                                    {
+                                        deferred.entry->queued_tile =
+                                            upper_right_entry | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW);
+                                        deferred.entry++;
+                                        deferred_count++;
+                                        *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                    }
+                                }
+                            }
+                            else if (ur_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_UR;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_DL)
+                        {
+                            dl_row = tile + columns;
+                            dl_raw = dl_row[-1];
+                            near_tile = dl_row - 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(dl_raw & 0xFF, stamp, directions))
+                            {
+                                FIELD_COLLISION_CORNER_TEST(can_connect, side_val, near_tile[1], tile[-1]);
+
+                                if (can_connect != 0)
+                                {
+                                    lower_left_entry = (uintptr_t)near_tile |
+                                                       FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_LEFT | FIELD_COLLISION_DIR_DL | FIELD_COLLISION_DIR_DOWN);
+
+                                    if (!(used_directions & FIELD_COLLISION_DIR_DOWN))
+                                    {
+                                        lower_left_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DOWN | FIELD_COLLISION_DIR_DR);
+                                    }
+
+                                    if ((used_directions & FIELD_COLLISION_DIR_LEFT) == 0)
+                                    {
+                                        lower_left_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UL | FIELD_COLLISION_DIR_LEFT);
+                                    }
+
+                                    used_directions |= FIELD_COLLISION_DIR_DL;
+
+                                    if (dl_raw != FIELD_COLLISION_TILE_TOUCHED)
+                                    {
+                                        next.entry->queued_tile = lower_left_entry;
+                                        next.entry++;
+                                        entry_count++;
+                                        *near_tile = stamp;
+                                    }
+                                    else
+                                    {
+                                        deferred.entry->queued_tile =
+                                            lower_left_entry | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW);
+                                        deferred.entry++;
+                                        deferred_count++;
+                                        *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                    }
+                                }
+                            }
+                            else if (dl_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_DL;
+                                }
+                            }
+                        }
+
+                        if (directions & FIELD_COLLISION_DIR_DR)
+                        {
+                            dr_row = tile + columns;
+                            dr_raw = dr_row[1];
+                            near_tile = dr_row + 1;
+
+                            if (FIELD_COLLISION_PATH_CAN_ENTER(dr_raw & 0xFF, stamp, directions))
+                            {
+                                FIELD_COLLISION_CORNER_TEST(can_connect, side_val, near_tile[-1], tile[1]);
+
+                                if (can_connect != 0)
+                                {
+                                    lower_right_entry = (uintptr_t)near_tile | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_RIGHT | FIELD_COLLISION_DIR_DOWN |
+                                                                                                         FIELD_COLLISION_DIR_DR);
+
+                                    if (!(used_directions & FIELD_COLLISION_DIR_DOWN))
+                                    {
+                                        lower_right_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DL | FIELD_COLLISION_DIR_DOWN);
+                                    }
+
+                                    if ((used_directions & FIELD_COLLISION_DIR_RIGHT) == 0)
+                                    {
+                                        lower_right_entry |= FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_UR | FIELD_COLLISION_DIR_RIGHT);
+                                    }
+
+                                    used_directions |= FIELD_COLLISION_DIR_DR;
+
+                                    if (dr_raw != FIELD_COLLISION_TILE_TOUCHED)
+                                    {
+                                        next.entry->queued_tile = lower_right_entry;
+                                        next.entry++;
+                                        entry_count++;
+                                        *near_tile = stamp;
+                                    }
+                                    else
+                                    {
+                                        deferred.entry->queued_tile =
+                                            lower_right_entry | FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_DEFERRED | FIELD_COLLISION_DIR_SLOW);
+                                        deferred.entry++;
+                                        deferred_count++;
+                                        *near_tile = FIELD_COLLISION_TILE_DEFERRED;
+                                    }
+                                }
+                            }
+                            else if (dr_raw == goal_stamp)
+                            {
+                                goal_value.tile = near_tile;
+
+                                if (directions & FIELD_COLLISION_DIR_SLOW)
+                                {
+                                    used_directions |= FIELD_COLLISION_DIR_DR;
+                                }
+                            }
+                        }
+
+                        if ((directions & FIELD_COLLISION_DIR_SLOW) && (used_directions != 0))
+                        {
+                            tile[0] = stamp + 1;
+                        }
+                    }
+
+                    stamp--;
+
+                    if ((stamp < FIELD_COLLISION_TILE_STAMP_MIN) && (goal_value.tile == NULL))
+                    {
+                        return FIELD_COLLISION_PATH_ERROR_NO_ROUTE;
+                    }
+
+                    queue_counts[wave_queue] = 0;
+                    result = (wave_queue + 1) & 3;
+                    deferred_queue = wave_queue + 3;
+                    wave_queue = result;
+                    queue_counts[result] = entry_count;
+                    queue_counts[deferred_queue & 3] = deferred_count;
+
+                    if (goal_value.tile != NULL)
+                    {
+                        break;
+                    }
+                }
+
+                for (skip_count = 2; skip_count != -1; skip_count--)
+                {
+                    cursor = (entry_count != 0) ? &work.queues[wave_queue][entry_count - 1] : work.queues[wave_queue];
+                    remaining = entry_count - 1;
+
+                    for (; remaining != -1; remaining--)
+                    {
+                        pending_tile = cursor->queued_tile;
+                        cursor--;
+
+                        if (pending_tile & FIELD_COLLISION_PATH_DIRS(FIELD_COLLISION_DIR_SLOW))
+                        {
+                            tile = (u8*)(uintptr_t)(pending_tile & FIELD_COLLISION_PATH_TILE_MASK);
+                            *tile = FIELD_COLLISION_TILE_DEFERRED;
+                        }
+                    }
+
+                    wave_queue = (wave_queue + 1) & 3;
+                    entry_count = queue_counts[wave_queue];
+                }
+
+                route_tiles = &work.route.columns.tiles[0];
+                plane_size = scene->group_tile_count;
+                tile_map = scene->group_tiles;
+                tile = tile_map + (plane_size * goal_group) + (columns * goal_row) + goal_col;
+                cursor = route_tiles;
+
+                if (tile != goal_value.tile)
+                {
+                    route_offset = goal_value.tile - tile_map;
+
+                    while (route_offset >= plane_size)
+                    {
+                        route_offset -= plane_size;
+                    }
+
+                    trace.start_x = goal_x;
+                    trace.tile_base = tile;
+                    trace.stamp = FIELD_COLLISION_TILE_STAMP_MIN;
+                    trace.start_z = goal_z;
+                    trace.end_x = ((route_offset % columns) - FIELD_COLLISION_PATH_TILE_MARGIN) << col_shift;
+                    trace.end_z = ((route_offset / columns) - FIELD_COLLISION_PATH_TILE_MARGIN) << (col_shift + 1);
+
+                    if (field_collision_trace_line(&trace) != 0)
+                    {
+                        entry_count = 1;
+                        cursor->tile = tile;
+                        cursor++;
+                        *tile = FIELD_COLLISION_TILE_GOAL;
+                        tile = goal_value.tile;
+                    }
+                    else
+                    {
+                        trace.goal_tile = goal_value.tile;
+                        trace.stamp = FIELD_COLLISION_TILE_STAMP_MIN;
+                        trace.mode = FIELD_COLLISION_TRACE_STOP_AT_GOAL;
+                        trace.end_x = start_x;
+                        trace.end_z = start_z;
+
+                        if (field_collision_trace_line(&trace) != 0)
+                        {
+                            entry_count = 1;
+                            cursor->tile = tile;
+                            cursor++;
+                            *tile = FIELD_COLLISION_TILE_GOAL;
+                            tile = goal_value.tile;
+                        }
+                        else
+                        {
+                            entry_count = 0;
+                            *tile = FIELD_COLLISION_TILE_GOAL;
+                        }
+
+                        trace.mode = mode;
+                    }
+
+                    can_connect = 1;
+                }
+                else
+                {
+                    entry_count = 0;
+                    can_connect = 0;
+                }
+
+                direction = FIELD_COLLISION_PATH_STEP_NONE;
+                previous_direction = FIELD_COLLISION_PATH_STEP_NONE;
+                current_stamp = 0;
+
+                while (current_stamp != FIELD_COLLISION_TILE_START)
+                {
+                    stamp = 0;
+                    neighbor_stamp = tile[-1];
+                    used_directions = 0;
+
+                    if (field_collision_tile_is_step(neighbor_stamp) && (walk_left = neighbor_stamp & 0xFF, current_stamp < walk_left) && (stamp < walk_left))
+                    {
+                        near_tile = tile - 1;
+                        direction = FIELD_COLLISION_PATH_STEP_LEFT;
+                        stamp = neighbor_stamp;
+                    }
+                    else
+                    {
+                        used_directions |= FIELD_COLLISION_DIR_LEFT;
+                    }
+
+                    neighbor_stamp = tile[1];
+                    walk_right = neighbor_stamp & 0xFF;
+
+                    if (field_collision_tile_is_step(neighbor_stamp) && (current_stamp < walk_right) && (stamp < walk_right))
+                    {
+                        near_tile = tile + 1;
+                        direction = FIELD_COLLISION_PATH_STEP_RIGHT;
+                        stamp = neighbor_stamp;
+                    }
+                    else
+                    {
+                        used_directions |= FIELD_COLLISION_DIR_RIGHT;
+                    }
+
+                    up_tile = tile - columns;
+                    neighbor_stamp = *up_tile;
+                    walk_up = neighbor_stamp & 0xFF;
+
+                    if (field_collision_tile_is_step(neighbor_stamp) && (current_stamp < walk_up) && (stamp < walk_up))
+                    {
+                        near_tile = up_tile;
+                        direction = FIELD_COLLISION_PATH_STEP_UP;
+                        stamp = neighbor_stamp;
+                    }
+                    else
+                    {
+                        used_directions |= FIELD_COLLISION_DIR_UP;
+                    }
+
+                    down_tile = tile + columns;
+                    neighbor_stamp = *down_tile;
+                    walk_down = neighbor_stamp & 0xFF;
+
+                    if (field_collision_tile_is_step(neighbor_stamp) && (current_stamp < walk_down) && (stamp < walk_down))
+                    {
+                        near_tile = down_tile;
+                        direction = FIELD_COLLISION_PATH_STEP_DOWN;
+                        stamp = neighbor_stamp;
+                    }
+                    else
+                    {
+                        used_directions |= FIELD_COLLISION_DIR_DOWN;
+                    }
+
+                    neighbor_stamp = (tile - columns)[-1];
+
+                    if (!(used_directions & (FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_LEFT)) || (stamp == 0))
+                    {
+                        walk_ul = neighbor_stamp & 0xFF;
+
+                        if (walk_ul < FIELD_COLLISION_TILE_GOAL)
+                        {
+                            if ((walk_ul >= FIELD_COLLISION_TILE_STAMP_MIN) && (current_stamp < walk_ul) && (stamp < walk_ul))
+                            {
+                                near_tile = (tile - columns) - 1;
+                                direction = FIELD_COLLISION_PATH_STEP_UL;
+                                stamp = neighbor_stamp;
+                            }
+                        }
+                    }
+
+                    neighbor_stamp = (tile - columns)[1];
+
+                    if (!(used_directions & (FIELD_COLLISION_DIR_UP | FIELD_COLLISION_DIR_RIGHT)) || (stamp == 0))
+                    {
+                        walk_ur = neighbor_stamp & 0xFF;
+
+                        if (walk_ur < FIELD_COLLISION_TILE_GOAL)
+                        {
+                            if ((walk_ur >= FIELD_COLLISION_TILE_STAMP_MIN) && (current_stamp < walk_ur) && (stamp < walk_ur))
+                            {
+                                near_tile = (tile - columns) + 1;
+                                direction = FIELD_COLLISION_PATH_STEP_UR;
+                                stamp = neighbor_stamp;
+                            }
+                        }
+                    }
+
+                    neighbor_stamp = (tile + columns)[-1];
+
+                    if (!(used_directions & (FIELD_COLLISION_DIR_DOWN | FIELD_COLLISION_DIR_LEFT)) || (stamp == 0))
+                    {
+                        walk_dl = neighbor_stamp & 0xFF;
+
+                        if (walk_dl < FIELD_COLLISION_TILE_GOAL)
+                        {
+                            if ((walk_dl >= FIELD_COLLISION_TILE_STAMP_MIN) && (current_stamp < walk_dl) && (stamp < walk_dl))
+                            {
+                                near_tile = (tile + columns) - 1;
+                                direction = FIELD_COLLISION_PATH_STEP_DL;
+                                stamp = neighbor_stamp;
+                            }
+                        }
+                    }
+
+                    neighbor_stamp = (tile + columns)[1];
+
+                    if (!(used_directions & (FIELD_COLLISION_DIR_DOWN | FIELD_COLLISION_DIR_RIGHT)) || (stamp == 0))
+                    {
+                        walk_dr = neighbor_stamp & 0xFF;
+
+                        if (walk_dr < FIELD_COLLISION_TILE_GOAL)
+                        {
+                            if ((walk_dr >= FIELD_COLLISION_TILE_STAMP_MIN) && (current_stamp < walk_dr) && (stamp < walk_dr))
+                            {
+                                near_tile = (tile + columns) + 1;
+                                direction = FIELD_COLLISION_PATH_STEP_DR;
+                                stamp = neighbor_stamp;
+                            }
+                        }
+
+                        result = FIELD_COLLISION_PATH_ERROR_DEAD_END;
+
+                        if (stamp == 0)
+                        {
+                            return result;
+                        }
+                    }
+
+                    if (direction != previous_direction)
+                    {
+                        previous_direction = direction;
+                        cursor->tile = tile;
+                        entry_count++;
+                        cursor++;
+
+                        if (entry_count >= FIELD_COLLISION_PATH_BUCKET_LEN)
+                        {
+                            return FIELD_COLLISION_PATH_ERROR_OVERFLOW;
+                        }
+
+                        current_stamp = stamp;
+                    }
+                    else
+                    {
+                        current_stamp = stamp;
+                    }
+
+                    tile = near_tile;
+                }
+
+                remaining = entry_count;
+                next.entry = &work.route.columns.x[1];
+                deferred.entry = &work.route.columns.z[1];
+                skip_count = remaining - 2;
+                tile = scene->group_tiles + (scene->group_tile_count * start_group) + (columns * start_row) + start_col;
+                cursor->tile = tile;
+                cursor = &work.route.columns.tiles[0];
+
+                trace.stamp = 0;
+                work.route.columns.x[0].coordinate = goal_x;
+                work.route.columns.z[0].coordinate = goal_z;
+
+                if (skip_count != -1)
+                {
+                    for (; skip_count != -1; skip_count--)
+                    {
+                        cursor++;
+                        plane_len = scene->group_tile_count;
+                        tile = cursor->tile;
+                        cell_offset = tile - scene->group_tiles;
+
+                        while (cell_offset >= plane_len)
+                        {
+                            cell_offset -= plane_len;
+                        }
+
+                        next.entry->coordinate = ((cell_offset % columns) - FIELD_COLLISION_PATH_TILE_MARGIN) << col_shift;
+                        next.entry++;
+                        deferred.entry->coordinate = ((cell_offset / columns) - FIELD_COLLISION_PATH_TILE_MARGIN) << (col_shift + 1);
+                        deferred.entry++;
+                    }
+
+                    cursor = &work.route.columns.tiles[0];
+                }
+
+                entry_count = 0;
+                remaining--;
+                next.entry->coordinate = start_x;
+                next.entry = &work.route.columns.x[0];
+                deferred.entry->coordinate = start_z;
+                deferred.entry = &work.route.columns.z[0];
+
+                for (; remaining != -1; remaining--)
+                {
+                    tile = cursor->tile;
+                    cursor++;
+                    start_x = next.entry->coordinate;
+                    next.entry++;
+                    kept_point = &work.route.entries[entry_count++];
+                    start_z = deferred.entry->coordinate;
+                    deferred.entry++;
+                    kept_point[0].tile = tile;
+                    kept_point[FIELD_COLLISION_PATH_BUCKET_LEN].coordinate = start_x;
+                    kept_point[2 * FIELD_COLLISION_PATH_BUCKET_LEN].coordinate = start_z;
+
+                    if (remaining != 0)
+                    {
+                        skip_count = remaining;
+                        trace.tile_base = tile;
+                        trace.start_x = start_x;
+                        trace.start_z = start_z;
+
+                        for (; skip_count != 0; skip_count--)
+                        {
+                            trace.end_x = next.entry[skip_count].coordinate;
+                            trace.end_z = deferred.entry[skip_count].coordinate;
+
+                            if (field_collision_trace_line(&trace) != 0)
+                            {
+                                cursor += skip_count;
+                                next.entry += skip_count;
+                                deferred.entry += skip_count;
+                                remaining -= skip_count;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if ((can_connect != 0) && (entry_count >= 2U))
+                {
+                    can_connect = 0;
+                    try_quarter = 1;
+                    tile = work.route.columns.tiles[0].tile;
+                    start_col = work.route.columns.x[0].coordinate;
+                    start_row = work.route.columns.z[0].coordinate;
+                    final_point = &work.route.entries[entry_count];
+                    final_point[0].tile = cursor->tile;
+                    cursor = &work.route.columns.tiles[0];
+                    final_point[FIELD_COLLISION_PATH_BUCKET_LEN].coordinate = next.entry->coordinate;
+                    next.entry = &work.route.columns.x[0];
+                    final_point[2 * FIELD_COLLISION_PATH_BUCKET_LEN].coordinate = deferred.entry->coordinate;
+                    deferred.entry = &work.route.columns.z[0];
+                    near_tile = cursor[2].tile;
+
+                    bend_x = next.entry[1].coordinate;
+                    remaining = deferred.entry[1].coordinate;
+                    goal_col = next.entry[2].coordinate;
+                    goal_row = deferred.entry[2].coordinate;
+
+                    trace.start_x = start_col;
+                    trace.tile_base = tile;
+                    trace.start_z = start_row;
+                    mid_x = (bend_x + goal_col) / 2;
+                    trace.end_x = mid_x;
+                    mid_z = (remaining + goal_row) / 2;
+                    trace.end_z = mid_z;
+
+                    if (field_collision_trace_line(&trace) != 0)
+                    {
+                        trace.tile_base = near_tile;
+                        trace.start_x = goal_col;
+                        trace.start_z = goal_row;
+
+                        if (field_collision_trace_line(&trace) != 0)
+                        {
+                            can_connect = 1;
+                            bend_x = mid_x;
+                            remaining = mid_z;
+
+                            trace.start_x = start_col;
+                            try_quarter = 0;
+                            trace.tile_base = tile;
+                            trace.start_z = start_row;
+                            mid2_x = (bend_x + goal_col) / 2;
+                            mid2_z = (remaining + goal_row) / 2;
+                            trace.end_x = mid2_x;
+                            trace.end_z = mid2_z;
+
+                            if (field_collision_trace_line(&trace) != 0)
+                            {
+                                trace.tile_base = near_tile;
+                                trace.start_x = goal_col;
+                                trace.start_z = goal_row;
+
+                                if (field_collision_trace_line(&trace) != 0)
+                                {
+                                    bend_x = mid2_x;
+                                    remaining = mid2_z;
+                                }
+                            }
+                        }
+                    }
+
+                    if (try_quarter != 0)
+                    {
+                        deferred.coordinate = goal_col - bend_x;
+                        trace.tile_base = tile;
+                        trace.start_x = start_col;
+                        trace.start_z = start_row;
+                        quarter_x = bend_x + deferred.coordinate / 4;
+                        trace.end_x = quarter_x;
+                        skip_count = goal_row - remaining;
+                        next.coordinate = remaining + skip_count / 4;
+                        trace.end_z = next.coordinate;
+
+                        if (field_collision_trace_line(&trace) != 0)
+                        {
+                            trace.tile_base = near_tile;
+                            trace.start_x = goal_col;
+                            trace.start_z = goal_row;
+
+                            if (field_collision_trace_line(&trace) != 0)
+                            {
+                                can_connect = 1;
+                                restored_x_offset = quarter_x - (u32)deferred.coordinate;
+                                bend_x = (s32)(restored_x_offset + (u32)deferred.coordinate);
+                                remaining = next.coordinate;
+                            }
+                        }
+                    }
+
+                    try_quarter = 1;
+                    trace.start_x = goal_col;
+                    trace.tile_base = near_tile;
+                    trace.start_z = goal_row;
+                    back_mid_x = (bend_x + start_col) / 2;
+                    back_mid_z = (remaining + start_row) / 2;
+                    trace.end_x = back_mid_x;
+                    trace.end_z = back_mid_z;
+
+                    if (field_collision_trace_line(&trace) != 0)
+                    {
+                        trace.tile_base = tile;
+                        trace.start_x = start_col;
+                        trace.start_z = start_row;
+
+                        if (field_collision_trace_line(&trace) != 0)
+                        {
+                            can_connect = 1;
+                            bend_x = back_mid_x;
+                            remaining = back_mid_z;
+                            trace.start_x = goal_col;
+                            try_quarter = 0;
+                            trace.tile_base = near_tile;
+                            trace.start_z = goal_row;
+                            back_mid2_x = (bend_x + start_col) / 2;
+                            back_mid2_z = (remaining + start_row) / 2;
+                            trace.end_x = back_mid2_x;
+                            trace.end_z = back_mid2_z;
+
+                            if (field_collision_trace_line(&trace) != 0)
+                            {
+                                trace.tile_base = tile;
+                                trace.start_x = start_col;
+                                trace.start_z = start_row;
+
+                                if (field_collision_trace_line(&trace) != 0)
+                                {
+                                    bend_x = back_mid2_x;
+                                    remaining = back_mid2_z;
+                                }
+                            }
+                        }
+                    }
+
+                    if (try_quarter != 0)
+                    {
+                        skip_count = start_col - bend_x;
+                        trace.tile_base = near_tile;
+                        trace.start_x = goal_col;
+                        trace.start_z = goal_row;
+                        next.coordinate = bend_x + skip_count / 4;
+                        trace.end_x = next.coordinate;
+                        goal_value.coordinate = start_row - remaining;
+                        deferred.coordinate = remaining + goal_value.coordinate / 4;
+                        trace.end_z = deferred.coordinate;
+
+                        if (field_collision_trace_line(&trace) != 0)
+                        {
+                            trace.tile_base = tile;
+                            trace.start_x = start_col;
+                            trace.start_z = start_row;
+
+                            if (field_collision_trace_line(&trace) != 0)
+                            {
+                                can_connect = 1;
+                                bend_x = next.coordinate;
+                                remaining = deferred.coordinate;
+                            }
+                        }
+                    }
+
+                    if (can_connect != 0)
+                    {
+                        work.route.columns.x[1].coordinate = bend_x;
+                        work.route.columns.z[1].coordinate = remaining;
+                    }
+                }
+
+                remaining = entry_count;
+
+                if ((u32)remaining > FIELD_COLLISION_PATH_OUT_MAX)
+                {
+                    remaining = FIELD_COLLISION_PATH_OUT_MAX;
+                }
+
+                next.entry = &work.route.columns.x[entry_count - 1];
+                deferred.entry = &work.route.columns.z[entry_count - 1];
+                remaining--;
+                skip_count = 0;
+
+                for (; remaining != -1; remaining--)
+                {
+                    point_x = next.entry->coordinate;
+                    next.entry--;
+                    output_path[skip_count].x = (point_x + ((s16)start_query->width >> 1)) << FIELD_COLLISION_PATH_WORLD_SHIFT;
+                    goal_value.coordinate = FIELD_COLLISION_PATH_WORLD_SHIFT;
+                    raw_depth = start_query->depth;
+                    point_z = deferred.entry->coordinate;
+                    deferred.entry--;
+                    output_path[skip_count].z = (point_z + ((s16)raw_depth >> 1)) << goal_value.coordinate;
+                    skip_count++;
+                }
+
+                return skip_count;
+            }
+        }
+    }
+
+    output_path->x = goal_query->x;
+    output_path->z = goal_query->z;
+    return 1;
+}
+
+/**
+ * @brief Test whether a footprint can travel in a straight line over a group tile map.
+ * @param request Start, end, footprint, tile map and stamping mode.
+ * @return 1 when the line is clear or reaches goal_tile, 0 when a blocked tile stops it.
+ * @note With a non-zero stamp, the tiles each step newly covers are stamped with a rising wave value.
+ */
+static s32 field_collision_trace_line(FieldCollisionTraceRequest* request)
+{
+    FieldScene* scene;
+    u8* tile_base;
+    u8* goal_tile;
+    u8* tile_ptr;
+    u8* scan_ptr;
+    s32 footprint_width;
+    s32 footprint_depth;
+    s32 delta_x;
+    s32 delta_z;
+    s32 step_x;
+    s32 step_z;
+    s32 tile_size;
+    s32 mask_x;
+    s32 mask_z;
+    s32 x_cell;
+    s32 z_cell;
+    s32 x_end;
+    s32 z_end;
+    s32 width_minus_one;
+    s32 depth_minus_one;
+    s32 col_hi;
+    s32 row_hi;
+    s32 x_span;
+    s32 row_span;
+    s32 stride;
+    s32 mode;
+    s32 edge_state;
+    s32 error_term;
+    s32 i;
+    s32 n;
+    s32 m;
+    u32 tile_value;
+    u8 stamp;
+
+    tile_base = request->tile_base;
+    x_cell = request->start_x;
+    delta_x = request->end_x - x_cell;
+    z_cell = request->start_z;
+    delta_z = request->end_z - z_cell;
+    tile_size = request->tile_size;
+    mask_x = tile_size - 1;
+    x_cell &= mask_x;
+    footprint_width = request->footprint_width;
+    goal_tile = request->goal_tile;
+    width_minus_one = footprint_width - 1;
+    x_end = x_cell + width_minus_one;
+    col_hi = x_end & mask_x;
+    x_span = x_end >= ((footprint_width + mask_x) & ~mask_x);
+    footprint_depth = request->footprint_depth;
+    depth_minus_one = footprint_depth - 1;
+    mask_z = (tile_size * 2) - 1;
+    z_cell &= mask_z;
+    z_end = z_cell + depth_minus_one;
+    row_hi = z_end & mask_z;
+    scene = g_field_scene.scene;
+    stride = scene->tile_cols;
+    row_span = 0;
+
+    if (z_end >= ((footprint_depth + mask_z) & ~mask_z))
+    {
+        row_span = stride;
+    }
+
+    stamp = request->stamp;
+    mode = request->mode;
+
+    if (delta_x >= 0)
+    {
+        step_x = 1;
+    }
+    else
+    {
+        delta_x = -delta_x;
+        step_x = -1;
+    }
+
+    if (delta_z >= 0)
+    {
+        step_z = stride;
+    }
+    else
+    {
+        delta_z = -delta_z;
+        step_z = -stride;
+    }
+
+    edge_state = 3;
+
+    if (delta_x >= delta_z)
+    {
+        error_term = -delta_x;
+
+        for (i = delta_x; i != -1; i--)
+        {
+            FIELD_COLLISION_TRACE_EDGES();
+
+            if (i == 0)
+            {
+                return 1;
+            }
+
+            edge_state = 0;
+
+            if (step_x > 0)
+            {
+                if (x_cell == mask_x)
+                {
+                    x_cell = 0;
+                    x_span--;
+                    tile_base++;
+                }
+                else
+                {
+                    x_cell++;
+                }
+
+                if (col_hi == mask_x)
+                {
+                    col_hi = 0;
+                    x_span++;
+                    edge_state = 1;
+                }
+                else
+                {
+                    col_hi++;
+                }
+            }
+            else
+            {
+                if (x_cell == 0)
+                {
+                    x_cell = mask_x;
+                    x_span++;
+                    tile_base--;
+                    edge_state = 1;
+                }
+                else
+                {
+                    x_cell--;
+                }
+
+                if (col_hi == 0)
+                {
+                    col_hi = mask_x;
+                    x_span--;
+                }
+                else
+                {
+                    col_hi--;
+                }
+            }
+
+            error_term += delta_z * 2;
+
+            if (error_term >= 0)
+            {
+                if (step_z > 0)
+                {
+                    if (z_cell == mask_z)
+                    {
+                        z_cell = 0;
+                        row_span -= stride;
+                        tile_base += stride;
+                    }
+                    else
+                    {
+                        z_cell++;
+                    }
+
+                    if (row_hi == mask_z)
+                    {
+                        row_hi = 0;
+                        row_span += stride;
+                        edge_state |= 2;
+                    }
+                    else
+                    {
+                        row_hi++;
+                    }
+                }
+                else
+                {
+                    if (z_cell == 0)
+                    {
+                        z_cell = mask_z;
+                        row_span += stride;
+                        tile_base -= stride;
+                        edge_state |= 2;
+                    }
+                    else
+                    {
+                        z_cell--;
+                    }
+
+                    if (row_hi == 0)
+                    {
+                        row_hi = mask_z;
+                        row_span -= stride;
+                    }
+                    else
+                    {
+                        row_hi--;
+                    }
+                }
+
+                error_term -= delta_x * 2;
+            }
+        }
+    }
+    else
+    {
+        error_term = -delta_z;
+
+        for (i = delta_z; i != -1; i--)
+        {
+            FIELD_COLLISION_TRACE_EDGES();
+
+            if (i == 0)
+            {
+                return 1;
+            }
+
+            edge_state = 0;
+
+            if (step_z > 0)
+            {
+                if (z_cell == mask_z)
+                {
+                    z_cell = 0;
+                    row_span -= stride;
+                    tile_base += stride;
+                }
+                else
+                {
+                    z_cell++;
+                }
+
+                if (row_hi == mask_z)
+                {
+                    row_hi = 0;
+                    row_span += stride;
+                    edge_state = 2;
+                }
+                else
+                {
+                    row_hi++;
+                }
+            }
+            else
+            {
+                if (z_cell == 0)
+                {
+                    z_cell = mask_z;
+                    row_span += stride;
+                    tile_base -= stride;
+                    edge_state = 2;
+                }
+                else
+                {
+                    z_cell--;
+                }
+
+                if (row_hi == 0)
+                {
+                    row_hi = mask_z;
+                    row_span -= stride;
+                }
+                else
+                {
+                    row_hi--;
+                }
+            }
+
+            error_term += delta_x * 2;
+
+            if (error_term >= 0)
+            {
+                if (step_x > 0)
+                {
+                    if (x_cell == mask_x)
+                    {
+                        x_cell = 0;
+                        x_span--;
+                        tile_base++;
+                    }
+                    else
+                    {
+                        x_cell++;
+                    }
+
+                    if (col_hi == mask_x)
+                    {
+                        col_hi = 0;
+                        x_span++;
+                        edge_state |= 1;
+                    }
+                    else
+                    {
+                        col_hi++;
+                    }
+                }
+                else
+                {
+                    if (x_cell == 0)
+                    {
+                        x_cell = mask_x;
+                        x_span++;
+                        tile_base--;
+                        edge_state |= 1;
+                    }
+                    else
+                    {
+                        x_cell--;
+                    }
+
+                    if (col_hi == 0)
+                    {
+                        col_hi = mask_x;
+                        x_span--;
+                    }
+                    else
+                    {
+                        col_hi--;
+                    }
+                }
+
+                error_term -= delta_z * 2;
+            }
+        }
+    }
+
+    return 1;
+}
+
+/**
+ * @brief Slow a move on a slope by the ratio of the slope's run to its length.
+ * @param surface Slope surface whose C->B edge sets the gradient.
+ * @param movement Move to scale in place: movement[0] is x, movement[1] is z.
+ * @note The run is shortened by a further 1/16 before scaling.
+ */
+static void field_collision_slope_scale_move(FieldCollisionSurfaceDef* surface, s32* movement)
+{
+    s16* vertices;
+    s16* vertex_c;
+    s16* vertex_b;
+    s32 dx;
+    s32 dy;
+    s32 dz;
+    s32 horizontal_length;
+    s32 surface_length;
+
+    vertices = g_field_node_angle_table;
+    vertex_c = &vertices[surface->vertex_c * 2];
+    vertex_b = &vertices[surface->vertex_b * 2];
+    dx = vertex_b[0] - vertex_c[0];
+    dy = vertex_b[1] - vertex_c[1];
+    dz = surface->height1 - surface->height0;
+    dx = dx * dx + dy * dy;
+    dz *= dz;
+    horizontal_length = SquareRoot0(dx);
+    surface_length = SquareRoot0(dx + dz);
+    horizontal_length -= horizontal_length >> 4;
+    movement[0] = movement[0] * horizontal_length / surface_length;
+    movement[1] = movement[1] * horizontal_length / surface_length;
+}
+
+/**
+ * @brief Rebuild the group tile maps for a query's footprint size.
+ * @param query Query supplying the footprint width and depth.
+ * @note Does nothing when the group bitmasks were not built.
+ */
+void field_collision_dilate_query(FieldCollisionQuery* query)
+{
+    FieldScene* scene;
+    s32 tile_shift;
+    s32 tile_size;
+
+    scene = g_field_scene.scene;
+
+    if (scene->group_work != NULL)
+    {
+        tile_size = scene->tile_size;
+        tile_shift = FIELD_COLLISION_GROUP_COARSE_TILE_SHIFT;
+
+        if (tile_size == FIELD_COLLISION_GROUP_FINE_TILE_SIZE)
+        {
+            tile_shift = FIELD_COLLISION_GROUP_FINE_TILE_SHIFT;
+        }
+
+        field_collision_dilate_tiles(((s16)query->width + tile_size - 1) >> tile_shift, ((s16)query->depth + tile_size * 2 - 1) >> (tile_shift + 1));
+    }
+}
+
+/**
+ * @brief Fetch a record body from the scene header's record list.
+ * @param index Number of links to follow; the walk stops at the last record.
+ * @return The record's body, or NULL when the scene has no records.
+ */
+void* field_header_record_at(s32 index)
+{
+    FieldHeaderRec* record;
+    u16 remaining;
+
+    record = g_field_scene.scene->header->records;
+
+    if (record != NULL)
+    {
+        remaining = index;
+
+        while (remaining-- != 0)
+        {
+            if (record->next != NULL)
+            {
+                record = record->next;
+            }
+        }
+
+        return &record->body;
+    }
+
+    return NULL;
+}
+
+/**
+ * @brief Rebuild every node's span tables and the scene's group maps.
+ * @note Allocates from g_field_mem_top.
+ */
+void field_collision_rebuild_spans(void)
+{
+    FieldNode* node;
+    u8* allocator_cursor;
+
+    node = g_field_scene.scene->nodes;
+    allocator_cursor = g_field_mem_top;
+
+    while (node != NULL)
+    {
+        field_collision_rasterize_node((FieldCollisionNode*)node, &allocator_cursor);
+        node = node->next;
+    }
+
+    field_collision_collect_groups(&allocator_cursor);
+    g_field_mem_top = allocator_cursor;
+}

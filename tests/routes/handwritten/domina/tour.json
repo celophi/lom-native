@@ -1,0 +1,54 @@
+{
+  "format": 1,
+  "id": "domina-tour",
+  "description": "Walking from the inn to the square, into SH00 and back, should arrive back at the inn",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 38
+      }
+    },
+    {
+      "checkpoint": "inn"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "the inn's front door, to the square"
+    },
+    {
+      "checkpoint": "square"
+    },
+    {
+      "walk_to": {
+        "exit": 1
+      },
+      "note": "into SH00"
+    },
+    {
+      "checkpoint": "sh00"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "back out to the square"
+    },
+    {
+      "checkpoint": "square-again"
+    },
+    {
+      "walk_to": {
+        "exit": 3
+      },
+      "note": "back into the inn"
+    },
+    {
+      "checkpoint": "inn-again"
+    }
+  ]
+}

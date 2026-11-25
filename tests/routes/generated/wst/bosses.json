@@ -1,0 +1,53 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wst-wst-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wst-wst-bs00-boss",
+    "description": "Entering WST_BS00 (scene 110) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# wst-wst-bs00-boss: Entering WST_BS00 (scene 110) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32878 0 16712448 0\ncheckpoint entered\nwalk 96 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 110 save 22920b6ed26f4820 state 21c4679d101c033e ram 0000000000000000",
+     "fought frame 4568 scene 110 save a314c5a28c8238ed state c6e246ab1c9ec3c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (96, 174): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3710 frames",
+     "game state 1 at vblank 13387",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 575,
+     "instruction_end": 262,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3dff6e0b5a227b70ae08ae395aa81e1b"
+     },
+     {
+      "frames": 4308,
+      "sha256": "d76f725c511b821d8d873858958b656b"
+     },
+     {
+      "frames": 1854,
+      "sha256": "ec614cdb70a0c38604ed58c26b5f1b50"
+     }
+    ]
+   }
+  }
+ ]
+}

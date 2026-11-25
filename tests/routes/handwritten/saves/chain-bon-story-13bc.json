@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of bon/story/story-13bc.json, at home",
+  "source": "written by the game during tests/routes/generated/bon/story.json#bon-bon-vllg-story-13bc (LOM_ROUTE_SAVED_GAME_DUMP)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255
+  },
+  "saved_game": "saves/chain-bon-story-13bc.bin"
+}

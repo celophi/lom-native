@@ -1,0 +1,101 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "battles-wst-bf00-battle-0-start-right-start",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "battles-wst-bf00-battle-0-start-right-start",
+    "description": "Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins",
+    "plan": "# battles-wst-bf00-battle-0-start-right-start: Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32883 1 16712191 0\ncheckpoint entered\nwalk 240 -1\nwait 40\npress 0x0008 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 87 scene 115 save 6ff53b02b610ab53 state 2b0429c608122d2b ram 0000000000000000",
+     "fought frame 360 scene 115 save d2f536eb7a74a5a2 state 039c653759afad84 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (240, 224): 1 waypoints"
+    ],
+    "end": "steps 12 of 12 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 286,
+     "instruction_end": 98,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 88,
+      "sha256": "637b71f0cb856051f11443ded3c126e6"
+     },
+     {
+      "frames": 273,
+      "sha256": "d58538d3648c20db42832aa6bd626e75"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wst-wst-bf00-battle-0-start-right-start-start-start",
+   "save": "../../handwritten/saves/home-bedroom-after-opening.json",
+   "baseline": {
+    "route": "wst-wst-bf00-battle-0-start-right-start-start-start",
+    "description": "Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins",
+    "plan": "# wst-wst-bf00-battle-0-start-right-start-start-start: Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32883 1 16712191 0\ncheckpoint entered\nwalk 240 -1\nwait 40\npress 0x0008 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0008 4\nwait 40\npress 0x0008 4\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 87 scene 115 save 1954322239a6e644 state 7e1fb6878b893bac ram 0000000000000000",
+     "fought frame 452 scene 115 save fd81c73b06d17696 state 9b4e7c39fc15652a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (240, 224): 1 waypoints"
+    ],
+    "end": "steps 16 of 16 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 299,
+     "instruction_end": 100,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 88,
+      "sha256": "1e913b9a7944c2855785bb07de00273d"
+     },
+     {
+      "frames": 365,
+      "sha256": "45f3a1e7869c722f54de30414257709d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

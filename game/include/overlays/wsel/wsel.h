@@ -1,0 +1,25 @@
+#ifndef WSEL_H
+#define WSEL_H
+
+#include "common.h"
+#include <libgte.h>
+#include <libgpu.h>
+
+#include "main/display.h"
+
+typedef struct
+{
+    ScreenFrame screen;
+    u8 unused_80bc[0x10];
+} WselRenderBuffer;
+
+/**
+ * @brief Run world selection until the player chooses an exit state.
+ * @param buffers The two display buffers, back to back.
+ * @return Next top-level game state.
+ */
+s32 wsel_main(WselRenderBuffer* buffers);
+
+extern s32 g_wsel_exit_state;
+
+#endif

@@ -1,0 +1,53 @@
+name: MOVIE.BIN
+compressed_sha1: 15dba192e36a0a9d677e077f3eb274a1a2209840
+sha1: 5d6cb063544e3e7ed058bb6137b88a26ecf84975
+options:
+  base_path: ../../../
+  basename: MOVIE.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/MOVIE.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/movie.elf
+
+  asm_path: asm/jp/overlays/movie
+  src_path: src/overlays/movie
+  build_path: build/jp/overlays/movie
+
+  ld_script_path: linker/jp/overlays/movie/movie.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/movie/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/movie/undefined_syms_auto.txt
+
+  symbol_addrs_path:    
+    - config/jp/symbols/shared_symbol_addrs.txt
+    - config/jp/symbols/movie_symbol_addrs.txt
+
+  reloc_addrs_path:
+    - config/jp/relocations/movie_reloc_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 4
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: movie
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, movie]
+      - [0x19, c, movie]
+      - [0xAA5, c, movie_stream]
+  - [0x18F9]

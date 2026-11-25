@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dst-dst-bs01-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs01-boss",
+    "description": "Entering DST_BS01 (scene 703) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# dst-dst-bs01-boss: Entering DST_BS01 (scene 703) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33471 0 16720394 0\ncheckpoint entered\nwalk 352 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 703 save 63231676c848657e state e193e41167da4a9b ram 0000000000000000",
+     "fought frame 4211 scene 703 save f0286b6986433b80 state 229a91b6647a2f5c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 70): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3590 frames",
+     "game state 1 at vblank 12467",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 630,
+     "instruction_end": 260,
+     "song": 4,
+     "scene": 4,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "bd685d0fd188664c05cb913cf5c924fa"
+     },
+     {
+      "frames": 3951,
+      "sha256": "86715afa318e85240b59bc6021d79bc3"
+     },
+     {
+      "frames": 1758,
+      "sha256": "1efee41fd6749e6f1db6c786000f3dbd"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs10-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs10-boss",
+    "description": "Entering DST_BS10 (scene 225) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# dst-dst-bs10-boss: Entering DST_BS10 (scene 225) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32993 0 16715263 0\ncheckpoint entered\nwalk 144 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 225 save b5c7ea03871a9173 state e7fa3dda51bee1c0 ram 0000000000000000",
+     "fought frame 10523 scene 225 save 3b43f13340353aab state 9717878a87fc9799 ram 0000000000000000",
+     "after frame 10684 scene 228 save 139ef57d6928b2f9 state c5994443aa748c2c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (144, 94): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 9950 frames",
+     "watched until the player got control, 159 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 487,
+     "instruction_end": 194,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "29734691105f9a337b2a7d1897c7be2d"
+     },
+     {
+      "frames": 10263,
+      "sha256": "15ce4c3a27c804d635ade10a780e699d"
+     },
+     {
+      "frames": 161,
+      "sha256": "188a8c353e81b3ed4a4e655d829047e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,1756 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wmap-land-song-71",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 0 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-71",
+    "description": "Entering land 0 from the world map should play its music (song 71)",
+    "plan": "# wmap-land-song-71: Entering land 0 from the world map should play its music (song 71)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 16\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 994bb88ee516f68c state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 994bb88ee516f68c state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 16 save 7115df56b2310a07 state 405fe9957a57de9d ram 0000000000000000",
+     "done frame 35 scene 16 save 7115df56b2310a07 state 1d1fffaee43fe2ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 0 from the world map at scene 16",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 305,
+     "instruction_end": 56,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "e80fbfc2283aa3bd05a1ca71add523cc"
+     },
+     {
+      "frames": 153,
+      "sha256": "ecdf700d8eefb6444865ebcf88f01164"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-72",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 1 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-72",
+    "description": "Entering land 1 from the world map should play its music (song 72)",
+    "plan": "# wmap-land-song-72: Entering land 1 from the world map should play its music (song 72)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 1 36\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 994bb88ee516f68c state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 994bb88ee516f68c state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 36 save 5fd4d416b7046e7f state 23b5c12d06d1e804 ram 0000000000000000",
+     "done frame 35 scene 36 save 5fd4d416b7046e7f state 7ff86d5f34d5683d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1447",
+     "entered land 1 from the world map at scene 36",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 37,
+     "song": 5,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "6fcadc92c9ff180bf1b67927b9cc0bf5"
+     },
+     {
+      "frames": 153,
+      "sha256": "89719868504076f5d449719a90c4014e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-73",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 4 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "4": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-73",
+    "description": "Entering land 4 from the world map should play its music (song 73)",
+    "plan": "# wmap-land-song-73: Entering land 4 from the world map should play its music (song 73)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 4 53\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 606b4e1c552426b2 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 606b4e1c552426b2 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 53 save b5bf19c909231b0a state f1b2864d8cde1394 ram 0000000000000000",
+     "done frame 35 scene 53 save b5bf19c909231b0a state a1be49122a73835d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 4 from the world map at scene 53",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 253,
+     "instruction_end": 43,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "198a72a54c7ebc4f6d62754dee7acf36"
+     },
+     {
+      "frames": 153,
+      "sha256": "8968a53dc6706d68dd286df3a1471645"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-74",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 3 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "3": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-74",
+    "description": "Entering land 3 from the world map should play its music (song 74)",
+    "plan": "# wmap-land-song-74: Entering land 3 from the world map should play its music (song 74)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 3 265\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ab9bf593e20e9c06 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save ab9bf593e20e9c06 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 265 save c56adb7c82953589 state 2e9a2daa9372f3ad ram 0000000000000000",
+     "done frame 35 scene 265 save c56adb7c82953589 state 3dcf9ee03655a614 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 3 from the world map at scene 265",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 290,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "c154b49f37356456afcef8ba4f1c7fc9"
+     },
+     {
+      "frames": 153,
+      "sha256": "a969e7e041fd54dfc8f06cb21bf9ec2b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-75",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 2 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "2": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-75",
+    "description": "Entering land 2 from the world map should play its music (song 75)",
+    "plan": "# wmap-land-song-75: Entering land 2 from the world map should play its music (song 75)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 2 273\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 534161e6ce1169ea state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 534161e6ce1169ea state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 273 save 83fe3499f8bd9100 state a4c1587233b38b1c ram 0000000000000000",
+     "done frame 35 scene 273 save 83fe3499f8bd9100 state 645aaa1faa6864c5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 2 from the world map at scene 273",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 274,
+     "instruction_end": 44,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "f5a5f8095d9afbbd57fa12949d26ef9d"
+     },
+     {
+      "frames": 153,
+      "sha256": "a2d39aa14542983a0c5f05e61212853c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-76",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 5 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "5": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-76",
+    "description": "Entering land 5 from the world map should play its music (song 76)",
+    "plan": "# wmap-land-song-76: Entering land 5 from the world map should play its music (song 76)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 5 566\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save a3e5d31603edd21e state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save a3e5d31603edd21e state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 566 save 6e466f695e7c84c2 state 75448521b7ba3c03 ram 0000000000000000",
+     "done frame 35 scene 566 save bf6002fb433fc020 state b2bd5ee9e6cdd0a9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 5 from the world map at scene 566",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 275,
+     "instruction_end": 51,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "7d0ed1df34197e3a4948b5fccf390f03"
+     },
+     {
+      "frames": 153,
+      "sha256": "354679ee6f772527141cdc2685b3df10"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-77",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 7 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "7": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-77",
+    "description": "Entering land 7 from the world map should play its music (song 77)",
+    "plan": "# wmap-land-song-77: Entering land 7 from the world map should play its music (song 77)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 7 63\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save df01de4945d4d616 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save df01de4945d4d616 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 63 save 8b170f2d3ab3e665 state eeb2d041e24fa575 ram 0000000000000000",
+     "done frame 304 scene 63 save 74d0dd0763aaadc5 state 41e0e593ffac0102 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 7 from the world map at scene 63",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 300,
+     "instruction_end": 76,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "ba1fa6cb61742b06a1ec2502c8577dbd"
+     },
+     {
+      "frames": 228,
+      "sha256": "92f6ba04121db062715880e68ec8271c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-78",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 21 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "21": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-78",
+    "description": "Entering land 21 from the world map should play its music (song 78)",
+    "plan": "# wmap-land-song-78: Entering land 21 from the world map should play its music (song 78)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 21 372\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cd7e59296ea37076 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save cd7e59296ea37076 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 372 save 077d9b62075f875c state 84a9c0c9c84682b5 ram 0000000000000000",
+     "done frame 304 scene 372 save 7fd4d305ecf0a9f0 state 1c4863ce0f33d650 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 21 from the world map at scene 372",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 281,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "a1c0de6dd43ae63ecb03c7028f7d75d4"
+     },
+     {
+      "frames": 228,
+      "sha256": "434cd803a936553f209fbfe2c0aa7422"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-79",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 9 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "9": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-79",
+    "description": "Entering land 9 from the world map should play its music (song 79)",
+    "plan": "# wmap-land-song-79: Entering land 9 from the world map should play its music (song 79)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 9 586\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 450aa10d012aaf36 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 450aa10d012aaf36 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 586 save a927b7b117411fa9 state 20fc9a3fe2c887cf ram 0000000000000000",
+     "done frame 182 scene 586 save dc7e2069ed62002a state 10ef0a391f474fde ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 9 from the world map at scene 586",
+     "watched until the player got control, 178 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 283,
+     "instruction_end": 78,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 413,
+      "sha256": "676233233992b744ee13f40d1655286f"
+     },
+     {
+      "frames": 153,
+      "sha256": "abef9df863f757c6ecc43b270b3fbfec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-80",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 10 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-80",
+    "description": "Entering land 10 from the world map should play its music (song 80)",
+    "plan": "# wmap-land-song-80: Entering land 10 from the world map should play its music (song 80)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 10 317\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save a0926ad355caa65a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save a0926ad355caa65a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 317 save 8c6ebd79d0204489 state 720f2bd2acabb6a1 ram 0000000000000000",
+     "done frame 139 scene 317 save 5a4788f63b3dfda9 state 1d485309e5ada5ac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 10 from the world map at scene 317",
+     "watched until the player got control, 135 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 281,
+     "instruction_end": 57,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 370,
+      "sha256": "ee2261f20235f0c241588e6c001dda09"
+     },
+     {
+      "frames": 153,
+      "sha256": "401b3e31f3a15bc767637822242d1bda"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-81",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 27 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "27": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-81",
+    "description": "Entering land 27 from the world map should play its music (song 81)",
+    "plan": "# wmap-land-song-81: Entering land 27 from the world map should play its music (song 81)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 27 499\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 9b3061f2d3e77ed6 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 9b3061f2d3e77ed6 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 499 save 88103f7107e88a0e state dab534dfe17265ee ram 0000000000000000",
+     "done frame 35 scene 499 save 57ab2689095e8e1c state ac93dd1e7332004e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 27 from the world map at scene 499",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 246,
+     "instruction_end": 46,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "2a5879faba6ea919945fde15b1c44c83"
+     },
+     {
+      "frames": 153,
+      "sha256": "3511474f1e4b769672b5829335a3a592"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-82",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 8 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "8": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-82",
+    "description": "Entering land 8 from the world map should play its music (song 82)",
+    "plan": "# wmap-land-song-82: Entering land 8 from the world map should play its music (song 82)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 8 339\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 1e68c8a210588b3a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 1e68c8a210588b3a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 339 save 4f40cc93815a720a state 117afe9340bf1eff ram 0000000000000000",
+     "done frame 35 scene 339 save 1d744d3e4d84bfff state 403f6ac312ab0191 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 8 from the world map at scene 339",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 52,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "b6470c60087e95bb617498273b237d02"
+     },
+     {
+      "frames": 153,
+      "sha256": "17987150170c160b9728dfdb48b8f217"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-83",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 13 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "13": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-83",
+    "description": "Entering land 13 from the world map should play its music (song 83)",
+    "plan": "# wmap-land-song-83: Entering land 13 from the world map should play its music (song 83)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 13 83\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cd75fa2f59f92d76 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save cd75fa2f59f92d76 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 83 save a5dc5d4eb38568cc state 1109179965271d85 ram 0000000000000000",
+     "done frame 160 scene 83 save 70cdaa3368e04c17 state 20585f728e683697 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 13 from the world map at scene 83",
+     "watched until the player got control, 156 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 271,
+     "instruction_end": 54,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 391,
+      "sha256": "d9a0d3b730a57b4ad9b98da15a257254"
+     },
+     {
+      "frames": 153,
+      "sha256": "e071bc891dc6a664c347cc45a5d55728"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-84",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 12 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "12": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-84",
+    "description": "Entering land 12 from the world map should play its music (song 84)",
+    "plan": "# wmap-land-song-84: Entering land 12 from the world map should play its music (song 84)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 12 125\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save c92a095f8e2938fa state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save c92a095f8e2938fa state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 125 save 8763d691054c7a16 state 3f988abf08c40df1 ram 0000000000000000",
+     "done frame 304 scene 125 save 4a3b2bbf52134756 state bcbb7b29faa4d5d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 12 from the world map at scene 125",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 298,
+     "instruction_end": 75,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "5ee5b63fa94d482b84bdeec8f03603cb"
+     },
+     {
+      "frames": 228,
+      "sha256": "858297fe25d4b150224baf022a0a4c05"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-85",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 16 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "16": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-85",
+    "description": "Entering land 16 from the world map should play its music (song 85)",
+    "plan": "# wmap-land-song-85: Entering land 16 from the world map should play its music (song 85)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 16 455\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 018d0c740f73923a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 018d0c740f73923a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 455 save 803389dd0ad739e7 state 12404fc263ee9603 ram 0000000000000000",
+     "done frame 144 scene 455 save aa7e78290c141513 state ccb47f6a684e8a51 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 16 from the world map at scene 455",
+     "watched until the player got control, 140 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 289,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 375,
+      "sha256": "a485b1c3115140a63f5f5d10dd67affa"
+     },
+     {
+      "frames": 153,
+      "sha256": "9efb9b6f3a91baca64a4617ee3d54505"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-86",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 25 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "25": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-86",
+    "description": "Entering land 25 from the world map should play its music (song 86)",
+    "plan": "# wmap-land-song-86: Entering land 25 from the world map should play its music (song 86)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 25 750\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 370ac93e88b49536 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 370ac93e88b49536 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 750 save 794fa7b86e400a08 state 1a42ed6de2acb3d4 ram 0000000000000000",
+     "done frame 35 scene 750 save 1a723ecbd34b4750 state 2a8ac18dbd44b7f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 25 from the world map at scene 750",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 245,
+     "instruction_end": 53,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "d8ed29562b7439ded2aa0188f8967999"
+     },
+     {
+      "frames": 153,
+      "sha256": "6b837332283c83c885b745d2ba6a73b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-87",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 23 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "23": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-87",
+    "description": "Entering land 23 from the world map should play its music (song 87)",
+    "plan": "# wmap-land-song-87: Entering land 23 from the world map should play its music (song 87)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 23 711\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 6211620d27c75e16 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 6211620d27c75e16 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 711 save 2ab1d7382ba9753f state 34c2f384488cf83b ram 0000000000000000",
+     "done frame 304 scene 711 save 66c1fa94284aa5bb state a8c3280cc0c985b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 23 from the world map at scene 711",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 266,
+     "instruction_end": 57,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "9f91b682d6939e90f6a43e4b7542f915"
+     },
+     {
+      "frames": 228,
+      "sha256": "1de71a7f2d2dabdcb15769d4d384e65d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-88",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 24 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "24": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-88",
+    "description": "Entering land 24 from the world map should play its music (song 88)",
+    "plan": "# wmap-land-song-88: Entering land 24 from the world map should play its music (song 88)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 24 633\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save bcda63adbca6e33a state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save bcda63adbca6e33a state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 633 save 898d487845904b47 state 66e09dd78ad759eb ram 0000000000000000",
+     "done frame 111 scene 633 save fcd480f4dd45eaef state 5e3fbbbb0acb7626 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2955",
+     "entered land 24 from the world map at scene 633",
+     "watched until the player got control, 107 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 263,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 342,
+      "sha256": "c2d5a8341cd8f4f78df871bb04aed8ce"
+     },
+     {
+      "frames": 153,
+      "sha256": "ffeac9db996476f55771d7fbac7ab5d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-89",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 31 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "31": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-89",
+    "description": "Entering land 31 from the world map should play its music (song 89)",
+    "plan": "# wmap-land-song-89: Entering land 31 from the world map should play its music (song 89)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 31 671\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save af7dedc55ec2f716 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save af7dedc55ec2f716 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 671 save 336cedf4b3c3bb31 state dac365a0cad04589 ram 0000000000000000",
+     "done frame 35 scene 671 save 94660386c000a789 state aaecc798b4cd12fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 31 from the world map at scene 671",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 44,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "353d1c24655b827a97c04d957dc3908e"
+     },
+     {
+      "frames": 153,
+      "sha256": "d888ec33b39e689ed1cb726371de2382"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-land-song-90",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home, HTW's land and land 11 on the map, HTW's land the current one, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "11": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-land-song-90",
+    "description": "Entering land 11 from the world map should play its music (song 90)",
+    "plan": "# wmap-land-song-90: Entering land 11 from the world map should play its music (song 90)\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 11 176\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 561ae4ecf49534d6 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 561ae4ecf49534d6 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 176 save e1da537299e43529 state 190d1796abd645ab ram 0000000000000000",
+     "done frame 304 scene 176 save d0491d887478989d state be240d3e48c05c36 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 1543",
+     "entered land 11 from the world map at scene 176",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 62,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "c810962496f30c428d49b92abb8d6eae"
+     },
+     {
+      "frames": 228,
+      "sha256": "bbebb664d458a9125914ec501d2b87ec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

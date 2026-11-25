@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "bon-bon-b000-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b000-direct",
+    "description": "Entering BON_B000 (scene 605) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# bon-bon-b000-direct: Entering BON_B000 (scene 605) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 605 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 605 save 7712c0654296ccff state 1e39e7152f798486 ram 0000000000000000",
+     "watched frame 261 scene 605 save 7712c0654296ccff state c44149e72f8812be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 63,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "68e62d282c4599d06a68ff810f0a7376"
+     },
+     {
+      "frames": 32,
+      "sha256": "bc255e7ab294cc21f5adf0f19ba15ef0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b100-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b100-direct",
+    "description": "Entering BON_B100 (scene 609) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# bon-bon-b100-direct: Entering BON_B100 (scene 609) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 609 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 609 save 6f9f9b3b46799e70 state b7e4e44977763a40 ram 0000000000000000",
+     "watched frame 261 scene 609 save 6f9f9b3b46799e70 state c7a7ed60d4e1d156 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 123,
+     "instruction_end": 62,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7d31ae0ecafdc8e63747ed1b145b690b"
+     },
+     {
+      "frames": 32,
+      "sha256": "919e323e7a46bb165834457eb41dfc5d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-bs04-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-bs04-direct",
+    "description": "Entering BON_BS04 (scene 923) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# bon-bon-bs04-direct: Entering BON_BS04 (scene 923) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 923 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 923 save f188ea65cefc626e state bc0f33ffc5d923c5 ram 0000000000000000",
+     "watched frame 262 scene 923 save f188ea65cefc626e state d950d53f26a4a225 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 54,
+     "instruction": 129,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97e44e1f0627ff1d18cf9aa9937e16cf"
+     },
+     {
+      "frames": 33,
+      "sha256": "a4e1452239fd323ff8c129625c9b4330"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,636 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "drl-drl-b000-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B000 (scene 736) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b000-battle-0: Walking into battle zone 0 of DRL_B000 (scene 736) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33504 0 16722687 0\ncheckpoint entered\nwalk 344 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 736 save 671cbcf26873e2d5 state f242e4e184268353 ram 0000000000000000",
+     "fought frame 921 scene 736 save 148cfbed49844c5d state d39105229adc22c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (344, 38): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 295,
+     "instruction_end": 107,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f15202fd0123b83a441452e59062826d"
+     },
+     {
+      "frames": 661,
+      "sha256": "4c0b4a44215d6686bd36e67c5905b586"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b000-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-battle-1",
+    "description": "Walking into battle zone 1 of DRL_B000 (scene 736) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b000-battle-1: Walking into battle zone 1 of DRL_B000 (scene 736) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33504 0 16722687 0\ncheckpoint entered\nwalk 900 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 736 save 671cbcf26873e2d5 state f242e4e184268353 ram 0000000000000000",
+     "fought frame 1122 scene 736 save 87ab7b694ae04c59 state 13f089177ab3090e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (900, 38): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 272,
+     "instruction_end": 104,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f15202fd0123b83a441452e59062826d"
+     },
+     {
+      "frames": 862,
+      "sha256": "0f2f8f52596e609363afa8b485e4ef51"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b010-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b010-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B010 (scene 737) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b010-battle-0: Walking into battle zone 0 of DRL_B010 (scene 737) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33505 0 16722687 1\ncheckpoint entered\nwalk 500 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 737 save bb3257cdedca3235 state 577dd90c826a36a7 ram 0000000000000000",
+     "fought frame 1360 scene 737 save aedf7918cb0c7ad0 state bc6edc38650333dd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (500, 54): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 327,
+     "instruction_end": 105,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "867872ce37950d5136e34663a198be63"
+     },
+     {
+      "frames": 1100,
+      "sha256": "1545afd70c95cdce36d539b611d0b246"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b020-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b020-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B020 (scene 738) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b020-battle-0: Walking into battle zone 0 of DRL_B020 (scene 738) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33506 0 16722687 0\ncheckpoint entered\nwalk 300 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 738 save 576ca9c70014aa2b state 4fe46fec8d0e5555 ram 0000000000000000",
+     "fought frame 3516 scene 738 save 39ba82f19e7b3bd5 state 8c68703d170b8988 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (300, 224): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1790 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 107,
+     "instruction": 334,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "14bc57e0426002407f784d2fc70a4993"
+     },
+     {
+      "frames": 3256,
+      "sha256": "bf60f5077137ca7ed445925453e38862"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b030-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b030-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B030 (scene 739) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b030-battle-0: Walking into battle zone 0 of DRL_B030 (scene 739) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33507 0 16722687 0\ncheckpoint entered\nwalk 428 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 739 save 88b4a8d2f9bd01e2 state c8bec3f2d7dffe60 ram 0000000000000000",
+     "fought frame 863 scene 739 save a22cb3be79a8e639 state 65af78d9420d56b6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (428, 206): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 279,
+     "instruction_end": 97,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c259a53ab4630da8bb7863e0e98667ab"
+     },
+     {
+      "frames": 603,
+      "sha256": "3b322f83a4ce31240f756fd293dbce90"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b040-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b040-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B040 (scene 740) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b040-battle-0: Walking into battle zone 0 of DRL_B040 (scene 740) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33508 0 16722687 0\ncheckpoint entered\nwalk 400 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 740 save f1a7b511f69426d1 state bb243f56391b6078 ram 0000000000000000",
+     "fought frame 1579 scene 740 save a906bb68ebc43281 state d0ef5870bf0cd317 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 56): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1250 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 310,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "4b61bfc25afa3ba6404b3e29bb370d19"
+     },
+     {
+      "frames": 1319,
+      "sha256": "ffde935627ea6c6c6a2ad0d1b8e48d92"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b050-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b050-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B050 (scene 741) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b050-battle-0: Walking into battle zone 0 of DRL_B050 (scene 741) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33509 0 16722687 0\ncheckpoint entered\nwalk 400 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 741 save c92c1c197a992c58 state 53dd5c29a9ccc25a ram 0000000000000000",
+     "fought frame 1159 scene 741 save 3274cf5e93e082ff state 66527e3dd21d1b9f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 56): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 278,
+     "instruction_end": 105,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "ddac850bd07ddabaa58dbfb2376c9566"
+     },
+     {
+      "frames": 899,
+      "sha256": "8d751959fec8a179f5cb8090c4ab2751"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b070-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b070-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B070 (scene 743) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b070-battle-0: Walking into battle zone 0 of DRL_B070 (scene 743) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33511 0 16722687 1\ncheckpoint entered\nwalk 450 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 743 save 843e82075dd87737 state b9cba7b089b8e8a4 ram 0000000000000000",
+     "fought frame 1536 scene 743 save bd42f584878dab9f state d04e9982c9666595 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (450, 42): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 411,
+     "instruction_end": 121,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "927ba0993c9c0f16f2b349b75b8a6f0a"
+     },
+     {
+      "frames": 1276,
+      "sha256": "ea02ce59cb769698b4bdc5655b67b6d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b080-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b080-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B080 (scene 744) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b080-battle-0: Walking into battle zone 0 of DRL_B080 (scene 744) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33512 0 16722687 1\ncheckpoint entered\nwalk 341 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 744 save ce0957ae49490244 state 5219721c3359e423 ram 0000000000000000",
+     "fought frame 1233 scene 744 save f7347a1ba9141c84 state 235ada1a0a35e00c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (341, 54): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 316,
+     "instruction_end": 110,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "225cbb572e18e4d1099a07c119b06e41"
+     },
+     {
+      "frames": 973,
+      "sha256": "7a38e5519059e351130846ffb69bdf8d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b100-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b100-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B100 (scene 746) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b100-battle-0: Walking into battle zone 0 of DRL_B100 (scene 746) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33514 0 16722687 0\ncheckpoint entered\nwalk 888 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 746 save 2e76346f21c6cc03 state c1334d7966f3a215 ram 0000000000000000",
+     "fought frame 1159 scene 746 save 20dadb04e31db747 state fc8721936782f214 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (888, 102): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 333,
+     "instruction_end": 110,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e8e15748677de50a5d2ae3337ccea2f3"
+     },
+     {
+      "frames": 899,
+      "sha256": "86ea7e813f64898e6a69cc4286729edf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b100-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b100-battle-1",
+    "description": "Walking into battle zone 1 of DRL_B100 (scene 746) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b100-battle-1: Walking into battle zone 1 of DRL_B100 (scene 746) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33514 0 16722687 0\ncheckpoint entered\nwalk 555 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 746 save 2e76346f21c6cc03 state c1334d7966f3a215 ram 0000000000000000",
+     "fought frame 2189 scene 746 save 9b1dcd795d389ea1 state 2de14ab8648023e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (555, 102): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1790 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 405,
+     "instruction_end": 122,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e8e15748677de50a5d2ae3337ccea2f3"
+     },
+     {
+      "frames": 1929,
+      "sha256": "b4cff10038e07bbf359d14c9b34a9a1e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b110-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b110-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B110 (scene 747) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b110-battle-0: Walking into battle zone 0 of DRL_B110 (scene 747) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33515 0 16722687 0\ncheckpoint entered\nwalk 344 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 747 save 620fc83b8aae201a state 3b5b8dcb53db4711 ram 0000000000000000",
+     "fought frame 2257 scene 747 save 04c295ffd68d3fb5 state ad383f4045618e52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (344, 102): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1910 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 295,
+     "instruction_end": 107,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e8a93c49c7c3ca72a794743ad335c011"
+     },
+     {
+      "frames": 1997,
+      "sha256": "b392821dee03882682b664ddf62f2e7e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b120-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b120-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B120 (scene 748) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b120-battle-0: Walking into battle zone 0 of DRL_B120 (scene 748) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33516 0 16722687 0\ncheckpoint entered\nwalk 360 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 748 save d2803cb654b3afa9 state f33a5fd984403d3f ram 0000000000000000",
+     "fought frame 1078 scene 748 save 0ae79ddcee8a772d state b1b14657a7fe6cd2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (360, 42): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 108,
+     "instruction": 330,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3d8cc92151f404fb0cf5be0c60ca1762"
+     },
+     {
+      "frames": 818,
+      "sha256": "c525e71a10e54653ad2ad9e61437e80f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b130-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b130-battle-0",
+    "description": "Walking into battle zone 0 of DRL_B130 (scene 749) should start a battle that a strong hero wins",
+    "plan": "# drl-drl-b130-battle-0: Walking into battle zone 0 of DRL_B130 (scene 749) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33517 0 16722687 1\ncheckpoint entered\nwalk 255 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 749 save 5acfbda33abc4409 state 58cb47bb39aec50b ram 0000000000000000",
+     "fought frame 1550 scene 749 save d8f1ff9eb906dc31 state 027cd4ce5e8fe08b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (255, 64): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 256,
+     "instruction_end": 97,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f73389c116f9cacbaf5fc1d8d5530e85"
+     },
+     {
+      "frames": 1290,
+      "sha256": "a6e24b129e28ad9cf782ba302c1431e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

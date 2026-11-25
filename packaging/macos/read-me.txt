@@ -1,0 +1,42 @@
+Legend of Mana Native for Mac
+
+It runs on Apple Silicon Macs (M1 and newer) with macOS 13 or newer. You also
+need your own copy of Legend of Mana, the US version (SLUS-01013) or the
+Japanese one (SLPS-02170), as a disc image or an extracted folder. No game
+data is included.
+
+
+Installing it
+
+1. Drag Legend of Mana Native into the Applications folder.
+2. Open it from Applications.
+
+The first time, macOS won't open it. It says it can't verify that Legend of
+Mana Native is free of malware. That's because the app isn't signed with an
+Apple Developer ID. Sorry, I don't want to pay Apple $99 a year just to sign
+an app at this time. Here's how to open it anyway. You only have to do this
+once for each new version.
+
+1. When macOS says it won't open it, click Done. Don't move it to the Trash.
+2. Open System Settings and go to Privacy & Security.
+3. Scroll down to Security. You'll see a line saying Legend of Mana Native
+   was blocked. Click Open Anyway.
+4. Confirm with your password or Touch ID, then click Open Anyway again.
+
+After that it opens normally.
+
+
+If that doesn't work
+
+If you don't see Open Anyway, or the launcher opens but the game won't start
+when you press Play, you can do the same thing in Terminal. Open Terminal
+(it's in Applications, in Utilities) and paste this:
+
+    xattr -dr com.apple.quarantine "/Applications/Legend of Mana Native.app"
+
+Press Return, then open Legend of Mana Native again. It tells macOS you trust
+this app, and only this app.
+
+
+The source is all on GitHub, if you want to see what you're running or build
+it yourself: https://github.com/celophi/lom-native

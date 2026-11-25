@@ -1,0 +1,9 @@
+{
+  "id": "author.other",
+  "name": "Bad",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 1
+}

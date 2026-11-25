@@ -1,0 +1,457 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mid-mid-map0-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map0-entry",
+    "description": "Entering MID_MAP0 (scene 3) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map0-entry: Entering MID_MAP0 (scene 3) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 3 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 3 save 7c272c37aed69675 state 64bae0040dede3db ram 0000000000000000",
+     "watched frame 261 scene 3 save 7c272c37aed69675 state 0d98608daa52fc50 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1bb4286e34d587a7587eae97a0b50283"
+     },
+     {
+      "frames": 32,
+      "sha256": "7d6e53710aadfc900e3f7549836b29a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map1-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map1-entry",
+    "description": "Entering MID_MAP1 (scene 4) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map1-entry: Entering MID_MAP1 (scene 4) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 4 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 4 save 6446da1ceeeef356 state 45ba56804d0cb048 ram 0000000000000000",
+     "watched frame 261 scene 4 save 6446da1ceeeef356 state fcb337636e442be3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bb967bd61f44d9f29eb5b8314ff212e1"
+     },
+     {
+      "frames": 32,
+      "sha256": "447c7eadcf450774b67a06f694887513"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map2-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map2-entry",
+    "description": "Entering MID_MAP2 (scene 5) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map2-entry: Entering MID_MAP2 (scene 5) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 5 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 5 save 61ac939a7cce6733 state 5750e4c767c54beb ram 0000000000000000",
+     "watched frame 261 scene 5 save 61ac939a7cce6733 state dee7bda51c32b9d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f248ac16b4f9b1b0b6caeb3c4d6c2e80"
+     },
+     {
+      "frames": 32,
+      "sha256": "7fa526e211e8ad297159497a1ff241ec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map3-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map3-entry",
+    "description": "Entering MID_MAP3 (scene 6) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map3-entry: Entering MID_MAP3 (scene 6) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 6 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 6 save 3d8b3d8e7db1a95c state 5d940b544d2a18f7 ram 0000000000000000",
+     "watched frame 261 scene 6 save 3d8b3d8e7db1a95c state fca320753cc15358 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "62c14a0179fc31a8765d5ba69f1f6b7b"
+     },
+     {
+      "frames": 32,
+      "sha256": "dff7b9b9e30b3bac8627c5f053f5c34a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map4-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map4-entry",
+    "description": "Entering MID_MAP4 (scene 7) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map4-entry: Entering MID_MAP4 (scene 7) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 7 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 7 save fe5c656da5794f99 state 22a74fceb7029b1c ram 0000000000000000",
+     "watched frame 261 scene 7 save fe5c656da5794f99 state 5a47cd468f2b12b3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ab1212edbc4b7533a0f55579530d78c9"
+     },
+     {
+      "frames": 32,
+      "sha256": "858fd7d49e20242b2a756991b6427e00"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map5-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map5-entry",
+    "description": "Entering MID_MAP5 (scene 8) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map5-entry: Entering MID_MAP5 (scene 8) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 8 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 8 save f3a7c492d8331e0a state 93d9839f52295dec ram 0000000000000000",
+     "watched frame 261 scene 8 save f3a7c492d8331e0a state d81775b2034ab1b3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69b03fb7ba1aacc8578786636353a154"
+     },
+     {
+      "frames": 32,
+      "sha256": "cf6c184a6d8b800bdf2595d0e4d6eb9d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map6-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map6-entry",
+    "description": "Entering MID_MAP6 (scene 9) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map6-entry: Entering MID_MAP6 (scene 9) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 9 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 9 save a177cf27f4bbc697 state 17a71490f7250da5 ram 0000000000000000",
+     "watched frame 261 scene 9 save a177cf27f4bbc697 state 6b127e42149711c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "792b927a9ad9aaca0a91be71dc732c77"
+     },
+     {
+      "frames": 32,
+      "sha256": "c0a4d82cdbc5c4e6265b4f6473673c55"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map7-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map7-entry",
+    "description": "Entering MID_MAP7 (scene 10) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map7-entry: Entering MID_MAP7 (scene 10) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 10 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 10 save 99b674b1687a1250 state 171d020f3f93a242 ram 0000000000000000",
+     "watched frame 261 scene 10 save 99b674b1687a1250 state 819de907ee9cf565 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b5e576e2161bb2f7565f0c4a2987424"
+     },
+     {
+      "frames": 32,
+      "sha256": "535e24c0ed451e1d573bcc246885a7fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map8-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map8-entry",
+    "description": "Entering MID_MAP8 (scene 11) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map8-entry: Entering MID_MAP8 (scene 11) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 11 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 11 save 8782c4045e1f54ed state 2dc6970f99ed358f ram 0000000000000000",
+     "watched frame 261 scene 11 save 8782c4045e1f54ed state 9682fd63813fc3e0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c2ebb57c2f1f0cb33a78c29f5cdd6c2"
+     },
+     {
+      "frames": 32,
+      "sha256": "bf415999aca79fd897756f9faa53ca01"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-map9-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-map9-entry",
+    "description": "Entering MID_MAP9 (scene 12) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-map9-entry: Entering MID_MAP9 (scene 12) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 12 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 12 save 9370789aadcbb48e state b2a5f7361ca775d3 ram 0000000000000000",
+     "watched frame 261 scene 12 save 9370789aadcbb48e state 3c7ddba00d15d41c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbbb1aefed03144376b81437c17e9c7d"
+     },
+     {
+      "frames": 32,
+      "sha256": "70f6cba4a18ed3a027125f02ff4a6885"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mid-mid-menu-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mid-mid-menu-direct",
+    "description": "Entering MID_MENU (scene 2) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mid-mid-menu-direct: Entering MID_MENU (scene 2) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 2 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 2 save f3a721cba783b936 state 9b78d7f7d3784cc2 ram 0000000000000000",
+     "watched frame 261 scene 2 save f3a721cba783b936 state afad86c5a883dac5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "337b8aeaf6eb848cab92711cbe4c5ec6"
+     },
+     {
+      "frames": 32,
+      "sha256": "99795ba2549e1c869dfda9bb98d9efd7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

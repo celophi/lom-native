@@ -1,0 +1,15 @@
+On macOS SDL gives a new window OpenGL by default. The offscreen video
+driver (headless test runs) does OpenGL through EGL, which macOS doesn't
+have, so its windows failed to open. They get no default backend instead.
+
+--- a/external/SDL/src/video/SDL_video.c
++++ b/external/SDL/src/video/SDL_video.c
+@@ -285,7 +285,7 @@
+ static Uint32 SDL_DefaultGraphicsBackends(SDL_VideoDevice *_this)
+ {
+ #if (defined(SDL_VIDEO_OPENGL) && defined(SDL_PLATFORM_MACOS)) || (defined(SDL_PLATFORM_IOS) && !TARGET_OS_MACCATALYST)
+-    if (_this->GL_CreateContext) {
++    if (_this->GL_CreateContext && SDL_strcmp(_this->name, "offscreen") != 0) {
+         return SDL_WINDOW_OPENGL;
+     }
+ #endif

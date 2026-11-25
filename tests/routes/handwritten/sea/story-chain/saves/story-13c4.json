@@ -1,0 +1,14 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of sea/story/story-13b0.json, at home, with the story state SEA_EVT0's story 0x13c4 needs",
+  "source": "built from the conditions on the path to the write in scene 63 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0
+  },
+  "saved_game": "saves/chain-sea-story-13b0.bin",
+  "variables": {
+    "0x45f": 1,
+    "0x13c4": 1
+  }
+}

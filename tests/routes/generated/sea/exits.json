@@ -1,0 +1,1947 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sea-sea-b151-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-b151-exit-0",
+    "description": "Walking onto exit 0 of SEA_B151 (scene 886) should lead to scene 67",
+    "plan": "# sea-sea-b151-exit-0: Walking onto exit 0 of SEA_B151 (scene 886) should lead to scene 67\nlimit 20000\nenter 886 0 16776959 0\ncheckpoint entered\nexit 0 67\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 886 save 4b2b227f6201d193 state 15c7c96769706d8b ram 0000000000000000",
+     "arrived frame 337 scene 67 save f943c4c65f09db1e state 84baf6a4b33a4438 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (23, 172): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8907f2062680555d0db86254a250e819"
+     },
+     {
+      "frames": 108,
+      "sha256": "fd816b023940057745420a66e5639475"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-b152-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-b152-exit-0",
+    "description": "Walking onto exit 0 of SEA_B152 (scene 887) should lead to scene 67",
+    "plan": "# sea-sea-b152-exit-0: Walking onto exit 0 of SEA_B152 (scene 887) should lead to scene 67\nlimit 20000\nenter 887 0 16717311 0\ncheckpoint entered\nexit 0 67\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 887 save 6dd505cc24a641b3 state 6856b7fad367f07e ram 0000000000000000",
+     "arrived frame 417 scene 67 save cd0f7e28c68145be state 4ffd791989fe1e22 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (23, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 231,
+     "instruction_end": 66,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67ac004dae6cbaeec74d226754ceb5cf"
+     },
+     {
+      "frames": 188,
+      "sha256": "3daed9365e72777428de4c79f351b6bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf00-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF00 (scene 71) should lead to scene 63",
+    "plan": "# sea-sea-bf00-exit-0: Walking onto exit 0 of SEA_BF00 (scene 71) should lead to scene 63\nlimit 20000\nenter 32839 3 16714751 0\ncheckpoint entered\nexit 0 63\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 71 save 331f5496f5e93b97 state 8c5d8d4c7bc1fd60 ram 0000000000000000",
+     "arrived frame 295 scene 63 save 24cb14fbc91298ce state b35724e3a2f1914b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (952, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 72,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7d3cc002bc52fc3be44aadd88e27f50f"
+     },
+     {
+      "frames": 66,
+      "sha256": "2946b09ff147ddb8f8d4b2a1619207df"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf00-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF00 (scene 71) should lead to scene 72",
+    "plan": "# sea-sea-bf00-exit-1: Walking onto exit 1 of SEA_BF00 (scene 71) should lead to scene 72\nlimit 20000\nenter 32839 3 16714751 1\ncheckpoint entered\nexit 1 72\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 71 save a623a64c75f81782 state 145c1e0cf3fb39e2 ram 0000000000000000",
+     "arrived frame 303 scene 72 save 928edc1d9d34068a state 38f88f1a6ec74f2d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 176): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c9468f6e4dc2741276de15cdfb790e23"
+     },
+     {
+      "frames": 74,
+      "sha256": "a8e25cdbb05ef5cda78cde6de9246c1e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf01-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF01 (scene 72) should lead to scene 71",
+    "plan": "# sea-sea-bf01-exit-0: Walking onto exit 0 of SEA_BF01 (scene 72) should lead to scene 71\nlimit 20000\nenter 32840 1 16714751 0\ncheckpoint entered\nexit 0 71\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 72 save 4e48a188064195d6 state 07e7ffb76bd0fd9d ram 0000000000000000",
+     "arrived frame 303 scene 71 save b90d2c97215170c8 state efc382622a782e0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (615, 346): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "104d174086be885e8714aa6b7a8e674d"
+     },
+     {
+      "frames": 74,
+      "sha256": "8d8254b4b1a288e0f1f4a2c2ff765dc8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf01-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF01 (scene 72) should lead to scene 74",
+    "plan": "# sea-sea-bf01-exit-1: Walking onto exit 1 of SEA_BF01 (scene 72) should lead to scene 74\nlimit 20000\nenter 32840 1 16714751 0\ncheckpoint entered\nexit 1 74\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 72 save 4e48a188064195d6 state 07e7ffb76bd0fd9d ram 0000000000000000",
+     "arrived frame 3455 scene 74 save f66fe8d56172cc80 state 896926cf12216c5c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 408): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2930 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 150,
+     "instruction": 465,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "104d174086be885e8714aa6b7a8e674d"
+     },
+     {
+      "frames": 3226,
+      "sha256": "8abfb9c104f6d3ea5da706b8b98201b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf01-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf01-exit-2",
+    "description": "Walking onto exit 2 of SEA_BF01 (scene 72) should lead to scene 73",
+    "plan": "# sea-sea-bf01-exit-2: Walking onto exit 2 of SEA_BF01 (scene 72) should lead to scene 73\nlimit 20000\nenter 32840 1 16714751 0\ncheckpoint entered\nexit 2 73\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 72 save 4e48a188064195d6 state 07e7ffb76bd0fd9d ram 0000000000000000",
+     "arrived frame 2334 scene 73 save 7f11e9148eedb741 state d7f11aaf0fa07f7e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 64): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1790 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 144,
+     "instruction": 442,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "104d174086be885e8714aa6b7a8e674d"
+     },
+     {
+      "frames": 2105,
+      "sha256": "c03834cbd9e49e5e39843eb87a9c79ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf02-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF02 (scene 73) should lead to scene 72",
+    "plan": "# sea-sea-bf02-exit-0: Walking onto exit 0 of SEA_BF02 (scene 73) should lead to scene 72\nlimit 20000\nenter 32841 2 16714751 0\ncheckpoint entered\nexit 0 72\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 73 save 0a86239d4567c220 state d6dc72657d2142df ram 0000000000000000",
+     "arrived frame 300 scene 72 save f6e78e407f4b56de state 4ffe275b24e2587d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (779, 289): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c50b0ce954d9c8a72595886b12044544"
+     },
+     {
+      "frames": 71,
+      "sha256": "428c34f0950aab31551faed1be169e7d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf03-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF03 (scene 74) should lead to scene 72",
+    "plan": "# sea-sea-bf03-exit-0: Walking onto exit 0 of SEA_BF03 (scene 74) should lead to scene 72\nlimit 20000\nenter 32842 0 16714751 1\ncheckpoint entered\nexit 0 72\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 74 save 04e8303e932acc10 state 3290d5e5e7b6afd2 ram 0000000000000000",
+     "arrived frame 1836 scene 72 save 3da1795f48b36b8a state 90eca582f186458b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (780, 24): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 485,
+     "instruction_end": 152,
+     "song": 3,
+     "monster": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "440c4716185e484e6e1254479f016266"
+     },
+     {
+      "frames": 1607,
+      "sha256": "ae5ae78ab7c47faf6d1a451cc4a68fb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf03-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf03-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF03 (scene 74) should lead to scene 64",
+    "plan": "# sea-sea-bf03-exit-1: Walking onto exit 1 of SEA_BF03 (scene 74) should lead to scene 64\nlimit 20000\nenter 32842 0 16714751 1\ncheckpoint entered\nexit 1 64\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 74 save 04e8303e932acc10 state 3290d5e5e7b6afd2 ram 0000000000000000",
+     "arrived frame 295 scene 64 save e5f67d97b00b6b3d state 31f61233dec07163 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (26, 436): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "440c4716185e484e6e1254479f016266"
+     },
+     {
+      "frames": 66,
+      "sha256": "38c842409fc305193e4d06f61c6f17c8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf10-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF10 (scene 75) should lead to scene 63",
+    "plan": "# sea-sea-bf10-exit-0: Walking onto exit 0 of SEA_BF10 (scene 75) should lead to scene 63\nlimit 20000\nenter 32843 1 16714751 0\ncheckpoint entered\nexit 0 63\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 75 save 7ef05d16418819d5 state d8642f7899bcebd3 ram 0000000000000000",
+     "arrived frame 294 scene 63 save 2232831f1bf5a831 state f9d0abe26c51ff40 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 144): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 71,
+     "instruction": 195,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "75ba1fe5edbd631882a50f629d1f371e"
+     },
+     {
+      "frames": 65,
+      "sha256": "51b0de26bcfe7305fb5acf091c5eedc8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf10-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf10-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF10 (scene 75) should lead to scene 76",
+    "plan": "# sea-sea-bf10-exit-1: Walking onto exit 1 of SEA_BF10 (scene 75) should lead to scene 76\nlimit 20000\nenter 32843 1 16714751 0\ncheckpoint entered\nexit 1 76\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 75 save 7ef05d16418819d5 state d8642f7899bcebd3 ram 0000000000000000",
+     "arrived frame 2474 scene 76 save 470047fd870b672f state 273c30a98dc17677 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (792, 80): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1370 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 429,
+     "instruction_end": 137,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "75ba1fe5edbd631882a50f629d1f371e"
+     },
+     {
+      "frames": 2245,
+      "sha256": "05ff8941b1c6720d9913bb1a0ad34a81"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf11-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF11 (scene 76) should lead to scene 75",
+    "plan": "# sea-sea-bf11-exit-0: Walking onto exit 0 of SEA_BF11 (scene 76) should lead to scene 75\nlimit 20000\nenter 32844 2 16714751 1\ncheckpoint entered\nexit 0 75\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 76 save 8fbdb3f6551bdaf4 state aef742f2e82e22d6 ram 0000000000000000",
+     "arrived frame 1906 scene 75 save 664b5c2eb65d99dc state f0e1c98585678a60 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 96): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1430 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 128,
+     "instruction": 360,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "15073e0722bc219b2af1118f4de3eb31"
+     },
+     {
+      "frames": 1677,
+      "sha256": "c25526b67d620f164832c68384d42437"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf11-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf11-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF11 (scene 76) should lead to scene 66",
+    "plan": "# sea-sea-bf11-exit-1: Walking onto exit 1 of SEA_BF11 (scene 76) should lead to scene 66\nlimit 20000\nenter 32844 2 16714751 1\ncheckpoint entered\nexit 1 66\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 76 save 8fbdb3f6551bdaf4 state aef742f2e82e22d6 ram 0000000000000000",
+     "arrived frame 302 scene 66 save a1cddd8e69212e54 state 6da4cfcecf55e3c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (628, 184): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "exit": 1,
+     "instruction": 163,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "15073e0722bc219b2af1118f4de3eb31"
+     },
+     {
+      "frames": 73,
+      "sha256": "bcbb889823bf5affb0079a5e2ee3e564"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf12-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf12-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF12 (scene 77) should lead to scene 66",
+    "plan": "# sea-sea-bf12-exit-0: Walking onto exit 0 of SEA_BF12 (scene 77) should lead to scene 66\nlimit 20000\nenter 32845 0 16714751 0\ncheckpoint entered\nexit 0 66\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 77 save 76e37648eae37782 state 05b43f93f6c11894 ram 0000000000000000",
+     "arrived frame 302 scene 66 save b0bfe5e255390e4b state 547db0a32e8bdf67 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (18, 171): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 53,
+     "instruction": 165,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d95187504cdf4321950de2cc33d5f7e2"
+     },
+     {
+      "frames": 73,
+      "sha256": "05b03a40ab2d32635d13bcaf6f1f8252"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf13-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf13-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF13 (scene 78) should lead to scene 66",
+    "plan": "# sea-sea-bf13-exit-0: Walking onto exit 0 of SEA_BF13 (scene 78) should lead to scene 66\nlimit 20000\nenter 32846 0 16714751 0\ncheckpoint entered\nexit 0 66\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 78 save b9c1135216bf5601 state 9f0fc4cf0cbc71e7 ram 0000000000000000",
+     "arrived frame 295 scene 66 save a45a7823850488b2 state dd79bf1b81b42fff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (25, 276): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fa1e7fe881f9eb1e0fc132a35b911724"
+     },
+     {
+      "frames": 66,
+      "sha256": "8a2c38623460aabce75272c6e355b4e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf13-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf13-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF13 (scene 78) should lead to scene 79",
+    "plan": "# sea-sea-bf13-exit-1: Walking onto exit 1 of SEA_BF13 (scene 78) should lead to scene 79\nlimit 20000\nenter 32846 0 16714751 0\ncheckpoint entered\nexit 1 79\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 78 save b9c1135216bf5601 state 9f0fc4cf0cbc71e7 ram 0000000000000000",
+     "arrived frame 2223 scene 79 save aba6b2c406aae890 state 42b44abece6de6b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1051, 300): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 411,
+     "instruction_end": 132,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fa1e7fe881f9eb1e0fc132a35b911724"
+     },
+     {
+      "frames": 1994,
+      "sha256": "52d35e8d6529aab707de1bfa15b1237e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf14-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf14-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF14 (scene 79) should lead to scene 78",
+    "plan": "# sea-sea-bf14-exit-0: Walking onto exit 0 of SEA_BF14 (scene 79) should lead to scene 78\nlimit 20000\nenter 32847 2 16714751 1\ncheckpoint entered\nexit 0 78\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 79 save c59400d0f44e1f57 state 080869a02d7742c0 ram 0000000000000000",
+     "arrived frame 2092 scene 78 save 60460f184216b501 state 2b3c9a7de83b0bd0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (29, 426): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1490 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 391,
+     "instruction_end": 135,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3a7e2f1f49d57b72f4d9d35358a3a87"
+     },
+     {
+      "frames": 1863,
+      "sha256": "7a33f8cc8df0b107626519a2a48b71d6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf14-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf14-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF14 (scene 79) should lead to scene 67",
+    "plan": "# sea-sea-bf14-exit-1: Walking onto exit 1 of SEA_BF14 (scene 79) should lead to scene 67\nlimit 20000\nenter 32847 2 16714751 1\ncheckpoint entered\nexit 1 67\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 79 save c59400d0f44e1f57 state 080869a02d7742c0 ram 0000000000000000",
+     "arrived frame 306 scene 67 save fef13fc8e4ef172b state 923f764519ea67cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (772, 394): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 50,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3a7e2f1f49d57b72f4d9d35358a3a87"
+     },
+     {
+      "frames": 77,
+      "sha256": "8f1fa47e79a02cae0a14ce6fbd1777fa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf15-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf15-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF15 (scene 80) should lead to scene 67",
+    "plan": "# sea-sea-bf15-exit-0: Walking onto exit 0 of SEA_BF15 (scene 80) should lead to scene 67\nlimit 20000\nenter 32848 0 16714751 0\ncheckpoint entered\nexit 0 67\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 80 save 7f96b4fd98924b4b state 884fe8fe3cd2ca1c ram 0000000000000000",
+     "arrived frame 306 scene 67 save f943c4c65f09db1e state b7a4abbe59da121b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (23, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ff5c7d4efdb683b90984669bfe2ebe54"
+     },
+     {
+      "frames": 77,
+      "sha256": "d99c4bcefb193b078a1c6d646bb979e1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf16-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf16-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF16 (scene 81) should lead to scene 67",
+    "plan": "# sea-sea-bf16-exit-0: Walking onto exit 0 of SEA_BF16 (scene 81) should lead to scene 67\nlimit 20000\nenter 32849 0 16714751 0\ncheckpoint entered\nexit 0 67\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 81 save 9b77da3d2f216e46 state d81c6d3d8c16966a ram 0000000000000000",
+     "arrived frame 305 scene 67 save f6dd704584bfab7d state ba98e3b218188f71 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (941, 177): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 56,
+     "instruction": 173,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "70580358ce5bd7cbe55285620b6909b7"
+     },
+     {
+      "frames": 76,
+      "sha256": "4169a5d8d95bd436714c07123a2c277a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf16-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf16-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF16 (scene 81) should lead to scene 82",
+    "plan": "# sea-sea-bf16-exit-1: Walking onto exit 1 of SEA_BF16 (scene 81) should lead to scene 82\nlimit 20000\nenter 32849 0 16714751 0\ncheckpoint entered\nexit 1 82\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 81 save 9b77da3d2f216e46 state d81c6d3d8c16966a ram 0000000000000000",
+     "arrived frame 2359 scene 82 save 1f0dfb68ada0c715 state 3c88cfb6c79f0f1e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 173): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 462,
+     "instruction_end": 142,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "70580358ce5bd7cbe55285620b6909b7"
+     },
+     {
+      "frames": 2130,
+      "sha256": "5576d5960d86f961ee014c39d957d78d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf17-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf17-exit-0",
+    "description": "Walking onto exit 0 of SEA_BF17 (scene 82) should lead to scene 81",
+    "plan": "# sea-sea-bf17-exit-0: Walking onto exit 0 of SEA_BF17 (scene 82) should lead to scene 81\nlimit 20000\nenter 32850 1 16714751 1\ncheckpoint entered\nexit 0 81\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 82 save 3cdece5ce50dd05d state 0c3bcfb4928b3ba6 ram 0000000000000000",
+     "arrived frame 3017 scene 81 save ce7b6ba907e3dff9 state 0c3128581920904b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 229): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2570 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 404,
+     "instruction_end": 135,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f6fab6a6b5a29fdaf5b37493de99c11e"
+     },
+     {
+      "frames": 2788,
+      "sha256": "098c61f18a83a3437a46bac41fc331a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf17-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf17-exit-1",
+    "description": "Walking onto exit 1 of SEA_BF17 (scene 82) should lead to scene 68",
+    "plan": "# sea-sea-bf17-exit-1: Walking onto exit 1 of SEA_BF17 (scene 82) should lead to scene 68\nlimit 20000\nenter 32850 1 16714751 1\ncheckpoint entered\nexit 1 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 82 save 3cdece5ce50dd05d state 0c3bcfb4928b3ba6 ram 0000000000000000",
+     "arrived frame 311 scene 68 save ef37cc28716bee7f state 4b87203c09b6c417 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 304): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 52,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f6fab6a6b5a29fdaf5b37493de99c11e"
+     },
+     {
+      "frames": 82,
+      "sha256": "fed5bd0177c72b7d7b5895c2740e1376"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs00-exit-0",
+    "description": "Walking onto exit 0 of SEA_BS00 (scene 69) should lead to scene 68",
+    "plan": "# sea-sea-bs00-exit-0: Walking onto exit 0 of SEA_BS00 (scene 69) should lead to scene 68\nlimit 20000\nenter 32837 0 16712456 0\ncheckpoint entered\nexit 0 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 69 save fbf48f3f1b27cfa0 state 20ffd03709259a2b ram 0000000000000000",
+     "arrived frame 297 scene 68 save 876648d3b02027f1 state dcddc9a69ec717fb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (128, 227): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 72,
+     "instruction": 181,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7747e00d8c7f325fa4497917b35072d0"
+     },
+     {
+      "frames": 68,
+      "sha256": "1890bb62829e827cc516b0913a219696"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs01-exit-0",
+    "description": "Walking onto exit 0 of SEA_BS01 (scene 70) should lead to scene 68",
+    "plan": "# sea-sea-bs01-exit-0: Walking onto exit 0 of SEA_BS01 (scene 70) should lead to scene 68\nlimit 20000\nenter 32838 0 16714751 0\ncheckpoint entered\nexit 0 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 70 save 48697f5905af6f39 state fcb769849d57354c ram 0000000000000000",
+     "arrived frame 297 scene 68 save 876648d3b02027f1 state dc5bfa8a7a107b4d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (128, 227): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "129c056251791b0087bbb66861f12a16"
+     },
+     {
+      "frames": 68,
+      "sha256": "000bf727a03f35c0e91aadd9f9d64a77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs02-exit-0",
+    "description": "Walking onto exit 0 of SEA_BS02 (scene 884) should lead to scene 68",
+    "plan": "# sea-sea-bs02-exit-0: Walking onto exit 0 of SEA_BS02 (scene 884) should lead to scene 68\nlimit 20000\nenter 884 0 16776959 0\ncheckpoint entered\nexit 0 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 884 save 5913ab42900ff3ed state 05d83fc5e08604ae ram 0000000000000000",
+     "arrived frame 348 scene 68 save 876648d3b02027f1 state bbe6800002a079d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (128, 227): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a848a4c1708c0ba42ce9aca0e9bbb469"
+     },
+     {
+      "frames": 119,
+      "sha256": "6cd1bcdad7de6b4cab5a82cc6fc532af"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs03-exit-0",
+    "description": "Walking onto exit 0 of SEA_BS03 (scene 885) should lead to scene 68",
+    "plan": "# sea-sea-bs03-exit-0: Walking onto exit 0 of SEA_BS03 (scene 885) should lead to scene 68\nlimit 20000\nenter 885 0 16717311 0\ncheckpoint entered\nexit 0 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 885 save 3111cae6d6d114a9 state 2f99614663aae202 ram 0000000000000000",
+     "arrived frame 408 scene 68 save aa9198750edb65f1 state f6056e00209b04a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (128, 227): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 66,
+     "exit": 1,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fbcba345113c3f990bb75a1d2f5fc654"
+     },
+     {
+      "frames": 179,
+      "sha256": "01ee95e665ff86d463bef799a34bad58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e030-exit-0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 0 of SEA_E030 needs",
+    "source": "built from the conditions in scene 551's script 0 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 9
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e030-exit-0",
+    "description": "Walking onto exit 0 of SEA_E030 (scene 551) should lead to one of scene 552, scene 553",
+    "plan": "# sea-sea-e030-exit-0: Walking onto exit 0 of SEA_E030 (scene 551) should lead to one of scene 552, scene 553\nlimit 20000\nenter 551 0 16716543 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 551 save 5e3d28fdf6f23e07 state 0aa7f1105d4aabe0 ram 0000000000000000",
+     "arrived frame 2500 scene 552 save 9169e989b9b9ed1b state c247bc021f59384e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (149, 299): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 220,
+     "instruction_end": 78,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "810c98dbbc6205312060e63d299f55c9"
+     },
+     {
+      "frames": 2271,
+      "sha256": "70e6fdaaa8abe37914350956b68b5b15"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-e030-exit-1",
+    "description": "Walking onto exit 1 of SEA_E030 (scene 551) should lead to scene 64",
+    "plan": "# sea-sea-e030-exit-1: Walking onto exit 1 of SEA_E030 (scene 551) should lead to scene 64\nlimit 20000\nenter 551 0 16716543 1\ncheckpoint entered\nexit 1 64\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 551 save 1c0edc9aa0df72dc state 0aa7f1105d4aabe0 ram 0000000000000000",
+     "arrived frame 2311 scene 64 save 189824314fd76038 state 88f8f9edebeca598 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (459, 95): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 75,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a452deecaa6a57a8bcbbf64d581f240"
+     },
+     {
+      "frames": 2082,
+      "sha256": "61d6c66fcc625b5dc7f49bf58031ac0b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e040-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-e040-cutscene",
+    "description": "Entering SEA_E040 (scene 552) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# sea-sea-e040-cutscene: Entering SEA_E040 (scene 552) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 552 0 16716543 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 552 save 0e166d2848a0b34a state 246fafe14bd3b318 ram 0000000000000000",
+     "watched frame 2578 scene 551 save e2af15c8fcfd7477 state 9bf2bf1eace9afa3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 2347 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 260,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0396890b003463914a7f33244baa2c4d"
+     },
+     {
+      "frames": 2349,
+      "sha256": "610de72ff34d5514a771ebcec28cef6d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-exit-0",
+    "description": "Walking onto exit 0 of SEA_EVT0 (scene 63) should lead to one of scene 505, the world map",
+    "plan": "# sea-sea-evt0-exit-0: Walking onto exit 0 of SEA_EVT0 (scene 63) should lead to one of scene 505, the world map\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save c40410b83e81d8f4 state 0fbec3a27a04b6ca ram 0000000000000000",
+     "arrived frame 1529 scene 32767 save e1ae953fb5e38468 state 643feb3d6d454f9e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (315, 24): 1 waypoints",
+     "game state 1 at vblank 3383"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 307,
+     "instruction_end": 201,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "552258495f40684384ef82d155699b66"
+     },
+     {
+      "frames": 1299,
+      "sha256": "bc12a6b4b7504d3a5acdb793d8ba80f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-exit-1",
+    "description": "Walking onto exit 1 of SEA_EVT0 (scene 63) should lead to scene 75",
+    "plan": "# sea-sea-evt0-exit-1: Walking onto exit 1 of SEA_EVT0 (scene 63) should lead to scene 75\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nexit 1 75\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save c40410b83e81d8f4 state 0fbec3a27a04b6ca ram 0000000000000000",
+     "arrived frame 1668 scene 75 save bdfdbce2f50ea688 state 1f08d273b7a04211 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 256): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 279,
+     "instruction": 393,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "552258495f40684384ef82d155699b66"
+     },
+     {
+      "frames": 1439,
+      "sha256": "a13a6cdc3dab9896c52502ff3e987027"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-exit-2",
+    "description": "Walking onto exit 2 of SEA_EVT0 (scene 63) should lead to scene 71",
+    "plan": "# sea-sea-evt0-exit-2: Walking onto exit 2 of SEA_EVT0 (scene 63) should lead to scene 71\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nexit 2 71\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save c40410b83e81d8f4 state 0fbec3a27a04b6ca ram 0000000000000000",
+     "arrived frame 1639 scene 71 save 17bc65e2a92600da state 976536361185d7b8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 176): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 276,
+     "instruction": 395,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "552258495f40684384ef82d155699b66"
+     },
+     {
+      "frames": 1410,
+      "sha256": "e1da1e3c0aa787f97fe1a4e1940a5dd9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt1-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt1-cutscene",
+    "description": "Entering SEA_EVT1 (scene 64) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# sea-sea-evt1-cutscene: Entering SEA_EVT1 (scene 64) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 64 0 16714751 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 64 save 1bc48930acbda8fb state 3d534ce4d5b675d4 ram 0000000000000000",
+     "watched frame 1588 scene 63 save 15669abdc16f711c state 363de0d929c53108 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1357 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 304,
+     "instruction_end": 143,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ecf86502b580e035ba32d713215cc27"
+     },
+     {
+      "frames": 1359,
+      "sha256": "53bbabc05eb6c0ffb4f483a0e40ebefe"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt2-exit-0",
+    "description": "Walking onto exit 0 of SEA_EVT2 (scene 65) should lead to scene 68",
+    "plan": "# sea-sea-evt2-exit-0: Walking onto exit 0 of SEA_EVT2 (scene 65) should lead to scene 68\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\nexit 0 68\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save e2f6f2b6eca8dd7a state 9ecfe2dac0c1fcfc ram 0000000000000000",
+     "arrived frame 303 scene 68 save 6b12309b985dec40 state 311b7e4c86d3f2c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (496, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6c10c55f29a73200187c54994c7a64db"
+     },
+     {
+      "frames": 74,
+      "sha256": "90e63cafd257e4c3a992eb8960047987"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk0-exit-0",
+    "description": "Walking onto exit 0 of SEA_FRK0 (scene 66) should lead to scene 76",
+    "plan": "# sea-sea-frk0-exit-0: Walking onto exit 0 of SEA_FRK0 (scene 66) should lead to scene 76\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\nexit 0 76\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 6839c85cc3104ac0 state a18ae52b2e38d393 ram 0000000000000000",
+     "arrived frame 303 scene 76 save 5c2368ccd53952e8 state 019d3806e8e61c64 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 424): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf1f5e78b0aa4b86d8d0c8d76cc76115"
+     },
+     {
+      "frames": 74,
+      "sha256": "21387f4f42b828e08d1fd2cff4116d07"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk0-exit-1",
+    "description": "Walking onto exit 1 of SEA_FRK0 (scene 66) should lead to scene 77",
+    "plan": "# sea-sea-frk0-exit-1: Walking onto exit 1 of SEA_FRK0 (scene 66) should lead to scene 77\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\nexit 1 77\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 6839c85cc3104ac0 state a18ae52b2e38d393 ram 0000000000000000",
+     "arrived frame 480 scene 77 save 46a05d9f557dd1ee state 873398972c271f65 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (478, 357): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 152,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf1f5e78b0aa4b86d8d0c8d76cc76115"
+     },
+     {
+      "frames": 251,
+      "sha256": "18dce898450a80466e5879ba07415e77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk0-exit-2",
+    "description": "Walking onto exit 2 of SEA_FRK0 (scene 66) should lead to scene 78",
+    "plan": "# sea-sea-frk0-exit-2: Walking onto exit 2 of SEA_FRK0 (scene 66) should lead to scene 78\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\nexit 2 78\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 6839c85cc3104ac0 state a18ae52b2e38d393 ram 0000000000000000",
+     "arrived frame 656 scene 78 save 906a9a46cff5e529 state cdbb264eaad2ce9b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (484, 8): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 161,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf1f5e78b0aa4b86d8d0c8d76cc76115"
+     },
+     {
+      "frames": 427,
+      "sha256": "67e7082db9dbba6dfc5bd180bea57297"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk1-exit-0",
+    "description": "Walking onto exit 0 of SEA_FRK1 (scene 67) should lead to scene 79",
+    "plan": "# sea-sea-frk1-exit-0: Walking onto exit 0 of SEA_FRK1 (scene 67) should lead to scene 79\nlimit 20000\nenter 67 3 16714751 0\ncheckpoint entered\nexit 0 79\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 00c4503dddc6f853 state 81ab085336d61d15 ram 0000000000000000",
+     "arrived frame 301 scene 79 save 72682a9f760e838f state e1c6479d8fb98290 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 32): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 49,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e8cdfcf81850f48a6dfcbb4b4d772b22"
+     },
+     {
+      "frames": 72,
+      "sha256": "55cbb2ceee06e403dfc43c564dde8fea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk1-exit-1",
+    "description": "Walking onto exit 1 of SEA_FRK1 (scene 67) should lead to one of scene 80, scene 886, scene 887",
+    "plan": "# sea-sea-frk1-exit-1: Walking onto exit 1 of SEA_FRK1 (scene 67) should lead to one of scene 80, scene 886, scene 887\nlimit 20000\nenter 67 3 16714751 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 00c4503dddc6f853 state 81ab085336d61d15 ram 0000000000000000",
+     "arrived frame 573 scene 80 save e2c477e8288dfe83 state 16d0667ad1526463 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (498, 489): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e8cdfcf81850f48a6dfcbb4b4d772b22"
+     },
+     {
+      "frames": 344,
+      "sha256": "6227a809552e463e1bd5f6d6d4367de1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk1-exit-2",
+    "description": "Walking onto exit 2 of SEA_FRK1 (scene 67) should lead to scene 81",
+    "plan": "# sea-sea-frk1-exit-2: Walking onto exit 2 of SEA_FRK1 (scene 67) should lead to scene 81\nlimit 20000\nenter 67 3 16714751 0\ncheckpoint entered\nexit 2 81\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 00c4503dddc6f853 state 81ab085336d61d15 ram 0000000000000000",
+     "arrived frame 524 scene 81 save 3dd8f6ad9400c632 state c3d7ef07ba4a1ffe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 609): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e8cdfcf81850f48a6dfcbb4b4d772b22"
+     },
+     {
+      "frames": 295,
+      "sha256": "16eb8da073179866715898b68fb50806"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk2-exit-0",
+    "description": "Walking onto exit 0 of SEA_FRK2 (scene 68) should lead to scene 82",
+    "plan": "# sea-sea-frk2-exit-0: Walking onto exit 0 of SEA_FRK2 (scene 68) should lead to scene 82\nlimit 20000\nenter 68 0 16714751 1\ncheckpoint entered\nexit 0 82\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save c5e266262abc91fa state 63549b252ff0e021 ram 0000000000000000",
+     "arrived frame 474 scene 82 save aa6111195398575d state 3e1708d51d66071d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 448): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ebfa5a5df23f2526e7a5356d719dab07"
+     },
+     {
+      "frames": 245,
+      "sha256": "9e36bf98f59c579947db74cf686b16e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk2-exit-1",
+    "description": "Walking onto exit 1 of SEA_FRK2 (scene 68) should lead to scene 65",
+    "plan": "# sea-sea-frk2-exit-1: Walking onto exit 1 of SEA_FRK2 (scene 68) should lead to scene 65\nlimit 20000\nenter 68 0 16714751 1\ncheckpoint entered\nexit 1 65\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save c5e266262abc91fa state 63549b252ff0e021 ram 0000000000000000",
+     "arrived frame 300 scene 65 save 7489c5de696bf4f6 state d501db449d467049 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 448): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ebfa5a5df23f2526e7a5356d719dab07"
+     },
+     {
+      "frames": 71,
+      "sha256": "898890c6da14fa50b04244656dcdbbf9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-frk2-exit-2",
+    "description": "Walking onto exit 2 of SEA_FRK2 (scene 68) should lead to one of scene 69, scene 70, scene 884, scene 885",
+    "plan": "# sea-sea-frk2-exit-2: Walking onto exit 2 of SEA_FRK2 (scene 68) should lead to one of scene 69, scene 70, scene 884, scene 885\nlimit 20000\nenter 68 0 16714751 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save c5e266262abc91fa state 63549b252ff0e021 ram 0000000000000000",
+     "arrived frame 522 scene 69 save c0e45ba3bc2ddce0 state 4ddf2b53d42aabab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 8): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 71,
+     "instruction": 170,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ebfa5a5df23f2526e7a5356d719dab07"
+     },
+     {
+      "frames": 293,
+      "sha256": "a62357ea2d92080804cdb3c8ba39d60e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

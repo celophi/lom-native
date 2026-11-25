@@ -1,0 +1,220 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dst-dst-b010-story-3f4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state DST_B010's story 0x3f4 needs",
+    "source": "built from the conditions on the path to the write in scene 228 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1230": 13,
+     "0x1200": 8
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b010-story-3f4",
+    "description": "In DST_B010 (scene 228), talking to layout record 6 should write story variable 0x3f4",
+    "plan": "# dst-dst-b010-story-3f4: In DST_B010 (scene 228), talking to layout record 6 should write story variable 0x3f4\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\ntalk 218 254 0 1 0 6\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save e5f8bb7d8e796530 state cfb5de2178dcd30a ram 0000000000000000",
+     "done frame 571 scene 228 save f435dd9fcaaf5a81 state c122ac1dc056daee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (218, 234): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "26020b3960913dae174ec2f092ceef57"
+     },
+     {
+      "frames": 342,
+      "sha256": "84bec096725bf4cf7c974bc0e63bdade"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e000-story-4dd",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state DST_E000's story 0x4dd needs",
+    "source": "built from the conditions on the path to the write in scene 222 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 7
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-e000-story-4dd",
+    "description": "In DST_E000 (scene 222), entering should write story variable 0x4dd",
+    "plan": "# dst-dst-e000-story-4dd: In DST_E000 (scene 222), entering should write story variable 0x4dd\nlimit 20000\nenter 222 0 16715263 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 222 save 28eef379c29aceae state c121cfed1d6ce682 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1411",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 72,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f2a926eda38e24240ca58463dc8f8727"
+     },
+     {
+      "frames": 313,
+      "sha256": "cb80ba3f62369995000ed19eda7cea89"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e000-story-687",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state DST_E000's story 0x687 needs",
+    "source": "built from the conditions on the path to the write in scene 222 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 7,
+     "0x4dd": 1
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-e000-story-687",
+    "description": "In DST_E000 (scene 222), entering should write story variable 0x687",
+    "plan": "# dst-dst-e000-story-687: In DST_E000 (scene 222), entering should write story variable 0x687\nlimit 20000\nenter 222 0 16715263 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 222 save 998860c451d7c40e state f0474884de73aa34 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1787",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ad68c5c6e44dd3beaedd4f05f6b3da39"
+     },
+     {
+      "frames": 404,
+      "sha256": "526e3ba22ee501fe7ca7bc4efab2982c"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e010-story-11bc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state DST_E010's story 0x11bc needs",
+    "source": "built from the conditions on the path to the write in scene 223 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11bc": 5
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-e010-story-11bc",
+    "description": "In DST_E010 (scene 223), entering should write story variable 0x11bc",
+    "plan": "# dst-dst-e010-story-11bc: In DST_E010 (scene 223), entering should write story variable 0x11bc\nlimit 20000\nenter 223 0 16715263 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 223 save 31880ffc2da1bf2a state 64295f8c18693819 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2026",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 278,
+     "instruction_end": 118,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1783cef952aa72c9a22a2886cdc9498b"
+     },
+     {
+      "frames": 524,
+      "sha256": "b41d88ec3cfd85e27e2f0abf662ac4ab"
+     }
+    ]
+   }
+  }
+ ]
+}

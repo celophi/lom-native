@@ -1,0 +1,546 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-b000-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b000-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B000 (scene 357) should start a battle that a strong hero wins",
+    "plan": "# min-min-b000-battle-0: Walking into battle zone 0 of MIN_B000 (scene 357) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33125 1 16718847 2\ncheckpoint entered\nwalk 740 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 357 save 1cb3a1cd1ea3f4fd state 2948b8212609ae4b ram 0000000000000000",
+     "fought frame 689 scene 357 save fd7b707c36f5458d state 9d4bbfa583bce703 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (740, 200): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 350 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 240,
+     "instruction_end": 92,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8ab801d28a2bb14396d729443603581a"
+     },
+     {
+      "frames": 429,
+      "sha256": "837e5172e18c3ea4182076fe96867dca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b020-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b020-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B020 (scene 358) should start a battle that a strong hero wins",
+    "plan": "# min-min-b020-battle-0: Walking into battle zone 0 of MIN_B020 (scene 358) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33126 0 16718847 2\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 358 save d5c1e7737f380a4f state 49a1726b8fe241a9 ram 0000000000000000",
+     "fought frame 1300 scene 358 save 274965cd7582a8df state 4dcdfbaf020d620f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 60): 7 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 277,
+     "instruction_end": 97,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3eb6e3a911c0fa858d77aa204dfd9cd7"
+     },
+     {
+      "frames": 1040,
+      "sha256": "0ba4703ab6a9055567081c5b6b4607c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b040-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b040-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B040 (scene 360) should start a battle that a strong hero wins",
+    "plan": "# min-min-b040-battle-0: Walking into battle zone 0 of MIN_B040 (scene 360) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33128 1 16718847 0\ncheckpoint entered\nwalk 160 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 360 save 262cc484abadd9d2 state fbf84d7a84bc586d ram 0000000000000000",
+     "fought frame 1079 scene 360 save 08dc32c928e8169c state d288b035d04924a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (160, 134): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 287,
+     "instruction_end": 98,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "b2b914deb97926766c67f7b2411a03a7"
+     },
+     {
+      "frames": 819,
+      "sha256": "608686e793de10df9f2fb9ef00e62793"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b090-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b090-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B090 (scene 365) should start a battle that a strong hero wins",
+    "plan": "# min-min-b090-battle-0: Walking into battle zone 0 of MIN_B090 (scene 365) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33133 2 16718847 1\ncheckpoint entered\nwalk 288 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 365 save ad4fa88440e25f85 state 36fbc74f033c13eb ram 0000000000000000",
+     "fought frame 816 scene 365 save 3784502ac312b0eb state 6a207a6246b17bde ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (288, 388): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 320,
+     "instruction_end": 111,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c8cc912c5ae1c054e8fb8cb2653d5b1e"
+     },
+     {
+      "frames": 556,
+      "sha256": "9fbbab3fdd88ada14dcdbe1709ece658"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b090-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b090-battle-1",
+    "description": "Walking into battle zone 1 of MIN_B090 (scene 365) should start a battle that a strong hero wins",
+    "plan": "# min-min-b090-battle-1: Walking into battle zone 1 of MIN_B090 (scene 365) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33133 2 16718847 1\ncheckpoint entered\nwalk 684 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 365 save ad4fa88440e25f85 state 36fbc74f033c13eb ram 0000000000000000",
+     "fought frame 816 scene 365 save 3784502ac312b0eb state 6a207a6246b17bde ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (684, 388): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 320,
+     "instruction_end": 111,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c8cc912c5ae1c054e8fb8cb2653d5b1e"
+     },
+     {
+      "frames": 556,
+      "sha256": "9fbbab3fdd88ada14dcdbe1709ece658"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b100-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b100-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B100 (scene 366) should start a battle that a strong hero wins",
+    "plan": "# min-min-b100-battle-0: Walking into battle zone 0 of MIN_B100 (scene 366) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33134 0 16718847 0\ncheckpoint entered\nwalk 308 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 366 save 156371c8e5ddf129 state 481df38be6e88f72 ram 0000000000000000",
+     "fought frame 1062 scene 366 save 23255d9205a463a9 state e6bd6c020e65e860 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (308, 390): 10 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 330,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c4d8dee34c5a838cecf5a369f06cb0ee"
+     },
+     {
+      "frames": 802,
+      "sha256": "e4b30b5d375f83ac1db43e82c0c60706"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b100-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b100-battle-1",
+    "description": "Walking into battle zone 1 of MIN_B100 (scene 366) should start a battle that a strong hero wins",
+    "plan": "# min-min-b100-battle-1: Walking into battle zone 1 of MIN_B100 (scene 366) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33134 0 16718847 0\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 366 save 156371c8e5ddf129 state 481df38be6e88f72 ram 0000000000000000",
+     "fought frame 2093 scene 366 save 23255d9205a463a9 state 04855f7e8f67495d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 390): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 303,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c4d8dee34c5a838cecf5a369f06cb0ee"
+     },
+     {
+      "frames": 1833,
+      "sha256": "24c0165f23ed169c7432a5884528208a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b120-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b120-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B120 (scene 368) should start a battle that a strong hero wins",
+    "plan": "# min-min-b120-battle-0: Walking into battle zone 0 of MIN_B120 (scene 368) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33136 1 16718847 0\ncheckpoint entered\nwalk 224 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 368 save 82d13d908e1cff6a state 180a330517729383 ram 0000000000000000",
+     "fought frame 2859 scene 368 save 1d62a7580ca3027e state b5f3bc0531a0b704 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (224, 226): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1610 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 366,
+     "instruction_end": 122,
+     "song": 3,
+     "monster": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "318daab851b51181403f9fb353b1acd0"
+     },
+     {
+      "frames": 2599,
+      "sha256": "dba55b04afda8e655b299221c9bc8412"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b140-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b140-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B140 (scene 370) should start a battle that a strong hero wins",
+    "plan": "# min-min-b140-battle-0: Walking into battle zone 0 of MIN_B140 (scene 370) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33138 2 16718847 1\ncheckpoint entered\nwalk 286 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 370 save e94efdf07e282212 state cb2450cedbdb646a ram 0000000000000000",
+     "fought frame 1467 scene 370 save 46d66b78e97d46b0 state 752ea1b7b20bbd9b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (286, 104): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 348,
+     "instruction_end": 118,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "402771ce69c27fb2e08ae201cc63a150"
+     },
+     {
+      "frames": 1207,
+      "sha256": "57af263c3ac6a91f62150f36112f4ab9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b150-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b150-battle-0",
+    "description": "Walking into battle zone 0 of MIN_B150 (scene 371) should start a battle that a strong hero wins",
+    "plan": "# min-min-b150-battle-0: Walking into battle zone 0 of MIN_B150 (scene 371) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33139 0 16718847 1\ncheckpoint entered\nwalk 288 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 371 save fce3e02c722cba45 state d7fe62d99a3ebdae ram 0000000000000000",
+     "fought frame 1402 scene 371 save 979b0b8318712d0e state 86d1023d81e31eed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (288, 174): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 438,
+     "instruction_end": 128,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8119ff4bcc7e1d41fc7f89012366a536"
+     },
+     {
+      "frames": 1142,
+      "sha256": "1aad0e5f0e2bb59ab4d8657a136b5ea3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b150-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b150-battle-1",
+    "description": "Walking into battle zone 1 of MIN_B150 (scene 371) should start a battle that a strong hero wins",
+    "plan": "# min-min-b150-battle-1: Walking into battle zone 1 of MIN_B150 (scene 371) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33139 0 16718847 1\ncheckpoint entered\nwalk 608 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 371 save fce3e02c722cba45 state d7fe62d99a3ebdae ram 0000000000000000",
+     "fought frame 1153 scene 371 save 979b0b8318712d0e state 6b5bb91fcb1a0b21 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (608, 174): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 409,
+     "instruction_end": 122,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8119ff4bcc7e1d41fc7f89012366a536"
+     },
+     {
+      "frames": 893,
+      "sha256": "930cfe69077e5163b73e9cc988bfed26"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b150-battle-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b150-battle-2",
+    "description": "Walking into battle zone 2 of MIN_B150 (scene 371) should start a battle that a strong hero wins",
+    "plan": "# min-min-b150-battle-2: Walking into battle zone 2 of MIN_B150 (scene 371) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33139 0 16718847 1\ncheckpoint entered\nwalk 928 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 371 save fce3e02c722cba45 state d7fe62d99a3ebdae ram 0000000000000000",
+     "fought frame 1153 scene 371 save 979b0b8318712d0e state 6b5bb91fcb1a0b21 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (928, 174): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 409,
+     "instruction_end": 122,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8119ff4bcc7e1d41fc7f89012366a536"
+     },
+     {
+      "frames": 893,
+      "sha256": "930cfe69077e5163b73e9cc988bfed26"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

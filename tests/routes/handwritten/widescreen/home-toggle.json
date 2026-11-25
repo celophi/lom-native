@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "id": "widescreen-home-toggle",
+  "description": "Turning widescreen on and off mid-room should take effect on the next frame, in a room without a fixed sky and in the front yard, which has one",
+  "start": {"save": "../saves/home-bedroom-new-game.json"},
+  "steps": [
+    {"walk_to": {"exit": 0}, "note": "the bedroom door, to the main room (scene 18)"},
+    {"wait": 120},
+    {"checkpoint": "main-room-before"},
+    {"widescreen": true},
+    {"wait": 2},
+    {"checkpoint": "main-room-on"},
+    {"widescreen": false},
+    {"wait": 2},
+    {"checkpoint": "main-room-off"},
+    {"walk_to": {"exit": 0}, "note": "the front door, to outside (scene 16)"},
+    {"wait": 120},
+    {"checkpoint": "outside-before"},
+    {"widescreen": true},
+    {"wait": 2},
+    {"checkpoint": "outside-on"},
+    {"widescreen": false},
+    {"wait": 2},
+    {"checkpoint": "outside-off"}
+  ]
+}

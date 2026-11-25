@@ -1,0 +1,96 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-mnl0-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl0-battle-0",
+    "description": "Walking into battle zone 0 of SEI_MNL0 (scene 679) should start a battle that a strong hero wins",
+    "plan": "# sei-sei-mnl0-battle-0: Walking into battle zone 0 of SEI_MNL0 (scene 679) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33447 0 16719359 2\ncheckpoint entered\nwalk 222 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 679 save fd6a0d7c88b0ee31 state 73177a749ee84b2d ram 0000000000000000",
+     "fought frame 1256 scene 679 save 4a861b1074cea3ba state 1d1c67ef8b594155 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (222, 522): 13 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 302,
+     "instruction_end": 103,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "9d0a0dbe0208df331fbbb99f0590974c"
+     },
+     {
+      "frames": 996,
+      "sha256": "fee55167ba06c0ee43c8b7a0f236d5d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl1-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl1-battle-0",
+    "description": "Walking into battle zone 0 of SEI_MNL1 (scene 680) should start a battle that a strong hero wins",
+    "plan": "# sei-sei-mnl1-battle-0: Walking into battle zone 0 of SEI_MNL1 (scene 680) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33448 0 16719359 0\ncheckpoint entered\nwalk 176 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 680 save 606aa652073a99e4 state 976c5781d1b99229 ram 0000000000000000",
+     "fought frame 1388 scene 680 save 65a874403e2e9c99 state 78e31b26774915fe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (176, 80): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 324,
+     "instruction_end": 113,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "fc623c79d1b3c392d4cc6312b620ea18"
+     },
+     {
+      "frames": 1128,
+      "sha256": "d14a3c67acb050c42c1ab9ea25163167"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

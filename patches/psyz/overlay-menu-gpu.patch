@@ -1,0 +1,93 @@
+Draw the in-game menu over the game frame, and pass shortcut keys to the menu
+before PSY-Z's own.
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -12,8 +12,39 @@
+ #include "sdl3_common.h"
+ #include "sdl3_draw.h"
+ #include "rgb24.h"
++#include "lom_native_display.h"
+ 
+ static LomPresentation presentation;
++
++static void PlatformBackend_HandleHostEvent(const SDL_Event* event) {
++    if (!lom_native_menu_blocks_input()) {
++        lom_present_event(&presentation, event);
++    }
++}
++
++int lom_native_display_filter(void) {
++    return presentation.mode;
++}
++int lom_native_display_resolution(void) {
++    return presentation.resolution;
++}
++bool lom_native_display_fullscreen(void) {
++    return is_fullscreen;
++}
++bool lom_native_display_pending(void) {
++    return lom_present_resolution_pending(&presentation);
++}
++const char* lom_native_display_error(void) {
++    return presentation.resolution_error;
++}
++void lom_native_display_set(int filter, int resolution, bool fullscreen) {
++    if (filter >= 0 && filter < LOM_PRESENT_COUNT) {
++        presentation.mode = filter;
++    }
++
++    lom_present_request_resolution(&presentation, resolution);
++    SetFullScreen(fullscreen);
++}
+ static bool display_rgb24;
+ 
+ #if defined(_WIN32)
+@@ -515,6 +546,9 @@
+     if (overlay_init_cb) {
+         overlay_init_cb(sdl3_window, device);
+     }
++    lom_native_menu_init(sdl3_window, device, swapchain_ok ?
++        SDL_GetGPUSwapchainTextureFormat(device, sdl3_window) :
++        SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM);
+     return true;
+ }
+ 
+@@ -1037,6 +1071,8 @@
+ 
+     lom_present_apply_resolution(&presentation, Psyz_VideoSetInternalResolution, Psyz_VideoGetInternalResolution);
+     ApplyPendingInternalRes();
++    lom_native_menu_update();
++    presentation.soften = lom_native_menu_open();
+ 
+     VideoLayout layout = ResolveVideoLayout();
+     const bool native_present =
+@@ -1104,6 +1140,7 @@
+                 lom_present_blit(&presentation, device, cmd, src, swapchain,
+                                  dst, game_aspect, n);
+             }
++            lom_native_menu_draw(cmd, swapchain, sc_w, sc_h);
+             if (overlay_frame_cb) {
+                 overlay_frame_cb();
+             }
+@@ -1119,8 +1156,11 @@
+                 SDL_EndGPURenderPass(pass);
+             }
+         }
+-    } else if (overlay_frame_cb) {
+-        overlay_frame_cb();
++    } else {
++        lom_native_menu_draw(cmd, NULL, 0, 0);
++        if (overlay_frame_cb) {
++            overlay_frame_cb();
++        }
+     }
+     finish_time = SDL_GetPerformanceCounter();
+     SubmitFrame();
+@@ -1128,6 +1168,7 @@
+ 
+ static void QuitPlatform(void) {
+     Sdl3Common_Shutdown();
++    lom_native_menu_destroy();
+     if (overlay_destroy_cb) {
+         overlay_destroy_cb();
+     }

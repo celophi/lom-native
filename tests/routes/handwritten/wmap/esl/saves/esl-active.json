@@ -1,0 +1,38 @@
+{
+  "format": 1,
+  "description": "After the opening, saved at the bedroom desk: home, Domina and land 24 (ESL, Lucemia) on the map and active, land 24 the current one, no world map event pending; WMAP swaps land 24 for land 33 as it loads",
+  "source": "written by hand for esl/lucemia-swap.json",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152
+  },
+  "words": {
+    "24": "0xf2f20000",
+    "32": "0x10000",
+    "33": "0x8000000",
+    "43": "0x6400"
+  },
+  "lands": {
+    "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+    },
+    "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+    },
+    "24": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+    }
+  },
+  "current_land": 24,
+  "world_map_events": []
+}

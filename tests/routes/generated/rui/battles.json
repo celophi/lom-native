@@ -1,0 +1,366 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "rui-rui-b000-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b000-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B000 (scene 420) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b000-battle-0: Walking into battle zone 0 of RUI_B000 (scene 420) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33188 1 16719103 1\ncheckpoint entered\nwalk 752 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 420 save b9dc4fd8ea0e4f9e state b56bd0b4264512c4 ram 0000000000000000",
+     "fought frame 974 scene 420 save 4f35a0ba924d9fb8 state 59d26ab7496a30c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (752, 120): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 102,
+     "instruction": 288,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8c73a9e86ebc15d335510189c21d155c"
+     },
+     {
+      "frames": 714,
+      "sha256": "c6304d4dd7d02698f034402ccba3b5f1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b000-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b000-battle-1",
+    "description": "Walking into battle zone 1 of RUI_B000 (scene 420) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b000-battle-1: Walking into battle zone 1 of RUI_B000 (scene 420) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33188 1 16719103 1\ncheckpoint entered\nwalk 336 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 420 save b9dc4fd8ea0e4f9e state b56bd0b4264512c4 ram 0000000000000000",
+     "fought frame 2114 scene 420 save 780563b974fbfe26 state 7a93ad3adee89d41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 120): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1790 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 109,
+     "instruction": 345,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8c73a9e86ebc15d335510189c21d155c"
+     },
+     {
+      "frames": 1854,
+      "sha256": "d638a8f930bdb2a9a76d499eea746535"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b010-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b010-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B010 (scene 421) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b010-battle-0: Walking into battle zone 0 of RUI_B010 (scene 421) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33189 2 16719103 0\ncheckpoint entered\nwalk 376 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 421 save 69aed1fcd67e33a9 state 4365a19cbf98c89f ram 0000000000000000",
+     "fought frame 995 scene 421 save 7209bc2a8503a8b1 state 1605d05090439d3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (376, 134): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 246,
+     "instruction_end": 91,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "63da38224a2dbebbc3a3021ba582d750"
+     },
+     {
+      "frames": 735,
+      "sha256": "811c311687b5431c9453786b408e0e5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b030-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b030-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B030 (scene 423) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b030-battle-0: Walking into battle zone 0 of RUI_B030 (scene 423) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33191 3 16719103 0\ncheckpoint entered\nwalk 376 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 423 save bcdbf8e253f5cd4a state eab1ecc9f17f7bb8 ram 0000000000000000",
+     "fought frame 999 scene 423 save 7010350cdf4f7d92 state f4f6c15c3b2631d1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (376, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 265,
+     "instruction_end": 96,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "6c8e55f2383095207398743194267d07"
+     },
+     {
+      "frames": 739,
+      "sha256": "064719b6331509a55a1cbdbac6d5fdde"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b070-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b070-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B070 (scene 427) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b070-battle-0: Walking into battle zone 0 of RUI_B070 (scene 427) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33195 2 16719103 1\ncheckpoint entered\nwalk 464 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 427 save 284196251cd40aa2 state 81c05745bac52b58 ram 0000000000000000",
+     "fought frame 960 scene 427 save e63cca153fe3f8da state 427b55fe6105517b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (464, 120): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 262,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "040e3774595a128ce6d5a074e705db30"
+     },
+     {
+      "frames": 700,
+      "sha256": "0aca7ef289d81c93d3c7c06ad1de4215"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b090-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b090-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B090 (scene 429) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b090-battle-0: Walking into battle zone 0 of RUI_B090 (scene 429) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33197 0 16719103 0\ncheckpoint entered\nwalk 352 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 429 save 6acc9f4150176837 state 8a971321d3dd5d87 ram 0000000000000000",
+     "fought frame 751 scene 429 save 7b26642f5c357165 state 7f83329a6d31dc96 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 62): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 410 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 263,
+     "instruction_end": 93,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "bb49c13e45e432b7858c98a98cad4fca"
+     },
+     {
+      "frames": 491,
+      "sha256": "c909e6e157106b92f47dd7c2a5351a19"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b100-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b100-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B100 (scene 430) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b100-battle-0: Walking into battle zone 0 of RUI_B100 (scene 430) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33198 1 16719103 0\ncheckpoint entered\nwalk 352 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 430 save 73b98004af4772f1 state 20e850de9e742c2f ram 0000000000000000",
+     "fought frame 883 scene 430 save 8d0dc6958f90221a state 5800ec642e6d8f20 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 64): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 246,
+     "instruction_end": 93,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "37fa2ce7d1ca0df76a13526ada393103"
+     },
+     {
+      "frames": 623,
+      "sha256": "7bea29e85ee675025b05e20a17aa1559"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b110-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b110-battle-0",
+    "description": "Walking into battle zone 0 of RUI_B110 (scene 431) should start a battle that a strong hero wins",
+    "plan": "# rui-rui-b110-battle-0: Walking into battle zone 0 of RUI_B110 (scene 431) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33199 2 16719103 1\ncheckpoint entered\nwalk 352 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 431 save 5bfa5a81c8a61c66 state d058bf1da7c42400 ram 0000000000000000",
+     "fought frame 904 scene 431 save a5693c3c3bba9684 state f5aa07bf759f4dc9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 54): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 292,
+     "instruction_end": 96,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "3cd6b1655150a16257812b03acdb52a0"
+     },
+     {
+      "frames": 644,
+      "sha256": "cd413ad0b8b3cb50d6a57b60fbc8b7a6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

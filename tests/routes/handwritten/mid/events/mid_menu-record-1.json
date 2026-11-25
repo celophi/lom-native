@@ -1,0 +1,38 @@
+{
+  "format": 1,
+  "id": "mid-mid-menu-record-1",
+  "description": "Entering MID_MENU (scene 2) directly and starting layout record 1's event (slot 0) as talking does should run it, through its indexed jump (opcode 0x0e)",
+  "start": {
+    "save": "../../saves/home-bedroom-after-opening.json"
+  },
+  "frame_limit": 60000,
+  "steps": [
+    {
+      "enter": {
+        "scene": 2,
+        "direct": true
+      },
+      "note": "nothing in the game data enters MID_MENU, so the route does what the engine would"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "watch": 600
+    },
+    {
+      "event": {
+        "record": 1,
+        "slot": 0
+      },
+      "note": "layout record 1's event"
+    },
+    {
+      "watch": 3000,
+      "note": "the event runs on"
+    },
+    {
+      "checkpoint": "record-1"
+    }
+  ]
+}

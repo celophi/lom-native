@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-bs11-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs11-direct",
+    "description": "Entering MIN_BS11 (scene 356) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# min-min-bs11-direct: Entering MIN_BS11 (scene 356) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 356 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 356 save 6e4f256a6998dfc3 state d6cbd43ba8aa6a7a ram 0000000000000000",
+     "watched frame 262 scene 356 save 6fd14c7b7b7af819 state 16f1ab00c7c7fe0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 113,
+     "instruction_end": 35,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a92c3b34461afd33b34bda660f23407"
+     },
+     {
+      "frames": 33,
+      "sha256": "0f82bfde206f2e9f3913fcce0526e021"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

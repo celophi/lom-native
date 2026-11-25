@@ -1,0 +1,407 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "esl-esl-b080-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-b080-talk-3",
+    "description": "Talking to layout record 3 of ESL_B080 (scene 655) should run its event and hand control back",
+    "plan": "# esl-esl-b080-talk-3: Talking to layout record 3 of ESL_B080 (scene 655) should run its event and hand control back\nlimit 20000\nenter 33423 2 16721151 1\ncheckpoint entered\ntalk 90 60 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 655 save 8ec2f4d1ddafe640 state 5f3cb990e5a211ab ram 0000000000000000",
+     "talked frame 987 scene 655 save feb9ff90e0d36ad5 state 83e1118556c1edaf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (110, 60): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9bd684a096b179e24ee26ec1bf6934fa"
+     },
+     {
+      "frames": 758,
+      "sha256": "b2340f9e6ef645645d6e339d65fcf955"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-bs00-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-bs00-talk-2",
+    "description": "Talking to layout record 2 of ESL_BS00 (scene 645) should run its event and hand control back",
+    "plan": "# esl-esl-bs00-talk-2: Talking to layout record 2 of ESL_BS00 (scene 645) should run its event and hand control back\nlimit 20000\nenter 33413 0 16723480 0\ncheckpoint entered\ntalk 155 230 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 645 save d0284ce770c5c420 state 72d117007d75ba74 ram 0000000000000000",
+     "talked frame 1435 scene 646 save ab86361e70b4a976 state 02a9a68d452d7297 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (155, 210): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 246,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8dfe3b103548c52cee8640b90f6eb32f"
+     },
+     {
+      "frames": 1206,
+      "sha256": "16cf42da709e7bc68c8b994db4118606"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e020-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-e020-talk-2",
+    "description": "Talking to layout record 2 of ESL_E020 (scene 635) should run its event and hand control back",
+    "plan": "# esl-esl-e020-talk-2: Talking to layout record 2 of ESL_E020 (scene 635) should run its event and hand control back\nlimit 20000\nenter 635 0 16721151 0\ncheckpoint entered\ntalk 285 45 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 635 save 6da3a4394ab838e7 state 2cbb2b6954806128 ram 0000000000000000",
+     "talked frame 910 scene 635 save 5006e8996b3e3aee state c79daf13d6c7e49c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (285, 25): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "28c741d47e96bb60684d6670e5c4d92b"
+     },
+     {
+      "frames": 681,
+      "sha256": "59abdad3c1b886fd7682dc9cc1bb1b6a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e030-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-e030-talk-2",
+    "description": "Talking to layout record 2 of ESL_E030 (scene 636) should run its event and hand control back",
+    "plan": "# esl-esl-e030-talk-2: Talking to layout record 2 of ESL_E030 (scene 636) should run its event and hand control back\nlimit 20000\nenter 636 1 16721151 0\ncheckpoint entered\ntalk 350 95 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 636 save a349deb86464d535 state 6a3d011a950da6c1 ram 0000000000000000",
+     "talked frame 977 scene 636 save 6139ceac7d31ad52 state cbf7deb072754492 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (350, 75): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bd535c64872bc017fc6420a815db11aa"
+     },
+     {
+      "frames": 748,
+      "sha256": "b38024edd1bb6c46b6ec763521e03f11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e040-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1140 = 1 so layout record 1 of ESL_E040 is there",
+    "source": "built from layout record 1's condition in scene 637 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1140": 1
+    }
+   },
+   "baseline": {
+    "route": "esl-esl-e040-talk-1",
+    "description": "Talking to layout record 1 of ESL_E040 (scene 637) should run its event and hand control back",
+    "plan": "# esl-esl-e040-talk-1: Talking to layout record 1 of ESL_E040 (scene 637) should run its event and hand control back\nlimit 20000\nenter 637 0 16721151 0\ncheckpoint entered\ntalk 1000 1000 0 0 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 637 save e2bfcdb4b60ccb02 state f57cf91209777ff5 ram 0000000000000000",
+     "talked frame 1156 scene 637 save 674c7f6a09c03184 state 471c4a81f53ebb57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "layout record 1's actor is at (350, 250)",
+     "walk to (350, 230): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "089786783a6049113df303ae0ab0e9c1"
+     },
+     {
+      "frames": 927,
+      "sha256": "465d414c3cdfca8fd8534458bcddab27"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e060-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-e060-talk-2",
+    "description": "Talking to layout record 2 of ESL_E060 (scene 639) should run its event and hand control back",
+    "plan": "# esl-esl-e060-talk-2: Talking to layout record 2 of ESL_E060 (scene 639) should run its event and hand control back\nlimit 20000\nenter 639 0 16721151 1\ncheckpoint entered\ntalk 225 230 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 639 save 3cde89125d55aa3a state 7187895db0661844 ram 0000000000000000",
+     "talked frame 933 scene 639 save ffe7f0704d1a34a9 state 39dbe257eddd1392 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (225, 210): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "58d11fcdcf2dea45558bd499d98057d8"
+     },
+     {
+      "frames": 704,
+      "sha256": "85226305293b883b1b4ebc0585002788"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e090-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1140 = 1 so layout record 1 of ESL_E090 is there",
+    "source": "built from layout record 1's condition in scene 642 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1140": 1
+    }
+   },
+   "baseline": {
+    "route": "esl-esl-e090-talk-1",
+    "description": "Talking to layout record 1 of ESL_E090 (scene 642) should run its event and hand control back",
+    "plan": "# esl-esl-e090-talk-1: Talking to layout record 1 of ESL_E090 (scene 642) should run its event and hand control back\nlimit 20000\nenter 642 0 16721151 0\ncheckpoint entered\ntalk 1000 1000 0 0 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 642 save c696932e19b12d85 state 495189a2e2f71131 ram 0000000000000000",
+     "talked frame 1235 scene 642 save a1dc8def147d614d state 28ec64572958cffe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "layout record 1's actor is at (330, 340)",
+     "walk to (330, 320): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 76,
+     "instruction": 173,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "269c79524c82b87fac930279f91bff1d"
+     },
+     {
+      "frames": 1006,
+      "sha256": "f71b385bf3cf143929f51116cb7fe1f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e100-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-e100-talk-2",
+    "description": "Talking to layout record 2 of ESL_E100 (scene 643) should run its event and hand control back",
+    "plan": "# esl-esl-e100-talk-2: Talking to layout record 2 of ESL_E100 (scene 643) should run its event and hand control back\nlimit 20000\nenter 643 0 16721151 0\ncheckpoint entered\ntalk 170 240 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 643 save 980377821c35eabf state fcb34ebce63b0e86 ram 0000000000000000",
+     "talked frame 965 scene 643 save 9005094ef673a090 state c8b6a978b9253042 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 220): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21e8ab45d19be21d5f19bab56bc6e4d0"
+     },
+     {
+      "frames": 736,
+      "sha256": "16ed741c90d1c47cf3067e71c92d1a37"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "esl-esl-e110-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "esl-esl-e110-talk-2",
+    "description": "Talking to layout record 2 of ESL_E110 (scene 644) should run its event and hand control back",
+    "plan": "# esl-esl-e110-talk-2: Talking to layout record 2 of ESL_E110 (scene 644) should run its event and hand control back\nlimit 20000\nenter 644 0 16721151 0\ncheckpoint entered\ntalk 115 230 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 644 save c298bfaafe0640a8 state 1dd99fb9f8c01e0b ram 0000000000000000",
+     "talked frame 1007 scene 644 save 0d6330c17cca4f88 state 030ee150928b8c29 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (115, 210): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbce266e82562d857a28c3e17e32239b"
+     },
+     {
+      "frames": 778,
+      "sha256": "c3e4f73dc83c3a45f678a9dc07035622"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

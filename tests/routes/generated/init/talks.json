@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "init-init-map-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "init-init-map-talk-1",
+    "description": "Talking to layout record 1 of INIT_MAP (scene 0) should run its event and hand control back",
+    "plan": "# init-init-map-talk-1: Talking to layout record 1 of INIT_MAP (scene 0) should run its event and hand control back\nlimit 20000\nenter 0 0 655615 0\ncheckpoint entered\ntalk 224 120 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 0 save 02eba678875c3f40 state 39187a0809ba61cf ram 0000000000000000",
+     "talked frame 532 scene 15 save e70391093c4c6d23 state 9de9a8d26106577f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (224, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 43,
+     "song": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e5f8f29080b8e389dad96e5fb89e96d4"
+     },
+     {
+      "frames": 303,
+      "sha256": "417d063243e960a195243f163ac5727b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,213 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "domina-htw-inn3-shop-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_INN3's shop 0x1 needs (land 1 placed at distance 11)",
+    "source": "built from the conditions on the path to the write in scene 41 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "1": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 1
+     }
+    },
+    "current_land": 1
+   },
+   "baseline": {
+    "route": "domina-htw-inn3-shop-1",
+    "description": "In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 1",
+    "plan": "# domina-htw-inn3-shop-1: In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 1\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save 2f9b7e2e622889fd state a7066006f1dba28b ram 0000000000000000",
+     "done frame 955 scene 41 save 750e30d808d49a99 state 313f13008f377de7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 134): 1 waypoints",
+     "walk to (60, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d6bd003e63107e092bc89969780bfc8a"
+     },
+     {
+      "frames": 726,
+      "sha256": "05df4ee68ca6bd3db4df07ed7a8ddbfb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn3-shop-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_INN3's shop 0x2 needs (land 1 placed at distance 16)",
+    "source": "built from the conditions on the path to the write in scene 41 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "1": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 6
+     }
+    },
+    "current_land": 1
+   },
+   "baseline": {
+    "route": "domina-htw-inn3-shop-2",
+    "description": "In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 2",
+    "plan": "# domina-htw-inn3-shop-2: In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 2\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save d5d69de15a4b4009 state e431d80aafca8cc4 ram 0000000000000000",
+     "done frame 955 scene 41 save 3c3f1b704ade90dd state 25b6eb741c01dadc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 134): 1 waypoints",
+     "walk to (60, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c69f4a15b7686d45f73eb014cd2ff0ee"
+     },
+     {
+      "frames": 726,
+      "sha256": "a02158b27013ee7dd9fa3ed0958e631e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn3-shop-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_INN3's shop 0x3 needs (land 1 placed at distance 25)",
+    "source": "built from the conditions on the path to the write in scene 41 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "1": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 15
+     }
+    },
+    "current_land": 1
+   },
+   "baseline": {
+    "route": "domina-htw-inn3-shop-3",
+    "description": "In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 3",
+    "plan": "# domina-htw-inn3-shop-3: In HTW_INN3 (scene 41), talking to layout record 1 should open shop list 3\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save b7c0d7e40f2a71d2 state 15259dc6e7d7b079 ram 0000000000000000",
+     "done frame 955 scene 41 save 3b858c3f8a41d326 state aac08e7747013931 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 134): 1 waypoints",
+     "walk to (60, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b074736218f7937fc33b1ae58ad7592"
+     },
+     {
+      "frames": 726,
+      "sha256": "1efc68300e3c2755e8231a39317dcea7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

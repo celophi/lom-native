@@ -1,0 +1,231 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "opening-menu-0-random-17",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "opening-menu-0-random-17",
+    "description": "The ring menu should open with Start and its item 0 along should respond to random 17 and back out",
+    "plan": "# opening-menu-0-random-17: The ring menu should open with Start and its item 0 along should respond to random 17 and back out\nlimit 20000\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint open\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\ncheckpoint inside\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint closed\n",
+    "format": 3,
+    "checkpoints": [
+     "open frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "inside frame 2895 scene 19 save c30146a8212f53ca state 8e8aa8c34598559f ram 0000000000000000",
+     "closed frame 3172 scene 19 save f9d928e82c9155ed state 135f75de24f6fda3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121"
+    ],
+    "end": "steps 178 of 178 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 87,
+     "instruction_end": 21,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 44,
+      "sha256": "e6fec97c6fb9a8f7cc7b4781269f28f0"
+     },
+     {
+      "frames": 2852,
+      "sha256": "3668d143f67d5d81a4eb5c4a5c6c6f11"
+     },
+     {
+      "frames": 277,
+      "sha256": "93cac9f8ce7d91c1682b8a2c59a30cc3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "opening-menu-0-random-25",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "opening-menu-0-random-25",
+    "description": "The ring menu should open with Start and its item 0 along should respond to random 25 and back out",
+    "plan": "# opening-menu-0-random-25: The ring menu should open with Start and its item 0 along should respond to random 25 and back out\nlimit 20000\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint open\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint inside\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint closed\n",
+    "format": 3,
+    "checkpoints": [
+     "open frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "inside frame 43 scene 19 save 879b35a7ecc56fe8 state 76d25223176d17cd ram 0000000000000000",
+     "closed frame 273 scene 19 save 879b35a7ecc56fe8 state 10ecb03ec4ba9da4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121"
+    ],
+    "end": "steps 178 of 178 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 44,
+      "sha256": "e6fec97c6fb9a8f7cc7b4781269f28f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 230,
+      "sha256": "710b768995c1be292e3ad29f72bbc135"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "opening-menu-0-random-41",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "opening-menu-0-random-41",
+    "description": "The ring menu should open with Start and its item 0 along should respond to random 41 and back out",
+    "plan": "# opening-menu-0-random-41: The ring menu should open with Start and its item 0 along should respond to random 41 and back out\nlimit 20000\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint open\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\ncheckpoint inside\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint closed\n",
+    "format": 3,
+    "checkpoints": [
+     "open frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "inside frame 43 scene 19 save 5fd1d4cf6bfdeba2 state 76d25223176d17cd ram 0000000000000000",
+     "closed frame 181 scene 19 save 5fd1d4cf6bfdeba2 state c463f9f1265c13ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121"
+    ],
+    "end": "steps 178 of 178 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 44,
+      "sha256": "e6fec97c6fb9a8f7cc7b4781269f28f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 138,
+      "sha256": "91d8364bf121f19c63a3dc61ba2e12d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "opening-menu-0-random-50",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "opening-menu-0-random-50",
+    "description": "The ring menu should open with Start and its item 0 along should respond to random 50 and back out",
+    "plan": "# opening-menu-0-random-50: The ring menu should open with Start and its item 0 along should respond to random 50 and back out\nlimit 20000\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint open\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\ncheckpoint inside\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint closed\n",
+    "format": 3,
+    "checkpoints": [
+     "open frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "inside frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "closed frame 273 scene 19 save 52c68d0e5c0ca8b1 state 10ecb03ec4ba9da4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121"
+    ],
+    "end": "steps 178 of 178 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 44,
+      "sha256": "e6fec97c6fb9a8f7cc7b4781269f28f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 230,
+      "sha256": "1d244b930a98a1d602255cff18812335"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "opening-menu-0-random-7",
+   "save": "../../handwritten/saves/after-opening.json",
+   "baseline": {
+    "route": "opening-menu-0-random-7",
+    "description": "The ring menu should open with Start and its item 0 along should respond to random 7 and back out",
+    "plan": "# opening-menu-0-random-7: The ring menu should open with Start and its item 0 along should respond to random 7 and back out\nlimit 20000\nwait 40\npress 0x0008 4\nwait 40\ncheckpoint open\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0010 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x0080 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\npress 0x0020 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0040 4\nwait 40\ncheckpoint inside\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x2000 4\nwait 40\ncheckpoint closed\n",
+    "format": 3,
+    "checkpoints": [
+     "open frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "inside frame 43 scene 19 save 52c68d0e5c0ca8b1 state 76d25223176d17cd ram 0000000000000000",
+     "closed frame 227 scene 19 save 52c68d0e5c0ca8b1 state cb192fd8c1a139cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121"
+    ],
+    "end": "steps 178 of 178 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 44,
+      "sha256": "e6fec97c6fb9a8f7cc7b4781269f28f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 184,
+      "sha256": "cc9f1d177d7f13a0c0b5f9853c97bb25"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

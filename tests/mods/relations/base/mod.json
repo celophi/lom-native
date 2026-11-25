@@ -1,0 +1,9 @@
+{
+  "id": "base",
+  "name": "Base",
+  "version": "1.2.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2
+}

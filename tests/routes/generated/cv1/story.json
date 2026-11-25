@@ -1,0 +1,339 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "cv1-cv1-bs04-story-1184",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_BS04's story 0x1184 needs",
+    "source": "built from the conditions on the path to the write in scene 701 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x404": 1
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-bs04-story-1184",
+    "description": "In CV1_BS04 (scene 701), entering should write story variable 0x1184",
+    "plan": "# cv1-cv1-bs04-story-1184: In CV1_BS04 (scene 701), entering should write story variable 0x1184\nlimit 20000\nenter 33469 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 701 save 47135bd906425db7 state 5c094e3b73e9a8e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2987",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0febd477505bc55f746d16d20cb80171"
+     },
+     {
+      "frames": 1004,
+      "sha256": "36fd603c61debe7530b7563107fd38d6"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-story-13b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_EVT0's story 0x13b0 needs",
+    "source": "built from the conditions on the path to the write in scene 83 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 8
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-story-13b0",
+    "description": "In CV1_EVT0 (scene 83), entering should write story variable 0x13b0",
+    "plan": "# cv1-cv1-evt0-story-13b0: In CV1_EVT0 (scene 83), entering should write story variable 0x13b0\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save 10acabfe499a0297 state f96d0ef5aed8f78d ram 0000000000000000",
+     "done frame 750 scene 83 save 32d6416488f7fa67 state f0d16b42dc680fe6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 519 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1846a917c9d720447e8d9fe5b3d3ecaf"
+     },
+     {
+      "frames": 521,
+      "sha256": "6f0428fec9ea8561a0a3a8260c8b86f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-story-40a",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_EVT0's story 0x40a needs",
+    "source": "built from the conditions on the path to the write in scene 83 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1158": 1
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-story-40a",
+    "description": "In CV1_EVT0 (scene 83), entering should write story variable 0x40a",
+    "plan": "# cv1-cv1-evt0-story-40a: In CV1_EVT0 (scene 83), entering should write story variable 0x40a\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save 9f9f5adcd32a109a state 9d5edb8b4187b6cd ram 0000000000000000",
+     "done frame 261 scene 83 save 897c4d22018ea582 state 4b10e053546248a0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 126,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4685b0b4eb873322639f51e2d8702619"
+     },
+     {
+      "frames": 32,
+      "sha256": "def0218b2996b85380bcc5d50c2c6bfd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-story-49d",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_EVT0's story 0x49d needs",
+    "source": "built from the conditions on the path to the write in scene 83 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 8
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-story-49d",
+    "description": "In CV1_EVT0 (scene 83), entering should write story variable 0x49d",
+    "plan": "# cv1-cv1-evt0-story-49d: In CV1_EVT0 (scene 83), entering should write story variable 0x49d\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save 10acabfe499a0297 state f96d0ef5aed8f78d ram 0000000000000000",
+     "done frame 750 scene 83 save 32d6416488f7fa67 state f0d16b42dc680fe6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 519 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1846a917c9d720447e8d9fe5b3d3ecaf"
+     },
+     {
+      "frames": 521,
+      "sha256": "6f0428fec9ea8561a0a3a8260c8b86f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk0-story-1164",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_FRK0's story 0x1164 needs",
+    "source": "built from the conditions on the path to the write in scene 84 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1110": 8,
+     "0x1164": 2
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk0-story-1164",
+    "description": "In CV1_FRK0 (scene 84), talking to layout record 1 should write story variable 0x1164",
+    "plan": "# cv1-cv1-frk0-story-1164: In CV1_FRK0 (scene 84), talking to layout record 1 should write story variable 0x1164\nlimit 20000\nenter 84 0 1572863 1\ncheckpoint entered\ntalk 328 147 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 84 save 75266875dd2f607e state 4fd00b522dec589f ram 0000000000000000",
+     "done frame 577 scene 84 save e972beb3d38e12d2 state 9804fd05d3016064 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (328, 127): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 54,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d719f2ece4a679c737c3f9406459b2ec"
+     },
+     {
+      "frames": 348,
+      "sha256": "0fddcc1b7ed7f9e14b3cc5e242d5a2b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk1-story-4d3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state CV1_FRK1's story 0x4d3 needs",
+    "source": "built from the conditions on the path to the write in scene 85 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1164": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk1-story-4d3",
+    "description": "In CV1_FRK1 (scene 85), entering should write story variable 0x4d3",
+    "plan": "# cv1-cv1-frk1-story-4d3: In CV1_FRK1 (scene 85), entering should write story variable 0x4d3\nlimit 20000\nenter 85 0 16713471 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 85 save e69a3274e0431991 state 7c771ec989044311 ram 0000000000000000",
+     "done frame 261 scene 85 save 85b209c6431e31d9 state aa7a316647b2da61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 119,
+     "instruction_end": 32,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3d7f7c27ccb37270b3802d3ed82f4e3b"
+     },
+     {
+      "frames": 32,
+      "sha256": "85435e0256ffe6559f763e1579ac4d58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

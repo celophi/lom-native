@@ -1,0 +1,77 @@
+{
+ "route": "sea-sea-evt0-story-13c8-chain",
+ "description": "In SEA_EVT0 (scene 63), talking to layout record 16 should write story variable 0x13c8",
+ "plan": "# sea-sea-evt0-story-13c8-chain: In SEA_EVT0 (scene 63), talking to layout record 16 should write story variable 0x13c8\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\nanswer 1\ntalk 620 170 0 1 0 16\ncheckpoint done\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 63 save 69295adf1c219dbe state 76ca246e57e843c7 ram 0000000000000000",
+  "done frame 424 scene 63 save f680bbcfea406639 state c2389913dcee0a44 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 63 (SEA_EVT0)",
+    "scene id 19 to 63",
+    "story word 24: 8c8c0000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x319, 0x31c, 0x31d, 0x31e; cleared 0x312, 0x313, 0x31a, 0x31b)",
+    "actor 0 (the hero): at (304, 78), facing 192, animation 4,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (205, 100), facing 128, animation 24,0, presence 0, control 2, command 141",
+    "actor 4 (layout record 1): at (620, 170), facing 0, animation 2,0, presence 0, control 2, command 0",
+    "actor 5 (layout record 2): at (620, 210), facing 0, animation 1,0, presence 0, control 2, command 0",
+    "actor 6 (layout record 3): at (620, 250), facing 0, animation 1,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (620, 290), facing 0, animation 1,0, presence 0, control 2, command 0",
+    "actor 8 (layout record 5): at (620, 330), facing 0, animation 1,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "done",
+   "changes": [
+    "frame 424, scene 63 (SEA_EVT0)",
+    "story word 24: f2f20000 to 8c8c0000 (set 0x312, 0x313, 0x31a, 0x31b; cleared 0x311, 0x314, 0x315, 0x316, 0x319, 0x31c, 0x31d, 0x31e)",
+    "story word 30: 0000010f to 0000000f (cleared 0x3c8)",
+    "scene word 7: 00000000 to 05020000",
+    "scene word 8: 00000000 to 00000001",
+    "scene word 17: 0130004e to 0257009b",
+    "scene word 21: 00007000 to 00014000",
+    "scene word 47: 00000037 to 000001a7",
+    "scene word 68: 00000000 to ffff0000",
+    "actor 0 (the hero): moved (304, 78) to (600, 156); direction 192 to 224; animation 4,0 to 131,0; control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): animation 24,0 to 24,4",
+    "actor 4 (layout record 1): direction 0 to 128; animation 2,0 to 1,0",
+    "actor 5 (layout record 2): direction 0 to 128; animation 1,0 to 0,0",
+    "actor 6 (layout record 3): direction 0 to 128; animation 1,0 to 0,0",
+    "actor 7 (layout record 4): direction 0 to 128; animation 1,0 to 0,0",
+    "actor 8 (layout record 5): direction 0 to 128; animation 1,0 to 0,0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "answering choices with option 1",
+  "walk to (620, 150): 3 waypoints"
+ ],
+ "end": "steps 5 of 5 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction_end": 48,
+  "instruction": 237,
+  "song": 2,
+  "scene": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 b32c21a0 ab08d7ca d0fad8e1 e30bceff 0bae7b5d 27f60b5b 85dfb3a1 fe437ef2 e6c03c9e 8b332e42 b70dd0e0 11c015a6 dcd271fe 4737d990 90f0d0d1 efb9eb95 e6c03c9e 8b332e42 46a995cd e5ac4678 310300c5 cccde34e 90f0d0d1 efb9eb95 e6c03c9e 8b332e42 b70dd0e0 11c015a6 dcd271fe 4737d990 90f0d0d1 efb9eb95 5e6570db 71ccb469 3fd7db64 abce99cb 78853642 56b58e32 b74ba58a 97a26fde facccee8 d4b97d32 50221454 b1ddbb26 7eb38ac5 b9bb2a8c efc00078 5b2bcf96 89ed19ab a5151977 14650fb0 2ca579b3 9d8b6ecb 169a77c0 093437c4 f4ab7e7d 50f36ed7 6310f233 de7bebcd abd11352 acd6c2d1 6e9dffb1 4bbb30ba 9aaa87b7 f10abd57 724de3ee b3eac068 724de3ee 5ebac2ee 159db22e c8871f20 8975fac7 389e0591 af4adadc 389e0591 af4adadc 5798d905 42dcbc3f 42af28f7 5a61d7b7 db359ba7 5a61d7b7 f1ed2dd8 e0a24956 5a2f82b4 e0a24956 5a2f82b4 c011b36d 76cbe0ec 4bf1fd52 adc31859 6ec0617a 84c43937 2428b0f6 cccf09fa d523d268 fc7319a5 c2390c9c de0f10fd b9770b55 c60960bb c44e60f0 533d5a2d 6fd94681 991be853 efac9613 11ab6ab9 c0904d11 28798e58 b5294017 368c8189 d5aa6a4e 39a01c86 80932b2a 43d9864d c869dd02 ed3af469 0e6b3fc7 e602eaaa a66648f5 842bc254 e91a1f14 8616c272 94adfca1 bcfc667a bc5f69c9 283f0e22 0d400cbe beed9ccb a882b5c1 80892c74 4ae71bf3 5172ea2f 1e16d7f7 288a4225 28e4c72d 63639249 fecad177 25b410be bc72df0b 6ba48412 d72d901e a57f2dd1 d8b5061a aa7ac7ee 417e39f5 a215b2e5 89f62785 cfe6f7e5 f963313a ec675dde 160e7ff6 5e751fa0 395c591b 9c59878b 5a6548ba 553c004a 41e1d0b6 d34558a5 6d5b8169 25b5a30a 121d26ec 069d6c49 0660b8cf d941b123 15c8a943 1e7166e7 24e9fec5 a980464b 39de3d70 b5144761 1ea8ad60 ec9c72cb c087f83f 3c5c235e d499a31e b2bbd0c8 7d38abc4 99ef00ab 951854c5 33c36b29 f4abc238 ba9c3884 9eb2250a ab0552fd bfe9328c dc760fe3 24fd47d9 62e5ac9f 462f1354 a58533a2 c7d874e8 e530ed0b 4dc57766 767faa7d 439cd67a 6b4d120b 40f4ae9a 5d0bc0ac 3fab4235 ea757427 b6c63b86 e95f2b46 4422db6b 534fa21e eb8f5074 bf1a0189 3b1fa7a5 3d3e46df ab3bea8d 88c44329 5ae95dc5 0eeb5d92 4d3a4db6 1f83ed60 14c7e972 c8f6f44d 87bd6fbb 5e4c5f5a b1dbc8fe d0e48b29 ebd6b48a 846b2ded c011fd81 121144de 93bd3559 fce6bcea c0e56dc3 136bbb83 53775a21 aba3cfe0 12f7dd22 736db43d 0b4d0769 e3772d52 9f79c56d 16e1eea2 644636ff d6ff6e06 04c70380 4bce4d6c d70c0cea 36306c4c 54233ed8 6448473f 68cfed3e 20744b07 e8788595 8202686a 3468f482 ad8f5bc4 221f7fc3 bbaed91b 8f8c7e46 f73e5f83 d9510c61 8632bef0 2162dafc e104c66b 5c594c29 e2e7a8ef 5ff59e16 5874d62f f8f9e177 14d7dd3a 18fc0565 e9adfcd4 adacfdd1 d25ada1f 5136aa19 03c6e97a c78ed3c8 2d6d9af9 4bd673ac 0eabab91 a9c98866 a651b5ef be2e5b6a 0c405bdf 007b361c f0c63a4c a75ec356 edeb70e9 93846c19 b3f356e0 b8173009 28607d03 36c28ede e8799a5c e605a7a7 5474b2ea 9961ff97 1d9e5190 13e229ff a947f007 ce2fcd18 543e5a9d 26a3bc2c 8a6daa59 f732e985 fea71662 6ceedd9f 2f4be73e 7c6ac24b d123203b 53061f1c 778f68f1 dec85756 c85172aa b118be37 a23be515 15ddd66b 5d39c388 119bf022 e88f5f24 05f6e8f7 e308ff05 f415ce19 fc9df9e1 95e5392e 8bb18c6d 63a17538 6c838ff0 09808a5d 335881fa 9f2c75ca 721783c3 bae62b64 a2827ae0 91c31636 0ac3eefa 6e3d356f bef72aab eb69ab4e 2a253aed 8c78db67 4d6f456e 09c40a5c 7b9065a5 2b02376e c53e7cdd be318280 99aa8c07 982da0d6 44c8db5d dd696325 1b04f343 dbe479ef 7afe0306 285d9b5e f28922fe 3a707f39 be33c825 a06e8642 607bbc8b b9070233 efee2b5e d23d2b32 0c14855b 65cc3d2d caab5a2b 9ac61690 c8ac767d 62e79525 a8cfa2ee 491ff9af 3c20cbcc 5a38ee5b cf03da95 c4ed8a34 76b27e3f b9bcd43b 6b889127 f07fdd06 fbb43849 0e279458 7c36ff8d 4844d265 d049c041 77ec9d43 ddceea81 27dfd22e da7d4f7d 7bc2b049 d137e194 6fe6e553 332abcf9 6796cf10 9678a870 63e33925 5bcc5e30 6c5a4982 dac74a1e 6ee2c7b5 9d33fa9a ee007a56 51bf6e45 e06ec1a8 d7f01afa d9113771 97bd556b f5de21ea 7f08442f 06c848b8 10c985a6 06c848b8 e0e5c7c1 d515b750 c97de2f1 d3770a4f 18adbbc3 9000df04 30e9fcda 94f7e512 fa976124 4536029e 56c094c9 a188e06d 818410e1 2520ca5b d5233f7b",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "2267076f22b9cff8ce35bd50ed079033"
+  },
+  {
+   "frames": 368,
+   "sha256": "999c74d2d317855c1bea0b5523a5b4e9"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

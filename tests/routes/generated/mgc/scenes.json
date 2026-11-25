@@ -1,0 +1,252 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mgc-mgc-bs00-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-bs00-entry",
+    "description": "Entering MGC_BS00 (scene 579) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-bs00-entry: Entering MGC_BS00 (scene 579) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33347 0 16712458 1\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 579 save 0c55bb710109abfb state af071d9fb82bcc27 ram 0000000000000000",
+     "watched frame 262 scene 579 save 000c6c66b9b73bb3 state 13eff96705d1fac0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b8eb39d18bb59483cf0e4ff33575daa"
+     },
+     {
+      "frames": 33,
+      "sha256": "286b40cf7fe5d40ffcc4b34eebbf2ebf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmp0-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmp0-direct",
+    "description": "Entering MGC_CMP0 (scene 618) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-cmp0-direct: Entering MGC_CMP0 (scene 618) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 618 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 618 save b431beb10e57166c state 761f056ac8248604 ram 0000000000000000",
+     "watched frame 262 scene 618 save d9d4764068e178ea state 98b4643f2d885da1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "602a66901ad0eef1e7831db7bd8d0d64"
+     },
+     {
+      "frames": 33,
+      "sha256": "a372cd321acffe3b917591671c23a2bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jw11-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-jw11-entry",
+    "description": "Entering MGC_JW11 (scene 787) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-jw11-entry: Entering MGC_JW11 (scene 787) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 787 0 16715263 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 787 save fdc9d21ededd45df state ab9f8aecad719ac5 ram 0000000000000000",
+     "watched frame 262 scene 787 save 856b1b7565e8e8c5 state fe45c832f21a0254 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db08314f951b657e711e064812d8ac96"
+     },
+     {
+      "frames": 33,
+      "sha256": "9d8ad788552bdbee77e0ad54af40261a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jwl1-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-jwl1-entry",
+    "description": "Entering MGC_JWL1 (scene 572) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-jwl1-entry: Entering MGC_JWL1 (scene 572) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 572 0 16715263 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 572 save bb836569bce0da8b state b59df7f7d8ed583e ram 0000000000000000",
+     "watched frame 447 scene 572 save 11eab76a901ecac1 state cd6df06414c4f6ac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 216 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 87,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "55886f91cf8dcac9994007b1b26d879a"
+     },
+     {
+      "frames": 218,
+      "sha256": "0d22ded5414ca66a18bf7410c05010d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-lbr0-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-lbr0-direct",
+    "description": "Entering MGC_LBR0 (scene 622) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-lbr0-direct: Entering MGC_LBR0 (scene 622) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 622 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 622 save c612f5d7c8314d48 state 308e5c761134b6fe ram 0000000000000000",
+     "watched frame 262 scene 622 save 5825e0cec432e01e state 1fc971c71197190f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3d453dd45e3a0dcb1142818250ab70f0"
+     },
+     {
+      "frames": 33,
+      "sha256": "f0eb0f92e62ab7671be64b36293aa93c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-towr-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-towr-entry",
+    "description": "Entering MGC_TOWR (scene 585) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mgc-mgc-towr-entry: Entering MGC_TOWR (scene 585) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 585 0 16717567 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 585 save 473597b769cd8f5b state fc618eb968dc8ba9 ram 0000000000000000",
+     "watched frame 421 scene 568 save 99d6c849dd80479e state d8423f72b3ecbe3d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 190 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 53,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6b1dcbfdaef2e8a734f46274f3bc3e3b"
+     },
+     {
+      "frames": 192,
+      "sha256": "0089dc9c0900fcec8d3a48b31c0c4c8c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

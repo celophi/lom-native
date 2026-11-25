@@ -1,0 +1,1012 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "cv1-cv1-b041-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2528 = 12 so layout record 2 of CV1_B041 is there",
+    "source": "built from layout record 2's condition in scene 98 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2528": 12
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-b041-talk-2",
+    "description": "Talking to layout record 2 of CV1_B041 (scene 98) should run its event and hand control back",
+    "plan": "# cv1-cv1-b041-talk-2: Talking to layout record 2 of CV1_B041 (scene 98) should run its event and hand control back\nlimit 20000\nenter 98 3 16717567 1\ncheckpoint entered\ntalk 330 140 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 98 save 118b6442fa636dc8 state 8d65797b40fdcc47 ram 0000000000000000",
+     "talked frame 787 scene 628 save 3c05c6fc505d204f state 250862ad3dc3f9cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 120): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 79,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e23f9655bc2a5ab50d8efe32480b9b80"
+     },
+     {
+      "frames": 558,
+      "sha256": "523c1286db09157b3a66c31eb07652db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-b041-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fa8 = 41 so layout record 4 of CV1_B041 is there",
+    "source": "built from layout record 4's condition in scene 98 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 41
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-b041-talk-4",
+    "description": "Talking to layout record 4 of CV1_B041 (scene 98) should run its event and hand control back",
+    "plan": "# cv1-cv1-b041-talk-4: Talking to layout record 4 of CV1_B041 (scene 98) should run its event and hand control back\nlimit 20000\nenter 98 3 16717567 1\ncheckpoint entered\ntalk 300 200 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 98 save 1fd667e889dadaa9 state eea105ec2d1ea990 ram 0000000000000000",
+     "talked frame 993 scene 628 save a08812e1a06111d2 state bbc55b73596d41ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 79,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3447a3811f13e87448caab179c8a350c"
+     },
+     {
+      "frames": 764,
+      "sha256": "7da4882361e1a8c7bcbfd385d2e57d5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bf00-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-bf00-talk-4",
+    "description": "Talking to layout record 4 of CV1_BF00 (scene 93) should run its event and hand control back",
+    "plan": "# cv1-cv1-bf00-talk-4: Talking to layout record 4 of CV1_BF00 (scene 93) should run its event and hand control back\nlimit 20000\nenter 32861 1 16713471 1\ncheckpoint entered\ntalk 550 230 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 93 save eb8dcc76cd408091 state 2e8085bf9a5de39a ram 0000000000000000",
+     "talked frame 872 scene 93 save a175127fdf9e8dab state ab56b5512d675307 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (550, 210): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 60,
+     "instruction": 163,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b78ccc55ff67fe21864ef56420e65438"
+     },
+     {
+      "frames": 643,
+      "sha256": "9b7343fd8973e9f2985f8585ca8384cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bf03-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-bf03-talk-3",
+    "description": "Talking to layout record 3 of CV1_BF03 (scene 96) should run its event and hand control back",
+    "plan": "# cv1-cv1-bf03-talk-3: Talking to layout record 3 of CV1_BF03 (scene 96) should run its event and hand control back\nlimit 20000\nenter 32864 2 16713471 1\ncheckpoint entered\ntalk 540 150 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 96 save 2152d9991973583f state 8bf04a35795adbdb ram 0000000000000000",
+     "talked frame 980 scene 96 save 727ec9e8830e7266 state 7b01e3f60918990c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (540, 170): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "952771a7307f6f92d6d36adab35b525c"
+     },
+     {
+      "frames": 751,
+      "sha256": "418e8d2ffc00e56f118e788d453fad65"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bf11-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1340 = 9 so layout record 1 of CV1_BF11 is there",
+    "source": "built from layout record 1's condition in scene 105 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1340": 9
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-bf11-talk-1",
+    "description": "Talking to layout record 1 of CV1_BF11 (scene 105) should run its event and hand control back",
+    "plan": "# cv1-cv1-bf11-talk-1: Talking to layout record 1 of CV1_BF11 (scene 105) should run its event and hand control back\nlimit 20000\nenter 105 1 16713471 1\ncheckpoint entered\ntalk 200 170 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 105 save 5161baaeadf27a32 state 3cdb44a2d59128da ram 0000000000000000",
+     "talked frame 1076 scene 105 save ddf0bec2150181b5 state 2d1091fc6ef43dbc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 150): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "37184204d3fc5b960d86a17eaa88135e"
+     },
+     {
+      "frames": 847,
+      "sha256": "2f25721c0bb2fa9c67b24d2edb3c3fcc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bf11-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-bf11-talk-4",
+    "description": "Talking to layout record 4 of CV1_BF11 (scene 105) should run its event and hand control back",
+    "plan": "# cv1-cv1-bf11-talk-4: Talking to layout record 4 of CV1_BF11 (scene 105) should run its event and hand control back\nlimit 20000\nenter 105 1 16713471 1\ncheckpoint entered\ntalk 310 222 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 105 save 2c8764798e702625 state 3047dbfef1e6d42e ram 0000000000000000",
+     "talked frame 912 scene 105 save 9f690a7af7a2e74a state 6bbada7daec56993 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (310, 202): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8d5bce92188c1cdf5229132d9fb4f68"
+     },
+     {
+      "frames": 683,
+      "sha256": "7b9d5bdc3050627e74cd7a9a21c3481b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bs13-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-bs13-talk-3",
+    "description": "Talking to layout record 3 of CV1_BS13 (scene 881) should run its event and hand control back",
+    "plan": "# cv1-cv1-bs13-talk-3: Talking to layout record 3 of CV1_BS13 (scene 881) should run its event and hand control back\nlimit 20000\nenter 881 0 16717311 0\ncheckpoint entered\ntalk 208 144 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 881 save c3b22d15aff2b3ed state 53d071ec22e9ae11 ram 0000000000000000",
+     "talked frame 741 scene 881 save 3310997201b9cbeb state d921ced76c07fecf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (208, 124): 1 waypoints",
+     "walk to (208, 164): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 125,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "da3cb6657438e9f086930c7ad365f008"
+     },
+     {
+      "frames": 512,
+      "sha256": "c2aea6530800fc1430f6d5c80b23656f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x478 = 1 so layout record 10 of CV1_EVT0 is there",
+    "source": "built from layout record 10's condition in scene 83 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x478": 1
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-talk-10",
+    "description": "Talking to layout record 10 of CV1_EVT0 (scene 83) should run its event and hand control back",
+    "plan": "# cv1-cv1-evt0-talk-10: Talking to layout record 10 of CV1_EVT0 (scene 83) should run its event and hand control back\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\ntalk 350 100 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save 4a77f787bbf8f632 state 7fb257ee4892c85e ram 0000000000000000",
+     "talked frame 942 scene 86 save d72dc29e370af36a state 188ffbc398269855 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (350, 80): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 244,
+     "instruction_end": 79,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a34623ae2aa7e205fb641e9c42505039"
+     },
+     {
+      "frames": 713,
+      "sha256": "8dde8688345b852bfe01f82c7758c3a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1164 = 2 so layout record 8 of CV1_EVT0 is there",
+    "source": "built from layout record 8's condition in scene 83 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1164": 2
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-talk-8",
+    "description": "Talking to layout record 8 of CV1_EVT0 (scene 83) should run its event and hand control back",
+    "plan": "# cv1-cv1-evt0-talk-8: Talking to layout record 8 of CV1_EVT0 (scene 83) should run its event and hand control back\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\ntalk 330 200 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save f8d030f0946fd0ff state c806507adf906d67 ram 0000000000000000",
+     "talked frame 1237 scene 83 save 78ccb231cdbd2284 state 1968db1f1c684df2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 180): 2 waypoints",
+     "walk to (330, 220): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7410822be2c18f16ee5e08c0d5e27d92"
+     },
+     {
+      "frames": 1008,
+      "sha256": "dc8c17e76e6ef2ba9fc9731754b0b327"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-evt0-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x477 = 1 so layout record 9 of CV1_EVT0 is there",
+    "source": "built from layout record 9's condition in scene 83 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x477": 1
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-evt0-talk-9",
+    "description": "Talking to layout record 9 of CV1_EVT0 (scene 83) should run its event and hand control back",
+    "plan": "# cv1-cv1-evt0-talk-9: Talking to layout record 9 of CV1_EVT0 (scene 83) should run its event and hand control back\nlimit 20000\nenter 83 0 16713471 0\ncheckpoint entered\ntalk 310 180 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 83 save e230e28e8ca920a2 state b12046465796e8bf ram 0000000000000000",
+     "talked frame 1062 scene 84 save 8461c5499787904f state 0be5b828d72d2c80 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (310, 160): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 85,
+     "instruction": 239,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f51d112ab80d3c891bf37762561cbec7"
+     },
+     {
+      "frames": 833,
+      "sha256": "10053a1fca8ceb9c6a6f9d20bffb3514"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk0-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-frk0-talk-1",
+    "description": "Talking to layout record 1 of CV1_FRK0 (scene 84) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk0-talk-1: Talking to layout record 1 of CV1_FRK0 (scene 84) should run its event and hand control back\nlimit 20000\nenter 84 0 1572863 1\ncheckpoint entered\ntalk 328 147 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 84 save 654147512182ee76 state 4fd00b522dec589f ram 0000000000000000",
+     "talked frame 532 scene 84 save 6e982f7217a684ea state 7d4e06e306fff734 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (328, 127): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 53,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bee6aea371f5bf8f7ef6d359797e12ce"
+     },
+     {
+      "frames": 303,
+      "sha256": "9e0d742c49267486d012e004d6490b48"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk0-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-frk0-talk-2",
+    "description": "Talking to layout record 2 of CV1_FRK0 (scene 84) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk0-talk-2: Talking to layout record 2 of CV1_FRK0 (scene 84) should run its event and hand control back\nlimit 20000\nenter 84 0 1572863 1\ncheckpoint entered\ntalk 580 300 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 84 save 654147512182ee76 state 4fd00b522dec589f ram 0000000000000000",
+     "talked frame 945 scene 83 save 1dd7a58535ba6138 state 53414931685da073 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (580, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 79,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bee6aea371f5bf8f7ef6d359797e12ce"
+     },
+     {
+      "frames": 716,
+      "sha256": "84683f6368243f84e7f198f075507d7e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk1-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2540 = 51 so layout record 1 of CV1_FRK1 is there",
+    "source": "built from layout record 1's condition in scene 85 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2540": 51
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk1-talk-1",
+    "description": "Talking to layout record 1 of CV1_FRK1 (scene 85) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk1-talk-1: Talking to layout record 1 of CV1_FRK1 (scene 85) should run its event and hand control back\nlimit 20000\nenter 85 0 16713471 0\ncheckpoint entered\ntalk 331 388 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 85 save 8577952199e70980 state 8268ed79eafa01d6 ram 0000000000000000",
+     "talked frame 834 scene 85 save a9fd68e1574154c0 state ad2d9dac28b336b4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (331, 368): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ac23aebce83fded3847b7e0cbb5ae23b"
+     },
+     {
+      "frames": 605,
+      "sha256": "4b7e24cec674532f408db5c855dc4790"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk2-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 4 so layout record 1 of CV1_FRK2 is there",
+    "source": "built from layout record 1's condition in scene 86 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk2-talk-1",
+    "description": "Talking to layout record 1 of CV1_FRK2 (scene 86) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk2-talk-1: Talking to layout record 1 of CV1_FRK2 (scene 86) should run its event and hand control back\nlimit 20000\nenter 86 2 1572863 2\ncheckpoint entered\ntalk 350 130 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 86 save 2a19fabcb19347a9 state b9d28cfe70e76bae ram 0000000000000000",
+     "talked frame 800 scene 86 save 087fb998e6dd0047 state cbfd3285491b6668 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (350, 110): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 203,
+     "instruction": 285,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "651621f18113bfecaedc940c6f5d0ff5"
+     },
+     {
+      "frames": 571,
+      "sha256": "9921bd1d9eb4b5e2a6f7dee68466ed78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk2-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 4 so layout record 2 of CV1_FRK2 is there",
+    "source": "built from layout record 2's condition in scene 86 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk2-talk-2",
+    "description": "Talking to layout record 2 of CV1_FRK2 (scene 86) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk2-talk-2: Talking to layout record 2 of CV1_FRK2 (scene 86) should run its event and hand control back\nlimit 20000\nenter 86 2 1572863 0\ncheckpoint entered\ntalk 486 424 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 86 save d1db98d942689e4f state 41efaceedfd60e03 ram 0000000000000000",
+     "talked frame 1209 scene 86 save 0582f6075a491af8 state da126454246afb63 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (486, 404): 4 waypoints",
+     "walk to (486, 444): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 223,
+     "instruction": 323,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "07c3f45fd031356f2423a496a18c5f0f"
+     },
+     {
+      "frames": 980,
+      "sha256": "ac86893f0ead84202bbaa53022e51a27"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk2-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-frk2-talk-5",
+    "description": "Talking to layout record 5 of CV1_FRK2 (scene 86) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk2-talk-5: Talking to layout record 5 of CV1_FRK2 (scene 86) should run its event and hand control back\nlimit 20000\nenter 86 2 1572863 0\ncheckpoint entered\ntalk 345 230 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 86 save ca51592f729bda83 state c26874b64570f89c ram 0000000000000000",
+     "talked frame 1044 scene 83 save 1dd7a58535ba6138 state 93260d049992d88a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (345, 210): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d1c474cf53a27f299c329c6ab17c62b"
+     },
+     {
+      "frames": 815,
+      "sha256": "59f0a4632b2a879c9fcd930d80ff9668"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk2-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-frk2-talk-7",
+    "description": "Talking to layout record 7 of CV1_FRK2 (scene 86) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk2-talk-7: Talking to layout record 7 of CV1_FRK2 (scene 86) should run its event and hand control back\nlimit 20000\nenter 86 2 1572863 2\ncheckpoint entered\ntalk 490 110 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 86 save 93cc462036364ef5 state 9db195fb67504f15 ram 0000000000000000",
+     "talked frame 657 scene 86 save e2a4574570f7d544 state 8c4575dba6060af8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (490, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 47,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "392083a87a1f28c0c83406f1e24b6f47"
+     },
+     {
+      "frames": 428,
+      "sha256": "b3f97d0359cd929a8ed0c020bff152c7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk3-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 4 so layout record 4 of CV1_FRK3 is there",
+    "source": "built from layout record 4's condition in scene 87 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk3-talk-4",
+    "description": "Talking to layout record 4 of CV1_FRK3 (scene 87) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk3-talk-4: Talking to layout record 4 of CV1_FRK3 (scene 87) should run its event and hand control back\nlimit 20000\nenter 87 2 1572863 0\ncheckpoint entered\ntalk 150 400 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 87 save 1dcbfce0f385753a state 7a060c00d30ec748 ram 0000000000000000",
+     "talked frame 529 scene 87 save 7121c867c1691a50 state 7e02883faf6ec466 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 380): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 236,
+     "instruction_end": 129,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bd6632a8666d857ef989344adf28e78a"
+     },
+     {
+      "frames": 300,
+      "sha256": "505c62f4b2c7395924cac476157610f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk4-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 4 so layout record 2 of CV1_FRK4 is there",
+    "source": "built from layout record 2's condition in scene 88 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk4-talk-2",
+    "description": "Talking to layout record 2 of CV1_FRK4 (scene 88) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk4-talk-2: Talking to layout record 2 of CV1_FRK4 (scene 88) should run its event and hand control back\nlimit 20000\nenter 88 1 1572863 1\ncheckpoint entered\ntalk 100 280 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 88 save d98ac1c67b272b2b state 078f81fe5527cd74 ram 0000000000000000",
+     "talked frame 966 scene 88 save f08203c33c000321 state 15cff5ddcba867b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 260): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 84,
+     "instruction": 174,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f213bc76056602ce9f1b3efd4770ebf2"
+     },
+     {
+      "frames": 737,
+      "sha256": "78329d36894c3f92efecb92ed03344e3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk4-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 4 so layout record 3 of CV1_FRK4 is there",
+    "source": "built from layout record 3's condition in scene 88 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk4-talk-3",
+    "description": "Talking to layout record 3 of CV1_FRK4 (scene 88) should run its event and hand control back",
+    "plan": "# cv1-cv1-frk4-talk-3: Talking to layout record 3 of CV1_FRK4 (scene 88) should run its event and hand control back\nlimit 20000\nenter 88 1 1572863 0\ncheckpoint entered\ntalk 150 200 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 88 save 5389f2a8024bb066 state 169916ff2ff1e707 ram 0000000000000000",
+     "talked frame 876 scene 88 save 02629ca5035c5033 state 8ea1dadc513fcec3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 180): 1 waypoints",
+     "walk to (150, 220): 1 waypoints",
+     "walk to (130, 200): 1 waypoints",
+     "walk to (170, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 95,
+     "instruction": 188,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a12d7309df3b98313730a9f157af65a8"
+     },
+     {
+      "frames": 647,
+      "sha256": "9b496eb25ef501599b58bbe2c9bc6717"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

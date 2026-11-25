@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "upstream_revision": "31c91452c264840bf8c8584753e7dbf274847f13",
+  "releases": [
+    {
+      "id": "us",
+      "region": "NTSC-U",
+      "serial": "SLUS-01013",
+      "executable": "SLUS_010.13",
+      "display_name": "US version (NTSC-U)",
+      "card_prefix": "BASLUS-01013",
+      "runtime": "lom",
+      "raw": {
+        "sha1": "c1b536c99f0d390584eb30462a7e37f2bbef3902",
+        "bytes": 677406576,
+        "layout": "single-track-raw-2352"
+      },
+      "manifest": "manifests/us-slus-01013.json"
+    },
+    {
+      "id": "jp",
+      "region": "NTSC-J",
+      "serial": "SLPS-02170",
+      "executable": "SLPS_021.70",
+      "display_name": "Japanese version (NTSC-J)",
+      "card_prefix": "BISLPS-02170",
+      "runtime": "lom-jp",
+      "raw": {
+        "sha1": "7a314615be8a482cf3f81b4101cc19aaa738f36d",
+        "bytes": 0,
+        "layout": "single-track-raw-2352"
+      },
+      "manifest": "manifests/jp-slps-02170.json"
+    }
+  ]
+}

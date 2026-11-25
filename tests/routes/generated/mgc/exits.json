@@ -1,0 +1,1864 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mgc-mgc-all0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-all0-exit-0",
+    "description": "Walking onto exit 0 of MGC_ALL0 (scene 565) should lead to scene 566",
+    "plan": "# mgc-mgc-all0-exit-0: Walking onto exit 0 of MGC_ALL0 (scene 565) should lead to scene 566\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nexit 0 566\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save aad5a6c571a01cb0 state ad6e0e3beffdfc31 ram 0000000000000000",
+     "arrived frame 334 scene 566 save 6e8b7fede7830c3b state 264a2b962e3a8b4a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 109): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 375,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a860aa00b6457e04c332f155d6e52f8"
+     },
+     {
+      "frames": 105,
+      "sha256": "9cd75983458486010921c97d20f194b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-all0-exit-1",
+    "description": "Walking onto exit 1 of MGC_ALL0 (scene 565) should lead to scene 567",
+    "plan": "# mgc-mgc-all0-exit-1: Walking onto exit 1 of MGC_ALL0 (scene 565) should lead to scene 567\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nexit 1 567\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save aad5a6c571a01cb0 state ad6e0e3beffdfc31 ram 0000000000000000",
+     "arrived frame 352 scene 567 save b5c912fd414e65db state 5eb995f25fe2615e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 171): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 373,
+     "instruction_end": 72,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a860aa00b6457e04c332f155d6e52f8"
+     },
+     {
+      "frames": 123,
+      "sha256": "609da09c155fb6d80414c9705fb2be36"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-all0-exit-2",
+    "description": "Walking onto exit 2 of MGC_ALL0 (scene 565) should lead to scene 573",
+    "plan": "# mgc-mgc-all0-exit-2: Walking onto exit 2 of MGC_ALL0 (scene 565) should lead to scene 573\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nexit 2 573\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save aad5a6c571a01cb0 state ad6e0e3beffdfc31 ram 0000000000000000",
+     "arrived frame 660 scene 573 save b77a77d8a3224d11 state 5f9463e6cce11d04 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 267): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 349,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a860aa00b6457e04c332f155d6e52f8"
+     },
+     {
+      "frames": 431,
+      "sha256": "65cbb3d91bb9d3888b7027a62184da67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-all0-exit-3",
+    "description": "Walking onto exit 3 of MGC_ALL0 (scene 565) should lead to scene 568",
+    "plan": "# mgc-mgc-all0-exit-3: Walking onto exit 3 of MGC_ALL0 (scene 565) should lead to scene 568\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nexit 3 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save aad5a6c571a01cb0 state ad6e0e3beffdfc31 ram 0000000000000000",
+     "arrived frame 614 scene 568 save 3f6952e60cbce6b0 state f229acd71502e699 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (196, 195): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 372,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a860aa00b6457e04c332f155d6e52f8"
+     },
+     {
+      "frames": 385,
+      "sha256": "68a8c78d102535064e3f21795119e165"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-all0-exit-4",
+    "description": "Walking onto exit 4 of MGC_ALL0 (scene 565) should lead to scene 568",
+    "plan": "# mgc-mgc-all0-exit-4: Walking onto exit 4 of MGC_ALL0 (scene 565) should lead to scene 568\nlimit 20000\nenter 565 0 16714239 4\ncheckpoint entered\nexit 4 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save a4e4936bc0d7a6f4 state 247dc90b367a5473 ram 0000000000000000",
+     "arrived frame 330 scene 568 save e3cb1227e13cf7b5 state 23a80a6ec150e23d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (222, 187): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 372,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ea6d7129c3e5051a1c85801631a3c058"
+     },
+     {
+      "frames": 101,
+      "sha256": "4854ee60b6376f59b39c6ee51ed2e1ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-auct-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-auct-exit-0",
+    "description": "Walking onto exit 0 of MGC_AUCT (scene 576) should lead to scene 575",
+    "plan": "# mgc-mgc-auct-exit-0: Walking onto exit 0 of MGC_AUCT (scene 576) should lead to scene 575\nlimit 20000\nenter 576 0 16714239 0\ncheckpoint entered\nexit 0 575\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 576 save a4f236c19a8b4acb state 9415c354b2b76061 ram 0000000000000000",
+     "arrived frame 299 scene 575 save 819f3c57df88f6b0 state f4fa82eff4062278 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (7, 212): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4440f9254a1cb96f56850443b250aaf6"
+     },
+     {
+      "frames": 70,
+      "sha256": "c92673e59c11ef747121a53578bbc098"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-bs01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-bs01-exit-1",
+    "description": "Walking onto exit 1 of MGC_BS01 (scene 799) should lead to scene 577",
+    "plan": "# mgc-mgc-bs01-exit-1: Walking onto exit 1 of MGC_BS01 (scene 799) should lead to scene 577\nlimit 20000\nenter 33567 0 16712485 1\ncheckpoint entered\nexit 1 577\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 799 save 5a85812ee6a84374 state 5aeff610f5980ad5 ram 0000000000000000",
+     "arrived frame 301 scene 577 save 76e83490f43c5b49 state 66164ee10c11201a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (35, 256): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 50,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46c05d74e4c86fd778584888c846281b"
+     },
+     {
+      "frames": 72,
+      "sha256": "3d404533251461267fcea936980a5797"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cafe-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cafe-exit-0",
+    "description": "Walking onto exit 0 of MGC_CAFE (scene 570) should lead to scene 568",
+    "plan": "# mgc-mgc-cafe-exit-0: Walking onto exit 0 of MGC_CAFE (scene 570) should lead to scene 568\nlimit 20000\nenter 570 0 16714239 0\ncheckpoint entered\nexit 0 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 570 save aa69d45586a1cded state 55ea6a547fac66b5 ram 0000000000000000",
+     "arrived frame 298 scene 568 save b56b857fefe9623c state d574621b6d4d0e5d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (468, 181): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "131231fb8a9b39cf9623b2bf298a4508"
+     },
+     {
+      "frames": 69,
+      "sha256": "7d46f6f752d96619fbb9505bc633ec5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cls0-exit-0",
+    "description": "Walking onto exit 0 of MGC_CLS0 (scene 619) should lead to scene 581",
+    "plan": "# mgc-mgc-cls0-exit-0: Walking onto exit 0 of MGC_CLS0 (scene 619) should lead to scene 581\nlimit 20000\nenter 619 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 619 save 6c1f8ce0745580e0 state 228a957637d00c3d ram 0000000000000000",
+     "arrived frame 296 scene 581 save 0efa242f62a18ec2 state 5bf27efd795e282c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "309d1f01f39c37c09a36327b242f3b6f"
+     },
+     {
+      "frames": 67,
+      "sha256": "2e54c7556a65e40c6bd42ef98f1751da"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cls1-exit-0",
+    "description": "Walking onto exit 0 of MGC_CLS1 (scene 620) should lead to scene 581",
+    "plan": "# mgc-mgc-cls1-exit-0: Walking onto exit 0 of MGC_CLS1 (scene 620) should lead to scene 581\nlimit 20000\nenter 620 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 620 save 26826e004f09f6d7 state 228a957637d00c3d ram 0000000000000000",
+     "arrived frame 296 scene 581 save 0efa242f62a18ec2 state 5bf27efd795e282c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "791648755bdc02bcc5d374e05e350557"
+     },
+     {
+      "frames": 67,
+      "sha256": "647022a3d6a6cba0cd612bf6d3e3fe23"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cls2-exit-0",
+    "description": "Walking onto exit 0 of MGC_CLS2 (scene 621) should lead to scene 581",
+    "plan": "# mgc-mgc-cls2-exit-0: Walking onto exit 0 of MGC_CLS2 (scene 621) should lead to scene 581\nlimit 20000\nenter 621 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 621 save 378de9eedd65dad2 state 228a957637d00c3d ram 0000000000000000",
+     "arrived frame 296 scene 581 save 0efa242f62a18ec2 state 5bf27efd795e282c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 33,
+     "instruction": 131,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "55951716386022fe3410bd1132bcd4fe"
+     },
+     {
+      "frames": 67,
+      "sha256": "a3e89599208e1040ef1c678166b98628"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clsm-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-clsm-exit-1",
+    "description": "Walking onto exit 1 of MGC_CLSM (scene 578) should lead to scene 577",
+    "plan": "# mgc-mgc-clsm-exit-1: Walking onto exit 1 of MGC_CLSM (scene 578) should lead to scene 577\nlimit 20000\nenter 578 0 16715263 1\ncheckpoint entered\nexit 1 577\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 578 save b6903a133fb95084 state 24dda05d2ef58257 ram 0000000000000000",
+     "arrived frame 301 scene 577 save e006e78bde187766 state f5cb77815304f5df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (35, 256): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 37,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "30c9975de07a1e1b5cf7304638bcad3b"
+     },
+     {
+      "frames": 72,
+      "sha256": "80bc7c4586f4bf814ccfc9f559f0e17c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-clss-exit-0",
+    "description": "Walking onto exit 0 of MGC_CLSS (scene 582) should lead to scene 581",
+    "plan": "# mgc-mgc-clss-exit-0: Walking onto exit 0 of MGC_CLSS (scene 582) should lead to scene 581\nlimit 20000\nenter 582 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 582 save b0d284140295f329 state 228a957637d00c3d ram 0000000000000000",
+     "arrived frame 296 scene 581 save 0efa242f62a18ec2 state 5bf27efd795e282c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cc1e3b10554372462f108ee031223eb4"
+     },
+     {
+      "frames": 67,
+      "sha256": "570bf67a539d6def033e4da0c6d3f860"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmp0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmp0-exit-0",
+    "description": "Walking onto exit 0 of MGC_CMP0 (scene 618) should lead to scene 580",
+    "plan": "# mgc-mgc-cmp0-exit-0: Walking onto exit 0 of MGC_CMP0 (scene 618) should lead to scene 580\nlimit 20000\nenter 618 0 16711422 0\ncheckpoint entered\nexit 0 580\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 618 save b431beb10e57166c state 761f056ac8248604 ram 0000000000000000",
+     "arrived frame 298 scene 580 save 2cd223d18c2a5585 state fa866253a4268abd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (188, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "602a66901ad0eef1e7831db7bd8d0d64"
+     },
+     {
+      "frames": 69,
+      "sha256": "b2d2f74172d7269e11e102e0a0fd52bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmp0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmp0-exit-1",
+    "description": "Walking onto exit 1 of MGC_CMP0 (scene 618) should lead to scene 583",
+    "plan": "# mgc-mgc-cmp0-exit-1: Walking onto exit 1 of MGC_CMP0 (scene 618) should lead to scene 583\nlimit 20000\nenter 618 0 16711422 0\ncheckpoint entered\nexit 1 583\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 618 save b431beb10e57166c state 761f056ac8248604 ram 0000000000000000",
+     "arrived frame 354 scene 583 save 76541ef2126bc54f state 27f39c6f4150db62 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (371, 37): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "602a66901ad0eef1e7831db7bd8d0d64"
+     },
+     {
+      "frames": 125,
+      "sha256": "ac58253fbd31c382f5e8ab3b46803696"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmp0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmp0-exit-2",
+    "description": "Walking onto exit 2 of MGC_CMP0 (scene 618) should lead to one of scene 582, scene 619, scene 620, scene 621",
+    "plan": "# mgc-mgc-cmp0-exit-2: Walking onto exit 2 of MGC_CMP0 (scene 618) should lead to one of scene 582, scene 619, scene 620, scene 621\nlimit 20000\nenter 618 0 16711422 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 618 save b431beb10e57166c state 761f056ac8248604 ram 0000000000000000",
+     "arrived frame 407 scene 582 save 07cb342147334822 state 6d3d4337a6b640f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (399, 289): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "602a66901ad0eef1e7831db7bd8d0d64"
+     },
+     {
+      "frames": 178,
+      "sha256": "3fcf2b8651ca82b770d56e6b0546715b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmps-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmps-exit-0",
+    "description": "Walking onto exit 0 of MGC_CMPS (scene 581) should lead to scene 580",
+    "plan": "# mgc-mgc-cmps-exit-0: Walking onto exit 0 of MGC_CMPS (scene 581) should lead to scene 580\nlimit 20000\nenter 581 0 16714239 0\ncheckpoint entered\nexit 0 580\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 581 save cadcac4d3405414a state 88a527c9268f579b ram 0000000000000000",
+     "arrived frame 298 scene 580 save 3ca5174c3bf8b120 state fa866253a4268abd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (188, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "83071d58532e4f3723cae998fb2405fc"
+     },
+     {
+      "frames": 69,
+      "sha256": "80843c2fcbccdb72022fbfc87d43ccca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmps-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmps-exit-1",
+    "description": "Walking onto exit 1 of MGC_CMPS (scene 581) should lead to scene 583",
+    "plan": "# mgc-mgc-cmps-exit-1: Walking onto exit 1 of MGC_CMPS (scene 581) should lead to scene 583\nlimit 20000\nenter 581 0 16714239 0\ncheckpoint entered\nexit 1 583\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 581 save cadcac4d3405414a state 88a527c9268f579b ram 0000000000000000",
+     "arrived frame 354 scene 583 save 2d7fe70fa9f2b0ca state 27f39c6f4150db62 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (371, 37): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "83071d58532e4f3723cae998fb2405fc"
+     },
+     {
+      "frames": 125,
+      "sha256": "2c6768aa6b0ba89665ab83948676efdb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmps-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-cmps-exit-2",
+    "description": "Walking onto exit 2 of MGC_CMPS (scene 581) should lead to one of scene 582, scene 619, scene 620, scene 621",
+    "plan": "# mgc-mgc-cmps-exit-2: Walking onto exit 2 of MGC_CMPS (scene 581) should lead to one of scene 582, scene 619, scene 620, scene 621\nlimit 20000\nenter 581 0 16714239 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 581 save cadcac4d3405414a state 88a527c9268f579b ram 0000000000000000",
+     "arrived frame 407 scene 582 save 7bf2d4de9fcb1197 state 6d3d4337a6b640f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (399, 289): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 133,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "83071d58532e4f3723cae998fb2405fc"
+     },
+     {
+      "frames": 178,
+      "sha256": "e4836f47d2895961a327a088e9bde4d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-gat0-exit-0",
+    "description": "Walking onto exit 0 of MGC_GAT0 (scene 566) should lead to the world map",
+    "plan": "# mgc-mgc-gat0-exit-0: Walking onto exit 0 of MGC_GAT0 (scene 566) should lead to the world map\nlimit 20000\nenter 566 0 16714239 1\ncheckpoint entered\nexit 0 32767 via 335 7\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 566 save 0f68e85f4c1bab9c state a87b598ecaeb4200 ram 0000000000000000",
+     "arrived frame 1142 scene 32767 save 22a529f9042d314a state 3f5d258aabb7c8aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (335, 7): -3 waypoints",
+     "game state 1 at vblank 2609"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b881a4151abef57465e36d4368465e8"
+     },
+     {
+      "frames": 912,
+      "sha256": "078282cfc680b1f96d9c367fcb23ec2a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-gat0-exit-1",
+    "description": "Walking onto exit 1 of MGC_GAT0 (scene 566) should lead to scene 565",
+    "plan": "# mgc-mgc-gat0-exit-1: Walking onto exit 1 of MGC_GAT0 (scene 566) should lead to scene 565\nlimit 20000\nenter 566 0 16714239 1\ncheckpoint entered\nexit 1 565\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 566 save 0f68e85f4c1bab9c state a87b598ecaeb4200 ram 0000000000000000",
+     "arrived frame 310 scene 565 save 3eef294fbfec9726 state f1e5fa909d1909bf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (279, 221): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 383,
+     "instruction_end": 80,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b881a4151abef57465e36d4368465e8"
+     },
+     {
+      "frames": 81,
+      "sha256": "6044214084a91b93bfbbb1318412145c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-gat0-exit-2",
+    "description": "Walking onto exit 2 of MGC_GAT0 (scene 566) should lead to the world map",
+    "plan": "# mgc-mgc-gat0-exit-2: Walking onto exit 2 of MGC_GAT0 (scene 566) should lead to the world map\nlimit 20000\nenter 566 0 16714239 1\ncheckpoint entered\nexit 2 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 566 save 0f68e85f4c1bab9c state a87b598ecaeb4200 ram 0000000000000000",
+     "arrived frame 415 scene 32767 save 22a529f9042d314a state 6637542214428edd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (508, 58): -3 waypoints",
+     "game state 1 at vblank 1155"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b881a4151abef57465e36d4368465e8"
+     },
+     {
+      "frames": 185,
+      "sha256": "96ae5c1907e09c7982c94ecfba79baf6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-gat1-exit-0",
+    "description": "Walking onto exit 0 of MGC_GAT1 (scene 580) should lead to scene 568",
+    "plan": "# mgc-mgc-gat1-exit-0: Walking onto exit 0 of MGC_GAT1 (scene 580) should lead to scene 568\nlimit 20000\nenter 580 0 16714239 0\ncheckpoint entered\nexit 0 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 580 save f7e8c0c5b12f618f state ef2bce110dada1c9 ram 0000000000000000",
+     "arrived frame 294 scene 568 save 0ba5a436a77e9e23 state edc219424b37dafb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (136, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa83a4b459bbd7f96f9c87d583a669af"
+     },
+     {
+      "frames": 65,
+      "sha256": "92921b8e09cd0ba888e0fcc55f095e85"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-gat1-exit-1",
+    "description": "Walking onto exit 1 of MGC_GAT1 (scene 580) should lead to scene 581",
+    "plan": "# mgc-mgc-gat1-exit-1: Walking onto exit 1 of MGC_GAT1 (scene 580) should lead to scene 581\nlimit 20000\nenter 580 0 16714239 0\ncheckpoint entered\nexit 1 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 580 save f7e8c0c5b12f618f state ef2bce110dada1c9 ram 0000000000000000",
+     "arrived frame 792 scene 581 save f64a3758baed5440 state 669cefa4659e3340 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (315, 391): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa83a4b459bbd7f96f9c87d583a669af"
+     },
+     {
+      "frames": 563,
+      "sha256": "14136b296ea68d93040ac805a1294af3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-glry-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-glry-exit-0",
+    "description": "Walking onto exit 0 of MGC_GLRY (scene 575) should lead to scene 577",
+    "plan": "# mgc-mgc-glry-exit-0: Walking onto exit 0 of MGC_GLRY (scene 575) should lead to scene 577\nlimit 20000\nenter 575 0 16714239 1\ncheckpoint entered\nexit 0 577\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 575 save 05350834ccb85f81 state e19cbbd1692aadf6 ram 0000000000000000",
+     "arrived frame 446 scene 577 save 1f16a405e15b5073 state 8cc42bb9ad7b537a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (446, 21): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 220,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d71156e155b74e6368b09e3004eb60f"
+     },
+     {
+      "frames": 217,
+      "sha256": "1b6eda8ceff5eda4c7c16f5484595337"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-glry-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-glry-exit-1",
+    "description": "Walking onto exit 1 of MGC_GLRY (scene 575) should lead to scene 574",
+    "plan": "# mgc-mgc-glry-exit-1: Walking onto exit 1 of MGC_GLRY (scene 575) should lead to scene 574\nlimit 20000\nenter 575 0 16714239 1\ncheckpoint entered\nexit 1 574\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 575 save 05350834ccb85f81 state e19cbbd1692aadf6 ram 0000000000000000",
+     "arrived frame 303 scene 574 save 3779a650f63fc669 state 13e44cf00ee53764 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (55, 210): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 237,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d71156e155b74e6368b09e3004eb60f"
+     },
+     {
+      "frames": 74,
+      "sha256": "4ecb162eb0c2f27ee680b0956e5cacc3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jw01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-jw01-exit-0",
+    "description": "Walking onto exit 0 of MGC_JW01 (scene 786) should lead to scene 568",
+    "plan": "# mgc-mgc-jw01-exit-0: Walking onto exit 0 of MGC_JW01 (scene 786) should lead to scene 568\nlimit 20000\nenter 786 0 16715263 0\ncheckpoint entered\nexit 0 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 786 save c54777ac0b738926 state 42464feea131f287 ram 0000000000000000",
+     "arrived frame 301 scene 568 save 8d53ca9dd7b8485f state 774b4a6d3d9e8a91 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (124, 21): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 41,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7c8255120ab30b1b14cee530a01010c0"
+     },
+     {
+      "frames": 72,
+      "sha256": "cf8c1df7a7b77d1b40dfad93fec16001"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jwl0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-jwl0-exit-0",
+    "description": "Walking onto exit 0 of MGC_JWL0 (scene 571) should lead to scene 568",
+    "plan": "# mgc-mgc-jwl0-exit-0: Walking onto exit 0 of MGC_JWL0 (scene 571) should lead to scene 568\nlimit 20000\nenter 571 0 16714239 0\ncheckpoint entered\nexit 0 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 571 save c7a0ac025c175f70 state 01783d49aa845bea ram 0000000000000000",
+     "arrived frame 301 scene 568 save b8e76b09b958dda5 state 774b4a6d3d9e8a91 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (124, 21): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d1f84cdd8b7318c14d014daf580195b4"
+     },
+     {
+      "frames": 72,
+      "sha256": "59ab28eccc1172bba80edecc101faffa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-lbry-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-lbry-exit-0",
+    "description": "Walking onto exit 0 of MGC_LBRY (scene 583) should lead to scene 581",
+    "plan": "# mgc-mgc-lbry-exit-0: Walking onto exit 0 of MGC_LBRY (scene 583) should lead to scene 581\nlimit 20000\nenter 583 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 583 save 43b1c2ea6905c1cc state e1a66ff466696ee1 ram 0000000000000000",
+     "arrived frame 322 scene 581 save 670c1a46fe5e5921 state c7be6357a0239772 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (14, 312): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "905e727e9b61a59c70a157d404b7f0a2"
+     },
+     {
+      "frames": 93,
+      "sha256": "3f85ae3a2dd9a029cd0168559b16425f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-mshp-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-mshp-exit-0",
+    "description": "Walking onto exit 0 of MGC_MSHP (scene 569) should lead to scene 568",
+    "plan": "# mgc-mgc-mshp-exit-0: Walking onto exit 0 of MGC_MSHP (scene 569) should lead to scene 568\nlimit 20000\nenter 569 0 16714239 0\ncheckpoint entered\nexit 0 568\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 569 save b84912dd3f4ffd1e state ad04645833eb105a ram 0000000000000000",
+     "arrived frame 298 scene 568 save e76ceca6435b714a state 1d88eaf86bb31b76 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (226, 33): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6689cae7819e93d79f09a3bbcf6585cc"
+     },
+     {
+      "frames": 69,
+      "sha256": "fc21a4d39d8e83f9f72754601852c6f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-plc0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-plc0-exit-0",
+    "description": "Walking onto exit 0 of MGC_PLC0 (scene 573) should lead to scene 565",
+    "plan": "# mgc-mgc-plc0-exit-0: Walking onto exit 0 of MGC_PLC0 (scene 573) should lead to scene 565\nlimit 20000\nenter 573 0 16714239 0\ncheckpoint entered\nexit 0 565\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 573 save 164aeeaf3092a6e2 state cf02172fcd0b2151 ram 0000000000000000",
+     "arrived frame 293 scene 565 save 95fb6cefff010fd8 state 786b3026e8ce6172 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 348,
+     "instruction_end": 73,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f5d120c9c66906747a772004b9ae19b"
+     },
+     {
+      "frames": 64,
+      "sha256": "7c15901471ebe26b26cf415807b6d2ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-plc0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-plc0-exit-1",
+    "description": "Walking onto exit 1 of MGC_PLC0 (scene 573) should lead to scene 574",
+    "plan": "# mgc-mgc-plc0-exit-1: Walking onto exit 1 of MGC_PLC0 (scene 573) should lead to scene 574\nlimit 20000\nenter 573 0 16714239 0\ncheckpoint entered\nexit 1 574\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 573 save 164aeeaf3092a6e2 state cf02172fcd0b2151 ram 0000000000000000",
+     "arrived frame 299 scene 574 save 68d576c4f20c1d02 state d4cf6ffbe07eb00b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (169, 79): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 36,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f5d120c9c66906747a772004b9ae19b"
+     },
+     {
+      "frames": 70,
+      "sha256": "24bcc6410e77adf772bfe16353239a2b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-plc1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-plc1-exit-0",
+    "description": "Walking onto exit 0 of MGC_PLC1 (scene 574) should lead to scene 575",
+    "plan": "# mgc-mgc-plc1-exit-0: Walking onto exit 0 of MGC_PLC1 (scene 574) should lead to scene 575\nlimit 20000\nenter 574 0 16714239 1\ncheckpoint entered\nexit 0 575\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 574 save ffdb0d6c0d8e2084 state 2d59ad99d4887a79 ram 0000000000000000",
+     "arrived frame 365 scene 575 save ecb03d7b1254cbb3 state de2db67741de7bf7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (473, 283): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "76328d14bcdfcb29de3a99b0f4b4ca13"
+     },
+     {
+      "frames": 136,
+      "sha256": "dbfd597f095ca5298402b02bb41158f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-plc1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-plc1-exit-1",
+    "description": "Walking onto exit 1 of MGC_PLC1 (scene 574) should lead to scene 573",
+    "plan": "# mgc-mgc-plc1-exit-1: Walking onto exit 1 of MGC_PLC1 (scene 574) should lead to scene 573\nlimit 20000\nenter 574 0 16714239 1\ncheckpoint entered\nexit 1 573\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 574 save ffdb0d6c0d8e2084 state 2d59ad99d4887a79 ram 0000000000000000",
+     "arrived frame 306 scene 573 save 37a3cd93f3ab5559 state 689ca9ac4ddf2c41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (181, 352): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "76328d14bcdfcb29de3a99b0f4b4ca13"
+     },
+     {
+      "frames": 77,
+      "sha256": "b2da80ee51abeb2366880f962a236946"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-prpl-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-prpl-exit-0",
+    "description": "Walking onto exit 0 of MGC_PRPL (scene 584) should lead to scene 581",
+    "plan": "# mgc-mgc-prpl-exit-0: Walking onto exit 0 of MGC_PRPL (scene 584) should lead to scene 581\nlimit 20000\nenter 584 0 16714239 0\ncheckpoint entered\nexit 0 581\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 584 save 5ad0d61839435573 state 8a7fc65ea1a853fe ram 0000000000000000",
+     "arrived frame 310 scene 581 save dc0519aa30c9cd01 state c0fe92fa74399a61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (72, 312): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a318f0b9c633701d963afb6776a1416"
+     },
+     {
+      "frames": 81,
+      "sha256": "fee9c5fd129695ef2c294f8c01bc043c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp0-exit-0",
+    "description": "Walking onto exit 0 of MGC_SHP0 (scene 567) should lead to scene 565",
+    "plan": "# mgc-mgc-shp0-exit-0: Walking onto exit 0 of MGC_SHP0 (scene 567) should lead to scene 565\nlimit 20000\nenter 567 0 16714239 0\ncheckpoint entered\nexit 0 565\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 567 save 0e3f0269b4a4677c state bef01a8aab9bddbb ram 0000000000000000",
+     "arrived frame 312 scene 565 save ab5f0f77c7ca28d5 state 4c294b661416161f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 80): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 364,
+     "instruction_end": 76,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d4da82315c591964cc1626dcbc350c15"
+     },
+     {
+      "frames": 83,
+      "sha256": "6a7d988c16563d41c4aeaf1f253af667"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-0",
+    "description": "Walking onto exit 0 of MGC_SHP1 (scene 568) should lead to scene 565",
+    "plan": "# mgc-mgc-shp1-exit-0: Walking onto exit 0 of MGC_SHP1 (scene 568) should lead to scene 565\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 0 565\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 296 scene 565 save 82f9df9b60467bd1 state 7ace72065b756c87 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 33): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 383,
+     "instruction_end": 78,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 67,
+      "sha256": "6ce809e17dc8c720db2e225a6270c08d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-1",
+    "description": "Walking onto exit 1 of MGC_SHP1 (scene 568) should lead to scene 565",
+    "plan": "# mgc-mgc-shp1-exit-1: Walking onto exit 1 of MGC_SHP1 (scene 568) should lead to scene 565\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 1 565\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 472 scene 565 save ab0e50c5974c4e82 state e676d5799ca1a7c9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (572, 72): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 387,
+     "instruction_end": 80,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 243,
+      "sha256": "359a78fdfce419a3c3253d9caa24f46a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-2",
+    "description": "Walking onto exit 2 of MGC_SHP1 (scene 568) should lead to scene 580",
+    "plan": "# mgc-mgc-shp1-exit-2: Walking onto exit 2 of MGC_SHP1 (scene 568) should lead to scene 580\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 2 580\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 591 scene 580 save 9869e6c786117231 state 19c97bf092fac03d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (497, 634): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 362,
+      "sha256": "dcb699754d63e6109001402bfbab3806"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-3",
+    "description": "Walking onto exit 3 of MGC_SHP1 (scene 568) should lead to scene 570",
+    "plan": "# mgc-mgc-shp1-exit-3: Walking onto exit 3 of MGC_SHP1 (scene 568) should lead to scene 570\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 3 570\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 1232 scene 570 save 81b94c4f56b79dd7 state 3da40ddb6dc2c5ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (173, 470): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 1003,
+      "sha256": "614314ff2d77e8ee7b6d25152905ff3a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-4",
+    "description": "Walking onto exit 4 of MGC_SHP1 (scene 568) should lead to one of scene 571, scene 786",
+    "plan": "# mgc-mgc-shp1-exit-4: Walking onto exit 4 of MGC_SHP1 (scene 568) should lead to one of scene 571, scene 786\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 4 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 464 scene 571 save d973aaa9ec440ff6 state b4148eb3c034359a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (363, 398): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 44,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 235,
+      "sha256": "3dd15e5639a70f0e05904d1538ec18a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp1-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-shp1-exit-5",
+    "description": "Walking onto exit 5 of MGC_SHP1 (scene 568) should lead to scene 569",
+    "plan": "# mgc-mgc-shp1-exit-5: Walking onto exit 5 of MGC_SHP1 (scene 568) should lead to scene 569\nlimit 20000\nenter 568 0 16714239 0\ncheckpoint entered\nexit 5 569\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 568 save 6954b544142668e3 state 81873ad6a62dd0a2 ram 0000000000000000",
+     "arrived frame 375 scene 569 save 346018c95e57db0c state ca08e78358818932 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (91, 261): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ad0835e8eedb0c19ba33ffe45fdeb5f"
+     },
+     {
+      "frames": 146,
+      "sha256": "0ae1915a5a5e88360b1dbda53cedfc29"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-stor-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-stor-exit-0",
+    "description": "Walking onto exit 0 of MGC_STOR (scene 577) should lead to one of scene 578, scene 799",
+    "plan": "# mgc-mgc-stor-exit-0: Walking onto exit 0 of MGC_STOR (scene 577) should lead to one of scene 578, scene 799\nlimit 20000\nenter 577 0 16714239 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 577 save bad620068f158de6 state a8c0cda5e144dabe ram 0000000000000000",
+     "arrived frame 289 scene 799 save 8b3b4258643663da state 96827f06e70b3011 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (52, 57): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 49,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "795267472c1e74a7f6d0d76cb68dccb9"
+     },
+     {
+      "frames": 60,
+      "sha256": "b0bb24bc582c0bc8700469c36f3e3e7e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-stor-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-stor-exit-1",
+    "description": "Walking onto exit 1 of MGC_STOR (scene 577) should lead to scene 575",
+    "plan": "# mgc-mgc-stor-exit-1: Walking onto exit 1 of MGC_STOR (scene 577) should lead to scene 575\nlimit 20000\nenter 577 0 16714239 1\ncheckpoint entered\nexit 1 575\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 577 save 6e24bc690609abab state a5ebf429ac4f4c09 ram 0000000000000000",
+     "arrived frame 302 scene 575 save 69a1a4a5aa3315ca state c7d35653cc8a4f12 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (279, 330): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b331e37cd0b5ad798d0a67e9dace1c8e"
+     },
+     {
+      "frames": 73,
+      "sha256": "ea6ea461a6d6aec76b4cbb9103f011cc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

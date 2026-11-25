@@ -1,0 +1,15 @@
+Declare InvSquareRoot the way the game calls it: it writes two 4-byte PS1
+words, and 0 and -1 leave them alone.
+
+--- a/psyz/include/libgte.h
++++ b/psyz/include/libgte.h
+@@ -689,6 +689,9 @@
+  * @return Square root (with 12-bit fraction)
+  */
+ long SquareRoot12(long a);
++
++void InvSquareRoot(long value, long* mantissa, long* exponent);
++
+ 
+ /**
+  * @brief Cosine function

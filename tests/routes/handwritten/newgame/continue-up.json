@@ -1,0 +1,21 @@
+{
+  "format": 1,
+  "id": "title-continue-up",
+  "description": "Pressing up on the title screen should wrap the cursor from New Game to Continue, and Continue should load the save in the bedroom",
+  "title": "continue_up",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue"
+    },
+    {
+      "watch": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

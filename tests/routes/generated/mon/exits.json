@@ -1,0 +1,723 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mon-mon-all0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-all0-exit-0",
+    "description": "Walking onto exit 0 of MON_ALL0 (scene 53) should lead to the world map",
+    "plan": "# mon-mon-all0-exit-0: Walking onto exit 0 of MON_ALL0 (scene 53) should lead to the world map\nlimit 20000\nenter 53 0 16722431 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 53 save dc580c076fa5fee1 state cdc731b1d7b4416d ram 0000000000000000",
+     "arrived frame 383 scene 32767 save dc580c076fa5fee1 state 470f938c05f58393 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 10): 4 waypoints",
+     "game state 1 at vblank 1091"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 129,
+     "instruction_end": 31,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "24a57349e8aa444471cbec17f0aac968"
+     },
+     {
+      "frames": 153,
+      "sha256": "5142d9130197b14eb9adeec7490acb53"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-all0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-all0-exit-1",
+    "description": "Walking onto exit 1 of MON_ALL0 (scene 53) should lead to scene 54",
+    "plan": "# mon-mon-all0-exit-1: Walking onto exit 1 of MON_ALL0 (scene 53) should lead to scene 54\nlimit 20000\nenter 53 0 16722431 1\ncheckpoint entered\nexit 1 54\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 53 save dc580c076fa5fee1 state cdc731b1d7b4416d ram 0000000000000000",
+     "arrived frame 297 scene 54 save 59a49f9df1be5677 state 3e76e5c6c8b8746b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (132, 68): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "24a57349e8aa444471cbec17f0aac968"
+     },
+     {
+      "frames": 68,
+      "sha256": "9a49af64e0ae755a8f8adbccdf23d301"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-all0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-all0-exit-2",
+    "description": "Walking onto exit 2 of MON_ALL0 (scene 53) should lead to scene 58",
+    "plan": "# mon-mon-all0-exit-2: Walking onto exit 2 of MON_ALL0 (scene 53) should lead to scene 58\nlimit 20000\nenter 53 0 16722431 1\ncheckpoint entered\nexit 2 58\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 53 save dc580c076fa5fee1 state cdc731b1d7b4416d ram 0000000000000000",
+     "arrived frame 347 scene 58 save f3d65da474806e79 state 0332621340c93047 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (197, 132): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 37,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "24a57349e8aa444471cbec17f0aac968"
+     },
+     {
+      "frames": 118,
+      "sha256": "0a51f5cc8008a0831e55b4ab905428f9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-aly0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-aly0-exit-0",
+    "description": "Walking onto exit 0 of MON_ALY0 (scene 55) should lead to scene 54",
+    "plan": "# mon-mon-aly0-exit-0: Walking onto exit 0 of MON_ALY0 (scene 55) should lead to scene 54\nlimit 20000\nenter 55 0 16722431 0\ncheckpoint entered\nexit 0 54\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 55 save cba1947a2c17b63e state 42fe7edbeab08ede ram 0000000000000000",
+     "arrived frame 292 scene 54 save 0bbdfe64d4559fe4 state 0a6f4d28c852e0cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (6, 310): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cc3e731f59fff15e3024fe99e5cc77f1"
+     },
+     {
+      "frames": 63,
+      "sha256": "aae7c60dc970e368bf31d3c8135fb607"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-aly0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-aly0-exit-1",
+    "description": "Walking onto exit 1 of MON_ALY0 (scene 55) should lead to scene 56",
+    "plan": "# mon-mon-aly0-exit-1: Walking onto exit 1 of MON_ALY0 (scene 55) should lead to scene 56\nlimit 20000\nenter 55 0 16722431 1\ncheckpoint entered\nexit 1 56\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 55 save 31d9237f506a7757 state f4a37d047e0d76d9 ram 0000000000000000",
+     "arrived frame 406 scene 56 save 1f42d4a0f53054f7 state 83f04ef129224e68 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (354, 159): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d97c1db638a5b820ff1386a5afe1772f"
+     },
+     {
+      "frames": 177,
+      "sha256": "0f5d22669ad7d51cbc90b92d8a6fbd45"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-aly1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-aly1-exit-0",
+    "description": "Walking onto exit 0 of MON_ALY1 (scene 60) should lead to scene 58",
+    "plan": "# mon-mon-aly1-exit-0: Walking onto exit 0 of MON_ALY1 (scene 60) should lead to scene 58\nlimit 20000\nenter 60 0 16716543 0\ncheckpoint entered\nexit 0 58\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 60 save 8ab16ee1ac4eaa9c state f0bf51e2912b3517 ram 0000000000000000",
+     "arrived frame 301 scene 58 save 5fa12d2602ba7f49 state da49de1ceed49822 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (66, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 38,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "803eee0c5988f4be193c8e1088427a0c"
+     },
+     {
+      "frames": 72,
+      "sha256": "3a8ef5e1c0bb884f5b7157bf4d1c8cf2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-aly1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-aly1-exit-1",
+    "description": "Walking onto exit 1 of MON_ALY1 (scene 60) should lead to scene 61",
+    "plan": "# mon-mon-aly1-exit-1: Walking onto exit 1 of MON_ALY1 (scene 60) should lead to scene 61\nlimit 20000\nenter 60 0 16716543 1\ncheckpoint entered\nexit 1 61\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 60 save b0590f32f1749a4d state 105e6bb86e8e99a9 ram 0000000000000000",
+     "arrived frame 305 scene 61 save 6486bcf592ee044f state 069f774acbd66c4c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (290, 417): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 39,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b88b01d761e74f7b03e1e38879eec424"
+     },
+     {
+      "frames": 76,
+      "sha256": "ab81b7c70e57a43670db790d294c2dd8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-dtw0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-dtw0-exit-0",
+    "description": "Walking onto exit 0 of MON_DTW0 (scene 58) should lead to scene 53",
+    "plan": "# mon-mon-dtw0-exit-0: Walking onto exit 0 of MON_DTW0 (scene 58) should lead to scene 53\nlimit 20000\nenter 58 0 16722431 0\ncheckpoint entered\nexit 0 53\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 58 save f3d65da474806e79 state 3baad325768d7b43 ram 0000000000000000",
+     "arrived frame 300 scene 53 save e5790826f2c9b758 state 660e8b4a3b7d9f3b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (98, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fd7b7ca1895f371acf4520ccec681f4"
+     },
+     {
+      "frames": 71,
+      "sha256": "f90c39a5e6e2299444ec8fc85056010b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-dtw0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-dtw0-exit-1",
+    "description": "Walking onto exit 1 of MON_DTW0 (scene 58) should lead to scene 59",
+    "plan": "# mon-mon-dtw0-exit-1: Walking onto exit 1 of MON_DTW0 (scene 58) should lead to scene 59\nlimit 20000\nenter 58 0 16722431 0\ncheckpoint entered\nexit 1 59\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 58 save f3d65da474806e79 state 3baad325768d7b43 ram 0000000000000000",
+     "arrived frame 488 scene 59 save 2d10adb05bfe5d04 state 3dc684d17d4a320a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 386): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fd7b7ca1895f371acf4520ccec681f4"
+     },
+     {
+      "frames": 259,
+      "sha256": "8b2b0c4ba5b1aa1dbd419283395b64ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-dtw0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-dtw0-exit-2",
+    "description": "Walking onto exit 2 of MON_DTW0 (scene 58) should lead to scene 60",
+    "plan": "# mon-mon-dtw0-exit-2: Walking onto exit 2 of MON_DTW0 (scene 58) should lead to scene 60\nlimit 20000\nenter 58 0 16722431 0\ncheckpoint entered\nexit 2 60\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 58 save f3d65da474806e79 state 3baad325768d7b43 ram 0000000000000000",
+     "arrived frame 457 scene 60 save c2717432b9a6a930 state bba7b806bc93fa90 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (274, 360): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fd7b7ca1895f371acf4520ccec681f4"
+     },
+     {
+      "frames": 228,
+      "sha256": "56e554407558808d81b8d279304acda0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-lmp0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-lmp0-exit-0",
+    "description": "Walking onto exit 0 of MON_LMP0 (scene 61) should lead to scene 60",
+    "plan": "# mon-mon-lmp0-exit-0: Walking onto exit 0 of MON_LMP0 (scene 61) should lead to scene 60\nlimit 20000\nenter 61 0 16722431 0\ncheckpoint entered\nexit 0 60\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 61 save fcc323e0c1e41f40 state df9076b4d8ccf80e ram 0000000000000000",
+     "arrived frame 305 scene 60 save 437e9d778b0ca445 state 6c24a68a3e056f3d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (155, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "badd54c79c24068d783f5b45d24a5a52"
+     },
+     {
+      "frames": 76,
+      "sha256": "702febdb4d2899f532cc4fa21f3d2c4f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-ocf0-exit-0",
+    "description": "Walking onto exit 0 of MON_OCF0 (scene 54) should lead to scene 53",
+    "plan": "# mon-mon-ocf0-exit-0: Walking onto exit 0 of MON_OCF0 (scene 54) should lead to scene 53\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\nexit 0 53\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 5e5c1a15f6791dd0 state 9bb8358bfbf91aa5 ram 0000000000000000",
+     "arrived frame 313 scene 53 save 4876e77614512af4 state 846747f389dc10de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (540, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c43a9a656465a43ce4c82bd64a2f8852"
+     },
+     {
+      "frames": 84,
+      "sha256": "0a459200fa7f253040c77d84e8f57c94"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-ocf0-exit-1",
+    "description": "Walking onto exit 1 of MON_OCF0 (scene 54) should lead to scene 55",
+    "plan": "# mon-mon-ocf0-exit-1: Walking onto exit 1 of MON_OCF0 (scene 54) should lead to scene 55\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\nexit 1 55\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 5e5c1a15f6791dd0 state 9bb8358bfbf91aa5 ram 0000000000000000",
+     "arrived frame 594 scene 55 save 6064b65b3e84fac7 state 64a416d9c6c8f8a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (158, 290): 11 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c43a9a656465a43ce4c82bd64a2f8852"
+     },
+     {
+      "frames": 365,
+      "sha256": "cb96d79c44b74538716d4e4dd5311beb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-ocf0-exit-2",
+    "description": "Walking onto exit 2 of MON_OCF0 (scene 54) should lead to scene 57",
+    "plan": "# mon-mon-ocf0-exit-2: Walking onto exit 2 of MON_OCF0 (scene 54) should lead to scene 57\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\nexit 2 57\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 5e5c1a15f6791dd0 state 9bb8358bfbf91aa5 ram 0000000000000000",
+     "arrived frame 575 scene 57 save 98bfd9877cf57d05 state 27f3815292dab0f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (38, 274): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c43a9a656465a43ce4c82bd64a2f8852"
+     },
+     {
+      "frames": 346,
+      "sha256": "160da6e5d81c9458ab64da07eb3fc971"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh00-exit-0",
+    "description": "Walking onto exit 0 of MON_SH00 (scene 56) should lead to scene 55",
+    "plan": "# mon-mon-sh00-exit-0: Walking onto exit 0 of MON_SH00 (scene 56) should lead to scene 55\nlimit 20000\nenter 56 0 16722431 0\ncheckpoint entered\nexit 0 55\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 56 save a668801ca743b735 state 9176d91ee6d6a49f ram 0000000000000000",
+     "arrived frame 302 scene 55 save ad37f8af5861fda5 state fb707afc9771d29a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (78, 19): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b370f342cacfeed61cb2e88ad3d5082"
+     },
+     {
+      "frames": 73,
+      "sha256": "4a1cd2686ffe18fee8e221fe82fad508"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh01-exit-0",
+    "description": "Walking onto exit 0 of MON_SH01 (scene 57) should lead to scene 54",
+    "plan": "# mon-mon-sh01-exit-0: Walking onto exit 0 of MON_SH01 (scene 57) should lead to scene 54\nlimit 20000\nenter 57 0 16722431 0\ncheckpoint entered\nexit 0 54\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 57 save 9a9e314c015b0e1c state 007e63ac6755459c ram 0000000000000000",
+     "arrived frame 304 scene 54 save 302a8de7a4e3f6d9 state 0f5772e8f250191d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (226, 19): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acd77c8610e52b5a7a8ff2e85895a227"
+     },
+     {
+      "frames": 75,
+      "sha256": "19ae1d607278c8462f35565f814d2740"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh02-exit-0",
+    "description": "Walking onto exit 0 of MON_SH02 (scene 59) should lead to scene 58",
+    "plan": "# mon-mon-sh02-exit-0: Walking onto exit 0 of MON_SH02 (scene 59) should lead to scene 58\nlimit 20000\nenter 59 0 16722431 0\ncheckpoint entered\nexit 0 58\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 59 save 4797a729b8ab7d12 state a8ccc8d0f81b0336 ram 0000000000000000",
+     "arrived frame 302 scene 58 save 97e8bec5adff415a state 1742f4fed41b564c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (250, 28): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 45,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88c90741007956aec5e0c95d88f03908"
+     },
+     {
+      "frames": 73,
+      "sha256": "2229f5a651b121e836d24c3f20a462b0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

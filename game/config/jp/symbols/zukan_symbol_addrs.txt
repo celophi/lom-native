@@ -1,0 +1,78 @@
+// Initially mapped from config/us/symbols/zukan_symbol_addrs.txt; maintained for the JP release.
+// Addresses are the US symbols translated to SLPS_021.70; edit the US file and
+// regenerate, or hand-edit here once the JP layout is maintained by hand.
+
+// ZUKAN.BIN
+g_saved_technique_bits = 0x80043174;
+g_saved_ability_bits = 0x800431A0;
+g_saved_lands = 0x80043430;
+g_saved_encyclopedia_bits = 0x80046214;
+field_play_sound = 0x800A37E8;
+g_zukan_overlay_id = 0x80140000;
+g_zukan_category_ranges = 0x8014001C;
+g_zukan_group_ranges = 0x80140050;
+g_zukan_entry_values = 0x8014006C;
+g_zukan_display_order = 0x80140860;
+zukan_run = 0x80140E00;
+zukan_initialize_state = 0x80141094;
+zukan_upload_ui_images = 0x80141144;
+zukan_upload_tim = 0x801411C4;
+zukan_update_frame = 0x8014128C;
+zukan_handle_input = 0x80141354;
+zukan_scroll_to_selection = 0x80141740;
+zukan_emit_page_image_tpage = 0x80141794;
+zukan_emit_border_image_tpage = 0x801417E8;
+zukan_emit_entry_image_tpage = 0x8014183C;
+zukan_render_ui = 0x801418A4;
+zukan_emit_ui_sprite = 0x80141988;
+zukan_start_next_entry_transition = 0x80141B90;
+zukan_start_previous_entry_transition = 0x80141BCC;
+zukan_update_transition = 0x80141C08;
+zukan_render_content = 0x80141DF4;
+emit_panel_outline = 0x80142374;
+set_screen_fade_target = 0x801424D0;
+render_screen_fade = 0x801424EC;
+zukan_build_entry_list = 0x801427E0;
+zukan_load_entry = 0x80142884;
+zukan_load_related_entry = 0x801428C4;
+zukan_render_detail_text = 0x801428F0;
+zukan_render_detail_sprites = 0x801429C4;
+zukan_commit_loaded_entry = 0x80142B3C;
+zukan_restore_map_texture = 0x80142CA0;
+zukan_build_category_entries = 0x80142D08;
+g_zukan_resource_archive = 0x8014471C;
+g_zukan_ui_sprites = 0x80156B98;
+g_zukan_resource_buffer = 0x80156C98;
+g_zukan_render_buffers = 0x80156C9C;
+g_zukan_exit_requested = 0x80156CA0;
+g_zukan_list_entries = 0x80156CA8;
+g_screen_fade_target = 0x801574A8;
+g_zukan_input_blocked = 0x801574AE;
+g_zukan_category = 0x801574B0;
+g_zukan_entry_count = 0x801574B4;
+g_zukan_previous_resource_id = 0x801574B8;
+g_screen_fade_current = 0x801574C0;
+g_zukan_displayed_entry = 0x801574C8;
+g_zukan_transition_frame = 0x801574CC;
+g_zukan_view_mode = 0x801574D0;
+g_zukan_image_mode = 0x801574D4;
+g_zukan_selected_entry = 0x801574D8;
+g_zukan_transition_state = 0x801574DC;
+g_zukan_scroll_steps = 0x801574E0;
+g_zukan_work_buffer = 0x801574E4;
+g_zukan_scroll_y = 0x801574E8;
+g_zukan_scroll_target_y = 0x801574EC;
+g_zukan_next_resource_id = 0x801574F0;
+
+// US ELF names not listed above (splat placeholders shared with the C sources).
+D_80043454    = 0x800435BC;
+field_draw_text = 0x800A8750;
+field_draw_number_wide = 0x800A89B4;
+field_text_reset_windows = 0x800640B0;
+field_text_reset_scratch = 0x800640EC;
+field_draw_sprite_number = 0x800ACE5C;
+field_draw_sprite_glyph = 0x800AD178;
+g_field_map_texture_bytes = 0x8018000C;
+
+// FIELD UI string table entries.
+g_field_ui_text_dashes = 0x800EBFAC;

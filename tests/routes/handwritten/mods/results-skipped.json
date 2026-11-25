@@ -1,0 +1,42 @@
+{
+  "format": 1,
+  "id": "mods-results-skipped",
+  "description": "With the Skip the results window switch on, a fight where nobody learns anything should go straight back to the field, with no results screens",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "switch": {
+        "name": "skip_battle_results",
+        "on": true
+      }
+    },
+    {
+      "experience": 9999999,
+      "note": "strong enough to win quickly"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

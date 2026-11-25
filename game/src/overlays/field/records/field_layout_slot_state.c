@@ -1,0 +1,65 @@
+#include "common.h"
+
+#include "../internal/field_calls.h"
+#include "../internal/field_records.h"
+#include "common/saved_game.h"
+
+void field_award_land_artifact_unchecked(s32 land_index)
+{
+    SavedGameLayout* game = &g_saved_game.layout;
+
+    game->control.fields.artifact_count++;
+    game->lands[land_index].flags |= FIELD_LAND_ARTIFACT_OBTAINED;
+    game->lands[land_index].artifact_order = game->control.fields.artifact_count;
+}
+
+void field_award_land_artifact(s32 index)
+{
+    if ((u32)index < FIELD_LAND_COUNT)
+    {
+        field_award_land_artifact_unchecked(index);
+    }
+}
+
+/**
+ * @brief Take every land off the map, take back every artifact and clear the lands' levels, as for a new game.
+ *
+ * Also clears the artifact and placed land counts. Afterwards every land has
+ * FIELD_LAND_CLEARED set except land 24.
+ */
+void field_reset_lands(void)
+{
+    SavedGameLayout* game;
+    s32 i;
+
+    g_saved_game.layout.control.fields.artifact_count = 0;
+    g_saved_game.layout.control.fields.placed_land_count = 0;
+
+    for (i = 0; i < FIELD_LAND_COUNT; i++)
+    {
+        g_saved_game.layout.lands[i].x = FIELD_LAND_CELL_NONE;
+        g_saved_game.layout.lands[i].z = FIELD_LAND_CELL_NONE;
+        g_saved_game.layout.lands[i].placement_order = 0;
+        g_saved_game.layout.lands[i].artifact_order = 0;
+        g_saved_game.layout.lands[i].levels[0] = 0;
+        g_saved_game.layout.lands[i].levels[1] = 0;
+        g_saved_game.layout.lands[i].levels[2] = 0;
+        g_saved_game.layout.lands[i].levels[3] = 0;
+        g_saved_game.layout.lands[i].levels[4] = 0;
+        g_saved_game.layout.lands[i].levels[5] = 0;
+        g_saved_game.layout.lands[i].levels[6] = 0;
+        g_saved_game.layout.lands[i].levels[7] = 0;
+        g_saved_game.layout.lands[i].flags &= ~(FIELD_LAND_ARTIFACT_OBTAINED | FIELD_LAND_PLACED | FIELD_LAND_CLEARED);
+    }
+
+    for (i = 0; i < FIELD_LAND_COUNT; i++)
+    {
+        g_saved_game.layout.lands[i].flags |= FIELD_LAND_CLEARED;
+    }
+
+    game = &g_saved_game.layout;
+    ((FieldLandWords*)game->lands)[24].word &= ~FIELD_LAND_CLEARED;
+}
+
+_Static_assert(sizeof(FieldLandRecord) == 12, "saved land stride");
+_Static_assert(sizeof(FieldLandWords) == sizeof(FieldLandRecord), "saved land word view");

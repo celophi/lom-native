@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "id": "new-game-world-select",
+  "description": "Continuing a new game before its world select should run the world select, let home's Mailbox be placed and let the party go home",
+  "start": {
+    "save": "saves/new-game-world-select.json"
+  },
+  "steps": [
+    {
+      "place": {
+        "artifact": 0
+      },
+      "note": "the Mailbox: home"
+    },
+    {
+      "land": {
+        "index": 0
+      }
+    },
+    {
+      "checkpoint": "home"
+    },
+    {
+      "watch": 20000
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

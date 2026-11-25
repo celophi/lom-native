@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mgc-mgc-jwl1-command-43",
+   "save": "../../handwritten/saves/home-bedroom-after-opening.json",
+   "baseline": {
+    "route": "mgc-mgc-jwl1-command-43",
+    "description": "In MGC_JWL1 (scene 572), talking to layout record 3 should run misc_command 0x43",
+    "plan": "# mgc-mgc-jwl1-command-43: In MGC_JWL1 (scene 572), talking to layout record 3 should run misc_command 0x43\nlimit 20000\nenter 572 0 16715263 0\ncheckpoint entered\ntalk 190 333 0 1 0 3 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 572 save 9acd6841fc3d3367 state e12fa25405274b83 ram 0000000000000000",
+     "done frame 2886 scene 223 save c48a03b8cfc08d5b state ac8ab22bb426d0cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (190, 313): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 348,
+     "instruction_end": 162,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "d9890cf79543a56648c6960f116d3fda"
+     },
+     {
+      "frames": 2830,
+      "sha256": "19022862607b8999b65cb57abb311774"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

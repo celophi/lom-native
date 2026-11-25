@@ -1,0 +1,516 @@
+#include "common.h"
+#include <libgpu.h>
+#include "lom_native_graphics.h"
+#include "lom_native_gpu_packets.h"
+
+#include "common/encoded_text.h"
+#include "common/gpu_packet.h"
+#include "internal/shop_render.h"
+#include "overlays/field/field_text.h"
+
+extern u8* lom_native_shop_draw_menu_frame(u8* prim, OT_TYPE* ot, s32 x, s32 y, s32 width, s32 height, s32 display_y, s32 bright);
+extern u8* lom_native_shop_draw_menu_scroll_arrow(u8* prim, OT_TYPE* ot, s32 x, s32 y, s32 up);
+
+#define SHOP_WINDOW_WIDTH_LOW_BYTE(window) ((s32)((window)->frame.word >> 24))
+#define SHOP_WINDOW_JOIN_WIDTH(window, low) (((window)->extent.bits.width_high << 8) | (low))
+#define SHOP_WINDOW_WIDTH(window) SHOP_WINDOW_JOIN_WIDTH(window, SHOP_WINDOW_WIDTH_LOW_BYTE(window))
+
+#define SHOP_LIST_VIEW_HEIGHT 116
+#define SHOP_SCROLL_ARROW_X 286
+#define SHOP_SCROLL_ARROW_DOWN_Y 172
+#define SHOP_SCROLL_ARROW_UP_Y 56
+#define SHOP_SCROLLBAR_WIDTH 6
+#define SHOP_SCROLLBAR_FRAME_WIDTH 10
+
+#define SHOP_TITLE_TEXT_X 56
+#if defined(VERSION_JP)
+#define SHOP_MONEY_LABEL_X 96
+#else
+#define SHOP_MONEY_LABEL_X 80
+#endif
+#define SHOP_MONEY_VALUE_X 48
+
+#if defined(VERSION_JP)
+#define SHOP_WEAPON_VALUE_X 96
+#define SHOP_ARMOR_VALUE_X 96
+#define SHOP_OTHER_VALUE_X 48
+#else
+#define SHOP_WEAPON_VALUE_X 112
+#define SHOP_ARMOR_VALUE_X 116
+#define SHOP_OTHER_VALUE_X 66
+#endif
+
+#define SHOP_ENTRY_RECORD(id) ((FieldItemRecord*)(((id) & SHOP_ENTRY_RECORD_INDEX_MASK) * sizeof(FieldItemRecord) + (uintptr_t)g_shop_item_records))
+#define SHOP_SELECTED_RECORD() SHOP_ENTRY_RECORD(SHOP_SELECTED_ENTRY()->id)
+
+#define SHOP_ARCHIVE_TEXT(archive, offset, index) ((u8*)((offset) + (*(u16*)((index) + (offset) + (uintptr_t)(archive)) + (uintptr_t)(archive))))
+
+#define WEAPON_CATEGORY_FIRST 0
+#define ARMOR_CATEGORY_FIRST 11
+#define INSTRUMENT_CATEGORY_FIRST 23
+#define SPELLS_PER_SPIRIT 14
+
+/**
+ * @brief Draw every active window and advance its open or close animation.
+ * @param render FIELD render half; its first ordering-table entry receives every packet.
+ * @param buffer Packet buffer for this frame.
+ */
+void shop_draw_windows(FieldRenderHalf* render, ShopPacketBuffer* buffer)
+{
+    u8* prim;
+    OT_TYPE* ot;
+    ShopWindow* window;
+    s32 inset_width;
+    s32 inset_height;
+    s32 i;
+    s32 opening_x;
+    s32 opening_width_low;
+    s32 closing_x;
+    s32 closing_width_low;
+    s32 open_width_low;
+    DRAWENV draw_env;
+
+    ot = render->ordering_table;
+    prim = buffer->prim_cursor;
+
+    if (render->display_rect.y != 0)
+    {
+        lom_graphics_default_drawing(&draw_env, 0, 240, 320, 224);
+    }
+    else
+    {
+        lom_graphics_default_drawing(&draw_env, 0, 8, 320, 224);
+    }
+
+    window = g_shop_windows;
+
+    for (i = 0; i < SHOP_WINDOW_COUNT; i++, window++)
+    {
+        if (window->frame.bits.state != SHOP_WINDOW_FREE)
+        {
+            if (window->draw == shop_draw_list_window)
+            {
+                TILE* bar;
+                s32 list_x;
+                s32 list_width_low;
+
+                if (g_shop_entry_count * SHOP_ROW_HEIGHT > g_shop_scroll_y + SHOP_LIST_VIEW_HEIGHT)
+                {
+                    prim = lom_native_shop_draw_menu_scroll_arrow(prim, ot, SHOP_SCROLL_ARROW_X, SHOP_SCROLL_ARROW_DOWN_Y, FIELD_MENU_ARROW_DOWN);
+                }
+
+                if (g_shop_scroll_y != 0)
+                {
+                    prim = lom_native_shop_draw_menu_scroll_arrow(prim, ot, SHOP_SCROLL_ARROW_X, SHOP_SCROLL_ARROW_UP_Y, FIELD_MENU_ARROW_UP);
+                }
+
+                lom_gpu_init_drawing_packet((DR_ENV*)prim, &draw_env);
+                lom_gpu_link(ot, prim);
+                prim += sizeof(DR_ENV);
+
+                bar = (TILE*)prim;
+                lom_gpu_set_length(bar, 3);
+                *(u32*)&bar->r0 = 0xFFFF00;
+                lom_gpu_set_code(bar, 0x60);
+                bar->w = SHOP_SCROLLBAR_WIDTH;
+                bar->h = (window->extent.bits.height * (window->extent.bits.height / SHOP_ROW_HEIGHT)) / g_shop_entry_count;
+
+                if (bar->h >= window->extent.bits.height - 2)
+                {
+                    bar->h = window->extent.bits.height;
+                }
+
+                bar->x0 = 1;
+                bar->y0 = ((window->extent.bits.height - 3) * (g_shop_scroll_y / SHOP_ROW_HEIGHT)) / g_shop_entry_count;
+                lom_gpu_link(ot, bar);
+                prim += sizeof(TILE);
+
+                list_x = window->frame.bits.x;
+                list_width_low = SHOP_WINDOW_WIDTH_LOW_BYTE(window);
+                prim = lom_native_shop_draw_menu_frame(prim, ot, list_x + SHOP_WINDOW_JOIN_WIDTH(window, list_width_low) + 3, window->frame.bits.y,
+                                                       SHOP_SCROLLBAR_FRAME_WIDTH, window->extent.bits.height, render->display_rect.y, i == 0);
+            }
+
+            lom_gpu_init_drawing_packet((DR_ENV*)prim, &draw_env);
+            lom_gpu_link(ot, prim);
+            prim += sizeof(DR_ENV);
+
+            switch (window->frame.bits.state)
+            {
+            case SHOP_WINDOW_OPENING:
+                inset_width = (SHOP_WINDOW_WIDTH(window) * window->frame.bits.anim_step) / SHOP_WINDOW_ANIM_STEPS;
+                inset_height = (window->extent.bits.height * window->frame.bits.anim_step) / SHOP_WINDOW_ANIM_STEPS;
+                prim = window->draw(ot, prim, (SHOP_WINDOW_WIDTH(window) - inset_width) / 2, (window->extent.bits.height - inset_height) / 2);
+                opening_x = window->frame.bits.x;
+                opening_width_low = SHOP_WINDOW_WIDTH_LOW_BYTE(window);
+                prim = lom_native_shop_draw_menu_frame(prim, ot, opening_x + (SHOP_WINDOW_JOIN_WIDTH(window, opening_width_low) - inset_width) / 2,
+                                                       window->frame.bits.y + (window->extent.bits.height - inset_height) / 2, inset_width, inset_height,
+                                                       render->display_rect.y, i == 0);
+                window->frame.bits.anim_step++;
+
+                if (window->frame.bits.anim_step == SHOP_WINDOW_ANIM_STEPS)
+                {
+                    window->frame.bits.state = SHOP_WINDOW_OPEN;
+                    field_reset_input_repeat();
+                }
+
+                break;
+
+            case SHOP_WINDOW_OPEN:
+                prim = window->draw(ot, prim, 0, 0);
+                open_width_low = SHOP_WINDOW_WIDTH_LOW_BYTE(window);
+                prim = lom_native_shop_draw_menu_frame(prim, ot, window->frame.bits.x, window->frame.bits.y, SHOP_WINDOW_JOIN_WIDTH(window, open_width_low),
+                                                       window->extent.bits.height, render->display_rect.y, i == 0);
+                break;
+
+            case SHOP_WINDOW_CLOSING:
+                inset_width = (SHOP_WINDOW_WIDTH(window) * window->frame.bits.anim_step) / SHOP_WINDOW_ANIM_STEPS;
+                inset_height = (window->extent.bits.height * window->frame.bits.anim_step) / SHOP_WINDOW_ANIM_STEPS;
+                prim = window->draw(ot, prim, (SHOP_WINDOW_WIDTH(window) - inset_width) / 2, (window->extent.bits.height - inset_height) / 2);
+                closing_x = window->frame.bits.x;
+                closing_width_low = SHOP_WINDOW_WIDTH_LOW_BYTE(window);
+                prim = lom_native_shop_draw_menu_frame(prim, ot, closing_x + (SHOP_WINDOW_JOIN_WIDTH(window, closing_width_low) - inset_width) / 2,
+                                                       window->frame.bits.y + (window->extent.bits.height - inset_height) / 2, inset_width, inset_height,
+                                                       render->display_rect.y, i == 0);
+                window->frame.bits.anim_step--;
+
+                if (window->frame.bits.anim_step == 0)
+                {
+                    window->frame.bits.state = SHOP_WINDOW_FREE;
+                }
+
+                g_shop_notice_active = 0;
+                break;
+            }
+        }
+    }
+
+    buffer->prim_cursor = prim;
+}
+
+/**
+ * @brief Draw the money window: the money label and the player's money.
+ * @param ot Ordering-table entry for the emitted packets.
+ * @param prim Packet cursor.
+ * @param x_inset Horizontal inset of the opening or closing window.
+ * @param y_inset Vertical inset of the opening or closing window.
+ * @return Advanced packet cursor.
+ */
+u8* shop_draw_money_window(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s position;
+    s32 y;
+
+    y = 2 - y_inset;
+    prim = field_draw_text((SPRT*)prim, ot, g_field_ui_text_table + g_field_ui_text_table[0] + (g_field_ui_text_table[1] << 8), FIELD_TEXT_COLOR_NORMAL,
+                           SHOP_MONEY_LABEL_X - x_inset, y, FIELD_TEXT_ALIGN_LEFT);
+    position.x = SHOP_MONEY_VALUE_X - x_inset;
+    position.y = y;
+
+    if (g_saved_game_ctx->money > SHOP_MAX_MONEY)
+    {
+        prim = field_draw_number(ot, (SPRT*)prim, SHOP_MAX_MONEY, FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_CENTER);
+    }
+    else
+    {
+        prim = field_draw_number(ot, (SPRT*)prim, g_saved_game_ctx->money, FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_CENTER);
+    }
+
+    return prim;
+}
+
+/**
+ * @brief Draw the visible shop entries and the selected row's highlight.
+ * @param ot Ordering-table entry for the list's text and highlight packets.
+ * @param prim First free primitive packet.
+ * @param x_inset Horizontal window transition inset.
+ * @param y_inset Vertical window transition inset.
+ * @return Primitive cursor after the list packets.
+ */
+u8* shop_draw_list_window(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s position;
+    TILE* tile;
+    s32 price;
+    s32 i;
+    s32 y;
+    u16 id;
+    s32 row_top;
+    s32 cursor_y;
+    s32 cursor_top;
+    FieldUiTextOffset* empty_text;
+    u8* packet;
+
+    i = 0;
+    packet = prim;
+
+    if (i < g_shop_entry_count)
+    {
+        empty_text = (FieldUiTextOffset*)g_field_ui_text_table + FIELD_UI_TEXT_DASHES;
+
+        do
+        {
+            row_top = y_inset - FIELD_TEXT_ROW_INSET;
+            y = i * SHOP_ROW_HEIGHT - row_top - g_shop_scroll_y;
+
+            if (y > -SHOP_ROW_HEIGHT && y < SHOP_LIST_VIEW_HEIGHT)
+            {
+                id = g_shop_entries[i].id;
+
+                if (id == SHOP_ENTRY_EMPTY)
+                {
+                    packet = field_draw_text((SPRT*)packet, ot, g_field_ui_text_table + g_field_ui_text_dashes.low + (empty_text->high << 8),
+                                             FIELD_TEXT_COLOR_NORMAL, 80 - x_inset, y, FIELD_TEXT_ALIGN_CENTER);
+                }
+                else
+                {
+                    if (id & SHOP_ENTRY_RECORD_FLAG)
+                    {
+                        packet = field_draw_text((SPRT*)packet, ot, (u8*)&g_shop_item_records[id & SHOP_ENTRY_RECORD_INDEX_MASK], FIELD_TEXT_COLOR_NORMAL,
+                                                 80 - x_inset, y, FIELD_TEXT_ALIGN_CENTER);
+                    }
+                    else
+                    {
+                        s32 section = ((u32*)&g_shop_text_archive)[2];
+
+                        packet = field_draw_text((SPRT*)packet, ot, TEXT_TABLE_STRING((u8*)&g_shop_text_archive + section, g_shop_entries[i].id),
+                                                 FIELD_TEXT_COLOR_NORMAL, 80 - x_inset, y, FIELD_TEXT_ALIGN_CENTER);
+                    }
+
+                    position.x = 208 - x_inset;
+                    position.y = y;
+
+                    if (i == g_shop_cursor)
+                    {
+                        price = g_shop_entries[i].price * g_shop_quantity;
+
+                        if (g_saved_game_ctx->money >= (u32)price || g_shop_is_buying == 0)
+                        {
+                            packet = field_draw_number(ot, (SPRT*)packet, price, FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_LEFT);
+                        }
+                        else
+                        {
+                            packet = field_draw_number(ot, (SPRT*)packet, price, FIELD_TEXT_COLOR_DIM, &position, FIELD_TEXT_ALIGN_LEFT);
+                        }
+
+                        packet = field_draw_text((SPRT*)packet, ot, g_field_ui_text_table + g_field_ui_text_times.low + (g_field_ui_text_times.high << 8),
+                                                 FIELD_TEXT_COLOR_NORMAL, 172 - x_inset, y, FIELD_TEXT_ALIGN_LEFT);
+                        position.x = 184 - x_inset;
+                        packet = field_draw_number(ot, (SPRT*)packet, g_shop_quantity, FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_LEFT);
+                    }
+                    else
+                    {
+                        if ((u32)g_shop_entries[i].price <= g_saved_game_ctx->money || g_shop_is_buying == 0)
+                        {
+                            packet = field_draw_number(ot, (SPRT*)packet, g_shop_entries[i].price, FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_LEFT);
+                        }
+                        else
+                        {
+                            packet = field_draw_number(ot, (SPRT*)packet, g_shop_entries[i].price, FIELD_TEXT_COLOR_DIM, &position, FIELD_TEXT_ALIGN_LEFT);
+                        }
+                    }
+                }
+            }
+        } while (++i < g_shop_entry_count);
+    }
+
+    cursor_y = g_shop_cursor * SHOP_ROW_HEIGHT;
+    cursor_top = y_inset - FIELD_TEXT_ROW_INSET;
+    y = (cursor_y - cursor_top) - g_shop_scroll_y;
+
+    tile = (TILE*)packet;
+    SET_BGR0_PACKED(tile, GPU_COLOR_SELECTED_ROW);
+    lom_gpu_set_length(tile, 3);
+    lom_gpu_set_code(tile, GPU_CODE_TILE | GPU_CODE_SEMI_TRANS);
+    lom_gpu_set_xy0(tile, 0, y - 1);
+    lom_gpu_set_wh(tile, 294, 14);
+    lom_gpu_link(ot, tile);
+    return packet + sizeof(TILE);
+}
+
+/**
+ * @brief Draw the detail window for the list entry under the cursor.
+ *
+ * Record entries show "<material> <category>" as the title plus a kind-specific
+ * stat row; plain items show their name and the owned count.
+ *
+ * @param ot Ordering table that receives the primitives.
+ * @param prim Next free primitive in the packet buffer.
+ * @param x_inset Horizontal offset subtracted from every x coordinate.
+ * @param y_inset Vertical offset subtracted from every y coordinate.
+ * @return Next free primitive after the window's contents.
+ */
+u8* shop_draw_detail_window(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s position;
+    u8 name_text[48];
+    u8 difference_text[48];
+    u8 number_text[48];
+    ShopEntry* entry;
+    u16 id;
+
+    entry = SHOP_SELECTED_ENTRY();
+    id = entry->id;
+
+    if (id != SHOP_ENTRY_EMPTY)
+    {
+        if (id & SHOP_ENTRY_RECORD_FLAG)
+        {
+            u8* dst = name_text;
+            u32* material_offsets = &g_shop_text_archive.section_offsets[SHOP_TEXT_ITEM_NAMES];
+            ShopTextArchive* archive;
+            FieldItemRecord* record = SHOP_ENTRY_RECORD(id);
+            u8* ui_entry;
+            u8* ui_text_table;
+            u32 attributes;
+            s32 low;
+            s32 high;
+            u32 material;
+
+            material = record->info.halves[1] & FIELD_ITEM_MATERIAL_MASK;
+            archive = &g_shop_text_archive;
+            encoded_text_copy(dst, SHOP_ARCHIVE_TEXT(archive, *material_offsets, material * 2));
+            ui_entry = &g_field_ui_text_space.low;
+            ui_text_table = ui_entry - FIELD_UI_TEXT_SPACE * 2;
+            low = *ui_entry++;
+            high = *ui_entry;
+            encoded_text_append(name_text, (u8*)(low + ((high << 8) + (uintptr_t)ui_text_table)));
+
+            attributes = SHOP_SELECTED_RECORD()->info.word;
+
+            switch (FIELD_ITEM_CATEGORY(attributes))
+            {
+            case FIELD_ITEM_CATEGORY_WEAPON:
+            {
+                u32 category_offset = archive->section_offsets[SHOP_TEXT_EQUIPMENT_TYPES];
+                s32 x;
+                s32 y;
+                s32 difference;
+
+                encoded_text_append(name_text, SHOP_ARCHIVE_TEXT(archive, category_offset, (FIELD_ITEM_TYPE(attributes) + WEAPON_CATEGORY_FIRST) * 2));
+                y = 18 - y_inset;
+                prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT(ui_text_table, FIELD_UI_TEXT_ATTACK_POWER), FIELD_TEXT_COLOR_NORMAL, 16 - x_inset, y,
+                                       FIELD_TEXT_ALIGN_LEFT);
+                x = SHOP_WEAPON_VALUE_X - x_inset;
+                position.x = x;
+                position.y = y;
+                prim =
+                    field_draw_number(ot, (SPRT*)prim, SHOP_SELECTED_RECORD()->derived.values[0], FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_RIGHT);
+                difference = SHOP_SELECTED_RECORD()->derived.values[0] - g_saved_game_ctx->characters[FIELD_PARTY_HERO].equipment[0].derived.values[0];
+                encoded_text_copy(difference_text, FIELD_UI_TEXT(ui_text_table, FIELD_UI_TEXT_OPEN_PAREN));
+
+                if (difference >= 0)
+                {
+                    encoded_text_append(difference_text, FIELD_UI_TEXT(ui_text_table, FIELD_UI_TEXT_PLUS));
+                }
+
+                field_format_number(number_text, difference, 0);
+                encoded_text_append(difference_text, number_text);
+                encoded_text_append(difference_text, FIELD_UI_TEXT(ui_text_table, FIELD_UI_TEXT_CLOSE_PAREN));
+#if defined(VERSION_JP)
+                position.x = 112 - x_inset;
+#else
+                position.x = x;
+#endif
+                position.y = y;
+                prim = field_draw_text((SPRT*)prim, ot, difference_text, FIELD_TEXT_COLOR_NORMAL, position.x, position.y, FIELD_TEXT_ALIGN_LEFT);
+                break;
+            }
+            case FIELD_ITEM_CATEGORY_ARMOR:
+            {
+                u32 category_offset = archive->section_offsets[SHOP_TEXT_EQUIPMENT_TYPES];
+                s32 y;
+                FieldItemRecord* selected;
+                u16 offset;
+
+                offset = *(u16*)((u8*)&g_shop_text_archive + (FIELD_ITEM_TYPE(attributes) * 2 + category_offset) + ARMOR_CATEGORY_FIRST * 2);
+                encoded_text_append(name_text, (u8*)(category_offset + (offset + (uintptr_t)archive)));
+                y = 18 - y_inset;
+                prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT(ui_text_table, FIELD_UI_TEXT_TOTAL_DEFENSE), FIELD_TEXT_COLOR_NORMAL, 16 - x_inset, y,
+                                       FIELD_TEXT_ALIGN_LEFT);
+                position.x = SHOP_ARMOR_VALUE_X - x_inset;
+                position.y = y;
+                selected = SHOP_SELECTED_RECORD();
+                prim = field_draw_number(ot, (SPRT*)prim,
+                                         selected->derived.values[0] + selected->derived.values[1] + selected->derived.values[2] + selected->derived.values[3],
+                                         FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_LEFT);
+                break;
+            }
+            default:
+            {
+                u32* category_offsets;
+                ShopTextArchive* text_archive;
+                FieldItemRecord* selected;
+                u8* text;
+                u32 detail_offset;
+                u16 offset;
+
+                category_offsets = &g_shop_text_archive.section_offsets[SHOP_TEXT_EQUIPMENT_TYPES];
+                offset = *(u16*)((u8*)&g_shop_text_archive + (FIELD_ITEM_TYPE(SHOP_SELECTED_RECORD()->info.word) * 2 + *category_offsets) +
+                                 INSTRUMENT_CATEGORY_FIRST * 2);
+                text_archive = &g_shop_text_archive;
+                text = (u8*)(*category_offsets + (offset + (uintptr_t)text_archive));
+                encoded_text_append(name_text, text);
+                prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT_AT(g_field_ui_text_power, FIELD_UI_TEXT_POWER), FIELD_TEXT_COLOR_NORMAL, 16 - x_inset,
+                                       18 - y_inset, FIELD_TEXT_ALIGN_LEFT);
+                position.x = SHOP_OTHER_VALUE_X - x_inset;
+                position.y = 18 - y_inset;
+                prim = field_draw_number(ot, (SPRT*)prim, SHOP_SELECTED_RECORD()->derived.bytes[2], FIELD_TEXT_COLOR_NORMAL, &position, FIELD_TEXT_ALIGN_LEFT);
+                detail_offset = text_archive->section_offsets[SHOP_TEXT_INSTRUMENT_SPELLS];
+                selected = SHOP_SELECTED_RECORD();
+                offset = *(u16*)((selected->derived.bytes[1] * 2) + ((selected->derived.bytes[0] * SPELLS_PER_SPIRIT * 2) + detail_offset) +
+                                 (uintptr_t)text_archive);
+                text = (u8*)(detail_offset + (offset + (uintptr_t)text_archive));
+                prim = field_draw_text((SPRT*)prim, ot, text, FIELD_TEXT_COLOR_NORMAL, 284 - x_inset, 18 - y_inset, FIELD_TEXT_ALIGN_RIGHT);
+                break;
+            }
+            }
+
+            prim = field_draw_text((SPRT*)prim, ot, name_text, FIELD_TEXT_COLOR_NORMAL, 150 - x_inset, 2 - y_inset, FIELD_TEXT_ALIGN_CENTER);
+        }
+        else
+        {
+            u32* description_offsets = &g_shop_text_archive.section_offsets[SHOP_TEXT_ITEM_DESCRIPTIONS];
+            ShopTextArchive* archive = &g_shop_text_archive;
+
+            prim = field_draw_text((SPRT*)prim, ot, SHOP_ARCHIVE_TEXT(archive, *description_offsets, entry->id * 2), FIELD_TEXT_COLOR_NORMAL, 150 - x_inset,
+                                   2 - y_inset, FIELD_TEXT_ALIGN_CENTER);
+            prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT_AT(g_field_ui_text_you_have, FIELD_UI_TEXT_YOU_HAVE), FIELD_TEXT_COLOR_NORMAL, 16 - x_inset,
+                                   18 - y_inset, FIELD_TEXT_ALIGN_LEFT);
+            position.x = 112 - x_inset;
+            position.y = 18 - y_inset;
+            prim = field_draw_number(ot, (SPRT*)prim, g_saved_game_ctx->item_counts[SHOP_SELECTED_ENTRY()->id], FIELD_TEXT_COLOR_NORMAL, &position,
+                                     FIELD_TEXT_ALIGN_LEFT);
+        }
+    }
+
+    return prim;
+}
+
+/**
+ * @brief Draw the title window with the FIELD UI string chosen by shop_init.
+ * @param ot Ordering-table entry for the emitted packets.
+ * @param prim Packet cursor.
+ * @param x_inset Horizontal inset of the opening or closing window.
+ * @param y_inset Vertical inset of the opening or closing window.
+ * @return Advanced packet cursor.
+ */
+u8* shop_draw_title_window(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s unused_position;
+    s32 entry;
+
+    entry = g_shop_title_text_id * 2;
+    return field_draw_text((SPRT*)prim, ot, g_field_ui_text_table + g_field_ui_text_table[entry] + (g_field_ui_text_table[entry + 1] << 8),
+                           FIELD_TEXT_COLOR_NORMAL, SHOP_TITLE_TEXT_X - x_inset, 2 - y_inset, FIELD_TEXT_ALIGN_CENTER);
+}
+
+u8* lom_native_shop_draw_menu_frame(u8* prim, OT_TYPE* ot, s32 x, s32 y, s32 width, s32 height, s32 display_y, s32 bright)
+{
+    return field_draw_menu_frame(prim, ot, x, y, width, height, display_y, bright);
+}
+
+u8* lom_native_shop_draw_menu_scroll_arrow(u8* prim, OT_TYPE* ot, s32 x, s32 y, s32 up)
+{
+    return field_draw_menu_scroll_arrow(prim, ot, x, y, up);
+}

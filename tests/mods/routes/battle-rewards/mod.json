@@ -1,0 +1,12 @@
+{
+  "id": "battle-rewards",
+  "name": "Battle rewards",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod: 100 lucre after each fight, checking the hooks and the game-state calls in the real game.",
+  "game": "SLUS-01013",
+  "api": 1,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

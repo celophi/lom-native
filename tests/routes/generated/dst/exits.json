@@ -1,0 +1,2328 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dst-dst-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b000-exit-0",
+    "description": "Walking onto exit 0 of DST_B000 (scene 227) should lead to one of scene 572, the world map",
+    "plan": "# dst-dst-b000-exit-0: Walking onto exit 0 of DST_B000 (scene 227) should lead to one of scene 572, the world map\nlimit 20000\nenter 227 0 16715263 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 227 save f60480a5a1acca7f state 26cc64a136163f3c ram 0000000000000000",
+     "arrived frame 1405 scene 32767 save 4211433bc06ac52f state 42849c7ff292f37d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 232): 5 waypoints",
+     "game state 1 at vblank 3135"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ddc3fd1415e92b33ef3035ff8a9ab1ff"
+     },
+     {
+      "frames": 1175,
+      "sha256": "8c34fbcbd11416c555973c46dc874d85"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b000-exit-1",
+    "description": "Walking onto exit 1 of DST_B000 (scene 227) should lead to scene 228",
+    "plan": "# dst-dst-b000-exit-1: Walking onto exit 1 of DST_B000 (scene 227) should lead to scene 228\nlimit 20000\nenter 227 0 16715263 1\ncheckpoint entered\nexit 1 228\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 227 save f60480a5a1acca7f state 26cc64a136163f3c ram 0000000000000000",
+     "arrived frame 308 scene 228 save 5cb604640d3c0eaf state 72ca26f571522211 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (888, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 203,
+     "instruction_end": 50,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ddc3fd1415e92b33ef3035ff8a9ab1ff"
+     },
+     {
+      "frames": 79,
+      "sha256": "880b6cbe88ea8cb2733c0a1f6fbd7b9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b010-exit-0",
+    "description": "Walking onto exit 0 of DST_B010 (scene 228) should lead to scene 227",
+    "plan": "# dst-dst-b010-exit-0: Walking onto exit 0 of DST_B010 (scene 228) should lead to scene 227\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\nexit 0 227\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 314792b828997dff state 5cc457cd40d7b9c3 ram 0000000000000000",
+     "arrived frame 294 scene 227 save ef042a5ac3a29572 state 30c47d38f706da15 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (4, 352): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce4b420505ba5111a63ae94018c04f3e"
+     },
+     {
+      "frames": 65,
+      "sha256": "e8fe0c9f7e5874fec468a68053c7cc91"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b010-exit-1",
+    "description": "Walking onto exit 1 of DST_B010 (scene 228) should lead to scene 229",
+    "plan": "# dst-dst-b010-exit-1: Walking onto exit 1 of DST_B010 (scene 228) should lead to scene 229\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\nexit 1 229\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 314792b828997dff state 5cc457cd40d7b9c3 ram 0000000000000000",
+     "arrived frame 382 scene 229 save 009d04992109646f state f1a414f907b96a2a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 392): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce4b420505ba5111a63ae94018c04f3e"
+     },
+     {
+      "frames": 153,
+      "sha256": "722a80fe4c395b6f2f822888be2c9cb4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b010-exit-2",
+    "description": "Walking onto exit 2 of DST_B010 (scene 228) should lead to scene 234",
+    "plan": "# dst-dst-b010-exit-2: Walking onto exit 2 of DST_B010 (scene 228) should lead to scene 234\nlimit 20000\nenter 228 1 16719103 0\ncheckpoint entered\nexit 2 234\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 228 save 314792b828997dff state 5cc457cd40d7b9c3 ram 0000000000000000",
+     "arrived frame 446 scene 234 save da9110c4d2ad1c3a state c697a389db155cdb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 40): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce4b420505ba5111a63ae94018c04f3e"
+     },
+     {
+      "frames": 217,
+      "sha256": "689565b1a01064a7696c488ab71c4cd9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b020-exit-0",
+    "description": "Walking onto exit 0 of DST_B020 (scene 229) should lead to scene 228",
+    "plan": "# dst-dst-b020-exit-0: Walking onto exit 0 of DST_B020 (scene 229) should lead to scene 228\nlimit 20000\nenter 32997 2 16715263 0\ncheckpoint entered\nexit 0 228\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 229 save 98a551ccf78c5e92 state 61b4ee96ae91814c ram 0000000000000000",
+     "arrived frame 302 scene 228 save c19d2c1863a73be8 state cb9f80c3eb9d018f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (56, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 56,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a5c3abf96b4e07a1ddaf5542dcc9182e"
+     },
+     {
+      "frames": 73,
+      "sha256": "f3f0c72511bbd27ba9e3080457c85cc5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b020-exit-1",
+    "description": "Walking onto exit 1 of DST_B020 (scene 229) should lead to scene 230",
+    "plan": "# dst-dst-b020-exit-1: Walking onto exit 1 of DST_B020 (scene 229) should lead to scene 230\nlimit 20000\nenter 32997 2 16715263 0\ncheckpoint entered\nexit 1 230\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 229 save 98a551ccf78c5e92 state 61b4ee96ae91814c ram 0000000000000000",
+     "arrived frame 1809 scene 230 save 3c0cd9c1fac881ee state c259a960a8d79b3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (597, 395): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1250 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 114,
+     "instruction": 416,
+     "song": 4,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a5c3abf96b4e07a1ddaf5542dcc9182e"
+     },
+     {
+      "frames": 1580,
+      "sha256": "f749301216d6398be78a0cc6a26e909e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b030-exit-0",
+    "description": "Walking onto exit 0 of DST_B030 (scene 230) should lead to scene 229",
+    "plan": "# dst-dst-b030-exit-0: Walking onto exit 0 of DST_B030 (scene 230) should lead to scene 229\nlimit 20000\nenter 230 0 16715263 0\ncheckpoint entered\nexit 0 229\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 230 save 3efbed5770fc0a6b state 99abddc3584fa9a9 ram 0000000000000000",
+     "arrived frame 298 scene 229 save a1d4d8bc8201dec6 state 24f928c9bfc6014a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (48, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 49,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c73947ebba734329ed6ebeb873b4d10"
+     },
+     {
+      "frames": 69,
+      "sha256": "37849c63b2f1e7ffb8ceb87373406bdf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b030-exit-1",
+    "description": "Walking onto exit 1 of DST_B030 (scene 230) should lead to scene 236",
+    "plan": "# dst-dst-b030-exit-1: Walking onto exit 1 of DST_B030 (scene 230) should lead to scene 236\nlimit 20000\nenter 230 0 16715263 0\ncheckpoint entered\nexit 1 236\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 230 save 3efbed5770fc0a6b state 99abddc3584fa9a9 ram 0000000000000000",
+     "arrived frame 406 scene 236 save 2934174369ec6b95 state e4c1f2f8c9d2a3bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 208): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 49,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c73947ebba734329ed6ebeb873b4d10"
+     },
+     {
+      "frames": 177,
+      "sha256": "9c95421d3103b68b01505d7edbab1306"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b030-exit-2",
+    "description": "Walking onto exit 2 of DST_B030 (scene 230) should lead to scene 231",
+    "plan": "# dst-dst-b030-exit-2: Walking onto exit 2 of DST_B030 (scene 230) should lead to scene 231\nlimit 20000\nenter 230 0 16715263 2\ncheckpoint entered\nexit 2 231\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 230 save 963049dce38a535d state 6baf4b580c546bb7 ram 0000000000000000",
+     "arrived frame 294 scene 231 save 36c97b0055757083 state 015e96d0dc9a96f2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 368): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 60,
+     "instruction": 193,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c08bb5a6ace14338f90a97ae81776d02"
+     },
+     {
+      "frames": 65,
+      "sha256": "947e31085142d47ce56a3ae11840f350"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b040-exit-0",
+    "description": "Walking onto exit 0 of DST_B040 (scene 231) should lead to scene 230",
+    "plan": "# dst-dst-b040-exit-0: Walking onto exit 0 of DST_B040 (scene 231) should lead to scene 230\nlimit 20000\nenter 32999 0 16715263 0\ncheckpoint entered\nexit 0 230\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 231 save cd7bc425b246eb22 state 195900e43a6167c1 ram 0000000000000000",
+     "arrived frame 307 scene 230 save 7b94ad63bba9a9e0 state 9b389b938e2e88f8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (885, 302): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 61,
+     "instruction": 205,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1b6998ee36810b12654889aae118ac8f"
+     },
+     {
+      "frames": 78,
+      "sha256": "04627fcacba14d36330cad6f103cb071"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b040-exit-1",
+    "description": "Walking onto exit 1 of DST_B040 (scene 231) should lead to scene 232",
+    "plan": "# dst-dst-b040-exit-1: Walking onto exit 1 of DST_B040 (scene 231) should lead to scene 232\nlimit 20000\nenter 32999 0 16715263 1\ncheckpoint entered\nexit 1 232\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 231 save 3f70168dbc40448b state aa2484029c3de712 ram 0000000000000000",
+     "arrived frame 295 scene 232 save f11333f28b8e8fd9 state f40d889adc1a675e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (4, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 64,
+     "instruction": 215,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b5783fc0d8ec6d5e3342637939a50409"
+     },
+     {
+      "frames": 66,
+      "sha256": "b198c843f45cf723cc3e05afbbd53c07"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b050-exit-0",
+    "description": "Walking onto exit 0 of DST_B050 (scene 232) should lead to scene 231",
+    "plan": "# dst-dst-b050-exit-0: Walking onto exit 0 of DST_B050 (scene 232) should lead to scene 231\nlimit 20000\nenter 232 1 16715263 0\ncheckpoint entered\nexit 0 231\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 232 save d88de28e0691c8d8 state f2edeb9fa02821e5 ram 0000000000000000",
+     "arrived frame 302 scene 231 save d9eaafbb03591876 state 6094dcd3e7fd6a9e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 63,
+     "instruction": 202,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3979f0dd906416f6c5de59672bfd3323"
+     },
+     {
+      "frames": 73,
+      "sha256": "2ad654f38e40489679ce044db443d822"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b050-exit-1",
+    "description": "Walking onto exit 1 of DST_B050 (scene 232) should lead to scene 233",
+    "plan": "# dst-dst-b050-exit-1: Walking onto exit 1 of DST_B050 (scene 232) should lead to scene 233\nlimit 20000\nenter 232 1 16715263 1\ncheckpoint entered\nexit 1 233\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 232 save 28afa4f309a13f19 state bb3b0f4c2baaa471 ram 0000000000000000",
+     "arrived frame 295 scene 233 save b403f4001a0ff29f state 56e238bc20fb7f20 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 344): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 58,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "850c96b164feae43e60b148af87f07e8"
+     },
+     {
+      "frames": 66,
+      "sha256": "39ac1673d3b5e46658ebdcad0be57fcc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b050-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b050-exit-2",
+    "description": "Walking onto exit 2 of DST_B050 (scene 232) should lead to scene 243",
+    "plan": "# dst-dst-b050-exit-2: Walking onto exit 2 of DST_B050 (scene 232) should lead to scene 243\nlimit 20000\nenter 232 1 16715263 0\ncheckpoint entered\nexit 2 243\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 232 save d88de28e0691c8d8 state f2edeb9fa02821e5 ram 0000000000000000",
+     "arrived frame 456 scene 243 save 1d2aa8db8638db1c state 134a141abed30b5a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (314, 367): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 56,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3979f0dd906416f6c5de59672bfd3323"
+     },
+     {
+      "frames": 227,
+      "sha256": "bb07fb1f9caf26e0a683e0cd864a201e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b060-exit-0",
+    "description": "Walking onto exit 0 of DST_B060 (scene 233) should lead to scene 232",
+    "plan": "# dst-dst-b060-exit-0: Walking onto exit 0 of DST_B060 (scene 233) should lead to scene 232\nlimit 20000\nenter 33001 2 16715263 1\ncheckpoint entered\nexit 0 232\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 233 save e8fc7b5d50d02857 state d748a42630bf3cbc ram 0000000000000000",
+     "arrived frame 2067 scene 232 save 7b9db14f264a8851 state 57f6c5fb6739f0f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 32): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1610 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 427,
+     "instruction_end": 122,
+     "song": 4,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4b79eb537ce39857c0308c787577d457"
+     },
+     {
+      "frames": 1838,
+      "sha256": "d30fe44cac5b5a91923d3943e0a8ab63"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b060-exit-1",
+    "description": "Walking onto exit 1 of DST_B060 (scene 233) should lead to one of scene 224, scene 899, scene 900, scene 901",
+    "plan": "# dst-dst-b060-exit-1: Walking onto exit 1 of DST_B060 (scene 233) should lead to one of scene 224, scene 899, scene 900, scene 901\nlimit 20000\nenter 33001 2 16715263 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 233 save e8fc7b5d50d02857 state d748a42630bf3cbc ram 0000000000000000",
+     "arrived frame 303 scene 899 save a995fd5586f85e1a state 46a73124a0e20a0f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (74, 302): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 74,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4b79eb537ce39857c0308c787577d457"
+     },
+     {
+      "frames": 74,
+      "sha256": "9297d6b025c99733a5c51a2fbc5b33ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b070-exit-0",
+    "description": "Walking onto exit 0 of DST_B070 (scene 234) should lead to scene 228",
+    "plan": "# dst-dst-b070-exit-0: Walking onto exit 0 of DST_B070 (scene 234) should lead to scene 228\nlimit 20000\nenter 33002 0 16715263 0\ncheckpoint entered\nexit 0 228\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 234 save dab25f773d6202c7 state bbb36a7d7f70fe1d ram 0000000000000000",
+     "arrived frame 294 scene 228 save aea43b45462e57a7 state 60502b27ea78a528 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 336): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 60,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a75107b1dbbecb933a86d54d410b17a"
+     },
+     {
+      "frames": 65,
+      "sha256": "27df8f3166f4d280cb689ae9dca9d712"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b070-exit-1",
+    "description": "Walking onto exit 1 of DST_B070 (scene 234) should lead to scene 235",
+    "plan": "# dst-dst-b070-exit-1: Walking onto exit 1 of DST_B070 (scene 234) should lead to scene 235\nlimit 20000\nenter 33002 0 16715263 0\ncheckpoint entered\nexit 1 235\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 234 save dab25f773d6202c7 state bbb36a7d7f70fe1d ram 0000000000000000",
+     "arrived frame 1489 scene 235 save 20b9ad4dc9b49d72 state f09983156e6eec20 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (548, 272): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 408,
+     "instruction_end": 132,
+     "exit": 1,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a75107b1dbbecb933a86d54d410b17a"
+     },
+     {
+      "frames": 1260,
+      "sha256": "373801000071f8736bb7c96b7489c2e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b070-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b070-exit-2",
+    "description": "Walking onto exit 2 of DST_B070 (scene 234) should lead to scene 236",
+    "plan": "# dst-dst-b070-exit-2: Walking onto exit 2 of DST_B070 (scene 234) should lead to scene 236\nlimit 20000\nenter 33002 0 16715263 1\ncheckpoint entered\nexit 2 236\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 234 save d34578d8df4a61ae state 7b5ff28ae0b25ddb ram 0000000000000000",
+     "arrived frame 3936 scene 236 save fe3ab817d01f3a1c state 187e0e8bc0159184 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (992, 523): 7 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 3410 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 498,
+     "instruction_end": 144,
+     "song": 4,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d0f63146d68c035e9e3fb3b4daec6fc4"
+     },
+     {
+      "frames": 3707,
+      "sha256": "eff3587647e763580ff2f028d3fbc2c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b070-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b070-exit-3",
+    "description": "Walking onto exit 3 of DST_B070 (scene 234) should lead to scene 237",
+    "plan": "# dst-dst-b070-exit-3: Walking onto exit 3 of DST_B070 (scene 234) should lead to scene 237\nlimit 20000\nenter 33002 0 16715263 1\ncheckpoint entered\nexit 3 237\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 234 save d34578d8df4a61ae state 7b5ff28ae0b25ddb ram 0000000000000000",
+     "arrived frame 3977 scene 237 save 1db14eb8d09a92cb state b0fe3f5be9256549 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1219, 516): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 3410 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 502,
+     "instruction_end": 134,
+     "song": 4,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d0f63146d68c035e9e3fb3b4daec6fc4"
+     },
+     {
+      "frames": 3748,
+      "sha256": "7c8feb5099f7632531f890ef9acf8537"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b080-exit-0",
+    "description": "Walking onto exit 0 of DST_B080 (scene 235) should lead to scene 234",
+    "plan": "# dst-dst-b080-exit-0: Walking onto exit 0 of DST_B080 (scene 235) should lead to scene 234\nlimit 20000\nenter 33003 1 16715263 1\ncheckpoint entered\nexit 0 234\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 235 save f7f24bb8b47e3886 state fd2e825b2aefe5e4 ram 0000000000000000",
+     "arrived frame 302 scene 234 save 1eb86765b760345b state 67b568a404162848 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 71,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "efbd09e001a9523010e160f642e26aa8"
+     },
+     {
+      "frames": 73,
+      "sha256": "7d7b3ae40afffc980b7f322f95749dba"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b090-exit-0",
+    "description": "Walking onto exit 0 of DST_B090 (scene 236) should lead to scene 230",
+    "plan": "# dst-dst-b090-exit-0: Walking onto exit 0 of DST_B090 (scene 236) should lead to scene 230\nlimit 20000\nenter 33004 1 16715263 0\ncheckpoint entered\nexit 0 230\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 236 save bb8834b4fe99dd54 state 501c7de21367134f ram 0000000000000000",
+     "arrived frame 291 scene 230 save 8c1e568f31d245ff state efffdbb10e56fd8b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 240): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 50,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f31f3078edeec0e68857d977fb2cc8f9"
+     },
+     {
+      "frames": 62,
+      "sha256": "5067a91c96dfdf04b47798a253e0263c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b090-exit-1",
+    "description": "Walking onto exit 1 of DST_B090 (scene 236) should lead to scene 234",
+    "plan": "# dst-dst-b090-exit-1: Walking onto exit 1 of DST_B090 (scene 236) should lead to scene 234\nlimit 20000\nenter 33004 1 16715263 1\ncheckpoint entered\nexit 1 234\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 236 save b858a0ee8f9d9b15 state 2ff3409a06fcacf7 ram 0000000000000000",
+     "arrived frame 302 scene 234 save 3c15323c46a33ca4 state 1ec90b29dc9d9cb7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (776, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 68,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bcc9158f4d951559134a14b76834c0be"
+     },
+     {
+      "frames": 73,
+      "sha256": "84ae42123879d63e6e3c447d1bf3e919"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b100-exit-0",
+    "description": "Walking onto exit 0 of DST_B100 (scene 237) should lead to scene 234",
+    "plan": "# dst-dst-b100-exit-0: Walking onto exit 0 of DST_B100 (scene 237) should lead to scene 234\nlimit 20000\nenter 237 2 16715263 0\ncheckpoint entered\nexit 0 234\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save b4f7e38d2fd2987a state 400b473aebabde3b ram 0000000000000000",
+     "arrived frame 303 scene 234 save da75fa5d4b7dcf13 state 6bae9edcfaa4331e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 57,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "39f82a8e0f5c8ca04c46f6d35d377143"
+     },
+     {
+      "frames": 74,
+      "sha256": "18f524690c097e06801a1f92617fd801"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b100-exit-1",
+    "description": "Walking onto exit 1 of DST_B100 (scene 237) should lead to scene 240",
+    "plan": "# dst-dst-b100-exit-1: Walking onto exit 1 of DST_B100 (scene 237) should lead to scene 240\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\nexit 1 240\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save e2f5a354c0205223 state f02fa9f061651312 ram 0000000000000000",
+     "arrived frame 311 scene 240 save b686abc552e88352 state 33dbdc23b3c458a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 416): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 57,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "37d84b5330cea0b19591e90f5bdb20e0"
+     },
+     {
+      "frames": 82,
+      "sha256": "1dbb34376eaa22660ff7206dedebb807"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b100-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1230 = 8 for exit 2 of DST_B100",
+    "source": "scene-wide search over the saved-game variables scene 237's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1230": 8
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b100-exit-2",
+    "description": "Walking onto exit 2 of DST_B100 (scene 237) should lead to scene 238",
+    "plan": "# dst-dst-b100-exit-2: Walking onto exit 2 of DST_B100 (scene 237) should lead to scene 238\nlimit 20000\nenter 237 2 16715263 1\ncheckpoint entered\nexit 2 238\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 237 save d950652e3ee5732b state f02fa9f061651312 ram 0000000000000000",
+     "arrived frame 481 scene 238 save 4627cb8f2c378d21 state a006d0d1c42d94bb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 216): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 73,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "86685378ad5fe6fd1f42d52279a731db"
+     },
+     {
+      "frames": 252,
+      "sha256": "047c65e08700eb03321d4036b1251d29"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b110-exit-0",
+    "description": "Walking onto exit 0 of DST_B110 (scene 238) should lead to scene 237",
+    "plan": "# dst-dst-b110-exit-0: Walking onto exit 0 of DST_B110 (scene 238) should lead to scene 237\nlimit 20000\nenter 33006 0 16715263 0\ncheckpoint entered\nexit 0 237\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 238 save 3e3e2a4dedba1313 state 2190b6268c17c573 ram 0000000000000000",
+     "arrived frame 306 scene 237 save 3421b4aaff97b999 state 1a8e28c0c3d2477a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1208, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 216,
+     "instruction_end": 65,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c49a4de5bbcc5b65ac808b431f3dbf20"
+     },
+     {
+      "frames": 77,
+      "sha256": "52bba6f766ef13b46aa20fe775ecd909"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b110-exit-1",
+    "description": "Walking onto exit 1 of DST_B110 (scene 238) should lead to scene 244",
+    "plan": "# dst-dst-b110-exit-1: Walking onto exit 1 of DST_B110 (scene 238) should lead to scene 244\nlimit 20000\nenter 33006 0 16715263 2\ncheckpoint entered\nexit 1 244\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 238 save 40970316c93862b5 state f58f4a6160098f38 ram 0000000000000000",
+     "arrived frame 2400 scene 244 save c84abcada25fc68f state 249f2a7879c73f02 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 281): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1910 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 489,
+     "instruction_end": 154,
+     "song": 4,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ba5be08db8671fac675d1fecfe685e92"
+     },
+     {
+      "frames": 2171,
+      "sha256": "4dbd753efbbb01cc6bb3647eaf18cdf1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b110-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b110-exit-2",
+    "description": "Walking onto exit 2 of DST_B110 (scene 238) should lead to scene 239",
+    "plan": "# dst-dst-b110-exit-2: Walking onto exit 2 of DST_B110 (scene 238) should lead to scene 239\nlimit 20000\nenter 33006 0 16715263 0\ncheckpoint entered\nexit 2 239\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 238 save 3e3e2a4dedba1313 state 2190b6268c17c573 ram 0000000000000000",
+     "arrived frame 2722 scene 239 save 220a372ae337dd78 state 2176eaad7f577ae1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (652, 527): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2090 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 507,
+     "instruction_end": 138,
+     "song": 4,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c49a4de5bbcc5b65ac808b431f3dbf20"
+     },
+     {
+      "frames": 2493,
+      "sha256": "8f92072451dbe6dc728a40c7f3cb3809"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b120-exit-0",
+    "description": "Walking onto exit 0 of DST_B120 (scene 239) should lead to scene 238",
+    "plan": "# dst-dst-b120-exit-0: Walking onto exit 0 of DST_B120 (scene 239) should lead to scene 238\nlimit 20000\nenter 33007 1 16715263 1\ncheckpoint entered\nexit 0 238\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 239 save 8d62b1c1cd46a7a2 state 296bdf496105d03f ram 0000000000000000",
+     "arrived frame 657 scene 238 save 5d01f14444a3095e state 2b7327b98c4e2191 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (72, 10): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 63,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d1a6255ac9647d7cb36f4eef1515a0b2"
+     },
+     {
+      "frames": 428,
+      "sha256": "f78934e85609e7e52b4977403c5fb340"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b120-exit-1",
+    "description": "Walking onto exit 1 of DST_B120 (scene 239) should lead to scene 225",
+    "plan": "# dst-dst-b120-exit-1: Walking onto exit 1 of DST_B120 (scene 239) should lead to scene 225\nlimit 20000\nenter 33007 1 16715263 1\ncheckpoint entered\nexit 1 225\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 239 save 8d62b1c1cd46a7a2 state 296bdf496105d03f ram 0000000000000000",
+     "arrived frame 306 scene 225 save daa1f46932dcb160 state 8f99e7dc28e2d73b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 400): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 59,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d1a6255ac9647d7cb36f4eef1515a0b2"
+     },
+     {
+      "frames": 77,
+      "sha256": "d66f5adac48456ebcd534ddc7f6e3db2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b130-exit-0",
+    "description": "Walking onto exit 0 of DST_B130 (scene 240) should lead to scene 237",
+    "plan": "# dst-dst-b130-exit-0: Walking onto exit 0 of DST_B130 (scene 240) should lead to scene 237\nlimit 20000\nenter 33008 0 16715263 2\ncheckpoint entered\nexit 0 237\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 240 save bc17422fd5830f27 state 1a6b44232eceaf16 ram 0000000000000000",
+     "arrived frame 1637 scene 237 save 7c5b8732c34bc96e state 06b56a41d7f8d381 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (634, 121): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 417,
+     "instruction_end": 125,
+     "song": 4,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd27b562cf680c706cc2015ddc36c3da"
+     },
+     {
+      "frames": 1408,
+      "sha256": "5fa412550d1299c824a59f0b3e293a1a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b130-exit-1",
+    "description": "Walking onto exit 1 of DST_B130 (scene 240) should lead to scene 241",
+    "plan": "# dst-dst-b130-exit-1: Walking onto exit 1 of DST_B130 (scene 240) should lead to scene 241\nlimit 20000\nenter 33008 0 16715263 2\ncheckpoint entered\nexit 1 241\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 240 save bc17422fd5830f27 state 1a6b44232eceaf16 ram 0000000000000000",
+     "arrived frame 388 scene 241 save 4dcbd15d71e3561a state 14eaa48806413bb1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (69, 9): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 68,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd27b562cf680c706cc2015ddc36c3da"
+     },
+     {
+      "frames": 159,
+      "sha256": "38c29016d325a778dd77f7804238989b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b130-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b130-exit-2",
+    "description": "Walking onto exit 2 of DST_B130 (scene 240) should lead to scene 223",
+    "plan": "# dst-dst-b130-exit-2: Walking onto exit 2 of DST_B130 (scene 240) should lead to scene 223\nlimit 20000\nenter 33008 0 16715263 2\ncheckpoint entered\nexit 2 223\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 240 save bc17422fd5830f27 state 1a6b44232eceaf16 ram 0000000000000000",
+     "arrived frame 331 scene 223 save 05f53f2688627e45 state 89f23ba9316bb391 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (108, 266): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 60,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd27b562cf680c706cc2015ddc36c3da"
+     },
+     {
+      "frames": 102,
+      "sha256": "ee3c0e95589d0c9d23134c7daa773a3d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b140-exit-0",
+    "description": "Walking onto exit 0 of DST_B140 (scene 241) should lead to scene 240",
+    "plan": "# dst-dst-b140-exit-0: Walking onto exit 0 of DST_B140 (scene 241) should lead to scene 240\nlimit 20000\nenter 33009 1 16715263 0\ncheckpoint entered\nexit 0 240\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 241 save 1f39641a326147c1 state bb60c1e842f68421 ram 0000000000000000",
+     "arrived frame 303 scene 240 save 2b21694f34c73b4b state 56cbda757a42cf0e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (882, 297): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 68,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fc2ad453e024eec78fcbab469085957d"
+     },
+     {
+      "frames": 74,
+      "sha256": "73749a6b5f427d4fdd6556de7c6bbe43"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b140-exit-1",
+    "description": "Walking onto exit 1 of DST_B140 (scene 241) should lead to scene 243",
+    "plan": "# dst-dst-b140-exit-1: Walking onto exit 1 of DST_B140 (scene 241) should lead to scene 243\nlimit 20000\nenter 33009 1 16715263 2\ncheckpoint entered\nexit 1 243\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 241 save 3476f307d636d0af state 15e5a22f5d0f8313 ram 0000000000000000",
+     "arrived frame 398 scene 243 save be00705ee05ab09b state 521d7d50704b6591 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 64): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 174,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d8d3198b954cb17db6c1ecb6126e453"
+     },
+     {
+      "frames": 169,
+      "sha256": "189e58bdad37cae0a7b25ce554e98344"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b140-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b140-exit-2",
+    "description": "Walking onto exit 2 of DST_B140 (scene 241) should lead to scene 242",
+    "plan": "# dst-dst-b140-exit-2: Walking onto exit 2 of DST_B140 (scene 241) should lead to scene 242\nlimit 20000\nenter 33009 1 16715263 2\ncheckpoint entered\nexit 2 242\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 241 save 3476f307d636d0af state 15e5a22f5d0f8313 ram 0000000000000000",
+     "arrived frame 300 scene 242 save 2b80187839759a53 state 83941c862675f77d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (205, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 51,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2d8d3198b954cb17db6c1ecb6126e453"
+     },
+     {
+      "frames": 71,
+      "sha256": "660aa403766211cb34220261aae2c648"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b150-exit-0",
+    "description": "Walking onto exit 0 of DST_B150 (scene 242) should lead to scene 241",
+    "plan": "# dst-dst-b150-exit-0: Walking onto exit 0 of DST_B150 (scene 242) should lead to scene 241\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\nexit 0 241\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 91d52c8874f85fb6 state cae536f91b50ec65 ram 0000000000000000",
+     "arrived frame 657 scene 241 save a48a7ba99e9f135c state d3d5c9d8edf411f6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (176, 10): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 50,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a8018b4b0600b98f13066352292b273f"
+     },
+     {
+      "frames": 428,
+      "sha256": "e115c4d89adad33ddaf3d41eaa2b1c14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b150-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 2 of DST_B150 needs",
+    "source": "built from the conditions in scene 242's script 2 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 5
+    }
+   },
+   "baseline": {
+    "route": "dst-dst-b150-exit-2",
+    "description": "Walking onto exit 2 of DST_B150 (scene 242) should lead to scene 226",
+    "plan": "# dst-dst-b150-exit-2: Walking onto exit 2 of DST_B150 (scene 242) should lead to scene 226\nlimit 20000\nenter 242 3 16715263 2\ncheckpoint entered\nexit 2 226\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 242 save 1199e76094851526 state e9d82352b04268ed ram 0000000000000000",
+     "arrived frame 298 scene 226 save ea9f539f17dc393c state d896cb86121f998c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (4, 344): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 261,
+     "instruction_end": 108,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "10346546fa2237ac345d9966bcf9e393"
+     },
+     {
+      "frames": 69,
+      "sha256": "d8abce57949e2a25752dc54a61f3b02a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b160-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b160-exit-0",
+    "description": "Walking onto exit 0 of DST_B160 (scene 243) should lead to scene 241",
+    "plan": "# dst-dst-b160-exit-0: Walking onto exit 0 of DST_B160 (scene 243) should lead to scene 241\nlimit 20000\nenter 33011 2 16715263 0\ncheckpoint entered\nexit 0 241\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 243 save a8388a2922c7af98 state 7f1fdc3eee8f77c1 ram 0000000000000000",
+     "arrived frame 294 scene 241 save 636baed983bee481 state d1f7ee75dd819319 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1112, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 180,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fdf2178d50c23ad8b7a955b3d495af1d"
+     },
+     {
+      "frames": 65,
+      "sha256": "bfbcaf648285c8ad756616746f494865"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b160-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b160-exit-1",
+    "description": "Walking onto exit 1 of DST_B160 (scene 243) should lead to scene 232",
+    "plan": "# dst-dst-b160-exit-1: Walking onto exit 1 of DST_B160 (scene 243) should lead to scene 232\nlimit 20000\nenter 33011 2 16715263 1\ncheckpoint entered\nexit 1 232\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 243 save b70765f8bd4d9809 state 0a8133ab39c7dbac ram 0000000000000000",
+     "arrived frame 291 scene 232 save fed6215c9ad0364f state cecf4d441a798900 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 208): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 57,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3cca3b754f8423744e86808a81ed526"
+     },
+     {
+      "frames": 62,
+      "sha256": "39c079a12622a0e51804b40c0c616de1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b170-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b170-exit-0",
+    "description": "Walking onto exit 0 of DST_B170 (scene 244) should lead to scene 238",
+    "plan": "# dst-dst-b170-exit-0: Walking onto exit 0 of DST_B170 (scene 244) should lead to scene 238\nlimit 20000\nenter 33012 2 16715263 0\ncheckpoint entered\nexit 0 238\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 244 save dfa08c53fe92faab state f953b55042325c63 ram 0000000000000000",
+     "arrived frame 302 scene 238 save a366380c8acc1b1f state e3f35a55276cba97 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (912, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 231,
+     "instruction_end": 84,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4dc19d89dc7e492bbe9990ec76539ef1"
+     },
+     {
+      "frames": 73,
+      "sha256": "f547973164b00a209c7acfbb6ac26ec9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-b170-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-b170-exit-1",
+    "description": "Walking onto exit 1 of DST_B170 (scene 244) should lead to scene 242",
+    "plan": "# dst-dst-b170-exit-1: Walking onto exit 1 of DST_B170 (scene 244) should lead to scene 242\nlimit 20000\nenter 33012 2 16715263 1\ncheckpoint entered\nexit 1 242\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 244 save 5bfb4f163cd6bf82 state 234e4de001d4d134 ram 0000000000000000",
+     "arrived frame 293 scene 242 save 366c79cffbf66764 state 93ea56dcb522d8d6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 169): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 60,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4620c017397f898f41f3dc0ead32f4d2"
+     },
+     {
+      "frames": 64,
+      "sha256": "c978dc243dcad1e42812261951435ddd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs00-exit-0",
+    "description": "Walking onto exit 0 of DST_BS00 (scene 224) should lead to scene 233",
+    "plan": "# dst-dst-bs00-exit-0: Walking onto exit 0 of DST_BS00 (scene 224) should lead to scene 233\nlimit 20000\nenter 32992 0 16720895 0\ncheckpoint entered\nexit 0 233\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 224 save c1d0a32633e9a633 state 749a4bf30716f32c ram 0000000000000000",
+     "arrived frame 297 scene 233 save fde17c6872d25c62 state 0ebc96d8037ae864 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 54,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3aa6595e791d7a25136677f7e9e5aa32"
+     },
+     {
+      "frames": 68,
+      "sha256": "55e469473db3f59e42c3b38eac1bba8e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs02-exit-0",
+    "description": "Walking onto exit 0 of DST_BS02 (scene 899) should lead to scene 233",
+    "plan": "# dst-dst-bs02-exit-0: Walking onto exit 0 of DST_BS02 (scene 899) should lead to scene 233\nlimit 20000\nenter 33667 0 16719103 0\ncheckpoint entered\nexit 0 233\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 899 save 633f6d78d082a11c state 32b91dbda5e8f1ea ram 0000000000000000",
+     "arrived frame 297 scene 233 save fde17c6872d25c62 state 20955bb6e248e3ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "01551b01920543e7aa810b7235fef6bd"
+     },
+     {
+      "frames": 68,
+      "sha256": "4d9a1a1f81aacccb30777fb00532a198"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs03-exit-0",
+    "description": "Walking onto exit 0 of DST_BS03 (scene 900) should lead to scene 233",
+    "plan": "# dst-dst-bs03-exit-0: Walking onto exit 0 of DST_BS03 (scene 900) should lead to scene 233\nlimit 20000\nenter 900 0 16776959 0\ncheckpoint entered\nexit 0 233\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 900 save a3d30451760a5e9d state 4d10c53d6b2bd989 ram 0000000000000000",
+     "arrived frame 365 scene 233 save fde17c6872d25c62 state 171b41d0bb4fdaac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 80,
+     "instruction": 246,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e72e9948089b27b8a0d6edd4111b8fc9"
+     },
+     {
+      "frames": 136,
+      "sha256": "a6cb70c6e3dcd91ece499f61dc0ebb78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs04-exit-0",
+    "description": "Walking onto exit 0 of DST_BS04 (scene 901) should lead to scene 233",
+    "plan": "# dst-dst-bs04-exit-0: Walking onto exit 0 of DST_BS04 (scene 901) should lead to scene 233\nlimit 20000\nenter 901 0 16717311 0\ncheckpoint entered\nexit 0 233\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 901 save 09bd168d114f15d9 state 823377e5c5a77dad ram 0000000000000000",
+     "arrived frame 408 scene 233 save 8e9bd99a0cae0ce4 state a90bc2643ba455f3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 124,
+     "instruction": 276,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7e111eb6645000c162121318ae44a1f3"
+     },
+     {
+      "frames": 179,
+      "sha256": "a960609b1a08311d8055392c32ad3440"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs10-exit-0",
+    "description": "Walking onto exit 0 of DST_BS10 (scene 225) should lead to scene 239",
+    "plan": "# dst-dst-bs10-exit-0: Walking onto exit 0 of DST_BS10 (scene 225) should lead to scene 239\nlimit 20000\nenter 32993 0 16715263 0\ncheckpoint entered\nexit 0 239\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 225 save 151decf1e4ce9ff8 state 2bc83aa51aacf0a8 ram 0000000000000000",
+     "arrived frame 294 scene 239 save 79f3b3ac1dbf6c4d state 89d72413aac61bac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 60,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "273c69929fb56dacccf06ff361547eaf"
+     },
+     {
+      "frames": 65,
+      "sha256": "9a680b7b126c95c05d836b069dae4a5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs20-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs20-exit-0",
+    "description": "Walking onto exit 0 of DST_BS20 (scene 226) should lead to scene 242",
+    "plan": "# dst-dst-bs20-exit-0: Walking onto exit 0 of DST_BS20 (scene 226) should lead to scene 242\nlimit 20000\nenter 32994 0 2294271 255\ncheckpoint entered\nexit 0 242\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 226 save dfa64b3f81734a0c state 899bc9a975c37373 ram 0000000000000000",
+     "arrived frame 476 scene 242 save 7498b3eeb22d420d state b96028bd00e3e641 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 40,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4364cfddcd633421ed23281473dac29c"
+     },
+     {
+      "frames": 247,
+      "sha256": "44a34be39578fd16e432dd1c2e5e7cf7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-bs20-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs20-exit-1",
+    "description": "Walking onto exit 1 of DST_BS20 (scene 226) should lead to scene 222",
+    "plan": "# dst-dst-bs20-exit-1: Walking onto exit 1 of DST_BS20 (scene 226) should lead to scene 222\nlimit 20000\nenter 32994 0 2294271 255\ncheckpoint entered\nexit 1 222\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 226 save dfa64b3f81734a0c state 899bc9a975c37373 ram 0000000000000000",
+     "arrived frame 292 scene 222 save d2d577866c721de4 state abb7822851fc2e88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 96): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 38,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4364cfddcd633421ed23281473dac29c"
+     },
+     {
+      "frames": 63,
+      "sha256": "ad2b71608ce754ce672449b17aef1197"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-e000-exit-0",
+    "description": "Walking onto exit 0 of DST_E000 (scene 222) should lead to scene 226",
+    "plan": "# dst-dst-e000-exit-0: Walking onto exit 0 of DST_E000 (scene 222) should lead to scene 226\nlimit 20000\nenter 222 0 16715263 0\ncheckpoint entered\nexit 0 226\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 222 save c071cffb4c472583 state 488cb5998ccdab78 ram 0000000000000000",
+     "arrived frame 293 scene 226 save d3a3847a2872f4a7 state f734ad5041f0024f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (419, 86): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 38,
+     "exit": 1,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cbb70fda806310ce63911298011280f2"
+     },
+     {
+      "frames": 64,
+      "sha256": "88fc2f585110fbaf95cbf77de7d0c55c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-e010-exit-0",
+    "description": "Walking onto exit 0 of DST_E010 (scene 223) should lead to scene 240",
+    "plan": "# dst-dst-e010-exit-0: Walking onto exit 0 of DST_E010 (scene 223) should lead to scene 240\nlimit 20000\nenter 223 0 16715263 0\ncheckpoint entered\nexit 0 240\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 223 save 5253472b6edb8a7a state 6641e40db6287d63 ram 0000000000000000",
+     "arrived frame 303 scene 240 save 9ed38a146cf23bb9 state 86bee0a01a32b4d3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (186, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 60,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ed0e69de1e1c3827aef44870438ad22d"
+     },
+     {
+      "frames": 74,
+      "sha256": "327703a2b477e882ea521acbcb12213d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dst-dst-e011-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-e011-cutscene",
+    "description": "Entering DST_E011 (scene 788) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# dst-dst-e011-cutscene: Entering DST_E011 (scene 788) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 788 0 16719103 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 788 save fc305d6b368aa22b state 382cbca744c86c2b ram 0000000000000000",
+     "watched frame 3231 scene 788 save a0b5423deddccd63 state 6370b61f96cfe62e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 353,
+     "instruction_end": 218,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69f2c933acb0232f7e50fd21a3ed5363"
+     },
+     {
+      "frames": 3002,
+      "sha256": "5c561f91505716b03d0a25680d5a3942"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+name: ZUKAN.BIN
+compressed_sha1: e3b595d0879e05d2bc3c0eea42772a845c7cea04
+sha1: b3afdbf72bfc082fe161a74c9eaddf1dd3e5224b
+options:
+  base_path: ../../../
+  basename: ZUKAN.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/ZUKAN.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/zukan.elf
+
+  asm_path: asm/jp/overlays/zukan
+  src_path: src/overlays/zukan
+  build_path: build/jp/overlays/zukan
+
+  ld_script_path: linker/jp/overlays/zukan/zukan.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/zukan/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/zukan/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/shared_symbol_addrs.txt
+    - config/jp/symbols/zukan_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: zukan
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, zukan]
+      - [0x1D, .rodata, zukan_category]
+      - [0xE01, c, zukan]
+      - [0x2D09, c, zukan_category]
+      - [0x471D, databin, zukan_data]
+  - [0x174F5]

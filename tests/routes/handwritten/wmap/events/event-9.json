@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "id": "wmap-event-9",
+  "description": "The world map should run its event 9 when the party comes out with it pending",
+  "start": {
+    "save": "saves/event-9.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 36,
+        "from": 37,
+        "spawn": 2
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      }
+    },
+    {
+      "checkpoint": "world-map"
+    },
+    {
+      "land": {
+        "index": 0
+      },
+      "note": "home, after the event"
+    },
+    {
+      "checkpoint": "arrived"
+    }
+  ]
+}

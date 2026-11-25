@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "cv1-cv1-frk3-story-4a2",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state CV1_FRK3's story 0x4a2 needs",
+    "source": "built from the conditions on the path to the write in scene 87 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk3-story-4a2",
+    "description": "In CV1_FRK3 (scene 87), talking to layout record 3 should write story variable 0x4a2",
+    "plan": "# cv1-cv1-frk3-story-4a2: In CV1_FRK3 (scene 87), talking to layout record 3 should write story variable 0x4a2\nlimit 20000\nenter 87 2 1572863 0\ncheckpoint entered\ntalk 250 150 0 1 0 3 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 87 save 5b543668ece8d0c5 state 412588198c60f3f9 ram 0000000000000000",
+     "done frame 865 scene 87 save 88298b914b71d163 state 429cffbda4bf232f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (357, 131): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 121,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "038773ec36eeaa5addd1561246878f77"
+     },
+     {
+      "frames": 809,
+      "sha256": "da51f028d6e224a81aba5caa68b1fc85"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-frk3-story-4a4",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state CV1_FRK3's story 0x4a4 needs",
+    "source": "built from the conditions on the path to the write in scene 87 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x1198": 4
+    }
+   },
+   "baseline": {
+    "route": "cv1-cv1-frk3-story-4a4",
+    "description": "In CV1_FRK3 (scene 87), talking to layout record 5 should write story variable 0x4a4",
+    "plan": "# cv1-cv1-frk3-story-4a4: In CV1_FRK3 (scene 87), talking to layout record 5 should write story variable 0x4a4\nlimit 20000\nenter 87 2 1572863 0\ncheckpoint entered\ntalk 350 400 0 1 0 5 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 87 save 5b543668ece8d0c5 state 412588198c60f3f9 ram 0000000000000000",
+     "done frame 567 scene 87 save 66f0fcac6e0080ff state f30c09b109e21a61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (336, 519): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 121,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "038773ec36eeaa5addd1561246878f77"
+     },
+     {
+      "frames": 511,
+      "sha256": "f4e16fd8bddaf9a924bda95f72aee169"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

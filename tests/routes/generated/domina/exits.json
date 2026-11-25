@@ -1,0 +1,1941 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "domina-htw-all0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-0",
+    "description": "Walking onto exit 0 of HTW_ALL0 (scene 36) should lead to the world map",
+    "plan": "# domina-htw-all0-exit-0: Walking onto exit 0 of HTW_ALL0 (scene 36) should lead to the world map\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cfcff6f95ae6744f state d749aeeb3c69e813 ram 0000000000000000",
+     "arrived frame 383 scene 32767 save cfcff6f95ae6744f state f92c3adbc19726ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18b0ec1695c44de414e29820a78765f4"
+     },
+     {
+      "frames": 153,
+      "sha256": "a34ac19326ea45636f8d4a8c2f3eb25e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-1",
+    "description": "Walking onto exit 1 of HTW_ALL0 (scene 36) should lead to scene 47",
+    "plan": "# domina-htw-all0-exit-1: Walking onto exit 1 of HTW_ALL0 (scene 36) should lead to scene 47\nlimit 20000\nenter 36 0 16712959 8\ncheckpoint entered\nexit 1 47\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 5e4cd1afadcdc59d state 9ebd16bfaf949090 ram 0000000000000000",
+     "arrived frame 298 scene 47 save 5b7fb5807a579962 state c9266c4cc60d1134 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (144, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 240,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "850259a0444d1085fdc55c0af1b3e3d9"
+     },
+     {
+      "frames": 69,
+      "sha256": "c6f53d8be4162d34a129a8e29434ff30"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-10",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-10",
+    "description": "Walking onto exit 10 of HTW_ALL0 (scene 36) should lead to scene 50",
+    "plan": "# domina-htw-all0-exit-10: Walking onto exit 10 of HTW_ALL0 (scene 36) should lead to scene 50\nlimit 20000\nenter 36 0 16712959 7\ncheckpoint entered\nexit 10 50\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ff0f86eed9e81466 state 533ac5e2aa7599ad ram 0000000000000000",
+     "arrived frame 401 scene 50 save c3990a24cbe6d8f6 state 68052f9733ef212a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (196, 260): 16 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 261,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e9bee9a4c644873612f011952171d0c"
+     },
+     {
+      "frames": 172,
+      "sha256": "361ca5c1538f04de7726e397381a2ec4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-2",
+    "description": "Walking onto exit 2 of HTW_ALL0 (scene 36) should lead to scene 37",
+    "plan": "# domina-htw-all0-exit-2: Walking onto exit 2 of HTW_ALL0 (scene 36) should lead to scene 37\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 2 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cfcff6f95ae6744f state d749aeeb3c69e813 ram 0000000000000000",
+     "arrived frame 295 scene 37 save d4c8a742649a606e state 13ff4450aef74bb1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (252, 104): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 264,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18b0ec1695c44de414e29820a78765f4"
+     },
+     {
+      "frames": 66,
+      "sha256": "c173e1f8ea512599a07c16d2c0c171b7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-3",
+    "description": "Walking onto exit 3 of HTW_ALL0 (scene 36) should lead to scene 48",
+    "plan": "# domina-htw-all0-exit-3: Walking onto exit 3 of HTW_ALL0 (scene 36) should lead to scene 48\nlimit 20000\nenter 36 0 16712959 7\ncheckpoint entered\nexit 3 48\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ff0f86eed9e81466 state 533ac5e2aa7599ad ram 0000000000000000",
+     "arrived frame 386 scene 48 save 38f5acde3d4af259 state 2638b53e85cd4fc4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (273, 298): 15 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e9bee9a4c644873612f011952171d0c"
+     },
+     {
+      "frames": 157,
+      "sha256": "b2dad59da8797f2e81f49462061d8cb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-4",
+    "description": "Walking onto exit 4 of HTW_ALL0 (scene 36) should lead to scene 50",
+    "plan": "# domina-htw-all0-exit-4: Walking onto exit 4 of HTW_ALL0 (scene 36) should lead to scene 50\nlimit 20000\nenter 36 0 16712959 9\ncheckpoint entered\nexit 4 50\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save eaf5513d1cd25b00 state 61099af8efab8fbe ram 0000000000000000",
+     "arrived frame 312 scene 50 save fc3c95cd0a1e389b state 24904f231083e0ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 232): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bb9fb936541c4d9bcc609a9e82281170"
+     },
+     {
+      "frames": 83,
+      "sha256": "7477c5002819e2b69aa3deb7fbb00ace"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-5",
+    "description": "Walking onto exit 5 of HTW_ALL0 (scene 36) should lead to scene 51",
+    "plan": "# domina-htw-all0-exit-5: Walking onto exit 5 of HTW_ALL0 (scene 36) should lead to scene 51\nlimit 20000\nenter 36 0 16712959 6\ncheckpoint entered\nexit 5 51\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save be74944922123d8b state 9ca233a21f459931 ram 0000000000000000",
+     "arrived frame 303 scene 51 save 97812c1947afd2d6 state eaa0b64d4a70cd9a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 184): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ceb91f5e1a7eb0b71a3c7ecfe4a98800"
+     },
+     {
+      "frames": 74,
+      "sha256": "1d33d34646772e0c9923323f5e274154"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-6",
+    "description": "Walking onto exit 6 of HTW_ALL0 (scene 36) should lead to scene 47",
+    "plan": "# domina-htw-all0-exit-6: Walking onto exit 6 of HTW_ALL0 (scene 36) should lead to scene 47\nlimit 20000\nenter 36 0 16712959 6\ncheckpoint entered\nexit 6 47\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save be74944922123d8b state 9ca233a21f459931 ram 0000000000000000",
+     "arrived frame 294 scene 47 save 62f8836255269dc7 state 0b4ba6f94cadf1cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (116, 152): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 240,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ceb91f5e1a7eb0b71a3c7ecfe4a98800"
+     },
+     {
+      "frames": 65,
+      "sha256": "3432c3d0a5725821ce164b62321853bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-7",
+    "description": "Walking onto exit 7 of HTW_ALL0 (scene 36) should lead to scene 37",
+    "plan": "# domina-htw-all0-exit-7: Walking onto exit 7 of HTW_ALL0 (scene 36) should lead to scene 37\nlimit 20000\nenter 36 0 16712959 7\ncheckpoint entered\nexit 7 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ff0f86eed9e81466 state 533ac5e2aa7599ad ram 0000000000000000",
+     "arrived frame 291 scene 37 save 5ddd36b105c2b647 state 9361e07e48995bd3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (284, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 264,
+     "instruction_end": 45,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e9bee9a4c644873612f011952171d0c"
+     },
+     {
+      "frames": 62,
+      "sha256": "9614425094ed19633b5035052b2ca9b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-8",
+    "description": "Walking onto exit 8 of HTW_ALL0 (scene 36) should lead to scene 37",
+    "plan": "# domina-htw-all0-exit-8: Walking onto exit 8 of HTW_ALL0 (scene 36) should lead to scene 37\nlimit 20000\nenter 36 0 16712959 8\ncheckpoint entered\nexit 8 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 5e4cd1afadcdc59d state 9ebd16bfaf949090 ram 0000000000000000",
+     "arrived frame 291 scene 37 save 1b305ea412d68430 state 0686de7ec2d519e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 264,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "850259a0444d1085fdc55c0af1b3e3d9"
+     },
+     {
+      "frames": 62,
+      "sha256": "db091f790282dd7fc902c7d24b66136b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-all0-exit-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-all0-exit-9",
+    "description": "Walking onto exit 9 of HTW_ALL0 (scene 36) should lead to scene 37",
+    "plan": "# domina-htw-all0-exit-9: Walking onto exit 9 of HTW_ALL0 (scene 36) should lead to scene 37\nlimit 20000\nenter 36 0 16712959 9\ncheckpoint entered\nexit 9 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save eaf5513d1cd25b00 state 61099af8efab8fbe ram 0000000000000000",
+     "arrived frame 295 scene 37 save 41f0e3cf3cfaf795 state 2455fedecd276884 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (228, 168): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 264,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bb9fb936541c4d9bcc609a9e82281170"
+     },
+     {
+      "frames": 66,
+      "sha256": "ef13c5294f77e4877af9585bda6bffec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-bzr0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-bzr0-exit-0",
+    "description": "Walking onto exit 0 of HTW_BZR0 (scene 50) should lead to scene 36",
+    "plan": "# domina-htw-bzr0-exit-0: Walking onto exit 0 of HTW_BZR0 (scene 50) should lead to scene 36\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\nexit 0 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 006d4c3cee0800b4 state b88077a4d668293d ram 0000000000000000",
+     "arrived frame 294 scene 36 save c459ba3e90af2173 state b11ece2cbede197a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 220): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 276,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee23f9848e7bf3a220a92c80e64d75f9"
+     },
+     {
+      "frames": 65,
+      "sha256": "92d18c6d533fbf46e21add7e7011b0cc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-bzr0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-bzr0-exit-1",
+    "description": "Walking onto exit 1 of HTW_BZR0 (scene 50) should lead to scene 36",
+    "plan": "# domina-htw-bzr0-exit-1: Walking onto exit 1 of HTW_BZR0 (scene 50) should lead to scene 36\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\nexit 1 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 006d4c3cee0800b4 state b88077a4d668293d ram 0000000000000000",
+     "arrived frame 465 scene 36 save 14c8f862e2bf0389 state f88417921389de62 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (364, 472): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 281,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ee23f9848e7bf3a220a92c80e64d75f9"
+     },
+     {
+      "frames": 236,
+      "sha256": "9cd50cc065c017f1d9dbe2ca8d67588f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-chr0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-chr0-exit-0",
+    "description": "Walking onto exit 0 of HTW_CHR0 (scene 48) should lead to scene 36",
+    "plan": "# domina-htw-chr0-exit-0: Walking onto exit 0 of HTW_CHR0 (scene 48) should lead to scene 36\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\nexit 0 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 723fd806086d70ae state c2ba7d2c48ff49d1 ram 0000000000000000",
+     "arrived frame 299 scene 36 save 68e9fb34cb9ab26a state 5913957b8029bb6d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 9): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dfac964fade1b2317c22ad1e113c78bd"
+     },
+     {
+      "frames": 70,
+      "sha256": "4dad392daa731c47e75909de63b4fbee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-chr0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-chr0-exit-1",
+    "description": "Walking onto exit 1 of HTW_CHR0 (scene 48) should lead to scene 49",
+    "plan": "# domina-htw-chr0-exit-1: Walking onto exit 1 of HTW_CHR0 (scene 48) should lead to scene 49\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\nexit 1 49\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 723fd806086d70ae state c2ba7d2c48ff49d1 ram 0000000000000000",
+     "arrived frame 413 scene 49 save 71a446a5fa658c04 state dfe7ecbf33d8eec9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (354, 264): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dfac964fade1b2317c22ad1e113c78bd"
+     },
+     {
+      "frames": 184,
+      "sha256": "bf3e467c4b9bd6afd3249f022edd14ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-chr1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-chr1-exit-0",
+    "description": "Walking onto exit 0 of HTW_CHR1 (scene 49) should lead to scene 48",
+    "plan": "# domina-htw-chr1-exit-0: Walking onto exit 0 of HTW_CHR1 (scene 49) should lead to scene 48\nlimit 20000\nenter 49 0 1572863 0\ncheckpoint entered\nexit 0 48\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 49 save f6533eb6c300cf2a state 117a442eb80f557d ram 0000000000000000",
+     "arrived frame 304 scene 48 save a359364d10e1ea31 state ce692c1a2b590c68 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (189, 18): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "35b25498f8166c8ee802434a7bd2ee54"
+     },
+     {
+      "frames": 75,
+      "sha256": "a087eedc6c8105e659b1add850c029da"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-frm0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-frm0-exit-0",
+    "description": "Walking onto exit 0 of HTW_FRM0 (scene 51) should lead to scene 36",
+    "plan": "# domina-htw-frm0-exit-0: Walking onto exit 0 of HTW_FRM0 (scene 51) should lead to scene 36\nlimit 20000\nenter 51 0 16712959 0\ncheckpoint entered\nexit 0 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 51 save 92e0e520927e9eb1 state 25bb9f83f4d28ae6 ram 0000000000000000",
+     "arrived frame 296 scene 36 save 41c44c6f24f65fb6 state 71a55a3ccc95e09b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (696, 256): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 227,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "33a072976dc09d481b0b20614bace765"
+     },
+     {
+      "frames": 67,
+      "sha256": "d2e18d205a3df0b398ab850d06ed30cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-frm0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-frm0-exit-1",
+    "description": "Walking onto exit 1 of HTW_FRM0 (scene 51) should lead to one of scene 52, scene 623, scene 710, scene 894",
+    "plan": "# domina-htw-frm0-exit-1: Walking onto exit 1 of HTW_FRM0 (scene 51) should lead to one of scene 52, scene 623, scene 710, scene 894\nlimit 20000\nenter 51 0 16712959 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 51 save 92e0e520927e9eb1 state 25bb9f83f4d28ae6 ram 0000000000000000",
+     "arrived frame 690 scene 52 save 5aa675e8a81f90a8 state c97bce6e1780fd1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 408): 12 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "33a072976dc09d481b0b20614bace765"
+     },
+     {
+      "frames": 461,
+      "sha256": "63213d57d1e2b3a4f5fbc8d12c9a2e6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-frm1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-frm1-exit-0",
+    "description": "Walking onto exit 0 of HTW_FRM1 (scene 52) should lead to one of scene 27, scene 51",
+    "plan": "# domina-htw-frm1-exit-0: Walking onto exit 0 of HTW_FRM1 (scene 52) should lead to one of scene 27, scene 51\nlimit 20000\nenter 52 0 16712959 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 52 save cc770b37ff60bbfa state 573b985ff820efed ram 0000000000000000",
+     "arrived frame 302 scene 51 save 15d7316a6a6f87fc state 2528996d51a54089 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (431, 47): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a2a740d30eaf8cd2c863b70c978f5779"
+     },
+     {
+      "frames": 73,
+      "sha256": "701bdfc373d44483de4885bf36498282"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-frm2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-frm2-exit-0",
+    "description": "Walking onto exit 0 of HTW_FRM2 (scene 774) should lead to scene 695",
+    "plan": "# domina-htw-frm2-exit-0: Walking onto exit 0 of HTW_FRM2 (scene 774) should lead to scene 695\nlimit 20000\nenter 774 0 16776959 0\ncheckpoint entered\nexit 0 695\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 774 save 0e8c92d9abdb4e03 state 573b985ff820efed ram 0000000000000000",
+     "arrived frame 388 scene 695 save 6159960e5cb76442 state c1f7d1a01c42f109 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (431, 47): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 38,
+     "instruction": 121,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0a055f459274345b83c60a034e8f056d"
+     },
+     {
+      "frames": 159,
+      "sha256": "0c41f78e437768264085d8c21efba7d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-frm3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-frm3-exit-0",
+    "description": "Walking onto exit 0 of HTW_FRM3 (scene 894) should lead to one of scene 27, scene 51",
+    "plan": "# domina-htw-frm3-exit-0: Walking onto exit 0 of HTW_FRM3 (scene 894) should lead to one of scene 27, scene 51\nlimit 20000\nenter 894 0 16712959 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 894 save fc7dbcebfe38a525 state 573b985ff820efed ram 0000000000000000",
+     "arrived frame 302 scene 51 save 15d7316a6a6f87fc state 2528996d51a54089 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (431, 47): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1e90aaa06b857fda0dc5d45f6177ee58"
+     },
+     {
+      "frames": 73,
+      "sha256": "2561028cef3bc591dabc8e5a1840cb4a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn0-exit-0",
+    "description": "Walking onto exit 0 of HTW_INN0 (scene 38) should lead to scene 37",
+    "plan": "# domina-htw-inn0-exit-0: Walking onto exit 0 of HTW_INN0 (scene 38) should lead to scene 37\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\nexit 0 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "arrived frame 304 scene 37 save a1fe685618a33a06 state daf8494509fca701 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (85, 57): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 209,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 75,
+      "sha256": "0f563cf11e17c6c1f457fc6895d0d905"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn0-exit-1",
+    "description": "Walking onto exit 1 of HTW_INN0 (scene 38) should lead to scene 39",
+    "plan": "# domina-htw-inn0-exit-1: Walking onto exit 1 of HTW_INN0 (scene 38) should lead to scene 39\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\nexit 1 39\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 33d28fac526ea870 state d586161a446a73e5 ram 0000000000000000",
+     "arrived frame 384 scene 39 save 4fbe91c23e449525 state 62a137136b34a345 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (302, 147): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9569fd940081bb6899fc9c0f73b9e453"
+     },
+     {
+      "frames": 155,
+      "sha256": "7ff72b1d41d02ec6068c3c9be860fc28"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn0-exit-2",
+    "description": "Walking onto exit 2 of HTW_INN0 (scene 38) should lead to scene 40",
+    "plan": "# domina-htw-inn0-exit-2: Walking onto exit 2 of HTW_INN0 (scene 38) should lead to scene 40\nlimit 20000\nenter 38 0 16712959 2\ncheckpoint entered\nexit 2 40\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 93afe97b603da632 state a579bfe964c39e6a ram 0000000000000000",
+     "arrived frame 395 scene 40 save 57749d2a6d119126 state 96ce5d881f4d1c10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (154, 309): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f79005dffdfcf3f618d49fcf96ea908a"
+     },
+     {
+      "frames": 166,
+      "sha256": "510faf5e377acbd4c8114632bba0c596"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn0-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn0-exit-3",
+    "description": "Walking onto exit 3 of HTW_INN0 (scene 38) should lead to scene 41",
+    "plan": "# domina-htw-inn0-exit-3: Walking onto exit 3 of HTW_INN0 (scene 38) should lead to scene 41\nlimit 20000\nenter 38 0 16712959 2\ncheckpoint entered\nexit 3 41\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 93afe97b603da632 state a579bfe964c39e6a ram 0000000000000000",
+     "arrived frame 365 scene 41 save 8dc331861a382ea3 state 602be85a313bdc4c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (351, 252): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f79005dffdfcf3f618d49fcf96ea908a"
+     },
+     {
+      "frames": 136,
+      "sha256": "163ee8b245d21f87d5eba7761f418549"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn1-exit-0",
+    "description": "Walking onto exit 0 of HTW_INN1 (scene 39) should lead to scene 38",
+    "plan": "# domina-htw-inn1-exit-0: Walking onto exit 0 of HTW_INN1 (scene 39) should lead to scene 38\nlimit 20000\nenter 39 0 16712959 0\ncheckpoint entered\nexit 0 38\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 39 save 26ddfd3ea594fd0d state 0c91a62ea23109a7 ram 0000000000000000",
+     "arrived frame 302 scene 38 save 402eb1003751c42d state 474f33f02b30f11e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (97, 233): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "750b996deb369862f689ded8b57c5188"
+     },
+     {
+      "frames": 73,
+      "sha256": "e6a98db75b5afa3c154ea6a3c1adde6b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn2-exit-0",
+    "description": "Walking onto exit 0 of HTW_INN2 (scene 40) should lead to scene 38",
+    "plan": "# domina-htw-inn2-exit-0: Walking onto exit 0 of HTW_INN2 (scene 40) should lead to scene 38\nlimit 20000\nenter 40 0 16712959 0\ncheckpoint entered\nexit 0 38\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 40 save ba52adf5ab96a176 state 339f326318bf421d ram 0000000000000000",
+     "arrived frame 302 scene 38 save 5d87d80a7b1f8a06 state 4e5b092e56ae1319 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (294, 155): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bae7410a06bbce784bd146fde21aa664"
+     },
+     {
+      "frames": 73,
+      "sha256": "8ee8cb0d9e6e3375e3085a77e271f96f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-inn3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-inn3-exit-0",
+    "description": "Walking onto exit 0 of HTW_INN3 (scene 41) should lead to scene 38",
+    "plan": "# domina-htw-inn3-exit-0: Walking onto exit 0 of HTW_INN3 (scene 41) should lead to scene 38\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\nexit 0 38\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 41 save 08b0ff374001125b state 48a56cc4b6570e57 ram 0000000000000000",
+     "arrived frame 302 scene 38 save 54907b4de5afacb7 state 49d802d0f5582ecb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (97, 233): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5c0f8a1bf7b8c9756b9b2745c15c118c"
+     },
+     {
+      "frames": 73,
+      "sha256": "f926c289f3169812344c6646be7416b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-prk0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-prk0-exit-0",
+    "description": "Walking onto exit 0 of HTW_PRK0 (scene 47) should lead to scene 36",
+    "plan": "# domina-htw-prk0-exit-0: Walking onto exit 0 of HTW_PRK0 (scene 47) should lead to scene 36\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nexit 0 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 53b18d85f8394955 state 0913cb7557962cb9 ram 0000000000000000",
+     "arrived frame 306 scene 36 save 41f0aaceda9d2131 state 412a99b9fb555152 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (437, 479): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 260,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "53bf99f7c8d7d28391b18b26373536fb"
+     },
+     {
+      "frames": 77,
+      "sha256": "5572ac50116c86467d9ebc94458909c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-prk0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-prk0-exit-1",
+    "description": "Walking onto exit 1 of HTW_PRK0 (scene 47) should lead to scene 36",
+    "plan": "# domina-htw-prk0-exit-1: Walking onto exit 1 of HTW_PRK0 (scene 47) should lead to scene 36\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nexit 1 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 53b18d85f8394955 state 0913cb7557962cb9 ram 0000000000000000",
+     "arrived frame 412 scene 36 save 73036f1f41b2030e state c9e4069e0a53d21b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (143, 449): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 260,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "53bf99f7c8d7d28391b18b26373536fb"
+     },
+     {
+      "frames": 183,
+      "sha256": "b9747ff0e424bc897b30180a364fe9f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-pub0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-pub0-exit-0",
+    "description": "Walking onto exit 0 of HTW_PUB0 (scene 42) should lead to scene 37",
+    "plan": "# domina-htw-pub0-exit-0: Walking onto exit 0 of HTW_PUB0 (scene 42) should lead to scene 37\nlimit 20000\nenter 42 0 16712959 0\ncheckpoint entered\nexit 0 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 42 save e7db3f620f52107c state 3474ec33ca9b00d4 ram 0000000000000000",
+     "arrived frame 299 scene 37 save b942a982cea63281 state 5b36f1497c51e197 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 126): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5d2768796ca6d8a1a56c1cc520c522f9"
+     },
+     {
+      "frames": 70,
+      "sha256": "bc99e7adbc84f850a972f02e2efb6c5e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-pub1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-pub1-exit-0",
+    "description": "Walking onto exit 0 of HTW_PUB1 (scene 929) should lead to scene 37",
+    "plan": "# domina-htw-pub1-exit-0: Walking onto exit 0 of HTW_PUB1 (scene 929) should lead to scene 37\nlimit 20000\nenter 929 0 16712959 0\ncheckpoint entered\nexit 0 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 929 save 14e3d884b5333caa state 6bf6e85504ec97d7 ram 0000000000000000",
+     "arrived frame 299 scene 37 save b942a982cea63281 state 061d0d2005a7f9f3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (112, 126): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 217,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bfdd8b15b3e943a844662ebb6e079f4f"
+     },
+     {
+      "frames": 70,
+      "sha256": "98e844fb88e92a172fd660707774b1c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-0",
+    "description": "Walking onto exit 0 of HTW_SC00 (scene 37) should lead to scene 36",
+    "plan": "# domina-htw-sc00-exit-0: Walking onto exit 0 of HTW_SC00 (scene 37) should lead to scene 36\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 0 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 836 scene 36 save fd6342808f2a97c7 state 89c3e4eaa8613ef2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (410, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 329,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 607,
+      "sha256": "8bad6b35881560267581305aebcc99a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-1",
+    "description": "Walking onto exit 1 of HTW_SC00 (scene 37) should lead to scene 43",
+    "plan": "# domina-htw-sc00-exit-1: Walking onto exit 1 of HTW_SC00 (scene 37) should lead to scene 43\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 1 43\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1068 scene 43 save 6aa65845a1ce4a16 state 92a28c5410691b10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (114, 159): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 273,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 839,
+      "sha256": "d1fb1bbeea465ca721072ae9429e54d9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-2",
+    "description": "Walking onto exit 2 of HTW_SC00 (scene 37) should lead to one of scene 42, scene 929",
+    "plan": "# domina-htw-sc00-exit-2: Walking onto exit 2 of HTW_SC00 (scene 37) should lead to one of scene 42, scene 929\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1119 scene 42 save 0cc3a9eb8d3f0ad8 state 3a4dd8e375d3b519 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (454, 364): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 339,
+     "instruction_end": 133,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 890,
+      "sha256": "47c66f537b51d71056d864d5fb5b82ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-3",
+    "description": "Walking onto exit 3 of HTW_SC00 (scene 37) should lead to scene 38",
+    "plan": "# domina-htw-sc00-exit-3: Walking onto exit 3 of HTW_SC00 (scene 37) should lead to scene 38\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 3 38\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1032 scene 38 save 00ba08da1cb339fb state bfb8d8590ca12a27 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (329, 527): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 276,
+     "instruction_end": 100,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 803,
+      "sha256": "02b4df37f5ef98315fe1c3526d2a9547"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-4",
+    "description": "Walking onto exit 4 of HTW_SC00 (scene 37) should lead to scene 44",
+    "plan": "# domina-htw-sc00-exit-4: Walking onto exit 4 of HTW_SC00 (scene 37) should lead to scene 44\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 4 44\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1135 scene 44 save 2d9a3aff5970488f state 19dbbf3b12574d56 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 128): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 306,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 906,
+      "sha256": "7a0c24874bef7774b750c3f5b15670ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-5",
+    "description": "Walking onto exit 5 of HTW_SC00 (scene 37) should lead to scene 36",
+    "plan": "# domina-htw-sc00-exit-5: Walking onto exit 5 of HTW_SC00 (scene 37) should lead to scene 36\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 5 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 886 scene 36 save 5e4856d8e0816c72 state 1f9a749aa27dc3a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (536, 176): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 329,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 657,
+      "sha256": "64c2f2b3c2ba7116d6e27ac5dd0b47c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-6",
+    "description": "Walking onto exit 6 of HTW_SC00 (scene 37) should lead to scene 36",
+    "plan": "# domina-htw-sc00-exit-6: Walking onto exit 6 of HTW_SC00 (scene 37) should lead to scene 36\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 6 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1201 scene 36 save ee2ac8fff87867ad state 8835dfc3b77bfd1e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 416): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 352,
+     "instruction_end": 110,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 972,
+      "sha256": "eb801aed7efc0dbd50ce599d8b759610"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sc00-exit-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sc00-exit-7",
+    "description": "Walking onto exit 7 of HTW_SC00 (scene 37) should lead to scene 36",
+    "plan": "# domina-htw-sc00-exit-7: Walking onto exit 7 of HTW_SC00 (scene 37) should lead to scene 36\nlimit 20000\nenter 37 0 16712959 0\ncheckpoint entered\nexit 7 36\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 37 save e7dc9d5267643629 state ccd85a4cca384885 ram 0000000000000000",
+     "arrived frame 1025 scene 36 save 88f8d904b5b788cc state b5430c4d327d5555 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (236, 519): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 337,
+     "instruction_end": 95,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cc3686203da9b183f2320762303f244"
+     },
+     {
+      "frames": 796,
+      "sha256": "2f31d0aede5c31ea231c33013acf7e77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh00-exit-0",
+    "description": "Walking onto exit 0 of HTW_SH00 (scene 43) should lead to scene 37",
+    "plan": "# domina-htw-sh00-exit-0: Walking onto exit 0 of HTW_SH00 (scene 43) should lead to scene 37\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\nexit 0 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 43 save d03256cb7624fbb9 state 98d77544502b2f17 ram 0000000000000000",
+     "arrived frame 303 scene 37 save 3eb00ee5a3267c30 state 5fe7610ee66435d3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (154, 14): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 49,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87056b7cd8de9bc8c592b76d41de76dc"
+     },
+     {
+      "frames": 74,
+      "sha256": "f87494d104f8c9c39ded51a413618b31"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh00-exit-1",
+    "description": "Walking onto exit 1 of HTW_SH00 (scene 43) should lead to scene 44",
+    "plan": "# domina-htw-sh00-exit-1: Walking onto exit 1 of HTW_SH00 (scene 43) should lead to scene 44\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\nexit 1 44\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 43 save d03256cb7624fbb9 state 98d77544502b2f17 ram 0000000000000000",
+     "arrived frame 370 scene 44 save d32cde984ae86e5e state 2ebe5458a9f22e20 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (215, 239): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87056b7cd8de9bc8c592b76d41de76dc"
+     },
+     {
+      "frames": 141,
+      "sha256": "bb7955f000e3d90625fb1c8d1d7ca3ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh01-exit-0",
+    "description": "Walking onto exit 0 of HTW_SH01 (scene 44) should lead to scene 43",
+    "plan": "# domina-htw-sh01-exit-0: Walking onto exit 0 of HTW_SH01 (scene 44) should lead to scene 43\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\nexit 0 43\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save 6b77ad131c6b0dc7 state fb10abbbdb338a5b ram 0000000000000000",
+     "arrived frame 455 scene 43 save df1e99222255c8da state 092f2494613c8a1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (365, 206): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20ef85f1b9814f4d9c8ae47f83844216"
+     },
+     {
+      "frames": 226,
+      "sha256": "e384f95bdaf1506cf35cee2fdbb67a6a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh01-exit-1",
+    "description": "Walking onto exit 1 of HTW_SH01 (scene 44) should lead to scene 37",
+    "plan": "# domina-htw-sh01-exit-1: Walking onto exit 1 of HTW_SH01 (scene 44) should lead to scene 37\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\nexit 1 37\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save 6b77ad131c6b0dc7 state fb10abbbdb338a5b ram 0000000000000000",
+     "arrived frame 307 scene 37 save 098e5034b218431f state 3faac4c7e2c4e61f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (95, 38): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 50,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20ef85f1b9814f4d9c8ae47f83844216"
+     },
+     {
+      "frames": 78,
+      "sha256": "4d75122dcf8d46ad81355c95d0a436ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh01-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh01-exit-2",
+    "description": "Walking onto exit 2 of HTW_SH01 (scene 44) should lead to scene 45",
+    "plan": "# domina-htw-sh01-exit-2: Walking onto exit 2 of HTW_SH01 (scene 44) should lead to scene 45\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\nexit 2 45\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save 6b77ad131c6b0dc7 state fb10abbbdb338a5b ram 0000000000000000",
+     "arrived frame 458 scene 45 save 6ee07a46af5075b5 state 01ec2fd0a770c332 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (289, 388): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20ef85f1b9814f4d9c8ae47f83844216"
+     },
+     {
+      "frames": 229,
+      "sha256": "be0ba06e315beb8917cc9ee8cf68c200"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "domina-htw-sh02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "domina-htw-sh02-exit-0",
+    "description": "Walking onto exit 0 of HTW_SH02 (scene 45) should lead to scene 44",
+    "plan": "# domina-htw-sh02-exit-0: Walking onto exit 0 of HTW_SH02 (scene 45) should lead to scene 44\nlimit 20000\nenter 45 0 16712959 0\ncheckpoint entered\nexit 0 44\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 45 save 76075046253bd527 state b38719b9cea51c59 ram 0000000000000000",
+     "arrived frame 301 scene 44 save 3fde84907b1b0b50 state 69d3bcd3b7f42c05 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (214, 126): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "73f8053dcee57bf6f4456e2de5d3cf00"
+     },
+     {
+      "frames": 72,
+      "sha256": "1171a55d3b6b678ac53248d804b56470"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

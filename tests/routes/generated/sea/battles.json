@@ -1,0 +1,726 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sea-sea-bf00-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf00-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF00 (scene 71) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf00-battle-0: Walking into battle zone 0 of SEA_BF00 (scene 71) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32839 3 16714751 0\ncheckpoint entered\nwalk 288 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 71 save d0444abd9996c64c state 83400906b0b77cdc ram 0000000000000000",
+     "fought frame 1547 scene 71 save 350f56b581b02a91 state d4de84ec872d3350 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (288, 96): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 123,
+     "instruction": 415,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d15ff1d7a8d3dbe00eb970dee5f947cd"
+     },
+     {
+      "frames": 1287,
+      "sha256": "e51e570c5c00602dec6482191fb64d38"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf00-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf00-battle-1",
+    "description": "Walking into battle zone 1 of SEA_BF00 (scene 71) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf00-battle-1: Walking into battle zone 1 of SEA_BF00 (scene 71) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32839 3 16714751 0\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 71 save d0444abd9996c64c state 83400906b0b77cdc ram 0000000000000000",
+     "fought frame 1480 scene 71 save 233be303e1a9e973 state 6cc5f0e26ae87695 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 96): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 124,
+     "instruction": 407,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d15ff1d7a8d3dbe00eb970dee5f947cd"
+     },
+     {
+      "frames": 1220,
+      "sha256": "be578112acb8cdb1cd5c868f955ac719"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf01-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf01-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF01 (scene 72) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf01-battle-0: Walking into battle zone 0 of SEA_BF01 (scene 72) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32840 1 16714751 0\ncheckpoint entered\nwalk 336 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 72 save 6115d4e8024a9db9 state dd5725f5676f2c31 ram 0000000000000000",
+     "fought frame 1298 scene 72 save 3eb3e7df80c71b8f state 7584248a83a33fbd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 338): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 114,
+     "instruction": 324,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "95eb805990596c03d42e1ceeb243e358"
+     },
+     {
+      "frames": 1038,
+      "sha256": "4b3bb18beb42287f483ca4074eafdf4a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf02-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf02-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF02 (scene 73) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf02-battle-0: Walking into battle zone 0 of SEA_BF02 (scene 73) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32841 2 16714751 0\ncheckpoint entered\nwalk 448 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 73 save aff57b4c9341b3eb state c2458063e1e2a4f3 ram 0000000000000000",
+     "fought frame 1700 scene 73 save e0ce6487038cdd0b state 568360b3408ca475 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (448, 248): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 358,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f38dc45b88acd4c048aef667d105acc1"
+     },
+     {
+      "frames": 1440,
+      "sha256": "8e1bb1bcb3cdff88c9df80282a854ddd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf03-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf03-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF03 (scene 74) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf03-battle-0: Walking into battle zone 0 of SEA_BF03 (scene 74) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32842 0 16714751 1\ncheckpoint entered\nwalk 320 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 74 save 7df0621d0e692d9b state 3c2e4df4a715efca ram 0000000000000000",
+     "fought frame 1921 scene 74 save e01f8dc5cea9e6ca state a24f23f8d5bb5c19 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (320, 406): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1550 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 414,
+     "instruction_end": 127,
+     "song": 3,
+     "monster": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "6bc8a40176474dfaaaeb6bef6797a38c"
+     },
+     {
+      "frames": 1661,
+      "sha256": "e98df7d07917dbc975ba41381f5e38ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf10-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf10-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF10 (scene 75) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf10-battle-0: Walking into battle zone 0 of SEA_BF10 (scene 75) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32843 1 16714751 0\ncheckpoint entered\nwalk 240 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 75 save 640534ea308fe1fa state cd180c86a8101cb7 ram 0000000000000000",
+     "fought frame 873 scene 75 save 4a82834261afa3be state 229abf90903c949f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (240, 128): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 104,
+     "instruction": 298,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "cc0cbce06520cc5e93c1f847e2746de0"
+     },
+     {
+      "frames": 613,
+      "sha256": "9c225f8c7f588367e597719fdd2c1437"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf10-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf10-battle-1",
+    "description": "Walking into battle zone 1 of SEA_BF10 (scene 75) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf10-battle-1: Walking into battle zone 1 of SEA_BF10 (scene 75) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32843 1 16714751 0\ncheckpoint entered\nwalk 560 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 75 save 640534ea308fe1fa state cd180c86a8101cb7 ram 0000000000000000",
+     "fought frame 937 scene 75 save 78c5f4f68eaf54d3 state 809bd7c1e996f76d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (560, 128): 6 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 104,
+     "instruction": 292,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "cc0cbce06520cc5e93c1f847e2746de0"
+     },
+     {
+      "frames": 677,
+      "sha256": "c76d46e74dcb0b4d204fe53819ea390f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf11-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf11-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF11 (scene 76) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf11-battle-0: Walking into battle zone 0 of SEA_BF11 (scene 76) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32844 2 16714751 1\ncheckpoint entered\nwalk 304 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 76 save d36ca7ce4a479b37 state 9f49b3ee03e4b98e ram 0000000000000000",
+     "fought frame 1567 scene 76 save 0f1e93e75acee4db state 38026c4b77d4c6ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (304, 136): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 103,
+     "instruction": 315,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "35764aec587ba1fd44a9bd926675556c"
+     },
+     {
+      "frames": 1307,
+      "sha256": "9f86ceaab9348776e6b1365c284ebdd3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf12-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf12-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF12 (scene 77) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf12-battle-0: Walking into battle zone 0 of SEA_BF12 (scene 77) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32845 0 16714751 0\ncheckpoint entered\nwalk 336 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 77 save a7d798c52565627d state 67a17f48801dfab4 ram 0000000000000000",
+     "fought frame 1621 scene 77 save 261eee9780a1b645 state 8351a52614b74c94 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1250 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 340,
+     "instruction_end": 109,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "0605f23834b1a713414a8ba8c8d4c1f8"
+     },
+     {
+      "frames": 1361,
+      "sha256": "c813845a1800372b70e60fd93efc30c9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf13-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf13-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF13 (scene 78) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf13-battle-0: Walking into battle zone 0 of SEA_BF13 (scene 78) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32846 0 16714751 0\ncheckpoint entered\nwalk 368 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 78 save 5e13e725848a8e8e state 1622c05d448c9483 ram 0000000000000000",
+     "fought frame 1708 scene 78 save e997c03d86a19de8 state 7b014fd75b8368ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (368, 240): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 350,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "81ed5429143521d18604f2215221151f"
+     },
+     {
+      "frames": 1448,
+      "sha256": "cb97212f63e481b82c6767ed4a0f4032"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf13-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf13-battle-1",
+    "description": "Walking into battle zone 1 of SEA_BF13 (scene 78) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf13-battle-1: Walking into battle zone 1 of SEA_BF13 (scene 78) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32846 0 16714751 1\ncheckpoint entered\nwalk 720 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 78 save 4960f03dba468647 state daafe64e19d2fcf2 ram 0000000000000000",
+     "fought frame 967 scene 78 save 163387b4e10872cf state a5f8ec882a86d6f0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (720, 258): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 304,
+     "instruction_end": 103,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "ff22efdf3eae0a61ef7b02c12e26fe21"
+     },
+     {
+      "frames": 707,
+      "sha256": "187684bf096322d06f77d34df95444aa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf14-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf14-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF14 (scene 79) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf14-battle-0: Walking into battle zone 0 of SEA_BF14 (scene 79) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32847 2 16714751 1\ncheckpoint entered\nwalk 432 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 79 save 81235cc329ed840c state 69c8e04f20268908 ram 0000000000000000",
+     "fought frame 1883 scene 79 save 0746d9b003b562b9 state eb8ed412e3ef9a3c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (432, 356): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 244,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "598686da925d420fb1837dbf83f6a574"
+     },
+     {
+      "frames": 1623,
+      "sha256": "c76fde154ad9208d1555504f30096c26"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf15-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf15-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF15 (scene 80) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf15-battle-0: Walking into battle zone 0 of SEA_BF15 (scene 80) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32848 0 16714751 0\ncheckpoint entered\nwalk 416 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 80 save add3708e68d264b8 state cfadbe533c8b44fc ram 0000000000000000",
+     "fought frame 1014 scene 80 save 9412a7faa8edc6e2 state 97a2af00590ab71f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (416, 112): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 328,
+     "instruction_end": 107,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "017fa472e435828571b7b58febe95d39"
+     },
+     {
+      "frames": 754,
+      "sha256": "287a8b063c646bac4bda84f46c4c622f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf16-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf16-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF16 (scene 81) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf16-battle-0: Walking into battle zone 0 of SEA_BF16 (scene 81) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32849 0 16714751 0\ncheckpoint entered\nwalk 304 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 81 save 3b072fae32f30fa9 state 80682becb404a426 ram 0000000000000000",
+     "fought frame 844 scene 81 save a09e5dcd3f479cf9 state cdae6b2941991dc6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (304, 124): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 321,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c7fde3f8c17b809519bfa2b83bd00f0b"
+     },
+     {
+      "frames": 584,
+      "sha256": "371c5e76ca7bc3d739b0b38052456dbb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf16-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf16-battle-1",
+    "description": "Walking into battle zone 1 of SEA_BF16 (scene 81) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf16-battle-1: Walking into battle zone 1 of SEA_BF16 (scene 81) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32849 0 16714751 0\ncheckpoint entered\nwalk 624 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 81 save 3b072fae32f30fa9 state 80682becb404a426 ram 0000000000000000",
+     "fought frame 844 scene 81 save a09e5dcd3f479cf9 state cdae6b2941991dc6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (624, 124): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 321,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c7fde3f8c17b809519bfa2b83bd00f0b"
+     },
+     {
+      "frames": 584,
+      "sha256": "371c5e76ca7bc3d739b0b38052456dbb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bf17-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bf17-battle-0",
+    "description": "Walking into battle zone 0 of SEA_BF17 (scene 82) should start a battle that a strong hero wins",
+    "plan": "# sea-sea-bf17-battle-0: Walking into battle zone 0 of SEA_BF17 (scene 82) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32850 1 16714751 1\ncheckpoint entered\nwalk 400 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 82 save a5b69b8f52635ab2 state 567e65b070b5af32 ram 0000000000000000",
+     "fought frame 2255 scene 82 save b1675c5a1b722ea4 state e8a1a0ce86cc1949 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (400, 270): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1850 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 347,
+     "instruction_end": 109,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "95b1fd82e377b24e40ed1ec8fd610f8a"
+     },
+     {
+      "frames": 1995,
+      "sha256": "42d4dd7de80c686f37cec5b65152f06e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

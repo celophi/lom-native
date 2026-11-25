@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "id": "always-run-home-yard",
+  "description": "With Always run off the hero should walk, and run while L1 is held; with it on the hero should run, and walk while L1 is held",
+  "start": {"save": "../saves/home-bedroom-new-game.json"},
+  "steps": [
+    {"wait": 120, "note": "the bedroom (scene 19) fades in"},
+    {"walk_to": {"exit": 0}, "note": "the bedroom door, to the main room (scene 18)"},
+    {"wait": 120},
+    {"walk_to": {"exit": 0}, "note": "the front door, to outside (scene 16)"},
+    {"wait": 120},
+    {"press": {"buttons": ["down"], "frames": 20}, "note": "away from the house, into the open"},
+    {"wait": 20},
+    {"checkpoint": "outside"},
+    {"press": {"buttons": ["left"], "frames": 12}, "note": "off: walks, about 30 left"},
+    {"wait": 20},
+    {"checkpoint": "walked"},
+    {"press": {"buttons": ["right", "l1"], "frames": 12}, "note": "off, L1 held: runs, about 80 right"},
+    {"wait": 20},
+    {"checkpoint": "ran"},
+    {"always_run": true},
+    {"press": {"buttons": ["left"], "frames": 12}, "note": "on: runs, about 80 left"},
+    {"wait": 20},
+    {"checkpoint": "always-ran"},
+    {"press": {"buttons": ["right", "l1"], "frames": 12}, "note": "on, L1 held: walks, about 30 right, back where it started"},
+    {"wait": 20},
+    {"checkpoint": "always-walked"},
+    {"always_run": false}
+  ]
+}

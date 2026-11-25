@@ -1,0 +1,2072 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mhm-mhm-alc0-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-alc0-cutscene",
+    "description": "Entering MHM_ALC0 (scene 23) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# mhm-mhm-alc0-cutscene: Entering MHM_ALC0 (scene 23) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 23 0 16715526 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 23 save 6ea946bce8131ce4 state 483397131d5fdd1d ram 0000000000000000",
+     "watched frame 3231 scene 23 save d9eae5bb1a49164a state 30acb042aaede560 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "af14fa1b774241a6e19515bd8a7a35ce"
+     },
+     {
+      "frames": 3002,
+      "sha256": "323e7454b895de174dc3a2d59ef6fabc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-alc1-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-alc1-cutscene",
+    "description": "Entering MHM_ALC1 (scene 24) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# mhm-mhm-alc1-cutscene: Entering MHM_ALC1 (scene 24) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 24 0 16715775 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 24 save c7ef39d1b3b0584f state 54cf145b19b73d52 ram 0000000000000000",
+     "watched frame 3231 scene 24 save adeb8aef6da13855 state 4a32efe19b32744f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "548d3dedf0aaf4fd68ec94103dca423c"
+     },
+     {
+      "frames": 3002,
+      "sha256": "497cf846b6d99c660cdf7676710a8e06"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-alc2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-alc2-exit-0",
+    "description": "Walking onto exit 0 of MHM_ALC2 (scene 25) should lead to scene 27",
+    "plan": "# mhm-mhm-alc2-exit-0: Walking onto exit 0 of MHM_ALC2 (scene 25) should lead to scene 27\nlimit 20000\nenter 25 0 16717055 0\ncheckpoint entered\nexit 0 27\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 25 save 3ed944392ff86e7b state 2d930cd7c63184c8 ram 0000000000000000",
+     "arrived frame 316 scene 27 save 5d24abe24c750a7b state 5b183fcedc574064 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (98, 39): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0264e0ae63932b94cdebe647a5fa32fb"
+     },
+     {
+      "frames": 87,
+      "sha256": "044c0eaf6a8850999a1fb74cfefc329b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-alc3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-alc3-exit-0",
+    "description": "Walking onto exit 0 of MHM_ALC3 (scene 694) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35",
+    "plan": "# mhm-mhm-alc3-exit-0: Walking onto exit 0 of MHM_ALC3 (scene 694) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35\nlimit 20000\nenter 694 0 16715526 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 694 save 3eec19b0d982891f state 2839948fa8863abf ram 0000000000000000",
+     "arrived frame 303 scene 28 save 53c4533f5ab00551 state b4542938b9400746 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (284, 186): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "81efe125ad2a6a9297d3c2afb217b3b7"
+     },
+     {
+      "frames": 74,
+      "sha256": "e4556586c5333eef83f555510e1e78aa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-alc4-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-alc4-exit-0",
+    "description": "Walking onto exit 0 of MHM_ALC4 (scene 695) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35",
+    "plan": "# mhm-mhm-alc4-exit-0: Walking onto exit 0 of MHM_ALC4 (scene 695) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35\nlimit 20000\nenter 695 0 16715775 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 695 save 4562f4cc4a013842 state b2c6e92f4c0f8790 ram 0000000000000000",
+     "arrived frame 438 scene 28 save 53c4533f5ab00551 state 2e6ace73ddf1329a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (38, 52): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd32966bb7d998948df8ac3dd21bab54"
+     },
+     {
+      "frames": 209,
+      "sha256": "a5f9367991b81ca6f0889f47903d44ee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdr0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdr0-exit-0",
+    "description": "Walking onto exit 0 of MHM_BDR0 (scene 628) should lead to scene 18",
+    "plan": "# mhm-mhm-bdr0-exit-0: Walking onto exit 0 of MHM_BDR0 (scene 628) should lead to scene 18\nlimit 20000\nenter 628 0 16713727 0\ncheckpoint entered\nexit 0 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 628 save 0f2f223f0910872d state 59b1fd55a3096fba ram 0000000000000000",
+     "arrived frame 333 scene 18 save 370456050d382086 state 2e9112eef1d29d15 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 188): 12 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 44,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a464f12621b79276a5ba6d3ebae58c64"
+     },
+     {
+      "frames": 104,
+      "sha256": "3c51eda3d0b788008546ba36711ef574"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-exit-0",
+    "description": "Walking onto exit 0 of MHM_BDRM (scene 19) should lead to scene 18",
+    "plan": "# mhm-mhm-bdrm-exit-0: Walking onto exit 0 of MHM_BDRM (scene 19) should lead to scene 18\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\nexit 0 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "arrived frame 333 scene 18 save 370456050d382086 state 2e9112eef1d29d15 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 188): 12 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 32,
+     "song": 2,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 124,
+      "sha256": "3c6e06074b820fc28b7ab077c39915b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent0-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT0 (scene 28) should lead to scene 17",
+    "plan": "# mhm-mhm-ent0-exit-0: Walking onto exit 0 of MHM_ENT0 (scene 28) should lead to scene 17\nlimit 20000\nenter 28 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 28 save c62914384e16671b state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 298 scene 17 save b32488aff4722be8 state 1337c499b383fa38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (59, 6): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b46e5d2706f14992afabc4ce921d1382"
+     },
+     {
+      "frames": 69,
+      "sha256": "397174ea44acb1f4001d1866d263ffaf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent1-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT1 (scene 29) should lead to scene 17",
+    "plan": "# mhm-mhm-ent1-exit-0: Walking onto exit 0 of MHM_ENT1 (scene 29) should lead to scene 17\nlimit 20000\nenter 29 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 29 save b274e3c9a0977b7e state 1a5942ccf3055aaf ram 0000000000000000",
+     "arrived frame 298 scene 17 save b32488aff4722be8 state 1337c499b383fa38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (61, 11): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e159eb024661750056bad7434a02902"
+     },
+     {
+      "frames": 69,
+      "sha256": "c72035de30d1d6a9c7573203e70e3d59"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent1-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT1 (scene 29) should lead to scene 24",
+    "plan": "# mhm-mhm-ent1-exit-1: Walking onto exit 1 of MHM_ENT1 (scene 29) should lead to scene 24\nlimit 20000\nenter 29 0 16715775 0\ncheckpoint entered\nexit 1 24\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 29 save b274e3c9a0977b7e state 1a5942ccf3055aaf ram 0000000000000000",
+     "arrived frame 438 scene 24 save 736a1835be4af847 state c92fd86a01c319ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (338, 243): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e159eb024661750056bad7434a02902"
+     },
+     {
+      "frames": 209,
+      "sha256": "d6cbfd87defab904025ef44ed814f7d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent2-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT2 (scene 30) should lead to scene 17",
+    "plan": "# mhm-mhm-ent2-exit-0: Walking onto exit 0 of MHM_ENT2 (scene 30) should lead to scene 17\nlimit 20000\nenter 30 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 30 save 62a308f620392845 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 296 scene 17 save b32488aff4722be8 state 7a08248da6f64486 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (56, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "883d9765f7b0928085fcc55ac51b47ae"
+     },
+     {
+      "frames": 67,
+      "sha256": "4e1f3778c57cafb7ea7678884d1fd140"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent2-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT2 (scene 30) should lead to scene 26",
+    "plan": "# mhm-mhm-ent2-exit-1: Walking onto exit 1 of MHM_ENT2 (scene 30) should lead to scene 26\nlimit 20000\nenter 30 0 16715775 0\ncheckpoint entered\nexit 1 26\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 30 save 62a308f620392845 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 476 scene 26 save e56d1ba1b073f119 state 4e1bf6fa16458b38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (308, 431): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "883d9765f7b0928085fcc55ac51b47ae"
+     },
+     {
+      "frames": 247,
+      "sha256": "02b583bf570c329a9fe59d82c257b3b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent3-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT3 (scene 31) should lead to scene 17",
+    "plan": "# mhm-mhm-ent3-exit-0: Walking onto exit 0 of MHM_ENT3 (scene 31) should lead to scene 17\nlimit 20000\nenter 31 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 31 save 190fefa81104d8a8 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 298 scene 17 save b32488aff4722be8 state 1337c499b383fa38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (54, 6): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "10a83e6b3853de7fb953eb2b5b3afa6a"
+     },
+     {
+      "frames": 69,
+      "sha256": "318f9cb9f2438a09f88b85b46b86baf5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent3-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent3-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT3 (scene 31) should lead to scene 26",
+    "plan": "# mhm-mhm-ent3-exit-1: Walking onto exit 1 of MHM_ENT3 (scene 31) should lead to scene 26\nlimit 20000\nenter 31 0 16715775 0\ncheckpoint entered\nexit 1 26\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 31 save 190fefa81104d8a8 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 477 scene 26 save e56d1ba1b073f119 state 64b9e902fd0aa83d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (293, 432): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "10a83e6b3853de7fb953eb2b5b3afa6a"
+     },
+     {
+      "frames": 248,
+      "sha256": "37ca67a0ce34f7b46e347a487459f061"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent3-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent3-exit-2",
+    "description": "Walking onto exit 2 of MHM_ENT3 (scene 31) should lead to scene 24",
+    "plan": "# mhm-mhm-ent3-exit-2: Walking onto exit 2 of MHM_ENT3 (scene 31) should lead to scene 24\nlimit 20000\nenter 31 0 16715775 0\ncheckpoint entered\nexit 2 24\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 31 save 190fefa81104d8a8 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 439 scene 24 save 736a1835be4af847 state 605359e8f0a8ddac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (331, 238): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "10a83e6b3853de7fb953eb2b5b3afa6a"
+     },
+     {
+      "frames": 210,
+      "sha256": "bc9c03fcfe3c10ab94d106de5a86e24c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent4-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent4-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT4 (scene 32) should lead to scene 17",
+    "plan": "# mhm-mhm-ent4-exit-0: Walking onto exit 0 of MHM_ENT4 (scene 32) should lead to scene 17\nlimit 20000\nenter 32 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 32 save 78b21ba516df5c37 state 1a5942ccf3055aaf ram 0000000000000000",
+     "arrived frame 299 scene 17 save b32488aff4722be8 state f2ac062e52fcc735 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 11): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e2a433d1f163fe66e6a632c69152cf0"
+     },
+     {
+      "frames": 70,
+      "sha256": "c60e1c5373b7ff20da7e533eba5a012c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent4-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent4-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT4 (scene 32) should lead to scene 23",
+    "plan": "# mhm-mhm-ent4-exit-1: Walking onto exit 1 of MHM_ENT4 (scene 32) should lead to scene 23\nlimit 20000\nenter 32 0 16715775 0\ncheckpoint entered\nexit 1 23\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 32 save 78b21ba516df5c37 state 1a5942ccf3055aaf ram 0000000000000000",
+     "arrived frame 395 scene 23 save 856852b836cd6ba8 state 080bdca15a3ad403 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 320): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8e2a433d1f163fe66e6a632c69152cf0"
+     },
+     {
+      "frames": 166,
+      "sha256": "595a054a3ad54d74b8e206295292bdad"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent5-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent5-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT5 (scene 33) should lead to scene 17",
+    "plan": "# mhm-mhm-ent5-exit-0: Walking onto exit 0 of MHM_ENT5 (scene 33) should lead to scene 17\nlimit 20000\nenter 33 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 33 save a1daf3737526c20a state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 301 scene 17 save b32488aff4722be8 state 171198840b43c4e7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 5): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8f245bcce0a1bd4857be83786cc6df3"
+     },
+     {
+      "frames": 72,
+      "sha256": "20cf0a5ff90a59ee7e102587a6a78e0c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent5-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent5-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT5 (scene 33) should lead to scene 23",
+    "plan": "# mhm-mhm-ent5-exit-1: Walking onto exit 1 of MHM_ENT5 (scene 33) should lead to scene 23\nlimit 20000\nenter 33 0 16715775 0\ncheckpoint entered\nexit 1 23\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 33 save a1daf3737526c20a state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 484 scene 23 save 856852b836cd6ba8 state 9c82755b461aabe4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (37, 302): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8f245bcce0a1bd4857be83786cc6df3"
+     },
+     {
+      "frames": 255,
+      "sha256": "c9b60b2c0de882c24e8b543a6cb72a3d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent5-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent5-exit-2",
+    "description": "Walking onto exit 2 of MHM_ENT5 (scene 33) should lead to scene 24",
+    "plan": "# mhm-mhm-ent5-exit-2: Walking onto exit 2 of MHM_ENT5 (scene 33) should lead to scene 24\nlimit 20000\nenter 33 0 16715775 0\ncheckpoint entered\nexit 2 24\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 33 save a1daf3737526c20a state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 445 scene 24 save 736a1835be4af847 state 52d5d6177f1b5286 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (340, 248): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8f245bcce0a1bd4857be83786cc6df3"
+     },
+     {
+      "frames": 216,
+      "sha256": "e961f6596522d2892e009df6d6095e14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent6-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent6-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT6 (scene 34) should lead to scene 17",
+    "plan": "# mhm-mhm-ent6-exit-0: Walking onto exit 0 of MHM_ENT6 (scene 34) should lead to scene 17\nlimit 20000\nenter 34 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 34 save 20f520308e643151 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 296 scene 17 save b32488aff4722be8 state 7a08248da6f64486 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f02d5dac10b224d25fe3243619a5e2ea"
+     },
+     {
+      "frames": 67,
+      "sha256": "2499b77710fca177f0de0c5d70d8520e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent6-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent6-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT6 (scene 34) should lead to scene 26",
+    "plan": "# mhm-mhm-ent6-exit-1: Walking onto exit 1 of MHM_ENT6 (scene 34) should lead to scene 26\nlimit 20000\nenter 34 0 16715775 0\ncheckpoint entered\nexit 1 26\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 34 save 20f520308e643151 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 471 scene 26 save e56d1ba1b073f119 state 355523b708a4f5cb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (308, 432): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f02d5dac10b224d25fe3243619a5e2ea"
+     },
+     {
+      "frames": 242,
+      "sha256": "6e6a815b0a3f32528339f75bc474ff6b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent6-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent6-exit-2",
+    "description": "Walking onto exit 2 of MHM_ENT6 (scene 34) should lead to scene 23",
+    "plan": "# mhm-mhm-ent6-exit-2: Walking onto exit 2 of MHM_ENT6 (scene 34) should lead to scene 23\nlimit 20000\nenter 34 0 16715775 0\ncheckpoint entered\nexit 2 23\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 34 save 20f520308e643151 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 492 scene 23 save 856852b836cd6ba8 state b3555ca09b211e1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (27, 304): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 39,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f02d5dac10b224d25fe3243619a5e2ea"
+     },
+     {
+      "frames": 263,
+      "sha256": "93790a3de87ac9980f285d17eec65849"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent7-exit-0",
+    "description": "Walking onto exit 0 of MHM_ENT7 (scene 35) should lead to scene 17",
+    "plan": "# mhm-mhm-ent7-exit-0: Walking onto exit 0 of MHM_ENT7 (scene 35) should lead to scene 17\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\nexit 0 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 1c0ad46bef5204b4 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 298 scene 17 save b32488aff4722be8 state 1337c499b383fa38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (58, 7): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ac3544cc645326d96aa10d1f159fa759"
+     },
+     {
+      "frames": 69,
+      "sha256": "f3fae090293ade786ac33e68ab589e83"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent7-exit-1",
+    "description": "Walking onto exit 1 of MHM_ENT7 (scene 35) should lead to scene 23",
+    "plan": "# mhm-mhm-ent7-exit-1: Walking onto exit 1 of MHM_ENT7 (scene 35) should lead to scene 23\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\nexit 1 23\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 1c0ad46bef5204b4 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 494 scene 23 save 856852b836cd6ba8 state 5105b272a966e4ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (34, 321): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ac3544cc645326d96aa10d1f159fa759"
+     },
+     {
+      "frames": 265,
+      "sha256": "e2c6e2bc76acb7217b9119e3ba245a14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent7-exit-2",
+    "description": "Walking onto exit 2 of MHM_ENT7 (scene 35) should lead to scene 26",
+    "plan": "# mhm-mhm-ent7-exit-2: Walking onto exit 2 of MHM_ENT7 (scene 35) should lead to scene 26\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\nexit 2 26\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 1c0ad46bef5204b4 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 473 scene 26 save e56d1ba1b073f119 state 5861e1d975635181 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (295, 427): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ac3544cc645326d96aa10d1f159fa759"
+     },
+     {
+      "frames": 244,
+      "sha256": "5b553aed35b932b758e5b67d242eae88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-ent7-exit-3",
+    "description": "Walking onto exit 3 of MHM_ENT7 (scene 35) should lead to scene 24",
+    "plan": "# mhm-mhm-ent7-exit-3: Walking onto exit 3 of MHM_ENT7 (scene 35) should lead to scene 24\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\nexit 3 24\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 1c0ad46bef5204b4 state 26f267d6ed588b57 ram 0000000000000000",
+     "arrived frame 442 scene 24 save 736a1835be4af847 state c909341ba4b71ca9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (329, 239): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ac3544cc645326d96aa10d1f159fa759"
+     },
+     {
+      "frames": 213,
+      "sha256": "75dc32cf53a059c5cc063b65822b6161"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-gdn0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-gdn0-exit-0",
+    "description": "Walking onto exit 0 of MHM_GDN0 (scene 22) should lead to scene 16",
+    "plan": "# mhm-mhm-gdn0-exit-0: Walking onto exit 0 of MHM_GDN0 (scene 22) should lead to scene 16\nlimit 20000\nenter 22 0 16713983 0\ncheckpoint entered\nexit 0 16\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 22 save 17b7a889bc507274 state 6a81d2e3c59fd133 ram 0000000000000000",
+     "arrived frame 309 scene 16 save 11d8ae8223839bae state a86281c3b23c992b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (409, 589): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "song": 3,
+     "instruction": 170,
+     "instruction_end": 54,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e88f303dcda65f14f0ca1f45e6ef0056"
+     },
+     {
+      "frames": 80,
+      "sha256": "74ef11c566c84b63de1bfa9806c100b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-gdn1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-gdn1-exit-0",
+    "description": "Walking onto exit 0 of MHM_GDN1 (scene 707) should lead to scene 16",
+    "plan": "# mhm-mhm-gdn1-exit-0: Walking onto exit 0 of MHM_GDN1 (scene 707) should lead to scene 16\nlimit 20000\nenter 33475 0 16713727 0\ncheckpoint entered\nexit 0 16\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 707 save 58d73fa4824ce6ce state bc0c176adf5b00fa ram 0000000000000000",
+     "arrived frame 293 scene 16 save 11d8ae8223839bae state 671878247529f846 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (392, 144): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 49,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9382225b9650d3d668b502efb10ba069"
+     },
+     {
+      "frames": 64,
+      "sha256": "aa42c5ff0b1918d96c6e102e26f7ef04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-gdn2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-gdn2-exit-0",
+    "description": "Walking onto exit 0 of MHM_GDN2 (scene 776) should lead to the world map",
+    "plan": "# mhm-mhm-gdn2-exit-0: Walking onto exit 0 of MHM_GDN2 (scene 776) should lead to the world map\nlimit 20000\nenter 776 0 16711422 0\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 776 save dcd99a2ab6606ef1 state cdb232cb7bb921fa ram 0000000000000000",
+     "arrived frame 327 scene 32767 save 0899d9672f7b5c2f state 47229ba08f349594 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (409, 589): 1 waypoints",
+     "game state 1 at vblank 979"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 115,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31986cdf6d4e12b3fd081cd584e916d5"
+     },
+     {
+      "frames": 97,
+      "sha256": "1a513d371851c696aa0fead7e1fd882a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-glm0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-glm0-exit-0",
+    "description": "Walking onto exit 0 of MHM_GLM0 (scene 26) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35",
+    "plan": "# mhm-mhm-glm0-exit-0: Walking onto exit 0 of MHM_GLM0 (scene 26) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35\nlimit 20000\nenter 26 0 16715775 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 26 save 7b43683a9c531ec1 state fb0bd37e1c67f7ab ram 0000000000000000",
+     "arrived frame 304 scene 28 save 0191fc55b2b999b3 state e42ae7fce2318656 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 334): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 77,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c5e07a86009b73e4731c41c1560a46b6"
+     },
+     {
+      "frames": 75,
+      "sha256": "7ca3d83b5fe74d6a4fe3ffafbac880e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-glm1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-glm1-exit-0",
+    "description": "Walking onto exit 0 of MHM_GLM1 (scene 696) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35",
+    "plan": "# mhm-mhm-glm1-exit-0: Walking onto exit 0 of MHM_GLM1 (scene 696) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35\nlimit 20000\nenter 696 0 16715775 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 696 save 2df40ec2ca7a2a31 state afe713393ba51608 ram 0000000000000000",
+     "arrived frame 304 scene 28 save da22cdf37649363b state 9711b516b1a11bf4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 334): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c13e12d0e02ec97a16f3a573dd2b0c5"
+     },
+     {
+      "frames": 75,
+      "sha256": "e7cb933d0caa6c81fbf938a0b8065763"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-exit-0",
+    "description": "Walking onto exit 0 of MHM_OS00 (scene 16) should lead to the world map",
+    "plan": "# mhm-mhm-os00-exit-0: Walking onto exit 0 of MHM_OS00 (scene 16) should lead to the world map\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "arrived frame 1763 scene 32767 save 042863975f5c014c state 5700aa3ad3ab20c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (537, 75): 6 waypoints",
+     "game state 1 at vblank 3851"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 364,
+     "instruction_end": 115,
+     "exit": 1,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 1533,
+      "sha256": "6ace795e2173ab26a8d86f95dfb39d0f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-exit-1",
+    "description": "Walking onto exit 1 of MHM_OS00 (scene 16) should lead to one of scene 22, scene 707",
+    "plan": "# mhm-mhm-os00-exit-1: Walking onto exit 1 of MHM_OS00 (scene 16) should lead to one of scene 22, scene 707\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "arrived frame 411 scene 707 save 643a62995fc3f6a6 state 0d7bf43cbeb49b90 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 50,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 182,
+      "sha256": "191d80c0a0c1455632aa6d3e065279ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-exit-2",
+    "description": "Walking onto exit 2 of MHM_OS00 (scene 16) should lead to scene 18",
+    "plan": "# mhm-mhm-os00-exit-2: Walking onto exit 2 of MHM_OS00 (scene 16) should lead to scene 18\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 2 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "arrived frame 430 scene 18 save 7c60bd83d4c1916c state 21d2c7d86c51998e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (269, 357): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 254,
+     "instruction_end": 57,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 201,
+      "sha256": "fa41b6184902ba3227a09a1a42026c19"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-exit-3",
+    "description": "Walking onto exit 3 of MHM_OS00 (scene 16) should lead to scene 27",
+    "plan": "# mhm-mhm-os00-exit-3: Walking onto exit 3 of MHM_OS00 (scene 16) should lead to scene 27\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 3 27\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "arrived frame 453 scene 27 save f5bacfac86b23bb1 state 94f78fbfb931e46f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (406, 343): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 65,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 224,
+      "sha256": "cc36d890ae40fbe8407c81f586cd939e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-exit-4",
+    "description": "Walking onto exit 4 of MHM_OS00 (scene 16) should lead to scene 17",
+    "plan": "# mhm-mhm-os00-exit-4: Walking onto exit 4 of MHM_OS00 (scene 16) should lead to scene 17\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 4 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "arrived frame 295 scene 17 save 5810c69b0d093107 state d70f7259bbc65f30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 246): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 47,
+     "song": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 66,
+      "sha256": "d35c695b29673b7db57460893da7a7c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os01-exit-0",
+    "description": "Walking onto exit 0 of MHM_OS01 (scene 17) should lead to scene 27",
+    "plan": "# mhm-mhm-os01-exit-0: Walking onto exit 0 of MHM_OS01 (scene 17) should lead to scene 27\nlimit 20000\nenter 17 0 16713727 1\ncheckpoint entered\nexit 0 27\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 17 save 79211ba907db713f state 034e00f40338cc83 ram 0000000000000000",
+     "arrived frame 409 scene 27 save 7739cf79f5d709da state 12c36590b4a4f0db ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (369, 243): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec288798d17b28d73196848a42274ff2"
+     },
+     {
+      "frames": 180,
+      "sha256": "ac7201c490eafc89abcd65b6d2334aa5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os01-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os01-exit-1",
+    "description": "Walking onto exit 1 of MHM_OS01 (scene 17) should lead to scene 16",
+    "plan": "# mhm-mhm-os01-exit-1: Walking onto exit 1 of MHM_OS01 (scene 17) should lead to scene 16\nlimit 20000\nenter 17 0 16713727 1\ncheckpoint entered\nexit 1 16\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 17 save 79211ba907db713f state 034e00f40338cc83 ram 0000000000000000",
+     "arrived frame 295 scene 16 save d5f8855a9c9270f9 state 019be1d4d6381774 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (377, 48): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 47,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec288798d17b28d73196848a42274ff2"
+     },
+     {
+      "frames": 66,
+      "sha256": "b7afa081e4e27e27d9e2f2b21d9d5d38"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os01-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os01-exit-2",
+    "description": "Walking onto exit 2 of MHM_OS01 (scene 17) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35, scene 694, scene 696, scene 774",
+    "plan": "# mhm-mhm-os01-exit-2: Walking onto exit 2 of MHM_OS01 (scene 17) should lead to one of scene 28, scene 29, scene 30, scene 31, scene 32, scene 33, scene 34, scene 35, scene 694, scene 696, scene 774\nlimit 20000\nenter 17 0 16713727 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 17 save 79211ba907db713f state 034e00f40338cc83 ram 0000000000000000",
+     "arrived frame 389 scene 28 save c3c7c33f4f0eecb9 state b45b1582a5d14924 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (157, 133): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec288798d17b28d73196848a42274ff2"
+     },
+     {
+      "frames": 160,
+      "sha256": "1551974c6bbf275e117129209eec3310"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-pet0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-pet0-exit-0",
+    "description": "Walking onto exit 0 of MHM_PET0 (scene 27) should lead to scene 16",
+    "plan": "# mhm-mhm-pet0-exit-0: Walking onto exit 0 of MHM_PET0 (scene 27) should lead to scene 16\nlimit 20000\nenter 27 0 16717055 0\ncheckpoint entered\nexit 0 16\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 27 save ab0709683ed1bbb9 state 9ce3bd510a5ef6cd ram 0000000000000000",
+     "arrived frame 298 scene 16 save e85d6a1a1f14da4a state 228670e0549cb9d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (6, 225): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 69,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4533e16d0af6154a7252eb691dc316b"
+     },
+     {
+      "frames": 69,
+      "sha256": "abc0f6c811669cf88f7d672db690d15e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-pet0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-pet0-exit-1",
+    "description": "Walking onto exit 1 of MHM_PET0 (scene 27) should lead to scene 17",
+    "plan": "# mhm-mhm-pet0-exit-1: Walking onto exit 1 of MHM_PET0 (scene 27) should lead to scene 17\nlimit 20000\nenter 27 0 16717055 0\ncheckpoint entered\nexit 1 17\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 27 save ab0709683ed1bbb9 state 9ce3bd510a5ef6cd ram 0000000000000000",
+     "arrived frame 541 scene 17 save 61728199481e7648 state 38f6c9537c9001de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (64, 389): -3 waypoints",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4533e16d0af6154a7252eb691dc316b"
+     },
+     {
+      "frames": 312,
+      "sha256": "6b329d77df75ccb8cb9c8ecd582e6c23"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-pet0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-pet0-exit-2",
+    "description": "Walking onto exit 2 of MHM_PET0 (scene 27) should lead to scene 25",
+    "plan": "# mhm-mhm-pet0-exit-2: Walking onto exit 2 of MHM_PET0 (scene 27) should lead to scene 25\nlimit 20000\nenter 27 0 16717055 0\ncheckpoint entered\nexit 2 25\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 27 save ab0709683ed1bbb9 state 9ce3bd510a5ef6cd ram 0000000000000000",
+     "arrived frame 1154 scene 25 save 163ae2ebc3d492ad state c3ca25ccba52937d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (292, 354): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4533e16d0af6154a7252eb691dc316b"
+     },
+     {
+      "frames": 925,
+      "sha256": "d1cd979dc6a3a1d5b128fcd91bccbcfb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-rm00-exit-0",
+    "description": "Walking onto exit 0 of MHM_RM00 (scene 18) should lead to scene 16",
+    "plan": "# mhm-mhm-rm00-exit-0: Walking onto exit 0 of MHM_RM00 (scene 18) should lead to scene 16\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nexit 0 16\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 6bcb514ab29c5ff4 state 9c668392503b1c99 ram 0000000000000000",
+     "arrived frame 304 scene 16 save baf1559a8bba82b9 state 0e4dd514e252416e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (335, 43): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 250,
+     "instruction_end": 54,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60556b92c939df05d91e9787a1764dce"
+     },
+     {
+      "frames": 75,
+      "sha256": "5948e54869f69d8e450d980e70e0d517"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-rm00-exit-1",
+    "description": "Walking onto exit 1 of MHM_RM00 (scene 18) should lead to scene 21",
+    "plan": "# mhm-mhm-rm00-exit-1: Walking onto exit 1 of MHM_RM00 (scene 18) should lead to scene 21\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nexit 1 21\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 6bcb514ab29c5ff4 state 9c668392503b1c99 ram 0000000000000000",
+     "arrived frame 354 scene 21 save 1c785a18136c188e state 908e29b606c9e3bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (384, 217): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 44,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60556b92c939df05d91e9787a1764dce"
+     },
+     {
+      "frames": 125,
+      "sha256": "3708ded4e71d180e9a1eb0e94c2b58d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-rm00-exit-2",
+    "description": "Walking onto exit 2 of MHM_RM00 (scene 18) should lead to scene 19",
+    "plan": "# mhm-mhm-rm00-exit-2: Walking onto exit 2 of MHM_RM00 (scene 18) should lead to scene 19\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\nexit 2 19\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 6bcb514ab29c5ff4 state 9c668392503b1c99 ram 0000000000000000",
+     "arrived frame 400 scene 19 save 7d484bb3157d3d5c state 5937819d0849cda0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (286, 311): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 38,
+     "song": 2,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60556b92c939df05d91e9787a1764dce"
+     },
+     {
+      "frames": 171,
+      "sha256": "e51a1ea34c915be9406c50314a26f96b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-stdy-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-stdy-exit-0",
+    "description": "Walking onto exit 0 of MHM_STDY (scene 21) should lead to scene 18",
+    "plan": "# mhm-mhm-stdy-exit-0: Walking onto exit 0 of MHM_STDY (scene 21) should lead to scene 18\nlimit 20000\nenter 21 0 16713727 0\ncheckpoint entered\nexit 0 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 21 save 1c785a18136c188e state fac248d89ea73ad5 ram 0000000000000000",
+     "arrived frame 324 scene 18 save 38ad601d66159741 state 090089c6df73f175 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 122): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 45,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "35710905d34cfc89a3086ca5e9bece1d"
+     },
+     {
+      "frames": 95,
+      "sha256": "2802197d6969c5f6716f01845f558d7a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-wnd1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-wnd1-exit-0",
+    "description": "Walking onto exit 0 of MHM_WND1 (scene 928) should lead to scene 18",
+    "plan": "# mhm-mhm-wnd1-exit-0: Walking onto exit 0 of MHM_WND1 (scene 928) should lead to scene 18\nlimit 20000\nenter 928 0 16711422 0\ncheckpoint entered\nexit 0 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 928 save 3e7b1db97912df59 state 834e0bd27c13b1ab ram 0000000000000000",
+     "arrived frame 297 scene 18 save 243a38fea9119b5c state a9e2e9ee6d560d08 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 35): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 41,
+     "song": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cda13cb19cb0c8d6afdce8847d52b70e"
+     },
+     {
+      "frames": 68,
+      "sha256": "0f4fb04de867fb987a71b37b59254908"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-wndw-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-wndw-exit-0",
+    "description": "Walking onto exit 0 of MHM_WNDW (scene 20) should lead to scene 18",
+    "plan": "# mhm-mhm-wndw-exit-0: Walking onto exit 0 of MHM_WNDW (scene 20) should lead to scene 18\nlimit 20000\nenter 20 0 16711422 0\ncheckpoint entered\nexit 0 18\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 20 save 69494c5286448da8 state 834e0bd27c13b1ab ram 0000000000000000",
+     "arrived frame 297 scene 18 save 243a38fea9119b5c state a9e2e9ee6d560d08 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 35): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 41,
+     "exit": 1,
+     "song": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "401d8a3a579c55f0908db9f980ea0ce2"
+     },
+     {
+      "frames": 68,
+      "sha256": "a7e0fbf25016d871385a4d5f5f9e31ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

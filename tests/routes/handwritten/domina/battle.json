@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "id": "domina-nearby-battle",
+  "description": "Walking into the monsters' area should start a battle, and attacking a monster with Square should hurt it",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 71,
+        "from": 63
+      },
+      "note": "SEA_BF00, the monster area spike C fought in"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 300,
+        "z": 96
+      },
+      "note": "west, into the battle zone; the walk stops when the battle starts"
+    },
+    {
+      "wait_until": {
+        "battle": "started",
+        "max_frames": 600
+      }
+    },
+    {
+      "checkpoint": "battle-started"
+    },
+    {
+      "walk_to": {
+        "x": 775,
+        "z": 138
+      },
+      "note": "next to the Sahagin (monster 61); the run is deterministic, so it's there every time"
+    },
+    {
+      "press": {
+        "buttons": [
+          "square"
+        ],
+        "frames": 4
+      }
+    },
+    {
+      "wait": 20
+    },
+    {
+      "press": {
+        "buttons": [
+          "square"
+        ],
+        "frames": 4
+      }
+    },
+    {
+      "wait": 20
+    },
+    {
+      "press": {
+        "buttons": [
+          "square"
+        ],
+        "frames": 4
+      }
+    },
+    {
+      "wait": 40
+    },
+    {
+      "checkpoint": "after-attacks",
+      "note": "the state dump shows the Sahagin's HP below 98"
+    }
+  ]
+}

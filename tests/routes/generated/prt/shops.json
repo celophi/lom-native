@@ -1,0 +1,255 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "prt-prt-shop-shop-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-shop-shop-6",
+    "description": "In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 6",
+    "plan": "# prt-prt-shop-shop-6: In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 6\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 341 181 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save fc1518c82e3baaa4 state 3d8b5930cb7c8a90 ram 0000000000000000",
+     "done frame 1492 scene 268 save 6d2123beb93cc08a state 365ce82cba32a209 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (341, 161): 7 waypoints",
+     "walk to (341, 201): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c80cc40fb079dea13adcf67edb22762"
+     },
+     {
+      "frames": 1263,
+      "sha256": "77b6267f04d7024368cdc3a8ea293cb5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-shop-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_SHOP's shop 0x7 needs (land 3 placed at distance 11)",
+    "source": "built from the conditions on the path to the write in scene 268 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "3": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 1
+     }
+    },
+    "current_land": 3
+   },
+   "baseline": {
+    "route": "prt-prt-shop-shop-7",
+    "description": "In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 7",
+    "plan": "# prt-prt-shop-shop-7: In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 7\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 341 181 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save d14c6bbd59fab2f5 state 158d91c930e2550e ram 0000000000000000",
+     "done frame 1492 scene 268 save 6d70393d841c5543 state b6407f611a648187 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (341, 161): 7 waypoints",
+     "walk to (341, 201): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88e40e36673981288573cef5ab5b2edc"
+     },
+     {
+      "frames": 1263,
+      "sha256": "e983d0480001dbfe83fd172945b9789f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-shop-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_SHOP's shop 0x8 needs (land 3 placed at distance 16)",
+    "source": "built from the conditions on the path to the write in scene 268 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "3": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 6
+     }
+    },
+    "current_land": 3
+   },
+   "baseline": {
+    "route": "prt-prt-shop-shop-8",
+    "description": "In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 8",
+    "plan": "# prt-prt-shop-shop-8: In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 8\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 341 181 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save 62af698caf326130 state b830a0347954b331 ram 0000000000000000",
+     "done frame 1492 scene 268 save 3d0863905244dfae state 35e8df4c79ed23fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (341, 161): 7 waypoints",
+     "walk to (341, 201): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b1aa25c675f9c6157f50e943732d628c"
+     },
+     {
+      "frames": 1263,
+      "sha256": "690b9d90b8f47f839f7f7e4f6cadf36a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-shop-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_SHOP's shop 0x9 needs (land 3 placed at distance 25)",
+    "source": "built from the conditions on the path to the write in scene 268 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "3": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 15
+     }
+    },
+    "current_land": 3
+   },
+   "baseline": {
+    "route": "prt-prt-shop-shop-9",
+    "description": "In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 9",
+    "plan": "# prt-prt-shop-shop-9: In PRT_SHOP (scene 268), talking to layout record 8 should open shop list 9\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 341 181 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save 601e1cc800fcb0db state d009b01a64984398 ram 0000000000000000",
+     "done frame 1492 scene 268 save 91d0a303f2d0e9d5 state c2ee8734ecc18ce1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (341, 161): 7 waypoints",
+     "walk to (341, 201): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0149015e53e29a8a13d1424e7802bab7"
+     },
+     {
+      "frames": 1263,
+      "sha256": "93eb28aae142c79fd1a072314fd6bf9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,345 @@
+#include "internal/shop_trade.h"
+#include "main/audio/akao.h"
+#include "overlays/field/field_text.h"
+
+#define SHOP_PROMPT_X 64
+#define SHOP_PROMPT_Y 112
+#define SHOP_PROMPT_WIDTH 192
+#define SHOP_PROMPT_HEIGHT 32
+
+static u8* shop_draw_buy_prompt(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset);
+static u8* shop_draw_sell_prompt(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset);
+
+/**
+ * @brief Draw the notice selected by g_shop_notice_id.
+ * @param ot Ordering-table entry for the emitted packets.
+ * @param prim Packet cursor.
+ * @param x_inset Horizontal inset of the opening or closing window.
+ * @param y_inset Vertical inset of the opening or closing window.
+ * @return Advanced packet cursor.
+ */
+u8* shop_draw_notice_window(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s unused_position;
+
+    switch (g_shop_notice_id)
+    {
+    case SHOP_NOTICE_CANNOT_CARRY:
+        prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT_AT(g_field_ui_text_cant_hold_more, FIELD_UI_TEXT_CANT_HOLD_MORE), SHOP_TEXT_COLOR_NOTICE,
+                               128 - x_inset, -y_inset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case SHOP_NOTICE_QUANTITY_REDUCED:
+        prim = field_draw_text((SPRT*)prim, ot, FIELD_UI_TEXT_AT(g_field_ui_text_cant_buy_more, FIELD_UI_TEXT_CANT_BUY_MORE), SHOP_TEXT_COLOR_NOTICE,
+                               128 - x_inset, -y_inset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    }
+
+    return prim;
+}
+
+/**
+ * @brief Open the yes/no prompt confirming a purchase of the selected entry.
+ */
+void shop_open_buy_prompt(void)
+{
+    g_shop_windows[SHOP_POPUP_WINDOW].draw = shop_draw_buy_prompt;
+    g_shop_prompt_active = 1;
+    g_shop_confirm_choice = 0;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_OPENING;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.anim_step = 1;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.x = SHOP_PROMPT_X;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.y = SHOP_PROMPT_Y;
+    g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.width_high = SHOP_WINDOW_WIDTH_HIGH(SHOP_PROMPT_WIDTH);
+    g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.height = SHOP_PROMPT_HEIGHT;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.word = (g_shop_windows[SHOP_POPUP_WINDOW].frame.word & 0x00FFFFFF) | SHOP_WINDOW_WIDTH_LOW(SHOP_PROMPT_WIDTH);
+    field_reset_input_repeat();
+}
+
+/**
+ * @brief Run the purchase prompt and draw it.
+ *
+ * Confirming buys g_shop_quantity of the selected entry, reduced to what the
+ * player can carry; a reduction reopens the popup as a notice.
+ *
+ * @param ot Ordering-table entry for the emitted packets.
+ * @param prim Packet cursor.
+ * @param x_inset Horizontal inset of the opening or closing window.
+ * @param y_inset Vertical inset of the opening or closing window.
+ * @return Advanced packet cursor.
+ */
+static u8* shop_draw_buy_prompt(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    s32 confirm_mask;
+    Vec2s unused_position;
+    ShopEntry* entry;
+    ShopEntry* stock;
+    FieldItemRecord* record;
+    s32 reduced;
+    s32 i;
+    s32 free_records;
+    s32 room;
+    u8* text_table;
+    u8* text;
+    s32 color;
+    s32 value;
+    s32 row_y;
+
+    reduced = 0;
+    confirm_mask = PAD_CONFIRM_BUTTONS;
+
+    if (g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state == SHOP_WINDOW_OPEN)
+    {
+        if (g_pad_input & PAD_BTN_DPAD)
+        {
+            field_play_sound(SFX_CURSOR, AKAO_SFX_DEFAULT_VOLUME);
+            g_shop_confirm_choice ^= 1;
+        }
+        else if ((g_pad_input & confirm_mask) && (g_shop_confirm_choice == 0))
+        {
+            record = field_find_free_inventory_record();
+            entry = SHOP_SELECTED_ENTRY();
+
+            if (entry->id & SHOP_ENTRY_RECORD_FLAG)
+            {
+                free_records = &g_saved_game_ctx->items[FIELD_ITEM_COUNT] - record;
+
+                if (free_records < g_shop_quantity)
+                {
+                    g_shop_quantity = free_records;
+                    reduced = 1;
+                }
+
+                for (i = 0; i < g_shop_quantity; i++, record++)
+                {
+                    field_copy_inventory_record(record, &g_shop_item_records[SHOP_SELECTED_ENTRY()->id & SHOP_ENTRY_RECORD_INDEX_MASK]);
+                }
+
+                field_play_sound(SHOP_SFX_TRADE, AKAO_SFX_DEFAULT_VOLUME);
+                stock = SHOP_SELECTED_ENTRY();
+                g_saved_game_ctx->money -= stock->price * g_shop_quantity;
+
+                if (stock->count != 0)
+                {
+                    stock->count -= g_shop_quantity;
+
+                    if (stock->count == 0)
+                    {
+                        stock->id = SHOP_ENTRY_EMPTY;
+                    }
+                }
+            }
+            else
+            {
+                room = ITEM_COUNT_MAX - g_saved_game_ctx->item_counts[entry->id];
+
+                if (room < g_shop_quantity)
+                {
+                    g_shop_quantity = room;
+                    reduced = 1;
+                }
+
+                g_saved_game_ctx->item_counts[entry->id] += g_shop_quantity;
+                field_play_sound(SHOP_SFX_TRADE, AKAO_SFX_DEFAULT_VOLUME);
+                stock = SHOP_SELECTED_ENTRY();
+                g_saved_game_ctx->money -= stock->price * g_shop_quantity;
+
+                if (stock->count != 0)
+                {
+                    stock->count -= g_shop_quantity;
+
+                    if (stock->count == 0)
+                    {
+                        stock->id = SHOP_ENTRY_EMPTY;
+                    }
+                }
+            }
+
+            g_shop_quantity = 1;
+            g_shop_prompt_active = 0;
+            g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_FREE;
+
+            if (reduced != 0)
+            {
+                u32 frame;
+
+                frame = g_shop_windows[SHOP_POPUP_WINDOW].frame.word & ~0x7;
+                frame |= SHOP_WINDOW_OPENING;
+                frame &= ~0x78;
+                frame |= 1 << 3;
+                frame &= ~0xFF80;
+                frame |= SHOP_NOTICE_WINDOW_X << 7;
+                value = 1;
+                g_shop_notice_id = value;
+                g_shop_windows[SHOP_POPUP_WINDOW].frame.word = frame;
+                g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.y = SHOP_NOTICE_WINDOW_Y;
+                g_shop_windows[SHOP_POPUP_WINDOW].draw = shop_draw_notice_window;
+                g_shop_notice_active = value;
+                g_shop_windows[SHOP_POPUP_WINDOW].frame.word =
+                    (g_shop_windows[SHOP_POPUP_WINDOW].frame.word & 0x00FFFFFF) | SHOP_WINDOW_WIDTH_LOW(SHOP_NOTICE_WINDOW_WIDTH);
+                g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.width_high = SHOP_WINDOW_WIDTH_HIGH(SHOP_NOTICE_WINDOW_WIDTH);
+                g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.height = SHOP_NOTICE_WINDOW_HEIGHT;
+                field_reset_input_repeat();
+            }
+
+            field_reset_input_repeat();
+        }
+        else if ((g_pad_input & SHOP_CANCEL_BUTTONS) || ((g_pad_input & confirm_mask) && (g_shop_confirm_choice != 0)))
+        {
+            g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_FREE;
+            field_play_sound(SFX_CANCEL, AKAO_SFX_DEFAULT_VOLUME);
+            g_shop_prompt_active = 0;
+            field_reset_input_repeat();
+        }
+    }
+
+    text = FIELD_UI_TEXT_AT(g_field_ui_text_confirm, FIELD_UI_TEXT_CONFIRM);
+    text_table = FIELD_UI_TEXT_TABLE(g_field_ui_text_confirm, FIELD_UI_TEXT_CONFIRM);
+    prim = field_draw_text((SPRT*)prim, ot, text, FIELD_TEXT_COLOR_NORMAL, 96 - x_inset, -y_inset, FIELD_TEXT_ALIGN_CENTER);
+
+    value = FIELD_TEXT_COLOR_DIM;
+    color = FIELD_TEXT_COLOR_NORMAL;
+    text = FIELD_UI_TEXT(text_table, FIELD_UI_TEXT_YES);
+
+    if (g_shop_confirm_choice != 0)
+    {
+        color = value;
+    }
+
+    row_y = 16 - y_inset;
+    prim = field_draw_text((SPRT*)prim, ot, text, color, 72 - x_inset, row_y, FIELD_TEXT_ALIGN_RIGHT);
+
+    color = FIELD_TEXT_COLOR_DIM;
+    text = FIELD_UI_TEXT(text_table, FIELD_UI_TEXT_NO);
+
+    if (g_shop_confirm_choice != 0)
+    {
+        color = FIELD_TEXT_COLOR_NORMAL;
+    }
+
+    prim = field_draw_text((SPRT*)prim, ot, text, color, 104 - x_inset, row_y, FIELD_TEXT_ALIGN_LEFT);
+    return prim;
+}
+
+/**
+ * @brief Open the yes/no prompt confirming a sale of the selected entry.
+ */
+void shop_open_sell_prompt(void)
+{
+    g_shop_windows[SHOP_POPUP_WINDOW].draw = shop_draw_sell_prompt;
+    g_shop_prompt_active = 1;
+    g_shop_confirm_choice = 0;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_OPENING;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.anim_step = 1;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.x = SHOP_PROMPT_X;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.y = SHOP_PROMPT_Y;
+    g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.width_high = SHOP_WINDOW_WIDTH_HIGH(SHOP_PROMPT_WIDTH);
+    g_shop_windows[SHOP_POPUP_WINDOW].extent.bits.height = SHOP_PROMPT_HEIGHT;
+    g_shop_windows[SHOP_POPUP_WINDOW].frame.word = (g_shop_windows[SHOP_POPUP_WINDOW].frame.word & 0x00FFFFFF) | SHOP_WINDOW_WIDTH_LOW(SHOP_PROMPT_WIDTH);
+    field_reset_input_repeat();
+}
+
+/**
+ * @brief Run the sale prompt and draw it.
+ *
+ * Confirming sells g_shop_quantity of the selected entry and credits the
+ * player, capped at SHOP_MAX_MONEY.
+ *
+ * @param ot Ordering-table entry for the emitted packets.
+ * @param prim Packet cursor.
+ * @param x_inset Horizontal inset of the opening or closing window.
+ * @param y_inset Vertical inset of the opening or closing window.
+ * @return Advanced packet cursor.
+ */
+static u8* shop_draw_sell_prompt(OT_TYPE* ot, u8* prim, s32 x_inset, s32 y_inset)
+{
+    Vec2s unused_position;
+    ShopEntry* entry;
+    ShopEntry* stock;
+    u32 money;
+    u8* text_table;
+    u8* text;
+    s32 color;
+    s32 row_y;
+    s32 state;
+    s32 y;
+
+    state = g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state;
+    y = y_inset;
+
+    if (state == SHOP_WINDOW_OPEN)
+    {
+        if (g_pad_input & PAD_BTN_DPAD)
+        {
+            field_play_sound(SFX_CURSOR, AKAO_SFX_DEFAULT_VOLUME);
+            g_shop_confirm_choice ^= 1;
+        }
+        else if ((g_pad_input & PAD_CONFIRM_BUTTONS) && (g_shop_confirm_choice == 0))
+        {
+            entry = SHOP_SELECTED_ENTRY();
+
+            if (entry->id & SHOP_ENTRY_RECORD_FLAG)
+            {
+                g_shop_item_records[entry->id & SHOP_ENTRY_RECORD_INDEX_MASK].name[0] = 0;
+                SHOP_SELECTED_ENTRY()->id = SHOP_ENTRY_EMPTY;
+            }
+            else
+            {
+                g_saved_game_ctx->item_counts[entry->id] -= g_shop_quantity;
+                stock = SHOP_SELECTED_ENTRY();
+                stock->count -= g_shop_quantity;
+
+                if (g_saved_game_ctx->item_counts[stock->id] == 0)
+                {
+                    stock->id = SHOP_ENTRY_EMPTY;
+                }
+            }
+
+            field_play_sound(SHOP_SFX_TRADE, AKAO_SFX_DEFAULT_VOLUME);
+            money = g_saved_game_ctx->money + SHOP_SELECTED_ENTRY()->price * g_shop_quantity;
+            g_saved_game_ctx->money = money;
+
+            if (money > SHOP_MAX_MONEY)
+            {
+                g_saved_game_ctx->money = SHOP_MAX_MONEY;
+            }
+
+            g_shop_quantity = 1;
+            g_shop_prompt_active = 0;
+            g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_FREE;
+            field_reset_input_repeat();
+        }
+        else if ((g_pad_input & SHOP_CANCEL_BUTTONS) || ((g_pad_input & PAD_CONFIRM_BUTTONS) && (g_shop_confirm_choice != 0)))
+        {
+            g_shop_windows[SHOP_POPUP_WINDOW].frame.bits.state = SHOP_WINDOW_FREE;
+            field_play_sound(SFX_CANCEL, AKAO_SFX_DEFAULT_VOLUME);
+            g_shop_prompt_active = 0;
+            field_reset_input_repeat();
+        }
+    }
+
+    text = FIELD_UI_TEXT_AT(g_field_ui_text_confirm, FIELD_UI_TEXT_CONFIRM);
+    text_table = FIELD_UI_TEXT_TABLE(g_field_ui_text_confirm, FIELD_UI_TEXT_CONFIRM);
+    prim = field_draw_text((SPRT*)prim, ot, text, FIELD_TEXT_COLOR_NORMAL, 96 - x_inset, -y, FIELD_TEXT_ALIGN_CENTER);
+
+    color = FIELD_TEXT_COLOR_NORMAL;
+    text = FIELD_UI_TEXT(text_table, FIELD_UI_TEXT_YES);
+
+    if (g_shop_confirm_choice != 0)
+    {
+        color = FIELD_TEXT_COLOR_DIM;
+    }
+
+    row_y = 16 - y;
+    prim = field_draw_text((SPRT*)prim, ot, text, color, 88 - x_inset, row_y, FIELD_TEXT_ALIGN_RIGHT);
+
+    color = FIELD_TEXT_COLOR_DIM;
+    text = FIELD_UI_TEXT(text_table, FIELD_UI_TEXT_NO);
+
+    if (g_shop_confirm_choice != 0)
+    {
+        color = FIELD_TEXT_COLOR_NORMAL;
+    }
+
+    prim = field_draw_text((SPRT*)prim, ot, text, color, 104 - x_inset, row_y, FIELD_TEXT_ALIGN_LEFT);
+    return prim;
+}

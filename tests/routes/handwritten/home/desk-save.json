@@ -1,0 +1,222 @@
+{
+ "format": 1,
+ "id": "home-desk-save",
+ "description": "Saving at the bedroom desk should write the game to the memory card, and the save should read back",
+ "start": {
+  "save": "../saves/home-bedroom-new-game.json"
+ },
+ "steps": [
+  {
+   "checkpoint": "loaded"
+  },
+  {
+   "wait": 220
+  },
+  {
+   "press": {
+    "buttons": [
+     "up"
+    ],
+    "frames": 10
+   },
+   "note": "up to the desk"
+  },
+  {
+   "wait": 130
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 89
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 69
+  },
+  {
+   "press": {
+    "buttons": [
+     "right"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 29
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 29
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 99
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 79
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "circle"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 19
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 99
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "circle"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 100
+  },
+  {
+   "checkpoint": "saved"
+  }
+ ],
+ "expect_save": {
+  "scene_id": 19,
+  "spawn": 6
+ }
+}

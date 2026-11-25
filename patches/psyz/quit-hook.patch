@@ -1,0 +1,27 @@
+Let the game handle a quit request, so it can stop audio and the platform in
+order, instead of exiting the process.
+
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -48,6 +48,10 @@
+ static bool is_platform_initialized = false;
+ static bool is_platform_init_successful = false;
+ static SDL_AtomicInt quit_requested = {0};
++static void (*lom_native_quit_hook)(void);
++void lom_native_psyz_set_quit_hook(void (*hook)(void)) {
++    lom_native_quit_hook = hook;
++}
+ static SDL_AtomicInt app_in_background = {0};
+ static SDL_AtomicInt timing_reset_requested = {0};
+ static SDL_AtomicInt resume_audio_on_foreground = {0};
+@@ -935,6 +939,10 @@
+     }
+ #ifndef PLATFORM_IOS
+     if (Psyz_QuitRequested()) {
++        if (lom_native_quit_hook) {
++            lom_native_quit_hook();
++            return;
++        }
+         QuitPlatform();
+         exit(0);
+     }

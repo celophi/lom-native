@@ -1,0 +1,28 @@
+{
+  "format": 1,
+  "id": "mgc-mgc-bs01-setup",
+  "description": "Coming into MGC_BS01 (scene 799) with a golem in the party should run layout record 0's set-up script, which loads the golem's saved group (menu op 0x5e)",
+  "start": {
+    "save": "saves/mgc_bs01-setup.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 799,
+        "from": 1,
+        "spawn": 0
+      },
+      "note": "the way in from the world map"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "watch": 3000,
+      "note": "layout record 0's set-up script"
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

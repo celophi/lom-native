@@ -1,0 +1,2461 @@
+#include "common.h"
+#include <libetc.h>
+#include <libgpu.h>
+#include <libgte.h>
+#include <memory.h>
+#include "lom_native_input.h"
+#include "lom_native_overlay_entry.h"
+#include "lom_native_sound.h"
+#include "lom_native_graphics.h"
+#include "lom_native_gpu_packets.h"
+
+#include "common/pad.h"
+#include "../internal/field_actor_routes.h"
+#include "../internal/field_actor_runtime.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_effect_render_state.h"
+#include "../internal/field_menu_element.h"
+#include "../internal/field_modal_runtime.h"
+#include "../internal/field_records.h"
+#include "common/encoded_text.h"
+#include "common/gpu_packet.h"
+#include "common/render_context.h"
+#include "common/saved_game.h"
+#include "common/vector.h"
+#include "main/audio/akao.h"
+#include "main/audio/akao_cmd.h"
+#include "main/cd_resources.h"
+#include "main/cdrom.h"
+#include "main/controller_internal.h"
+#include "main/display.h"
+#include "main/field_runtime.h"
+#include "main/game_state.h"
+#include "main/overlay_memory.h"
+#include "main/main.h"
+#include "overlays/field/field_input.h"
+#include "overlays/field/field_numeric_sprites.h"
+#include "overlays/addhero/addhero.h"
+#include "overlays/field/field_overlay_handoff.h"
+#include "overlays/golem/golem.h"
+#include "overlays/gosub/gosub.h"
+#include "overlays/menu/menu.h"
+#include "overlays/shop/shop.h"
+#include "overlays/field/field_scene_transition.h"
+#include "overlays/field/field_sound.h"
+#include "overlays/field/field_text.h"
+#include "overlays/field/field_ui_text.h"
+#include "overlays/gname/gname.h"
+#include "overlays/zukan/zukan.h"
+#include "overlays/field/internal/field_records.h"
+#include "overlays/field/internal/field_calls.h"
+#include "lom_native_ps1_memory.h"
+#include <stdint.h>
+
+extern s32 lom_native_shop_update(FieldRenderHalf* render);
+
+#define FIELD_DIALOG_ITEM_LIMIT 10
+
+#define FIELD_INPUT_RESET_COMBINATION (PADh | PADselect | PADL1 | PADL2 | PADR1 | PADR2)
+
+#define FIELD_TEXT_OT_INDEX 15
+
+#define FIELD_LABEL_SELECTED_SCALE 0x80
+#define FIELD_LABEL_MIN_Y 50
+#define FIELD_LABEL_MAX_Y 176
+#define FIELD_LABEL_GLYPH_HALF_WIDTH 6
+#define FIELD_LABEL_LEFT_BRACKET 12
+#define FIELD_LABEL_RIGHT_BRACKET 13
+#define FIELD_LABEL_MARGIN 8
+#define FIELD_LABEL_SELECTED_DIGITS (FIELD_DIGIT_OUTLINE | 1)
+#define FIELD_LABEL_NORMAL_DIGITS (FIELD_DIGIT_OUTLINE | 2)
+#define FIELD_HINT_BUTTON_COUNT 8
+#define FIELD_HINT_PORTRAIT_X 96
+#define FIELD_HINT_PORTRAIT_Y 60
+#define FIELD_HINT_TEXT_X 128
+#define FIELD_HINT_TEXT_Y 64
+
+#define FIELD_SOUND_MENU_OPEN 0x80
+#define FIELD_SOUND_LOW_HP 0xA6
+#define FIELD_SOUND_EMPTY_SHOP 0xC7
+#define FIELD_SOUND_DUEL_INTRO 0x125
+#define FIELD_SOUND_DUEL_RESULT 0x126
+#define FIELD_SOUND_DUEL_PANEL_OUT 0x127
+
+#define FIELD_WEAPON_TYPE_UNSET 0xFF
+#define FIELD_COMPANION_GOLEM_ID_BASE 0x41
+#define FIELD_COMMAND_BUTTON_ACTION 2
+#define FIELD_SKILL_ACTION_BASE 4
+#define FIELD_TECHNIQUE_ANIMATION 2
+
+#define FIELD_MENU_RENDER_BUFFERS ((void*)SECONDARY_OVERLAY_AT(0x30000))
+#define FIELD_SHOP_WORK_BUFFER ((void*)SECONDARY_OVERLAY_AT(0x10000))
+#define FIELD_GOSUB_WORK_BUFFER ((void*)SECONDARY_OVERLAY_AT(0x35000))
+
+#define FIELD_GOSUB_IDLE 0
+#define FIELD_GOSUB_CLOSING 1
+#define FIELD_GOSUB_RUNNING 2
+
+#define FIELD_DUEL_TEXT_SCALE 0x180
+#define FIELD_DUEL_TITLE_SCALE 0x200
+#define FIELD_DUEL_WINNER_SCALE 0x1C0
+#if defined(VERSION_JP)
+#define FIELD_DUEL_WIDE_NUMBERS 1
+#else
+#define FIELD_DUEL_WIDE_NUMBERS 0
+#endif
+#define FIELD_DUEL_TEXT_SLANT (-4)
+#define FIELD_DUEL_PANEL_HOLD_FRAMES 90
+#define FIELD_DUEL_PANEL_START_OFFSET 500
+#define FIELD_DUEL_PANEL_END_OFFSET (-100)
+
+#define FIELD_DUEL_PANEL_MOVING (g_field_duel_panel_phase == FIELD_DUEL_SLIDE_IN || g_field_duel_panel_phase == FIELD_DUEL_SLIDE_OUT)
+
+typedef enum FieldDuelPanelPhase
+{
+    FIELD_DUEL_SLIDE_IN,
+    FIELD_DUEL_HOLD,
+    FIELD_DUEL_SLIDE_OUT,
+    FIELD_DUEL_FINISHED
+} FieldDuelPanelPhase;
+
+extern u8 g_field_command_names[];
+extern u8 g_field_instrument_icons[];
+
+extern u8 g_field_selected_actor_label;
+extern u8 g_field_label_actor_indices[];
+extern u8 g_field_label_actor_count;
+extern u8 g_field_label_saved_scale_x[];
+extern u8 g_field_label_saved_scale_y[];
+extern s32 g_field_text_session_cd_error;
+extern s32 g_field_draw_count;
+
+extern s32 g_field_primary_held_buttons;
+extern s32 g_field_secondary_held_buttons;
+
+extern u8 g_field_menu_controller_types[CONTROLLER_PORT_COUNT];
+
+extern s32 g_field_gosub_phase;
+extern s32 g_field_shop_active;
+extern s32 g_field_shop_notice_hidden;
+extern s32 g_field_duel_panel_phase;
+extern s32 g_field_duel_panel_offset;
+extern s32 g_field_duel_panel_hold_frames;
+extern s32 g_field_duel_winner;
+
+POLY_FT4* field_text_draw_scaled_quad(POLY_FT4* packet_cursor, OT_TYPE* ot, u8* text, s32 color, s32 x, s32 y, s32 align, s32 slot, s32 scale_x, s32 scale_y,
+                                      s32 arg10, s32 visible);
+
+s32 field_name_byte_length(u8* name);
+void field_copy_name(u8* destination, u8* source);
+void field_append_name(u8* destination, const u8* source);
+void field_draw_text_session(FieldRenderHalf* render);
+void field_restore_label_actor_parts(void);
+static void field_init_actor_labels(void);
+static void field_draw_cd_error_text(FieldRenderHalf* render);
+static void field_draw_actor_labels(FieldRenderHalf* render);
+static void field_play_low_hp_warning(void);
+static void field_update_text_session(void);
+static void field_run_menu(void* render_buffers, s32 controller);
+static void field_begin_text_session(void);
+static void field_update_modal_text_session(FieldRenderHalf* render);
+static void field_begin_empty_shop_notice(s32 hidden);
+static void field_draw_empty_shop_notice(FieldRenderHalf* render);
+static s32 field_draw_duel_intro(FieldRenderHalf* render);
+static s32 field_draw_duel_result(FieldRenderHalf* render);
+
+/**
+ * @brief Address of the FIELD UI string an offset entry points at.
+ * @param entry Offset entry, one of the g_field_ui_text_* symbols.
+ * @param index FIELD_UI_TEXT_* index of @p entry; its offset counts from the table start.
+ * @return The entry's string.
+ */
+static inline u8* field_dialog_text(FieldUiTextOffset* entry, s32 index)
+{
+    return (u8*)(entry->low + ((entry->high << 8) + (uintptr_t)(entry - index)));
+}
+
+/**
+ * @brief Build the glyph sprites of a text line and add them to the ordering table.
+ * @param sprite_cursor First free sprite; the glyph sprites are built here.
+ * @param ot Ordering table entry receiving the sprites.
+ * @param text Encoded text; an empty string draws nothing.
+ * @param text_color Text color passed to the glyph builder.
+ * @param x Left edge, or the right edge / center for FIELD_TEXT_ALIGN_RIGHT / FIELD_TEXT_ALIGN_CENTER.
+ * @param y Top edge.
+ * @param flags Alignment in FIELD_TEXT_ALIGN_MASK, plus FIELD_TEXT_SHADOW for the black outline copies.
+ * @return First free primitive after the text and its closing DR_TPAGE.
+ */
+void* field_draw_text(SPRT* sprite_cursor, OT_TYPE* ot, u8* text, s32 text_color, s32 x, s32 y, s32 flags)
+{
+    s32 glyph_count;
+    s32 remaining;
+    s32 i;
+    s32 advance;
+    SPRT* sprite;
+    DR_TPAGE* tpage;
+
+    if (*text == 0)
+    {
+        return sprite_cursor;
+    }
+
+    glyph_count = field_text_build_sprites(sprite_cursor, text, text_color);
+    remaining = glyph_count;
+
+    if ((flags & FIELD_TEXT_ALIGN_MASK) != FIELD_TEXT_ALIGN_RIGHT)
+    {
+        if ((flags & FIELD_TEXT_ALIGN_MASK) == FIELD_TEXT_ALIGN_CENTER)
+        {
+            sprite = sprite_cursor;
+
+            for (i = 0; i < remaining; i++)
+            {
+                x -= sprite[i].w >> 1;
+            }
+        }
+    }
+    else
+    {
+        sprite = sprite_cursor;
+
+        for (i = 0; i < remaining; i++)
+        {
+            x -= sprite[i].w;
+        }
+    }
+
+    advance = 0;
+
+    for (; remaining != 0; sprite_cursor++, remaining--)
+    {
+        sprite = sprite_cursor;
+        SET_BGR0_PACKED(sprite, GPU_TINT_NEUTRAL);
+        lom_gpu_init_sprite(sprite);
+        lom_gpu_set_xy0(sprite, x + advance, y);
+        advance += sprite->w;
+
+        lom_gpu_link(ot, sprite);
+    }
+
+    if (flags & FIELD_TEXT_SHADOW)
+    {
+        sprite_cursor = field_add_sprite_outline(ot, sprite_cursor, glyph_count);
+    }
+
+    tpage = (DR_TPAGE*)sprite_cursor;
+    lom_gpu_init_tpage_packet(tpage, 0, 0, FIELD_UI_TPAGE(GPU_BLEND_HALF));
+    lom_gpu_link(ot, tpage);
+
+    return tpage + 1;
+}
+
+/**
+ * @brief Draw a signed decimal number as text.
+ * @param ot Ordering table entry receiving the sprites.
+ * @param sprite_cursor First free sprite.
+ * @param value Number to draw.
+ * @param text_color Text color.
+ * @param position X and y of the text.
+ * @param flags field_draw_text alignment and shadow flags.
+ * @return First free primitive after the text.
+ */
+void* field_draw_number(OT_TYPE* ot, SPRT* sprite_cursor, s32 value, s32 text_color, Vec2s* position, s32 flags)
+{
+    u8 text[64];
+
+    field_format_number(text, value, 0);
+    return field_draw_text(sprite_cursor, ot, text, text_color, position->x, position->y, flags);
+}
+
+/**
+ * @brief Draw a signed decimal number as text, asking the formatter for double-byte digits.
+ * @param ot Ordering table entry receiving the sprites.
+ * @param sprite_cursor First free sprite.
+ * @param value Number to draw.
+ * @param text_color Text color.
+ * @param position X and y of the text.
+ * @param flags field_draw_text alignment and shadow flags.
+ * @return First free primitive after the text.
+ * @note JP uses double-byte digits; US uses the same digits as field_draw_number.
+ */
+void* field_draw_number_wide(OT_TYPE* ot, SPRT* sprite_cursor, s32 value, s32 text_color, Vec2s* position, s32 flags)
+{
+    u8 text[64];
+
+    field_format_number(text, value, 1);
+    return field_draw_text(sprite_cursor, ot, text, text_color, position->x, position->y, flags);
+}
+
+/**
+ * @brief Format a signed decimal number (up to eight digits) as encoded text.
+ * @param text Buffer receiving the text and its terminator.
+ * @param number Number to format; a negative number starts with the bank's minus sign.
+ * @param wide_request Double-byte digits requested by field_draw_number_wide; ignored in US.
+ * @note The US double-byte branch tests a local that is always zero, so the digits are always single-byte.
+ *       JP honours @p wide_request.
+ */
+#if defined(VERSION_JP)
+inline void field_format_number(u8* text, s32 number, s32 wide_request)
+{
+    u8* minus;
+    s32 divisor;
+    s32 started;
+    s32 digit;
+
+    if (number < 0)
+    {
+        number = -number;
+        minus = field_dialog_text(&g_field_ui_text_minus, FIELD_UI_TEXT_MINUS);
+        field_copy_name(text, minus);
+        text += field_name_byte_length(minus);
+    }
+
+    divisor = 10000000;
+    started = 0;
+
+    while (divisor != 0)
+    {
+        digit = number / divisor;
+
+        if (digit != 0)
+        {
+            started = 1;
+        }
+
+        if (started || divisor == 1)
+        {
+            if (wide_request)
+            {
+                *text++ = FIELD_TEXT_DIGIT_LEAD;
+                *text = digit;
+            }
+            else
+            {
+                *text = digit + '0';
+            }
+
+            text++;
+            number -= (number / divisor) * divisor;
+        }
+
+        divisor /= 10;
+    }
+
+    *text = 0;
+}
+#else
+inline void field_format_number(u8* text, s32 number, s32 wide_request)
+{
+    u8* cursor;
+    s32 value;
+    s32 double_byte;
+    u8* minus;
+    s32 divisor;
+    s32 started;
+    s32 digit;
+
+    cursor = text;
+    value = number;
+    double_byte = 0;
+
+    if (value < 0)
+    {
+        value = -value;
+        minus = field_dialog_text(&g_field_ui_text_minus, FIELD_UI_TEXT_MINUS);
+        field_copy_name(cursor, minus);
+        cursor += field_name_byte_length(minus);
+    }
+
+    divisor = 10000000;
+    started = 0;
+
+    while (divisor != 0)
+    {
+        digit = value / divisor;
+
+        if (digit != 0)
+        {
+            started = 1;
+        }
+
+        if (started || divisor == 1)
+        {
+            if (double_byte)
+            {
+                *cursor++ = FIELD_TEXT_DIGIT_LEAD;
+                *cursor = digit;
+            }
+            else
+            {
+                *cursor = digit + '0';
+            }
+
+            cursor++;
+            value -= (value / divisor) * divisor;
+        }
+
+        divisor /= 10;
+    }
+
+    *cursor = 0;
+}
+#endif
+
+/**
+ * @brief Bind the field input and inventory context to the loaded saved game.
+ */
+void field_bind_saved_game_context(void)
+{
+    g_saved_game_ctx = (SavedGameLayout*)g_saved_game.bytes;
+}
+
+/**
+ * @brief Save the field entry settings, current land, and current save slot.
+ * @param scene_id Scene to re-enter.
+ * @param object_id Field object selected for the render context.
+ * @param music_id Primary music resource.
+ * @param spawn_id Spawn record; only the low 25 bits are replaced.
+ * @param sound_bank_id Sound-bank resource.
+ * @param secondary_music_id Secondary music resource.
+ */
+void field_store_entry_settings(s16 scene_id, s8 object_id, s8 music_id, s32 spawn_id, s32 sound_bank_id, s32 secondary_music_id)
+{
+    g_saved_game_ctx->scene_id = scene_id;
+    g_saved_game_ctx->object_id = object_id;
+    g_saved_game_ctx->music_id = music_id;
+    g_saved_game_ctx->spawn.bits.id = spawn_id;
+    g_saved_game_ctx->sound_bank_id = sound_bank_id;
+    g_saved_game_ctx->secondary_music_id = secondary_music_id;
+    g_saved_game_ctx->location.bits.current_land = g_current_land;
+    g_saved_game_ctx->compatibility_tag = g_save_compatibility_tag;
+}
+
+/**
+ * @brief Append text and its quantity to the field dialog item list.
+ * @param text Address of the encoded item text.
+ * @param quantity Quantity displayed alongside the text.
+ */
+void field_append_dialog_item(u8* text, u8 quantity)
+{
+    s32 index = g_field_dialog_item_count;
+
+    if (index < FIELD_DIALOG_ITEM_LIMIT)
+    {
+        g_field_dialog_item_texts[index] = text;
+        g_field_dialog_item_quantities[index] = quantity;
+        g_field_dialog_item_count++;
+    }
+}
+
+/**
+ * @brief Count encoded name bytes, excluding the terminator.
+ * @param name NUL-terminated name; lead bytes 0x19 through 0x1F begin two-byte glyphs.
+ * @return Number of bytes before the terminator.
+ */
+s32 field_name_byte_length(u8* name)
+{
+    s32 count;
+    u8 character;
+
+    count = 0;
+    character = *name;
+
+    while (character != 0)
+    {
+        if (ENCODED_TEXT_IS_DOUBLE_BYTE_LEAD(character))
+        {
+            name += NAME_GLYPH_SIZE_DOUBLE;
+            count += NAME_GLYPH_SIZE_DOUBLE;
+        }
+        else
+        {
+            name += NAME_GLYPH_SIZE_SINGLE;
+            count += NAME_GLYPH_SIZE_SINGLE;
+        }
+
+        character = *name;
+    }
+
+    return count;
+}
+
+/**
+ * @brief Copy an encoded name, including its terminator.
+ * @param destination Buffer receiving the name.
+ * @param source NUL-terminated encoded name.
+ */
+void field_copy_name(u8* destination, u8* source)
+{
+    u8* cursor;
+    s32 byte_count;
+    s32 byte_index;
+
+    cursor = source;
+    byte_count = 0;
+
+    while (*cursor != 0)
+    {
+        if (ENCODED_TEXT_IS_DOUBLE_BYTE_LEAD(*cursor))
+        {
+            cursor += NAME_GLYPH_SIZE_DOUBLE;
+            byte_count += NAME_GLYPH_SIZE_DOUBLE;
+        }
+        else
+        {
+            cursor += NAME_GLYPH_SIZE_SINGLE;
+            byte_count += NAME_GLYPH_SIZE_SINGLE;
+        }
+    }
+
+    for (byte_index = 0; byte_index < byte_count; byte_index++)
+    {
+        destination[byte_index] = source[byte_index];
+    }
+
+    destination[byte_index] = 0;
+}
+
+/**
+ * @brief Append a NUL-terminated name onto another, honouring two-byte codes.
+ * @param destination Existing name; the source is appended after its last glyph.
+ * @param source Name to append.
+ */
+inline void field_append_name(u8* destination, const u8* source)
+{
+    const u8* destination_cursor;
+    s32 destination_byte_count;
+    const u8* source_cursor;
+    s32 source_byte_count;
+    s32 append_offset;
+    s32 byte_index;
+
+    destination_cursor = destination;
+    destination_byte_count = 0;
+
+    while (*destination_cursor)
+    {
+        if (ENCODED_TEXT_IS_DOUBLE_BYTE_LEAD(*destination_cursor))
+        {
+            destination_cursor += NAME_GLYPH_SIZE_DOUBLE;
+            destination_byte_count += NAME_GLYPH_SIZE_DOUBLE;
+        }
+        else
+        {
+            destination_cursor += NAME_GLYPH_SIZE_SINGLE;
+            destination_byte_count += NAME_GLYPH_SIZE_SINGLE;
+        }
+    }
+
+    source_cursor = source;
+    source_byte_count = 0;
+    append_offset = destination_byte_count;
+
+    while (*source_cursor)
+    {
+        if (ENCODED_TEXT_IS_DOUBLE_BYTE_LEAD(*source_cursor))
+        {
+            source_cursor += NAME_GLYPH_SIZE_DOUBLE;
+            source_byte_count += NAME_GLYPH_SIZE_DOUBLE;
+        }
+        else
+        {
+            source_cursor += NAME_GLYPH_SIZE_SINGLE;
+            source_byte_count += NAME_GLYPH_SIZE_SINGLE;
+        }
+    }
+
+    for (byte_index = 0; byte_index < source_byte_count; byte_index++)
+    {
+        destination[byte_index + append_offset] = source[byte_index];
+    }
+
+    destination[byte_index + append_offset] = 0;
+}
+
+/**
+ * @brief Append a FIELD UI string onto a name.
+ * @param destination Name to extend.
+ * @param entry Offset entry of the string, one of the g_field_ui_text_* symbols.
+ * @param index FIELD_UI_TEXT_* index of @p entry.
+ */
+static inline void field_append_dialog_text(u8* destination, FieldUiTextOffset* entry, s32 index)
+{
+    uintptr_t text;
+
+    text = (entry->high << 8) + entry->low;
+    text += (uintptr_t)(entry - index);
+    field_append_name(destination, (u8*)text);
+}
+
+/**
+ * @brief Copy one saved inventory record.
+ * @param destination Buffer receiving the record.
+ * @param source Record to copy.
+ */
+void field_copy_inventory_record(FieldItemRecord* destination, FieldItemRecord* source)
+{
+    u8* write;
+    u8* read;
+    u32 byte_index;
+
+    write = destination->name;
+    read = source->name;
+    byte_index = 0;
+
+    while (byte_index < sizeof(FieldItemRecord))
+    {
+        byte_index++;
+        *write++ = *read++;
+    }
+}
+
+/**
+ * @brief Close gaps in the saved inventory and mark the remaining slots free.
+ * @note Record data beyond the occupancy byte is retained in free slots.
+ */
+void field_compact_inventory(void)
+{
+    s32 record_index;
+    FieldItemRecord* write_record;
+    FieldItemRecord* read_record;
+
+    record_index = 0;
+    write_record = g_saved_game_ctx->items;
+    read_record = write_record;
+
+    for (; record_index < FIELD_ITEM_COUNT; record_index++, read_record++)
+    {
+        if (read_record->name[0] != 0)
+        {
+            if (read_record != write_record)
+            {
+                bcopy((u8*)read_record, (u8*)write_record, sizeof(*read_record));
+                read_record->name[0] = 0;
+            }
+
+            write_record++;
+        }
+    }
+
+    while (write_record < &g_saved_game_ctx->items[FIELD_ITEM_COUNT])
+    {
+        write_record->name[0] = 0;
+        write_record++;
+    }
+}
+
+/**
+ * @brief Find a free slot in the saved inventory.
+ * @return The first free record, or NULL when the inventory is full.
+ */
+FieldItemRecord* field_find_free_inventory_record(void)
+{
+    s32 record_index;
+    FieldItemRecord* record;
+
+    record = g_saved_game_ctx->items;
+
+    for (record_index = 0; record_index < FIELD_ITEM_COUNT; record_index++)
+    {
+        if (record->name[0] == 0)
+        {
+            return record;
+        }
+
+        record++;
+    }
+
+    return NULL;
+}
+
+/**
+ * @brief Draw the CD error text or the actor labels, then upload the text cache.
+ * @param render Render half receiving the text primitives.
+ */
+inline void field_draw_text_session(FieldRenderHalf* render)
+{
+    field_text_reset_scratch();
+
+    if (g_field_text_session_cd_error)
+    {
+        field_draw_cd_error_text(render);
+    }
+    else
+    {
+        field_draw_actor_labels(render);
+    }
+
+    field_text_upload_immediate_cache();
+}
+
+/**
+ * @brief Restore the part scales saved before displaying actor labels.
+ */
+inline void field_restore_label_actor_parts(void)
+{
+    s32 index;
+    FieldObjectPart* part;
+
+    lom_sound_play_sound(SFX_CONFIRM);
+
+    for (index = 0; index < g_field_label_actor_count; index++)
+    {
+        part = &g_field_object_parts[g_field_label_actor_indices[index]];
+        part->appearance.fields.scale_xz = g_field_label_saved_scale_x[index];
+        part->scale_y = g_field_label_saved_scale_y[index];
+    }
+}
+
+/**
+ * @brief Collect the living named actors of the active group as labels and save their part scales.
+ */
+static void field_init_actor_labels(void)
+{
+    FieldActor* actor;
+    FieldObjectState* state;
+    s32 actor_index;
+
+    field_reset_input_repeat();
+    lom_sound_pause(2);
+    field_fade_song(0, 60, 0);
+    lom_sound_play_sound(SFX_CONFIRM);
+    actor = &g_field_actors[FIELD_PARTY_COUNT];
+    actor_index = FIELD_PARTY_COUNT;
+    state = &g_field_object_states[FIELD_PARTY_COUNT];
+    g_field_label_actor_count = 0;
+    g_field_selected_actor_label = 0;
+
+    for (; actor_index < FIELD_ACTOR_COUNT; actor_index++, state++, actor++)
+    {
+        if (actor->presence != FIELD_ACTOR_UNUSED && state->current_hp.word != 0 && g_field_active_group == (state->group.flags & FIELD_OBJECT_GROUP_MASK) &&
+            state->label.name != NULL)
+        {
+            g_field_label_actor_indices[g_field_label_actor_count] = actor_index;
+            g_field_label_saved_scale_x[g_field_label_actor_count] = g_field_object_parts[actor_index].appearance.fields.scale_xz;
+            g_field_label_saved_scale_y[g_field_label_actor_count] = g_field_object_parts[actor_index].scale_y;
+            g_field_label_actor_count++;
+        }
+    }
+}
+
+/**
+ * @brief Draw the status text of the current CD-ROM error.
+ * @param render Render half receiving the text.
+ */
+static void field_draw_cd_error_text(FieldRenderHalf* render)
+{
+    SPRT* primitive;
+    OT_TYPE* ordering_table;
+    Vec2s unused[2];
+
+    primitive = (SPRT*)render->primitive_cursor;
+    ordering_table = &render->ordering_table[FIELD_TEXT_OT_INDEX];
+
+    if (cdrom_get_error_status() == 2)
+    {
+        primitive = field_draw_text(primitive, ordering_table, field_dialog_text(&g_field_ui_text_check_disc, FIELD_UI_TEXT_CHECK_DISC),
+                                    FIELD_TEXT_COLOR_NORMAL, SCREEN_WIDTH / 2, 100, FIELD_TEXT_SHADOW | FIELD_TEXT_ALIGN_CENTER);
+    }
+    else
+    {
+        primitive = field_draw_text(primitive, ordering_table, field_dialog_text(&g_field_ui_text_disc_error, FIELD_UI_TEXT_DISC_ERROR),
+                                    FIELD_TEXT_COLOR_NORMAL, SCREEN_WIDTH / 2, 100, FIELD_TEXT_SHADOW | FIELD_TEXT_ALIGN_CENTER);
+    }
+
+    render->primitive_cursor = (u8*)primitive;
+}
+
+/**
+ * @brief Draw each player's held-button action hint and the labels of the selectable actors.
+ * @param render Render half receiving the text.
+ * @note A player's hint shows the action bound to the first held button among the eight hint buttons.
+ * @note JP reads the face buttons without the US cross/circle and square/triangle swap.
+ */
+static void field_draw_actor_labels(FieldRenderHalf* render)
+{
+    Vec2s point;
+    FieldUiTextOffset* bank_entry;
+    s32 text_color;
+    u16 text_offset;
+    s32 work;
+    uintptr_t text_or_state;
+    uintptr_t bank;
+    s32 record_offset;
+    s32 screen_y;
+    s32 screen_x;
+    OT_TYPE* ot;
+    s32 label_half_width;
+    OT_TYPE* number_ot;
+    s32 camera_x;
+    s32 camera_y;
+    OT_TYPE* text_ot;
+    OT_TYPE* left_glyph_ot;
+    OT_TYPE* right_glyph_ot;
+    s32 button_or_x;
+    s32 index;
+    u8* cursor;
+    s32 action_offset;
+    s32 label_y;
+    u16 raw_buttons;
+    s32 bit_or_actor;
+#if defined(LOM_NATIVE_POINTERS)
+    intptr_t action;
+#else
+    s32 action;
+#endif
+    s32 secondary_action;
+    s32 secondary_action_alt;
+    uintptr_t text_value;
+    FieldObjectPart* highlight_part;
+    FieldActor* actor;
+    FieldObjectPart* normal_part;
+    ControllerPortState* port;
+    uintptr_t text_part;
+    ControllerPortState* ports;
+    s32 record_base_offset;
+    s32 held_buttons;
+    SavedGameLayout* save;
+
+    cursor = (u8*)render->primitive_cursor;
+    ot = &render->ordering_table[FIELD_TEXT_OT_INDEX];
+    index = 0;
+    ports = lom_input_ports();
+
+    for (; index < FIELD_PLAYER_COUNT; index++)
+    {
+        action_offset = index * sizeof(FieldActionRow);
+
+        port = &ports[index];
+
+        if ((g_field_player_records[index].head.bytes.flags & FIELD_PLAYER_ACTIVE) && (port->published_sample.device_type < CONTROLLER_DEVICE_CONFIGURING))
+        {
+            bit_or_actor = 1;
+            button_or_x = 0;
+            bank = (uintptr_t)g_field_ui_text_table;
+            record_offset = index * sizeof(FieldCharacterRecord);
+            raw_buttons = port->published_sample.held_buttons;
+            record_base_offset = index * sizeof(FieldCharacterRecord) + OFFSETOF(SavedGameLayout, characters);
+            held_buttons = ((raw_buttons << 8) & 0xFF00) | (raw_buttons >> 8);
+#if !defined(VERSION_JP)
+            held_buttons = PAD_REMAP_FACE_BITS_16(held_buttons);
+#endif
+            while (button_or_x < FIELD_HINT_BUTTON_COUNT)
+            {
+                if (held_buttons & bit_or_actor)
+                {
+                    save = (SavedGameLayout*)((u8*)g_saved_game_ctx + record_offset);
+                    action = save->characters[0].button_actions[g_field_hint_button_map[button_or_x]];
+
+                    switch (action)
+                    {
+                    case FIELD_COMMAND_BUTTON_ACTION:
+                    case FIELD_COMMAND_BUTTON_ACTION + 1:
+                        text_part = (uintptr_t)&g_field_resource_actions->slots[-FIELD_COMMAND_BUTTON_ACTION] + action_offset;
+                        action *= sizeof(FieldActionSlot);
+                        work = ((FieldActionSlot*)(text_part + action))->command & FIELD_ACTION_TECHNIQUE_MASK;
+                        text_value = (uintptr_t)g_field_command_names;
+                        text_part = ((u16*)text_value)[work];
+                        text_or_state = text_part + text_value;
+                        break;
+
+                    case 0:
+#if defined(VERSION_JP)
+                        work = save->characters[0].info.bytes[0];
+
+                        switch (work & FIELD_CHARACTER_TYPE_MASK)
+#else
+                        switch (save->characters[0].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK)
+#endif
+                        {
+                        case FIELD_CHARACTER_GUEST:
+                            secondary_action = save->characters[0].info.bytes[1];
+
+                            if ((secondary_action == 5) || (secondary_action == 8))
+                            {
+                                text_offset = g_field_ui_text_dashes.high << 8;
+                                text_part = text_offset + bank;
+                                text_value = g_field_ui_text_dashes.low;
+                                text_or_state = text_part + text_value;
+                                break;
+                            }
+
+                        default:
+                            bank_entry = &g_field_ui_text_quick_attacks;
+                            text_part = bank_entry->high;
+                            text_value = g_field_ui_text_quick_attacks.low;
+                            text_part <<= 8;
+                            text_part += bank;
+                            text_or_state = text_part + text_value;
+                            break;
+                        }
+
+                        break;
+                    case 1:
+                        switch (save->characters[0].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK)
+                        {
+                        case FIELD_CHARACTER_GUEST:
+                            secondary_action_alt = save->characters[0].info.bytes[1];
+
+                            if ((secondary_action_alt == 5) || (secondary_action_alt == 8))
+                            {
+                                text_offset = g_field_ui_text_dashes.high << 8;
+                                text_part = text_offset + bank;
+                                text_value = g_field_ui_text_dashes.low;
+                                text_or_state = text_part + text_value;
+                                break;
+                            }
+
+                        default:
+                            text_part = g_field_ui_text_power_attacks.high;
+                            text_part <<= 8;
+                            text_part += bank;
+                            text_value = g_field_ui_text_power_attacks.low;
+                            text_or_state = text_part + text_value;
+                            break;
+                        }
+
+                        break;
+                    default:
+                        text_value = (uintptr_t)g_field_technique_names;
+                        work = ((SavedGameLayout*)((u8*)g_saved_game_ctx + record_offset))->characters[0].info.bytes[action];
+
+                        if (work == FIELD_SKILL_NONE)
+                        {
+                            text_offset = g_field_ui_text_dashes.high << 8;
+                            text_part = text_offset + bank;
+                            text_value = g_field_ui_text_dashes.low;
+                            text_or_state = text_part + text_value;
+                        }
+                        else
+                        {
+                            if (work & FIELD_SKILL_INSTRUMENT)
+                            {
+                                text_offset = work & ~FIELD_SKILL_INSTRUMENT;
+                                text_or_state = (uintptr_t)&((FieldCharacterRecord*)((u8*)g_saved_game_ctx + record_base_offset))->instruments[text_offset];
+                            }
+                            else
+                            {
+                                action = (uintptr_t)&g_field_resource_actions->slots[action];
+                                work = ((FieldActionSlot*)(index * sizeof(FieldActionRow) + action))->command;
+                                work &= FIELD_ACTION_TECHNIQUE_MASK;
+                                text_value = g_field_player_records[index].head.bytes.weapon_type;
+                                work += text_value * FIELD_TECHNIQUES_PER_WEAPON;
+
+                                text_value = (uintptr_t)g_field_technique_names;
+                                text_part = ((u16*)text_value)[work];
+                                text_or_state = text_part + text_value;
+                            }
+                        }
+
+                        break;
+                    }
+
+                    label_y = index;
+                    point.x = FIELD_HINT_PORTRAIT_X;
+                    label_y <<= 5;
+                    point.y = label_y + FIELD_HINT_PORTRAIT_Y;
+                    cursor = (u8*)field_emit_actor_portrait((SPRT*)cursor, ot, index, &point);
+                    cursor = (u8*)field_draw_text((SPRT*)cursor, ot, (u8*)text_or_state, FIELD_TEXT_COLOR_NORMAL, FIELD_HINT_TEXT_X,
+                                                  label_y + FIELD_HINT_TEXT_Y, FIELD_TEXT_SHADOW);
+                    break;
+                }
+                else
+                {
+                    button_or_x++;
+                    bit_or_actor *= 2;
+                }
+            }
+        }
+    }
+
+    for (index = 0; index < (s32)g_field_label_actor_count; index++)
+    {
+        bit_or_actor = g_field_label_actor_indices[index];
+        camera_x = g_field_view_offset_x;
+        text_or_state = (uintptr_t)&g_field_object_states[bit_or_actor];
+        actor = &g_field_actors[bit_or_actor];
+        button_or_x = camera_x / 256;
+        screen_x = actor->x / 256 + SCREEN_WIDTH / 2;
+        point.x = button_or_x + screen_x;
+        camera_y = g_field_view_offset_y / 256;
+        screen_y = actor->y / 256 + FIELD_SCREEN_CENTER_Y;
+        point.y = ((camera_y + screen_y) - actor->z / 512) - g_field_view_offset_z / 512;
+        label_half_width = field_count_text_glyphs(((FieldObjectState*)text_or_state)->label.name) * FIELD_LABEL_GLYPH_HALF_WIDTH;
+
+        if ((point.x + label_half_width) > SCREEN_WIDTH)
+        {
+            point.x = SCREEN_WIDTH - label_half_width;
+        }
+
+        if (((point.x - label_half_width) - FIELD_LABEL_MARGIN) < 0)
+        {
+            point.x = label_half_width + FIELD_LABEL_MARGIN;
+        }
+
+        if (point.y > FIELD_LABEL_MAX_Y)
+        {
+            point.y = FIELD_LABEL_MAX_Y;
+        }
+
+        if (point.y < FIELD_LABEL_MIN_Y)
+        {
+            point.y = FIELD_LABEL_MIN_Y;
+        }
+
+        button_or_x = point.x;
+        text_ot = ot;
+
+        if (g_field_selected_actor_label == index)
+        {
+            text_ot = ot - 1;
+        }
+
+        text_color = FIELD_TEXT_COLOR_DIM;
+
+        if (g_field_selected_actor_label == index)
+        {
+            text_color = FIELD_TEXT_COLOR_NORMAL;
+        }
+
+        cursor = (u8*)field_draw_text((SPRT*)cursor, text_ot, ((FieldObjectState*)text_or_state)->label.name, text_color, button_or_x, (s32)point.y,
+                                      FIELD_TEXT_SHADOW | FIELD_TEXT_ALIGN_CENTER);
+        left_glyph_ot = ot;
+        point.y = (u16)point.y - 8;
+
+        if (g_field_selected_actor_label == index)
+        {
+            left_glyph_ot = ot - 1;
+        }
+
+        cursor = field_draw_sprite_glyph((SPRT*)cursor, left_glyph_ot, FIELD_LABEL_LEFT_BRACKET, &point,
+                                         g_field_selected_actor_label == index ? FIELD_LABEL_SELECTED_DIGITS : FIELD_LABEL_NORMAL_DIGITS);
+        right_glyph_ot = ot;
+        point.x = (u16)point.x + 8;
+
+        if (g_field_selected_actor_label == index)
+        {
+            right_glyph_ot = ot - 1;
+        }
+
+        cursor = field_draw_sprite_glyph((SPRT*)cursor, right_glyph_ot, FIELD_LABEL_RIGHT_BRACKET, &point,
+                                         g_field_selected_actor_label == index ? FIELD_LABEL_SELECTED_DIGITS : FIELD_LABEL_NORMAL_DIGITS);
+        number_ot = ot;
+        point.x = (u16)point.x + 8;
+
+        if (g_field_selected_actor_label == index)
+        {
+            number_ot--;
+        }
+
+        cursor = field_draw_sprite_number(number_ot, cursor, ((FieldObjectState*)text_or_state)->hud.bytes.flags >> 1, 2, &point,
+                                          g_field_selected_actor_label == index ? FIELD_LABEL_SELECTED_DIGITS : FIELD_LABEL_NORMAL_DIGITS);
+        if ((g_field_selected_actor_label == index) && (((FieldObjectState*)text_or_state)->hp_display.word >= 0))
+        {
+            highlight_part = &g_field_object_parts[bit_or_actor];
+            highlight_part->appearance.fields.scale_xz = FIELD_LABEL_SELECTED_SCALE;
+            highlight_part->scale_y = FIELD_LABEL_SELECTED_SCALE;
+        }
+        else
+        {
+            normal_part = &g_field_object_parts[bit_or_actor];
+            normal_part->appearance.fields.scale_xz = (u8)g_field_label_saved_scale_x[index];
+            normal_part->scale_y = (u8)g_field_label_saved_scale_y[index];
+        }
+    }
+
+    render->primitive_cursor = (u8*)cursor;
+}
+
+/**
+ * @brief Combine quantities for repeated dialog text entries and close the gaps.
+ */
+void field_merge_dialog_items(void)
+{
+    s32 index;
+    s32 previous;
+    u8 amount;
+    s32 shift_index;
+
+    for (index = 0; index < g_field_dialog_item_count; index++)
+    {
+        if (g_field_dialog_item_quantities[index] != 0)
+        {
+            for (previous = 0; previous < index; previous++)
+            {
+                amount = g_field_dialog_item_quantities[previous];
+
+                if ((amount != 0) && (g_field_dialog_item_texts[index] == g_field_dialog_item_texts[previous]))
+                {
+                    shift_index = index;
+                    g_field_dialog_item_quantities[previous] = amount + g_field_dialog_item_quantities[index];
+
+                    while (shift_index < (g_field_dialog_item_count - 1))
+                    {
+                        g_field_dialog_item_quantities[shift_index] = g_field_dialog_item_quantities[shift_index + 1];
+                        g_field_dialog_item_texts[shift_index] = g_field_dialog_item_texts[shift_index + 1];
+                        shift_index++;
+                    }
+
+                    index--;
+                    g_field_dialog_item_count--;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Move the actor-label selection, or close the text session on START (or once the CD error is gone).
+ */
+static void field_update_text_session(void)
+{
+    if ((g_field_text_session_cd_error && !cdrom_get_error_status()) ||
+        (!g_field_text_session_cd_error && (g_pad_input == PADh || ((g_saved_game_ctx->characters[1].info.word & FIELD_CHARACTER_PAD_CONTROLLED) &&
+                                                                    g_saved_game_ctx->characters[1].name[0] && g_pad_input_inject == PADh))))
+    {
+        g_field_draw_count = 0;
+        g_field_text_session_active = 0;
+        field_restore_fade_target();
+        field_restore_label_actor_parts();
+        field_reset_input_repeat();
+    }
+    else
+    {
+        g_field_draw_count = 1;
+
+        if (g_field_label_actor_count >= 2U)
+        {
+            g_pad_input |= g_pad_input_inject;
+
+            if (g_pad_input & (PADLup | PADLleft))
+            {
+                g_field_selected_actor_label = g_field_selected_actor_label ? g_field_selected_actor_label - 1 : g_field_label_actor_count - 1;
+                lom_sound_play_sound(SFX_CURSOR);
+            }
+            else if (g_pad_input & (PADLdown | PADLright))
+            {
+                g_field_selected_actor_label = g_field_selected_actor_label == g_field_label_actor_count - 1 ? 0 : g_field_selected_actor_label + 1;
+                lom_sound_play_sound(SFX_CURSOR);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Read a controller's buttons in field bit order, with the left stick as directions.
+ * @param index Controller port.
+ * @return Button mask, or zero when the controller is missing or still being configured.
+ * @note The packet's button bytes are swapped and bits 4-7 reordered into the PAD* layout.
+ * @note JP returns the face buttons as read (no swap).
+ */
+s32 field_read_controller_buttons(s32 index)
+{
+    ControllerPortState* ports;
+    ControllerPortState* port;
+    u16 raw_buttons;
+    s32 buttons;
+    s32 stick;
+    s32 port_offset;
+
+    ports = lom_input_ports();
+    port = &ports[index];
+
+    if (port->published_sample.device_type >= CONTROLLER_DEVICE_CONFIGURING)
+    {
+        return 0;
+    }
+
+    raw_buttons = port->published_sample.held_buttons;
+    buttons = (raw_buttons >> 8) | ((raw_buttons & 0xFF) << 8);
+#if !defined(VERSION_JP)
+    buttons = PAD_REMAP_FACE_BITS_16(buttons);
+#endif
+
+    if (port->published_sample.device_type != CONTROLLER_DEVICE_DIGITAL)
+    {
+        stick = port->current_sample.left_stick_x;
+
+        if (stick < -PAD_STICK_THRESHOLD)
+        {
+            buttons |= PADLleft;
+        }
+        else if (stick > PAD_STICK_THRESHOLD)
+        {
+            buttons |= PADLright;
+        }
+
+        port_offset = index * sizeof(*ports);
+        stick = ((ControllerPortState*)((u8*)ports + port_offset))->current_sample.left_stick_y;
+
+        if (stick < -PAD_STICK_THRESHOLD)
+        {
+            buttons |= PADLup;
+        }
+        else if (stick > PAD_STICK_THRESHOLD)
+        {
+            buttons |= PADLdown;
+        }
+    }
+
+    return buttons;
+}
+
+/**
+ * @brief Read both controllers and apply the initial delay and key repeat to their buttons.
+ * @note A new button fires at once, waits PAD_REPEAT_INITIAL_DELAY frames, then repeats every third frame.
+ * @note While a modal screen is open, held directions repeat on their own without the other buttons.
+ */
+void field_update_input_repeat(void)
+{
+    s32 directions;
+    s32 buttons;
+
+    buttons = field_read_controller_buttons(0);
+    g_pad_input = 0;
+    g_field_buffered_input = 0;
+
+    if (((buttons == g_field_primary_held_buttons) ||
+         ((g_field_primary_held_buttons != 0) && (buttons & (g_field_primary_held_buttons | PAD_REPEAT_HOLD_BUTTONS)))) &&
+        buttons != 0)
+    {
+        directions = buttons & PAD_BTN_DPAD;
+
+        if ((directions != 0) && (g_field_modal_state != 0))
+        {
+            buttons = directions;
+        }
+
+        if (g_field_primary_repeat_delay == 0)
+        {
+            g_pad_input = buttons;
+            g_field_primary_repeat_delay = PAD_REPEAT_INTERVAL;
+        }
+        else
+        {
+            g_field_primary_repeat_delay--;
+            g_pad_input = 0;
+        }
+    }
+    else if (buttons == 0)
+    {
+        g_field_primary_repeat_delay = 0;
+        g_field_primary_held_buttons = 0;
+    }
+    else
+    {
+        g_pad_input = buttons;
+        g_field_primary_held_buttons = buttons;
+        g_field_primary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    }
+
+    buttons = field_read_controller_buttons(1);
+    g_pad_input_inject = 0;
+
+    if (((buttons == g_field_secondary_held_buttons) ||
+         ((g_field_secondary_held_buttons != 0) && (buttons & (g_field_secondary_held_buttons | PAD_REPEAT_HOLD_BUTTONS)))) &&
+        buttons != 0)
+    {
+        directions = buttons & PAD_BTN_DPAD;
+
+        if ((directions != 0) && (g_field_modal_state != 0))
+        {
+            buttons = directions;
+        }
+
+        if (g_field_secondary_repeat_delay == 0)
+        {
+            g_pad_input_inject = buttons;
+            g_field_secondary_repeat_delay = PAD_REPEAT_INTERVAL;
+        }
+        else
+        {
+            g_field_secondary_repeat_delay--;
+            g_pad_input_inject = 0;
+        }
+    }
+    else if (buttons == 0)
+    {
+        g_field_secondary_repeat_delay = 0;
+        g_field_secondary_held_buttons = 0;
+    }
+    else
+    {
+        g_pad_input_inject = buttons;
+        g_field_secondary_held_buttons = buttons;
+        g_field_secondary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    }
+
+    g_field_buffered_input = g_pad_input;
+}
+
+/**
+ * @brief Clear delivered input and restart both controllers' held-button delays.
+ */
+inline void field_reset_input_repeat(void)
+{
+    g_pad_input = 0;
+    g_field_primary_held_buttons = field_read_controller_buttons(0);
+    g_field_primary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_pad_input_inject = 0;
+    g_field_secondary_held_buttons = field_read_controller_buttons(1);
+    g_field_secondary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_field_buffered_input = 0;
+}
+
+/**
+ * @brief Handle the soft reset, the text session, and the menu, CD error and item-drop buttons.
+ * @param render Render half; the text session draws into it.
+ * @note Unplugging a controller opens the menu for that controller.
+ * @note JP uses the physical face-button order; US remaps opposite face buttons.
+ */
+void field_process_input(FieldRenderHalf* render)
+{
+    ControllerPortState* ports = lom_input_ports();
+    u32 buttons;
+    s32 actor_count;
+    s32 actor_index;
+
+    buttons = ports[0].published_sample.held_buttons;
+    buttons = (buttons >> 8) | ((buttons & 0xFF) << 8);
+#if !defined(VERSION_JP)
+    buttons = PAD_REMAP_FACE_BITS_16(buttons);
+#endif
+    if (g_field_modal_state != 0)
+    {
+        return;
+    }
+
+    if (buttons == FIELD_INPUT_RESET_COMBINATION)
+    {
+        g_pending_game_state = GAME_STATE_RETURN_TO_TITLE;
+        ports[0].small_motor_command = 0;
+        ports[0].actuator_control.fields.large_motor_command = 0;
+        ports[1].small_motor_command = 0;
+        ports[1].actuator_control.fields.large_motor_command = 0;
+        lom_sound_resume(0);
+        field_fade_song(0, 60, 127);
+        return;
+    }
+
+    if (g_field_interaction_active != 0)
+    {
+        g_field_party_routes_stale = 1;
+        return;
+    }
+
+    if (g_field_party_routes_stale != 0)
+    {
+        g_field_party_routes_stale = 0;
+        field_refresh_party_routes();
+    }
+
+    if (g_field_text_session_active != 0)
+    {
+        field_update_modal_text_session(render);
+        return;
+    }
+
+    if (!(g_field_actors[0].control.word & FIELD_CONTROL_MODE_MASK))
+    {
+        for (actor_count = 0; actor_count < FIELD_PARTY_COUNT; actor_count++)
+        {
+            if (g_field_actors[actor_count].presence != FIELD_ACTOR_UNUSED && g_field_actors[actor_count].command == FIELD_ACTOR_COMMAND_IDLE_AFTER_RELOAD)
+            {
+                return;
+            }
+        }
+
+        if (field_text_get_status(0) == FIELD_TEXT_STATUS_CLOSED && g_field_timed_panel_active == 0 && g_field_dialog_screen_mode == 0 &&
+            g_field_return_to_title_prompt_state == 0 && g_field_item_drop_menu_open == 0 && field_party_reload_pending() == 0)
+        {
+            if (g_field_menu_controller_types[0] != CONTROLLER_DEVICE_DISCONNECTED && ports[0].published_sample.device_type == CONTROLLER_DEVICE_DISCONNECTED)
+            {
+                field_run_menu(FIELD_MENU_RENDER_BUFFERS, 0);
+            }
+
+            if (g_field_menu_controller_types[1] != CONTROLLER_DEVICE_DISCONNECTED && ports[1].published_sample.device_type == CONTROLLER_DEVICE_DISCONNECTED)
+            {
+                field_run_menu(FIELD_MENU_RENDER_BUFFERS, 1);
+            }
+
+            if (cdrom_get_error_status() != 0)
+            {
+                g_field_text_session_cd_error = 1;
+                ports[0].small_motor_command = 0;
+                ports[0].actuator_control.fields.large_motor_command = 0;
+                ports[1].small_motor_command = 0;
+                ports[1].actuator_control.fields.large_motor_command = 0;
+                field_begin_text_session();
+                return;
+            }
+
+            g_field_menu_controller_types[0] = ports[0].published_sample.device_type;
+            g_field_menu_controller_types[1] = ports[1].published_sample.device_type;
+
+            if (g_field_menu_locked != 0)
+            {
+                if (field_is_scene_fading() == 0)
+                {
+                    if (g_pad_input == PADh || ((g_saved_game_ctx->characters[1].info.word & FIELD_CHARACTER_PAD_CONTROLLED) &&
+                                                g_saved_game_ctx->characters[1].name[0] && g_pad_input_inject == PADh))
+                    {
+                        field_run_menu(FIELD_MENU_RENDER_BUFFERS, 0);
+                    }
+                }
+            }
+            else
+            {
+                if (g_pad_input == PADh || g_pad_input == PADRup ||
+                    ((g_saved_game_ctx->characters[1].info.word & FIELD_CHARACTER_PAD_CONTROLLED) && g_saved_game_ctx->characters[1].name[0] &&
+                     (g_pad_input_inject == PADh || g_pad_input_inject == PADRup)))
+                {
+                    field_run_menu(FIELD_MENU_RENDER_BUFFERS, 0);
+                }
+            }
+
+            field_play_low_hp_warning();
+
+            if (g_pad_input & PADRleft)
+            {
+                actor_count = 0;
+
+                if (g_field_item_drop_enabled != 0)
+                {
+                    for (actor_index = 0; actor_index < FIELD_ACTOR_COUNT; actor_index++)
+                    {
+                        if (g_field_actors[actor_index].presence != FIELD_ACTOR_UNUSED && g_field_object_states[actor_index].key >= 0x14)
+                        {
+                            actor_count++;
+                        }
+                    }
+
+                    if (actor_count < 5)
+                    {
+                        field_open_item_drop_menu();
+                        return;
+                    }
+
+                    field_play_sound(SFX_ERROR, AKAO_PAN_CENTER);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Play the low-HP warning for each player below a quarter of their maximum HP.
+ * @note The two players' warnings alternate every sixteen frames; player 2 only warns while pad controlled.
+ */
+static void field_play_low_hp_warning(void)
+{
+    if (g_field_active_group != 0)
+    {
+        if (!(g_frame_counter & 0x1F))
+        {
+            if ((g_field_object_states[0].current_hp.word != 0) &&
+                ((u32)(g_field_object_states[0].current_hp.word * 4) < (u32)g_field_object_states[0].maximum_hp))
+            {
+                field_play_sound(FIELD_SOUND_LOW_HP, AKAO_PAN_CENTER);
+            }
+        }
+
+        if (!((g_frame_counter + 0x10) & 0x1F) && !(g_field_actors[1].control.word & FIELD_CONTROL_MODE_MASK) &&
+            (g_field_object_states[1].current_hp.word != 0) && ((u32)(g_field_object_states[1].current_hp.word * 4) < (u32)g_field_object_states[1].maximum_hp))
+        {
+            field_play_sound(FIELD_SOUND_LOW_HP, AKAO_PAN_CENTER);
+        }
+    }
+}
+
+/**
+ * @brief Run the MENU overlay and the GOLEM or GNAME screens it asks for, until the menu closes.
+ * @param render_buffers Render buffers handed to MENU.
+ * @param controller Controller that opened the menu; unused.
+ * @note While g_field_menu_locked is set, or an animation binding is busy, the actor-label session opens instead.
+ */
+static void field_run_menu(void* render_buffers, s32 controller)
+{
+    s32 menu_locked;
+    ControllerPortState* controllers_ports;
+    s32 screen_id;
+
+    controllers_ports = lom_input_ports();
+    menu_locked = g_field_menu_locked;
+    g_field_text_session_cd_error = 0;
+    controllers_ports[0].small_motor_command = 0;
+    controllers_ports[0].actuator_control.fields.large_motor_command = 0;
+    controllers_ports[1].small_motor_command = 0;
+    controllers_ports[1].actuator_control.fields.large_motor_command = 0;
+
+    if (menu_locked != 0 || g_field_actor_bindings[0].state != FIELD_BINDING_IDLE || g_field_actor_bindings[1].state != FIELD_BINDING_IDLE ||
+        g_field_actor_bindings[2].state != FIELD_BINDING_IDLE)
+    {
+        field_begin_text_session();
+        return;
+    }
+
+    field_play_sound(FIELD_SOUND_MENU_OPEN, AKAO_PAN_CENTER);
+    field_reset_actor_resources();
+
+    g_active_script = 0;
+
+    while (1)
+    {
+        cdrom_stream(CD_RES_MENU_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        screen_id = menu_run(render_buffers);
+
+        if (screen_id == FIELD_MENU_CLOSED)
+        {
+            field_rebuild_party_actions(1);
+            break;
+        }
+
+        if (screen_id == FIELD_MENU_GOLEM)
+        {
+            field_rebuild_party_actions(1);
+            cdrom_stream(CD_RES_GOLEM_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+            cdrom_wait_queue_empty();
+            golem_run(FIELD_GOLEM_RENDER_BUFFERS, 1);
+            field_golem_rebuild_current_grid();
+            field_reset_actor_resources();
+            field_text_reset_windows();
+            g_active_script = screen_id;
+            g_script_repeat_count = 0;
+        }
+        else
+        {
+            field_rebuild_party_actions(1);
+            cdrom_stream(CD_RES_GNAME_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+            cdrom_wait_queue_empty();
+
+            if ((screen_id == FIELD_MENU_NAME_EQUIPMENT_ITEM) || (screen_id == FIELD_MENU_NAME_ABILITY_ITEM))
+            {
+                secondary_overlay_entry(GNAME_RENDER_BUFFERS, g_field_rename_initial_name, g_field_rename_target, FIELD_MENU_NAME_ITEM, g_field_rename_source,
+                                        g_field_rename_custom_name, 0);
+            }
+            else
+            {
+                secondary_overlay_entry(GNAME_RENDER_BUFFERS, g_field_rename_initial_name, g_field_rename_target, screen_id, g_field_rename_source,
+                                        g_field_rename_custom_name, 0);
+            }
+
+            field_text_reset_windows();
+            g_script_repeat_count = g_field_rename_source;
+
+            if ((screen_id == FIELD_MENU_NAME_EQUIPMENT_ITEM) || (screen_id == FIELD_MENU_NAME_ABILITY_ITEM))
+            {
+                g_script_repeat_count = 0;
+                g_active_script = screen_id;
+            }
+            else
+            {
+                g_active_script = g_field_rename_script_index + 1;
+            }
+        }
+    }
+
+    field_reset_actor_resources();
+}
+
+/**
+ * @brief Open the actor-label text session.
+ */
+static void field_begin_text_session(void)
+{
+    g_field_text_session_active = 1;
+    field_set_cd_error_fade_target();
+    field_reset_input_repeat();
+    field_init_actor_labels();
+}
+
+/**
+ * @brief Clear text-session flags and remember both controller device types.
+ */
+void field_reset_text_session(void)
+{
+    ControllerPortState* controllers_ports = lom_input_ports();
+
+    g_field_text_session_active = 0;
+    g_field_menu_locked = 0;
+    g_field_menu_controller_types[0] = controllers_ports[0].published_sample.device_type;
+    g_field_menu_controller_types[1] = controllers_ports[1].published_sample.device_type;
+}
+
+/**
+ * @brief Run one frame of the text session and restore the field when it closes.
+ * @param render Render half receiving the text.
+ */
+static void field_update_modal_text_session(FieldRenderHalf* render)
+{
+    if (g_field_text_session_active != 0)
+    {
+        field_update_text_session();
+
+        if (g_field_text_session_active != 0)
+        {
+            field_draw_text_session(render);
+            return;
+        }
+
+        field_text_reset_windows();
+        lom_sound_resume(2);
+        field_fade_song(0, 60, 127);
+    }
+}
+
+/**
+ * @brief Apply the saved sound and vibration options and rebuild the party's action slots.
+ * @param refresh_only Nonzero keeps the party membership and HP; zero also reloads them from the saved game.
+ * @note Action slots 0-1 are the two commands, 4-7 the skills: a technique, an instrument
+ *       (FIELD_SKILL_INSTRUMENT plus an item record) or none (FIELD_SKILL_NONE).
+ * @note The SavedGameLayout pointers here are g_saved_game_ctx advanced by a character's offset, so their
+ *       characters[0] is that character, the way the original addresses the per-character data.
+ */
+void field_rebuild_party_actions(s32 refresh_only)
+{
+    FieldPlayerRecord* member;
+    FieldPlayerRecord* player;
+    FieldPlayerRecord* equipment_player;
+    s32 parameter;
+    s16 technique_action_id;
+    u8* save_base;
+    u8* instrument_icons;
+    s32 skill_character_offset;
+    s32 skill_row_offset;
+    s32 skill_none;
+    s32 skill_empty;
+    u8* animation_params;
+    u8* parameter_params;
+    SavedGameLayout* command_save;
+    s32 character_kind;
+    uintptr_t controllers_or_is_player;
+    s32 equipment_offset;
+    s32 equipment_index;
+    s32 slot_or_type;
+    s32 command_action_offset;
+    s32 member_offset;
+    s32 actor_words;
+    s32 player_index;
+    s32 character_offset;
+    s32 row_offset;
+    s32 state_offset;
+    s32 skill_action_offset;
+    u16 hp;
+    u32 equipment_info;
+    u8 spell;
+    u8 weapon_type;
+    u8 skill;
+    FieldActor* actor;
+    FieldActor* actor_base;
+    FieldActionSlot* command_action;
+    FieldItemRecord* instrument;
+    FieldActionSlot* technique_action;
+    SavedGameLayout* player_save;
+    FieldActionSlot* instrument_action;
+    SavedGameLayout* skills_start;
+    FieldActionSlot* empty_action;
+    SavedGameLayout* member_save;
+    FieldObjectState* health;
+    SavedGameLayout* equipment;
+    SavedGameLayout* command_view;
+    SavedGameLayout* skill_cursor;
+
+    lom_sound_set_mono(g_saved_game_ctx->options.bits.stereo ^ 1);
+    cdrom_set_audio_volume(0x7F, g_saved_game_ctx->options.bits.stereo);
+    controllers_or_is_player = (uintptr_t)lom_input_ports();
+    ((ControllerPortState*)controllers_or_is_player)[0].actuators_enabled = g_saved_game_ctx->options.bits.vibration;
+
+    if ((g_saved_game_ctx->characters[1].info.word & FIELD_CHARACTER_PAD_CONTROLLED) && (g_saved_game_ctx->characters[1].name[0] != 0))
+    {
+        ((ControllerPortState*)controllers_or_is_player)[1].actuators_enabled = g_saved_game_ctx->options.bits.vibration;
+    }
+    else
+    {
+        ((ControllerPortState*)controllers_or_is_player)[1].actuators_enabled = 0;
+    }
+
+    if (refresh_only == 0)
+    {
+        for (player_index = 0; player_index < FIELD_PARTY_COUNT; player_index++)
+        {
+            member_offset = player_index * sizeof(FieldCharacterRecord);
+            member = &g_field_player_records[player_index];
+
+            if (((SavedGameLayout*)((u8*)g_saved_game_ctx + member_offset))->characters[0].name[0] != 0)
+            {
+                member->head.bytes.weapon_type = FIELD_WEAPON_TYPE_UNSET;
+                member_save = (SavedGameLayout*)((u8*)g_saved_game_ctx + member_offset);
+                member->head.bits.active = 1;
+                slot_or_type = member_save->characters[0].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK;
+                character_kind = slot_or_type;
+
+                if (character_kind < FIELD_CHARACTER_GUEST)
+                {
+                    member->head.bits.alt_appearance = character_kind;
+                    member->character_kind = FIELD_PLAYER_KIND_HERO;
+                }
+                else if (character_kind == FIELD_CHARACTER_GUEST)
+                {
+                    member->head.bits.alt_appearance = 0;
+                    member->character_id = member_save->characters[0].info.bytes[1];
+                    member->character_kind = FIELD_PLAYER_KIND_PARTNER;
+                }
+                else if (character_kind == FIELD_CHARACTER_COMPANION)
+                {
+                    member->head.bits.alt_appearance = 0;
+                    member->character_id = member_save->characters[0].info.bytes[1];
+                    member->character_kind = FIELD_PLAYER_KIND_COMPANION;
+                }
+                else if (character_kind == FIELD_CHARACTER_GOLEM)
+                {
+                    member->head.bits.alt_appearance = 0;
+                    member->character_id = member_save->characters[0].info.bytes[1] + FIELD_COMPANION_GOLEM_ID_BASE;
+                    member->character_kind = FIELD_PLAYER_KIND_COMPANION;
+                }
+            }
+            else
+            {
+                member->character_kind = FIELD_PLAYER_KIND_PARTNER;
+                member->character_id = 0;
+                member->head.bits.active = 0;
+            }
+        }
+
+        field_upload_golem_palettes();
+    }
+
+    for (player_index = 0; player_index < FIELD_PARTY_COUNT; player_index++)
+    {
+        player = &g_field_player_records[player_index];
+        state_offset = player_index * sizeof(FieldObjectState);
+        character_offset = player_index * sizeof(FieldCharacterRecord);
+        row_offset = player_index * sizeof(FieldActionRow);
+        actor_words = player_index * 0x14;
+
+        if (player->head.bytes.flags & FIELD_PLAYER_ACTIVE)
+        {
+            actor_base = g_field_actors;
+            actor = (FieldActor*)((actor_words + player_index) * 4 + (u8*)actor_base);
+            player_save = (SavedGameLayout*)((u8*)g_saved_game_ctx + character_offset);
+            actor->control.word = ((actor->control.word & ~FIELD_CONTROL_MODE_MASK) | ((player_save->characters[0].info.bytes[0] >> 7) ^ 1));
+            weapon_type = FIELD_ITEM_TYPE(player_save->characters[0].equipment[FIELD_WEAPON_SLOT].info.word);
+            controllers_or_is_player = player_index < FIELD_PLAYER_COUNT;
+
+            if (player->head.bytes.weapon_type != weapon_type)
+            {
+                player->head.bytes.weapon_type = weapon_type;
+
+                if (controllers_or_is_player != 0)
+                {
+                    field_apply_weapon_action_params(player_index);
+                }
+
+                if (refresh_only == 0)
+                {
+                    health = &g_field_object_states[player_index];
+                    hp = ((SavedGameLayout*)((u8*)g_saved_game_ctx + character_offset))->characters[0].hp;
+                    health->hp_display.word = (health->hp_display.word & FIELD_HP_FLAGS_MASK) | hp;
+                    health->maximum_hp = hp;
+                    health->current_hp.word = hp;
+                }
+
+                if ((g_field_scene_mode_bit != 0) && (refresh_only != 0) && (controllers_or_is_player != 0))
+                {
+                    field_load_weapon_sfx_table(player_index, player->head.bytes.weapon_type);
+                }
+            }
+
+            player->hide_shield_sprite = 0;
+
+            if ((player->head.bytes.weapon_type - 1) < 2U)
+            {
+                player->hide_shield_sprite = 1;
+                equipment_index = 1;
+                equipment_player = player;
+                equipment_offset = character_offset + sizeof(FieldItemRecord);
+
+                for (; equipment_index < FIELD_EQUIPMENT_SLOT_COUNT; equipment_index++, equipment_offset += sizeof(FieldItemRecord))
+                {
+                    equipment = (SavedGameLayout*)((u8*)g_saved_game_ctx + equipment_offset);
+
+                    if (equipment->characters[0].equipment[0].name[0] != 0)
+                    {
+                        equipment_info = equipment->characters[0].equipment[0].info.word;
+
+                        if ((FIELD_ITEM_CATEGORY(equipment_info) == FIELD_ITEM_CATEGORY_ARMOR) && !FIELD_ITEM_TYPE(equipment_info))
+                        {
+                            equipment_player->hide_shield_sprite = 0;
+                        }
+                    }
+                }
+            }
+
+            if (player_index == FIELD_PARTY_COMPANION && g_field_player_records[FIELD_PARTY_COMPANION].character_kind == player_index)
+            {
+                field_load_party_script_page(2, g_field_player_records[FIELD_PARTY_COMPANION].character_id + FIELD_RES_COMPANION_ACTIONS);
+            }
+            else
+            {
+                slot_or_type = 0;
+                animation_params = g_field_action_animation_parameters;
+                parameter_params = g_field_action_animation_parameters + 1;
+                command_save = (SavedGameLayout*)((u8*)g_saved_game_ctx + character_offset);
+                command_action_offset = row_offset;
+
+                for (; slot_or_type < FIELD_COMMAND_SLOT_COUNT; command_action_offset += sizeof(FieldActionSlot), slot_or_type++)
+                {
+                    command_view = (SavedGameLayout*)((u8*)command_save + slot_or_type);
+                    command_action = (FieldActionSlot*)(command_action_offset + (uintptr_t)g_field_resource_actions);
+                    command_action->command = command_view->characters[0].info.actions.commands[0];
+                    command_action->animation = animation_params[command_view->characters[0].info.actions.commands[0] * 2];
+                    command_action->parameter = parameter_params[command_view->characters[0].info.actions.commands[0] * 2];
+                }
+
+                skill_character_offset = character_offset;
+                skill_none = FIELD_SKILL_NONE;
+                skill_row_offset = row_offset;
+                save_base = (u8*)g_saved_game_ctx;
+                skills_start = (SavedGameLayout*)(save_base + skill_character_offset);
+                skill_action_offset = FIELD_SKILL_ACTION_BASE * sizeof(FieldActionSlot);
+                skill_cursor = skills_start;
+
+                do
+                {
+                    skill_character_offset = ~skill_character_offset;
+                    skill_character_offset = ~skill_character_offset;
+                    skill_action_offset = (~skill_action_offset);
+                    skill_action_offset = (~skill_action_offset);
+                    skill_row_offset = (~skill_row_offset);
+                    skill_row_offset = (~skill_row_offset);
+                    skill_none = (~skill_none);
+                    skill_none = (~skill_none);
+                    skills_start = (SavedGameLayout*)(~(uintptr_t)skills_start);
+                    skills_start = (SavedGameLayout*)(~(uintptr_t)skills_start);
+                    save_base = (u8*)(~(uintptr_t)save_base);
+                    save_base = (u8*)(~(uintptr_t)save_base);
+                    skill_cursor = (SavedGameLayout*)(~(uintptr_t)skill_cursor);
+                    skill_cursor = (SavedGameLayout*)(~(uintptr_t)skill_cursor);
+                    skill_empty = skill_cursor->characters[0].info.actions.skills[0] == skill_none;
+
+                    if (skill_empty)
+                    {
+                        empty_action = (FieldActionSlot*)(skill_action_offset + skill_row_offset + (uintptr_t)g_field_resource_actions);
+                        empty_action->flags.instrument = 0;
+                        empty_action->flags.target_filter = skill_none;
+                        empty_action->command = 0;
+                        empty_action->animation = 0;
+                        empty_action->parameter = 0;
+                        empty_action->flags.target_group = 0;
+                    }
+                    else
+                    {
+                        skill = skill_cursor->characters[0].info.actions.skills[0];
+
+                        if (skill & FIELD_SKILL_INSTRUMENT)
+                        {
+                            instrument_action = (FieldActionSlot*)(skill_action_offset + skill_row_offset + (uintptr_t)g_field_resource_actions);
+                            instrument_action->command = 0;
+                            instrument_action->flags.instrument = 1;
+                            instrument = (FieldItemRecord*)(save_base + (skill_character_offset + OFFSETOF(SavedGameLayout, characters)) +
+                                                            (((skill & ~FIELD_SKILL_INSTRUMENT) << 6) + OFFSETOF(FieldCharacterRecord, instruments)));
+                            instrument_action->flags.target_filter = instrument->derived.bytes[1] >> 1;
+                            instrument_icons = g_field_instrument_icons;
+                            instrument_action->animation = instrument_icons[instrument->derived.bytes[0]];
+                            instrument_icons = 0;
+                            spell = instrument->derived.bytes[1];
+                            parameter = 0x8018;
+                            parameter += spell;
+                            parameter += instrument->derived.bytes[0] * 14;
+
+                            if (!(spell & 1))
+                            {
+                                parameter += 0x800;
+                            }
+
+                            instrument_action->parameter = parameter;
+                            instrument_action->flags.target_group = 0;
+                        }
+                        else
+                        {
+                            technique_action = (FieldActionSlot*)(skill_action_offset + skill_row_offset + (uintptr_t)g_field_resource_actions);
+                            technique_action->flags.instrument = 0;
+                            skill = skill_cursor->characters[0].info.actions.skills[0];
+                            technique_action_id = skill | FIELD_ACTION_TECHNIQUE;
+                            technique_action->flags.target_filter = skill_none;
+                            technique_action->animation = FIELD_TECHNIQUE_ANIMATION;
+                            technique_action->command = technique_action_id;
+                            skill = skill_cursor->characters[0].info.actions.skills[0];
+                            weapon_type = player->head.bytes.weapon_type;
+                            technique_action->flags.target_group = 0;
+                            technique_action->parameter =
+                                (((skill + FIELD_TECHNIQUE_SEQUENCE_BASE) | ~FIELD_ACTION_TECHNIQUE_MASK) + (weapon_type * FIELD_TECHNIQUES_PER_WEAPON));
+                        }
+                    }
+
+                    skill_cursor = (SavedGameLayout*)((u8*)skill_cursor + 1);
+                    skill_action_offset += sizeof(FieldActionSlot);
+                } while ((intptr_t)skill_cursor < (intptr_t)((u8*)skills_start + FIELD_SKILL_SLOT_COUNT));
+            }
+        }
+    }
+
+    field_refresh_party_routes();
+}
+
+void field_run_name_entry_unused(u8* initial_name, u8* active_name, s32 source_mode, s32 history_index, const u8* custom_name)
+{
+    field_reset_actor_resources();
+    cdrom_stream(CD_RES_GNAME_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+    cdrom_wait_queue_empty();
+    secondary_overlay_entry(GNAME_RENDER_BUFFERS, initial_name, active_name, source_mode, history_index, custom_name, 0);
+    field_text_reset_windows();
+    field_reset_actor_resources();
+}
+
+/**
+ * @brief Load ZUKAN.BIN and run the encyclopedia screen.
+ * @param category Encyclopedia category to display.
+ */
+void field_run_zukan(s32 category)
+{
+    field_reset_actor_resources();
+    cdrom_stream(CD_RES_ZUKAN_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+    cdrom_wait_queue_empty();
+    zukan_run(GNAME_RENDER_BUFFERS, category);
+    field_reset_actor_resources();
+}
+
+/**
+ * @brief Load GOSUB.BIN and open a screen sequence, unless a sub-overlay is already active.
+ *
+ * Sets g_field_modal_state to FIELD_MODAL_GOSUB for the duration and clears the gosub result count.
+ *
+ * @param screen_sequence Terminated s32 array passed to gosub_open_screen_sequence.
+ */
+void field_open_gosub_screen_sequence(void* screen_sequence)
+{
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        g_field_gosub_state = 1;
+        g_gosub_result_count = 0;
+        field_reset_actor_resources();
+        cdrom_stream(CD_RES_GOSUB_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        g_field_modal_state = FIELD_MODAL_GOSUB;
+        g_field_gosub_phase = FIELD_GOSUB_RUNNING;
+        gosub_open_screen_sequence(FIELD_GOSUB_WORK_BUFFER, screen_sequence);
+    }
+}
+
+/**
+ * @brief Open the selling screen when inventory is present, otherwise show a notice.
+ * @param shop_options Value forwarded to the shop; meaning not yet established.
+ * @note The inventory loop tests items[0] on every pass, so only the first record counts.
+ */
+void field_open_shop_mode_0(s32 shop_options)
+{
+    s32 count;
+    s32 i;
+
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        count = 0;
+
+        for (i = 0; i < FIELD_ITEM_COUNT; i++)
+        {
+            if (g_saved_game_ctx->items[0].name[0] != 0)
+            {
+                count++;
+                break;
+            }
+        }
+
+        for (i = 0; i < FIELD_ITEM_KIND_COUNT; i++)
+        {
+            if (g_saved_game_ctx->item_counts[i] != 0)
+            {
+                count++;
+                break;
+            }
+        }
+
+        if (count == 0)
+        {
+            field_begin_empty_shop_notice(0);
+        }
+        else
+        {
+            field_reset_actor_resources();
+            cdrom_stream(CD_RES_SHOP_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+            cdrom_wait_queue_empty();
+            g_field_shop_active = 1;
+            g_field_modal_state = FIELD_MODAL_SHOP;
+            secondary_overlay_entry(FIELD_SHOP_WORK_BUFFER, 0, 0, 0, 0, shop_options);
+        }
+    }
+}
+
+/**
+ * @brief Open the shop with a caller-supplied entry list.
+ * @param entry_count Number of entries in the supplied list.
+ * @param entries Shop entry array.
+ * @param item_records Item records that the entries flagged SHOP_ENTRY_RECORD_FLAG index.
+ * @param shop_options Value forwarded as the final shop argument.
+ */
+void field_open_shop_mode_1(s32 entry_count, struct ShopEntry* entries, struct FieldItemRecord* item_records, s32 shop_options)
+{
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        field_reset_actor_resources();
+        cdrom_stream(CD_RES_SHOP_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        g_field_shop_active = 1;
+        g_field_modal_state = FIELD_MODAL_SHOP;
+        secondary_overlay_entry(FIELD_SHOP_WORK_BUFFER, 1, entry_count, entries, item_records, shop_options);
+    }
+}
+
+/**
+ * @brief Run one frame of the open modal screen and give the input back to the field when it closes.
+ * @param render Render half the modal screens draw into.
+ */
+void field_update_modal(FieldRenderHalf* render)
+{
+    s32 result;
+    s32 index;
+
+    switch (g_field_modal_state)
+    {
+    case FIELD_MODAL_SHOP:
+        if ((g_field_shop_active != 0) && (lom_native_shop_update(render) != 0))
+        {
+            g_field_shop_active = 0;
+            g_field_modal_state = FIELD_MODAL_NONE;
+            field_reset_actor_resources();
+            return;
+        }
+    case FIELD_MODAL_NONE:
+        return;
+    case FIELD_MODAL_GOSUB:
+        if (g_field_gosub_phase != FIELD_GOSUB_IDLE)
+        {
+            if (g_field_gosub_phase >= FIELD_GOSUB_RUNNING)
+            {
+                if (gosub_update_frame(render) != 0)
+                {
+                    lom_graphics_wait(0);
+                    g_field_gosub_phase = FIELD_GOSUB_CLOSING;
+                    field_reset_actor_resources();
+                    return;
+                }
+            }
+            else
+            {
+                lom_graphics_wait(0);
+                field_text_reset_windows();
+                g_field_gosub_state = 2;
+                g_field_modal_state = FIELD_MODAL_NONE;
+                g_field_gosub_phase = FIELD_GOSUB_IDLE;
+                return;
+            }
+        }
+
+        return;
+    case FIELD_MODAL_CARDA:
+        if ((g_field_card_overlay_mode != 0) && (carda_update_frame(render) != 0))
+        {
+            field_reset_actor_resources();
+
+            switch (g_field_card_overlay_mode)
+            {
+            case CARDA_RESULT_LOADED:
+                field_rebuild_party_actions(0);
+
+                for (index = 0; index < FIELD_PARTY_COUNT; index++)
+                {
+                    g_field_player_records[index].resource_id = 0;
+                    g_field_player_records[index].portrait_index = FIELD_PORTRAIT_NONE;
+                }
+
+                g_current_land = g_saved_game_ctx->location.bits.current_land;
+                field_set_scene_parameters(g_saved_game_ctx->scene_id, g_saved_game_ctx->object_id, g_saved_game_ctx->spawn.bits.id, g_saved_game_ctx->music_id,
+                                           g_saved_game_ctx->sound_bank_id, g_saved_game_ctx->secondary_music_id);
+                field_set_fade_target_only(FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL, 8);
+                break;
+            case CARDA_RESULT_SEND_PET_CANCELLED:
+            case CARDA_RESULT_RETURN_PET_CANCELLED:
+                g_gosub_result_values[0] = 6;
+            default:
+            case CARDA_RESULT_CANCELLED:
+            case CARDA_RESULT_PET_SENT:
+            case CARDA_RESULT_PET_RETURNED:
+                break;
+            }
+
+            g_gosub_result_count = 1;
+            g_field_gosub_state = 2;
+            g_field_card_overlay_mode = 0;
+            g_field_modal_state = FIELD_MODAL_NONE;
+            return;
+        }
+
+        return;
+    case FIELD_MODAL_NIKI:
+        if ((g_field_niki_addhero_state != 0) && (niki_update_frame(render) != 0))
+        {
+            field_reset_actor_resources();
+            g_field_niki_addhero_state = 0;
+            g_field_modal_state = FIELD_MODAL_NONE;
+            return;
+        }
+
+        return;
+    case FIELD_MODAL_ADDHERO:
+        if (g_field_niki_addhero_state != 0)
+        {
+            result = addhero_state_step(render);
+
+            switch (result)
+            {
+            case 1:
+                g_field_player_records[1].head.bits.active = 0;
+                g_field_player_records[1].head.bits.alt_appearance = g_saved_game_ctx->characters[1].info.bytes[0] & 1;
+                g_field_player_records[1].character_kind = FIELD_PLAYER_KIND_HERO;
+                field_activate_actor_resource_slot(-2, 0, 0);
+                field_reset_actor_resources();
+                g_field_niki_addhero_state = 0;
+                g_field_modal_state = FIELD_MODAL_NONE;
+                return;
+            case 3:
+                field_reset_actor_resources();
+                g_field_niki_addhero_state = 0;
+                g_field_modal_state = FIELD_MODAL_NONE;
+                return;
+            case 2:
+                field_release_actor_resource_slot(0);
+                field_reset_actor_resources();
+                g_field_niki_addhero_state = 0;
+                g_field_modal_state = FIELD_MODAL_NONE;
+                return;
+            }
+        }
+
+        return;
+    case FIELD_MODAL_EMPTY_SHOP:
+        if (g_pad_input & (PADRright | PADi))
+        {
+            field_text_reset_windows();
+            index = 0;
+            g_field_modal_state = FIELD_MODAL_NONE;
+            g_pad_input = 0;
+            break;
+        }
+
+        field_text_reset_scratch();
+        field_draw_empty_shop_notice(render);
+        field_text_upload_immediate_cache();
+        return;
+    case FIELD_MODAL_DUEL_INTRO:
+        if (field_draw_duel_intro(render) == 0)
+        {
+            return;
+        }
+
+        field_play_set_sfx(0, AKAO_PAN_CENTER, 0, 3);
+        field_text_reset_windows();
+        index = 0;
+        g_field_modal_state = FIELD_MODAL_NONE;
+        g_pad_input = 0;
+        break;
+    case FIELD_MODAL_DUEL_RESULT:
+        if (field_draw_duel_result(render) == 0 || field_party_reload_reading() != 0)
+        {
+            return;
+        }
+
+        field_close_battle_results();
+        field_text_reset_windows();
+        index = 0;
+        g_field_modal_state = FIELD_MODAL_NONE;
+        g_pad_input = 0;
+        break;
+    default:
+        return;
+    }
+
+    g_field_primary_held_buttons = field_read_controller_buttons(index);
+    g_field_primary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_pad_input_inject = 0;
+    g_field_secondary_held_buttons = field_read_controller_buttons(1);
+    g_field_secondary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_field_buffered_input = 0;
+    field_restore_fade_target();
+}
+
+/**
+ * @brief Open the empty-inventory notice with a red fade.
+ * @param hidden Nonzero suppresses the notice text.
+ */
+static void field_begin_empty_shop_notice(s32 hidden)
+{
+    g_field_modal_state = FIELD_MODAL_EMPTY_SHOP;
+    field_set_fade_target_only(0xC0, 0x80, 0x80, 8);
+    field_play_sound(FIELD_SOUND_EMPTY_SHOP, AKAO_PAN_CENTER);
+    g_field_shop_notice_hidden = hidden;
+}
+
+/**
+ * @brief Draw the empty-inventory notice unless its text is suppressed.
+ * @param render Render half receiving the notice.
+ */
+static void field_draw_empty_shop_notice(FieldRenderHalf* render)
+{
+    SPRT* packet_cursor;
+
+    packet_cursor = (SPRT*)render->primitive_cursor;
+
+    if (g_field_shop_notice_hidden == 0)
+    {
+        packet_cursor = field_draw_text(packet_cursor, render->ordering_table, field_dialog_text(&g_field_ui_text_no_items, FIELD_UI_TEXT_NO_ITEMS),
+                                        FIELD_TEXT_COLOR_NORMAL, SCREEN_WIDTH / 2, 104, FIELD_TEXT_ALIGN_CENTER);
+    }
+
+    render->primitive_cursor = (u8*)packet_cursor;
+}
+
+/**
+ * @brief Start the duel introduction panels sliding in from off-screen.
+ */
+void field_begin_duel_intro(void)
+{
+    g_field_modal_state = FIELD_MODAL_DUEL_INTRO;
+    field_set_fade_target_only(0xC0, 0xC0, 0xC0, 8);
+    field_upload_player_icons();
+    field_play_sound(FIELD_SOUND_DUEL_INTRO, AKAO_PAN_CENTER);
+    g_field_duel_panel_phase = FIELD_DUEL_SLIDE_IN;
+    g_field_duel_panel_hold_frames = 0;
+    g_field_duel_panel_offset = FIELD_DUEL_PANEL_START_OFFSET;
+}
+
+/**
+ * @brief Select the duel winner, update win/loss records, and start the result panel.
+ */
+void field_begin_duel_result(void)
+{
+    g_field_modal_state = FIELD_MODAL_DUEL_RESULT;
+    field_set_fade_target_only(0xC0, 0xC0, 0xC0, 8);
+    field_upload_player_icons();
+    field_play_sound(FIELD_SOUND_DUEL_RESULT, AKAO_PAN_CENTER);
+    g_field_duel_panel_phase = FIELD_DUEL_SLIDE_IN;
+    g_field_duel_panel_hold_frames = 0;
+    g_field_duel_panel_offset = FIELD_DUEL_PANEL_START_OFFSET;
+
+    if ((g_field_actors[0].animation & FIELD_ANIMATION_INDEX_MASK) == FIELD_ANIMATION_KNOCKED_DOWN)
+    {
+        g_field_duel_winner = 1;
+        g_saved_game_ctx->characters[0].duel_losses = g_saved_game_ctx->characters[0].duel_losses + 1;
+
+        if ((g_saved_game_ctx->characters[1].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST)
+        {
+            g_saved_game_ctx->characters[1].duel_wins = g_saved_game_ctx->characters[1].duel_wins + 1;
+        }
+    }
+    else
+    {
+        g_field_duel_winner = 0;
+        g_saved_game_ctx->characters[0].duel_wins = g_saved_game_ctx->characters[0].duel_wins + 1;
+
+        if ((g_saved_game_ctx->characters[1].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST)
+        {
+            g_saved_game_ctx->characters[1].duel_losses = g_saved_game_ctx->characters[1].duel_losses + 1;
+        }
+    }
+}
+
+/**
+ * @brief Animate and draw the opposing players and their duel records.
+ * @param render Render half receiving the panels.
+ * @return Nonzero after the panels have slid out.
+ */
+static s32 field_draw_duel_intro(FieldRenderHalf* render)
+{
+    u8 record_text[56];
+    u8 loss_text[56];
+    void* packet_cursor;
+    OT_TYPE* ot;
+
+    packet_cursor = render->primitive_cursor;
+    ot = render->ordering_table;
+
+    switch (g_field_duel_panel_phase)
+    {
+    case FIELD_DUEL_SLIDE_IN:
+        g_field_duel_panel_offset /= 2;
+
+        if (g_field_duel_panel_offset == 0)
+        {
+            g_field_duel_panel_phase = FIELD_DUEL_HOLD;
+            g_field_duel_panel_hold_frames = FIELD_DUEL_PANEL_HOLD_FRAMES;
+        }
+
+        break;
+    case FIELD_DUEL_HOLD:
+        g_field_duel_panel_hold_frames--;
+
+        if (g_field_duel_panel_hold_frames == 0)
+        {
+            field_play_sound(FIELD_SOUND_DUEL_PANEL_OUT, AKAO_PAN_CENTER);
+            g_field_duel_panel_phase = FIELD_DUEL_SLIDE_OUT;
+            g_field_duel_panel_offset = -1;
+        }
+
+        break;
+    case FIELD_DUEL_SLIDE_OUT:
+        g_field_duel_panel_offset *= 2;
+
+        if (g_field_duel_panel_offset < FIELD_DUEL_PANEL_END_OFFSET)
+        {
+            g_field_duel_panel_phase = FIELD_DUEL_FINISHED;
+        }
+
+        break;
+    case FIELD_DUEL_FINISHED:
+        return 1;
+    }
+
+    packet_cursor = field_draw_player_icon(packet_cursor, ot, 0, g_field_duel_panel_offset + 50, 34, 1);
+    packet_cursor = field_text_draw_scaled_quad(packet_cursor, ot, g_saved_game_ctx->characters[0].name, FIELD_TEXT_COLOR_NORMAL,
+                                                g_field_duel_panel_offset + 108, 50, FIELD_TEXT_ALIGN_LEFT, 5, 384, 384, -4, FIELD_DUEL_PANEL_MOVING);
+
+    field_format_number(record_text, g_saved_game_ctx->characters[0].duel_wins, FIELD_DUEL_WIDE_NUMBERS);
+    field_append_dialog_text(record_text, &g_field_ui_text_wins, FIELD_UI_TEXT_WINS);
+    field_format_number(loss_text, g_saved_game_ctx->characters[0].duel_losses, FIELD_DUEL_WIDE_NUMBERS);
+    field_append_name(record_text, loss_text);
+    field_append_dialog_text(record_text, &g_field_ui_text_losses, FIELD_UI_TEXT_LOSSES);
+
+    packet_cursor =
+        field_text_draw_scaled_quad(packet_cursor, ot, record_text, FIELD_TEXT_COLOR_NORMAL, g_field_duel_panel_offset + 108, 66, FIELD_TEXT_ALIGN_LEFT, 6,
+                                    FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+    packet_cursor =
+        field_text_draw_scaled_quad(packet_cursor, ot, field_dialog_text(&g_field_ui_text_versus, FIELD_UI_TEXT_VERSUS), FIELD_TEXT_COLOR_NORMAL, 160, 100,
+                                    FIELD_TEXT_ALIGN_CENTER, 7, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+    packet_cursor = field_draw_player_icon(packet_cursor, ot, 1, 222 - g_field_duel_panel_offset, 134, 0);
+    packet_cursor =
+        field_text_draw_scaled_quad(packet_cursor, ot, g_saved_game_ctx->characters[1].name, FIELD_TEXT_COLOR_NORMAL, 212 - g_field_duel_panel_offset, 150,
+                                    FIELD_TEXT_ALIGN_RIGHT, 8, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+
+    if ((g_saved_game_ctx->characters[1].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST)
+    {
+        field_format_number(record_text, g_saved_game_ctx->characters[1].duel_wins, FIELD_DUEL_WIDE_NUMBERS);
+        field_append_dialog_text(record_text, &g_field_ui_text_wins, FIELD_UI_TEXT_WINS);
+        field_format_number(loss_text, g_saved_game_ctx->characters[1].duel_losses, FIELD_DUEL_WIDE_NUMBERS);
+        field_append_name(record_text, loss_text);
+        field_append_dialog_text(record_text, &g_field_ui_text_losses, FIELD_UI_TEXT_LOSSES);
+        packet_cursor =
+            field_text_draw_scaled_quad(packet_cursor, ot, record_text, FIELD_TEXT_COLOR_NORMAL, 212 - g_field_duel_panel_offset, 166, FIELD_TEXT_ALIGN_RIGHT,
+                                        9, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+    }
+
+    render->primitive_cursor = packet_cursor;
+    return 0;
+}
+
+/**
+ * @brief Animate and draw the winner and their duel record.
+ * @param render Render half receiving the panels.
+ * @return Nonzero after the panel has slid out.
+ */
+static s32 field_draw_duel_result(FieldRenderHalf* render)
+{
+    u8 record_text[56];
+    u8 loss_text[56];
+    void* packet_cursor;
+    OT_TYPE* ot;
+
+    packet_cursor = render->primitive_cursor;
+    ot = render->ordering_table;
+
+    switch (g_field_duel_panel_phase)
+    {
+    case FIELD_DUEL_SLIDE_IN:
+        g_field_duel_panel_offset /= 2;
+
+        if (g_field_duel_panel_offset == 0)
+        {
+            g_field_duel_panel_phase = FIELD_DUEL_HOLD;
+            g_field_duel_panel_hold_frames = FIELD_DUEL_PANEL_HOLD_FRAMES;
+        }
+
+        break;
+    case FIELD_DUEL_HOLD:
+        g_field_duel_panel_hold_frames--;
+
+        if (g_field_duel_panel_hold_frames == 0)
+        {
+            field_play_sound(FIELD_SOUND_DUEL_PANEL_OUT, AKAO_PAN_CENTER);
+            g_field_duel_panel_phase = FIELD_DUEL_SLIDE_OUT;
+            g_field_duel_panel_offset = -1;
+        }
+
+        break;
+    case FIELD_DUEL_SLIDE_OUT:
+        g_field_duel_panel_offset *= 2;
+
+        if (g_field_duel_panel_offset < FIELD_DUEL_PANEL_END_OFFSET)
+        {
+            g_field_duel_panel_phase = FIELD_DUEL_FINISHED;
+        }
+
+        break;
+    case FIELD_DUEL_FINISHED:
+        return 1;
+    }
+
+    packet_cursor =
+        field_text_draw_scaled_quad(packet_cursor, ot, field_dialog_text(&g_field_ui_text_winner, FIELD_UI_TEXT_WINNER), FIELD_TEXT_COLOR_NORMAL, 160, 52,
+                                    FIELD_TEXT_ALIGN_CENTER, 5, FIELD_DUEL_TITLE_SCALE, FIELD_DUEL_TITLE_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+    packet_cursor = field_draw_player_icon(packet_cursor, ot, g_field_duel_winner, g_field_duel_panel_offset + 50, 84, 1);
+    packet_cursor = field_text_draw_scaled_quad(packet_cursor, ot, g_saved_game_ctx->characters[g_field_duel_winner].name, FIELD_TEXT_COLOR_NORMAL,
+                                                g_field_duel_panel_offset + 108, 100, FIELD_TEXT_ALIGN_LEFT, 6, FIELD_DUEL_WINNER_SCALE,
+                                                FIELD_DUEL_WINNER_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+
+    if ((g_saved_game_ctx->characters[g_field_duel_winner].info.bytes[0] & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST)
+    {
+        field_format_number(record_text, g_saved_game_ctx->characters[g_field_duel_winner].duel_wins, FIELD_DUEL_WIDE_NUMBERS);
+        field_append_dialog_text(record_text, &g_field_ui_text_wins, FIELD_UI_TEXT_WINS);
+        field_format_number(loss_text, g_saved_game_ctx->characters[g_field_duel_winner].duel_losses, FIELD_DUEL_WIDE_NUMBERS);
+        field_append_name(record_text, loss_text);
+        field_append_dialog_text(record_text, &g_field_ui_text_losses, FIELD_UI_TEXT_LOSSES);
+        packet_cursor =
+            field_text_draw_scaled_quad(packet_cursor, ot, record_text, FIELD_TEXT_COLOR_NORMAL, g_field_duel_panel_offset + 140, 132, FIELD_TEXT_ALIGN_LEFT, 7,
+                                        FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SCALE, FIELD_DUEL_TEXT_SLANT, FIELD_DUEL_PANEL_MOVING);
+    }
+
+    render->primitive_cursor = packet_cursor;
+    return 0;
+}
+
+extern void field_reset_actor_resources(void), field_text_reset_windows(void);
+
+extern _Noreturn void lom_native_field_fail(const char*);
+
+extern void field_rename_stored_companion_unchecked(s32);
+
+void field_run_name_entry(u8* initial, u8* active, s32 source, s32 history, const u8* custom)
+{
+    field_reset_actor_resources();
+    lom_overlay_run_name_entry(initial, active, source, history, custom);
+    field_text_reset_windows();
+    field_reset_actor_resources();
+}
+
+void field_rename_stored_companion(s32 index)
+{
+    if ((u32)index < PET_RECORD_COUNT)
+    {
+        field_rename_stored_companion_unchecked(index);
+    }
+}

@@ -1,0 +1,50 @@
+name: GOLEM.BIN
+compressed_sha1: 92d5e895181199fcfe5b6106237534398217b346
+sha1: 1ed8e3ebc1a8af7e5cc4cc4d5ed92096a5fc0829
+options:
+  base_path: ../../../
+  basename: GOLEM.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/GOLEM.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/golem.elf
+
+  asm_path: asm/jp/overlays/golem
+  src_path: src/overlays/golem
+  build_path: build/jp/overlays/golem
+
+  ld_script_path: linker/jp/overlays/golem/golem.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/golem/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/golem/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/shared_symbol_addrs.txt
+    - config/jp/symbols/golem_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: golem
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, golem]
+      - [0x25, c, golem]
+      - [0x287D, databin, golem_data]
+  - [0xC0D5]

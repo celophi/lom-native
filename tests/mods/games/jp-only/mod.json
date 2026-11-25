@@ -1,0 +1,9 @@
+{
+  "id": "jp-only",
+  "name": "Japanese only",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLPS-02170",
+  "api": 1
+}

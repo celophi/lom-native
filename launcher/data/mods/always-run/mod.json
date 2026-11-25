@@ -1,0 +1,16 @@
+{
+  "id": "always-run",
+  "name": "Always run",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Run without holding the run button, and hold it to walk.",
+  "game": [
+    "SLUS-01013",
+    "SLPS-02170"
+  ],
+  "api": 3,
+  "in_game_toggle": true,
+  "switches": {
+    "always_run": true
+  }
+}

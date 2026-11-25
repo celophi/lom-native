@@ -1,0 +1,242 @@
+#include "common.h"
+
+#include "../internal/field_calls.h"
+#include "../internal/field_records.h"
+#include "../internal/field_script.h"
+#include "main/audio/game_audio.h"
+
+#define FIELD_TRIGGER_GROUP_MASK 0xF
+#define FIELD_TEMPLATE_UNLINKED 0x2
+#define FIELD_TEMPLATE_LAND_COUNT_LEVEL 0x4
+
+s32 field_compute_monster_level(FieldActorTemplate* template);
+
+/**
+ * @brief Build the battle status records of the monsters in a trigger group.
+ * @param group Trigger group whose actors join the battle.
+ * @return Number of monster records built (they follow the party records).
+ */
+s32 field_build_group_monster_records(s32 group)
+{
+    s32 i;
+    s32 count;
+    FieldObjectState* state;
+
+    count = 0;
+
+    for (i = FIELD_PARTY_SIZE; i < g_field_runtime->state.actor_count; i++)
+    {
+        if ((g_field_runtime->actors[i].flags.word & FIELD_TRIGGER_GROUP_MASK) != group)
+        {
+            continue;
+        }
+
+        state = field_find_object_state(g_field_runtime->actors[i].id);
+
+        if (state == NULL || state == FIELD_STATUS_STATE_NONE)
+        {
+            record_game_diagnostic(DIAG_ERROR, DIAG_BAD_MONSTER_OBJECT, group, g_field_runtime->actors[i].id);
+        }
+
+        field_init_monster_record(g_field_runtime->actors[i].id, &g_field_battle->records[FIELD_PARTY_SIZE + count], state);
+        count++;
+    }
+
+    return count;
+}
+
+/**
+ * @brief Initialize a monster's status record and object state from its template.
+ * @param actor_id Actor identifier stored in the record.
+ * @param record Status record to initialize.
+ * @param state Object state of the monster.
+ */
+void field_init_monster_record(s32 actor_id, FieldStatusRecord* record, FieldObjectState* state)
+{
+    s32 flags;
+    s32 level;
+    u32 clamped;
+    u32 work;
+    u32 stat;
+    FieldActorTemplate* template;
+    FieldBattleContext* ctx;
+
+    record->meta.bytes.id = actor_id;
+    record->side = FIELD_RECORD_MONSTER_SIDE;
+    record->state = state;
+    flags = record->meta.packed;
+    flags |= FIELD_STATUS_META_ACTIVE;
+    flags &= ~FIELD_STATUS_META_ALLY;
+    flags &= ~FIELD_STATUS_META_KIND_MASK;
+    ctx = g_field_battle;
+    flags |= FIELD_STATUS_KIND_MONSTER << FIELD_STATUS_META_KIND_SHIFT;
+    record->meta.packed = flags;
+    record->meta.bytes.guard_flags = 0;
+    template = field_find_actor_template(ctx->templates, state->group.bytes.template_index);
+    record->template = template;
+    record->race = template->race;
+    record->counter = template->counter_reset;
+    record->counter_reset = template->counter_reset;
+    record->status_flags = 0;
+    record->modifier_flags = 0;
+    level = field_compute_monster_level(template);
+    clamped = FIELD_LEVEL_MAX;
+
+    if ((u32)level < FIELD_LEVEL_MAX + 1U)
+    {
+        clamped = level;
+    }
+
+    level = clamped;
+    work = field_get_script_var(0, FIELD_VAR_MONSTER_LEVEL);
+
+    if (work != 0)
+    {
+        level = work;
+    }
+
+    record->power = (u32)((template->power_base * 0x10) + (template->power_growth * level)) >> 4;
+    record->evasion = template->evasion;
+
+    for (work = 0; work < 4; work++)
+    {
+        record->equipment_stats[work] = (u32)((template->equipment_stats[work].base * 0x10) + (template->equipment_stats[work].growth * level)) >> 4;
+        record->equipment_attributes[work] = 0;
+    }
+
+    for (work = 0; work < FIELD_STATUS_STAT_COUNT; work++)
+    {
+        stat = (u32)((template->stats[work].base * 4) + (template->stats[work].growth * level)) >> 2;
+        record->element_attack[work] = FIELD_ELEMENT_LEVEL_NEUTRAL;
+        record->element_defense[work] = FIELD_ELEMENT_LEVEL_NEUTRAL;
+        record->base_stats[work] = stat;
+        record->stats[work] = stat;
+    }
+
+    record->immunity_flags = template->immunity_flags;
+    record->weak_elements = template->weak_elements;
+    record->resist_elements = template->resist_elements;
+    state->hud.word = (state->hud.word & ~0xFE) | ((level & 0x7F) * 2);
+
+    if (template->flags & FIELD_TEMPLATE_UNLINKED)
+    {
+        state->label.template = NULL;
+    }
+    else
+    {
+        state->label.template = template;
+    }
+
+    if (template->hp_growth != 0xFFFF)
+    {
+        state->maximum_hp = template->hp_base + (template->hp_growth * level);
+    }
+    else
+    {
+        work = 1;
+        state->maximum_hp = template->hp_base;
+
+        for (; (u32)level >= work; work++)
+        {
+            state->maximum_hp = field_add_stat_increase(state->maximum_hp, (u32)((template->stats[4].base * 4) + (template->stats[4].growth * work)) >> 2,
+                                                        FIELD_INCREASE_DAMPED);
+        }
+    }
+
+    switch (field_get_script_var(0, FIELD_VAR_DIFFICULTY))
+    {
+    case FIELD_DIFFICULTY_HARD:
+        state->maximum_hp *= 2;
+        break;
+    case FIELD_DIFFICULTY_HARDEST:
+        state->maximum_hp *= 3;
+        break;
+    }
+
+    if ((field_get_script_var(0, FIELD_VAR_DEBUG_ONE_HP_MONSTERS) != 0) || (state->maximum_hp == 0))
+    {
+        state->maximum_hp = 1;
+    }
+
+    state->current_hp.word = state->maximum_hp;
+    state->hp_display.bits.value = state->maximum_hp;
+    state->hp_display.bits.panel_timer = 0;
+    state->hp_display.bits.boss = template->flags >> 7;
+    work = record->base_stats[3] * 2;
+
+    if (work < 0x100U)
+    {
+        state->effect_footprint_strength = work;
+        return;
+    }
+
+    state->effect_footprint_strength = 0xFF;
+}
+
+/**
+ * @brief Compute a monster's level from the land's element levels its template reacts to.
+ * @param template Template with the raise and lower element masks.
+ * @return Level from 1 to FIELD_LEVEL_MAX.
+ */
+s32 field_compute_monster_level(FieldActorTemplate* template)
+{
+    u32 add_mask;
+    u32 sub_mask;
+    u32 count;
+    s32 value;
+    s32 clamped;
+    u32 scaled;
+
+    count = 0;
+    value = 8;
+    add_mask = template->raise_mask;
+    sub_mask = template->lower_mask;
+
+    for (; count < 8; count++)
+    {
+        if (add_mask & 1)
+        {
+            value += g_field_battle->element_levels[count];
+        }
+
+        if (sub_mask & 1)
+        {
+            value -= g_field_battle->element_levels[count];
+        }
+
+        add_mask >>= 1;
+        sub_mask >>= 1;
+    }
+
+    if (value < 5)
+    {
+        clamped = 4;
+    }
+    else
+    {
+        clamped = value;
+
+        if (clamped >= 0xB)
+        {
+            clamped = 0xA;
+        }
+    }
+
+    value = clamped;
+
+    scaled = (u32)(field_compute_base_monster_level(template->flags & FIELD_TEMPLATE_LAND_COUNT_LEVEL) * value) >> 3;
+
+    if (scaled >= 2)
+    {
+        if (scaled > FIELD_LEVEL_MAX)
+        {
+            scaled = FIELD_LEVEL_MAX;
+        }
+    }
+    else
+    {
+        scaled = 1;
+    }
+
+    return scaled;
+}

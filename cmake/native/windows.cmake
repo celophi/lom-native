@@ -1,0 +1,23 @@
+enable_language(RC)
+
+string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)" lom_rc_match "${LOM_VERSION}")
+if(lom_rc_match)
+    set(lom_rc_version "${CMAKE_MATCH_1},${CMAKE_MATCH_2},${CMAKE_MATCH_3}")
+else()
+    set(lom_rc_version "0,0,0")
+endif()
+set(lom_rc_icon "${CMAKE_CURRENT_SOURCE_DIR}/packaging/windows/lom-native.ico")
+
+function(lom_windows_resources target description)
+    set(lom_rc_name "${target}")
+    set(lom_rc_file "${target}.exe")
+    set(lom_rc_description "${description}")
+    configure_file(cmake/native/app.rc.in "${CMAKE_CURRENT_BINARY_DIR}/generated/${target}.rc" @ONLY)
+    target_sources(${target} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/generated/${target}.rc")
+endfunction()
+
+lom_windows_resources(lom "Legend of Mana Native")
+lom_windows_resources(lom-jp "Legend of Mana Native (Japanese version)")
+if(TARGET lom-launcher)
+    lom_windows_resources(lom-launcher "Legend of Mana Native launcher")
+endif()

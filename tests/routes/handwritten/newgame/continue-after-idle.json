@@ -1,0 +1,22 @@
+{
+  "format": 1,
+  "id": "title-continue-after-idle",
+  "description": "Leaving the title screen idle should stop its song and play the intro again; Continue on the title after that should load the save in the bedroom",
+  "title": "continue_after_idle",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue"
+    },
+    {
+      "watch": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ],
+  "frame_limit": 20000
+}

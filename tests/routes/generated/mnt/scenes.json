@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mnt-mnt-b001-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-b001-direct",
+    "description": "Entering MNT_B001 (scene 664) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mnt-mnt-b001-direct: Entering MNT_B001 (scene 664) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 664 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 664 save 349918858eae5506 state c555dcf679ab3760 ram 0000000000000000",
+     "watched frame 262 scene 664 save f190b5558cb32a84 state 9cb9b48cd6a9f578 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b66f469151482f5a0e16979c1bea5921"
+     },
+     {
+      "frames": 33,
+      "sha256": "86039417310ffd5b161d776ef2531043"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mnt-mnt-b011-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-b011-direct",
+    "description": "Entering MNT_B011 (scene 665) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mnt-mnt-b011-direct: Entering MNT_B011 (scene 665) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 665 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 665 save 665d5b41156e0eeb state 73f7abbd69fb7588 ram 0000000000000000",
+     "watched frame 262 scene 665 save 537fab68a53c25fd state 2b6a2a2cca25da10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b35ae10f9bb589b039cddccd38211bea"
+     },
+     {
+      "frames": 33,
+      "sha256": "66f3f94ce9358040c219f01b5be44d18"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mnt-mnt-pwr0-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-pwr0-entry",
+    "description": "Entering MNT_PWR0 (scene 557) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mnt-mnt-pwr0-entry: Entering MNT_PWR0 (scene 557) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 557 0 16718335 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 557 save 37a8da0ccc16e222 state cfe0f8ac66a932d4 ram 0000000000000000",
+     "watched frame 261 scene 557 save 19590706f5f86b48 state e81baa151dbcfaac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 133,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ace767721efa84ff0b359552c327fac7"
+     },
+     {
+      "frames": 32,
+      "sha256": "72378fecbafdb261516e08a9029bfc7a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,176 @@
+{
+  "about": "The PSY-Z and SDL files the build patches, and with which patches in this folder, in the order they apply. cmake/psyz_patches.cmake reads this when CMake configures: it copies each source out of external/psyz, applies its patches with tools/build/prepare_native_source.py, writes the result under the build's generated/ folder and, for a file with a target, compiles that in place of the original (replaces is the end of the original's path in the target's sources, which has to match exactly one). A patch that only applies sometimes, and a file that's only patched sometimes, says when: apple (macOS builds), menu (the in-game menu, built with the sdl3_gpu renderer), sdl3_gl or sdl3_gpu (the renderer PSY-Z draws with), hd (the Remaster's HD art, left out of a Windows build that has no Direct3D 12 build of the drawing shaders) or sdl (PSY-Z's SDL is built from source). A later patch for the same file applies on top of the earlier ones, so its context includes what they add.",
+  "files": [
+    {
+      "source": "external/SDL/src/gpu/vulkan/SDL_gpu_vulkan.c",
+      "when": "sdl",
+      "output": "sdl_native/SDL_gpu_vulkan.c",
+      "target": "SDL3-static",
+      "replaces": "src/gpu/vulkan/SDL_gpu_vulkan.c",
+      "include_directories": ["external/SDL/src/gpu/vulkan"],
+      "patches": ["sdl-gpu-vulkan-device-peer.patch"]
+    },
+    {
+      "source": "external/SDL/src/gpu/metal/SDL_gpu_metal.m",
+      "when": "apple",
+      "output": "sdl_native/SDL_gpu_metal.m",
+      "target": "SDL3-static",
+      "replaces": "src/gpu/metal/SDL_gpu_metal.m",
+      "include_directories": ["external/SDL/src/gpu/metal"],
+      "patches": ["sdl-gpu-metal-offscreen.patch"]
+    },
+    {
+      "source": "external/SDL/src/video/SDL_video.c",
+      "when": "apple",
+      "output": "sdl_native/SDL_video.c",
+      "target": "SDL3-static",
+      "replaces": "src/video/SDL_video.c",
+      "include_directories": ["external/SDL/src/video"],
+      "patches": ["sdl-offscreen-macos-no-gl.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/psyz_spu.c",
+      "output": "psyz_native/psyz_spu.c",
+      "target": "psyz",
+      "replaces": "src/psyz/psyz_spu.c",
+      "patches": ["spu-native.patch", "spu-category-audio.patch", "spu-music-replacement.patch", "spu-effect-replacement.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/spu_voice.h",
+      "output": "psyz_native/spu_voice.h",
+      "patches": ["spu-voice-native.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/libapi.c",
+      "output": "psyz_native/sdk/libapi.c",
+      "target": "psyz",
+      "replaces": "src/psyz/libapi.c",
+      "patches": ["vsync-sdk-native.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/kernel.c",
+      "output": "psyz_native/sdk/kernel.c",
+      "target": "psyz",
+      "replaces": "src/psyz/kernel.c",
+      "patches": ["root-counter-native.patch", "critical-section-result.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/spu.c",
+      "output": "psyz_native/sdk/spu.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/spu.c",
+      "patches": ["spu-dma-completion-native.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/s_itc.c",
+      "output": "psyz_native/sdk/s_itc.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/s_itc.c",
+      "patches": ["spu-transfer-status-native.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/s_w.c",
+      "output": "psyz_native/sdk/s_w.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/s_w.c",
+      "patches": ["spu-s_w-completion-native.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/s_r.c",
+      "output": "psyz_native/sdk/s_r.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/s_r.c",
+      "patches": ["spu-s_r-completion-native.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/s_wp.c",
+      "output": "psyz_native/sdk/s_wp.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/s_wp.c",
+      "patches": ["spu-s_wp-completion-native.patch"]
+    },
+    {
+      "source": "decomp/src/libspu/s_crwa.c",
+      "output": "psyz_native/sdk/s_crwa.c",
+      "target": "psyz",
+      "replaces": "decomp/src/libspu/s_crwa.c",
+      "patches": ["spu-clear-reverb-completion-native.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/libcd.c",
+      "output": "psyz_native/sdk/libcd.c",
+      "target": "psyz",
+      "replaces": "src/psyz/libcd.c",
+      "patches": ["cd-datasync-native.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/libgpu.c",
+      "output": "psyz_native/libgpu.c",
+      "target": "psyz",
+      "replaces": "src/psyz/libgpu.c",
+      "patches": ["gpu-tpage.patch", "gpu-queue-tap.patch", "gpu-draw-prim-dispatch.patch", "gpu-packet-commands.patch", "gpu-texture-replacement.patch"]
+    },
+    {
+      "source": "psyz/src/psyz/libgte.c",
+      "output": "psyz_native/libgte.c",
+      "target": "psyz",
+      "replaces": "src/psyz/libgte.c",
+      "defines": ["ApplyMatrixLV=lom_native_psyz_unused_ApplyMatrixLV"],
+      "patches": ["gte-leading-bits.patch", "gte-inv-square-root-native.patch", "gte-color-alias-native.patch", "gte-register-transfer-native.patch", "gte-matrix-normal-native.patch", "gte-screen-offset-native.patch"]
+    },
+    {
+      "source": "psyz/include/libgte.h",
+      "output": "psyz_native/include/libgte.h",
+      "patches": ["gte-inv-square-root-header-native.patch", "gte-matrix-normal-header-native.patch"]
+    },
+    {
+      "source": "psyz/include/kernel.h",
+      "output": "psyz_native/include/kernel.h",
+      "patches": ["critical-section-result-header.patch"]
+    },
+    {
+      "source": "psyz/src/platform/sdl3_common.h",
+      "output": "psyz_native/platform/sdl3_common.h",
+      "patches": [
+        "quit-hook.patch",
+        "keyboard-player-two.patch",
+        "virtual-clock-video.patch",
+        "offscreen-frame-limiter.patch",
+        "controller-rumble.patch",
+        "vsync-platform-native.patch",
+        {"patch": "overlay-menu-input.patch", "when": "menu"}
+      ]
+    },
+    {
+      "source": "psyz/src/platform/sdl3_audio.c",
+      "output": "psyz_native/platform/sdl3_audio.c",
+      "target": "psyz",
+      "replaces": "src/platform/sdl3_audio.c",
+      "patches": ["virtual-clock-audio.patch", {"patch": "overlay-menu-audio.patch", "when": "menu"}]
+    },
+    {
+      "source": "psyz/src/platform/sdl3_gl.c",
+      "when": "sdl3_gl",
+      "output": "psyz_native/platform/sdl3_gl.c",
+      "target": "psyz",
+      "replaces": "src/platform/sdl3_gl.c",
+      "patches": ["sdl3_gl.c-vsync-mode.patch", "opengl-polygon-limits.patch"]
+    },
+    {
+      "source": "psyz/src/platform/sdl3_gpu.c",
+      "when": "sdl3_gpu",
+      "output": "psyz_native/platform/sdl3_gpu.c",
+      "target": "psyz",
+      "replaces": "src/platform/sdl3_gpu.c",
+      "patches": [
+        "polygon-limits.patch",
+        "present-sharp-bilinear.patch",
+        "sdl3_gpu.c-vsync-mode.patch",
+        "overlay-menu-gpu.patch",
+        "widescreen-present.patch",
+        "capture-internal-resolution.patch",
+        {"patch": "remaster-hd.patch", "when": "hd"}
+      ]
+    }
+  ]
+}

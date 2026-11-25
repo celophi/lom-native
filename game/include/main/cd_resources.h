@@ -1,0 +1,71 @@
+#ifndef _CD_RESOURCES_H
+#define _CD_RESOURCES_H
+
+typedef enum CdResourceId
+{
+    CD_RES_SYSTEM_CNF = 0,
+
+    CD_RES_SLUS_010_13 = 1,
+
+    CD_RES_FIELD_BIN = 2,
+
+    CD_RES_WMAP_BIN = 3,
+
+    CD_RES_TITLE_BIN = 4,
+
+    CD_RES_GNAME_BIN = 5,
+
+    CD_RES_MENU_BIN = 6,
+
+    CD_RES_SHOP_BIN = 7,
+
+    CD_RES_ZUKAN_BIN = 8,
+
+    CD_RES_GOLEM_BIN = 9,
+
+    CD_RES_GOVER_BIN = 10,
+
+    CD_RES_MOVIE_BIN = 11,
+
+    CD_RES_CARDA_BIN = 12,
+
+    CD_RES_GOSUB_BIN = 13,
+
+    CD_RES_WSEL_BIN = 14,
+
+    CD_RES_CHECKPS_BIN = 15,
+
+    CD_RES_CLOAD_BIN = 16,
+
+    CD_RES_NIKI_BIN = 17,
+
+    CD_RES_ADDHERO_BIN = 18,
+
+    CD_RES_SOUND_EFFECT_SET = 21,
+
+    CD_RES_MSC_DATA = 23,
+
+    CD_RES_MUSIC002_SET = 24,
+
+    CD_RES_SND_SOTO_SET = 147,
+
+    CD_RES_FIELD_WINDOW_TEXTURES = 177,
+
+    CD_RES_FIELD_FONT = 178,
+
+    CD_RES_FIELD_MAP_BASE = 180,
+
+    CD_RES_POCKETSTATION_PET_TRANSFER = 1506,
+
+    CD_RES_ZUKAN_MAP_TEXTURE = 1507,
+
+    CD_RES_CLOAD_ICON_SET = 1508,
+
+    CD_RES_FIELD_PORTRAITS = 1509,
+
+    CD_RES_FIELD_SCENE_BASE = 1548,
+} CdResourceId;
+
+#define CD_RES_MUSIC_FILE(file_index) (((file_index) + CD_RES_MSC_DATA) & 0xFFFF)
+
+#endif

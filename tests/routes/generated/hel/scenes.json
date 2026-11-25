@@ -1,0 +1,170 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "hel-hel-bs00-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs00-entry",
+    "description": "Entering HEL_BS00 (scene 478) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# hel-hel-bs00-entry: Entering HEL_BS00 (scene 478) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33246 0 16723214 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 478 save c530acd7af7a9184 state 92fb2469c8490847 ram 0000000000000000",
+     "watched frame 262 scene 478 save b13d4f2943dd80ea state 7e1896f1a7329bef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 127,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46ccf57e12a39c9792206e21714575c2"
+     },
+     {
+      "frames": 33,
+      "sha256": "f6d81526a4697dd43f0567d7ddac53d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs11-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs11-entry",
+    "description": "Entering HEL_BS11 (scene 481) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# hel-hel-bs11-entry: Entering HEL_BS11 (scene 481) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33249 0 16716799 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 481 save c007d9a4b2e89499 state c0fb9bd3807c293b ram 0000000000000000",
+     "watched frame 261 scene 481 save 2079886befb57957 state 5bf4ffe609fd80b3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "28f33cc12e8384cee607712d408c92d5"
+     },
+     {
+      "frames": 32,
+      "sha256": "90d067b2848903bae214c05346e5c89f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e141-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e141-entry",
+    "description": "Entering HEL_E141 (scene 704) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# hel-hel-e141-entry: Entering HEL_E141 (scene 704) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 704 0 16723199 2\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 704 save 5886465bcf0523b6 state 199e5ee1b6705206 ram 0000000000000000",
+     "watched frame 3231 scene 704 save d6ecdc0641edd0a4 state a382e1cd15c838e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0fbbc7d622be94328ac227111fb9236b"
+     },
+     {
+      "frames": 3002,
+      "sha256": "0c65dad4ebc2089df9d0e3f7e91f7c1e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e200-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e200-direct",
+    "description": "Entering HEL_E200 (scene 477) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# hel-hel-e200-direct: Entering HEL_E200 (scene 477) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 477 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 477 save 001afaaec5d009fe state 6c275dc79df42a38 ram 0000000000000000",
+     "watched frame 261 scene 477 save 001afaaec5d009fe state 5f1902ca85985883 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "395c5545cc2a7f189c71fe664514bec7"
+     },
+     {
+      "frames": 32,
+      "sha256": "96a0c7a2da7b32499a21f1b1cfa96a40"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

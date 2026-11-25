@@ -1,0 +1,79 @@
+{
+ "route": "mhm-pet-level-up",
+ "description": "Giving the joined pet (party slot 2) experience should level it up the way the game's award does, growing its stats, then the bedroom should carry on",
+ "plan": "# mhm-pet-level-up: Giving the joined pet (party slot 2) experience should level it up the way the game's award does, growing its stats, then the bedroom should carry on\nlimit 20000\ncheckpoint loaded\nexperience 9999999 2\nwatch 300\ncheckpoint done\n",
+ "format": 3,
+ "checkpoints": [
+  "loaded frame 1 scene 19 save 4d4397045b9e190f state f4e53426a516bfd0 ram 0000000000000000",
+  "done frame 66 scene 19 save 461bb0f19c4d2b4b state df583969f3149ada ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "loaded",
+   "changes": [
+    "frame 1, scene 19 (MHM_BDRM)",
+    "spawn 0 to 6",
+    "actor 0 (the hero): at (150, 204), facing 64, animation 0,0, presence 0, control 2, command 0",
+    "actor 2: at (150, 218), facing 64, animation 0,0, presence 0, control 2, command 0",
+    "actor 3 (layout record 0): at (122, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 4 (layout record 1): at (145, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 5 (layout record 2): at (169, 238), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 6 (layout record 3): at (80, 100), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (80, 102), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 8 (layout record 5): at (278, 165), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 9 (layout record 6): at (275, 173), facing 0, animation 0,0, presence 254, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "done",
+   "changes": [
+    "frame 66, scene 19 (MHM_BDRM)",
+    "story word 24: f7f70000 to f2f20000 (cleared 0x310, 0x312, 0x318, 0x31a)",
+    "character 2: 30 bytes changed",
+    "12 other saved-game bytes changed, the first at offset 12044",
+    "scene word 9: 00000000 to 00000008",
+    "scene word 10: 00000000 to 00000100",
+    "scene word 11: 00000000 to 00000100",
+    "scene word 12: 00000000 to 00000100",
+    "scene word 47: 00000001 to 00000042",
+    "actor 0 (the hero): control 2 to 0",
+    "actor 2: animation 0,0 to 0,2; control 2 to 1",
+    "actor 3 (layout record 0): animation 0,0 to 0,15; command 0 to 168",
+    "actor 4 (layout record 1): animation 0,0 to 0,15; command 0 to 168",
+    "actor 5 (layout record 2): animation 0,0 to 0,15; command 0 to 168",
+    "actor 6 (layout record 3): direction 0 to 128; animation 0,0 to 23,0; command 0 to 141",
+    "actor 7 (layout record 4): animation 0,0 to 27,0; command 0 to 168",
+    "actor 8 (layout record 5): direction 0 to 128; animation 0,0 to 26,0; command 0 to 141"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "party member at level 99 with 912 hp",
+  "watched until the player got control, 30 frames"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 66,
+  "instruction_end": 15,
+  "song": 2,
+  "scene": 1
+ },
+ "pictures": "607efce6 988030a7 1be85dc0 6dfce904 d4dc67ca fb2ffcb0 83a08d99 c96919db 5bdaeda2 9cd4f473 d8b3a4aa 48f677f7 effaab12 809e5897 740b672b aa345f58 a9bc8e77 c7ba6ee9 50e014c6 d25517cd 0bd97878 cfac4633 515daf60 c1d09160 c792449d bf2d6e6e 4e0523db 1079fe48 15f57df4 e8b53987 7f938693 a826e8c8 76d41711 765f3a13 239a8049 806c9683 f832b51b c5cef0f7 1411bd90 618b16d2 40be5ed8 b766b913 ad43293c 0b63187d 85de360f 951eede4 e9ddd72a 9953a0db 71be356f 30b4163a d1ecd020 60280c16 effaab12 809e5897 79bf3626 076f76ef 28aba72b 70d0a6ef 4aea0db3 052d14ca fa29abe6 d714dbf4 64007741 a35427df b0b9839d b095d68e 1cdb360a",
+ "stretches": [
+  {
+   "frames": 2,
+   "sha256": "62a269c123e0074146ff8dd54075e297"
+  },
+  {
+   "frames": 65,
+   "sha256": "c2e3f42f46574118b4d3c98e285b0483"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

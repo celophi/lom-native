@@ -1,0 +1,17 @@
+Finish an SPU transfer through the SDK's own completion path.
+
+--- a/decomp/src/libspu/spu.c
++++ b/decomp/src/libspu/spu.c
+@@ -182,11 +182,7 @@
+
+ #ifdef __psyz
+ void Psyz_KernelRaise(unsigned int desc, unsigned int spec);
+-void _spu_DmaDone(void) {
+-    if (!_spu_transferCallback) {
+-        Psyz_KernelRaise(HwSPU, EvSpCOMP);
+-    }
+-}
++void _spu_DmaDone(void) { _spu_FiDMA(); }
+ #endif
+
+ #ifndef __psyz

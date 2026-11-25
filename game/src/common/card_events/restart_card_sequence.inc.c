@@ -1,0 +1,13 @@
+#include "common/card_events.h"
+
+/**
+ * @brief Clear the software events, request fresh card information and park the
+ *        card sequence on its idle step table.
+ */
+void restart_card_sequence(void)
+{
+    lom_native_card_wait(g_card_slot);
+    clear_software_card_events();
+    lom_native_card_info(CARD_CHANNEL(g_card_slot));
+    g_card_step = g_card_steps_idle;
+}

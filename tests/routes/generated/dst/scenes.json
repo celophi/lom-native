@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dst-dst-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dst-dst-bs01-entry",
+    "description": "Entering DST_BS01 (scene 703) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dst-dst-bs01-entry: Entering DST_BS01 (scene 703) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33471 0 16720394 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 703 save 0eb7b369b67d7671 state e204b65997f38bbb ram 0000000000000000",
+     "watched frame 262 scene 703 save f3b58e9c976c4eff state 9dd5b606da94505c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0a9c16118f75f35efc7f8ea84f1d1f12"
+     },
+     {
+      "frames": 33,
+      "sha256": "19b02fc1f9fd6aeb0b293eb8e881cce6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

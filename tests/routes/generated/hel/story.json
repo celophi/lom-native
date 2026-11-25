@@ -1,0 +1,355 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "hel-hel-b060-story-1188",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HEL_B060's story 0x1188 needs",
+    "source": "built from the conditions on the path to the write in scene 488 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26b0": 3,
+     "0x1188": 8
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-b060-story-1188",
+    "description": "In HEL_B060 (scene 488), talking to layout record 1 should write story variable 0x1188",
+    "plan": "# hel-hel-b060-story-1188: In HEL_B060 (scene 488), talking to layout record 1 should write story variable 0x1188\nlimit 20000\nenter 15 0 16711935 0\nguest 5\nenter 33256 0 16713471 0\ncheckpoint entered\ntalk 157 209 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 488 save e59fa6b9e6436529 state 2655af6c3c7f0a5c ram 0000000000000000",
+     "done frame 1112 scene 488 save 4e6e2f1bda664c8a state a3f3d1f742323144 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 5 joined",
+     "walk to (157, 189): 3 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 216,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "e1750f5ca9cd741516551ef9038b045f"
+     },
+     {
+      "frames": 800,
+      "sha256": "2af79865c55f931fe282b216c094980c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e000-story-4e2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HEL_E000's story 0x4e2 needs",
+    "source": "built from the conditions on the path to the write in scene 457 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e000-story-4e2",
+    "description": "In HEL_E000 (scene 457), entering should write story variable 0x4e2",
+    "plan": "# hel-hel-e000-story-4e2: In HEL_E000 (scene 457), entering should write story variable 0x4e2\nlimit 20000\nenter 706 0 16716799 1\nguest 4\nenter 457 0 16713471 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 457 save 506a57939a8c988a state d4cb0594cb616038 ram 0000000000000000",
+     "done frame 1480 scene 457 save 8f37c005c4580ad0 state 11747d607090675f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 4 joined",
+     "watched until the player got control, 1164 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 276,
+     "instruction": 367,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "693c6c1dae0d82382abd0ad2914fdcd5"
+     },
+     {
+      "frames": 1166,
+      "sha256": "8e453303078cf4dbd003f8bf05ca409f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-story-419",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-story-419",
+    "description": "In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x419",
+    "plan": "# hel-hel-e070-story-419: In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x419\nlimit 20000\nenter 1 0 655615 0\nguest 1\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 237 160 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 464 save 9414bfe47fe5da64 state 991ccde42ff2a8c7 ram 0000000000000000",
+     "done frame 2294 scene 464 save 5bd1833cc7e47106 state ac231220470447f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 1 joined",
+     "walk to (237, 140): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 286,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "ffd15a48139b89f25b94a2cdd018b513"
+     },
+     {
+      "frames": 1982,
+      "sha256": "6d7fbd7f1c3bdce1cbd896d9465cad2c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-story-440",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-story-440",
+    "description": "In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x440",
+    "plan": "# hel-hel-e070-story-440: In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x440\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 237 160 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 464 save 31b0c912e99f24bf state 0e619c7484510a1f ram 0000000000000000",
+     "done frame 1258 scene 464 save 8a43d28d7d06c8b2 state efbd2dba728b2391 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (237, 140): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 229,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "431308e4114bee6c1bd0044d76bd41cf"
+     },
+     {
+      "frames": 946,
+      "sha256": "85d516222d451cbde4a614d9fbf6ebe9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-story-44a",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-story-44a",
+    "description": "In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x44a",
+    "plan": "# hel-hel-e070-story-44a: In HEL_E070 (scene 464), talking to layout record 2 should write story variable 0x44a\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 237 160 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 464 save 31b0c912e99f24bf state 0e619c7484510a1f ram 0000000000000000",
+     "done frame 1258 scene 464 save 8a43d28d7d06c8b2 state efbd2dba728b2391 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (237, 140): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 229,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "431308e4114bee6c1bd0044d76bd41cf"
+     },
+     {
+      "frames": 946,
+      "sha256": "85d516222d451cbde4a614d9fbf6ebe9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os00-story-11b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HEL_OS00's story 0x11b0 needs",
+    "source": "built from the conditions on the path to the write in scene 455 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11b0": 7
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os00-story-11b0",
+    "description": "In HEL_OS00 (scene 455), entering should write story variable 0x11b0",
+    "plan": "# hel-hel-os00-story-11b0: In HEL_OS00 (scene 455), entering should write story variable 0x11b0\nlimit 20000\nenter 455 0 16713471 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 455 save b246d469d491794c state ec62c700eeffe765 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1907",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "244d26b6c410e4db60e1ccd01f017298"
+     },
+     {
+      "frames": 466,
+      "sha256": "98be06feea227d2389ef83d276406ef1"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os01-story-40e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HEL_OS01's story 0x40e needs",
+    "source": "built from the conditions on the path to the write in scene 706 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x114c": 6
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os01-story-40e",
+    "description": "In HEL_OS01 (scene 706), entering should write story variable 0x40e",
+    "plan": "# hel-hel-os01-story-40e: In HEL_OS01 (scene 706), entering should write story variable 0x40e\nlimit 20000\nenter 706 0 16716799 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 706 save a730aaf42334f9d2 state 5d29caa52e70979c ram 0000000000000000",
+     "done frame 262 scene 706 save 981ba6fad49b0046 state dd8d58b8034917f1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a2ba7aae194443aa9ea66160e24ba17f"
+     },
+     {
+      "frames": 33,
+      "sha256": "7c100216bc02d03d9cbbe757e2e7e71a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "quick-fights",
+  "name": "Quick fights",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Skip the results window after a fight. It still opens when someone learns an ability or technique.",
+  "game": [
+    "SLUS-01013",
+    "SLPS-02170"
+  ],
+  "api": 3,
+  "in_game_toggle": true,
+  "switches": {
+    "skip_battle_results": true
+  }
+}

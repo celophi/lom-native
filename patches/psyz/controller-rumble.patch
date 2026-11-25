@@ -1,0 +1,41 @@
+Drive the game's controller rumble through SDL, using PSY-Z's own order of
+controller ports.
+
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -561,6 +561,22 @@
+ static bool is_pads_init = false;
+ static struct Gamepad gamepads[16] = {0};
+ 
++Uint32 lom_native_psyz_pad_device_id(int port) {
++    if (port < 0 || port >= 2 || !gamepads[port].dev ||
++        !SDL_GamepadConnected(gamepads[port].dev)) return 0;
++    return gamepads[port].id;
++}
++int lom_native_psyz_pad_has_rumble(int port) {
++    if (!lom_native_psyz_pad_device_id(port)) return 0;
++    return SDL_GetBooleanProperty(SDL_GetGamepadProperties(gamepads[port].dev),
++        SDL_PROP_GAMEPAD_CAP_RUMBLE_BOOLEAN, false);
++}
++int lom_native_psyz_pad_rumble(int port, Uint16 low, Uint16 high, Uint32 duration_ms) {
++    if (!lom_native_psyz_pad_has_rumble(port)) return 0;
++    return SDL_RumbleGamepad(gamepads[port].dev, low, high, duration_ms);
++}
++
++
+ static void UpdatePlatformTouchControls(void) {
+ #ifdef PLATFORM_IOS
+     Psyz_IosSetTouchControlsVisible(is_pads_init && !gamepads[0].dev);
+@@ -608,6 +624,12 @@
+         return;
+     }
+ 
++    if (i < 2) {
++        for (int port = 0; port < 2; ++port) {
++            if (gamepads[port].dev)
++                SDL_RumbleGamepad(gamepads[port].dev, 0, 0, 0);
++        }
++    }
+     SDL_CloseGamepad(gamepads[i].dev);
+     for (; i + 1 < LEN(gamepads); i++) {
+         gamepads[i] = gamepads[i + 1];

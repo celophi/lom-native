@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "id": "mods-battle-rewards",
+  "description": "A Lua mod's hooks should run in the real game, and its add_money, party and scene calls should work there: it gets 100 lucre after the fight",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "routes",
+  "steps": [
+    {
+      "experience": 9999999,
+      "note": "strong enough to win quickly"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

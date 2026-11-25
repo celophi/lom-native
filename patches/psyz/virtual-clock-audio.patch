@@ -1,0 +1,120 @@
+The virtual clock for tests: each emulated vertical blank pulls a fixed number
+of samples instead of a device pulling them.
+
+--- a/psyz/src/platform/sdl3_audio.c
++++ b/psyz/src/platform/sdl3_audio.c
+@@ -10,6 +10,26 @@
+ static SDL_AudioStream* sdl_stream;
+ static SDL_Mutex* mutex;
+
++static int virtual_clock;
++static int virtual_paused;
++static unsigned virtual_remainder;
++static int virtual_next_frames = -1;
++static unsigned long long pulled_frames;
++
++void Psyz_AudioSetVirtualBlankFrames(int frames) { virtual_next_frames = frames; }
++
++unsigned long long Psyz_AudioPulledFrames(void) {
++    unsigned long long frames;
++    if (mutex) SDL_LockMutex(mutex);
++    frames = pulled_frames;
++    if (mutex) SDL_UnlockMutex(mutex);
++    return frames;
++}
++
++void Psyz_AudioSetVirtualClock(int enabled) { virtual_clock = enabled; }
++
++int Psyz_AudioIsVirtualClock(void) { return virtual_clock; }
++
+ // Audio callback: SDL pulls audio from the SPU via this callback.
+ // The audio driver synchronizes the SPU based on the pulled samples.
+ static void SDLCALL audio_callback(void* userdata, SDL_AudioStream* stream,
+@@ -27,6 +47,7 @@
+         if (batch > 2048)
+             batch = 2048;
+         Psyz_SpuPullSamples(buf, batch);
++        pulled_frames += (unsigned)batch;
+         SDL_PutAudioStreamData(stream, buf, batch * N_CHANNELS * SAMPLE_SIZE);
+         num_frames -= batch;
+     }
+@@ -39,6 +60,18 @@
+         return 0;
+     }
+     Psyz_SpuInit();
++    if (virtual_clock) {
++        mutex = SDL_CreateMutex();
++        if (!mutex) {
++            ERRORF("failed to create audio mutex: %s", SDL_GetError());
++            return -1;
++        }
++        virtual_paused = 0;
++        virtual_remainder = 0;
++        is_audio_init = true;
++        DEBUGF("audio initialized on the virtual clock");
++        return 0;
++    }
+     if (!SDL_WasInit(SDL_INIT_AUDIO)) {
+         if (!SDL_InitSubSystem(SDL_INIT_AUDIO)) {
+             ERRORF("failed to init SDL audio: %s", SDL_GetError());
+@@ -87,6 +120,31 @@
+     is_audio_init = false;
+ }
+
++void Psyz_AudioAdvanceVirtualBlank(void) {
++    short buf[2048 * N_CHANNELS];
++    unsigned frames;
++    if (!virtual_clock || !is_audio_init || virtual_paused) {
++        virtual_next_frames = -1;
++        return;
++    }
++    if (virtual_next_frames >= 0) {
++        frames = (unsigned)virtual_next_frames;
++        virtual_next_frames = -1;
++    } else {
++        virtual_remainder += PSYZ_SPU_SAMPLE_RATE * 1001u;
++        frames = virtual_remainder / 60000u;
++        virtual_remainder %= 60000u;
++    }
++    SDL_LockMutex(mutex);
++    while (frames > 0) {
++        unsigned batch = frames > 2048 ? 2048 : frames;
++        Psyz_SpuPullSamples(buf, (int)batch);
++        pulled_frames += batch;
++        frames -= batch;
++    }
++    SDL_UnlockMutex(mutex);
++}
++
+ void Psyz_AudioLock() {
+     if (mutex) {
+         SDL_LockMutex(mutex);
+@@ -100,17 +158,28 @@
+ }
+
+ void Psyz_AudioPause(void) {
++    if (virtual_clock) {
++        virtual_paused = 1;
++        return;
++    }
+     if (sdl_stream) {
+         SDL_PauseAudioStreamDevice(sdl_stream);
+     }
+ }
+
+ void Psyz_AudioUnpause(void) {
++    if (virtual_clock) {
++        virtual_paused = 0;
++        return;
++    }
+     if (sdl_stream) {
+         SDL_ResumeAudioStreamDevice(sdl_stream);
+     }
+ }
+
+ int Psyz_AudioIsPaused(void) {
++    if (virtual_clock) {
++        return virtual_paused;
++    }
+     return !sdl_stream || SDL_AudioStreamDevicePaused(sdl_stream);
+ }

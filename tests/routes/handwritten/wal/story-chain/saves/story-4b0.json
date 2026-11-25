@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of wal/story/story-3f2.json, at home, with the story state WAL_B010's story 0x4b0 needs",
+  "source": "built from the conditions on the path to the write in scene 288 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0
+  },
+  "saved_game": "saves/chain-wal-story-3f2.bin",
+  "variables": {
+    "0x2f88": 21
+  }
+}

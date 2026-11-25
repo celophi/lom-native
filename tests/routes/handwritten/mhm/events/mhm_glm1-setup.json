@@ -1,0 +1,209 @@
+{
+  "format": 1,
+  "id": "mhm-mhm-glm1-setup",
+  "description": "Coming into MHM_GLM1 (scene 696) with 0x11f8 = 2 should run layout record 0's set-up script: its talk stops three tile animations (opcode 0x41, stop_tile_animation) and opens the Basic Golemology book, which Circle closes",
+  "start": {
+    "save": "saves/mhm_glm1-setup.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 696,
+        "from": 17,
+        "spawn": 0
+      },
+      "note": "the only way in"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "wait": 120,
+      "note": "layout record 0's set-up script starts its talk"
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      },
+      "note": "through the talk's text"
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 45
+    },
+    {
+      "checkpoint": "talked"
+    },
+    {
+      "press": {
+        "buttons": [
+          "circle"
+        ],
+        "frames": 1
+      },
+      "note": "END: close the Basic Golemology book"
+    },
+    {
+      "wait": 120
+    },
+    {
+      "press": {
+        "buttons": [
+          "circle"
+        ],
+        "frames": 1
+      }
+    },
+    {
+      "wait": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

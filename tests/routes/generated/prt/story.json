@@ -1,0 +1,228 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "prt-prt-all0-story-1204",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_ALL0's story 0x1204 needs",
+    "source": "built from the conditions on the path to the write in scene 265 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1180": 8
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-all0-story-1204",
+    "description": "In PRT_ALL0 (scene 265), entering should write story variable 0x1204",
+    "plan": "# prt-prt-all0-story-1204: In PRT_ALL0 (scene 265), entering should write story variable 0x1204\nlimit 20000\nenter 265 0 16716287 3\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 8f2458a8dcf8fcdf state 2428f00c76eb002a ram 0000000000000000",
+     "done frame 262 scene 265 save 8f2458a8dcf8fcdf state 199931632514ee3b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3fd866b92e6ee70dbbd0d9d470d21804"
+     },
+     {
+      "frames": 33,
+      "sha256": "340d5e452b84682ffa29ef7129152e2c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-story-409",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_ALL0's story 0x409 needs",
+    "source": "built from the conditions on the path to the write in scene 265 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1224": 1,
+     "0x90a": 1,
+     "0x1220": 8
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-all0-story-409",
+    "description": "In PRT_ALL0 (scene 265), entering should write story variable 0x409",
+    "plan": "# prt-prt-all0-story-409: In PRT_ALL0 (scene 265), entering should write story variable 0x409\nlimit 20000\nenter 265 0 16716287 3\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save b3468dba330035c3 state 32bd0c042edda2c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1887",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 237,
+     "instruction_end": 164,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ce2607584f53d4748d9e99368a701b1"
+     },
+     {
+      "frames": 551,
+      "sha256": "865182c7ed154b18065e6386207b60d8"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-story-4d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_INLT's story 0x4d4 needs",
+    "source": "built from the conditions on the path to the write in scene 269 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 2
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-inlt-story-4d4",
+    "description": "In PRT_INLT (scene 269), talking to layout record 1 should write story variable 0x4d4",
+    "plan": "# prt-prt-inlt-story-4d4: In PRT_INLT (scene 269), talking to layout record 1 should write story variable 0x4d4\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\ntalk 231 550 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save b05b6a67e5a62e25 state ef8147696cc13510 ram 0000000000000000",
+     "done frame 1283 scene 269 save 154db612097706a9 state 2e46e386fe1d8acb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (231, 530): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "79202597170dd5cee835b45183f3c8b1"
+     },
+     {
+      "frames": 1054,
+      "sha256": "c09cc485e9fb62f943e71e41e9772331"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-story-4d6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state PRT_SHOP's story 0x4d6 needs",
+    "source": "built from the conditions on the path to the write in scene 268 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 1
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-shop-story-4d6",
+    "description": "In PRT_SHOP (scene 268), talking to layout record 1 should write story variable 0x4d6",
+    "plan": "# prt-prt-shop-story-4d6: In PRT_SHOP (scene 268), talking to layout record 1 should write story variable 0x4d6\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\ntalk 140 250 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save 3065abc683dfc2b1 state 3d8b5930cb7c8a90 ram 0000000000000000",
+     "done frame 1253 scene 268 save f32c1852508fe7ba state a67c829c814d494d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 230): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c200db4fbb0239f6c2e2c2450ae9aa7f"
+     },
+     {
+      "frames": 1024,
+      "sha256": "59dd2420607217d708a0bbb79e3bc444"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

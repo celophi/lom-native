@@ -1,0 +1,12 @@
+{
+  "id": "japanese-balance",
+  "name": "Japanese balance",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Plays the US version with the Japanese version's harder combat and items: stronger monsters that level faster, stronger techniques, and the Japanese forging and tempering numbers.",
+  "game": "SLUS-01013",
+  "api": 1,
+  "switches": {
+    "japanese_balance": true
+  }
+}

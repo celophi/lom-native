@@ -1,0 +1,67 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "grb-grb-bs01-boss",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state GRB_BS01's battle needs",
+    "source": "built from the conditions on the path to start_battle in scene 632 (lom_routes.py generate-bosses)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1144": 7
+    }
+   },
+   "baseline": {
+    "route": "grb-grb-bs01-boss",
+    "description": "Entering GRB_BS01 (scene 632) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# grb-grb-bs01-boss: Entering GRB_BS01 (scene 632) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33400 0 16712470 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 632 save c3c9c3f01341a5e3 state 767cd748c7cca39c ram 0000000000000000",
+     "fought frame 5581 scene 632 save 687e3adf82c70cc8 state ea4652020492dbe2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 2150 frames",
+     "game state 1 at vblank 12866",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 593,
+     "instruction_end": 334,
+     "song": 3,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "156d3c5d37e7afc779cbb79181b9d330"
+     },
+     {
+      "frames": 5321,
+      "sha256": "3890357ff838aa51b24f9b0da79d5c28"
+     },
+     {
+      "frames": 584,
+      "sha256": "dc7ea655588405966cc55195a685efdb"
+     }
+    ]
+   }
+  }
+ ]
+}

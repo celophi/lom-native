@@ -1,0 +1,22 @@
+Capture the picture at the internal resolution when it's above 1x and there's no
+wide canvas, instead of the 1x copy of video memory, so a headless run (the route
+runner's LOM_ROUTE_RESOLUTION) can be looked at as drawn: the Remaster's HD
+backgrounds, say. At 1x nothing changes.
+
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -1563,6 +1563,14 @@ unsigned char* Psyz_VideoAllocCapturedFr
+                                  view.y * (int)canvas_res, *w, *h);
+     }
+     SyncCanvasesForRead();
++    if (scaled_vram_render && internal_res > 1 && !display_rgb24) {
++        Draw_FlushBuffer();
++        *w = display_size.x * (int)internal_res;
++        *h = display_size.y * (int)internal_res;
++        return AllocRgb888Region(
++            scaled_vram_render, display_area.x * (int)internal_res,
++            display_area.y * (int)internal_res, *w, *h);
++    }
+     *w = display_size.x;
+     *h = display_size.y;
+     return display_rgb24

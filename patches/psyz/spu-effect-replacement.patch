@@ -1,0 +1,54 @@
+Let the port replace sound effects in the mix (the Legend of Mana Remaster's
+recordings, src/remaster/remaster_effects.c): a source of stereo frames and
+the voices the effects it plays would have used, which stay out of the mix.
+--- a/psyz/src/psyz/psyz_spu.c
++++ b/psyz/src/psyz/psyz_spu.c
+@@ -53,6 +53,12 @@
+ 
+ void lom_native_spu_set_music_source(int (*source)(int frame[2])) {
+     music_source = source;
++}
++
++static int (*effect_source)(int frame[2], unsigned* left_out);
++
++void lom_native_spu_set_effect_source(int (*source)(int frame[2], unsigned* left_out)) {
++    effect_source = source;
+ }
+ 
+ void lom_native_spu_set_sfx_mask(unsigned mask) {
+@@ -413,6 +419,10 @@
+     int replaced[2] = {0, 0};
+     int replacing = music_source && music_source(replaced);
+     tracking |= replacing;
++    int effects[2] = {0, 0};
++    unsigned left_out = 0;
++    int effecting = effect_source && effect_source(effects, &left_out);
++    tracking |= effecting;
+ 
+     // Pre-fill CD ring buffer if running low
+     if (spu.cd_ring_count < CD_RING_LOW_WATER) {
+@@ -466,6 +476,9 @@
+             v1_sample = s;
+         } else if (v == 3) {
+             v3_sample = s;
++        }
++        if (left_out & (1u << v)) {
++            continue;
+         }
+         {
+             int voice_left =
+@@ -514,11 +527,13 @@
+         }
+ 
+         unsigned music = controls & CATEGORY_GAIN_MASK, sfx = (controls >> CATEGORY_GAIN_SHIFT) & CATEGORY_GAIN_MASK;
++        dry[LOM_AUDIO_SFX][0] += effects[0];
++        dry[LOM_AUDIO_SFX][1] += effects[1];
+ 
+         if (replacing) {
+             left_sum = (int)(((long long)replaced[0] * music + (long long)dry[LOM_AUDIO_SFX][0] * sfx) / CATEGORY_GAIN_MAXIMUM);
+             right_sum = (int)(((long long)replaced[1] * music + (long long)dry[LOM_AUDIO_SFX][1] * sfx) / CATEGORY_GAIN_MAXIMUM);
+-        } else if (music == sfx) {
++        } else if (music == sfx && !effecting) {
+             if (music != CATEGORY_GAIN_MAXIMUM) {
+                 left_sum = left_sum * (int)music / CATEGORY_GAIN_MAXIMUM;
+                 right_sum = right_sum * (int)music / CATEGORY_GAIN_MAXIMUM;

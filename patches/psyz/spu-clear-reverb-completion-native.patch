@@ -1,0 +1,11 @@
+Read the event ID as the long libapi.h declares.
+
+--- a/decomp/src/libspu/s_crwa.c
++++ b/decomp/src/libspu/s_crwa.c
+@@ -1,5 +1,5 @@
+ #include "libspu_private.h"
+
+-void WaitEvent(s32);
++long WaitEvent(long);
+ s32 _SpuIsInAllocateArea_(u32);
+ extern s32 _spu_zerobuf[];

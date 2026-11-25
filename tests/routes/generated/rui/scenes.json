@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "rui-rui-bs11-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs11-direct",
+    "description": "Entering RUI_BS11 (scene 911) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# rui-rui-bs11-direct: Entering RUI_BS11 (scene 911) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 911 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 911 save 2d82888c6751675a state 91f7db19e3014407 ram 0000000000000000",
+     "watched frame 262 scene 911 save 13c8b5499aebd396 state d4ccaa8fdc612fb2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 37,
+     "instruction": 118,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "71f11034070f2c47698e72a8a066db94"
+     },
+     {
+      "frames": 33,
+      "sha256": "b8ba1c5c1e947711a7df524787c550a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

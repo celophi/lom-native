@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "description": "New game, saved at the bedroom desk, with 0x1194 = 7 so layout record 1 of SHP_DK40 is there",
+  "source": "built from layout record 1's condition in scene 503 (lom_routes.py generate-talks)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152
+  },
+  "variables": {
+    "0x1194": 7
+  }
+}

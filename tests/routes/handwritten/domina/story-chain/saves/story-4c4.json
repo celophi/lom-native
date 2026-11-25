@@ -1,0 +1,14 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of domina/story-chain/story-1394.json, at home, with the story state HTW_BZR0's story 0x4c4 needs",
+  "source": "built from the conditions on the path to the write in scene 50 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0
+  },
+  "saved_game": "saves/chain-htw-story-1394.bin",
+  "variables": {
+    "0x4bd": 1,
+    "0x25d0": 11
+  }
+}

@@ -1,0 +1,170 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mhm-mhm-gdn2-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-gdn2-direct",
+    "description": "Entering MHM_GDN2 (scene 776) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mhm-mhm-gdn2-direct: Entering MHM_GDN2 (scene 776) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 776 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 776 save dcd99a2ab6606ef1 state cdb232cb7bb921fa ram 0000000000000000",
+     "watched frame 266 scene 776 save 0899d9672f7b5c2f state 44bf7ccb723abe76 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 35 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 101,
+     "instruction_end": 38,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31986cdf6d4e12b3fd081cd584e916d5"
+     },
+     {
+      "frames": 37,
+      "sha256": "b858854e763e961e7b9cfdb3c9b32205"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os02-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os02-entry",
+    "description": "Entering MHM_OS02 (scene 798) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mhm-mhm-os02-entry: Entering MHM_OS02 (scene 798) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 798 0 16777215 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 798 save ac06e808c6eb19d0 state 390790727c719bbf ram 0000000000000000",
+     "watched frame 262 scene 798 save ac06e808c6eb19d0 state f3107feb049f3f1a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4fd2dfbbc59d5f7d2acb515ea4da04c"
+     },
+     {
+      "frames": 33,
+      "sha256": "98a90338f5dde2caf8b8043b7aa7eecb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-wnd1-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-wnd1-direct",
+    "description": "Entering MHM_WND1 (scene 928) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mhm-mhm-wnd1-direct: Entering MHM_WND1 (scene 928) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 928 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 928 save 3e7b1db97912df59 state 834e0bd27c13b1ab ram 0000000000000000",
+     "watched frame 262 scene 928 save 3e7b1db97912df59 state 80964d3f00fa07ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cda13cb19cb0c8d6afdce8847d52b70e"
+     },
+     {
+      "frames": 33,
+      "sha256": "7e68a969763790e018b19d796f223c32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-wndw-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-wndw-direct",
+    "description": "Entering MHM_WNDW (scene 20) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# mhm-mhm-wndw-direct: Entering MHM_WNDW (scene 20) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 20 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 20 save 69494c5286448da8 state 834e0bd27c13b1ab ram 0000000000000000",
+     "watched frame 262 scene 20 save 69494c5286448da8 state 80964d3f00fa07ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "401d8a3a579c55f0908db9f980ea0ce2"
+     },
+     {
+      "frames": 33,
+      "sha256": "c2713a729fd6b8abd050ec3a0a8583f2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

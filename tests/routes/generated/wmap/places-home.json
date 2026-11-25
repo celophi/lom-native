@@ -1,0 +1,89 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wmap-home-place-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and MHM's land on the map, MHM's land the current one, artifact 1 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 0,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-home-place-1",
+    "description": "Putting artifact 1 on the world map should play land 1's effect and let the party enter it",
+    "plan": "# wmap-home-place-1: Putting artifact 1 on the world map should play land 1's effect and let the party enter it\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 1\nland 1 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save 1df16b254e3c9bf4 state 87c0505bf8a85406 ram 0000000000000000",
+     "world-map frame 1763 scene 32767 save afefb0f843cec592 state 001a1b23464c862a ram 0000000000000000",
+     "arrived frame 2 scene 36 save 10fbf425325211f3 state 2303891371106443 ram 0000000000000000",
+     "done frame 35 scene 36 save 10fbf425325211f3 state 577a8cce28a540c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (537, 75): 6 waypoints",
+     "game state 1 at vblank 3851",
+     "placed artifact 1 on the world map as land 1",
+     "game state 0 at vblank 5047",
+     "entered land 1 from the world map at scene 36",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 479,
+     "instruction_end": 126,
+     "song": 5,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "80e1e4e8fe6525665434fa73a893f921"
+     },
+     {
+      "frames": 1533,
+      "sha256": "decd8a19eecb52da86a720fa4c984a47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

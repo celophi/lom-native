@@ -1,0 +1,44 @@
+The virtual clock for tests: emulated vertical blanks replace wall time.
+
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -683,20 +683,39 @@
+     last_frame_time = frame_end_time;
+ }
+ 
++int Psyz_AudioIsVirtualClock(void);
++void Psyz_AudioAdvanceVirtualBlank(void);
++static Uint64 virtual_blanks;
++static void (*vblank_hook)(void);
++void Psyz_VideoSetVBlankHook(void (*hook)(void)) { vblank_hook = hook; }
++
+ int Psyz_VideoVSync(int mode) {
+     Uint32 now_us;
+     unsigned short ret;
+     Sdl3Common_ApplyPendingTimingReset();
+     if (mode < 0) {
++        if (Psyz_AudioIsVirtualClock()) {
++            return (int)virtual_blanks;
++        }
+         return (int)((double)SDL_GetTicksNS() * target_frame_rate / 1e9);
+     }
+     // a line is approximated as 64 us
+     now_us = (Uint32)(SDL_GetTicksNS() / 1000);
+     ret = (unsigned short)((now_us - last_vsync_us) >> 6);
++    if (Psyz_AudioIsVirtualClock()) {
++        ret = 0;
++    }
+     if (mode == 0 || mode > 1) {
+         PlatformBackend_Present();
+         PollEvents();
+         WaitForNextFrame(mode > 1 ? mode : 1);
++        if (vblank_hook) {
++            vblank_hook();
++        }
++        if (Psyz_AudioIsVirtualClock()) {
++            virtual_blanks++;
++            Psyz_AudioAdvanceVirtualBlank();
++        }
+         last_vsync_us = (Uint32)(SDL_GetTicksNS() / 1000);
+     }
+     return ret;

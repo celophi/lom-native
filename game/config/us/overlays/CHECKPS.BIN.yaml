@@ -1,0 +1,63 @@
+name: CHECKPS.BIN
+compressed_sha1: 388f95071ba5107108eeeb2296439871c22c4185
+sha1: 75e0f2be72f83cead33191700ac5de47d6c59ec3
+options:
+  base_path: ../../../
+  basename: CHECKPS.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/us/decompressed/CHECKPS.BIN
+  asset_path: assets/us
+  elf_path: build/us/overlays/checkps.elf
+
+  asm_path: asm/us/overlays/checkps
+  src_path: src/overlays/checkps
+  build_path: build/us/overlays/checkps
+
+  ld_script_path: linker/us/overlays/checkps/checkps.ld
+  ld_dependencies: True
+  ld_legacy_generation: True
+  ld_align_section_vram_end: False
+  ld_align_segment_vram_end: False
+  undefined_funcs_auto_path: linker/us/overlays/checkps/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/us/overlays/checkps/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/us/symbols/shared_symbol_addrs.txt
+    - config/us/symbols/checkps_symbol_addrs.txt
+
+  reloc_addrs_path:
+    - config/us/relocations/checkps_reloc_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: checkps
+    type: code
+    start: 0x1
+    vram: 0x8004FC70
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, cdrom]
+      - [0x55, rodatabin, checkps_pattern_rodata]
+      - [0xA5, c, init]
+      - [0xE95, c, cdrom]
+      - [0x1BC1, c, kanji]
+      - [0x1DB5, c, pattern]
+      - [0x1F45, c, font]
+      - [0x27B9, databin, checkps_data]
+      - [0xD3F1, .bss, init]
+      - [0x31441, .bss, cdrom]
+      - [0x31451, .bss, font]
+  - [0x39869]

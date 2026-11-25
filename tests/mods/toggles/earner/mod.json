@@ -1,0 +1,13 @@
+{
+  "id": "earner",
+  "name": "Earner",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 3,
+  "in_game_toggle": true,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

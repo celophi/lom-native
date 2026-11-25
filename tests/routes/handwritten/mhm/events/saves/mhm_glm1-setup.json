@@ -1,0 +1,22 @@
+{
+  "format": 1,
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152
+  },
+  "words": {
+    "24": "0xf2f20000",
+    "32": "0x10000",
+    "33": "0x8000000",
+    "43": "0x6400"
+  },
+  "description": "After the opening, saved at the bedroom desk, with 0x11f8 = 2 so MHM_GLM1's layout record 0 set-up script stops its tile animations",
+  "source": "built from the path to stop_tile_animation in MHM_GLM1's set-up script (lom_routes.story_triggers), written by hand",
+  "variables": {
+    "0x11f8": 2
+  }
+}

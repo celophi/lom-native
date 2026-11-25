@@ -1,0 +1,1734 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sea-sea-bs01-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs01-talk-2",
+    "description": "Talking to layout record 2 of SEA_BS01 (scene 70) should run its event and hand control back",
+    "plan": "# sea-sea-bs01-talk-2: Talking to layout record 2 of SEA_BS01 (scene 70) should run its event and hand control back\nlimit 20000\nenter 32838 0 16714751 0\ncheckpoint entered\ntalk 600 115 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 70 save 48697f5905af6f39 state fcb769849d57354c ram 0000000000000000",
+     "talked frame 1094 scene 70 save 17c7d30f0d78b2d1 state 3299ff6be189763c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 115): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "129c056251791b0087bbb66861f12a16"
+     },
+     {
+      "frames": 865,
+      "sha256": "8d972c0f10ddd22e088f9e616b1e3c67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-bs03-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-bs03-talk-3",
+    "description": "Talking to layout record 3 of SEA_BS03 (scene 885) should run its event and hand control back",
+    "plan": "# sea-sea-bs03-talk-3: Talking to layout record 3 of SEA_BS03 (scene 885) should run its event and hand control back\nlimit 20000\nenter 885 0 16717311 0\ncheckpoint entered\ntalk 400 96 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 885 save 3111cae6d6d114a9 state 2f99614663aae202 ram 0000000000000000",
+     "talked frame 737 scene 885 save 3111cae6d6d114a9 state c693b6bfec9ce5a7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 96): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 261,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fbcba345113c3f990bb75a1d2f5fc654"
+     },
+     {
+      "frames": 508,
+      "sha256": "cec92c7c3ee9f6b9b4a74431735821a1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e030-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1170 = 7 so layout record 3 of SEA_E030 is there",
+    "source": "built from layout record 3's condition in scene 551 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1170": 7
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-e030-talk-3",
+    "description": "Talking to layout record 3 of SEA_E030 (scene 551) should run its event and hand control back",
+    "plan": "# sea-sea-e030-talk-3: Talking to layout record 3 of SEA_E030 (scene 551) should run its event and hand control back\nlimit 20000\nenter 551 0 16716543 1\ncheckpoint entered\ntalk 137 285 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 551 save b8f1fcc2d3f95635 state a4a64b4be9fe0b08 ram 0000000000000000",
+     "talked frame 3362 scene 551 save a4d4340fd66d92f2 state 4d74fb06da6acc5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (137, 265): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 94,
+     "instruction": 226,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a7fa552d5a44833c00539fcc8737ebb"
+     },
+     {
+      "frames": 3133,
+      "sha256": "98c7616188105aff45fb9cf180680bd1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-e030-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-e030-talk-6",
+    "description": "Talking to layout record 6 of SEA_E030 (scene 551) should run its event and hand control back",
+    "plan": "# sea-sea-e030-talk-6: Talking to layout record 6 of SEA_E030 (scene 551) should run its event and hand control back\nlimit 20000\nenter 551 0 16716543 1\ncheckpoint entered\ntalk 15 130 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 551 save 1c0edc9aa0df72dc state 0aa7f1105d4aabe0 ram 0000000000000000",
+     "talked frame 2997 scene 551 save 6f1795a7174ebef3 state ef2bcbc7720fb725 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (15, 110): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 77,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a452deecaa6a57a8bcbbf64d581f240"
+     },
+     {
+      "frames": 2768,
+      "sha256": "c2b96f09a95878c8fb52cac8c94eacb3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x47d = 1 so layout record 10 of SEA_EVT0 is there",
+    "source": "built from layout record 10's condition in scene 63 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x47d": 1
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt0-talk-10",
+    "description": "Talking to layout record 10 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-10: Talking to layout record 10 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\ntalk 180 180 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 793d2429b043a914 state a1fdc802cdeaa453 ram 0000000000000000",
+     "talked frame 2303 scene 64 save ca833c4d6520ed44 state 53ecf5b5ffd4d6a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 160): 1 waypoints",
+     "walk to (180, 200): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 322,
+     "instruction": 455,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acdb8d004349e9e78046daf402307c85"
+     },
+     {
+      "frames": 2074,
+      "sha256": "47a4fbbd0aebdfb69b9213bdfbfbad88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-talk-4",
+    "description": "Talking to layout record 4 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-4: Talking to layout record 4 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\ntalk 266 100 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save c40410b83e81d8f4 state 0fbec3a27a04b6ca ram 0000000000000000",
+     "talked frame 1534 scene 63 save 885aa11dd8960115 state 0fd5c5e4e88c6987 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (266, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 304,
+     "instruction_end": 202,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "552258495f40684384ef82d155699b66"
+     },
+     {
+      "frames": 1305,
+      "sha256": "8c7e276ef12a3fa4af5a3501c2fefde4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-talk-5",
+    "description": "Talking to layout record 5 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-5: Talking to layout record 5 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 2\ncheckpoint entered\ntalk 535 190 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 1f8530a0ccea627a state 2b386b09b07d5f26 ram 0000000000000000",
+     "talked frame 1765 scene 63 save b8a4762ec7a05dfc state 0dc746887d25fc5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (535, 170): 2 waypoints",
+     "walk to (535, 210): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 279,
+     "instruction": 368,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e7ce42d9b67dfc60b815537921fe39e"
+     },
+     {
+      "frames": 1536,
+      "sha256": "f40308e4bee7a57a32a097db5298db39"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-talk-7",
+    "description": "Talking to layout record 7 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-7: Talking to layout record 7 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 1\ncheckpoint entered\ntalk 570 170 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 022d7ff3f2310631 state f8f4f7b4b225d071 ram 0000000000000000",
+     "talked frame 1563 scene 63 save a4414646d1ed0664 state a7be901ca8fef8a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (570, 150): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 235,
+     "instruction": 327,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "18bf21e623df553b587d7ba22a710d10"
+     },
+     {
+      "frames": 1334,
+      "sha256": "3310da03648d211b357b3c41a52ea090"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-talk-8",
+    "description": "Talking to layout record 8 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-8: Talking to layout record 8 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 2\ncheckpoint entered\ntalk 540 170 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save 1f8530a0ccea627a state 2b386b09b07d5f26 ram 0000000000000000",
+     "talked frame 1660 scene 63 save 1ec8cc8a8e2b616b state 28fbe0d08f1c5dce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (540, 150): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 270,
+     "instruction": 362,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e7ce42d9b67dfc60b815537921fe39e"
+     },
+     {
+      "frames": 1431,
+      "sha256": "669bb9a88888f20acc3cb0ce2bbe786f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt0-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt0-talk-9",
+    "description": "Talking to layout record 9 of SEA_EVT0 (scene 63) should run its event and hand control back",
+    "plan": "# sea-sea-evt0-talk-9: Talking to layout record 9 of SEA_EVT0 (scene 63) should run its event and hand control back\nlimit 20000\nenter 63 0 16714751 0\ncheckpoint entered\ntalk 400 130 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 63 save c40410b83e81d8f4 state 0fbec3a27a04b6ca ram 0000000000000000",
+     "talked frame 1637 scene 63 save ab0b8f065c73e0da state 856e7d6a92a78131 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (400, 150): 1 waypoints",
+     "walk to (380, 130): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 246,
+     "instruction": 338,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "552258495f40684384ef82d155699b66"
+     },
+     {
+      "frames": 1408,
+      "sha256": "0d216fd6852dcbc6cbbf30ec4a11087b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 5 so layout record 1 of SEA_EVT2 is there",
+    "source": "built from layout record 1's condition in scene 65 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 5
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-evt2-talk-1",
+    "description": "Talking to layout record 1 of SEA_EVT2 (scene 65) should run its event and hand control back",
+    "plan": "# sea-sea-evt2-talk-1: Talking to layout record 1 of SEA_EVT2 (scene 65) should run its event and hand control back\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\ntalk 265 137 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save 861d06abbddc0e2a state 0e71e927a0631dc4 ram 0000000000000000",
+     "talked frame 555 scene 65 save c169ab2f22fb03e8 state f63621c84cb2945f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (265, 117): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 49,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "817d39f78dcbeebd779eb6475f15a623"
+     },
+     {
+      "frames": 326,
+      "sha256": "a94e0b1f9a994beec6987a71f7bb91c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-evt2-talk-10",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sea-sea-evt2-talk-10",
+    "description": "Talking to layout record 10 of SEA_EVT2 (scene 65) should run its event and hand control back",
+    "plan": "# sea-sea-evt2-talk-10: Talking to layout record 10 of SEA_EVT2 (scene 65) should run its event and hand control back\nlimit 20000\nenter 65 0 1572863 0\ncheckpoint entered\ntalk 65 90 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 65 save e2f6f2b6eca8dd7a state 9ecfe2dac0c1fcfc ram 0000000000000000",
+     "talked frame 1014 scene 65 save 92d944e8a63372cf state be80dd0c8f6d20af ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 70): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 45,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6c10c55f29a73200187c54994c7a64db"
+     },
+     {
+      "frames": 785,
+      "sha256": "53e086745f39714326cfcc01062f0956"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 3 so layout record 10 of SEA_FRK0 is there",
+    "source": "built from layout record 10's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-10",
+    "description": "Talking to layout record 10 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-10: Talking to layout record 10 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 1\ncheckpoint entered\ntalk 300 300 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save c0fe5ca50752737d state d79a9d662d4f82e6 ram 0000000000000000",
+     "talked frame 442 scene 66 save 7760f3a4cdd4e2e5 state eb68d027af7af8b0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e671ccf300a383596e972f8f162cdded"
+     },
+     {
+      "frames": 213,
+      "sha256": "f94eee6777612c896d45c0e54f4090c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-11",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 3 so layout record 11 of SEA_FRK0 is there",
+    "source": "built from layout record 11's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-11",
+    "description": "Talking to layout record 11 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-11: Talking to layout record 11 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 2\ncheckpoint entered\ntalk 233 363 0 0 0 11\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 42c07749fadf2b76 state ff9e8cebba9f3e3f ram 0000000000000000",
+     "talked frame 1090 scene 66 save 314ee8772ade2c62 state e5064a36b96511d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (233, 343): 2 waypoints",
+     "walk to (233, 383): 1 waypoints",
+     "walk to (213, 363): 1 waypoints",
+     "walk to (253, 363): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f7502dc2d7cef294dbbaaf13ea765a25"
+     },
+     {
+      "frames": 861,
+      "sha256": "d3fa65584c012878c2a975577ae84016"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 2 of SEA_FRK0 is there",
+    "source": "built from layout record 2's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-2",
+    "description": "Talking to layout record 2 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-2: Talking to layout record 2 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 1\ncheckpoint entered\ntalk 310 270 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save cfa5582c58639cdd state 1f90759b0d89c110 ram 0000000000000000",
+     "talked frame 448 scene 66 save 752c9d9b38c33287 state a914698cc766545b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (310, 250): 1 waypoints",
+     "walk to (310, 290): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 242,
+     "instruction_end": 189,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c8ea24e86b11554c9d0a1813ccc0fb7"
+     },
+     {
+      "frames": 219,
+      "sha256": "f25a78b1b4608753e392ebc17b07645a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 3 of SEA_FRK0 is there",
+    "source": "built from layout record 3's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-3",
+    "description": "Talking to layout record 3 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-3: Talking to layout record 3 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\ntalk 53 269 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 50f1fca144af0670 state 5467ebd856e3d93b ram 0000000000000000",
+     "talked frame 452 scene 66 save 5ac784247d4578d6 state 5786076052cb880f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (53, 249): 6 waypoints",
+     "walk to (73, 269): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 267,
+     "instruction_end": 221,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1ec62ad8c19f5dbd458fc4109c00b1fe"
+     },
+     {
+      "frames": 223,
+      "sha256": "2cf9c5f6c018a527fc8e9d64e3162d43"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 5 of SEA_FRK0 is there",
+    "source": "built from layout record 5's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-5",
+    "description": "Talking to layout record 5 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-5: Talking to layout record 5 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 1\ncheckpoint entered\ntalk 330 286 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save cfa5582c58639cdd state 1f90759b0d89c110 ram 0000000000000000",
+     "talked frame 461 scene 66 save 752c9d9b38c33287 state 6f0ccfd7ac5dabe7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 266): 1 waypoints",
+     "walk to (330, 306): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 251,
+     "instruction_end": 201,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c8ea24e86b11554c9d0a1813ccc0fb7"
+     },
+     {
+      "frames": 232,
+      "sha256": "5428f24c5c594ab76488844686aee85d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 6 of SEA_FRK0 is there",
+    "source": "built from layout record 6's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-6",
+    "description": "Talking to layout record 6 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-6: Talking to layout record 6 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 1\ncheckpoint entered\ntalk 411 137 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save cfa5582c58639cdd state 1f90759b0d89c110 ram 0000000000000000",
+     "talked frame 423 scene 66 save 0d566103474da2d8 state 9888dbc7f3a00818 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (411, 117): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 258,
+     "instruction_end": 212,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c8ea24e86b11554c9d0a1813ccc0fb7"
+     },
+     {
+      "frames": 194,
+      "sha256": "551b488c81bfc38b3e80aa12084dc21b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 7 of SEA_FRK0 is there",
+    "source": "built from layout record 7's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-7",
+    "description": "Talking to layout record 7 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-7: Talking to layout record 7 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\ntalk 210 115 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 50f1fca144af0670 state 5467ebd856e3d93b ram 0000000000000000",
+     "talked frame 373 scene 66 save 554a13346b85c111 state 6917db23b81df97c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 135): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 235,
+     "instruction_end": 186,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1ec62ad8c19f5dbd458fc4109c00b1fe"
+     },
+     {
+      "frames": 144,
+      "sha256": "8b346949eaa2ec1d9af244e6ad5fc5c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 2 so layout record 8 of SEA_FRK0 is there",
+    "source": "built from layout record 8's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 2
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-8",
+    "description": "Talking to layout record 8 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-8: Talking to layout record 8 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 0\ncheckpoint entered\ntalk 115 43 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save 50f1fca144af0670 state 5467ebd856e3d93b ram 0000000000000000",
+     "talked frame 518 scene 66 save 5ac784247d4578d6 state ceae8fd1f9595310 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (115, 63): 3 waypoints",
+     "walk to (135, 43): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 273,
+     "instruction_end": 229,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1ec62ad8c19f5dbd458fc4109c00b1fe"
+     },
+     {
+      "frames": 289,
+      "sha256": "6153c564d1ed8c2e613de5e065d3064a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk0-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 3 so layout record 9 of SEA_FRK0 is there",
+    "source": "built from layout record 9's condition in scene 66 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk0-talk-9",
+    "description": "Talking to layout record 9 of SEA_FRK0 (scene 66) should run its event and hand control back",
+    "plan": "# sea-sea-frk0-talk-9: Talking to layout record 9 of SEA_FRK0 (scene 66) should run its event and hand control back\nlimit 20000\nenter 66 1 16714751 1\ncheckpoint entered\ntalk 405 158 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 66 save c0fe5ca50752737d state d79a9d662d4f82e6 ram 0000000000000000",
+     "talked frame 464 scene 66 save 7760f3a4cdd4e2e5 state fcce24ae575e82ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (405, 138): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e671ccf300a383596e972f8f162cdded"
+     },
+     {
+      "frames": 235,
+      "sha256": "c3741d40d2227880167b107f7ddebc32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 1 of SEA_FRK1 is there",
+    "source": "built from layout record 1's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-1",
+    "description": "Talking to layout record 1 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-1: Talking to layout record 1 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 1\ncheckpoint entered\ntalk 136 508 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 1e849430ea7f85de state 46428e0d28ed1a62 ram 0000000000000000",
+     "talked frame 438 scene 67 save 3be9844253661647 state ec2c52af8b862348 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (136, 488): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 332,
+     "instruction_end": 317,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ca7ff32b1ca815b3800dbd8b63413f0"
+     },
+     {
+      "frames": 209,
+      "sha256": "4cb193c07e001a61c962e067e7f37a54"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 5 so layout record 10 of SEA_FRK1 is there",
+    "source": "built from layout record 10's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 5
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-10",
+    "description": "Talking to layout record 10 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-10: Talking to layout record 10 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 0\ncheckpoint entered\ntalk 90 360 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save a8f65a788faeece3 state 56aec1b2868cb4da ram 0000000000000000",
+     "talked frame 485 scene 67 save 2fcd706d17a1683b state 4d8ab1faa5bde293 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (90, 340): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "74f15b05c869e8c463891e1f2f9086c9"
+     },
+     {
+      "frames": 256,
+      "sha256": "003ed516d6cd4bd23ba3da92e48ce5bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 2 of SEA_FRK1 is there",
+    "source": "built from layout record 2's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-2",
+    "description": "Talking to layout record 2 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-2: Talking to layout record 2 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 2\ncheckpoint entered\ntalk 424 212 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save e2856c3ada25ee15 state b74b76d5ea8eba06 ram 0000000000000000",
+     "talked frame 450 scene 67 save 9e31fc018cb88f70 state e42f4d68bb5d3d8b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (424, 192): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 343,
+     "instruction_end": 327,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "795f5736c337695e57ea3c9191c79f49"
+     },
+     {
+      "frames": 221,
+      "sha256": "a0c3a88db2e93a8fa49ca521ee49aa70"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 4 of SEA_FRK1 is there",
+    "source": "built from layout record 4's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-4",
+    "description": "Talking to layout record 4 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-4: Talking to layout record 4 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 1\ncheckpoint entered\ntalk 80 120 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 1e849430ea7f85de state 46428e0d28ed1a62 ram 0000000000000000",
+     "talked frame 414 scene 67 save 9db6023c0da8ff38 state 889860306cf104dd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 100): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 327,
+     "instruction_end": 306,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ca7ff32b1ca815b3800dbd8b63413f0"
+     },
+     {
+      "frames": 185,
+      "sha256": "b80f56e61b1d6f8fd5ecbd748cdf77dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 5 of SEA_FRK1 is there",
+    "source": "built from layout record 5's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-5",
+    "description": "Talking to layout record 5 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-5: Talking to layout record 5 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 1\ncheckpoint entered\ntalk 100 160 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 1e849430ea7f85de state 46428e0d28ed1a62 ram 0000000000000000",
+     "talked frame 414 scene 67 save 9db6023c0da8ff38 state 889860306cf104dd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 140): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 327,
+     "instruction_end": 306,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ca7ff32b1ca815b3800dbd8b63413f0"
+     },
+     {
+      "frames": 185,
+      "sha256": "b80f56e61b1d6f8fd5ecbd748cdf77dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 6 of SEA_FRK1 is there",
+    "source": "built from layout record 6's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-6",
+    "description": "Talking to layout record 6 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-6: Talking to layout record 6 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 2\ncheckpoint entered\ntalk 440 200 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save e2856c3ada25ee15 state b74b76d5ea8eba06 ram 0000000000000000",
+     "talked frame 458 scene 67 save 9e31fc018cb88f70 state cecf9e300bc43494 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (440, 180): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 343,
+     "instruction_end": 327,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "795f5736c337695e57ea3c9191c79f49"
+     },
+     {
+      "frames": 229,
+      "sha256": "08207efd8f29b592a9d2754b909b7d65"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk1-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 3 so layout record 7 of SEA_FRK1 is there",
+    "source": "built from layout record 7's condition in scene 67 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 3
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk1-talk-7",
+    "description": "Talking to layout record 7 of SEA_FRK1 (scene 67) should run its event and hand control back",
+    "plan": "# sea-sea-frk1-talk-7: Talking to layout record 7 of SEA_FRK1 (scene 67) should run its event and hand control back\nlimit 20000\nenter 67 3 16714751 0\ncheckpoint entered\ntalk 300 135 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 67 save 07a4d77cdd9eab73 state 20155f9df81d977f ram 0000000000000000",
+     "talked frame 504 scene 67 save 6766ddbeafb03f0e state 3579bd9304aba5ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 115): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 354,
+     "instruction_end": 338,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b5670e36b738a14ada2d996186256fa"
+     },
+     {
+      "frames": 275,
+      "sha256": "3e44aa66dd52d3e9bd461b13afd556f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-talk-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 6 so layout record 10 of SEA_FRK2 is there",
+    "source": "built from layout record 10's condition in scene 68 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 6
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk2-talk-10",
+    "description": "Talking to layout record 10 of SEA_FRK2 (scene 68) should run its event and hand control back",
+    "plan": "# sea-sea-frk2-talk-10: Talking to layout record 10 of SEA_FRK2 (scene 68) should run its event and hand control back\nlimit 20000\nenter 68 0 16714751 2\ncheckpoint entered\ntalk 300 300 0 0 0 10\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save 75ccb39a05973391 state f4e6e88741d7e2a9 ram 0000000000000000",
+     "talked frame 839 scene 68 save 084a70dd970cac91 state d0adc7e3f6e5412c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 280): 1 waypoints",
+     "walk to (300, 320): 1 waypoints",
+     "walk to (280, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6a943c1b94a9683dc2748d25b0110980"
+     },
+     {
+      "frames": 610,
+      "sha256": "86a28f528f9ce4ec61e06327c4cf19ac"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 4 so layout record 4 of SEA_FRK2 is there",
+    "source": "built from layout record 4's condition in scene 68 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 4
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk2-talk-4",
+    "description": "Talking to layout record 4 of SEA_FRK2 (scene 68) should run its event and hand control back",
+    "plan": "# sea-sea-frk2-talk-4: Talking to layout record 4 of SEA_FRK2 (scene 68) should run its event and hand control back\nlimit 20000\nenter 68 0 16714751 1\ncheckpoint entered\ntalk 365 365 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save 613de00a2858654a state 2322b5e626bf510a ram 0000000000000000",
+     "talked frame 434 scene 68 save 9475d2fc9e28fd27 state 49e8e246ab679c60 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (365, 345): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 317,
+     "instruction_end": 299,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cd2f8031ed70d5ae3e71e43ece65b6a0"
+     },
+     {
+      "frames": 205,
+      "sha256": "61a7bb06a1ad96bc9f2f603ccbf49678"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 4 so layout record 6 of SEA_FRK2 is there",
+    "source": "built from layout record 6's condition in scene 68 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 4
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk2-talk-6",
+    "description": "Talking to layout record 6 of SEA_FRK2 (scene 68) should run its event and hand control back",
+    "plan": "# sea-sea-frk2-talk-6: Talking to layout record 6 of SEA_FRK2 (scene 68) should run its event and hand control back\nlimit 20000\nenter 68 0 16714751 2\ncheckpoint entered\ntalk 353 134 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save fab968efc37b5841 state c125618512617b72 ram 0000000000000000",
+     "talked frame 368 scene 68 save a40421b261f2d734 state 4b7e71d700012f83 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (353, 114): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 279,
+     "instruction_end": 251,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bdb081c4a1be09aa919c843dce7fa090"
+     },
+     {
+      "frames": 139,
+      "sha256": "3d3d84e59e90e7d0af18687d65fbebb0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 4 so layout record 8 of SEA_FRK2 is there",
+    "source": "built from layout record 8's condition in scene 68 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 4
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk2-talk-8",
+    "description": "Talking to layout record 8 of SEA_FRK2 (scene 68) should run its event and hand control back",
+    "plan": "# sea-sea-frk2-talk-8: Talking to layout record 8 of SEA_FRK2 (scene 68) should run its event and hand control back\nlimit 20000\nenter 68 0 16714751 2\ncheckpoint entered\ntalk 1 400 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save fab968efc37b5841 state c125618512617b72 ram 0000000000000000",
+     "talked frame 647 scene 68 save de971f6d3e0c9a86 state b26f206f7b133163 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (21, 400): -3 waypoints",
+     "walk to (1, 380): -3 waypoints",
+     "walk to (1, 420): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 335,
+     "instruction_end": 313,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bdb081c4a1be09aa919c843dce7fa090"
+     },
+     {
+      "frames": 418,
+      "sha256": "90fa2223e19da12ddbfb4e6b70736133"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sea-sea-frk2-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13ac = 4 so layout record 9 of SEA_FRK2 is there",
+    "source": "built from layout record 9's condition in scene 68 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ac": 4
+    }
+   },
+   "baseline": {
+    "route": "sea-sea-frk2-talk-9",
+    "description": "Talking to layout record 9 of SEA_FRK2 (scene 68) should run its event and hand control back",
+    "plan": "# sea-sea-frk2-talk-9: Talking to layout record 9 of SEA_FRK2 (scene 68) should run its event and hand control back\nlimit 20000\nenter 68 0 16714751 1\ncheckpoint entered\ntalk 530 1 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 68 save 613de00a2858654a state 2322b5e626bf510a ram 0000000000000000",
+     "talked frame 602 scene 68 save dcbdaa444be3d478 state b4e27f158dd374bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (510, 1): 3 waypoints",
+     "walk to (510, 1): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 348,
+     "instruction_end": 333,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cd2f8031ed70d5ae3e71e43ece65b6a0"
+     },
+     {
+      "frames": 373,
+      "sha256": "f037af8386f231c961558ddf1656dca6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

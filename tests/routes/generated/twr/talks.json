@@ -1,0 +1,513 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "twr-twr-bs03-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs03-talk-2",
+    "description": "Talking to layout record 2 of TWR_BS03 (scene 211) should run its event and hand control back",
+    "plan": "# twr-twr-bs03-talk-2: Talking to layout record 2 of TWR_BS03 (scene 211) should run its event and hand control back\nlimit 20000\nenter 211 0 16715263 0\ncheckpoint entered\ntalk 268 215 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 211 save 2f75af471eb09bf6 state a0b8ef7ff98198db ram 0000000000000000",
+     "talked frame 816 scene 211 save 7d4bbb0e951e989c state b6eec34928c1f7cb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (268, 195): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b5503b075a29f620ab8264cd354ad56"
+     },
+     {
+      "frames": 587,
+      "sha256": "f6bf5a8f9b72d69f7e8e8161c0546a66"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs03-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs03-talk-3",
+    "description": "Talking to layout record 3 of TWR_BS03 (scene 211) should run its event and hand control back",
+    "plan": "# twr-twr-bs03-talk-3: Talking to layout record 3 of TWR_BS03 (scene 211) should run its event and hand control back\nlimit 20000\nenter 211 0 16715263 0\ncheckpoint entered\ntalk 315 215 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 211 save 2f75af471eb09bf6 state a0b8ef7ff98198db ram 0000000000000000",
+     "talked frame 801 scene 211 save 7d4bbb0e951e989c state bb9e422623cf8b38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (315, 195): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 133,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b5503b075a29f620ab8264cd354ad56"
+     },
+     {
+      "frames": 572,
+      "sha256": "098bb1f2b7c862c22cefd1d07a41419b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i410-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i410-talk-2",
+    "description": "Talking to layout record 2 of TWR_I410 (scene 189) should run its event and hand control back",
+    "plan": "# twr-twr-i410-talk-2: Talking to layout record 2 of TWR_I410 (scene 189) should run its event and hand control back\nlimit 20000\nenter 189 1 16713471 0\ncheckpoint entered\ntalk 830 175 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 189 save 1100eaa4767be6d8 state 7ef2b43dc0e4ec26 ram 0000000000000000",
+     "talked frame 1162 scene 189 save 5156654193e3f3cb state 9a75212d20872f42 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (830, 155): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 144,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2aedc52e8d412d8e5d378466445f711b"
+     },
+     {
+      "frames": 933,
+      "sha256": "89040f09d79d1fd9b2cab3122a8a0b82"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i510-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i510-talk-1",
+    "description": "Talking to layout record 1 of TWR_I510 (scene 191) should run its event and hand control back",
+    "plan": "# twr-twr-i510-talk-1: Talking to layout record 1 of TWR_I510 (scene 191) should run its event and hand control back\nlimit 20000\nenter 191 1 16713471 1\ncheckpoint entered\ntalk 136 240 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 191 save 5c48a058fddafbdb state 101fb9575614a7b3 ram 0000000000000000",
+     "talked frame 1476 scene 191 save 67d1249367700450 state 29adffcb0919ef26 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (136, 220): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31eacaec458cd0fff47b7cfa895cc908"
+     },
+     {
+      "frames": 1247,
+      "sha256": "84ec25c26206ed9ac758391160b56cc4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i610-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i610-talk-2",
+    "description": "Talking to layout record 2 of TWR_I610 (scene 193) should run its event and hand control back",
+    "plan": "# twr-twr-i610-talk-2: Talking to layout record 2 of TWR_I610 (scene 193) should run its event and hand control back\nlimit 20000\nenter 193 1 16713471 0\ncheckpoint entered\ntalk 290 165 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 193 save 7022d773b0547be4 state d95b841c9d1fb3fb ram 0000000000000000",
+     "talked frame 956 scene 193 save 1a4d2a49a63ace09 state c5acd9a8d2c5ef66 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (290, 145): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa51a56be8ea54e3e58e15614dd83c9c"
+     },
+     {
+      "frames": 727,
+      "sha256": "d50723582249b057f36e2d1895f6fa77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i620-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i620-talk-2",
+    "description": "Talking to layout record 2 of TWR_I620 (scene 194) should run its event and hand control back",
+    "plan": "# twr-twr-i620-talk-2: Talking to layout record 2 of TWR_I620 (scene 194) should run its event and hand control back\nlimit 20000\nenter 194 2 16713471 1\ncheckpoint entered\ntalk 530 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 194 save 52e9f255f5013035 state 5d81dc184ce9e224 ram 0000000000000000",
+     "talked frame 923 scene 194 save 199f4d011d19a5c4 state e8d79bd15310b481 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (530, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "461c310da053619002db0c7b7dbd2791"
+     },
+     {
+      "frames": 694,
+      "sha256": "d62d0bb7942c915a2b0b144771c469a9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i620-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i620-talk-3",
+    "description": "Talking to layout record 3 of TWR_I620 (scene 194) should run its event and hand control back",
+    "plan": "# twr-twr-i620-talk-3: Talking to layout record 3 of TWR_I620 (scene 194) should run its event and hand control back\nlimit 20000\nenter 194 2 16713471 1\ncheckpoint entered\ntalk 550 125 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 194 save 52e9f255f5013035 state 5d81dc184ce9e224 ram 0000000000000000",
+     "talked frame 899 scene 194 save 84910529b7066ef8 state a0a22b5138cf0506 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (550, 105): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "461c310da053619002db0c7b7dbd2791"
+     },
+     {
+      "frames": 670,
+      "sha256": "d9fd895e05cff39823a42e4f8ed6ce5b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i620-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i620-talk-4",
+    "description": "Talking to layout record 4 of TWR_I620 (scene 194) should run its event and hand control back",
+    "plan": "# twr-twr-i620-talk-4: Talking to layout record 4 of TWR_I620 (scene 194) should run its event and hand control back\nlimit 20000\nenter 194 2 16713471 1\ncheckpoint entered\ntalk 80 115 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 194 save 52e9f255f5013035 state 5d81dc184ce9e224 ram 0000000000000000",
+     "talked frame 999 scene 194 save 3066835a11f931be state ac7a7056c3a49b58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 95): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "461c310da053619002db0c7b7dbd2791"
+     },
+     {
+      "frames": 770,
+      "sha256": "81eb120006aedc62c47b444fccc931e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ia00-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ia00-talk-2",
+    "description": "Talking to layout record 2 of TWR_IA00 (scene 201) should run its event and hand control back",
+    "plan": "# twr-twr-ia00-talk-2: Talking to layout record 2 of TWR_IA00 (scene 201) should run its event and hand control back\nlimit 20000\nenter 201 0 16713471 1\ncheckpoint entered\ntalk 690 120 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 201 save 92a613423ea09da4 state 018baaefc3b67bf8 ram 0000000000000000",
+     "talked frame 1071 scene 201 save b737cbbcb23d487f state e0ada1dabce2df09 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (690, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7de6a1de19cb62606e7e033cd5d57440"
+     },
+     {
+      "frames": 842,
+      "sha256": "7fde6ec6a59159e22b6635db36db18ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib00-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fb8 = 31 so layout record 1 of TWR_IB00 is there",
+    "source": "built from layout record 1's condition in scene 202 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 31
+    }
+   },
+   "baseline": {
+    "route": "twr-twr-ib00-talk-1",
+    "description": "Talking to layout record 1 of TWR_IB00 (scene 202) should run its event and hand control back",
+    "plan": "# twr-twr-ib00-talk-1: Talking to layout record 1 of TWR_IB00 (scene 202) should run its event and hand control back\nlimit 20000\nenter 202 0 16713471 0\ncheckpoint entered\ntalk 546 187 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 202 save edefb1e9c38b4175 state ce8aef6793349ccb ram 0000000000000000",
+     "talked frame 875 scene 202 save a4a061e4636220e1 state e82f1c9bb3524215 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (546, 167): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 127,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f8fb9a29ff691f3bd41b6e0a776bf1be"
+     },
+     {
+      "frames": 646,
+      "sha256": "f1186601f1c6e31c05ec2c327954ed4c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ra00-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ra00-talk-1",
+    "description": "Talking to layout record 1 of TWR_RA00 (scene 204) should run its event and hand control back",
+    "plan": "# twr-twr-ra00-talk-1: Talking to layout record 1 of TWR_RA00 (scene 204) should run its event and hand control back\nlimit 20000\nenter 32972 0 16713471 0\ncheckpoint entered\ntalk 263 122 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 204 save 01b2d78ec8abb390 state 9214b8a3588c2f9a ram 0000000000000000",
+     "talked frame 482 scene 204 save d7b99b1c6da4d717 state fc135449b4c9cf7f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (263, 102): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 117,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56026507f884f32b29facbe009f23be9"
+     },
+     {
+      "frames": 253,
+      "sha256": "bde865945deb7a5bab9eccb45a5312f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-rb00-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-rb00-talk-1",
+    "description": "Talking to layout record 1 of TWR_RB00 (scene 206) should run its event and hand control back",
+    "plan": "# twr-twr-rb00-talk-1: Talking to layout record 1 of TWR_RB00 (scene 206) should run its event and hand control back\nlimit 20000\nenter 32974 0 16713471 0\ncheckpoint entered\ntalk 263 122 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 206 save 3488aade7bc9d89a state 9214b8a3588c2f9a ram 0000000000000000",
+     "talked frame 482 scene 206 save d0cd732b26de7566 state fc135449b4c9cf7f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (263, 102): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 117,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb32e9add248e3d6dc26b4db3909604d"
+     },
+     {
+      "frames": 253,
+      "sha256": "77e1591c0f0a427a259a851f715aa9bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,916 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "home-audio-all-sfx-volume",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-all-sfx-volume",
+    "description": "The game's audio calls (set_all_sfx_volume, play_sfx, fade_all_sfx_volume) should change the sound the way they did",
+    "plan": "# home-audio-all-sfx-volume: The game's audio calls (set_all_sfx_volume, play_sfx, fade_all_sfx_volume) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio set_all_sfx_volume 0\nwait 4\naudio play_sfx 126 0 128 127\nwait 4\naudio fade_all_sfx_volume 60 127\nwait 90\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 147 scene 19 save 52c68d0e5c0ca8b1 state 7490584e02c361c4 ram 0000000000000000",
+     "settled frame 269 scene 19 save 52c68d0e5c0ca8b1 state 4e18d545c1080f06 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio set_all_sfx_volume 0 0 0 0",
+     "audio play_sfx 126 0 128 127",
+     "audio fade_all_sfx_volume 60 127 0 0"
+    ],
+    "end": "steps 11 of 11 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 105,
+      "sha256": "5e5864d11cf26958a1c4819845e1f3f0"
+     },
+     {
+      "frames": 122,
+      "sha256": "04c046dbb9ec5a71a4703118affa0d13"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-master-volume",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-master-volume",
+    "description": "The game's audio calls (set_master_volume) should change the sound the way they did",
+    "plan": "# home-audio-master-volume: The game's audio calls (set_master_volume) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio set_master_volume 0\nwait 60\naudio set_master_volume 127\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 167 scene 19 save 52c68d0e5c0ca8b1 state 154474af8870a3e7 ram 0000000000000000",
+     "settled frame 289 scene 19 save 52c68d0e5c0ca8b1 state a3dc4b8f8921e755 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio set_master_volume 0 0 0 0",
+     "audio set_master_volume 127 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 125,
+      "sha256": "1d1f346c22470e7b8aa5851a148c17f8"
+     },
+     {
+      "frames": 122,
+      "sha256": "6516943ca998aeb8b1f206ba1b4410f2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-mono",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-mono",
+    "description": "The game's audio calls (set_mono_output) should change the sound the way they did",
+    "plan": "# home-audio-mono: The game's audio calls (set_mono_output) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio set_mono_output 1\nwait 120\naudio set_mono_output 0\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 227 scene 19 save 52c68d0e5c0ca8b1 state cb192fd8c1a139cc ram 0000000000000000",
+     "settled frame 349 scene 19 save 52c68d0e5c0ca8b1 state d118879166d4f2fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio set_mono_output 1 0 0 0",
+     "audio set_mono_output 0 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 185,
+      "sha256": "3d617ab57d14302f4d730779e839ac43"
+     },
+     {
+      "frames": 122,
+      "sha256": "3186364b9bf4b4ed4f96a74fb7a89061"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-monster-effects",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-monster-effects",
+    "description": "The game's audio calls (load_sfx_tables, play_set_sfx) should change the sound the way they did",
+    "plan": "# home-audio-monster-effects: The game's audio calls (load_sfx_tables, play_set_sfx) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio load_sfx_tables 16\nwait 10\naudio play_set_sfx 6 128 0\nwait 90\naudio play_set_sfx 7 128 1\nwait 90\naudio load_sfx_tables 18\nwait 10\naudio play_set_sfx 0 128 0\nwait 120\naudio load_sfx_tables 26\nwait 10\naudio play_set_sfx 6 128 0\nwait 90\naudio load_sfx_tables 36\nwait 10\naudio play_set_sfx 0 128 0\nwait 120\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 611 scene 19 save 52c68d0e5c0ca8b1 state c6e4fc7a70641e44 ram 0000000000000000",
+     "settled frame 733 scene 19 save 52c68d0e5c0ca8b1 state 7bc738379e2b470d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio load_sfx_tables 16 0 0 0",
+     "audio play_set_sfx 6 128 0 0",
+     "audio play_set_sfx 7 128 1 0",
+     "audio load_sfx_tables 18 0 0 0",
+     "audio play_set_sfx 0 128 0 0",
+     "audio load_sfx_tables 26 0 0 0",
+     "audio play_set_sfx 6 128 0 0",
+     "audio load_sfx_tables 36 0 0 0",
+     "audio play_set_sfx 0 128 0 0"
+    ],
+    "end": "steps 23 of 23 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 569,
+      "sha256": "93b771c6fca74d7c6b8d7a2e8784b76c"
+     },
+     {
+      "frames": 122,
+      "sha256": "7e7fcdff56f7bc8099bc914a869fc1c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-pause-all",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-pause-all",
+    "description": "The game's audio calls (play_sfx, pause_audio, resume_audio) should change the sound the way they did",
+    "plan": "# home-audio-pause-all: The game's audio calls (play_sfx, pause_audio, resume_audio) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sfx 126 0 128 127\nwait 4\naudio pause_audio 0\nwait 60\naudio resume_audio 0\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 173 scene 19 save 52c68d0e5c0ca8b1 state 6d9af22fa011b948 ram 0000000000000000",
+     "settled frame 295 scene 19 save 52c68d0e5c0ca8b1 state f0273d668b256357 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sfx 126 0 128 127",
+     "audio pause_audio 0 0 0 0",
+     "audio resume_audio 0 0 0 0"
+    ],
+    "end": "steps 11 of 11 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 131,
+      "sha256": "bf00c135f6e804de6427558c44369aed"
+     },
+     {
+      "frames": 122,
+      "sha256": "0fb14e2fb39db05ffd35298e0ada749d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-pause-sfx",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-pause-sfx",
+    "description": "The game's audio calls (play_sfx, pause_audio, resume_audio) should change the sound the way they did",
+    "plan": "# home-audio-pause-sfx: The game's audio calls (play_sfx, pause_audio, resume_audio) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sfx 126 0 128 127\nwait 4\naudio pause_audio 2\nwait 60\naudio resume_audio 2\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 173 scene 19 save 52c68d0e5c0ca8b1 state 6d9af22fa011b948 ram 0000000000000000",
+     "settled frame 295 scene 19 save 52c68d0e5c0ca8b1 state f0273d668b256357 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sfx 126 0 128 127",
+     "audio pause_audio 2 0 0 0",
+     "audio resume_audio 2 0 0 0"
+    ],
+    "end": "steps 11 of 11 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 131,
+      "sha256": "2f94eef54ae3f4599a043f544f829970"
+     },
+     {
+      "frames": 122,
+      "sha256": "9f87c2187a35971e3390d2b04e25a50d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-pause-xa",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-pause-xa",
+    "description": "The game's audio calls (pause_audio, resume_audio) should change the sound the way they did",
+    "plan": "# home-audio-pause-xa: The game's audio calls (pause_audio, resume_audio) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio pause_audio 3\nwait 60\naudio resume_audio 3\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 167 scene 19 save 52c68d0e5c0ca8b1 state 154474af8870a3e7 ram 0000000000000000",
+     "settled frame 289 scene 19 save 52c68d0e5c0ca8b1 state a3dc4b8f8921e755 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio pause_audio 3 0 0 0",
+     "audio resume_audio 3 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 125,
+      "sha256": "0df72aa3b8f80ab59fae024f1c3b1fff"
+     },
+     {
+      "frames": 122,
+      "sha256": "f6fbd0105708e80ad6c8d917fa2d0011"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-play-sound",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-play-sound",
+    "description": "The game's audio calls (play_sound) should change the sound the way they did",
+    "plan": "# home-audio-play-sound: The game's audio calls (play_sound) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sound 125\nwait 30\naudio play_sound 126\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 137 scene 19 save 52c68d0e5c0ca8b1 state f744a34dc1f51339 ram 0000000000000000",
+     "settled frame 259 scene 19 save 52c68d0e5c0ca8b1 state 9c440a30ad11fd83 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sound 125 0 0 0",
+     "audio play_sound 126 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 95,
+      "sha256": "ee181cfe1facf50d2e69db8e8807b122"
+     },
+     {
+      "frames": 122,
+      "sha256": "a27c8850fc31623b8a6f0a9d40f950c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-sfx-203",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-sfx-203",
+    "description": "The game's audio calls (play_sfx) should change the sound the way they did",
+    "plan": "# home-audio-sfx-203: The game's audio calls (play_sfx) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sfx 203 0 128 127\nwait 180\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 225 scene 19 save 52c68d0e5c0ca8b1 state b99f93a7d307b883 ram 0000000000000000",
+     "settled frame 347 scene 19 save 52c68d0e5c0ca8b1 state e0f948038cf898bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sfx 203 0 128 127"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 183,
+      "sha256": "df301df5453dc6b9942749975e72ebc5"
+     },
+     {
+      "frames": 122,
+      "sha256": "559f2dd207dc968025bd394f1cb42acf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-sfx-fades",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-sfx-fades",
+    "description": "The game's audio calls (play_sfx, fade_sfx_volume, fade_sfx_pan) should change the sound the way they did",
+    "plan": "# home-audio-sfx-fades: The game's audio calls (play_sfx, fade_sfx_volume, fade_sfx_pan) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sfx 126 0 128 127\nwait 4\naudio fade_sfx_volume 126 0 30 0\nwait 10\naudio fade_sfx_pan 126 0 30 0\nwait 40\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 103 scene 19 save 52c68d0e5c0ca8b1 state 0c58898370bf04ca ram 0000000000000000",
+     "settled frame 225 scene 19 save 52c68d0e5c0ca8b1 state b99f93a7d307b883 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sfx 126 0 128 127",
+     "audio fade_sfx_volume 126 0 30 0",
+     "audio fade_sfx_pan 126 0 30 0"
+    ],
+    "end": "steps 11 of 11 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 61,
+      "sha256": "ace545d2169d65adc5634ebb6063a1b2"
+     },
+     {
+      "frames": 122,
+      "sha256": "83289f6f77b8cd83e82cfd839f88544f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-sfx-stop",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-sfx-stop",
+    "description": "The game's audio calls (play_sfx, stop_sfx, release_all_sfx) should change the sound the way they did",
+    "plan": "# home-audio-sfx-stop: The game's audio calls (play_sfx, stop_sfx, release_all_sfx) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio play_sfx 126 0 128 127\nwait 4\naudio stop_sfx 126 0\nwait 20\naudio play_sfx 126 0 128 127\nwait 4\naudio release_all_sfx\nwait 40\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 119 scene 19 save 52c68d0e5c0ca8b1 state 33b09fc77afd713e ram 0000000000000000",
+     "settled frame 241 scene 19 save 52c68d0e5c0ca8b1 state cb8dfd960182e617 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio play_sfx 126 0 128 127",
+     "audio stop_sfx 126 0 0 0",
+     "audio play_sfx 126 0 128 127",
+     "audio release_all_sfx 0 0 0 0"
+    ],
+    "end": "steps 13 of 13 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 77,
+      "sha256": "414664e4ac65423907a0931f32c77679"
+     },
+     {
+      "frames": 122,
+      "sha256": "065f18ca5f932413fd67bcdf1ff25361"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-song-fade",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-song-fade",
+    "description": "The game's audio calls (fade_song_volume_from) should change the sound the way they did",
+    "plan": "# home-audio-song-fade: The game's audio calls (fade_song_volume_from) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio fade_song_volume_from 0 60 127 1\nwait 90\naudio fade_song_volume_from 0 30 1 127\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 197 scene 19 save 52c68d0e5c0ca8b1 state 870ef7090479a893 ram 0000000000000000",
+     "settled frame 319 scene 19 save 52c68d0e5c0ca8b1 state 57879baad84ebd01 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio fade_song_volume_from 0 60 127 1",
+     "audio fade_song_volume_from 0 30 1 127"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 155,
+      "sha256": "adfcbd528c0932c8d421e0b1b4480885"
+     },
+     {
+      "frames": 122,
+      "sha256": "133f699b7a45347e7c58bf4477c2b212"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-song-stop",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-song-stop",
+    "description": "The game's audio calls (stop_song, stop_all_songs) should change the sound the way they did",
+    "plan": "# home-audio-song-stop: The game's audio calls (stop_song, stop_all_songs) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio stop_song 0\nwait 60\naudio stop_all_songs\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 167 scene 19 save 52c68d0e5c0ca8b1 state 154474af8870a3e7 ram 0000000000000000",
+     "settled frame 289 scene 19 save 52c68d0e5c0ca8b1 state a3dc4b8f8921e755 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio stop_song 0 0 0 0",
+     "audio stop_all_songs 0 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 125,
+      "sha256": "ef9d446ac02543fc6676050318e0424a"
+     },
+     {
+      "frames": 122,
+      "sha256": "ed520e2fe3be633324439ea702585819"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-song-volume",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-song-volume",
+    "description": "The game's audio calls (fade_song_volume, set_song_volume) should change the sound the way they did",
+    "plan": "# home-audio-song-volume: The game's audio calls (fade_song_volume, set_song_volume) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio fade_song_volume 0 30 0\nwait 60\naudio set_song_volume 0 127\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 167 scene 19 save 52c68d0e5c0ca8b1 state 154474af8870a3e7 ram 0000000000000000",
+     "settled frame 289 scene 19 save 52c68d0e5c0ca8b1 state a3dc4b8f8921e755 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio fade_song_volume 0 30 0 0",
+     "audio set_song_volume 0 127 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 125,
+      "sha256": "62b2bc1a3b40d525fc8ca584b18327b9"
+     },
+     {
+      "frames": 122,
+      "sha256": "ba24bb78e065d40dbc050df954de9498"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-tempo",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-tempo",
+    "description": "The game's audio calls (set_master_tempo_modifier) should change the sound the way they did",
+    "plan": "# home-audio-tempo: The game's audio calls (set_master_tempo_modifier) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio set_master_tempo_modifier 64\nwait 120\naudio set_master_tempo_modifier 0\nwait 60\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 227 scene 19 save 52c68d0e5c0ca8b1 state cb192fd8c1a139cc ram 0000000000000000",
+     "settled frame 349 scene 19 save 52c68d0e5c0ca8b1 state d118879166d4f2fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio set_master_tempo_modifier 64 0 0 0",
+     "audio set_master_tempo_modifier 0 0 0 0"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 185,
+      "sha256": "6749790f448974ef3168c20d53ffac12"
+     },
+     {
+      "frames": 122,
+      "sha256": "c02fb37246a904a1a0d8b9e0dfd5cb17"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "home-audio-weapon-effects",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "home-audio-weapon-effects",
+    "description": "The game's audio calls (load_weapon_sfx_table, play_weapon_sfx) should change the sound the way they did",
+    "plan": "# home-audio-weapon-effects: The game's audio calls (load_weapon_sfx_table, play_weapon_sfx) should change the sound the way they did\nlimit 20000\nwait 40\ncheckpoint before\naudio load_weapon_sfx_table 0 4\nwait 10\naudio play_weapon_sfx 8 128 0\nwait 90\naudio load_weapon_sfx_table 0 10\nwait 10\naudio play_weapon_sfx 5 128 0\nwait 90\ncheckpoint after\nwait 120\ncheckpoint settled\n",
+    "format": 3,
+    "checkpoints": [
+     "before frame 42 scene 19 save 52c68d0e5c0ca8b1 state bec463cba275f403 ram 0000000000000000",
+     "after frame 251 scene 19 save 52c68d0e5c0ca8b1 state 9567e2ecd2af2163 ram 0000000000000000",
+     "settled frame 373 scene 19 save 52c68d0e5c0ca8b1 state 4c21de04b5584c6c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "audio load_weapon_sfx_table 0 4 0 0",
+     "audio play_weapon_sfx 8 128 0 0",
+     "audio load_weapon_sfx_table 0 10 0 0",
+     "audio play_weapon_sfx 5 128 0 0"
+    ],
+    "end": "steps 13 of 13 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 67,
+     "instruction_end": 13,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 43,
+      "sha256": "22ac75eeae6459dfad2a165890e6eb02"
+     },
+     {
+      "frames": 209,
+      "sha256": "0cd35cbac02c3e28e6c885eff50c6900"
+     },
+     {
+      "frames": 122,
+      "sha256": "9010626f26be3c12df6a9702d9d87adf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

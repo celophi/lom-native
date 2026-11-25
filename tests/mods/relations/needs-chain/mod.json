@@ -1,0 +1,12 @@
+{
+  "id": "needs-chain",
+  "name": "Needs chain",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2,
+  "requires": {
+    "needs-ghost": "*"
+  }
+}

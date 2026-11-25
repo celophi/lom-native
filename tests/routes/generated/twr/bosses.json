@@ -1,0 +1,250 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "twr-twr-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs00-boss",
+    "description": "Entering TWR_BS00 (scene 208) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# twr-twr-bs00-boss: Entering TWR_BS00 (scene 208) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32976 0 16723228 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 208 save 03318764c0851a04 state 8a04eaa56491ed22 ram 0000000000000000",
+     "fought frame 3780 scene 208 save e380d888c70a1a52 state c628e4bbe8e5a518 ram 0000000000000000",
+     "after frame 5479 scene 208 save bafc9d064ea10b01 state b628671eb68e278d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 2630 frames",
+     "watched until the player got control, 1697 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 653,
+     "instruction_end": 327,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e06ee1c7a8297df40a8fc3c1b1c6424f"
+     },
+     {
+      "frames": 3520,
+      "sha256": "ef40902d3d45efa9e385c69a9a693b97"
+     },
+     {
+      "frames": 1699,
+      "sha256": "d6722500679ec68d21f06356013a90cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs01-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs01-boss",
+    "description": "Entering TWR_BS01 (scene 209) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# twr-twr-bs01-boss: Entering TWR_BS01 (scene 209) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32977 0 16723228 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 209 save e07388152fdbdb29 state 97136703250b5fef ram 0000000000000000",
+     "fought frame 3956 scene 209 save c1547427e45e0357 state 8bd54322c4c7c63c ram 0000000000000000",
+     "after frame 5535 scene 209 save 6145591a3b369bf8 state ea0eadcb741ed63a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 2930 frames",
+     "watched until the player got control, 1577 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 591,
+     "instruction_end": 300,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e05d7b2295c2b721f85ee86fd80273b7"
+     },
+     {
+      "frames": 3696,
+      "sha256": "9835892d0b3e56df3c1b1c8cfb7da561"
+     },
+     {
+      "frames": 1579,
+      "sha256": "1e66d963ec50d908473979d1e40b60d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs02-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs02-boss",
+    "description": "Entering TWR_BS02 (scene 210) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# twr-twr-bs02-boss: Entering TWR_BS02 (scene 210) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32978 0 16723228 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 210 save 695030831e1cd426 state c999939b1d2b43a3 ram 0000000000000000",
+     "fought frame 4077 scene 210 save fd5444fee8be4c3e state b139e7df68960db3 ram 0000000000000000",
+     "after frame 5836 scene 210 save 06db1fdfae3ea401 state baf81909e4a1d8e6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 3110 frames",
+     "watched until the player got control, 1757 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 574,
+     "instruction_end": 283,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "90a2615bf487f49668d95d5fe2304cd1"
+     },
+     {
+      "frames": 3817,
+      "sha256": "2ba7c3390d757fb03b8a6ca561e031ef"
+     },
+     {
+      "frames": 1759,
+      "sha256": "29240f578f6b7c6137fe3287011eeb89"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i101-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i101-boss",
+    "description": "Entering TWR_I101 (scene 178) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# twr-twr-i101-boss: Entering TWR_I101 (scene 178) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32946 0 16720639 2\ncheckpoint entered\nwalk 320 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 178 save 1bb66e34c511c2d3 state 326a0f43daf09a8d ram 0000000000000000",
+     "fought frame 3172 scene 178 save c6b9a933836cccb2 state 72486fc7a10aa99e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (320, 96): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2810 frames",
+     "game state 1 at vblank 10347",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 577,
+     "instruction_end": 249,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "53afb121dab84dc8a22e02e8bfdeb800"
+     },
+     {
+      "frames": 2912,
+      "sha256": "513c4ec2f67a8dd94a6acc6751d3d546"
+     },
+     {
+      "frames": 1742,
+      "sha256": "538cf67a6286e344b37bbc37f40c4389"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i102-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i102-boss",
+    "description": "Entering TWR_I102 (scene 179) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# twr-twr-i102-boss: Entering TWR_I102 (scene 179) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32947 0 16720639 2\ncheckpoint entered\nwalk 320 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 179 save 88267fcd64707d66 state 479d670fdbafec6f ram 0000000000000000",
+     "fought frame 3952 scene 179 save 212636a80bd20bef state f3da555b27726060 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (320, 96): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3590 frames",
+     "game state 1 at vblank 13627",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 267,
+     "instruction": 629,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "bfa6ab6d116e18a12311d1b8e0bb6c7f"
+     },
+     {
+      "frames": 3692,
+      "sha256": "b360d6c3483324916f09514647d0f154"
+     },
+     {
+      "frames": 2603,
+      "sha256": "180598e9cb14834a2fb60b585400f19a"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of htw/story/story-1114.json, at home, with the story state HTW_FRM0's story 0x460 needs",
+  "source": "built from the conditions on the path to the write in scene 51 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0
+  },
+  "saved_game": "saves/chain-htw-story-1114.bin",
+  "variables": {
+    "0x11e0": 7
+  }
+}

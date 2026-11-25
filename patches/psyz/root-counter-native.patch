@@ -1,0 +1,266 @@
+Root counter 2 counts SPU samples, the way the game's sound driver expects,
+instead of host time.
+
+--- a/psyz/src/psyz/kernel.c
++++ b/psyz/src/psyz/kernel.c
+@@ -7,4 +7,5 @@
+ #include <libetc.h>
+ #include <string.h>
++#include <stdatomic.h>
+ #include "os.h"
+ #include "../internal.h"
+@@ -530,87 +531,4 @@
+ }
+
+-long SetRCnt(long spec, unsigned short target, long mode) {
+-    int i = (int)(spec & 0xFFFF);
+-    if (i >= 3) {
+-        return 0;
+-    }
+-    StartIrqThread();
+-    KernelLock();
+-    RootCounter* c = &counters[i];
+-    uint32_t clock = CounterClock(i, mode);
+-    // target * 1000000 / clock split in two steps to stay within 32 bits
+-    uint32_t scaled = (target ? target : 0x10000) * 15625u;
+-    uint32_t rem = scaled % clock * 64;
+-    c->clock_hz = clock;
+-    c->target = target ? target : 0x10000;
+-    c->period_us = scaled / clock * 64 + rem / clock;
+-    c->period_frac = rem % clock;
+-    if (c->period_us < MIN_PERIOD_US) {
+-        c->period_us = MIN_PERIOD_US;
+-        c->period_frac = 0;
+-    }
+-    c->ticks_per_us_q15 = clock / 15625 * 512 + clock % 15625 * 512 / 15625;
+-    c->irq = (mode & RCntMdINTR) != 0;
+-    CounterRestart(c, Psyz_OsNowUs());
+-    AtomicStore(&poll_deadline_us, (long)c->last_us);
+-    KernelUnlock();
+-    Psyz_OsBellRing(bell_irq);
+-    return 1;
+-}
+-
+-long GetRCnt(long spec) {
+-    int i = (int)(spec & 0xFFFF);
+-    if (i >= 3) {
+-        return 0;
+-    }
+-    KernelLock();
+-    RootCounter* c = &counters[i];
+-    long value = 0;
+-    if (c->period_us) {
+-        uint32_t phase = (Psyz_OsNowUs() - c->last_us) % c->period_us;
+-        uint32_t ticks = phase * c->ticks_per_us_q15 >> 15;
+-        value = (long)(ticks < c->target ? ticks : c->target - 1);
+-    }
+-    KernelUnlock();
+-    return value;
+-}
+-
+-long ResetRCnt(long spec) {
+-    int i = (int)(spec & 0xFFFF);
+-    if (i >= 3) {
+-        return 0;
+-    }
+-    KernelLock();
+-    CounterRestart(&counters[i], Psyz_OsNowUs());
+-    AtomicStore(&poll_deadline_us, (long)counters[i].last_us);
+-    KernelUnlock();
+-    Psyz_OsBellRing(bell_irq);
+-    return 1;
+-}
+-
+-long StartRCnt(long spec) {
+-    int line = CounterLine(spec);
+-    if (line < 0) {
+-        return 0;
+-    }
+-    KernelLock();
+-    irq_mask |= 1u << line;
+-    ServicePending();
+-    KernelUnlock();
+-    Psyz_OsBellRing(bell_irq);
+-    return line != IRQ_VBLANK;
+-}
+-
+-long StopRCnt(long spec) {
+-    int line = CounterLine(spec);
+-    if (line < 0) {
+-        return 0;
+-    }
+-    KernelLock();
+-    irq_mask &= ~(1u << line);
+-    KernelUnlock();
+-    return 1;
+-}
+-
+ long ChangeClearRCnt(long t, long flag) {
+     long prev;
+@@ -644,26 +562,4 @@
+
+ int VSyncCallback(void (*f)()) { return VSyncCallbacks(4, f); }
+-
+-void* InterruptCallback(int irq, void (*cb)()) {
+-    void (*prev)(void);
+-    if (irq < 0 || irq >= IRQ_COUNT) {
+-        return NULL;
+-    }
+-    if (cb && irq >= IRQ_RCNT0 && irq <= IRQ_RCNT2) {
+-        StartIrqThread();
+-    }
+-    KernelLock();
+-    prev = irq_callbacks[irq];
+-    irq_callbacks[irq] = cb;
+-    if (cb) {
+-        irq_mask |= 1u << irq;
+-    } else {
+-        irq_mask &= ~(1u << irq);
+-    }
+-    ServicePending();
+-    KernelUnlock();
+-    Psyz_OsBellRing(bell_irq);
+-    return (void*)prev;
+-}
+
+ int SetIntrMask(int mask) {
+@@ -723,2 +619,139 @@
+
+ int CheckCallback(void) { return OwnsKernel() && in_interrupt; }
++
++static struct {
++    atomic_uint count;
++    unsigned period;
++    unsigned ticks_per_sample;
++    unsigned configured;
++    unsigned irq_enabled;
++    unsigned irq_mode;
++    unsigned irq_pending;
++    unsigned delivering;
++    void (*handler)(void);
++} rcnt2;
++
++static struct {
++    unsigned rate_hz;
++    unsigned accum;
++    void (*handler)(void);
++} rcnt3;
++
++static unsigned set_counter = 0;
++
++void* InterruptCallback(int arg0, void (*cb)()) {
++    if (arg0 < 0 || arg0 >= 0x100) {
++        return NULL;
++    }
++    void (*prev)(void) = NULL;
++    switch (set_counter) {
++    case 2:
++        prev = rcnt2.handler;
++        rcnt2.handler = cb;
++        set_counter = 0;
++        break;
++    case 3:
++        prev = rcnt3.handler;
++        if (cb) {
++            rcnt3.handler = cb;
++            set_counter = 0;
++        }
++        break;
++    }
++    return prev;
++}
++
++static unsigned rcnt_counter(long spec) {
++    return (unsigned)(spec & 0xFFFF);
++}
++
++long SetRCnt(long spec, unsigned short target, long mode) {
++    unsigned counter = rcnt_counter(spec);
++    switch (counter) {
++    case 2:
++        rcnt2.period = target ? target : 65536u;
++        rcnt2.ticks_per_sample = (mode & 1) ? 768u : 96u;
++        rcnt2.configured = 1;
++        rcnt2.irq_mode = (mode & 0x1000) != 0;
++        atomic_store_explicit(&rcnt2.count, 0, memory_order_relaxed);
++        break;
++    case 3:
++        rcnt3.rate_hz = (GetVideoMode() == MODE_PAL) ? 50 : 60;
++        rcnt3.accum = 0;
++        break;
++    default:
++        return 0;
++    }
++    set_counter = counter;
++    return 1;
++}
++
++long GetRCnt(long spec) {
++    if (rcnt_counter(spec) != 2) return 0;
++    return atomic_load_explicit(&rcnt2.count, memory_order_relaxed);
++}
++
++long StartRCnt(long spec) {
++    if (rcnt_counter(spec) != 2) return 0;
++    rcnt2.irq_enabled = 1;
++    return 1;
++}
++
++long StopRCnt(long spec) {
++    if (rcnt_counter(spec) != 2) return 0;
++    rcnt2.irq_enabled = 0;
++    set_counter = 2;
++    return 1;
++}
++
++long ResetRCnt(long spec) {
++    switch (rcnt_counter(spec)) {
++    case 2:
++        atomic_store_explicit(&rcnt2.count, 0, memory_order_relaxed);
++        break;
++    case 3:
++        rcnt3.accum = 0;
++        break;
++    default:
++        return 0;
++    }
++    return 1;
++}
++
++static void rcnt2_add_sample(void) {
++    if (!rcnt2.configured) return;
++    unsigned count = atomic_load_explicit(&rcnt2.count, memory_order_relaxed);
++    count += rcnt2.ticks_per_sample;
++    if (count >= rcnt2.period) {
++        count %= rcnt2.period;
++        if (rcnt2.irq_mode) rcnt2.irq_pending = 1;
++    }
++    atomic_store_explicit(&rcnt2.count, count, memory_order_relaxed);
++    if (rcnt2.irq_pending && rcnt2.irq_enabled && rcnt2.handler && !rcnt2.delivering) {
++        rcnt2.irq_pending = 0;
++        rcnt2.delivering = 1;
++        void (*callback)(void) = rcnt2.handler;
++        callback();
++        rcnt2.delivering = 0;
++    }
++}
++
++static void rcnt_add(int* accum_state, int rate_hz, int n, void (*cb)(void)) {
++    if (rate_hz <= 0 || !cb) {
++        return;
++    }
++    int accum = *accum_state + rate_hz * n;
++    while (accum >= PSYZ_SPU_SAMPLE_RATE) {
++        accum -= PSYZ_SPU_SAMPLE_RATE;
++        cb();
++    }
++    *accum_state = accum;
++}
++
++void Psyz_RcntAdd(int n) {
++    if (n <= 0) {
++        return;
++    }
++    for (int sample = 0; sample < n; ++sample) rcnt2_add_sample();
++    rcnt_add(&rcnt3.accum, rcnt3.rate_hz, n, rcnt3.handler);
++}

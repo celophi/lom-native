@@ -1,0 +1,1918 @@
+#include "common.h"
+#include <libgpu.h>
+#include <libgte.h>
+#include <memory.h>
+#include "lom_native_input.h"
+#include "lom_native_sound.h"
+#include "lom_native_gpu_packets.h"
+#include "lom_native_switches.h"
+
+#include "../internal/field_ability_progression.h"
+#include "../internal/field_actor_runtime.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_effect_render_state.h"
+#include "../internal/field_menu_element.h"
+#include "../internal/field_modal_runtime.h"
+#include "../internal/field_records.h"
+#include "common/gpu_packet.h"
+#include "common/pad.h"
+#include "common/saved_game.h"
+#include "common/vector.h"
+#include "main/audio/akao.h"
+#include "main/cdrom.h"
+#include "main/controller_internal.h"
+#include "main/display.h"
+#include "main/field_runtime.h"
+#include "main/game_state.h"
+#include "overlays/field/field_input.h"
+#include "overlays/field/field_numeric_sprites.h"
+#include "overlays/field/field_portrait.h"
+#include "overlays/field/field_scene_transition.h"
+#include "overlays/field/field_sound.h"
+#include "overlays/field/field_text.h"
+#include "overlays/field/field_ui_text.h"
+#include "main/audio/akao_cmd.h"
+#include "main/main.h"
+
+extern void* lom_native_return_choices(OT_TYPE* ot, void* cursor, s32 x, s32 y);
+
+#define FIELD_TIMED_PANEL_RESOURCE_BASE 0x1060
+#define FIELD_TIMED_PANEL_VRAM_X 320
+#define FIELD_TIMED_PANEL_TEXELS_PER_WORD 4
+#define FIELD_TIMED_PANEL_FRAMES 150
+#define FIELD_TIMED_PANEL_FADE_IN_FRAMES 32
+#define FIELD_TIMED_PANEL_FADE_OUT_START 32
+#define FIELD_TIMED_PANEL_FADE_FRAMES 20
+#define FIELD_TIMED_PANEL_SKIP_END 103
+#define FIELD_TIMED_PANEL_FADE_LIMIT 0x7C
+#define FIELD_TIMED_PANEL_SPIN_STEP 50
+#define FIELD_TIMED_PANEL_EFFECT 0x80
+#define FIELD_TIMED_PANEL_EFFECT_MASK 0x7F
+
+#define FIELD_SOUND_PANEL_IMAGE_START 0x118
+#define FIELD_SOUND_PANEL_IMAGE_END 0x119
+#define FIELD_SOUND_PANEL_EFFECT1_START 0x11A
+#define FIELD_SOUND_PANEL_EFFECT1_END 0x11B
+#define FIELD_SOUND_PANEL_EFFECT0_START 0x11C
+#define FIELD_SOUND_PANEL_EFFECT0_END 0x11D
+#define FIELD_SOUND_PANEL_EFFECT2_START 0x11E
+#define FIELD_SOUND_PANEL_EFFECT2_END 0x11F
+
+typedef struct
+{
+    u16 colors[16];
+} FieldPortraitPalette;
+
+#define FIELD_TRANSITION_QUAD_UNUSED 0xFFFF
+#define FIELD_TRANSITION_QUAD_HALF_WIDTH 0xF
+#define FIELD_TRANSITION_QUAD_PALETTE_MASK 0xF0
+#define FIELD_TRANSITION_QUAD_SEMI_TRANSPARENT 0x100
+#define FIELD_TRANSITION_QUAD_EFFECT(flags) (((flags) >> 11) & 0xF)
+
+typedef struct
+{
+    u16 x, y;
+    u8 u, v;
+    u16 width, height, flags;
+} FieldTransitionQuad;
+
+extern FieldPortraitPalette g_field_portrait_palettes[];
+extern FieldTransitionQuad g_field_timed_panel_quads[][4];
+extern u8 g_field_timed_panel_modes[];
+extern u16 g_field_timed_panel_width;
+extern u16 g_field_timed_panel_height;
+extern s32 g_field_timed_panel_index;
+extern u16 g_field_timed_panel_brightness;
+extern u16 g_field_timed_panel_timer;
+
+static POLY_FT4* field_draw_timed_panel_quads(POLY_FT4* prim, OT_TYPE* ordering_table, s32 index);
+static POLY_FT4* field_draw_timed_panel_image(POLY_FT4* prim, OT_TYPE* ordering_table);
+
+#define FIELD_ACTOR_TEXT_COUNT 3
+#define FIELD_ACTOR_TEXT_FRAMES 63
+#define FIELD_ACTOR_TEXT_FADE_FRAMES 32
+#define FIELD_TEXT_TINT_NEUTRAL 0x100
+#define FIELD_TEXT_OT_DEPTH 16
+
+#define FIELD_TECHNIQUE_UNLOCK_RULE_COUNT 227
+#define FIELD_PROFICIENCY_MAX 100U
+#define FIELD_PROFICIENCY_BONUS 4
+#define FIELD_EQUIPPED_ABILITY_COUNT 2
+#define FIELD_WEAPON_CATEGORY_SHIFT 10
+#define FIELD_WEAPON_CATEGORY_MASK 0x3F
+#define FIELD_TECHNIQUE_GROUP_SHIFT 4
+#define FIELD_TECHNIQUE_WEAPON_MASK 0x0F
+#define FIELD_TECHNIQUE_INDEX_MASK 0x7F
+#define FIELD_TECHNIQUE_SILENT_FLAG 0x80
+#define FIELD_TECHNIQUE_UNLOCK_FLAG 0x8000
+
+#define FIELD_RESULTS_PARTY_SUMMARY 1
+#define FIELD_RESULTS_ITEM_LIST 2
+#define FIELD_RESULTS_UNLOCK_LIST 3
+
+#define FIELD_RESULTS_SKIPPED 4
+
+#define FIELD_RESULTS_WINDOW_X 0x20
+#define FIELD_RESULTS_ROW_HEIGHT 16
+#define FIELD_RESULTS_CENTER_Y 112
+#define FIELD_RESULTS_MAX_HEIGHT 160
+#define FIELD_RESULTS_HEADER_X 0x20
+#define FIELD_RESULTS_NAME_X 0x80
+#define FIELD_RESULTS_ICON_CLUT lom_gpu_clut(112, 490)
+#define FIELD_RESULTS_ICON_TPAGE lom_gpu_tpage(GPU_TEXTURE_4BIT, GPU_BLEND_ADD, 384, 0)
+
+#define FIELD_RES_UNLOCK_NAMES 0x5DF
+#define FIELD_SOUND_UNLOCK_LIST 0xA1
+
+#define FIELD_RESULTS_WAIT_FRAMES 4
+
+#define FIELD_UNLOCK_TECHNIQUE FIELD_TECHNIQUE_UNLOCK_FLAG
+
+#define FIELD_TEXT_AT(bank, low, high) ((u8*)((low) + (((high) << 8) + (uintptr_t)(bank))))
+
+#define FIELD_EXPERIENCE_GAIN(index) ((s32)((g_saved_game_ctx->characters[index].progress.word >> 8) - g_field_experience_snapshot[index]))
+
+typedef union
+{
+    u32 word;
+
+    struct
+    {
+        u32 x : 9;
+        u32 y : 8;
+        u32 countdown : 6;
+        u32 unused : 9;
+    } bits;
+} FieldActorTextState;
+
+typedef struct FieldActorText
+{
+    u8* text;
+    FieldActorTextState state;
+} FieldActorText;
+
+typedef struct
+{
+    FieldAbilityPrerequisite prerequisites[4];
+    u8 weapon;
+    u8 result;
+    u8 weapon_proficiency;
+} FieldTechniqueUnlockRule;
+
+typedef struct
+{
+    Vec2s position;
+    s32 unused;
+    s32 order[3];
+} FieldRankWork;
+
+typedef struct TextResource
+{
+    s32 unused;
+    s32 ability_names;
+    s32 technique_names;
+} TextResource;
+
+typedef struct
+{
+    s32 words[8];
+} FieldQuadAnimationTable;
+
+/**
+ * @brief Copy one of the portrait palettes into a portrait image.
+ * @param dest Palette strip at the start of the portrait image.
+ * @param index Palette index.
+ */
+void field_copy_portrait_palette(void* dest, s32 index)
+{
+    bcopy((u8*)&g_field_portrait_palettes[index], dest, sizeof(FieldPortraitPalette));
+}
+
+/**
+ * @brief Load a timed panel image, fade the screen and play the opening sound.
+ * @param index Panel index (image resource and mode byte).
+ */
+void field_start_timed_panel(s32 index)
+{
+    RECT rect;
+    u8 mode;
+    s32 sound_id;
+
+    if (g_field_timed_panel_active != 0)
+    {
+        return;
+    }
+
+    lom_gpu_set_rect(&rect, FIELD_TIMED_PANEL_VRAM_X, 0, 0, VRAM_CLUT_Y);
+    field_load_vram_resource(index + FIELD_TIMED_PANEL_RESOURCE_BASE, &rect, 1);
+
+    g_field_timed_panel_index = index;
+    g_field_timed_panel_width = rect.x;
+    g_field_timed_panel_height = rect.y;
+    field_set_fade_target_only(0x80, 0x80, 0x80, FIELD_TIMED_PANEL_FADE_FRAMES);
+    g_field_timed_panel_timer = FIELD_TIMED_PANEL_FRAMES;
+    g_field_timed_panel_brightness = 0;
+    g_field_timed_panel_active = 1;
+
+    mode = g_field_timed_panel_modes[g_field_timed_panel_index];
+
+    if (mode & FIELD_TIMED_PANEL_EFFECT)
+    {
+        switch (mode & FIELD_TIMED_PANEL_EFFECT_MASK)
+        {
+        case 0:
+            sound_id = FIELD_SOUND_PANEL_EFFECT0_START;
+            break;
+        case 1:
+            sound_id = FIELD_SOUND_PANEL_EFFECT1_START;
+            break;
+        case 2:
+            sound_id = FIELD_SOUND_PANEL_EFFECT2_START;
+            break;
+        default:
+            return;
+        }
+    }
+    else
+    {
+        sound_id = FIELD_SOUND_PANEL_IMAGE_START;
+    }
+
+    field_play_sound(sound_id, AKAO_PAN_CENTER);
+}
+
+/**
+ * @brief Count down the timed panel, fade it in and out and draw it.
+ * @param render Render half receiving the panel primitives.
+ * @note Confirm skips ahead to the fade-out while the panel is fully shown.
+ */
+void field_update_timed_panel(FieldRenderHalf* render)
+{
+    POLY_FT4* prim;
+    u16 timer;
+    u8 event_selector;
+    u8 render_selector;
+
+    if (g_field_timed_panel_active != 0)
+    {
+        if (--g_field_timed_panel_timer == FIELD_TIMED_PANEL_FADE_FRAMES)
+        {
+            field_restore_fade_target_with_duration(FIELD_TIMED_PANEL_FADE_FRAMES);
+        }
+
+        timer = g_field_timed_panel_timer;
+
+        if (timer == 0)
+        {
+            g_field_timed_panel_active = 0;
+            return;
+        }
+
+        if (timer < FIELD_TIMED_PANEL_FADE_OUT_START)
+        {
+            if (timer == FIELD_TIMED_PANEL_FADE_OUT_START - 1)
+            {
+                event_selector = g_field_timed_panel_modes[g_field_timed_panel_index];
+
+                if (event_selector & FIELD_TIMED_PANEL_EFFECT)
+                {
+                    switch (event_selector & FIELD_TIMED_PANEL_EFFECT_MASK)
+                    {
+                    case 0:
+                        field_play_sound(FIELD_SOUND_PANEL_EFFECT0_END, AKAO_PAN_CENTER);
+                        break;
+                    case 1:
+                        field_play_sound(FIELD_SOUND_PANEL_EFFECT1_END, AKAO_PAN_CENTER);
+                        break;
+                    case 2:
+                        field_play_sound(FIELD_SOUND_PANEL_EFFECT2_END, AKAO_PAN_CENTER);
+                        break;
+                    }
+                }
+                else
+                {
+                    field_play_sound(FIELD_SOUND_PANEL_IMAGE_END, AKAO_PAN_CENTER);
+                }
+            }
+
+            g_field_timed_panel_brightness = g_field_timed_panel_timer * 4;
+        }
+        else if (timer >= FIELD_TIMED_PANEL_FRAMES - FIELD_TIMED_PANEL_FADE_IN_FRAMES)
+        {
+            g_field_timed_panel_brightness = (FIELD_TIMED_PANEL_FRAMES - g_field_timed_panel_timer) * 4;
+        }
+        else if (timer >= FIELD_TIMED_PANEL_FADE_OUT_START + 1 && timer < FIELD_TIMED_PANEL_SKIP_END && (g_pad_input & PAD_CONFIRM_BUTTONS))
+        {
+            g_field_timed_panel_timer = FIELD_TIMED_PANEL_FADE_OUT_START;
+        }
+
+        g_field_screen_scroll.y = 0;
+        g_field_screen_scroll.x = 0;
+        render_selector = g_field_timed_panel_modes[g_field_timed_panel_index];
+        prim = (POLY_FT4*)render->primitive_cursor;
+
+        if (render_selector != 0)
+        {
+            prim = field_draw_timed_panel_quads(prim, render->ordering_table, render_selector & FIELD_TIMED_PANEL_EFFECT_MASK);
+        }
+        else
+        {
+            prim = field_draw_timed_panel_image(prim, render->ordering_table);
+        }
+
+        render->primitive_cursor = (u8*)prim;
+    }
+}
+
+/**
+ * @brief Draw the up to four quads of a timed panel effect group.
+ * @param prim Next free primitive.
+ * @param ordering_table Ordering table receiving the quads.
+ * @param index Effect group (four FieldTransitionQuad descriptors).
+ * @return First unused primitive.
+ * @note The effect bits select a zoom (0, 4), a slide (1), a spin (2) or a flash (3),
+ *       all driven by the panel brightness.
+ */
+static POLY_FT4* field_draw_timed_panel_quads(POLY_FT4* prim, OT_TYPE* ordering_table, s32 index)
+{
+    s32 quad_index;
+    s32 expansion;
+    FieldTransitionQuad* quad;
+    u16 raw_width;
+    s32 width;
+    s32 rotated_x;
+    s32 rotated_y;
+    u8 brightness;
+    s32 palette_mask;
+
+    quad = g_field_timed_panel_quads[index];
+
+    for (quad_index = 0; quad_index < 4; quad_index++, quad++)
+    {
+        if (quad->x != FIELD_TRANSITION_QUAD_UNUSED)
+        {
+            raw_width = quad->width;
+
+            if (quad->flags & FIELD_TRANSITION_QUAD_HALF_WIDTH)
+            {
+                raw_width >>= 1;
+            }
+
+            width = raw_width;
+            lom_gpu_init_poly_ft4(prim);
+            prim->r0 = prim->g0 = prim->b0 = g_field_timed_panel_brightness;
+
+            if ((g_field_timed_panel_brightness != GPU_TINT_NEUTRAL_LEVEL) || (quad->flags & FIELD_TRANSITION_QUAD_SEMI_TRANSPARENT))
+            {
+                lom_gpu_set_semi_trans(prim, 1);
+            }
+
+            expansion = GPU_TINT_NEUTRAL_LEVEL - g_field_timed_panel_brightness;
+
+            switch (FIELD_TRANSITION_QUAD_EFFECT(quad->flags))
+            {
+            case 0:
+                prim->x0 = prim->x2 = quad->x - width * expansion / GPU_TINT_NEUTRAL_LEVEL;
+                prim->x1 = prim->x3 = quad->x + width + width * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+                prim->y0 = prim->y1 = quad->y - quad->height * expansion / GPU_TINT_NEUTRAL_LEVEL;
+                prim->y2 = prim->y3 = quad->y + quad->height + quad->height * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+                break;
+            case 1:
+                if (g_field_timed_panel_timer < 0x25)
+                {
+                    prim->x0 = prim->x2 = quad->x - width * expansion / GPU_TINT_NEUTRAL_LEVEL;
+                    prim->x1 = prim->x3 = quad->x + width - width * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+                }
+                else
+                {
+                    prim->x0 = prim->x2 = quad->x + width * expansion / GPU_TINT_NEUTRAL_LEVEL;
+                    prim->x1 = prim->x3 = quad->x + width + width * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+                }
+
+                prim->y0 = prim->y1 = quad->y;
+                prim->y2 = prim->y3 = quad->y + quad->height - 1;
+                break;
+            case 2:
+                rotated_x = width * rcos(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE) +
+                            quad->height * rsin(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE);
+                rotated_y = width * rsin(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE) -
+                            quad->height * rcos(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE);
+                rotated_x += expansion * rotated_x / GPU_TINT_NEUTRAL_LEVEL;
+                rotated_y += expansion * rotated_y / GPU_TINT_NEUTRAL_LEVEL;
+                prim->x0 = quad->x + width / 2 - rotated_x;
+                prim->x3 = quad->x + width / 2 + rotated_x;
+                prim->y0 = quad->y + quad->height / 2 + rotated_y;
+                prim->y3 = quad->y + quad->height / 2 - rotated_y;
+                rotated_x = -width * rcos(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE) +
+                            quad->height * rsin(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE);
+                rotated_y = -width * rsin(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE) -
+                            quad->height * rcos(expansion * FIELD_TIMED_PANEL_SPIN_STEP) / (2 * ONE);
+                rotated_x += expansion * rotated_x / GPU_TINT_NEUTRAL_LEVEL;
+                rotated_y += expansion * rotated_y / GPU_TINT_NEUTRAL_LEVEL;
+                prim->x1 = quad->x + width / 2 - rotated_x;
+                prim->x2 = quad->x + width / 2 + rotated_x;
+                prim->y1 = quad->y + quad->height / 2 + rotated_y;
+                prim->y2 = quad->y + quad->height / 2 - rotated_y;
+                break;
+            case 3:
+                if (g_field_timed_panel_brightness < 0x40)
+                {
+                    brightness = g_field_timed_panel_brightness * 4;
+                }
+                else
+                {
+                    brightness = ~((g_field_timed_panel_brightness - 0x40) * 2);
+                }
+
+                prim->r0 = prim->g0 = prim->b0 = brightness;
+                prim->x0 = prim->x2 = quad->x;
+                prim->x1 = prim->x3 = quad->x + width - 1;
+                prim->y0 = prim->y1 = quad->y;
+                prim->y2 = prim->y3 = quad->y + quad->height - 1;
+                break;
+            case 4:
+                prim->x0 = prim->x2 = quad->x - width * expansion / (GPU_TINT_NEUTRAL_LEVEL / 2);
+                prim->x1 = prim->x3 = quad->x + width + width * expansion / (GPU_TINT_NEUTRAL_LEVEL / 2) - 1;
+                prim->y0 = prim->y1 = quad->y - quad->height * expansion / GPU_TINT_NEUTRAL_LEVEL;
+                prim->y2 = prim->y3 = quad->y + quad->height + quad->height * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+                break;
+            }
+
+            prim->u0 = prim->u2 = quad->u;
+            prim->u1 = prim->u3 = quad->u + width - 1;
+            prim->v0 = prim->v1 = quad->v;
+            prim->v2 = prim->v3 = quad->v + quad->height - 1;
+            palette_mask = FIELD_TRANSITION_QUAD_PALETTE_MASK;
+            prim->clut = lom_gpu_clut(quad->flags & palette_mask, VRAM_CLUT_Y);
+            prim->tpage = lom_gpu_tpage(quad->flags & 3, (quad->flags >> 9) & 3, FIELD_TIMED_PANEL_VRAM_X, 0);
+            lom_gpu_link(ordering_table, prim);
+
+            if (g_field_timed_panel_brightness < FIELD_TIMED_PANEL_FADE_LIMIT)
+            {
+                switch (FIELD_TRANSITION_QUAD_EFFECT(quad->flags))
+                {
+                case 0:
+                    break;
+                case 1:
+                    field_add_fade_prim(prim, 0);
+                    break;
+                case 2:
+                    field_add_fade_prim(prim, 0);
+                    break;
+                }
+            }
+
+            prim++;
+        }
+    }
+
+    return prim;
+}
+
+/**
+ * @brief Draw the plain timed panel image, zoomed in from the screen center by the fade.
+ * @param prim Primitive to fill.
+ * @param ordering_table Ordering table receiving the quad.
+ * @return Next free primitive.
+ */
+static POLY_FT4* field_draw_timed_panel_image(POLY_FT4* prim, OT_TYPE* ordering_table)
+{
+    s32 expansion;
+
+    lom_gpu_init_poly_ft4(prim);
+    prim->r0 = prim->g0 = prim->b0 = g_field_timed_panel_brightness;
+    lom_gpu_set_semi_trans(prim, 1);
+    expansion = GPU_TINT_NEUTRAL_LEVEL - g_field_timed_panel_brightness;
+    prim->x0 = prim->x2 = FIELD_SCREEN_CENTER_X - g_field_timed_panel_width * FIELD_TIMED_PANEL_TEXELS_PER_WORD / 2 -
+                          g_field_timed_panel_width * expansion / (GPU_TINT_NEUTRAL_LEVEL / FIELD_TIMED_PANEL_TEXELS_PER_WORD);
+    prim->x1 = prim->x3 = FIELD_SCREEN_CENTER_X - g_field_timed_panel_width * FIELD_TIMED_PANEL_TEXELS_PER_WORD / 2 +
+                          g_field_timed_panel_width * FIELD_TIMED_PANEL_TEXELS_PER_WORD +
+                          g_field_timed_panel_width * expansion / (GPU_TINT_NEUTRAL_LEVEL / FIELD_TIMED_PANEL_TEXELS_PER_WORD) - 1;
+    prim->y0 = prim->y1 = FIELD_SCREEN_CENTER_Y - g_field_timed_panel_height / 2 - g_field_timed_panel_height * expansion / GPU_TINT_NEUTRAL_LEVEL;
+    prim->y2 = prim->y3 = FIELD_SCREEN_CENTER_Y - g_field_timed_panel_height / 2 + g_field_timed_panel_height +
+                          g_field_timed_panel_height * expansion / GPU_TINT_NEUTRAL_LEVEL - 1;
+    prim->u0 = prim->u2 = 0;
+    prim->u1 = prim->u3 = g_field_timed_panel_width * FIELD_TIMED_PANEL_TEXELS_PER_WORD - 1;
+    prim->v0 = prim->v1 = 0;
+    prim->v2 = prim->v3 = g_field_timed_panel_height - 1;
+    prim->clut = lom_gpu_clut(0, VRAM_CLUT_Y);
+    prim->tpage = lom_gpu_tpage(GPU_TEXTURE_4BIT, GPU_BLEND_ADD, FIELD_TIMED_PANEL_VRAM_X, 0);
+    lom_gpu_link(ordering_table, prim);
+
+    if (g_field_timed_panel_brightness < FIELD_TIMED_PANEL_FADE_LIMIT)
+    {
+        field_add_fade_prim(prim, 0);
+    }
+
+    return prim + 1;
+}
+
+extern FieldActorText g_field_actor_texts[FIELD_ACTOR_TEXT_COUNT];
+static void field_draw_actor_text(FieldRenderHalf* render, FieldActorText* text);
+static void* field_draw_tinted_text(SPRT* sprite_cursor, OT_TYPE* ordering_table, u8* text, s32 text_color, s32 x, s32 y, s32 alignment, s32 color);
+
+/**
+ * @brief Clear the countdown of every actor text.
+ */
+void field_clear_actor_texts(void)
+{
+    g_field_actor_texts[2].state.bits.countdown = 0;
+    g_field_actor_texts[1].state.bits.countdown = 0;
+    g_field_actor_texts[0].state.bits.countdown = 0;
+}
+
+/**
+ * @brief Show a text over a player's actor unless one is already showing.
+ * @param index Player (actor and text slot) index; other actors are ignored.
+ * @param text_id Technique name index, or negative: bits 16-23 party character and
+ *        bits 0-7 record index of a name stored in the saved character.
+ */
+void field_start_actor_text(s32 index, s32 text_id)
+{
+    s16 point[2];
+    s32 width;
+
+    if (index < FIELD_PLAYER_COUNT)
+    {
+        if (g_field_actor_texts[index].state.bits.countdown == 0)
+        {
+            if (text_id < 0)
+            {
+                g_field_actor_texts[index].text = (u8*)&g_saved_game_ctx->characters[((u32)text_id >> 16) & 0xFF].instruments[text_id & 0xFF];
+            }
+            else
+            {
+                g_field_actor_texts[index].text = (u8*)(((u16*)g_field_technique_names)[text_id] + (uintptr_t)g_field_technique_names);
+            }
+
+            g_field_actor_texts[index].state.bits.countdown = FIELD_ACTOR_TEXT_FRAMES;
+            point[0] = g_field_view_offset_x / 256 + (s16)(g_field_actors[index].x / 256 + FIELD_SCREEN_CENTER_X);
+            point[1] = g_field_view_offset_y / 256 + (s16)(g_field_actors[index].y / 256 + FIELD_SCREEN_CENTER_Y) - g_field_actors[index].z / 512 -
+                       g_field_view_offset_z / 512;
+            width = field_count_text_glyphs(g_field_actor_texts[index].text) * 6;
+
+            if (point[0] + width >= 321)
+            {
+                point[0] = 320 - width;
+            }
+
+            if (point[0] - width - 8 < 0)
+            {
+                point[0] = width + 8;
+            }
+
+            if (point[1] >= 177)
+            {
+                point[1] = 176;
+            }
+
+            if (point[1] < 50)
+            {
+                point[1] = 50;
+            }
+
+            g_field_actor_texts[index].state.bits.x = point[0];
+            g_field_actor_texts[index].state.bits.y = point[1] + 4;
+        }
+    }
+}
+
+/**
+ * @brief Report whether any actor text is still showing.
+ * @return 1 if a slot's countdown is nonzero, otherwise 0.
+ */
+s32 field_actor_text_pending(void)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_ACTOR_TEXT_COUNT; i++)
+    {
+        if (g_field_actor_texts[i].state.bits.countdown != 0)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Draw and count down the actor texts, or clear them while a text session runs.
+ * @param render Render half receiving the text primitives.
+ * @note The previous active count controls window cleanup on the next frame.
+ */
+void field_update_actor_texts(FieldRenderHalf* render)
+{
+    s32 i;
+    s32 active_count;
+
+    active_count = 0;
+
+    if (g_field_text_session_active != 0)
+    {
+        i = 0;
+
+        for (; i < FIELD_ACTOR_TEXT_COUNT; i++)
+        {
+            g_field_actor_texts[i].state.bits.countdown = 0;
+        }
+
+        g_field_actor_text_count = 0;
+        return;
+    }
+
+    for (i = 0; i < FIELD_ACTOR_TEXT_COUNT; i++)
+    {
+        if (g_field_actor_texts[i].state.bits.countdown)
+        {
+            active_count++;
+        }
+    }
+
+    if (active_count != 0)
+    {
+        field_text_reset_scratch();
+
+        for (i = 0; i < FIELD_ACTOR_TEXT_COUNT; i++)
+        {
+            if (g_field_actor_texts[i].state.bits.countdown)
+            {
+                field_draw_actor_text(render, &g_field_actor_texts[i]);
+                g_field_actor_texts[i].state.bits.countdown--;
+            }
+        }
+
+        field_text_upload_immediate_cache();
+    }
+    else if (g_field_actor_text_count != 0)
+    {
+        field_text_reset_windows();
+    }
+
+    g_field_actor_text_count = active_count;
+}
+
+/**
+ * @brief Draw one actor text, fading it out over its last frames.
+ * @param render Render half holding the primitive cursor and the text layer.
+ * @param text Actor text slot to draw.
+ */
+static void field_draw_actor_text(FieldRenderHalf* render, FieldActorText* text)
+{
+    s32 tint;
+    s32 countdown;
+    FieldActorTextState state;
+    u8* cursor;
+    OT_TYPE* ot;
+
+    tint = FIELD_TEXT_TINT_NEUTRAL;
+    cursor = render->primitive_cursor;
+    state = text->state;
+    countdown = (state.word >> 17) & 0x3F;
+    ot = &render->ordering_table[FIELD_TEXT_OT_DEPTH];
+
+    if (countdown < FIELD_ACTOR_TEXT_FADE_FRAMES)
+    {
+        tint = countdown * 4;
+    }
+
+    render->primitive_cursor =
+        field_draw_tinted_text((SPRT*)cursor, ot, text->text, FIELD_TEXT_COLOR_NORMAL, state.bits.x, text->state.bits.y, FIELD_TEXT_ALIGN_CENTER, tint);
+}
+
+/**
+ * @brief Draw a text line like field_draw_text, with a gray tint for fading.
+ * @param sprite_cursor Primitive-buffer cursor used for generated sprites.
+ * @param ordering_table Ordering-table entry that receives the generated primitives.
+ * @param text Null-terminated text to render.
+ * @param text_color Text style passed to the glyph builder.
+ * @param x Horizontal origin used to position the rendered text.
+ * @param y Vertical origin used to position the rendered text.
+ * @param alignment Horizontal alignment mode for the generated glyphs.
+ * @param color Tint level, or FIELD_TEXT_TINT_NEUTRAL for the neutral tint.
+ * @return Primitive-buffer cursor immediately after the generated draw commands.
+ */
+static void* field_draw_tinted_text(SPRT* sprite_cursor, OT_TYPE* ordering_table, u8* text, s32 text_color, s32 x, s32 y, s32 alignment, s32 color)
+{
+    s32 n, count, i, acc;
+    SPRT* sprite;
+    DR_TPAGE* tpage;
+
+    if (*text == 0)
+    {
+        return sprite_cursor;
+    }
+
+    n = field_text_build_sprites(sprite_cursor, text, text_color);
+    count = n;
+
+    if (alignment != FIELD_TEXT_ALIGN_RIGHT)
+    {
+        if (alignment == FIELD_TEXT_ALIGN_CENTER)
+        {
+            sprite = sprite_cursor;
+
+            for (i = 0; i < count; i++)
+            {
+                x -= sprite[i].w >> 1;
+            }
+        }
+    }
+    else
+    {
+        sprite = sprite_cursor;
+
+        for (i = 0; i < count; i++)
+        {
+            x -= sprite[i].w;
+        }
+    }
+
+    acc = 0;
+
+    for (; count != 0; sprite_cursor++, count--)
+    {
+        lom_gpu_init_sprite(sprite_cursor);
+
+        if (color != FIELD_TEXT_TINT_NEUTRAL)
+        {
+            lom_gpu_set_rgb0(sprite_cursor, color, color, color);
+            lom_gpu_set_semi_trans(sprite_cursor, 1);
+        }
+        else
+        {
+            lom_gpu_set_rgb0(sprite_cursor, 0x80, 0x80, 0x80);
+        }
+
+        lom_gpu_set_xy0(sprite_cursor, x + acc, y);
+        acc += sprite_cursor->w;
+
+        lom_gpu_link(ordering_table, sprite_cursor);
+    }
+
+    sprite_cursor = field_add_sprite_outline(ordering_table, sprite_cursor, n);
+
+    tpage = (DR_TPAGE*)sprite_cursor;
+    lom_gpu_init_tpage_packet(tpage, 0, 0, FIELD_UI_TPAGE(GPU_BLEND_ADD));
+    lom_gpu_link(ordering_table, tpage);
+
+    return tpage + 1;
+}
+
+extern FieldTechniqueUnlockRule g_field_technique_unlock_rules[];
+
+/**
+ * @brief Advance active player proficiency and queue newly learned abilities and techniques.
+ * @note Proficiency saturates at 100, advancing by four when g_field_last_actor_multi_image is set, or one otherwise.
+ * @note A technique rule can unlock silently, without adding a dialog entry.
+ */
+void field_advance_ability_progression(void)
+{
+    s32 ability_index;
+    FieldAbilityUnlockRule* ability_base;
+    s32 technique_index;
+    FieldTechniqueUnlockRule* technique_base;
+    FieldTechniqueUnlockRule* active_rule;
+    SavedGameLayout* context;
+    FieldAbilityUnlockRule* ability_rule;
+    FieldTechniqueUnlockRule* technique_rule;
+    s32 technique_mask;
+    s32 ability_word;
+    s32 unlocked_ability_word;
+    s32 equipped_weapon;
+    s32 party_index;
+    s32 technique_party_index;
+    u32 weapon_category;
+    u32 technique_group;
+    u8 ability_proficiency;
+    u8 weapon_requirement;
+    s32 ability;
+    u8 weapon_proficiency;
+
+    for (party_index = 0; party_index < FIELD_PARTY_SIZE; party_index++)
+    {
+        if (g_field_player_records[party_index].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+        {
+            if ((g_saved_game_ctx->characters[party_index].info.actions.type & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST)
+            {
+                weapon_category = (g_saved_game_ctx->characters[party_index].equipment[FIELD_WEAPON_SLOT].info.word >> FIELD_WEAPON_CATEGORY_SHIFT) &
+                                  FIELD_WEAPON_CATEGORY_MASK;
+                if (weapon_category < FIELD_WEAPON_CATEGORY_COUNT)
+                {
+                    weapon_proficiency = g_saved_game_ctx->weapon_proficiency[weapon_category];
+
+                    if (weapon_proficiency < FIELD_PROFICIENCY_MAX)
+                    {
+                        if (g_field_last_actor_multi_image != 0)
+                        {
+                            g_saved_game_ctx->weapon_proficiency[weapon_category] = weapon_proficiency + FIELD_PROFICIENCY_BONUS;
+
+                            if (g_saved_game_ctx->weapon_proficiency[(
+                                    (g_saved_game_ctx->characters[party_index].equipment[FIELD_WEAPON_SLOT].info.word >> FIELD_WEAPON_CATEGORY_SHIFT) &
+                                    FIELD_WEAPON_CATEGORY_MASK)] > FIELD_PROFICIENCY_MAX)
+                            {
+                                g_saved_game_ctx->weapon_proficiency[(
+                                    (g_saved_game_ctx->characters[party_index].equipment[FIELD_WEAPON_SLOT].info.word >> FIELD_WEAPON_CATEGORY_SHIFT) &
+                                    FIELD_WEAPON_CATEGORY_MASK)] = FIELD_PROFICIENCY_MAX;
+                            }
+                        }
+                        else
+                        {
+                            g_saved_game_ctx->weapon_proficiency[weapon_category] = weapon_proficiency + 1;
+                        }
+                    }
+                }
+
+                for (ability = 0; ability < FIELD_EQUIPPED_ABILITY_COUNT; ability++)
+                {
+                    ability_proficiency = g_saved_game_ctx->ability_proficiency[g_saved_game_ctx->characters[party_index].info.actions.commands[ability]];
+
+                    if (ability_proficiency < FIELD_PROFICIENCY_MAX)
+                    {
+                        if (g_field_last_actor_multi_image != 0)
+                        {
+                            g_saved_game_ctx->ability_proficiency[g_saved_game_ctx->characters[party_index].info.actions.commands[ability]] =
+                                ability_proficiency + FIELD_PROFICIENCY_BONUS;
+
+                            if (g_saved_game_ctx->ability_proficiency[g_saved_game_ctx->characters[party_index].info.actions.commands[ability]] >
+                                FIELD_PROFICIENCY_MAX)
+                            {
+                                g_saved_game_ctx->ability_proficiency[g_saved_game_ctx->characters[party_index].info.actions.commands[ability]] =
+                                    FIELD_PROFICIENCY_MAX;
+                            }
+                        }
+                        else
+                        {
+                            g_saved_game_ctx->ability_proficiency[g_saved_game_ctx->characters[party_index].info.actions.commands[ability]] =
+                                ability_proficiency + 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    context = g_saved_game_ctx;
+    ability_index = 0;
+    ability_base = g_field_ability_unlock_rules;
+    g_field_progression_unlock_count = 0;
+
+    do
+    {
+        ability_rule = &ability_base[ability_index];
+        ability = ability_rule->result;
+        ability_word = ability / SAVED_BITS_PER_WORD;
+
+        if (!(context->ability_bits[ability_word] & (1 << (ability % SAVED_BITS_PER_WORD))))
+        {
+            ability = ability_rule->prerequisites[0].ability;
+
+            if (ability == FIELD_ABILITY_PREREQUISITE_NONE ||
+                (SAVED_BIT_IS_SET(context->ability_bits, ability) && (context->ability_proficiency[ability] >= ability_rule->prerequisites[0].proficiency)))
+            {
+                ability = ability_rule->prerequisites[1].ability;
+
+                if (ability == FIELD_ABILITY_PREREQUISITE_NONE ||
+                    (SAVED_BIT_IS_SET(context->ability_bits, ability) && (context->ability_proficiency[ability] >= ability_rule->prerequisites[1].proficiency)))
+                {
+                    ability = ability_rule->result;
+                    unlocked_ability_word = ability / SAVED_BITS_PER_WORD;
+                    context->ability_bits[unlocked_ability_word] = (context->ability_bits[unlocked_ability_word] | (1 << (ability % SAVED_BITS_PER_WORD)));
+                    g_field_progression_unlocks[g_field_progression_unlock_count] = ability;
+                    g_field_progression_unlock_count++;
+                }
+            }
+        }
+
+        ability_index++;
+    } while ((intptr_t)&ability_base[ability_index] < (intptr_t)&ability_base[FIELD_ABILITY_UNLOCK_RULE_COUNT]);
+    context = g_saved_game_ctx;
+    technique_index = 0;
+    technique_base = g_field_technique_unlock_rules;
+
+    do
+    {
+        technique_rule = &technique_base[technique_index];
+        technique_group = technique_rule->weapon >> FIELD_TECHNIQUE_GROUP_SHIFT;
+        ability = technique_rule->result & FIELD_TECHNIQUE_INDEX_MASK;
+
+        if (!(context->technique_bits[technique_group] & (1 << (ability % SAVED_BITS_PER_WORD))))
+        {
+            ability = technique_rule->prerequisites[0].ability;
+
+            if (ability == FIELD_ABILITY_PREREQUISITE_NONE ||
+                (SAVED_BIT_IS_SET(context->ability_bits, ability) && (context->ability_proficiency[ability] >= technique_rule->prerequisites[0].proficiency)))
+            {
+                ability = technique_rule->prerequisites[1].ability;
+
+                if (ability == FIELD_ABILITY_PREREQUISITE_NONE || (SAVED_BIT_IS_SET(context->ability_bits, ability) &&
+                                                                   (context->ability_proficiency[ability] >= technique_rule->prerequisites[1].proficiency)))
+                {
+                    ability = technique_rule->prerequisites[2].ability;
+
+                    if (ability == FIELD_ABILITY_PREREQUISITE_NONE || (SAVED_BIT_IS_SET(context->ability_bits, ability) &&
+                                                                       (context->ability_proficiency[ability] >= technique_rule->prerequisites[2].proficiency)))
+                    {
+                        ability = technique_rule->prerequisites[3].ability;
+
+                        if (ability == FIELD_ABILITY_PREREQUISITE_NONE ||
+                            (SAVED_BIT_IS_SET(context->ability_bits, ability) &&
+                             (context->ability_proficiency[ability] >= technique_rule->prerequisites[3].proficiency)))
+                        {
+                            technique_party_index = 0;
+                            active_rule = technique_rule;
+                            ability = technique_rule->result & FIELD_TECHNIQUE_INDEX_MASK;
+
+                            for (; technique_party_index < FIELD_PARTY_SIZE; technique_party_index++)
+                            {
+                                if ((g_field_player_records[technique_party_index].head.bytes.flags & FIELD_PLAYER_ACTIVE) &&
+                                    ((context->characters[technique_party_index].info.actions.type & FIELD_CHARACTER_TYPE_MASK) < FIELD_CHARACTER_GUEST))
+                                {
+                                    weapon_requirement = active_rule->weapon;
+                                    equipped_weapon =
+                                        (context->characters[technique_party_index].equipment[FIELD_WEAPON_SLOT].info.word >> FIELD_WEAPON_CATEGORY_SHIFT) &
+                                        FIELD_WEAPON_CATEGORY_MASK;
+                                    if (equipped_weapon == (weapon_requirement & FIELD_TECHNIQUE_WEAPON_MASK))
+                                    {
+                                        if (context->weapon_proficiency[equipped_weapon] >= active_rule->weapon_proficiency)
+                                        {
+                                            if (!(context->technique_bits[technique_group] & (technique_mask = 1 << (ability % SAVED_BITS_PER_WORD))))
+                                            {
+                                                technique_group = weapon_requirement >> FIELD_TECHNIQUE_GROUP_SHIFT;
+                                                context->technique_bits[technique_group] = (context->technique_bits[technique_group] | technique_mask);
+
+                                                if (!(active_rule->result & FIELD_TECHNIQUE_SILENT_FLAG))
+                                                {
+                                                    g_field_progression_unlocks[g_field_progression_unlock_count] =
+                                                        ((technique_group * FIELD_TECHNIQUES_PER_WEAPON) + ability) | FIELD_TECHNIQUE_UNLOCK_FLAG;
+                                                    g_field_progression_unlock_count++;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        technique_index++;
+    } while ((intptr_t)&technique_base[technique_index] < (intptr_t)&technique_base[FIELD_TECHNIQUE_UNLOCK_RULE_COUNT]);
+}
+
+extern u8 g_field_retry_snapshot[];
+extern FieldQuadAnimationTable g_field_small_icon_frames;
+extern FieldQuadAnimationTable g_field_marker_x_offsets;
+extern FieldQuadAnimationTable g_field_marker_u_offsets;
+extern FieldQuadAnimationTable g_field_marker_widths;
+extern s32 g_field_results_wait_frames;
+extern s32 g_field_pending_spawn_id, g_field_pending_music_id, g_field_pending_secondary_music_id, g_field_pending_scene_id, g_field_pending_object_id,
+    g_field_pending_sound_bank_id;
+
+static void field_open_unlock_list(void);
+static void field_open_item_list(void);
+static void field_open_party_summary(void);
+static void* field_draw_party_totals(OT_TYPE* ot, void* cursor, s32 x_offset, s32 y_offset);
+static void* field_draw_experience_ranking(OT_TYPE* ot, void* cursor, s32 x_offset, s32 y_offset);
+static void* field_draw_item_list(OT_TYPE* ot, void* cursor, s32 x_offset, s32 y_offset);
+static void* field_draw_unlock_list(OT_TYPE* ot, void* cursor, s32 scroll_x, s32 scroll_y, s32 viewport_height);
+static POLY_FT4* field_draw_animated_icon(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y, s32 wide);
+static void* field_draw_animated_small_icon(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y);
+static void* field_draw_animated_marker(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y);
+
+/**
+ * @brief Save the game state before a battle so that it can be retried.
+ */
+void field_save_retry_snapshot(void)
+{
+    bcopy((u8*)g_saved_game_ctx, g_field_retry_snapshot, SAVED_GAME_DATA_SIZE);
+}
+
+/**
+ * @brief Run the return-to-title prompt: take its choice, then quit or retry the battle.
+ * @note Retrying restores g_field_retry_snapshot, refills the party's HP and
+ *       technique gauges and restarts the scene.
+ */
+void field_handle_return_to_title_prompt(void)
+{
+    FieldObjectState* actor;
+    s32 actor_index;
+    u32 hp_mask, status_mask;
+    s16 full_gauge;
+    FieldPlayerRecord* player;
+
+    ControllerPortState* controller_ports = lom_input_ports();
+
+    if (g_field_menu_elements[0].attr.bits.state == 0)
+    {
+        if (--g_field_return_to_title_prompt_state == 0)
+        {
+            if (g_field_return_to_title_choice != 0)
+            {
+                g_field_return_to_title_prompt_state = 1;
+                g_pending_game_state = GAME_STATE_TITLE;
+                return;
+            }
+
+            bcopy(g_field_retry_snapshot, (u8*)g_saved_game_ctx, SAVED_GAME_DATA_SIZE);
+
+            if (g_saved_game_ctx->retry_count != -1)
+            {
+                g_saved_game_ctx->retry_count++;
+            }
+
+            controller_ports[1].small_motor_command = 0;
+            controller_ports[0].small_motor_command = 0;
+            controller_ports[1].actuator_control.fields.large_motor_command = 0;
+            controller_ports[0].actuator_control.fields.large_motor_command = 0;
+            field_rebuild_party_actions(0);
+            field_set_scene_parameters(g_field_pending_scene_id, g_field_pending_object_id, g_field_pending_spawn_id, g_field_pending_music_id,
+                                       g_field_pending_sound_bank_id, g_field_pending_secondary_music_id);
+            actor_index = 0;
+            hp_mask = 0xFFFFFF;
+            status_mask = 0xFF000000;
+            full_gauge = 0xFF;
+
+            for (; actor_index < FIELD_PARTY_COUNT; actor_index++)
+            {
+                actor = &g_field_object_states[actor_index];
+                player = &g_field_player_records[actor_index];
+                actor->hp_display.word = (actor->hp_display.word & status_mask) | (actor->maximum_hp & hp_mask);
+                actor->current_hp.word = actor->maximum_hp & hp_mask;
+
+                if (player->head.bytes.flags & FIELD_PLAYER_ACTIVE)
+                {
+                    actor->technique_gauge = full_gauge;
+                }
+            }
+        }
+    }
+    else if (field_menu_elements_animating() == 0)
+    {
+        if (g_pad_input & (PAD_CONFIRM_BUTTONS | PAD_BTN_START))
+        {
+            field_play_sound(SFX_CONFIRM, AKAO_PAN_CENTER);
+            field_close_menu_elements();
+            field_begin_return_to_title_prompt_close();
+            return;
+        }
+
+        if (g_pad_input & (PAD_BTN_DPAD | PAD_BTN_SELECT))
+        {
+            field_play_sound(SFX_CURSOR, AKAO_PAN_CENTER);
+            g_field_return_to_title_choice ^= 1;
+        }
+    }
+}
+
+/**
+ * @brief Advance the battle result screens on confirm: unlocks, then items, then the party summary, then close.
+ * @note Native: with the Skip the results window switch on, confirming the
+ *       unlocks closes the screens instead of showing the items and party
+ *       summary, and skipped screens close as soon as the party's field
+ *       weapons have been read, as the party summary would wait for.
+ */
+void field_update_battle_results_input(void)
+{
+    if (g_field_dialog_screen_mode == FIELD_RESULTS_SKIPPED)
+    {
+        if (field_party_reload_reading() == 0)
+        {
+            field_close_battle_results();
+        }
+
+        return;
+    }
+
+    if ((field_menu_elements_animating() == 0) && (g_pad_input & PAD_CONFIRM_BUTTONS))
+    {
+        switch (g_field_dialog_screen_mode)
+        {
+        case FIELD_RESULTS_PARTY_SUMMARY:
+            if (g_field_results_wait_frames == 0)
+            {
+                field_close_battle_results();
+                return;
+            }
+
+            break;
+        case FIELD_RESULTS_UNLOCK_LIST:
+            if (lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS))
+            {
+                field_close_menu_elements();
+                g_field_dialog_screen_mode = FIELD_RESULTS_SKIPPED;
+                return;
+            }
+
+            if (g_field_dialog_item_count != 0)
+            {
+                field_open_item_list();
+                return;
+            }
+
+        case FIELD_RESULTS_ITEM_LIST:
+            field_open_party_summary();
+            break;
+        }
+    }
+}
+
+/**
+ * @brief Open the list of abilities and techniques learned in the battle.
+ */
+static void field_open_unlock_list(void)
+{
+    s16 height;
+    s32 padding;
+    s32 index;
+    s32 saw_technique;
+    s32 saw_ability;
+    FieldMenuElement* record;
+    u32 size;
+
+    cdrom_queue_read(FIELD_RES_UNLOCK_NAMES, g_field_cd_buffer);
+    cdrom_wait_queue_empty();
+    field_play_sound(FIELD_SOUND_UNLOCK_LIST, AKAO_PAN_CENTER);
+    g_field_dialog_screen_mode = FIELD_RESULTS_UNLOCK_LIST;
+    field_close_menu_elements();
+    record = field_claim_menu_element();
+    record->attr.bits.step = 1;
+    record->attr.bits.x = FIELD_RESULTS_WINDOW_X;
+    saw_ability = 0;
+    saw_technique = 0;
+    padding = 0;
+
+    for (index = 0; index < g_field_progression_unlock_count; index++)
+    {
+        if (g_field_progression_unlocks[index] & FIELD_UNLOCK_TECHNIQUE)
+        {
+            if (saw_technique == 0)
+            {
+                saw_technique = 1;
+                padding += FIELD_RESULTS_ROW_HEIGHT;
+            }
+        }
+        else if (saw_ability == 0)
+        {
+            saw_ability = 1;
+            padding += FIELD_RESULTS_ROW_HEIGHT;
+        }
+    }
+
+    record->draw = (FieldMenuDrawFn)field_draw_unlock_list;
+    record->attr.word &= ~FIELD_MENU_ATTR_WIDTH_LOW;
+    size = record->size.word;
+    size |= FIELD_MENU_SIZE_WIDTH_HIGH;
+    record->size.word = size;
+    height = g_field_progression_unlock_count * FIELD_RESULTS_ROW_HEIGHT + padding;
+    record->size.word = size | FIELD_MENU_SIZE_BLINK;
+    record->size.fields.content_height = height;
+
+    if (height <= FIELD_RESULTS_MAX_HEIGHT)
+    {
+        record->size.bits.height = height;
+        record->attr.bytes.y = FIELD_RESULTS_CENTER_Y - record->size.bits.height / 2;
+        return;
+    }
+
+    record->scroll = 0;
+    record->scroll_target = 0;
+    record->scroll_ticks = 0;
+    record->size.bits.scroll_mode = 1;
+    record->size.bits.height = FIELD_RESULTS_MAX_HEIGHT;
+    record->attr.bytes.y = FIELD_RESULTS_CENTER_Y - record->size.bits.height / 2;
+}
+
+/**
+ * @brief Close the result screens: get knocked-down players up and clear the party's battle flags.
+ */
+void field_close_battle_results(void)
+{
+    s32 i;
+
+    g_field_text_session_active = 0;
+
+    for (i = 0; i < FIELD_PARTY_COUNT; i++)
+    {
+        if ((g_field_player_records[i].head.bytes.flags & FIELD_PLAYER_ACTIVE) && g_field_actors[i].command == FIELD_ACTOR_COMMAND_KNOCKED_DOWN)
+        {
+            g_field_actors[i].command = 0;
+        }
+    }
+
+    field_close_dialog_screen();
+
+    for (i = 0; i < FIELD_PARTY_COUNT; i++)
+    {
+        g_field_object_states[i].flags = 0;
+        g_field_object_states[i].contact.word &= ~FIELD_CONTACT_NO_HIT_TEST;
+    }
+
+    g_field_dialog_item_count = 0;
+}
+
+/**
+ * @brief Skip the battle result screens when the Skip the results window switch
+ *        is on and nobody learned anything. The party's field weapons still
+ *        reload, as opening the screens would ask for, and
+ *        field_update_battle_results_input closes once they've been read.
+ * @return 1 when the screens are skipped, 0 when they should open.
+ * @note Native: the switch is the port's; the PS1 always opens the screens.
+ */
+s32 field_skip_battle_results(void)
+{
+    if (!lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS) || g_field_progression_unlock_count != 0)
+    {
+        return 0;
+    }
+
+    field_reset_menu_elements();
+    field_request_party_reload(FIELD_WEAPON_SET_FIELD);
+    g_field_dialog_screen_mode = FIELD_RESULTS_SKIPPED;
+    return 1;
+}
+
+/**
+ * @brief Open the battle result screens with the first one that has content.
+ */
+void field_open_battle_results(void)
+{
+    field_reset_menu_elements();
+    g_field_results_wait_frames = FIELD_RESULTS_WAIT_FRAMES;
+    field_reset_input_repeat();
+
+    if (g_field_progression_unlock_count != 0)
+    {
+        field_open_unlock_list();
+    }
+    else if (g_field_dialog_item_count != 0)
+    {
+        field_open_item_list();
+    }
+    else
+    {
+        field_open_party_summary();
+    }
+
+    field_request_party_reload(FIELD_WEAPON_SET_FIELD);
+}
+
+/**
+ * @brief End a duel: show its result panel instead of the result screens.
+ */
+void field_open_duel_results(void)
+{
+    field_reset_input_repeat();
+    field_request_party_reload(FIELD_WEAPON_SET_FIELD);
+    field_begin_duel_result();
+}
+
+/**
+ * @brief Open the return-to-title prompt windows (coordinate panel and yes/no choice).
+ */
+void field_setup_return_to_title_prompt(void)
+{
+    FieldMenuElement* rec;
+    s32 i;
+
+    field_reset_menu_elements();
+    field_play_sound(FIELD_SOUND_WINDOW_OPEN, AKAO_PAN_CENTER);
+
+    rec = field_claim_menu_element();
+    rec->draw = (FieldMenuDrawFn)field_draw_coordinate_panel;
+    rec->attr.bits.step = 1;
+    rec->attr.bits.x = 0x20;
+    rec->size.bits.width_high = 1;
+    rec->size.bits.height = 48;
+    rec->attr.bits.y = 0x30;
+    rec->attr.word &= ~FIELD_MENU_ATTR_WIDTH_LOW;
+
+    rec = field_claim_menu_element();
+    rec->draw = (FieldMenuDrawFn)lom_native_return_choices;
+    rec->attr.bits.step = 1;
+    rec->attr.bits.x = 0x50;
+    rec->size.bits.width_high = 0;
+    rec->size.bits.height = 0x22;
+    rec->attr.bits.y = 0x80;
+
+    rec->attr.word = (rec->attr.word & ~FIELD_MENU_ATTR_WIDTH_LOW) | (160 << FIELD_MENU_ATTR_WIDTH_LOW_SHIFT);
+
+    field_select_coordinate_labels();
+    lom_sound_release_all_effects();
+
+    g_field_return_to_title_prompt_delay = 0x3C;
+    g_field_return_to_title_prompt_state = 3;
+    g_field_return_to_title_choice = 0;
+    field_upload_player_icons();
+
+    for (i = 2; i >= 0; i--)
+    {
+        g_field_player_records[i].revive_delay = 0;
+    }
+}
+
+/**
+ * @brief Open the list of items found in the battle.
+ */
+static void field_open_item_list(void)
+{
+    FieldMenuElement* rec;
+    u32 state;
+
+    g_field_dialog_screen_mode = FIELD_RESULTS_ITEM_LIST;
+    field_play_sound(FIELD_SOUND_WINDOW_OPEN, AKAO_PAN_CENTER);
+    field_close_menu_elements();
+
+    rec = field_claim_menu_element();
+    rec->attr.bits.step = 1;
+    rec->attr.bits.x = 0x40;
+
+    state = rec->size.word & ~FIELD_MENU_SIZE_HEIGHT_MASK;
+    state |= (((g_field_dialog_item_count << 4) + FIELD_RESULTS_ROW_HEIGHT) & 0xFF) << FIELD_MENU_SIZE_HEIGHT_SHIFT;
+    rec->attr.bits.y = FIELD_RESULTS_CENTER_Y - FIELD_MENU_SIZE_HEIGHT(state) / 2;
+
+    rec->draw = (FieldMenuDrawFn)field_draw_item_list;
+    rec->size.word = state;
+    rec->attr.word = (rec->attr.word & ~FIELD_MENU_ATTR_WIDTH_LOW) | (192 << FIELD_MENU_ATTR_WIDTH_LOW_SHIFT);
+    rec->size.bits.width_high = 0;
+}
+
+/**
+ * @brief Open the party summary: the totals row and the experience ranking below it.
+ */
+static void field_open_party_summary(void)
+{
+    FieldMenuElement* record;
+    s32 actor_index;
+    s32 active_count;
+
+    field_close_menu_elements();
+    g_field_dialog_screen_mode = FIELD_RESULTS_PARTY_SUMMARY;
+    field_play_sound(FIELD_SOUND_WINDOW_OPEN, AKAO_PAN_CENTER);
+
+    active_count = 0;
+    record = field_claim_menu_element();
+    actor_index = active_count;
+    record->draw = (FieldMenuDrawFn)field_draw_party_totals;
+    record->attr.bits.step = 1;
+    record->attr.bits.x = 0x20;
+    record->attr.bits.y = 0x30;
+    record->size.bits.width_high = 1;
+    record->size.bits.height = 0x20;
+    record->attr.word &= ~FIELD_MENU_ATTR_WIDTH_LOW;
+
+    for (actor_index = 0; actor_index < 3; actor_index++)
+    {
+        if (g_field_player_records[actor_index].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+        {
+            active_count++;
+        }
+    }
+
+    record = field_claim_menu_element();
+    record->draw = (FieldMenuDrawFn)field_draw_experience_ranking;
+    record->attr.bits.step = 1;
+    record->attr.bits.x = 0x20;
+    record->attr.bits.y = 0x58;
+    record->size.bits.width_high = 1;
+    record->size.bits.height = ((active_count * 28) + 16) & 0xFF;
+    record->attr.word &= ~FIELD_MENU_ATTR_WIDTH_LOW;
+}
+
+/**
+ * @brief Draw the party totals row (two per-player counters summed, money gained).
+ * @param ot Ordering table.
+ * @param cursor Primitive cursor.
+ * @param x_offset Horizontal window offset subtracted from each column.
+ * @param y_offset Vertical window offset subtracted from each row.
+ * @return Primitive cursor after the row.
+ * @note While g_field_results_wait_frames runs it also waits for queued resources.
+ */
+static void* field_draw_party_totals(OT_TYPE* ot, void* cursor, s32 x_offset, s32 y_offset)
+{
+    s32 i;
+    s32 total_x;
+    s32 total_y;
+    u8* text_base;
+    void* handle;
+    Vec2s position;
+    s16 y;
+
+    if (g_field_results_wait_frames != 0)
+    {
+        if ((x_offset | y_offset) == 0)
+        {
+            g_field_results_wait_frames--;
+
+            if (g_field_results_wait_frames == 0)
+            {
+                if (field_party_reload_reading() != 0)
+                {
+                    g_field_results_wait_frames = 1;
+                }
+            }
+        }
+    }
+
+    handle = cursor;
+    i = 0;
+    total_x = i;
+    total_y = i;
+
+    for (; i < 3; i++)
+    {
+        if (g_saved_game_ctx->characters[i].name[0] != 0)
+        {
+            total_x += g_field_player_records[i].pickup_counts[FIELD_REWARD_MONEY_LARGE];
+            total_y += g_field_player_records[i].pickup_counts[FIELD_REWARD_MONEY_SMALL];
+        }
+    }
+
+    handle = field_draw_text(handle, ot,
+                             g_field_ui_text_results_money.low + FIELD_UI_TEXT_TABLE(g_field_ui_text_results_money, FIELD_UI_TEXT_RESULTS_MONEY) +
+                                 (g_field_ui_text_results_money.high << 8),
+                             4, 0x10 - x_offset, -y_offset, FIELD_TEXT_ALIGN_LEFT);
+    text_base = FIELD_UI_TEXT_TABLE(g_field_ui_text_results_money, FIELD_UI_TEXT_RESULTS_MONEY);
+
+    y = 0x10 - y_offset;
+    position.y = y;
+    handle = field_draw_animated_marker(ot, handle, 0x18 - x_offset, y - 3);
+
+    position.x = 0x28 - x_offset;
+    handle = field_draw_number(ot, handle, total_x, 4, &position, FIELD_TEXT_ALIGN_LEFT);
+    handle = field_draw_text(handle, ot, FIELD_TEXT_AT(text_base, text_base[0x16], text_base[0x17]), 4, 0x40 - x_offset, position.y, FIELD_TEXT_ALIGN_LEFT);
+    handle = field_draw_animated_small_icon(ot, handle, 0x50 - x_offset, position.y + 2);
+
+    position.x = 0x60 - x_offset;
+    handle = field_draw_number(ot, handle, total_y, 4, &position, FIELD_TEXT_ALIGN_LEFT);
+    handle = field_draw_text(handle, ot, FIELD_TEXT_AT(text_base, text_base[0x1A], text_base[0x1B]), 4, 0x80 - x_offset, position.y, FIELD_TEXT_ALIGN_LEFT);
+
+    position.x = 0xD0 - x_offset;
+    handle = field_draw_number(ot, handle, g_saved_game_ctx->money - g_field_money_snapshot, 4, &position, FIELD_TEXT_ALIGN_RIGHT);
+    return field_draw_text(handle, ot, FIELD_TEXT_AT(text_base, text_base[0], text_base[1]), 4, 0xF0 - x_offset, position.y, FIELD_TEXT_ALIGN_RIGHT);
+}
+
+/**
+ * @brief Draw up to three party members sorted by experience gained, highest first.
+ * @param ordering_table Ordering table address passed to the drawing helpers.
+ * @param cursor Initial primitive-buffer address.
+ * @param x_offset Horizontal drawing origin subtracted from each column position.
+ * @param y_offset Vertical drawing origin subtracted from each row position.
+ * @return Primitive-buffer address after the final emitted element.
+ * @note Equal gains keep party order during the insertion sort.
+ */
+static void* field_draw_experience_ranking(OT_TYPE* ordering_table, void* cursor, s32 x_offset, s32 y_offset)
+{
+    FieldRankWork work;
+    s32 count;
+    s32 i;
+    s32 pos;
+    s32 j;
+    s32 row;
+    void* result;
+    s16 y;
+    u8* text;
+    u8* text_base;
+
+    result = field_draw_text(cursor, ordering_table,
+                             (g_field_ui_text_experience.high << 8) +
+                                 (FIELD_UI_TEXT_TABLE(g_field_ui_text_experience, FIELD_UI_TEXT_EXPERIENCE) + g_field_ui_text_experience.low),
+                             4, 0x10 - x_offset, -y_offset, FIELD_TEXT_ALIGN_LEFT);
+    count = 0;
+
+    for (i = 0; i < 3; i++)
+    {
+        if (g_saved_game_ctx->characters[i].name[0] != 0)
+        {
+            pos = 0;
+
+            for (; pos < count; pos++)
+            {
+                if (FIELD_EXPERIENCE_GAIN(i) > FIELD_EXPERIENCE_GAIN(work.order[pos]))
+                {
+                    break;
+                }
+            }
+
+            if (pos == count)
+            {
+                work.order[count] = i;
+            }
+            else
+            {
+                for (j = count - 1; j >= pos; j--)
+                {
+                    work.order[j + 1] = work.order[j];
+                }
+
+                work.order[pos] = i;
+            }
+
+            count++;
+        }
+    }
+
+    i = 0;
+
+    if (i < count)
+    {
+        text_base = &g_field_ui_text_plus.low;
+        text = text_base - FIELD_UI_TEXT_PLUS * 2;
+
+        for (row = 0; i < count; i++)
+        {
+            if (g_saved_game_ctx->characters[work.order[i]].name[0] != 0)
+            {
+                work.position.x = 0x18 - x_offset;
+                y = y_offset - 0x10;
+                y = row - y;
+                work.position.y = y;
+                result = field_emit_actor_portrait(result, ordering_table, work.order[i], &work.position);
+                y += 8;
+                work.position.y = y;
+                result = field_draw_animated_icon(ordering_table, result, 0x38 - x_offset, y - 8, 1);
+                work.position.x = 0x48 - x_offset;
+                result = field_draw_number(ordering_table, result, g_field_player_records[work.order[i]].pickup_counts[FIELD_REWARD_EXPERIENCE_LARGE], 4,
+                                           &work.position, FIELD_TEXT_ALIGN_LEFT);
+                result = field_draw_text(result, ordering_table, FIELD_TEXT_AT(text, g_field_ui_text_plus.low, text_base[1]), 4, 0x68 - x_offset,
+                                         work.position.y, FIELD_TEXT_ALIGN_LEFT);
+                result = field_draw_animated_icon(ordering_table, result, 0x78 - x_offset, work.position.y, 0);
+                work.position.x = 0x88 - x_offset;
+                work.position.y = y;
+                result = field_draw_number(ordering_table, result, g_field_player_records[work.order[i]].pickup_counts[FIELD_REWARD_EXPERIENCE_SMALL], 4,
+                                           &work.position, FIELD_TEXT_ALIGN_LEFT);
+                result = field_draw_text(result, ordering_table, FIELD_TEXT_AT(text, text[0x1A], text[0x1B]), 4, 0xA8 - x_offset, work.position.y,
+                                         FIELD_TEXT_ALIGN_LEFT);
+                work.position.x = 0xE0 - x_offset;
+                work.position.y = y;
+                result = field_draw_number(ordering_table, result, FIELD_EXPERIENCE_GAIN(work.order[i]), 4, &work.position, FIELD_TEXT_ALIGN_RIGHT);
+            }
+
+            row += 0x1C;
+        }
+    }
+
+    return result;
+}
+
+/**
+ * @brief Draw the battle item list: a header, then each item name and its quantity.
+ * @param ot Ordering table.
+ * @param prim Primitive cursor.
+ * @param x_offset Horizontal window offset (the quantity row also subtracts it from y).
+ * @param y_offset Vertical window offset.
+ * @return Primitive cursor after the list.
+ */
+static void* field_draw_item_list(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    s32 i;
+    Vec2s pos;
+    u8 pad[0x84];
+    s32 row;
+    s32 low;
+    uintptr_t offset;
+    u8* tex;
+
+    low = g_field_ui_text_spoils.low;
+    offset = (g_field_ui_text_spoils.high << 8) + (uintptr_t)FIELD_UI_TEXT_TABLE(g_field_ui_text_spoils, FIELD_UI_TEXT_SPOILS);
+    tex = (u8*)(low + offset);
+    prim = field_draw_text(prim, ot, tex, 4, 0x20 - x_offset, -y_offset, FIELD_TEXT_ALIGN_LEFT);
+
+    for (i = 0; i < g_field_dialog_item_count; i++)
+    {
+        row = i * FIELD_RESULTS_ROW_HEIGHT;
+        prim = field_draw_text(prim, ot, g_field_dialog_item_texts[i], 4, 0x10 - x_offset, (row + FIELD_RESULTS_ROW_HEIGHT) - y_offset, FIELD_TEXT_ALIGN_LEFT);
+        pos.x = 0xB0 - x_offset;
+        pos.y = (row + FIELD_RESULTS_ROW_HEIGHT) - x_offset;
+
+        if (g_field_dialog_item_quantities[i] != 0)
+        {
+            prim = field_draw_number(ot, prim, g_field_dialog_item_quantities[i], 4, &pos, FIELD_TEXT_ALIGN_RIGHT);
+        }
+    }
+
+    return prim;
+}
+
+/**
+ * @brief Draw the visible rows of the unlock list, with one header before the abilities and one before the techniques.
+ * @param ordering_table Ordering table.
+ * @param cursor Primitive cursor.
+ * @param scroll_x Horizontal scroll offset.
+ * @param scroll_y Vertical scroll offset.
+ * @param viewport_height Bottom clipping boundary.
+ * @return Primitive buffer cursor after drawing the visible text.
+ */
+static void* field_draw_unlock_list(OT_TYPE* ordering_table, void* cursor, s32 scroll_x, s32 scroll_y, s32 viewport_height)
+{
+    u8 pad[8];
+    u8* ability_names;
+    u8* technique_names;
+    s32 header_x;
+    s32 item_x;
+    s32 ability_header_y;
+    s32 technique_header_y;
+    void* next_cursor;
+    s32 technique_header_drawn;
+    s32 row;
+    s32 index;
+    s32 ability_header_drawn;
+    s32 technique_row_y;
+    s32 ability_row_y;
+    s32 item_y;
+    u16* entry;
+    u16 name_index;
+
+    next_cursor = cursor;
+    technique_header_drawn = 0;
+    row = 0;
+    ability_header_drawn = 0;
+    index = 0;
+    ability_names = g_field_cd_buffer + ((TextResource*)g_field_cd_buffer)->ability_names;
+    technique_names = g_field_cd_buffer + ((TextResource*)g_field_cd_buffer)->technique_names;
+
+    if (index < g_field_progression_unlock_count)
+    {
+        header_x = FIELD_RESULTS_HEADER_X - scroll_x;
+        item_x = FIELD_RESULTS_NAME_X - scroll_x;
+        entry = g_field_progression_unlocks;
+
+        for (; index < g_field_progression_unlock_count; index++)
+        {
+            if (*entry & FIELD_UNLOCK_TECHNIQUE)
+            {
+                technique_row_y = row * FIELD_RESULTS_ROW_HEIGHT;
+
+                if (technique_header_drawn == 0)
+                {
+                    technique_header_y = technique_row_y - scroll_y;
+
+                    if ((technique_header_y > -FIELD_RESULTS_ROW_HEIGHT) && (technique_header_y < viewport_height))
+                    {
+                        s32 low;
+                        uintptr_t offset;
+                        u8* base;
+
+                        low = g_field_ui_text_technique_mastered.low;
+                        base = g_field_ui_text_table;
+                        offset = (g_field_ui_text_technique_mastered.high << 8) + (uintptr_t)base;
+                        next_cursor =
+                            field_draw_text(next_cursor, ordering_table, (void*)(low + offset), 4, header_x, technique_header_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+
+                    technique_header_drawn = 1;
+                    row++;
+                    technique_row_y = row * FIELD_RESULTS_ROW_HEIGHT;
+                }
+
+                item_y = technique_row_y - scroll_y;
+
+                if (item_y > -FIELD_RESULTS_ROW_HEIGHT)
+                {
+                    if (item_y < viewport_height)
+                    {
+                        name_index = *entry & ~FIELD_UNLOCK_TECHNIQUE;
+                        next_cursor = field_draw_text(next_cursor, ordering_table, technique_names + ((u16*)technique_names)[name_index], 4, item_x, item_y,
+                                                      FIELD_TEXT_ALIGN_CENTER);
+                    }
+                }
+            }
+            else
+            {
+                ability_row_y = row * FIELD_RESULTS_ROW_HEIGHT;
+
+                if (ability_header_drawn == 0)
+                {
+                    ability_header_y = ability_row_y - scroll_y;
+
+                    if ((ability_header_y > -FIELD_RESULTS_ROW_HEIGHT) && (ability_header_y < viewport_height))
+                    {
+                        next_cursor =
+                            field_draw_text(next_cursor, ordering_table,
+                                            g_field_ui_text_table + g_field_ui_text_ability_mastered.low + (g_field_ui_text_ability_mastered.high << 8), 4,
+                                            header_x, ability_header_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+
+                    ability_header_drawn = 1;
+                    row++;
+                    ability_row_y = row * FIELD_RESULTS_ROW_HEIGHT;
+                }
+
+                item_y = ability_row_y - scroll_y;
+
+                if (item_y > -FIELD_RESULTS_ROW_HEIGHT)
+                {
+                    if (item_y < viewport_height)
+                    {
+                        name_index = *entry;
+                        next_cursor = field_draw_text(next_cursor, ordering_table, ability_names + ((u16*)ability_names)[name_index], 4, item_x, item_y,
+                                                      FIELD_TEXT_ALIGN_CENTER);
+                    }
+                }
+            }
+
+            row++;
+            entry++;
+        }
+    }
+
+    return next_cursor;
+}
+
+/**
+ * @brief Draw an animated icon (four-frame ping-pong animation from the frame counter).
+ * @param ordering_table Ordering-table tag to link the primitive into.
+ * @param prim Primitive buffer slot to populate.
+ * @param x Left screen coordinate.
+ * @param y Top screen coordinate.
+ * @param wide Selects the larger geometry and texture region when nonzero.
+ * @return Pointer just past the emitted primitive.
+ */
+static POLY_FT4* field_draw_animated_icon(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y, s32 wide)
+{
+    s32 phase_table[8] = {0, 1, 2, 3, 2, 1, 0, 0};
+    s32 phase;
+
+    phase = phase_table[((g_frame_counter >> 2) + 1) & 7];
+
+    SET_BGR0_PACKED(prim, GPU_TINT_NEUTRAL);
+    lom_gpu_init_poly_ft4(prim);
+    prim->x2 = x;
+    prim->x0 = x;
+    prim->y1 = y;
+    prim->y0 = y;
+
+    if (wide != 0)
+    {
+        prim->x3 = x + 12;
+        prim->x1 = x + 12;
+        prim->y3 = y + 24;
+        prim->y2 = y + 24;
+        prim->u2 = phase * 12 + 0x20;
+        prim->u0 = phase * 12 + 0x20;
+        prim->u3 = phase * 12 + 0x2C;
+        prim->u1 = phase * 12 + 0x2C;
+        prim->v1 = 0x60;
+        prim->v0 = 0x60;
+        prim->v3 = 0x78;
+        prim->v2 = 0x78;
+    }
+    else
+    {
+        prim->x3 = x + 8;
+        prim->x1 = x + 8;
+        prim->y3 = y + 16;
+        prim->y2 = y + 16;
+        prim->u2 = phase * 8 - 0x48;
+        prim->u0 = phase * 8 - 0x48;
+        prim->u3 = phase * 8 - 0x40;
+        prim->u1 = phase * 8 - 0x40;
+        prim->v1 = 0x40;
+        prim->v0 = 0x40;
+        prim->v3 = 0x50;
+        prim->v2 = 0x50;
+    }
+
+    prim->clut = FIELD_RESULTS_ICON_CLUT;
+    prim->tpage = FIELD_RESULTS_ICON_TPAGE;
+    lom_gpu_link(ordering_table, prim);
+    return prim + 1;
+}
+
+/**
+ * @brief Draw an animated 8x8 icon.
+ * @param ordering_table Ordering-table tag receiving the primitive.
+ * @param prim Primitive buffer to populate.
+ * @param x Left screen coordinate.
+ * @param y Top screen coordinate.
+ * @return Buffer address immediately after the emitted primitive.
+ */
+static void* field_draw_animated_small_icon(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y)
+{
+    FieldQuadAnimationTable table;
+    s32 phase_index;
+    s32 frame;
+    u32 color;
+    s32 phase;
+    u16 left_u;
+    u16 right_u;
+
+    table = g_field_small_icon_frames;
+    color = GPU_TINT_NEUTRAL;
+    frame = g_frame_counter;
+    phase_index = ((frame >> 2) + 2) & 7;
+    phase = table.words[phase_index];
+
+    SET_BGR0_PACKED(prim, color);
+    lom_gpu_init_poly_ft4(prim);
+    prim->x2 = x;
+    prim->x0 = x;
+    prim->x3 = x + 8;
+    prim->x1 = x + 8;
+    prim->y1 = y;
+    prim->y0 = y;
+    prim->y3 = y + 8;
+    prim->y2 = y + 8;
+    prim->v1 = 0x78;
+    prim->v0 = 0x78;
+    prim->v3 = 0x80;
+    prim->v2 = 0x80;
+    prim->clut = FIELD_RESULTS_ICON_CLUT;
+    prim->tpage = FIELD_RESULTS_ICON_TPAGE;
+
+    phase *= 8;
+    left_u = phase + 0x20;
+    right_u = phase + 0x28;
+    prim->u3 = right_u;
+    prim->u1 = right_u;
+    prim->u2 = left_u;
+    prim->u0 = left_u;
+
+    lom_gpu_link(ordering_table, prim);
+    return prim + 1;
+}
+
+/**
+ * @brief Draw an animated marker whose position, texture and width follow the frame counter.
+ * @param ordering_table Ordering-table entry receiving the primitive.
+ * @param prim Writable primitive buffer.
+ * @param x Horizontal origin.
+ * @param y Vertical origin.
+ * @return Buffer address immediately after the emitted primitive.
+ */
+static void* field_draw_animated_marker(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y)
+{
+    s32 frame;
+    u32 color;
+    FieldQuadAnimationTable tables[4];
+    u16 left_x;
+    u16 right_x;
+    u16 width;
+    u8 texture_u;
+    s32 phase_index;
+
+    tables[0] = g_field_small_icon_frames;
+    tables[1] = g_field_marker_x_offsets;
+    tables[2] = g_field_marker_u_offsets;
+    tables[3] = g_field_marker_widths;
+    color = GPU_TINT_NEUTRAL;
+    frame = g_frame_counter;
+    SET_BGR0_PACKED(prim, color);
+    lom_gpu_init_poly_ft4(prim);
+    phase_index = ((frame >> 2) + 3) & 7;
+    left_x = tables[1].words[phase_index] + x;
+    prim->x2 = left_x;
+    prim->x0 = left_x;
+    width = tables[3].words[phase_index];
+    prim->y1 = y;
+    prim->y0 = y;
+    y += 0x10;
+    prim->y3 = y;
+    prim->y2 = y;
+    right_x = left_x + width;
+    prim->x3 = right_x;
+    prim->x1 = right_x;
+    texture_u = tables[2].words[phase_index];
+    prim->u2 = texture_u;
+    prim->u0 = texture_u;
+    texture_u += tables[3].words[phase_index];
+    prim->u3 = texture_u;
+    prim->u1 = texture_u;
+    prim->v1 = 0x80;
+    prim->v0 = 0x80;
+    prim->v3 = 0x90;
+    prim->v2 = 0x90;
+    prim->clut = FIELD_RESULTS_ICON_CLUT;
+    prim->tpage = FIELD_RESULTS_ICON_TPAGE;
+    lom_gpu_link(ordering_table, prim);
+    return prim + 1;
+}
+
+/**
+ * @brief Draw the dialog windows (the result screens or the return-to-title prompt).
+ * @param render_half Render half being built.
+ */
+void field_draw_dialog_windows(FieldRenderHalf* render_half)
+{
+    field_draw_menu_elements(render_half);
+}
+
+extern void field_draw_return_to_title_choices(OT_TYPE*, void*, s32, s32);
+
+static void* return_choices_cursor;
+
+void* lom_native_return_choices_text(void* cursor, OT_TYPE* ot, u8* text, s32 color, s32 x, s32 y, s32 flags)
+{
+    return_choices_cursor = field_draw_text(cursor, ot, text, color, x, y, flags);
+    return return_choices_cursor;
+}
+
+void* lom_native_return_choices(OT_TYPE* ot, void* cursor, s32 x, s32 y)
+{
+    return_choices_cursor = cursor;
+    field_draw_return_to_title_choices(ot, cursor, x, y);
+    return return_choices_cursor;
+}

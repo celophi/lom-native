@@ -1,0 +1,16 @@
+{
+  "format": 1,
+  "description": "New game, saved at the bedroom desk, with the story state END_0058's story 0x3f7 needs",
+  "source": "built from the conditions on the path to the write in scene 858 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152
+  },
+  "variables": {
+    "0x3f7": 1
+  }
+}

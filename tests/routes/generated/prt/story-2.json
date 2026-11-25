@@ -1,0 +1,63 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "prt-prt-port-story-4d8",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state PRT_PORT's story 0x4d8 needs",
+    "source": "built from the conditions on the path to the write in scene 267 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x1178": 2
+    }
+   },
+   "baseline": {
+    "route": "prt-prt-port-story-4d8",
+    "description": "In PRT_PORT (scene 267), talking to layout record 1 should write story variable 0x4d8",
+    "plan": "# prt-prt-port-story-4d8: In PRT_PORT (scene 267), talking to layout record 1 should write story variable 0x4d8\nlimit 20000\nenter 15 0 16711935 0\nguest 5\nenter 267 0 16716287 0\ncheckpoint entered\ntalk 345 270 0 1 0 1 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 139 scene 267 save d0c1ea8fdda5c745 state 370084823f15ad76 ram 0000000000000000",
+     "done frame 1490 scene 267 save bb288661b0f6a176 state 5477dda0abccba6b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 5 joined",
+     "walk to (317, 239): 4 waypoints",
+     "walk to (171, 224): 4 waypoints",
+     "walk to (507, 342): 4 waypoints",
+     "walk to (463, 312): 2 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 140,
+      "sha256": "ed92c9a439b680a69540e711a3de8519"
+     },
+     {
+      "frames": 1351,
+      "sha256": "d75d6cfc0eea409ed2f4f1baef0bb565"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

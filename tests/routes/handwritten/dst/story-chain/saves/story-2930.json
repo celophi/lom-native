@@ -1,0 +1,14 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of dst/story/story-11bc.json, at home, with the story state DST_B010's story 0x2930 needs",
+  "source": "built from the conditions on the path to the write in scene 228 (lom_routes.py generate-story)",
+  "scene": {
+    "scene": 19,
+    "object": 0
+  },
+  "saved_game": "saves/chain-dst-story-11bc.bin",
+  "variables": {
+    "0x119c": 8,
+    "0x1230": 12
+  }
+}

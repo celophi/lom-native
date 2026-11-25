@@ -1,0 +1,48 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-root-story-43e",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-root-story-43e",
+    "description": "In SEI_ROOT (scene 705), talking to layout record 1 should write story variable 0x43e",
+    "plan": "# sei-sei-root-story-43e: In SEI_ROOT (scene 705), talking to layout record 1 should write story variable 0x43e\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 705 0 16719359 0\ncheckpoint entered\ntalk 130 185 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 705 save d46e089df12f0e3e state 8714ece218acaca4 ram 0000000000000000",
+     "done frame 1745 scene 705 save 49365ee6a2f9e567 state 11325d026d2b8962 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (130, 165): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "fbb7d71dcbe48bbb7e0be1251551a32b"
+     },
+     {
+      "frames": 1433,
+      "sha256": "5f43ce3025d9f3003267e9b77e611e0c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

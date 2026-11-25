@@ -1,0 +1,315 @@
+Pass input events to the in-game menu first, and keep them from the game
+while it's open.
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -3,6 +3,16 @@
+ #define SDL3_COMMON_H
+ 
+ #include <SDL3/SDL.h>
++#ifdef LOM_NATIVE_MENU
++#include "lom_native_menu.h"
++#include "lom_native_controls.h"
++#include "lom_native_host_audio.h"
++static SDL_AtomicInt menu_pause_active, menu_resume_audio;
++static const Uint32 menu_poll_interval_ms = 16;
++static const int menu_player_count = 2;
++static const int menu_button_count = 16;
++static void PlatformBackend_HandleHostEvent(const SDL_Event* event);
++#endif
+ #include <limits.h>
+ #include <math.h>
+ #include <stdbool.h>
+@@ -248,13 +258,27 @@
+     SDL_UnlockSpinlock(&cadence_lifecycle_lock);
+     return now;
+ }
+-static void Cadence_Background(int background)
+-{
++static bool cadence_app_paused, cadence_menu_paused;
++static void Cadence_SetPause(int paused, int menu) {
+     SDL_LockSpinlock(&cadence_lifecycle_lock);
+-    int failed = background ? lvc_background(&cadence_lifecycle, SDL_GetTicksNS())
+-                            : lvc_foreground(&cadence_lifecycle, SDL_GetTicksNS());
+-    if (failed) SDL_SetAtomicInt(&cadence_failed, 1);
++
++    if (menu) {
++        cadence_menu_paused = paused != 0;
++    } else {
++        cadence_app_paused = paused != 0;
++    }
++
++    int background = cadence_app_paused || cadence_menu_paused;
++    int failed = background ? lvc_background(&cadence_lifecycle, SDL_GetTicksNS()) : lvc_foreground(&cadence_lifecycle, SDL_GetTicksNS());
++
++    if (failed) {
++        SDL_SetAtomicInt(&cadence_failed, 1);
++    }
++
+     SDL_UnlockSpinlock(&cadence_lifecycle_lock);
++}
++static void Cadence_Background(int background) {
++    Cadence_SetPause(background, 0);
+ }
+ static void Cadence_Configure(double fps, uint32_t lines)
+ {
+@@ -281,7 +305,6 @@
+     if (interlaced) { SDL_SetAtomicInt(&cadence_failed, 1); return; }
+     Cadence_Configure(pal ? 50.0 : 59.94, pal ? 314 : 263);
+ }
+-
+ 
+ static void PollEvents(void);
+ 
+@@ -649,7 +672,15 @@
+         SDL_SetAtomicInt(&app_in_background, 0);
+         SDL_SetAtomicInt(&timing_reset_requested, 1);
+         if (SDL_SetAtomicInt(&resume_audio_on_foreground, 0)) {
++#ifdef LOM_NATIVE_MENU
++            if (SDL_GetAtomicInt(&menu_pause_active)) {
++                SDL_SetAtomicInt(&menu_resume_audio, 1);
++            } else {
++                Psyz_AudioUnpause();
++            }
++#else
+             Psyz_AudioUnpause();
++#endif
+         }
+         break;
+     default:
+@@ -1101,11 +1132,24 @@
+     SDL_SCANCODE_KP_2,      // PAD_DOWN
+     SDL_SCANCODE_KP_4,      // PAD_LEFT
+ };
++#ifdef LOM_NATIVE_MENU
++SDL_Scancode lom_native_controls_default_key(int port, int button) {
++    if (port < 0 || port >= menu_player_count || button < 0 || button >= menu_button_count) {
++        return SDL_SCANCODE_UNKNOWN;
++    }
++
++    return (SDL_Scancode)(port == 0 ? keyb_p1[button] : keyb_p2[button]);
++}
++#endif
+ static unsigned int PadRead_Keyboard(u_long* config, int config_len) {
+     const bool* keyb = SDL_GetKeyboardState(NULL);
+     unsigned int r = 0;
+     for (int i = 0; i < config_len; i++) {
+-        if (keyb[config[i]]) {
++        int key = config[i];
++#ifdef LOM_NATIVE_MENU
++        key = lom_native_controls_key(config == keyb_p1 ? 0 : 1, i);
++#endif
++        if (key != SDL_SCANCODE_UNKNOWN && keyb[key]) {
+             r |= 1UL << i;
+         }
+     }
+@@ -1177,6 +1221,11 @@
+         return 0;
+     }
+ 
++#ifdef LOM_NATIVE_MENU
++    if (lom_native_menu_blocks_input()) {
++        return 0;
++    }
++#endif
+     u_long pressed = 0;
+     if (id == 0) {
+         if (SDL_HasKeyboard()) {
+@@ -1189,6 +1238,13 @@
+     if (id == 1 && SDL_HasKeyboard()) {
+         pressed |= PadRead_Keyboard(keyb_p2, LEN(keyb_p2));
+     }
++#ifdef LOM_NATIVE_MENU
++    Uint32 mapped;
++
++    if (lom_native_controls_read_gamepad(id, gamepads[id].dev, &mapped)) {
++        return pressed | mapped;
++    }
++#endif
+     return pressed | PadRead_Gamepad(&gamepads[id]);
+ }
+ 
+@@ -1248,7 +1304,11 @@
+             break;
+         }
+         unsigned char rx = 0x80, ry = 0x80, lx = 0x80, ly = 0x80;
+-        if (gamepads[port].dev) {
++        if (gamepads[port].dev
++#ifdef LOM_NATIVE_MENU
++            && !lom_native_menu_blocks_input()
++#endif
++        ) {
+             SDL_Gamepad* d = gamepads[port].dev;
+             rx = AxisToByte(SDL_GetGamepadAxis(d, SDL_GAMEPAD_AXIS_RIGHTX));
+             ry = AxisToByte(SDL_GetGamepadAxis(d, SDL_GAMEPAD_AXIS_RIGHTY));
+@@ -1284,6 +1344,9 @@
+     char frame[PSYZ_PAD_BUF_LEN];
+ 
+     PollEvents();
++#ifdef LOM_NATIVE_MENU
++    lom_native_menu_refresh_capture();
++#endif
+     for (int port = 0; port < 2; port++) {
+         BuildPadFrame(
+             port, Psyz_PadsSetKind(port, 0, PSYZ_CTRL_QUERY_KIND), frame);
+@@ -1334,68 +1397,156 @@
+ }
+ #endif
+ 
+-static void PollEvents(void) {
++static void PollEventsOnce(void) {
+     SDL_Event event;
++
+     while (SDL_PollEvent(&event)) {
++#ifdef LOM_NATIVE_MENU
++        if (lom_native_menu_event(&event)) {
++            continue;
++        }
++
++        PlatformBackend_HandleHostEvent(&event);
++#endif
++
+         if (overlay_event_cb) {
+             overlay_event_cb(&event);
+         }
++
+         switch (event.type) {
+         case SDL_EVENT_GAMEPAD_ADDED:
+             AddGamepad(event.gdevice.which);
++
+             break;
++
+         case SDL_EVENT_GAMEPAD_REMOVED:
+             RemoveGamepad(event.gdevice.which);
++
+             break;
++
+         case SDL_EVENT_QUIT:
+             SDL_SetAtomicInt(&quit_requested, 1);
++
+             break;
++
+         case SDL_EVENT_WINDOW_RESIZED:
+         case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED:
+-            SDL_GetWindowSizeInPixels(
+-                sdl3_window, &wnd_size_in_pixels.w, &wnd_size_in_pixels.h);
++            SDL_GetWindowSizeInPixels(sdl3_window, &wnd_size_in_pixels.w, &wnd_size_in_pixels.h);
++
+             break;
++
+         case SDL_EVENT_WINDOW_DISPLAY_CHANGED:
+         case SDL_EVENT_DISPLAY_CURRENT_MODE_CHANGED:
+             if (is_platform_init_successful) {
+                 ConfigureVSync(target_frame_rate);
+             }
++
+             break;
++
+         case SDL_EVENT_WINDOW_DISPLAY_SCALE_CHANGED:
+ #ifdef PLATFORM_IOS
+-            SDL_GetWindowSizeInPixels(
+-                sdl3_window, &wnd_size_in_pixels.w, &wnd_size_in_pixels.h);
++            SDL_GetWindowSizeInPixels(sdl3_window, &wnd_size_in_pixels.w, &wnd_size_in_pixels.h);
+ #else
+             SetWindowSizeInPixels(wnd_size_in_pixels.w, wnd_size_in_pixels.h);
++
+ #endif
+             break;
+ #ifndef PLATFORM_IOS
++
+         case SDL_EVENT_KEY_DOWN:
+             if (event.key.scancode == SDL_SCANCODE_ESCAPE) {
+                 SDL_SetAtomicInt(&quit_requested, 1);
+             }
++
+             if (event.key.scancode == SDL_SCANCODE_F6) {
+                 debug_show_vram ^= 1;
+             }
++
+             if (event.key.scancode == SDL_SCANCODE_F4 && !event.key.repeat) {
+                 SetFullScreen(!is_fullscreen);
+             }
++
+             break;
+ #endif
++
+         default:
+             break;
+         }
+     }
++
++#ifdef LOM_NATIVE_MENU
++    lom_native_menu_update();
++#endif
+ #ifndef PLATFORM_IOS
++
+     if (Psyz_QuitRequested()) {
+         if (lom_native_quit_hook) {
++#ifdef LOM_NATIVE_MENU
++            if (SDL_SetAtomicInt(&menu_pause_active, 0)) {
++                Cadence_SetPause(0, 1);
++            }
++#endif
+             lom_native_quit_hook();
+             return;
+         }
++
+         QuitPlatform();
+         exit(0);
+     }
+ #endif
+ }
+ 
++static void PollEvents(void) {
++    PollEventsOnce();
++#ifdef LOM_NATIVE_MENU
++
++    if (!lom_native_menu_paused() || Psyz_QuitRequested()) {
++        if (!Sdl3Common_IsInBackground() && !Psyz_QuitRequested()) {
++            lom_native_menu_pause_movie(false);
++        }
++
++        return;
++    }
++
++    SDL_SetAtomicInt(&menu_resume_audio, 0);
++    SDL_SetAtomicInt(&menu_pause_active, 1);
++
++    if (!Psyz_AudioIsPaused() || SDL_GetAtomicInt(&resume_audio_on_foreground)) {
++        SDL_SetAtomicInt(&menu_resume_audio, 1);
++    }
++
++    Cadence_SetPause(1, 1);
++    Psyz_AudioPause();
++    lom_native_menu_pause_movie(true);
++
++    while (lom_native_menu_paused() && !Psyz_QuitRequested()) {
++        PlatformBackend_Present();
++        SDL_Delay(menu_poll_interval_ms);
++        PollEventsOnce();
++    }
++
++    Cadence_SetPause(0, 1);
++    SDL_SetAtomicInt(&menu_pause_active, 0);
++
++    if (SDL_SetAtomicInt(&menu_resume_audio, 0) && !Psyz_QuitRequested()) {
++        if (Sdl3Common_IsInBackground()) {
++            SDL_SetAtomicInt(&resume_audio_on_foreground, 1);
++
++            if (!Sdl3Common_IsInBackground() && SDL_SetAtomicInt(&resume_audio_on_foreground, 0)) {
++                Psyz_AudioUnpause();
++            }
++        } else {
++            Psyz_AudioUnpause();
++        }
++    }
++
++    if (!Sdl3Common_IsInBackground() && !Psyz_QuitRequested()) {
++        lom_native_menu_pause_movie(false);
++    }
++
++    SDL_SetAtomicInt(&timing_reset_requested, 1);
++    Sdl3Common_ApplyPendingTimingReset();
++#endif
++}
++
+ #endif // SDL3_COMMON_H

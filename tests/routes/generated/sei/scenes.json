@@ -1,0 +1,47 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-bss0-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-bss0-entry",
+    "description": "Entering SEI_BSS0 (scene 693) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# sei-sei-bss0-entry: Entering SEI_BSS0 (scene 693) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33461 0 16723739 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 693 save fdd9dcfe90332ce5 state 64699457a90e866c ram 0000000000000000",
+     "watched frame 983 scene 693 save eb439a4f93862b23 state b2675bb8e775f6cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 752 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb348ed14b74879c93548aaa4354dad9"
+     },
+     {
+      "frames": 754,
+      "sha256": "02edcf7cdcaf4d22967734f1e7a2db46"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

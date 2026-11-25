@@ -1,0 +1,3117 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mgc-mgc-all0-story-1184",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_ALL0's story 0x1184 needs",
+    "source": "built from the conditions on the path to the write in scene 565 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1204": 1,
+     "0x1180": 8,
+     "0x1184": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-all0-story-1184",
+    "description": "In MGC_ALL0 (scene 565), entering should write story variable 0x1184",
+    "plan": "# mgc-mgc-all0-story-1184: In MGC_ALL0 (scene 565), entering should write story variable 0x1184\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save 3b331e024fcd588b state 9bbaac4d57009a54 ram 0000000000000000",
+     "done frame 301 scene 565 save 3b331e024fcd588b state 798caf2c171bb20c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 70 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 331,
+     "instruction_end": 72,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87e1eb307ba6faffd6fbef6437068b92"
+     },
+     {
+      "frames": 72,
+      "sha256": "009626a5766f20fbf7a6fa116b6838ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-story-1204",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_ALL0's story 0x1204 needs",
+    "source": "built from the conditions on the path to the write in scene 565 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1180": 8
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-all0-story-1204",
+    "description": "In MGC_ALL0 (scene 565), entering should write story variable 0x1204",
+    "plan": "# mgc-mgc-all0-story-1204: In MGC_ALL0 (scene 565), entering should write story variable 0x1204\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save 5a8fa940c4f88343 state ad6e0e3beffdfc31 ram 0000000000000000",
+     "done frame 301 scene 565 save 5a8fa940c4f88343 state 1056f5cb6a7e06a9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 70 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 317,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fda6b19ea204eb5d72f467d377cf4d86"
+     },
+     {
+      "frames": 72,
+      "sha256": "94b14d85a2b7ce04043b11a77e4cecdd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-all0-story-3f3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_ALL0's story 0x3f3 needs",
+    "source": "built from the conditions on the path to the write in scene 565 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1204": 1,
+     "0x1180": 8,
+     "0x1184": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-all0-story-3f3",
+    "description": "In MGC_ALL0 (scene 565), entering should write story variable 0x3f3",
+    "plan": "# mgc-mgc-all0-story-3f3: In MGC_ALL0 (scene 565), entering should write story variable 0x3f3\nlimit 20000\nenter 565 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 565 save 3b331e024fcd588b state 9bbaac4d57009a54 ram 0000000000000000",
+     "done frame 301 scene 565 save 3b331e024fcd588b state 798caf2c171bb20c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 70 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 331,
+     "instruction_end": 72,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87e1eb307ba6faffd6fbef6437068b92"
+     },
+     {
+      "frames": 72,
+      "sha256": "009626a5766f20fbf7a6fa116b6838ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cafe-story-475",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CAFE's story 0x475 needs",
+    "source": "built from the conditions on the path to the write in scene 570 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1184": 4
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cafe-story-475",
+    "description": "In MGC_CAFE (scene 570), talking to layout record 6 should write story variable 0x475",
+    "plan": "# mgc-mgc-cafe-story-475: In MGC_CAFE (scene 570), talking to layout record 6 should write story variable 0x475\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 570 0 16714239 0\ncheckpoint entered\ntalk 334 105 0 0 0 6\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 570 save 4d790dfe892e10ea state 12978195b419727c ram 0000000000000000",
+     "done frame 1298 scene 570 save a5331cf5b09e6d1c state b3aa419963bc7e7c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "walk to (334, 85): 5 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "f9e9a8c139e97937f8670c8b0794b0c1"
+     },
+     {
+      "frames": 984,
+      "sha256": "31effbb3d8569cbc50483047eec1faf4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cafe-story-47b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CAFE's story 0x47b needs",
+    "source": "built from the conditions on the path to the write in scene 570 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1184": 5,
+     "0x473": 1,
+     "0x472": 1,
+     "0x474": 1,
+     "0x475": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cafe-story-47b",
+    "description": "In MGC_CAFE (scene 570), entering should write story variable 0x47b",
+    "plan": "# mgc-mgc-cafe-story-47b: In MGC_CAFE (scene 570), entering should write story variable 0x47b\nlimit 20000\nenter 570 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 570 save dcc3e354c5286530 state 55ea6a547fac66b5 ram 0000000000000000",
+     "done frame 2461 scene 568 save bcf2bbf929e30bff state 899a5c7a0f326236 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 2230 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 451,
+     "instruction_end": 170,
+     "song": 4,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "696a3b47fbe2e74c5195909cde189146"
+     },
+     {
+      "frames": 2232,
+      "sha256": "7346b46bece61826a7c8a96833b01fbf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cafe-story-bfc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CAFE's story 0xbfc needs",
+    "source": "built from the conditions on the path to the write in scene 570 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1364": 8,
+     "0x2680": 51,
+     "0x1204": 3
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cafe-story-bfc",
+    "description": "In MGC_CAFE (scene 570), talking to layout record 1 should write story variable 0xbfc",
+    "plan": "# mgc-mgc-cafe-story-bfc: In MGC_CAFE (scene 570), talking to layout record 1 should write story variable 0xbfc\nlimit 20000\nenter 570 0 16714239 0\ncheckpoint entered\ntalk 367 385 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 570 save e5f429dadc68a7fd state 05f1c7efe3b0e017 ram 0000000000000000",
+     "done frame 1946 scene 570 save 652c174e2f895b1d state 05f67bde8718b7a5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (367, 365): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 251,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "81ef7de5ef30c8cbd4a5b728690a5cfc"
+     },
+     {
+      "frames": 1717,
+      "sha256": "cb6b7445a635591e1ef5a12dc2b99c14"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-3fc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x3fc needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1364": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-3fc",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 7 should write story variable 0x3fc",
+    "plan": "# mgc-mgc-cls0-story-3fc: In MGC_CLS0 (scene 619), talking to layout record 7 should write story variable 0x3fc\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 0 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 28cfc630ffb2b563 state 0effa9744b4f7c6e ram 0000000000000000",
+     "done frame 1160 scene 619 save 995c1bb9c300e771 state a412c419db08595c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "5b9d183eee16cd9ce2ea554c8207fa6f"
+     },
+     {
+      "frames": 848,
+      "sha256": "ee396e5f174b88bfc27d8a25624851be"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-3fd",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x3fd needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1368": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-3fd",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 9 should write story variable 0x3fd",
+    "plan": "# mgc-mgc-cls0-story-3fd: In MGC_CLS0 (scene 619), talking to layout record 9 should write story variable 0x3fd\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 713586bd33a66d92 state 238dc6e3e1bbf198 ram 0000000000000000",
+     "done frame 892 scene 619 save 3cf0183cb4daf8ec state bba45b93bbc92324 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "02ffb17f76d6e6dc3700c01dfe9be69b"
+     },
+     {
+      "frames": 580,
+      "sha256": "912a7169d7d7d4fa78272057ad10008f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-3fe",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x3fe needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x136c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-3fe",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 4 should write story variable 0x3fe",
+    "plan": "# mgc-mgc-cls0-story-3fe: In MGC_CLS0 (scene 619), talking to layout record 4 should write story variable 0x3fe\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 320 165 0 0 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save c0d2651148cee323 state 781e40dc50a72261 ram 0000000000000000",
+     "done frame 1079 scene 619 save da96d89608799481 state fec9fb75a3e123a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (320, 145): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "8e2fc5bd5421402da87dc019fd516868"
+     },
+     {
+      "frames": 767,
+      "sha256": "df34fd0657d3c921dc87468a73fb2296"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-4ed",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x4ed needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1348": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-4ed",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 3 should write story variable 0x4ed",
+    "plan": "# mgc-mgc-cls0-story-4ed: In MGC_CLS0 (scene 619), talking to layout record 3 should write story variable 0x4ed\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 280 250 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 8769419a4b1116c1 state 372f4eb13f0aadb8 ram 0000000000000000",
+     "done frame 1150 scene 619 save ce1a2ffb704247eb state 62cf39fd54f60f57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (280, 230): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "f1e1e5c585e33dc19d00a4669f5a057f"
+     },
+     {
+      "frames": 838,
+      "sha256": "378e4ac052bcbfc9b1357bc040fefd0c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-4f4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x4f4 needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1364": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-4f4",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 7 should write story variable 0x4f4",
+    "plan": "# mgc-mgc-cls0-story-4f4: In MGC_CLS0 (scene 619), talking to layout record 7 should write story variable 0x4f4\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 0 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 16dc7eeba6189164 state 0effa9744b4f7c6e ram 0000000000000000",
+     "done frame 1160 scene 619 save 21f2c828538fdda2 state a412c419db08595c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "b220681877792968b186e09504c57916"
+     },
+     {
+      "frames": 848,
+      "sha256": "8d6f911c66c2c1e968be755ab94131c7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-4f5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x4f5 needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1368": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-4f5",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 9 should write story variable 0x4f5",
+    "plan": "# mgc-mgc-cls0-story-4f5: In MGC_CLS0 (scene 619), talking to layout record 9 should write story variable 0x4f5\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 29b6e6da20796011 state 238dc6e3e1bbf198 ram 0000000000000000",
+     "done frame 892 scene 619 save 8faa75064467f47b state bba45b93bbc92324 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "320083ea1dcdbb43c2b622909605f839"
+     },
+     {
+      "frames": 580,
+      "sha256": "4e948408ee746e5b0227a698191b6532"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-4f6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x4f6 needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x136c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-4f6",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 4 should write story variable 0x4f6",
+    "plan": "# mgc-mgc-cls0-story-4f6: In MGC_CLS0 (scene 619), talking to layout record 4 should write story variable 0x4f6\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 320 165 0 0 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 00656d9ce1b35624 state 781e40dc50a72261 ram 0000000000000000",
+     "done frame 1079 scene 619 save fd81abbf1c21e412 state fec9fb75a3e123a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (320, 145): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "668d319073792f91ed0baf42e8895048"
+     },
+     {
+      "frames": 767,
+      "sha256": "1916989941d3dc1157ad915eb244dae4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls0-story-4fd",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS0's story 0x4fd needs",
+    "source": "built from the conditions on the path to the write in scene 619 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1348": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls0-story-4fd",
+    "description": "In MGC_CLS0 (scene 619), talking to layout record 3 should write story variable 0x4fd",
+    "plan": "# mgc-mgc-cls0-story-4fd: In MGC_CLS0 (scene 619), talking to layout record 3 should write story variable 0x4fd\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 619 0 16714239 0\ncheckpoint entered\ntalk 280 250 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 619 save 4bada96a3312c462 state 372f4eb13f0aadb8 ram 0000000000000000",
+     "done frame 1105 scene 619 save cac50acb23060d3c state 52568a68675d1b80 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (280, 230): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "f949fc57d6cb30a3f7f6456a9d4bd9e5"
+     },
+     {
+      "frames": 793,
+      "sha256": "0a84a69c07d49a7a8290cbc31a359c4d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls1-story-3ff",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS1's story 0x3ff needs",
+    "source": "built from the conditions on the path to the write in scene 620 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1370": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls1-story-3ff",
+    "description": "In MGC_CLS1 (scene 620), talking to layout record 9 should write story variable 0x3ff",
+    "plan": "# mgc-mgc-cls1-story-3ff: In MGC_CLS1 (scene 620), talking to layout record 9 should write story variable 0x3ff\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 620 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 620 save 3e374e162eef998f state 31b07272be782768 ram 0000000000000000",
+     "done frame 892 scene 620 save 0b1dfbbc977fd5e9 state 64a8488f61e9d5fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "8d4f7cf958f6bf1b25a96877dd17907e"
+     },
+     {
+      "frames": 580,
+      "sha256": "4260677537dd49895bd7a744ebfc3995"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls1-story-4ef",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS1's story 0x4ef needs",
+    "source": "built from the conditions on the path to the write in scene 620 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1350": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls1-story-4ef",
+    "description": "In MGC_CLS1 (scene 620), talking to layout record 5 should write story variable 0x4ef",
+    "plan": "# mgc-mgc-cls1-story-4ef: In MGC_CLS1 (scene 620), talking to layout record 5 should write story variable 0x4ef\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 620 0 16714239 0\ncheckpoint entered\ntalk 320 165 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 620 save 7f4f28b11893c00c state 5878a0bea3db3659 ram 0000000000000000",
+     "done frame 1079 scene 620 save e7516053a0cb317e state 1787fa639a5a143e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (320, 145): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "1e2e2f04f3562fef7074ef056f4ae2e5"
+     },
+     {
+      "frames": 767,
+      "sha256": "3e342ad8f65d6339f41ba833bb42bd2a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls1-story-4f7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS1's story 0x4f7 needs",
+    "source": "built from the conditions on the path to the write in scene 620 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1370": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls1-story-4f7",
+    "description": "In MGC_CLS1 (scene 620), talking to layout record 9 should write story variable 0x4f7",
+    "plan": "# mgc-mgc-cls1-story-4f7: In MGC_CLS1 (scene 620), talking to layout record 9 should write story variable 0x4f7\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 620 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 620 save 4d39cbe2e858075c state 31b07272be782768 ram 0000000000000000",
+     "done frame 892 scene 620 save cd107096527abb8e state 64a8488f61e9d5fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "7985960194ee5257f41db47735b62c4f"
+     },
+     {
+      "frames": 580,
+      "sha256": "2bf8b97e33c0aa559822b9ecc8100d45"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls1-story-4ff",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS1's story 0x4ff needs",
+    "source": "built from the conditions on the path to the write in scene 620 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1350": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls1-story-4ff",
+    "description": "In MGC_CLS1 (scene 620), talking to layout record 5 should write story variable 0x4ff",
+    "plan": "# mgc-mgc-cls1-story-4ff: In MGC_CLS1 (scene 620), talking to layout record 5 should write story variable 0x4ff\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 620 0 16714239 0\ncheckpoint entered\ntalk 320 165 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 620 save c95def6023930b1f state 5878a0bea3db3659 ram 0000000000000000",
+     "done frame 1079 scene 620 save 4524524c3e5d7b39 state 1787fa639a5a143e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (320, 145): 4 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "963358839a7ef14034ca803496cd81e5"
+     },
+     {
+      "frames": 767,
+      "sha256": "d397f84cf5f8656718eac2418a296149"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls2-story-400",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS2's story 0x400 needs",
+    "source": "built from the conditions on the path to the write in scene 621 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1374": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls2-story-400",
+    "description": "In MGC_CLS2 (scene 621), talking to layout record 7 should write story variable 0x400",
+    "plan": "# mgc-mgc-cls2-story-400: In MGC_CLS2 (scene 621), talking to layout record 7 should write story variable 0x400\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 621 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 0 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 621 save 20ae2e7e5e0014fd state 144a22bc1152e53d ram 0000000000000000",
+     "done frame 1115 scene 621 save 780e5ac62424efa2 state dda98e0f7e1284d8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 202,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "ab55221c43d36b58988e78ae8b5e6cae"
+     },
+     {
+      "frames": 803,
+      "sha256": "533f5a3a0b036fb99117dd49c5700793"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls2-story-401",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS2's story 0x401 needs",
+    "source": "built from the conditions on the path to the write in scene 621 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1378": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls2-story-401",
+    "description": "In MGC_CLS2 (scene 621), talking to layout record 9 should write story variable 0x401",
+    "plan": "# mgc-mgc-cls2-story-401: In MGC_CLS2 (scene 621), talking to layout record 9 should write story variable 0x401\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 621 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 621 save 5d75fa821dcc3ff8 state e637b7823c5dd15f ram 0000000000000000",
+     "done frame 892 scene 621 save 5d7556b6f095deac state ab69ddd7ed3ae7d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 202,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "338ef71e97c66bb99a387f865c1ef920"
+     },
+     {
+      "frames": 580,
+      "sha256": "da6124476d43d4ebf5fddbd9b75fab36"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls2-story-4f8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS2's story 0x4f8 needs",
+    "source": "built from the conditions on the path to the write in scene 621 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1374": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls2-story-4f8",
+    "description": "In MGC_CLS2 (scene 621), talking to layout record 7 should write story variable 0x4f8",
+    "plan": "# mgc-mgc-cls2-story-4f8: In MGC_CLS2 (scene 621), talking to layout record 7 should write story variable 0x4f8\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 621 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 0 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 621 save 6bd06f036ed1c376 state 144a22bc1152e53d ram 0000000000000000",
+     "done frame 1115 scene 621 save 21a0dac87b0bb24f state dda98e0f7e1284d8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 202,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "79b86f9ef41dc3e17e9a67197faddc1e"
+     },
+     {
+      "frames": 803,
+      "sha256": "c012e88d39a1745a78198fe187f335ec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cls2-story-4f9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLS2's story 0x4f9 needs",
+    "source": "built from the conditions on the path to the write in scene 621 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1378": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cls2-story-4f9",
+    "description": "In MGC_CLS2 (scene 621), talking to layout record 9 should write story variable 0x4f9",
+    "plan": "# mgc-mgc-cls2-story-4f9: In MGC_CLS2 (scene 621), talking to layout record 9 should write story variable 0x4f9\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 621 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 621 save c7982bce75ef97df state e637b7823c5dd15f ram 0000000000000000",
+     "done frame 892 scene 621 save 5ed5c56ca35f44ff state ab69ddd7ed3ae7d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 202,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "22a8907c13646331d34526d88399c7c0"
+     },
+     {
+      "frames": 580,
+      "sha256": "68c7d84b5961a56d56c3359a239a8d78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-3f8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x3f8 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1354": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-3f8",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 4 should write story variable 0x3f8",
+    "plan": "# mgc-mgc-clss-story-3f8: In MGC_CLSS (scene 582), talking to layout record 4 should write story variable 0x3f8\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 350 203 0 0 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save eb316d3dbe93b08e state 23849b48ed2165f4 ram 0000000000000000",
+     "done frame 1114 scene 582 save 041aa508122e43b7 state 4465a13ee822764f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (350, 183): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "72529db29df1c28f91cd64c0073d2ca6"
+     },
+     {
+      "frames": 802,
+      "sha256": "c420423f457179b51f9c7458e3ff5394"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-3f9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x3f9 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1358": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-3f9",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 5 should write story variable 0x3f9",
+    "plan": "# mgc-mgc-clss-story-3f9: In MGC_CLSS (scene 582), talking to layout record 5 should write story variable 0x3f9\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 386 234 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 13a77631377376bb state b7080646c7d5c41f ram 0000000000000000",
+     "done frame 1265 scene 582 save be8e0f810b13952f state b813474cbabf858d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (386, 214): 9 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "9a794ed72fb0f13ae8c36282044c1f0f"
+     },
+     {
+      "frames": 953,
+      "sha256": "800293718e75ab9893a5e0d679e4700f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-3fa",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x3fa needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x135c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-3fa",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 6 should write story variable 0x3fa",
+    "plan": "# mgc-mgc-clss-story-3fa: In MGC_CLSS (scene 582), talking to layout record 6 should write story variable 0x3fa\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 1 0 6\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 2c05c699639821ce state fdf307f493db65c3 ram 0000000000000000",
+     "done frame 1250 scene 582 save 604741efc90cc380 state af95f40f36d028ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 209,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "a39e82fde3cba5912f39db19862f2dee"
+     },
+     {
+      "frames": 938,
+      "sha256": "968b654576acf73202fc84c3a69717f0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-3fb",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x3fb needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1360": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-3fb",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 8 should write story variable 0x3fb",
+    "plan": "# mgc-mgc-clss-story-3fb: In MGC_CLSS (scene 582), talking to layout record 8 should write story variable 0x3fb\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 5a95071c4225b015 state b751b7b14c68eeb1 ram 0000000000000000",
+     "done frame 937 scene 582 save 013cf984ec39905f state 5eb8db7d46e53d30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "ba160300ba4a87d7a3a78e9a549a1257"
+     },
+     {
+      "frames": 625,
+      "sha256": "22a5704d6850f049bceb012a7e9dbbd8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-46b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x46b needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2660": 41,
+     "0x1184": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-46b",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 7 should write story variable 0x46b",
+    "plan": "# mgc-mgc-clss-story-46b: In MGC_CLSS (scene 582), talking to layout record 7 should write story variable 0x46b\nlimit 20000\nenter 571 0 16714239 0\nguest 7\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 310 280 0 1 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 582 save d990777bd613d84b state 510196364e9779c4 ram 0000000000000000",
+     "done frame 1370 scene 582 save b5709011321a7347 state 8dfd8fce4868cc77 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 7 joined",
+     "walk to (310, 260): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "0ed780d7fd79bd514872300072474b46"
+     },
+     {
+      "frames": 1056,
+      "sha256": "d37f2ac95b33b46bd069c76ef995e8d1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-46e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x46e needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2660": 41,
+     "0x1184": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-46e",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 7 should write story variable 0x46e",
+    "plan": "# mgc-mgc-clss-story-46e: In MGC_CLSS (scene 582), talking to layout record 7 should write story variable 0x46e\nlimit 20000\nenter 571 0 16714239 0\nguest 7\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 310 280 0 1 0 7\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 582 save d990777bd613d84b state 510196364e9779c4 ram 0000000000000000",
+     "done frame 1370 scene 582 save b5709011321a7347 state 8dfd8fce4868cc77 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 7 joined",
+     "walk to (310, 260): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "0ed780d7fd79bd514872300072474b46"
+     },
+     {
+      "frames": 1056,
+      "sha256": "d37f2ac95b33b46bd069c76ef995e8d1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4ec",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4ec needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1344": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4ec",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 2 should write story variable 0x4ec",
+    "plan": "# mgc-mgc-clss-story-4ec: In MGC_CLSS (scene 582), talking to layout record 2 should write story variable 0x4ec\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 245 220 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 66d5fc630cb830e9 state b43eef329960e781 ram 0000000000000000",
+     "done frame 1816 scene 582 save 823e1194955d930f state 936583e921605c80 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (245, 200): 3 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 245,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "d7a0cf96abbb28f7071b79ee44106fab"
+     },
+     {
+      "frames": 1504,
+      "sha256": "8ad45bc055b8bc702d59dd0440fc271d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4ee",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4ee needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x134c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4ee",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 3 should write story variable 0x4ee",
+    "plan": "# mgc-mgc-clss-story-4ee: In MGC_CLSS (scene 582), talking to layout record 3 should write story variable 0x4ee\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 443 156 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 2897afe3f117fe29 state e5c776d15afbfdc6 ram 0000000000000000",
+     "done frame 1151 scene 582 save 375aa8858c9638bf state 231a8c0d62a13017 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (443, 136): 7 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "3185208c7b32874aa3876e327046f730"
+     },
+     {
+      "frames": 839,
+      "sha256": "ca5c51087f4104c364f485752df64240"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4f0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4f0 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1354": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4f0",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 4 should write story variable 0x4f0",
+    "plan": "# mgc-mgc-clss-story-4f0: In MGC_CLSS (scene 582), talking to layout record 4 should write story variable 0x4f0\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 350 203 0 0 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 49f3e3765b7b3369 state 23849b48ed2165f4 ram 0000000000000000",
+     "done frame 1114 scene 582 save afdfdbb417492ab6 state 4465a13ee822764f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (350, 183): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "812c841a1ef4db5d11961da5089b58eb"
+     },
+     {
+      "frames": 802,
+      "sha256": "639bca6168f883054cb354c17411068a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4f1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4f1 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1358": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4f1",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 5 should write story variable 0x4f1",
+    "plan": "# mgc-mgc-clss-story-4f1: In MGC_CLSS (scene 582), talking to layout record 5 should write story variable 0x4f1\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 386 234 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 6429a596f66f8a80 state b7080646c7d5c41f ram 0000000000000000",
+     "done frame 1310 scene 582 save 50f0c434db1871b0 state 14443951d796d3c9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (386, 214): 9 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 224,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "bc37540afc5d26184cea0995f3a016ba"
+     },
+     {
+      "frames": 998,
+      "sha256": "3ad55106202b13284105ff33bc8ad7ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4f2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4f2 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x135c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4f2",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 6 should write story variable 0x4f2",
+    "plan": "# mgc-mgc-clss-story-4f2: In MGC_CLSS (scene 582), talking to layout record 6 should write story variable 0x4f2\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 403 123 0 1 0 6\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 59a9ac2c029926a9 state fdf307f493db65c3 ram 0000000000000000",
+     "done frame 1205 scene 582 save 2b0daddf490ef173 state 7f32f394fbad7ca8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (403, 103): 6 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 209,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "3fed2b0c509bdf2641ef8f3d874a08c4"
+     },
+     {
+      "frames": 893,
+      "sha256": "9331087873b06447b45610592eb4c180"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4f3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4f3 needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1360": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4f3",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 8 should write story variable 0x4f3",
+    "plan": "# mgc-mgc-clss-story-4f3: In MGC_CLSS (scene 582), talking to layout record 8 should write story variable 0x4f3\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 470 200 0 0 0 8\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 88bf9288cad498d2 state b751b7b14c68eeb1 ram 0000000000000000",
+     "done frame 937 scene 582 save 8aa9cf9f36e7e92c state 5eb8db7d46e53d30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (470, 180): 8 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "12a1e7bc539d0c3d7de7a8420a1f7703"
+     },
+     {
+      "frames": 625,
+      "sha256": "53d139f3f409ebd1912d494d6b16002f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4fc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4fc needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1344": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4fc",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 2 should write story variable 0x4fc",
+    "plan": "# mgc-mgc-clss-story-4fc: In MGC_CLSS (scene 582), talking to layout record 2 should write story variable 0x4fc\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 245 220 0 0 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 527c9e5eb5cf920e state b43eef329960e781 ram 0000000000000000",
+     "done frame 1141 scene 582 save abbb974529bcbd7c state fd32cb6de4f0c320 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (245, 200): 3 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "2923eb8c6efa5015d3dfc9434093ca39"
+     },
+     {
+      "frames": 829,
+      "sha256": "3ede06adda75bc1a779183c7cc6c9aa5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-clss-story-4fe",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CLSS's story 0x4fe needs",
+    "source": "built from the conditions on the path to the write in scene 582 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x134c": 1
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-clss-story-4fe",
+    "description": "In MGC_CLSS (scene 582), talking to layout record 3 should write story variable 0x4fe",
+    "plan": "# mgc-mgc-clss-story-4fe: In MGC_CLSS (scene 582), talking to layout record 3 should write story variable 0x4fe\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 582 0 16714239 0\ncheckpoint entered\ntalk 443 156 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 582 save 6c05d3ac292cd34e state e5c776d15afbfdc6 ram 0000000000000000",
+     "done frame 1151 scene 582 save 0a7e8fa4b9d318cc state 231a8c0d62a13017 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (443, 136): 7 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "d364a4ad7603be90cc8f18e22a7afc80"
+     },
+     {
+      "frames": 839,
+      "sha256": "07a7300b7bd3b08570235341bb2569d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmps-story-402",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CMPS's story 0x402 needs",
+    "source": "built from the conditions on the path to the write in scene 581 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x137c": 4
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cmps-story-402",
+    "description": "In MGC_CMPS (scene 581), talking to layout record 1 should write story variable 0x402",
+    "plan": "# mgc-mgc-cmps-story-402: In MGC_CMPS (scene 581), talking to layout record 1 should write story variable 0x402\nlimit 20000\nenter 15 0 16711935 0\nguest 10\nenter 581 0 16714239 0\ncheckpoint entered\ntalk 350 273 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 581 save 38b6c46fc57ca155 state 666bac863223f6f0 ram 0000000000000000",
+     "done frame 1062 scene 581 save 66b6ce929d4ef4af state 3486bdea7b228f5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 10 joined",
+     "walk to (350, 253): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "180db55c881ecf15d695a02f15b55ab0"
+     },
+     {
+      "frames": 750,
+      "sha256": "af44a8437873e13d7460addc77f4b531"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-cmps-story-4fa",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_CMPS's story 0x4fa needs",
+    "source": "built from the conditions on the path to the write in scene 581 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x137c": 4
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-cmps-story-4fa",
+    "description": "In MGC_CMPS (scene 581), talking to layout record 1 should write story variable 0x4fa",
+    "plan": "# mgc-mgc-cmps-story-4fa: In MGC_CMPS (scene 581), talking to layout record 1 should write story variable 0x4fa\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 581 0 16714239 0\ncheckpoint entered\ntalk 350 273 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 581 save e73bf19e4933259e state 666bac863223f6f0 ram 0000000000000000",
+     "done frame 1062 scene 581 save e3b5df0c706fcb70 state 3486bdea7b228f5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (350, 253): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "7d0aced248babc8598bd37a81b83cf9b"
+     },
+     {
+      "frames": 750,
+      "sha256": "d44cb2033297a90e3c3d6a3c00e7cb29"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-story-1100",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GAT0's story 0x1100 needs",
+    "source": "built from the conditions on the path to the write in scene 566 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1204": 7,
+     "0x11dc": 3,
+     "0x6c7": 1,
+     "0x1100": 2
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-gat0-story-1100",
+    "description": "In MGC_GAT0 (scene 566), entering should write story variable 0x1100",
+    "plan": "# mgc-mgc-gat0-story-1100: In MGC_GAT0 (scene 566), entering should write story variable 0x1100\nlimit 20000\nenter 567 0 16714239 0\nguest 0\nenter 566 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 566 save fbe96ef99da15bf4 state 8894873cdd7c406a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "game state 1 at vblank 3226",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 306,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "6d9da002756b327557d560d4d144ebaf"
+     },
+     {
+      "frames": 1039,
+      "sha256": "a8ce74ebc3275dc5937350e52b84398f"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-story-11d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GAT0's story 0x11d4 needs",
+    "source": "built from the conditions on the path to the write in scene 566 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1204": 7,
+     "0x11dc": 3,
+     "0x6c7": 1,
+     "0x11d4": 2
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-gat0-story-11d4",
+    "description": "In MGC_GAT0 (scene 566), entering should write story variable 0x11d4",
+    "plan": "# mgc-mgc-gat0-story-11d4: In MGC_GAT0 (scene 566), entering should write story variable 0x11d4\nlimit 20000\nenter 567 0 16714239 0\nguest 0\nenter 566 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 566 save f84fac192107ef1e state 8894873cdd7c406a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "game state 1 at vblank 3226",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 306,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "0344541d85950b517245097cab9dd9b9"
+     },
+     {
+      "frames": 1039,
+      "sha256": "135fbbaa69901b6fc7f08a6e5c11b279"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat0-story-11d8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GAT0's story 0x11d8 needs",
+    "source": "built from the conditions on the path to the write in scene 566 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1204": 7,
+     "0x11dc": 3,
+     "0x6c7": 1,
+     "0x11d8": 2
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-gat0-story-11d8",
+    "description": "In MGC_GAT0 (scene 566), entering should write story variable 0x11d8",
+    "plan": "# mgc-mgc-gat0-story-11d8: In MGC_GAT0 (scene 566), entering should write story variable 0x11d8\nlimit 20000\nenter 567 0 16714239 0\nguest 0\nenter 566 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 566 save 8c4e16bb7cbc99e8 state 8894873cdd7c406a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "game state 1 at vblank 3226",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 306,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "2902ae68a52b176f1e7cef1d511504e0"
+     },
+     {
+      "frames": 1039,
+      "sha256": "c6130da54fb16cd82a6093b8e52e1fa9"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-gat1-story-471",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GAT1's story 0x471 needs",
+    "source": "built from the conditions on the path to the write in scene 580 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1184": 6
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-gat1-story-471",
+    "description": "In MGC_GAT1 (scene 580), entering should write story variable 0x471",
+    "plan": "# mgc-mgc-gat1-story-471: In MGC_GAT1 (scene 580), entering should write story variable 0x471\nlimit 20000\nenter 580 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 580 save 8f5b7f203d669c6f state 8b664cfd0bd3ed96 ram 0000000000000000",
+     "done frame 400 scene 580 save 25b687840ddf65ef state a67d5549699ca402 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 169 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a049c58d233a07e04cc82459016d147"
+     },
+     {
+      "frames": 171,
+      "sha256": "9907635862eb7b1701013ab3782892bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-glry-story-11dc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GLRY's story 0x11dc needs",
+    "source": "built from the conditions on the path to the write in scene 575 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d8": 8
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-glry-story-11dc",
+    "description": "In MGC_GLRY (scene 575), entering should write story variable 0x11dc",
+    "plan": "# mgc-mgc-glry-story-11dc: In MGC_GLRY (scene 575), entering should write story variable 0x11dc\nlimit 20000\nenter 575 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 575 save 00cc0a855a7c6c79 state 66ced84a195ce4cf ram 0000000000000000",
+     "done frame 959 scene 575 save 6d7ca83cb4e7b15b state ad41f2f1d35195ac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 728 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 214,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "084750a13bbcff6a1038e0c44488a43a"
+     },
+     {
+      "frames": 730,
+      "sha256": "28af57f1e62e6afdaa63efb041081eb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-glry-story-26b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GLRY's story 0x26b0 needs",
+    "source": "built from the conditions on the path to the write in scene 575 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d8": 8
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-glry-story-26b0",
+    "description": "In MGC_GLRY (scene 575), entering should write story variable 0x26b0",
+    "plan": "# mgc-mgc-glry-story-26b0: In MGC_GLRY (scene 575), entering should write story variable 0x26b0\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 575 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 575 save 3618fc3ba1e1e79e state d28f13f3193fe058 ram 0000000000000000",
+     "done frame 895 scene 577 save 47ae2f3d53cfeeb9 state 746897d65be176d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "watched until the player got control, 579 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 329,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "5bf9ac8e00bc099abaa5d1cb9c728d53"
+     },
+     {
+      "frames": 581,
+      "sha256": "ebc5b06da599493fd944129add9e8cfa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-glry-story-47c",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_GLRY's story 0x47c needs",
+    "source": "built from the conditions on the path to the write in scene 575 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d8": 8
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-glry-story-47c",
+    "description": "In MGC_GLRY (scene 575), entering should write story variable 0x47c",
+    "plan": "# mgc-mgc-glry-story-47c: In MGC_GLRY (scene 575), entering should write story variable 0x47c\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 575 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 575 save 3618fc3ba1e1e79e state d28f13f3193fe058 ram 0000000000000000",
+     "done frame 895 scene 577 save 47ae2f3d53cfeeb9 state 746897d65be176d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "watched until the player got control, 579 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 329,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "5bf9ac8e00bc099abaa5d1cb9c728d53"
+     },
+     {
+      "frames": 581,
+      "sha256": "ebc5b06da599493fd944129add9e8cfa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jwl0-story-470",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_JWL0's story 0x470 needs",
+    "source": "built from the conditions on the path to the write in scene 571 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 61,
+     "0x1184": 6
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-jwl0-story-470",
+    "description": "In MGC_JWL0 (scene 571), talking to layout record 1 should write story variable 0x470",
+    "plan": "# mgc-mgc-jwl0-story-470: In MGC_JWL0 (scene 571), talking to layout record 1 should write story variable 0x470\nlimit 20000\nenter 571 0 16714239 0\ncheckpoint entered\ntalk 148 148 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 571 save 6f700881acf9c110 state 493ccca5c0bdfe29 ram 0000000000000000",
+     "done frame 1059 scene 571 save 075aca06c94c9d1f state e5a9e071f0f65bd6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 128): 1 waypoints",
+     "walk to (148, 168): 1 waypoints",
+     "walk to (128, 148): 1 waypoints",
+     "walk to (168, 148): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1f582297f331c20641741f611bbc962c"
+     },
+     {
+      "frames": 830,
+      "sha256": "44fc02d33d7e1877d6ca1b57ce90469b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-jwl0-story-472",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-jwl0-story-472",
+    "description": "In MGC_JWL0 (scene 571), entering should write story variable 0x472",
+    "plan": "# mgc-mgc-jwl0-story-472: In MGC_JWL0 (scene 571), entering should write story variable 0x472\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 571 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 571 save 935752611ee931f7 state 39febc3ac89a5a3d ram 0000000000000000",
+     "done frame 1437 scene 568 save 826e890299be614c state 88d6f35b545c0591 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "watched until the player got control, 1121 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 332,
+     "instruction_end": 126,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "3e46f12e55f6929d2c05472c74ece4f9"
+     },
+     {
+      "frames": 1123,
+      "sha256": "e5871df4f5c940fc5c4324c3e1d3ec15"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-lbry-story-11e4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_LBRY's story 0x11e4 needs",
+    "source": "built from the conditions on the path to the write in scene 583 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2670": 1,
+     "0x11e4": 3
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-lbry-story-11e4",
+    "description": "In MGC_LBRY (scene 583), entering should write story variable 0x11e4",
+    "plan": "# mgc-mgc-lbry-story-11e4: In MGC_LBRY (scene 583), entering should write story variable 0x11e4\nlimit 20000\nenter 583 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 583 save c76ab8624f516a13 state 90ecf25835e3b205 ram 0000000000000000",
+     "done frame 429 scene 583 save c22d69b999b84d95 state b294fda2405d2351 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 198 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "766d42b578ad392e4f645464505e93d8"
+     },
+     {
+      "frames": 200,
+      "sha256": "65c25156ad2fbe9ff8227fa542fb8b47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-lbry-story-46c",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_LBRY's story 0x46c needs",
+    "source": "built from the conditions on the path to the write in scene 583 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2660": 51,
+     "0x1184": 3
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-lbry-story-46c",
+    "description": "In MGC_LBRY (scene 583), talking to layout record 5 should write story variable 0x46c",
+    "plan": "# mgc-mgc-lbry-story-46c: In MGC_LBRY (scene 583), talking to layout record 5 should write story variable 0x46c\nlimit 20000\nenter 571 0 16714239 0\nguest 7\nenter 583 0 16714239 0\ncheckpoint entered\ntalk 290 145 0 1 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 583 save d918aee97af8f9f0 state 0f1b15453ecdcd1a ram 0000000000000000",
+     "done frame 2236 scene 583 save 64574f16f9bb78c0 state 3343e07ef4fbfade ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 7 joined",
+     "walk to (290, 125): 9 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 315,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "4d2558bad54cf0fe0ac38bcd343b912f"
+     },
+     {
+      "frames": 1922,
+      "sha256": "4d934de6ed6515f4ac237f7c55aac0b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-prpl-story-474",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mgc-mgc-prpl-story-474",
+    "description": "In MGC_PRPL (scene 584), entering should write story variable 0x474",
+    "plan": "# mgc-mgc-prpl-story-474: In MGC_PRPL (scene 584), entering should write story variable 0x474\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 584 0 16714239 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 584 save e9e8646b55bc9a04 state 03f6efb43df85089 ram 0000000000000000",
+     "done frame 691 scene 584 save c7ce5b48c11979ee state 781995a91d18c424 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "watched until the player got control, 375 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 234,
+     "instruction_end": 87,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "1dfd327fd5a36c8cbbb686ce64aab26d"
+     },
+     {
+      "frames": 377,
+      "sha256": "599adc26b3ea816be1c3cd0b3607820a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp0-story-11bc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_SHP0's story 0x11bc needs",
+    "source": "built from the conditions on the path to the write in scene 567 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11bc": 3
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-shp0-story-11bc",
+    "description": "In MGC_SHP0 (scene 567), talking to layout record 9 should write story variable 0x11bc",
+    "plan": "# mgc-mgc-shp0-story-11bc: In MGC_SHP0 (scene 567), talking to layout record 9 should write story variable 0x11bc\nlimit 20000\nenter 567 0 16714239 0\ncheckpoint entered\ntalk 342 335 0 1 0 9\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 567 save 6e769b655ef9474c state bef01a8aab9bddbb ram 0000000000000000",
+     "done frame 685 scene 567 save e138d67f92036bcc state 7a2ed2849854fe54 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (342, 315): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60fe5363f2e8759faffe269c42c050cd"
+     },
+     {
+      "frames": 456,
+      "sha256": "8b08947bdc0046cce0ce527d4a63063e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-shp0-story-4bc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_SHP0's story 0x4bc needs",
+    "source": "built from the conditions on the path to the write in scene 567 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2588": 51,
+     "0x1204": 1,
+     "0x1390": 2
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-shp0-story-4bc",
+    "description": "In MGC_SHP0 (scene 567), talking to layout record 5 should write story variable 0x4bc",
+    "plan": "# mgc-mgc-shp0-story-4bc: In MGC_SHP0 (scene 567), talking to layout record 5 should write story variable 0x4bc\nlimit 20000\nenter 567 0 16714239 0\ncheckpoint entered\ntalk 205 208 0 1 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 567 save cdc34a4d4f32a8c9 state d61ce3f8a1f73963 ram 0000000000000000",
+     "done frame 2773 scene 567 save 429f88868a8e3033 state 6160213a8734d8ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (205, 188): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 79,
+     "instruction": 243,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8dd035a9d7fa7619a5ba20019fce7b1c"
+     },
+     {
+      "frames": 2544,
+      "sha256": "f190ba1cf7600159e9528682a023e1da"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-stor-story-473",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_STOR's story 0x473 needs",
+    "source": "built from the conditions on the path to the write in scene 577 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26b0": 1,
+     "0x1184": 4
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-stor-story-473",
+    "description": "In MGC_STOR (scene 577), talking to layout record 3 should write story variable 0x473",
+    "plan": "# mgc-mgc-stor-story-473: In MGC_STOR (scene 577), talking to layout record 3 should write story variable 0x473\nlimit 20000\nenter 583 0 16714239 0\nguest 11\nenter 577 0 16714239 0\ncheckpoint entered\ntalk 227 165 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 577 save 144c8b4ce246bd3a state ae746363afb8c947 ram 0000000000000000",
+     "done frame 1756 scene 577 save fdd02348012d50c4 state 809830d65d77c273 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 11 joined",
+     "walk to (247, 165): -3 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 279,
+     "instruction_end": 125,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "d7e3f3ece71e3eb43ecd4ae0c83c03da"
+     },
+     {
+      "frames": 1442,
+      "sha256": "290a80ff65d137dcfa0c51dcd8d08e9d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-stor-story-48a",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_STOR's story 0x48a needs",
+    "source": "built from the conditions on the path to the write in scene 577 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1184": 7
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-stor-story-48a",
+    "description": "In MGC_STOR (scene 577), entering should write story variable 0x48a",
+    "plan": "# mgc-mgc-stor-story-48a: In MGC_STOR (scene 577), entering should write story variable 0x48a\nlimit 20000\nenter 577 0 16714239 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 577 save a9e07b1340ede3d6 state 2adc8d5092bd9fbc ram 0000000000000000",
+     "done frame 475 scene 577 save 5c7adad62bb3aa34 state df65001fe0c4d5f0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 244 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 60,
+     "instruction": 158,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb54355d6133978f59f81745ddf0b738"
+     },
+     {
+      "frames": 246,
+      "sha256": "7bdcfd362123ccd8937f85574716dfcb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mgc-mgc-stor-story-48b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MGC_STOR's story 0x48b needs",
+    "source": "built from the conditions on the path to the write in scene 577 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26b0": 1,
+     "0x1184": 7
+    }
+   },
+   "baseline": {
+    "route": "mgc-mgc-stor-story-48b",
+    "description": "In MGC_STOR (scene 577), talking to layout record 3 should write story variable 0x48b",
+    "plan": "# mgc-mgc-stor-story-48b: In MGC_STOR (scene 577), talking to layout record 3 should write story variable 0x48b\nlimit 20000\nenter 577 0 16714239 0\ncheckpoint entered\ntalk 227 165 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 577 save 603bc802882591d0 state 0a6175428ff0b1e7 ram 0000000000000000",
+     "done frame 1026 scene 577 save dff59a28dbd70b00 state 2558b832cd500fb2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (247, 165): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 70,
+     "instruction": 188,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b9c8a6ecb2b1790fd15fa68c402ef5fd"
+     },
+     {
+      "frames": 797,
+      "sha256": "d3a2555662e71ff8fa9d97c67c4cbe04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

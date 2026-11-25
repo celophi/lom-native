@@ -1,0 +1,48 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mnt-mnt-evt0-story-11a4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-evt0-story-11a4",
+    "description": "In MNT_EVT0 (scene 149), entering should write story variable 0x11a4",
+    "plan": "# mnt-mnt-evt0-story-11a4: In MNT_EVT0 (scene 149), entering should write story variable 0x11a4\nlimit 20000\nenter 1 0 655615 0\nguest 3\nenter 149 0 16718335 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 149 save 9bf7ba85c69a11bd state e7844a1a14f9fea9 ram 0000000000000000",
+     "done frame 3314 scene 149 save e50a6e10013fe45e state 63b8c7fbbc2bd688 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 3 joined",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "2b155f2e9cbe936bee67f37dd9acdd91"
+     },
+     {
+      "frames": 3002,
+      "sha256": "12a8d245b9ec474f76d6d214756b2e4d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

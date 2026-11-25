@@ -1,0 +1,5 @@
+{
+ "about": "What the game still does around the platform boundaries: calls to PlayStation library and kernel functions in game/src, and build-time renames of them. tools/testing/separation_check.py checks it matches exactly; it should shrink to nothing.",
+ "calls": {},
+ "renames": []
+}

@@ -1,0 +1,15 @@
+Return what Psy-Q's EnterCriticalSection does: 1 when this call entered
+the critical section, 0 when it was already in one. The game's libapi.h
+declares it int.
+
+--- a/psyz/include/kernel.h
++++ b/psyz/include/kernel.h
+@@ -164,7 +164,7 @@
+ 
+ // EnterCriticalSection/ExitCriticalSection collide with the Win32 API.
+ // To avoid collision and inconsistency, the PS1_ prefix is added.
+-void PS1_EnterCriticalSection(void);
++int PS1_EnterCriticalSection(void);
+ void PS1_ExitCriticalSection(void);
+ #undef EnterCriticalSection
+ #undef ExitCriticalSection

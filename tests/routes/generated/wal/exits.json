@@ -1,0 +1,4529 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wal-wal-all0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-0",
+    "description": "Walking onto exit 0 of WAL_ALL0 (scene 273) should lead to the world map",
+    "plan": "# wal-wal-all0-exit-0: Walking onto exit 0 of WAL_ALL0 (scene 273) should lead to the world map\nlimit 20000\nenter 273 0 16716031 2\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save a29c46e57bf601b2 state 6e529de92b8d5f89 ram 0000000000000000",
+     "arrived frame 323 scene 32767 save a29c46e57bf601b2 state 8fe56ddc583db8d5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (236, 61): 3 waypoints",
+     "game state 1 at vblank 971"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 32,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6e715671b680b3f1a2bb064ffa5d6e0"
+     },
+     {
+      "frames": 93,
+      "sha256": "4429a2bd6d3c610620433a0f265e9450"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-1",
+    "description": "Walking onto exit 1 of WAL_ALL0 (scene 273) should lead to scene 274",
+    "plan": "# wal-wal-all0-exit-1: Walking onto exit 1 of WAL_ALL0 (scene 273) should lead to scene 274\nlimit 20000\nenter 273 0 16716031 2\ncheckpoint entered\nexit 1 274\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save a29c46e57bf601b2 state 6e529de92b8d5f89 ram 0000000000000000",
+     "arrived frame 313 scene 274 save 5d6118f921d34a87 state 517010ea9ebb78f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (245, 144): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6e715671b680b3f1a2bb064ffa5d6e0"
+     },
+     {
+      "frames": 84,
+      "sha256": "f883bf61c8ca351c38b36775e3b672b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-2",
+    "description": "Walking onto exit 2 of WAL_ALL0 (scene 273) should lead to one of scene 273, scene 288",
+    "plan": "# wal-wal-all0-exit-2: Walking onto exit 2 of WAL_ALL0 (scene 273) should lead to one of scene 273, scene 288\nlimit 20000\nenter 273 0 16716031 2\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save a29c46e57bf601b2 state 6e529de92b8d5f89 ram 0000000000000000",
+     "arrived frame 293 scene 288 save e9c29411a39e219a state 996dacb36ccdb7ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (197, 65): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 38,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6e715671b680b3f1a2bb064ffa5d6e0"
+     },
+     {
+      "frames": 64,
+      "sha256": "51194af17fb9a09240d18a4b3b5d443d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-3",
+    "description": "Walking onto exit 3 of WAL_ALL0 (scene 273) should lead to one of scene 273, scene 294",
+    "plan": "# wal-wal-all0-exit-3: Walking onto exit 3 of WAL_ALL0 (scene 273) should lead to one of scene 273, scene 294\nlimit 20000\nenter 273 0 16716031 3\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save 011db5a7a80ba01b state b5517a200355be3b ram 0000000000000000",
+     "arrived frame 291 scene 294 save 5bf5a264a9894122 state 7dc6be6086fe537e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (105, 28): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 52,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0924768ef72a8b293702ed317a2c5f72"
+     },
+     {
+      "frames": 62,
+      "sha256": "001d9ecc31cec699d5ce508581ea78da"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-4",
+    "description": "Walking onto exit 4 of WAL_ALL0 (scene 273) should lead to scene 279",
+    "plan": "# wal-wal-all0-exit-4: Walking onto exit 4 of WAL_ALL0 (scene 273) should lead to scene 279\nlimit 20000\nenter 273 0 16716031 3\ncheckpoint entered\nexit 4 279\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save 011db5a7a80ba01b state b5517a200355be3b ram 0000000000000000",
+     "arrived frame 310 scene 279 save 0c98f8daf8a3506d state 9573aa3b3004d03f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (74, 76): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0924768ef72a8b293702ed317a2c5f72"
+     },
+     {
+      "frames": 81,
+      "sha256": "634f52be934d5fe70757f37e35e19e4e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-5",
+    "description": "Walking onto exit 5 of WAL_ALL0 (scene 273) should lead to scene 276",
+    "plan": "# wal-wal-all0-exit-5: Walking onto exit 5 of WAL_ALL0 (scene 273) should lead to scene 276\nlimit 20000\nenter 273 0 16716031 5\ncheckpoint entered\nexit 5 276\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save d82a2127a397e0d9 state 5e83e046f6750003 ram 0000000000000000",
+     "arrived frame 292 scene 276 save 2d8d2e4855ae60b8 state b380ad9714e5acd8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (226, 312): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ab5a170192fb2cea06834c4081df11be"
+     },
+     {
+      "frames": 63,
+      "sha256": "a0d90490cc69b09ffc2731da2a3f79b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-6",
+    "description": "Walking onto exit 6 of WAL_ALL0 (scene 273) should lead to scene 281",
+    "plan": "# wal-wal-all0-exit-6: Walking onto exit 6 of WAL_ALL0 (scene 273) should lead to scene 281\nlimit 20000\nenter 273 0 16716031 5\ncheckpoint entered\nexit 6 281\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save d82a2127a397e0d9 state 5e83e046f6750003 ram 0000000000000000",
+     "arrived frame 312 scene 281 save b805c5eb85dfc74f state d16cc5670a238fdf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (157, 300): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 41,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ab5a170192fb2cea06834c4081df11be"
+     },
+     {
+      "frames": 83,
+      "sha256": "9baf1fc65b3cc8aee7921f13337f3040"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-7",
+    "description": "Walking onto exit 7 of WAL_ALL0 (scene 273) should lead to scene 629",
+    "plan": "# wal-wal-all0-exit-7: Walking onto exit 7 of WAL_ALL0 (scene 273) should lead to scene 629\nlimit 20000\nenter 273 0 16716031 8\ncheckpoint entered\nexit 7 629\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save ccf8132d2dd1d4ac state 33b293b2b49d7c8f ram 0000000000000000",
+     "arrived frame 300 scene 629 save a46c8d5dbcad7119 state 505f940d3c2eba98 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (36, 246): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9dc90876bf2967d38551b27e881c2eea"
+     },
+     {
+      "frames": 71,
+      "sha256": "48ab25da1b3989ef1bc3d21a74b139ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-all0-exit-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-all0-exit-8",
+    "description": "Walking onto exit 8 of WAL_ALL0 (scene 273) should lead to one of scene 280, scene 702",
+    "plan": "# wal-wal-all0-exit-8: Walking onto exit 8 of WAL_ALL0 (scene 273) should lead to one of scene 280, scene 702\nlimit 20000\nenter 273 0 16716031 8\ncheckpoint entered\nexit 8 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 273 save ccf8132d2dd1d4ac state 33b293b2b49d7c8f ram 0000000000000000",
+     "arrived frame 290 scene 280 save 710fb3a949cb8db5 state 914fa04c31754c26 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (73, 235): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9dc90876bf2967d38551b27e881c2eea"
+     },
+     {
+      "frames": 61,
+      "sha256": "9fa18008b8b9854e0902237cc66ee9c6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b000-exit-0",
+    "description": "Walking onto exit 0 of WAL_B000 (scene 287) should lead to scene 308",
+    "plan": "# wal-wal-b000-exit-0: Walking onto exit 0 of WAL_B000 (scene 287) should lead to scene 308\nlimit 20000\nenter 33055 0 16712191 2\ncheckpoint entered\nexit 0 308\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 287 save 6bc5acf5b1911acb state 348d5653a83c6a81 ram 0000000000000000",
+     "arrived frame 445 scene 308 save 88a33fe5bfbd51f4 state fb2f13afaed826d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (232, 256): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 43,
+     "exit": 1,
+     "scene": 3,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e71dd3f95add2db42d9dec73c8c7069"
+     },
+     {
+      "frames": 216,
+      "sha256": "565e082c919a12585d6ede4926d95c88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b000-exit-1",
+    "description": "Walking onto exit 1 of WAL_B000 (scene 287) should lead to scene 300",
+    "plan": "# wal-wal-b000-exit-1: Walking onto exit 1 of WAL_B000 (scene 287) should lead to scene 300\nlimit 20000\nenter 33055 0 16712191 2\ncheckpoint entered\nexit 1 300\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 287 save 6bc5acf5b1911acb state 348d5653a83c6a81 ram 0000000000000000",
+     "arrived frame 395 scene 300 save 77f1e2fcd666ce3c state 51dfb8e41e03fc5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (664, 256): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e71dd3f95add2db42d9dec73c8c7069"
+     },
+     {
+      "frames": 166,
+      "sha256": "bd1ae64a8398e7691c007e229cd9a1a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b000-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b000-exit-2",
+    "description": "Walking onto exit 2 of WAL_B000 (scene 287) should lead to scene 290",
+    "plan": "# wal-wal-b000-exit-2: Walking onto exit 2 of WAL_B000 (scene 287) should lead to scene 290\nlimit 20000\nenter 33055 0 16712191 2\ncheckpoint entered\nexit 2 290\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 287 save 6bc5acf5b1911acb state 348d5653a83c6a81 ram 0000000000000000",
+     "arrived frame 302 scene 290 save 619fa5342e341dba state 35f2c743fe7a43f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (448, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e71dd3f95add2db42d9dec73c8c7069"
+     },
+     {
+      "frames": 73,
+      "sha256": "7633a762538147b5aa813f79d7ffaf6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b010-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b010-cutscene",
+    "description": "Entering WAL_B010 (scene 288) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# wal-wal-b010-cutscene: Entering WAL_B010 (scene 288) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 33056 0 16712191 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 288 save e9c29411a39e219a state ef3e01d883edbe73 ram 0000000000000000",
+     "watched frame 390 scene 273 save 1205f88a408c68c8 state 01149aaaf7d25323 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 159 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 214,
+     "instruction_end": 48,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20b4987284c09dc7cd6b07d5395af013"
+     },
+     {
+      "frames": 161,
+      "sha256": "38a786adce7f98f5f4eb7d127db5066e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b020-exit-0",
+    "description": "Walking onto exit 0 of WAL_B020 (scene 289) should lead to scene 301",
+    "plan": "# wal-wal-b020-exit-0: Walking onto exit 0 of WAL_B020 (scene 289) should lead to scene 301\nlimit 20000\nenter 33057 0 16712191 0\ncheckpoint entered\nexit 0 301\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 289 save 766fad4ea4024c37 state 58eefad3dbd5dfd2 ram 0000000000000000",
+     "arrived frame 303 scene 301 save 1c681175272895d5 state e68eba06eececabb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (224, 256): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b0ac235bf611ef7f73a212a29c48a91e"
+     },
+     {
+      "frames": 74,
+      "sha256": "3098da24e2e77233aa3548beddc658ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b030-exit-0",
+    "description": "Walking onto exit 0 of WAL_B030 (scene 290) should lead to scene 309",
+    "plan": "# wal-wal-b030-exit-0: Walking onto exit 0 of WAL_B030 (scene 290) should lead to scene 309\nlimit 20000\nenter 33058 1 16712191 1\ncheckpoint entered\nexit 0 309\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 290 save 90567a2aa84c5d7c state 4075196a3e82d306 ram 0000000000000000",
+     "arrived frame 2572 scene 309 save c59422940c089ce3 state 0b67ebebc7e76d9b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 256): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2090 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 326,
+     "instruction_end": 120,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a24a9ac65fb0e4087e27dbf234f37a1"
+     },
+     {
+      "frames": 2343,
+      "sha256": "b8de778b88400d030de3691cb0168330"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b030-exit-1",
+    "description": "Walking onto exit 1 of WAL_B030 (scene 290) should lead to scene 287",
+    "plan": "# wal-wal-b030-exit-1: Walking onto exit 1 of WAL_B030 (scene 290) should lead to scene 287\nlimit 20000\nenter 33058 1 16712191 1\ncheckpoint entered\nexit 1 287\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 290 save 90567a2aa84c5d7c state 4075196a3e82d306 ram 0000000000000000",
+     "arrived frame 317 scene 287 save 2b1c68c78f6ae93d state 761a8465bb75c856 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (400, 336): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a24a9ac65fb0e4087e27dbf234f37a1"
+     },
+     {
+      "frames": 88,
+      "sha256": "dc2e636e5aa1a23cbdb21d801fc847b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b030-exit-2",
+    "description": "Walking onto exit 2 of WAL_B030 (scene 290) should lead to scene 315",
+    "plan": "# wal-wal-b030-exit-2: Walking onto exit 2 of WAL_B030 (scene 290) should lead to scene 315\nlimit 20000\nenter 33058 1 16712191 0\ncheckpoint entered\nexit 2 315\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 290 save 073f927cfdedaf51 state 769abc6a3dda3471 ram 0000000000000000",
+     "arrived frame 1547 scene 315 save 949348823671178f state e55704b0361e2bf0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 256): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 344,
+     "instruction_end": 110,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "337fbad22e3589bd39a7d3904c9053bf"
+     },
+     {
+      "frames": 1318,
+      "sha256": "9496e9b18ea56486a3f107801c01b959"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b040-exit-0",
+    "description": "Walking onto exit 0 of WAL_B040 (scene 291) should lead to scene 315",
+    "plan": "# wal-wal-b040-exit-0: Walking onto exit 0 of WAL_B040 (scene 291) should lead to scene 315\nlimit 20000\nenter 33059 0 16712191 1\ncheckpoint entered\nexit 0 315\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 291 save 298d61f31b2d45c0 state 879d9a1d61faf454 ram 0000000000000000",
+     "arrived frame 468 scene 315 save 967c7bee1587f1f7 state a24480f4b676a487 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (448, 256): 10 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "addfed897217b47794db057a6c8c1832"
+     },
+     {
+      "frames": 239,
+      "sha256": "d2f2c36c0709cbe59976b1f39b2b3df5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b040-exit-1",
+    "description": "Walking onto exit 1 of WAL_B040 (scene 291) should lead to scene 294",
+    "plan": "# wal-wal-b040-exit-1: Walking onto exit 1 of WAL_B040 (scene 291) should lead to scene 294\nlimit 20000\nenter 33059 0 16712191 1\ncheckpoint entered\nexit 1 294\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 291 save 298d61f31b2d45c0 state 879d9a1d61faf454 ram 0000000000000000",
+     "arrived frame 302 scene 294 save dd7df192154d0d37 state 5e5842f5542bb81d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (212, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "addfed897217b47794db057a6c8c1832"
+     },
+     {
+      "frames": 73,
+      "sha256": "d456576fa1d26524546df92179516349"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b050-exit-0",
+    "description": "Walking onto exit 0 of WAL_B050 (scene 292) should lead to scene 288",
+    "plan": "# wal-wal-b050-exit-0: Walking onto exit 0 of WAL_B050 (scene 292) should lead to scene 288\nlimit 20000\nenter 33060 1 16712191 0\ncheckpoint entered\nexit 0 288\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 292 save d541df4a069b919f state 8f8daabf26821429 ram 0000000000000000",
+     "arrived frame 316 scene 288 save a72f48c764519d77 state 51ed8991999f1cbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (252, 336): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "20a5b79257fa1b94cbb070fc66b5d220"
+     },
+     {
+      "frames": 87,
+      "sha256": "86575393710c8a5ab3053e74fc99c578"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b050-exit-1",
+    "description": "Walking onto exit 1 of WAL_B050 (scene 292) should lead to scene 310",
+    "plan": "# wal-wal-b050-exit-1: Walking onto exit 1 of WAL_B050 (scene 292) should lead to scene 310\nlimit 20000\nenter 33060 1 16712191 1\ncheckpoint entered\nexit 1 310\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 292 save bda8abad96462a9a state 7c490473d501b83c ram 0000000000000000",
+     "arrived frame 304 scene 310 save 5cc67aa5406ab512 state 876adba0511f38ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (572, 256): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 68,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a412203ee3b2a92c9cf230113037f45c"
+     },
+     {
+      "frames": 75,
+      "sha256": "24d1eba209bf3204e88cf3a3d3373b11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b060-exit-0",
+    "description": "Walking onto exit 0 of WAL_B060 (scene 293) should lead to scene 296",
+    "plan": "# wal-wal-b060-exit-0: Walking onto exit 0 of WAL_B060 (scene 293) should lead to scene 296\nlimit 20000\nenter 33061 0 16712191 1\ncheckpoint entered\nexit 0 296\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 293 save c9ef0e08e7aeacbe state 590bc7b60e7dae37 ram 0000000000000000",
+     "arrived frame 392 scene 296 save 0035b8dd21106c88 state 7ba84afc8f3728ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (172, 256): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ca13fde09b4b9b4f84d8264ba13840a"
+     },
+     {
+      "frames": 163,
+      "sha256": "c097c2b326de85529ed31f21b81481b5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b060-exit-1",
+    "description": "Walking onto exit 1 of WAL_B060 (scene 293) should lead to scene 295",
+    "plan": "# wal-wal-b060-exit-1: Walking onto exit 1 of WAL_B060 (scene 293) should lead to scene 295\nlimit 20000\nenter 33061 0 16712191 1\ncheckpoint entered\nexit 1 295\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 293 save c9ef0e08e7aeacbe state 590bc7b60e7dae37 ram 0000000000000000",
+     "arrived frame 302 scene 295 save 568be304f8dffbce state 349b250c7aea0c7e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (312, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ca13fde09b4b9b4f84d8264ba13840a"
+     },
+     {
+      "frames": 73,
+      "sha256": "dce2b7aecc98e982b0b07728acdc297f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b070-exit-0",
+    "description": "Walking onto exit 0 of WAL_B070 (scene 294) should lead to scene 291",
+    "plan": "# wal-wal-b070-exit-0: Walking onto exit 0 of WAL_B070 (scene 294) should lead to scene 291\nlimit 20000\nenter 33062 1 16712191 3\ncheckpoint entered\nexit 0 291\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 294 save 5bf5a264a9894122 state 36e3ef4193c66282 ram 0000000000000000",
+     "arrived frame 1680 scene 291 save 9940602212cacad1 state c4c118c600ac1bf8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (764, 336): 8 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 343,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a23661708692877fabd25a44bf8b427e"
+     },
+     {
+      "frames": 1451,
+      "sha256": "fdf298972bc45cd473924851929f35f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b070-exit-1",
+    "description": "Walking onto exit 1 of WAL_B070 (scene 294) should lead to scene 314",
+    "plan": "# wal-wal-b070-exit-1: Walking onto exit 1 of WAL_B070 (scene 294) should lead to scene 314\nlimit 20000\nenter 33062 1 16712191 3\ncheckpoint entered\nexit 1 314\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 294 save 5bf5a264a9894122 state 36e3ef4193c66282 ram 0000000000000000",
+     "arrived frame 406 scene 314 save 0108ec096c4df996 state 1c4143ebe118a0c8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (296, 256): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a23661708692877fabd25a44bf8b427e"
+     },
+     {
+      "frames": 177,
+      "sha256": "5c3bf671722a70e3ac6da514bb4bc7e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b070-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b070-exit-2",
+    "description": "Walking onto exit 2 of WAL_B070 (scene 294) should lead to scene 316",
+    "plan": "# wal-wal-b070-exit-2: Walking onto exit 2 of WAL_B070 (scene 294) should lead to scene 316\nlimit 20000\nenter 33062 1 16712191 3\ncheckpoint entered\nexit 2 316\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 294 save 5bf5a264a9894122 state 36e3ef4193c66282 ram 0000000000000000",
+     "arrived frame 2479 scene 316 save b04775b6fa90290e state b7a4bc459efbdd50 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1084, 256): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 446,
+     "instruction_end": 130,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a23661708692877fabd25a44bf8b427e"
+     },
+     {
+      "frames": 2250,
+      "sha256": "fee51893f6fdc542c6e5331cbea74d90"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b070-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b070-exit-3",
+    "description": "Walking onto exit 3 of WAL_B070 (scene 294) should lead to scene 273",
+    "plan": "# wal-wal-b070-exit-3: Walking onto exit 3 of WAL_B070 (scene 294) should lead to scene 273\nlimit 20000\nenter 33062 1 16712191 3\ncheckpoint entered\nexit 3 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 294 save 5bf5a264a9894122 state 36e3ef4193c66282 ram 0000000000000000",
+     "arrived frame 293 scene 273 save 0ab400294b2f524d state 43139163f8498c78 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 55,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a23661708692877fabd25a44bf8b427e"
+     },
+     {
+      "frames": 64,
+      "sha256": "46aa2c2bf0323f945517661b70454702"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b080-exit-0",
+    "description": "Walking onto exit 0 of WAL_B080 (scene 295) should lead to scene 293",
+    "plan": "# wal-wal-b080-exit-0: Walking onto exit 0 of WAL_B080 (scene 295) should lead to scene 293\nlimit 20000\nenter 33063 1 16712191 0\ncheckpoint entered\nexit 0 293\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 295 save f0fceafcd9f54580 state e18e7487e04a3759 ram 0000000000000000",
+     "arrived frame 312 scene 293 save f3d4525a6465ca04 state 610d5f6d1481a23b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (512, 336): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6ce203b31a668bc8c9b2b88c278531f9"
+     },
+     {
+      "frames": 83,
+      "sha256": "a1482559ab6e8c05d1df40e9de112668"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b080-exit-1",
+    "description": "Walking onto exit 1 of WAL_B080 (scene 295) should lead to scene 303",
+    "plan": "# wal-wal-b080-exit-1: Walking onto exit 1 of WAL_B080 (scene 295) should lead to scene 303\nlimit 20000\nenter 33063 1 16712191 0\ncheckpoint entered\nexit 1 303\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 295 save f0fceafcd9f54580 state e18e7487e04a3759 ram 0000000000000000",
+     "arrived frame 419 scene 303 save 262c76673058e3da state b27b4c3e0d48e1f6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (228, 256): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6ce203b31a668bc8c9b2b88c278531f9"
+     },
+     {
+      "frames": 190,
+      "sha256": "26d0749979a09882fced69b0c373b1e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b100-exit-0",
+    "description": "Walking onto exit 0 of WAL_B100 (scene 296) should lead to scene 293",
+    "plan": "# wal-wal-b100-exit-0: Walking onto exit 0 of WAL_B100 (scene 296) should lead to scene 293\nlimit 20000\nenter 33064 0 16712191 0\ncheckpoint entered\nexit 0 293\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 296 save a779e85ab2644472 state 9df72e793ad7b9a8 ram 0000000000000000",
+     "arrived frame 303 scene 293 save a8893c65df2af821 state 8a528647a0d1ea95 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (59, 426): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1339eaeca48d525fb6d62f480c718f7c"
+     },
+     {
+      "frames": 74,
+      "sha256": "c8c1aa85d340ca833bc962b13e9d08d3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b100-exit-1",
+    "description": "Walking onto exit 1 of WAL_B100 (scene 296) should lead to scene 297",
+    "plan": "# wal-wal-b100-exit-1: Walking onto exit 1 of WAL_B100 (scene 296) should lead to scene 297\nlimit 20000\nenter 33064 0 16712191 0\ncheckpoint entered\nexit 1 297\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 296 save a779e85ab2644472 state 9df72e793ad7b9a8 ram 0000000000000000",
+     "arrived frame 2198 scene 297 save 716ceeda411dffdf state 9101054faab4caae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 48): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1790 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 385,
+     "instruction_end": 132,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1339eaeca48d525fb6d62f480c718f7c"
+     },
+     {
+      "frames": 1969,
+      "sha256": "6dd617d17c38ac932b6d807682948d34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b110-exit-0",
+    "description": "Walking onto exit 0 of WAL_B110 (scene 297) should lead to scene 296",
+    "plan": "# wal-wal-b110-exit-0: Walking onto exit 0 of WAL_B110 (scene 297) should lead to scene 296\nlimit 20000\nenter 33065 1 16712191 0\ncheckpoint entered\nexit 0 296\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 297 save 14d30d4b4edf5f8e state 68e5530a140a8eb3 ram 0000000000000000",
+     "arrived frame 298 scene 296 save 6dacdea9f4d007a5 state 0cd37ee29e0132c8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (53, 305): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "331d3ab6496b20cb732b0eb2fa794675"
+     },
+     {
+      "frames": 69,
+      "sha256": "ab1c2783059e27dfdd4165ba11a9090c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b110-exit-1",
+    "description": "Walking onto exit 1 of WAL_B110 (scene 297) should lead to scene 298",
+    "plan": "# wal-wal-b110-exit-1: Walking onto exit 1 of WAL_B110 (scene 297) should lead to scene 298\nlimit 20000\nenter 33065 1 16712191 0\ncheckpoint entered\nexit 1 298\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 297 save 14d30d4b4edf5f8e state 68e5530a140a8eb3 ram 0000000000000000",
+     "arrived frame 468 scene 298 save ffedfaa22da51423 state f2f60eb48f773564 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (293, 303): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "331d3ab6496b20cb732b0eb2fa794675"
+     },
+     {
+      "frames": 239,
+      "sha256": "ac5f8bd016539cc971b04f68b82fddad"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b110-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b110-exit-2",
+    "description": "Walking onto exit 2 of WAL_B110 (scene 297) should lead to scene 299",
+    "plan": "# wal-wal-b110-exit-2: Walking onto exit 2 of WAL_B110 (scene 297) should lead to scene 299\nlimit 20000\nenter 33065 1 16712191 1\ncheckpoint entered\nexit 2 299\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 297 save 75e690c4f8753523 state df6483c748e2625a ram 0000000000000000",
+     "arrived frame 1106 scene 299 save ab33f28f911e1109 state 14dd027c971e207c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (649, 314): 8 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 366,
+     "instruction_end": 114,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "808f2dc774503370e0ba57a4dfe7e3b3"
+     },
+     {
+      "frames": 877,
+      "sha256": "a7c10608c76316396c227e16d82d8f9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b110-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b110-exit-3",
+    "description": "Walking onto exit 3 of WAL_B110 (scene 297) should lead to scene 300",
+    "plan": "# wal-wal-b110-exit-3: Walking onto exit 3 of WAL_B110 (scene 297) should lead to scene 300\nlimit 20000\nenter 33065 1 16712191 0\ncheckpoint entered\nexit 3 300\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 297 save 14d30d4b4edf5f8e state 68e5530a140a8eb3 ram 0000000000000000",
+     "arrived frame 1094 scene 300 save fd915baba693e854 state ca4f263c1e6adb1e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (926, 314): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 410 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 292,
+     "instruction_end": 102,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "331d3ab6496b20cb732b0eb2fa794675"
+     },
+     {
+      "frames": 865,
+      "sha256": "d147242f7fe7e3e556fba030512e934b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b120-exit-0",
+    "description": "Walking onto exit 0 of WAL_B120 (scene 298) should lead to scene 288",
+    "plan": "# wal-wal-b120-exit-0: Walking onto exit 0 of WAL_B120 (scene 298) should lead to scene 288\nlimit 20000\nenter 33066 0 16712191 0\ncheckpoint entered\nexit 0 288\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 298 save bc6031bd60699b58 state bb7c3d9e26e4a3ac ram 0000000000000000",
+     "arrived frame 296 scene 288 save 33ef9b1bed0ea9ee state 3901c8947e71e014 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (38, 207): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "16f26a53cb81d08f10cb6c3d89e46cec"
+     },
+     {
+      "frames": 67,
+      "sha256": "4cf63e291705db16b331dfe3628fa629"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b120-exit-1",
+    "description": "Walking onto exit 1 of WAL_B120 (scene 298) should lead to scene 297",
+    "plan": "# wal-wal-b120-exit-1: Walking onto exit 1 of WAL_B120 (scene 298) should lead to scene 297\nlimit 20000\nenter 33066 0 16712191 0\ncheckpoint entered\nexit 1 297\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 298 save bc6031bd60699b58 state bb7c3d9e26e4a3ac ram 0000000000000000",
+     "arrived frame 399 scene 297 save 931cf1345fb8eab9 state c8d640fe860f76a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (281, 59): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "16f26a53cb81d08f10cb6c3d89e46cec"
+     },
+     {
+      "frames": 170,
+      "sha256": "a0afd370fa4fe7d2f707c97c097738f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b130-exit-0",
+    "description": "Walking onto exit 0 of WAL_B130 (scene 299) should lead to scene 297",
+    "plan": "# wal-wal-b130-exit-0: Walking onto exit 0 of WAL_B130 (scene 299) should lead to scene 297\nlimit 20000\nenter 33067 2 16712191 0\ncheckpoint entered\nexit 0 297\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 299 save a2a937e061ca758b state 1eb87447799d0edf ram 0000000000000000",
+     "arrived frame 294 scene 297 save d6262381b17a2b32 state 80868f8c18d1fcb3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (28, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd74b8c40606a3f0b866f644ba897f6e"
+     },
+     {
+      "frames": 65,
+      "sha256": "7a77b10bcbc1f555be79a37d7a79b9ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b140-exit-0",
+    "description": "Walking onto exit 0 of WAL_B140 (scene 300) should lead to scene 287",
+    "plan": "# wal-wal-b140-exit-0: Walking onto exit 0 of WAL_B140 (scene 300) should lead to scene 287\nlimit 20000\nenter 33068 0 16712191 0\ncheckpoint entered\nexit 0 287\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 300 save 8ee7d12251e8e576 state ca45771808877f88 ram 0000000000000000",
+     "arrived frame 298 scene 287 save a8fddf0bd9f401b2 state 9769495b4024bcc7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (297, 212): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 42,
+     "instruction": 131,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "72ab866d5202552e89d195641b2923fb"
+     },
+     {
+      "frames": 69,
+      "sha256": "8c19363004b3263ba854fd065260cf2d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b140-exit-1",
+    "description": "Walking onto exit 1 of WAL_B140 (scene 300) should lead to scene 297",
+    "plan": "# wal-wal-b140-exit-1: Walking onto exit 1 of WAL_B140 (scene 300) should lead to scene 297\nlimit 20000\nenter 33068 0 16712191 0\ncheckpoint entered\nexit 1 297\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 300 save 8ee7d12251e8e576 state ca45771808877f88 ram 0000000000000000",
+     "arrived frame 601 scene 297 save c5ef5c1e82b5d61f state 826e3230d37246e8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (17, 119): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 53,
+     "instruction": 142,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "72ab866d5202552e89d195641b2923fb"
+     },
+     {
+      "frames": 372,
+      "sha256": "6d82a2b6aa209c3f34f65cb612c87f02"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b150-exit-0",
+    "description": "Walking onto exit 0 of WAL_B150 (scene 301) should lead to scene 289",
+    "plan": "# wal-wal-b150-exit-0: Walking onto exit 0 of WAL_B150 (scene 301) should lead to scene 289\nlimit 20000\nenter 33069 0 16712191 0\ncheckpoint entered\nexit 0 289\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 301 save 5c4c0c14fd4105e3 state d195f5e148a00595 ram 0000000000000000",
+     "arrived frame 302 scene 289 save 0c39ca68cd98c4cd state 43fa75d75f0bab29 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (56, 438): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 63,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "44971aef4c154ae92979f6228858da47"
+     },
+     {
+      "frames": 73,
+      "sha256": "c5eedf8e16466dd88883ed27a91eba03"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b150-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b150-exit-1",
+    "description": "Walking onto exit 1 of WAL_B150 (scene 301) should lead to scene 302",
+    "plan": "# wal-wal-b150-exit-1: Walking onto exit 1 of WAL_B150 (scene 301) should lead to scene 302\nlimit 20000\nenter 33069 0 16712191 0\ncheckpoint entered\nexit 1 302\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 301 save 5c4c0c14fd4105e3 state d195f5e148a00595 ram 0000000000000000",
+     "arrived frame 418 scene 302 save d4d4e8b31ba20722 state 7b87421c33a2311d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 96): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "44971aef4c154ae92979f6228858da47"
+     },
+     {
+      "frames": 189,
+      "sha256": "df71a012c4ab11795a0a3896a81d1ee6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b150-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b150-exit-2",
+    "description": "Walking onto exit 2 of WAL_B150 (scene 301) should lead to scene 304",
+    "plan": "# wal-wal-b150-exit-2: Walking onto exit 2 of WAL_B150 (scene 301) should lead to scene 304\nlimit 20000\nenter 33069 0 16712191 0\ncheckpoint entered\nexit 2 304\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 301 save 5c4c0c14fd4105e3 state d195f5e148a00595 ram 0000000000000000",
+     "arrived frame 1841 scene 304 save 703dec3e7bbde006 state 91cf20051959bbf7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 64): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 453,
+     "instruction_end": 144,
+     "scene": 3,
+     "song": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "44971aef4c154ae92979f6228858da47"
+     },
+     {
+      "frames": 1612,
+      "sha256": "9c5c8e1100f4306cf4ced38c1b92165e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b160-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b160-cutscene",
+    "description": "Entering WAL_B160 (scene 302) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# wal-wal-b160-cutscene: Entering WAL_B160 (scene 302) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 33070 0 16712191 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 302 save bc70628eb5a4547c state 71776c83e181c1d8 ram 0000000000000000",
+     "watched frame 390 scene 303 save 45bdea6f493ee547 state 4103f439d1884aa5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 159 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "af4f72a1be3b075b8afa2164789d2413"
+     },
+     {
+      "frames": 161,
+      "sha256": "0744e1924e571f384e2edc0d320fc494"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b170-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b170-exit-0",
+    "description": "Walking onto exit 0 of WAL_B170 (scene 303) should lead to scene 302",
+    "plan": "# wal-wal-b170-exit-0: Walking onto exit 0 of WAL_B170 (scene 303) should lead to scene 302\nlimit 20000\nenter 33071 0 16712191 1\ncheckpoint entered\nexit 0 302\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 303 save bd9a48844d1b989c state 72647461c17377b1 ram 0000000000000000",
+     "arrived frame 582 scene 302 save fec472398f980067 state 1de88da48a0cd998 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 72): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0ebcd52e67a491a4ce477b6202894679"
+     },
+     {
+      "frames": 353,
+      "sha256": "0a2285ad06e0274f97e23cf802462074"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b170-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b170-exit-1",
+    "description": "Walking onto exit 1 of WAL_B170 (scene 303) should lead to scene 295",
+    "plan": "# wal-wal-b170-exit-1: Walking onto exit 1 of WAL_B170 (scene 303) should lead to scene 295\nlimit 20000\nenter 33071 0 16712191 1\ncheckpoint entered\nexit 1 295\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 303 save bd9a48844d1b989c state 72647461c17377b1 ram 0000000000000000",
+     "arrived frame 301 scene 295 save b709fc35a9234233 state 4597d0eb9a2fb74c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (327, 567): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0ebcd52e67a491a4ce477b6202894679"
+     },
+     {
+      "frames": 72,
+      "sha256": "32f72adf53ba05e5436d8b3590336bef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b180-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b180-exit-0",
+    "description": "Walking onto exit 0 of WAL_B180 (scene 304) should lead to scene 301",
+    "plan": "# wal-wal-b180-exit-0: Walking onto exit 0 of WAL_B180 (scene 304) should lead to scene 301\nlimit 20000\nenter 33072 1 16712191 0\ncheckpoint entered\nexit 0 301\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 304 save da1f02a4a37591fb state 277b7dfe513b3987 ram 0000000000000000",
+     "arrived frame 304 scene 301 save e8b23544cb215c5f state ca22d6c5efdf16df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (54, 432): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 73,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b39e3f74e14038c75cfcf750d9cca62f"
+     },
+     {
+      "frames": 75,
+      "sha256": "12ea446b45d8158e3078767ecb72683a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b180-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b180-exit-1",
+    "description": "Walking onto exit 1 of WAL_B180 (scene 304) should lead to scene 305",
+    "plan": "# wal-wal-b180-exit-1: Walking onto exit 1 of WAL_B180 (scene 304) should lead to scene 305\nlimit 20000\nenter 33072 1 16712191 0\ncheckpoint entered\nexit 1 305\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 304 save da1f02a4a37591fb state 277b7dfe513b3987 ram 0000000000000000",
+     "arrived frame 1435 scene 305 save 9e3fd6af600d6173 state 8b0118913a3da594 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (535, 441): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 110,
+     "instruction": 371,
+     "scene": 3,
+     "song": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b39e3f74e14038c75cfcf750d9cca62f"
+     },
+     {
+      "frames": 1206,
+      "sha256": "3b8d96fc069a7687d3e33db9452d538d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b180-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b180-exit-2",
+    "description": "Walking onto exit 2 of WAL_B180 (scene 304) should lead to scene 306",
+    "plan": "# wal-wal-b180-exit-2: Walking onto exit 2 of WAL_B180 (scene 304) should lead to scene 306\nlimit 20000\nenter 33072 1 16712191 0\ncheckpoint entered\nexit 2 306\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 304 save da1f02a4a37591fb state 277b7dfe513b3987 ram 0000000000000000",
+     "arrived frame 1551 scene 306 save 915507dca0d96e95 state 0856e8072ac41f35 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (851, 24): 10 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 112,
+     "instruction": 384,
+     "scene": 3,
+     "song": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b39e3f74e14038c75cfcf750d9cca62f"
+     },
+     {
+      "frames": 1322,
+      "sha256": "ba85f5a08885ecf95176cbd0eaedd3c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b190-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b190-exit-0",
+    "description": "Walking onto exit 0 of WAL_B190 (scene 305) should lead to one of scene 286, scene 918, scene 919, scene 920",
+    "plan": "# wal-wal-b190-exit-0: Walking onto exit 0 of WAL_B190 (scene 305) should lead to one of scene 286, scene 918, scene 919, scene 920\nlimit 20000\nenter 33073 0 16712191 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 305 save 13168be4c1705087 state 2b31f98fd3f57a86 ram 0000000000000000",
+     "arrived frame 298 scene 918 save 312599772472c844 state 27751edab638665b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (297, 212): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aef4645e95466aa52d7f3a4a7da9284f"
+     },
+     {
+      "frames": 69,
+      "sha256": "d858f64474e9c88f081918a5a200ac7b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b190-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b190-exit-1",
+    "description": "Walking onto exit 1 of WAL_B190 (scene 305) should lead to scene 304",
+    "plan": "# wal-wal-b190-exit-1: Walking onto exit 1 of WAL_B190 (scene 305) should lead to scene 304\nlimit 20000\nenter 33073 0 16712191 0\ncheckpoint entered\nexit 1 304\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 305 save 13168be4c1705087 state 2b31f98fd3f57a86 ram 0000000000000000",
+     "arrived frame 601 scene 304 save 8dd6ab68db544234 state 6a666c2e805015ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (17, 119): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 52,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aef4645e95466aa52d7f3a4a7da9284f"
+     },
+     {
+      "frames": 372,
+      "sha256": "b363f66667f656f48f420d80eeef9fc1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b200-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b200-cutscene",
+    "description": "Entering WAL_B200 (scene 306) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# wal-wal-b200-cutscene: Entering WAL_B200 (scene 306) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 33074 0 16712191 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 306 save 7896b79c9e95a170 state 7ec1f0dc28690877 ram 0000000000000000",
+     "watched frame 390 scene 307 save 7e4bf69ea33e03db state e40f2e85473f1b69 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 159 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 61,
+     "scene": 3,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a5a1c8900fd3bc4460683ef69973ddd"
+     },
+     {
+      "frames": 161,
+      "sha256": "61171189dd476a70c326f58cf9726cf7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b210-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b210-exit-0",
+    "description": "Walking onto exit 0 of WAL_B210 (scene 307) should lead to scene 306",
+    "plan": "# wal-wal-b210-exit-0: Walking onto exit 0 of WAL_B210 (scene 307) should lead to scene 306\nlimit 20000\nenter 33075 0 16712191 0\ncheckpoint entered\nexit 0 306\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 307 save 579839609a8752dd state c5a7b7bd67f7f622 ram 0000000000000000",
+     "arrived frame 294 scene 306 save 3f10b1b2e7e360fb state 68fdf4491d942401 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 52,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2c7e3cdb4720997475876b0a2a578188"
+     },
+     {
+      "frames": 65,
+      "sha256": "f44ce2dd0bd4b5bfd76dce91905a6b57"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b210-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b210-exit-1",
+    "description": "Walking onto exit 1 of WAL_B210 (scene 307) should lead to scene 308",
+    "plan": "# wal-wal-b210-exit-1: Walking onto exit 1 of WAL_B210 (scene 307) should lead to scene 308\nlimit 20000\nenter 33075 0 16712191 0\ncheckpoint entered\nexit 1 308\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 307 save 579839609a8752dd state c5a7b7bd67f7f622 ram 0000000000000000",
+     "arrived frame 1356 scene 308 save 55974097ba9a805c state 4016d95bc20e3b38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (443, 439): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 830 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 337,
+     "instruction_end": 118,
+     "scene": 3,
+     "song": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2c7e3cdb4720997475876b0a2a578188"
+     },
+     {
+      "frames": 1127,
+      "sha256": "e581d7d414ea3a647adb74186246faf1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b210-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b210-exit-2",
+    "description": "Walking onto exit 2 of WAL_B210 (scene 307) should lead to scene 309",
+    "plan": "# wal-wal-b210-exit-2: Walking onto exit 2 of WAL_B210 (scene 307) should lead to scene 309\nlimit 20000\nenter 33075 0 16712191 0\ncheckpoint entered\nexit 2 309\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 307 save 579839609a8752dd state c5a7b7bd67f7f622 ram 0000000000000000",
+     "arrived frame 1697 scene 309 save 3f415dc6242a4593 state 8a6e2375e28b1de9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (616, 229): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 378,
+     "instruction_end": 133,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2c7e3cdb4720997475876b0a2a578188"
+     },
+     {
+      "frames": 1468,
+      "sha256": "ede8fd7e963050dbbbcbd60686a98a13"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b220-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b220-exit-0",
+    "description": "Walking onto exit 0 of WAL_B220 (scene 308) should lead to scene 287",
+    "plan": "# wal-wal-b220-exit-0: Walking onto exit 0 of WAL_B220 (scene 308) should lead to scene 287\nlimit 20000\nenter 33076 0 16712191 0\ncheckpoint entered\nexit 0 287\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 308 save 4999a6a7f03e09ae state 87324d3d6a21a444 ram 0000000000000000",
+     "arrived frame 298 scene 287 save f5cb1a939aee7a37 state 7a6fa2ba304c27f2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (297, 212): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 47,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a12cb19c106953299e096fae720529a9"
+     },
+     {
+      "frames": 69,
+      "sha256": "9691a99df0d6e13d7d0f69ba48089a52"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b220-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b220-exit-1",
+    "description": "Walking onto exit 1 of WAL_B220 (scene 308) should lead to scene 307",
+    "plan": "# wal-wal-b220-exit-1: Walking onto exit 1 of WAL_B220 (scene 308) should lead to scene 307\nlimit 20000\nenter 33076 0 16712191 0\ncheckpoint entered\nexit 1 307\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 308 save 4999a6a7f03e09ae state 87324d3d6a21a444 ram 0000000000000000",
+     "arrived frame 604 scene 307 save fc7d144141703716 state cfb950582817e065 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (17, 119): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 60,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a12cb19c106953299e096fae720529a9"
+     },
+     {
+      "frames": 375,
+      "sha256": "d2e5d8f643b8df66674af83d1c982aa1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b230-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b230-exit-0",
+    "description": "Walking onto exit 0 of WAL_B230 (scene 309) should lead to scene 307",
+    "plan": "# wal-wal-b230-exit-0: Walking onto exit 0 of WAL_B230 (scene 309) should lead to scene 307\nlimit 20000\nenter 33077 1 16712191 1\ncheckpoint entered\nexit 0 307\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 309 save d295a578fbc5998f state ad3c0faca92ab1cc ram 0000000000000000",
+     "arrived frame 961 scene 307 save c8e1d50551bc7363 state cb5a7897029d0390 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 288,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b9c03f76a015693660fbc52d534560b5"
+     },
+     {
+      "frames": 732,
+      "sha256": "ee08799b9d1d10c07a4bf503ab7ed836"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b230-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b230-exit-1",
+    "description": "Walking onto exit 1 of WAL_B230 (scene 309) should lead to scene 290",
+    "plan": "# wal-wal-b230-exit-1: Walking onto exit 1 of WAL_B230 (scene 309) should lead to scene 290\nlimit 20000\nenter 33077 1 16712191 1\ncheckpoint entered\nexit 1 290\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 309 save d295a578fbc5998f state ad3c0faca92ab1cc ram 0000000000000000",
+     "arrived frame 309 scene 290 save 6448fc9ac001454f state f699799428d63055 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (423, 452): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b9c03f76a015693660fbc52d534560b5"
+     },
+     {
+      "frames": 80,
+      "sha256": "30077dfb83b02356ccb349121fc61888"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b240-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b240-exit-0",
+    "description": "Walking onto exit 0 of WAL_B240 (scene 310) should lead to scene 292",
+    "plan": "# wal-wal-b240-exit-0: Walking onto exit 0 of WAL_B240 (scene 310) should lead to scene 292\nlimit 20000\nenter 33078 0 16712191 0\ncheckpoint entered\nexit 0 292\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 310 save d5026f69945a44b4 state 988187da37f69079 ram 0000000000000000",
+     "arrived frame 304 scene 292 save 1a8d6eba95bdf7a8 state 440281e7314df968 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (58, 310): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 69,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7801ca54b60085bcef637c3fe370b9a1"
+     },
+     {
+      "frames": 75,
+      "sha256": "4999517cfd4709bc33b9e0d8acdc9c53"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b240-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b240-exit-1",
+    "description": "Walking onto exit 1 of WAL_B240 (scene 310) should lead to scene 311",
+    "plan": "# wal-wal-b240-exit-1: Walking onto exit 1 of WAL_B240 (scene 310) should lead to scene 311\nlimit 20000\nenter 33078 0 16712191 0\ncheckpoint entered\nexit 1 311\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 310 save d5026f69945a44b4 state 988187da37f69079 ram 0000000000000000",
+     "arrived frame 1410 scene 311 save e9d28d4863194b79 state 45222a970c9f77ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (472, 72): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 377,
+     "instruction_end": 113,
+     "scene": 3,
+     "song": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7801ca54b60085bcef637c3fe370b9a1"
+     },
+     {
+      "frames": 1181,
+      "sha256": "90624774ce4e22e21568058cd2160045"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b250-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b250-exit-0",
+    "description": "Walking onto exit 0 of WAL_B250 (scene 311) should lead to scene 312",
+    "plan": "# wal-wal-b250-exit-0: Walking onto exit 0 of WAL_B250 (scene 311) should lead to scene 312\nlimit 20000\nenter 33079 0 16712191 1\ncheckpoint entered\nexit 0 312\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 311 save 16fa6c6e4be26254 state 272c11a5a3138e6e ram 0000000000000000",
+     "arrived frame 408 scene 312 save 3a56b841524f8935 state d176a5da91e41224 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (297, 212): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ceb08c64ac4255c9ff11741e8eeb41a7"
+     },
+     {
+      "frames": 179,
+      "sha256": "0c5f0b076b022585e2cca88a746d4165"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b250-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b250-exit-1",
+    "description": "Walking onto exit 1 of WAL_B250 (scene 311) should lead to scene 310",
+    "plan": "# wal-wal-b250-exit-1: Walking onto exit 1 of WAL_B250 (scene 311) should lead to scene 310\nlimit 20000\nenter 33079 0 16712191 1\ncheckpoint entered\nexit 1 310\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 311 save 16fa6c6e4be26254 state 272c11a5a3138e6e ram 0000000000000000",
+     "arrived frame 300 scene 310 save a2c77593e086719f state 67ad4352e3a33cc3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (17, 119): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 53,
+     "scene": 3,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ceb08c64ac4255c9ff11741e8eeb41a7"
+     },
+     {
+      "frames": 71,
+      "sha256": "077635b9d6e7b84294046f9fc4b63139"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b260-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b260-exit-0",
+    "description": "Walking onto exit 0 of WAL_B260 (scene 312) should lead to scene 288",
+    "plan": "# wal-wal-b260-exit-0: Walking onto exit 0 of WAL_B260 (scene 312) should lead to scene 288\nlimit 20000\nenter 33080 0 16712191 0\ncheckpoint entered\nexit 0 288\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 312 save dda2938fe9c3cac2 state a93ed2a03eb47f5c ram 0000000000000000",
+     "arrived frame 309 scene 288 save 9ce1c813a61f836d state f0013df3eeeaf6e4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (358, 321): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ddf56d317eed75a7cd0f64aea57f0c6f"
+     },
+     {
+      "frames": 80,
+      "sha256": "1e9c49ff3e7a516890fb063881b07f08"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b260-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b260-exit-1",
+    "description": "Walking onto exit 1 of WAL_B260 (scene 312) should lead to scene 311",
+    "plan": "# wal-wal-b260-exit-1: Walking onto exit 1 of WAL_B260 (scene 312) should lead to scene 311\nlimit 20000\nenter 33080 0 16712191 0\ncheckpoint entered\nexit 1 311\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 312 save dda2938fe9c3cac2 state a93ed2a03eb47f5c ram 0000000000000000",
+     "arrived frame 1418 scene 311 save 2a1f2bb165a2418a state ddf16961b94c21c8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 87): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 336,
+     "instruction_end": 110,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ddf56d317eed75a7cd0f64aea57f0c6f"
+     },
+     {
+      "frames": 1189,
+      "sha256": "38e2e9929c8962fc28535360373b8a34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b260-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b260-exit-2",
+    "description": "Walking onto exit 2 of WAL_B260 (scene 312) should lead to scene 313",
+    "plan": "# wal-wal-b260-exit-2: Walking onto exit 2 of WAL_B260 (scene 312) should lead to scene 313\nlimit 20000\nenter 33080 0 16712191 0\ncheckpoint entered\nexit 2 313\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 312 save dda2938fe9c3cac2 state a93ed2a03eb47f5c ram 0000000000000000",
+     "arrived frame 1841 scene 313 save fffb6b4e52bf4bb1 state 9d14f5edc5c443cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 75): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1430 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 340,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ddf56d317eed75a7cd0f64aea57f0c6f"
+     },
+     {
+      "frames": 1612,
+      "sha256": "70bcb7af56b8d068c7027c99594b3034"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b270-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b270-exit-0",
+    "description": "Walking onto exit 0 of WAL_B270 (scene 313) should lead to scene 312",
+    "plan": "# wal-wal-b270-exit-0: Walking onto exit 0 of WAL_B270 (scene 313) should lead to scene 312\nlimit 20000\nenter 33081 0 16712191 0\ncheckpoint entered\nexit 0 312\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 313 save a4e41992434ad75f state 20167f54656d6236 ram 0000000000000000",
+     "arrived frame 292 scene 312 save 12f57550a694acc6 state 4e5bd93df84bf377 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (31, 403): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f49f93cd8d00d2bced64c6f7b66d0e1"
+     },
+     {
+      "frames": 63,
+      "sha256": "d42691da6c221f0f88fbd21aad5cd0a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b270-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b270-exit-1",
+    "description": "Walking onto exit 1 of WAL_B270 (scene 313) should lead to scene 314",
+    "plan": "# wal-wal-b270-exit-1: Walking onto exit 1 of WAL_B270 (scene 313) should lead to scene 314\nlimit 20000\nenter 33081 0 16712191 1\ncheckpoint entered\nexit 1 314\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 313 save 29116375ea5b70e2 state d3837034bb927ad5 ram 0000000000000000",
+     "arrived frame 293 scene 314 save efebab18ade110f3 state b342a6e7d55c0aba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 92): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 58,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1639c36da6affcd47966114930e79d97"
+     },
+     {
+      "frames": 64,
+      "sha256": "4b715402b3fad5ada8da402d3deefc80"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b280-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b280-exit-0",
+    "description": "Walking onto exit 0 of WAL_B280 (scene 314) should lead to scene 294",
+    "plan": "# wal-wal-b280-exit-0: Walking onto exit 0 of WAL_B280 (scene 314) should lead to scene 294\nlimit 20000\nenter 33082 0 16712191 0\ncheckpoint entered\nexit 0 294\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 314 save fe9fb6cd35effae8 state ade685c7889e0127 ram 0000000000000000",
+     "arrived frame 309 scene 294 save 59ecd045211aa4e6 state 465031b8b0666157 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (435, 451): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c1f9269ea737b139a8f026bc20cea13d"
+     },
+     {
+      "frames": 80,
+      "sha256": "90f47d78016c0947696a24bd132a5086"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b280-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b280-exit-1",
+    "description": "Walking onto exit 1 of WAL_B280 (scene 314) should lead to scene 313",
+    "plan": "# wal-wal-b280-exit-1: Walking onto exit 1 of WAL_B280 (scene 314) should lead to scene 313\nlimit 20000\nenter 33082 0 16712191 1\ncheckpoint entered\nexit 1 313\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 314 save 6d389432b6115715 state 7010914ebed07236 ram 0000000000000000",
+     "arrived frame 292 scene 313 save 3216ff9107d1fa70 state 22a77aac36d6323e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 96): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4465c9635ad13b974af018eeb396b0d"
+     },
+     {
+      "frames": 63,
+      "sha256": "b96976099756f5f1a03a8f626d17b43f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b290-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b290-exit-0",
+    "description": "Walking onto exit 0 of WAL_B290 (scene 315) should lead to scene 291",
+    "plan": "# wal-wal-b290-exit-0: Walking onto exit 0 of WAL_B290 (scene 315) should lead to scene 291\nlimit 20000\nenter 33083 0 16712191 1\ncheckpoint entered\nexit 0 291\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 315 save ca562002ee51e008 state 1a754112aeb213ed ram 0000000000000000",
+     "arrived frame 569 scene 291 save bff8a327f4afee8b state b96ad26858951beb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (57, 372): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "166f81176374d9581a4828e6084b92c6"
+     },
+     {
+      "frames": 340,
+      "sha256": "d8724cf1f5206fb6b910aa5024421979"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b290-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b290-exit-1",
+    "description": "Walking onto exit 1 of WAL_B290 (scene 315) should lead to scene 290",
+    "plan": "# wal-wal-b290-exit-1: Walking onto exit 1 of WAL_B290 (scene 315) should lead to scene 290\nlimit 20000\nenter 33083 0 16712191 1\ncheckpoint entered\nexit 1 290\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 315 save ca562002ee51e008 state 1a754112aeb213ed ram 0000000000000000",
+     "arrived frame 308 scene 290 save ecc1fa1edf080a49 state 0f0cd550862f5e58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (663, 386): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "166f81176374d9581a4828e6084b92c6"
+     },
+     {
+      "frames": 79,
+      "sha256": "dc31fc2b2c43ed5789946489880cf841"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b300-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b300-exit-0",
+    "description": "Walking onto exit 0 of WAL_B300 (scene 316) should lead to one of scene 294, scene 708",
+    "plan": "# wal-wal-b300-exit-0: Walking onto exit 0 of WAL_B300 (scene 316) should lead to one of scene 294, scene 708\nlimit 20000\nenter 33084 0 16712191 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 316 save 3cce98dbb6ef0bc6 state b1958b13149d39d8 ram 0000000000000000",
+     "arrived frame 304 scene 294 save bb43df74b8304c5d state 674ecd34cba83f6e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (106, 307): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2417840d8d513690f09aab07abb88bca"
+     },
+     {
+      "frames": 75,
+      "sha256": "36b861c402cabfd921faf55ad0d3e34d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b310-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b310-exit-0",
+    "description": "Walking onto exit 0 of WAL_B310 (scene 629) should lead to scene 279",
+    "plan": "# wal-wal-b310-exit-0: Walking onto exit 0 of WAL_B310 (scene 629) should lead to scene 279\nlimit 20000\nenter 33397 1 16716031 1\ncheckpoint entered\nexit 0 279\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 629 save a46c8d5dbcad7119 state 39b5261446439ad9 ram 0000000000000000",
+     "arrived frame 444 scene 279 save f6d8bd99f966d942 state a41841d482d92ff1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 128): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 133,
+     "instruction_end": 37,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e358f0eac62d06a63cc741c5d35a5bf4"
+     },
+     {
+      "frames": 215,
+      "sha256": "c0653559ebf947d49e0c624e5800dfb9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-b310-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b310-exit-1",
+    "description": "Walking onto exit 1 of WAL_B310 (scene 629) should lead to scene 273",
+    "plan": "# wal-wal-b310-exit-1: Walking onto exit 1 of WAL_B310 (scene 629) should lead to scene 273\nlimit 20000\nenter 33397 1 16716031 1\ncheckpoint entered\nexit 1 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 629 save a46c8d5dbcad7119 state 39b5261446439ad9 ram 0000000000000000",
+     "arrived frame 328 scene 273 save f0183763156bbf59 state b818666f14d4ae65 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (299, 249): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e358f0eac62d06a63cc741c5d35a5bf4"
+     },
+     {
+      "frames": 99,
+      "sha256": "59650e2da42c99f42dec22dbe39def18"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-bs00-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-bs00-cutscene",
+    "description": "Entering WAL_BS00 (scene 286) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# wal-wal-bs00-cutscene: Entering WAL_BS00 (scene 286) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 33054 0 16712191 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 286 save 6c2e86cdb34692ec state 4f9be47db4af6f0f ram 0000000000000000",
+     "watched frame 1170 scene 631 save 3bcc1bdb401b36d8 state 920e1193b44c51ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 939 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 101,
+     "instruction": 211,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d47e0e7b3a38cc6411f8f2e118b4cd73"
+     },
+     {
+      "frames": 941,
+      "sha256": "e71924e2c607742dd9664467dbcb2fe0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-bs02-exit-0",
+    "description": "Walking onto exit 0 of WAL_BS02 (scene 918) should lead to scene 305",
+    "plan": "# wal-wal-bs02-exit-0: Walking onto exit 0 of WAL_BS02 (scene 918) should lead to scene 305\nlimit 20000\nenter 33686 0 16712191 0\ncheckpoint entered\nexit 0 305\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 918 save 6c3bd17d45f09bd6 state 3169f5e2ba592d56 ram 0000000000000000",
+     "arrived frame 295 scene 305 save ee988568837b7dc7 state 09751e762af51fbd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43aa87969c697add1eb1ad7c44d4e08b"
+     },
+     {
+      "frames": 66,
+      "sha256": "c60a2bb401618bba30798bb99675869f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-bs03-exit-0",
+    "description": "Walking onto exit 0 of WAL_BS03 (scene 919) should lead to scene 305",
+    "plan": "# wal-wal-bs03-exit-0: Walking onto exit 0 of WAL_BS03 (scene 919) should lead to scene 305\nlimit 20000\nenter 919 0 16776959 0\ncheckpoint entered\nexit 0 305\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 919 save c33f0589c73c375a state e9f757977a114f30 ram 0000000000000000",
+     "arrived frame 344 scene 305 save ee988568837b7dc7 state 05fc38ac87852bad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b222aea14f365ad6f19e7643c55230f4"
+     },
+     {
+      "frames": 115,
+      "sha256": "b2493ea9be4e542c55abde464fa34dc5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-bs04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-bs04-exit-0",
+    "description": "Walking onto exit 0 of WAL_BS04 (scene 920) should lead to scene 305",
+    "plan": "# wal-wal-bs04-exit-0: Walking onto exit 0 of WAL_BS04 (scene 920) should lead to scene 305\nlimit 20000\nenter 920 0 16717311 0\ncheckpoint entered\nexit 0 305\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 920 save 781bb6a4d302927c state 24ad2bc93f34ca7d ram 0000000000000000",
+     "arrived frame 406 scene 305 save 13168be4c1705087 state 40b041fac6f9cf30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 67,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4eef8bb63171cf55842aebbf3ddab73e"
+     },
+     {
+      "frames": 177,
+      "sha256": "47d33c98849121c27614b7e9fdbab1e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-drm0-exit-0",
+    "description": "Walking onto exit 0 of WAL_DRM0 (scene 285) should lead to scene 284",
+    "plan": "# wal-wal-drm0-exit-0: Walking onto exit 0 of WAL_DRM0 (scene 285) should lead to scene 284\nlimit 20000\nenter 285 0 16723455 0\ncheckpoint entered\nexit 0 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 285 save c1aec3d7dccfaf97 state afeef167b2122ab5 ram 0000000000000000",
+     "arrived frame 2167 scene 284 save 2e689ba830bb5cc3 state 61d414ae3db6a7ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 15): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 117,
+     "instruction": 303,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ee5a0871135d5306f1ef075a82e0df5"
+     },
+     {
+      "frames": 1938,
+      "sha256": "e914b407474c41fd28512d717d270af5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-drm1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-drm1-exit-0",
+    "description": "Walking onto exit 0 of WAL_DRM1 (scene 625) should lead to scene 284",
+    "plan": "# wal-wal-drm1-exit-0: Walking onto exit 0 of WAL_DRM1 (scene 625) should lead to scene 284\nlimit 20000\nenter 625 0 16715007 0\ncheckpoint entered\nexit 0 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 625 save a6ca1400bd21d52d state 3b708fc0aa9c332e ram 0000000000000000",
+     "arrived frame 309 scene 284 save a4f497baa07b59fe state 4ae9c0d8fc6a8ad6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 15): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 161,
+     "instruction_end": 38,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "55f1357b64372530098e4913763ed9e6"
+     },
+     {
+      "frames": 80,
+      "sha256": "4e9b969f6286f947e9cc23550e7356ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-fork-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-fork-exit-0",
+    "description": "Walking onto exit 0 of WAL_FORK (scene 276) should lead to scene 274",
+    "plan": "# wal-wal-fork-exit-0: Walking onto exit 0 of WAL_FORK (scene 276) should lead to scene 274\nlimit 20000\nenter 276 0 16716031 1\ncheckpoint entered\nexit 0 274\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 276 save 2d8d2e4855ae60b8 state ca0ef5be397e6fa5 ram 0000000000000000",
+     "arrived frame 451 scene 274 save 2b7595899d1575ba state f746b82f303dc072 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (108, 8): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "095aabecd275c0979915a60999ad1335"
+     },
+     {
+      "frames": 222,
+      "sha256": "1d6c3e63eb401ce61a854ffa6b7cdd18"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-fork-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-fork-exit-1",
+    "description": "Walking onto exit 1 of WAL_FORK (scene 276) should lead to scene 273",
+    "plan": "# wal-wal-fork-exit-1: Walking onto exit 1 of WAL_FORK (scene 276) should lead to scene 273\nlimit 20000\nenter 276 0 16716031 1\ncheckpoint entered\nexit 1 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 276 save 2d8d2e4855ae60b8 state ca0ef5be397e6fa5 ram 0000000000000000",
+     "arrived frame 295 scene 273 save 5056b06cb07f81c1 state 5a33b8646db37a89 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 360): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "095aabecd275c0979915a60999ad1335"
+     },
+     {
+      "frames": 66,
+      "sha256": "77cc918113d607d4252ee695323073a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-fork-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-fork-exit-2",
+    "description": "Walking onto exit 2 of WAL_FORK (scene 276) should lead to one of scene 277, scene 278",
+    "plan": "# wal-wal-fork-exit-2: Walking onto exit 2 of WAL_FORK (scene 276) should lead to one of scene 277, scene 278\nlimit 20000\nenter 276 0 16716031 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 276 save 2d8d2e4855ae60b8 state ca0ef5be397e6fa5 ram 0000000000000000",
+     "arrived frame 582 scene 277 save b628500e3869ab2b state adef2a832fa5e527 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (472, 488): 11 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "095aabecd275c0979915a60999ad1335"
+     },
+     {
+      "frames": 353,
+      "sha256": "6549871a005462e6321720ebb0f4061c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-hall-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-hall-exit-0",
+    "description": "Walking onto exit 0 of WAL_HALL (scene 282) should lead to scene 281",
+    "plan": "# wal-wal-hall-exit-0: Walking onto exit 0 of WAL_HALL (scene 282) should lead to scene 281\nlimit 20000\nenter 282 0 16716031 0\ncheckpoint entered\nexit 0 281\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 282 save fa8a25de467b9c4b state c1184e5ef545736a ram 0000000000000000",
+     "arrived frame 300 scene 281 save 40c4d5644d1c645b state fbd6ff68d568eeb4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e3d53fd6e9578ad148988f802fcb3595"
+     },
+     {
+      "frames": 71,
+      "sha256": "2b37aa38b4ee0bb25ea87b5a7a0e987a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-hall-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-hall-exit-1",
+    "description": "Walking onto exit 1 of WAL_HALL (scene 282) should lead to scene 284",
+    "plan": "# wal-wal-hall-exit-1: Walking onto exit 1 of WAL_HALL (scene 282) should lead to scene 284\nlimit 20000\nenter 282 0 16716031 0\ncheckpoint entered\nexit 1 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 282 save fa8a25de467b9c4b state c1184e5ef545736a ram 0000000000000000",
+     "arrived frame 379 scene 284 save 8739f82d4136bd35 state 2e3351168c3ae584 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (316, 248): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e3d53fd6e9578ad148988f802fcb3595"
+     },
+     {
+      "frames": 150,
+      "sha256": "d69e97dd14ea3e925306a003a2e8a6b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-hall-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-hall-exit-2",
+    "description": "Walking onto exit 2 of WAL_HALL (scene 282) should lead to scene 284",
+    "plan": "# wal-wal-hall-exit-2: Walking onto exit 2 of WAL_HALL (scene 282) should lead to scene 284\nlimit 20000\nenter 282 0 16716031 0\ncheckpoint entered\nexit 2 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 282 save fa8a25de467b9c4b state c1184e5ef545736a ram 0000000000000000",
+     "arrived frame 383 scene 284 save f73ba30d180cec8c state 50bd0ce26b0ba06a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (4, 248): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e3d53fd6e9578ad148988f802fcb3595"
+     },
+     {
+      "frames": 154,
+      "sha256": "6e77a47a0cc94c816da6c3e1814f3579"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-nest-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-nest-exit-0",
+    "description": "Walking onto exit 0 of WAL_NEST (scene 280) should lead to scene 273",
+    "plan": "# wal-wal-nest-exit-0: Walking onto exit 0 of WAL_NEST (scene 280) should lead to scene 273\nlimit 20000\nenter 280 0 16716031 0\ncheckpoint entered\nexit 0 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 280 save 710fb3a949cb8db5 state b32dd00222761df9 ram 0000000000000000",
+     "arrived frame 295 scene 273 save ad727aacfc246a72 state f08f07f71142f4b5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abebd304eb17d7985caef43609641f1e"
+     },
+     {
+      "frames": 66,
+      "sha256": "37d38a95d63e5803611e76da2730e7cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-nst1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-nst1-exit-0",
+    "description": "Walking onto exit 0 of WAL_NST1 (scene 702) should lead to scene 273",
+    "plan": "# wal-wal-nst1-exit-0: Walking onto exit 0 of WAL_NST1 (scene 702) should lead to scene 273\nlimit 20000\nenter 702 0 16716031 0\ncheckpoint entered\nexit 0 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 702 save 8c1c8b4e308b9416 state b32dd00222761df9 ram 0000000000000000",
+     "arrived frame 295 scene 273 save 19687e3716566ec4 state 0964de32436a208b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41b6c5b494f9c1e3d829d9cdb94b71a1"
+     },
+     {
+      "frames": 66,
+      "sha256": "d2756dec881f9860303025d85fcb7e2c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-rm01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-rm01-exit-0",
+    "description": "Walking onto exit 0 of WAL_RM01 (scene 630) should lead to scene 284",
+    "plan": "# wal-wal-rm01-exit-0: Walking onto exit 0 of WAL_RM01 (scene 630) should lead to scene 284\nlimit 20000\nenter 630 0 16723455 0\ncheckpoint entered\nexit 0 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 630 save f49a0e35adff78cd state ff70f297a8f8b65a ram 0000000000000000",
+     "arrived frame 300 scene 284 save d33ee4531f0157e5 state 7d35816221ab7d1b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 141): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 46,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ea8bf3c5ee82732ba73b5bd044226c5"
+     },
+     {
+      "frames": 71,
+      "sha256": "5778c4f8705b1427f16e516d4abecf47"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-room-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-room-exit-0",
+    "description": "Walking onto exit 0 of WAL_ROOM (scene 283) should lead to scene 284",
+    "plan": "# wal-wal-room-exit-0: Walking onto exit 0 of WAL_ROOM (scene 283) should lead to scene 284\nlimit 20000\nenter 283 0 16723455 0\ncheckpoint entered\nexit 0 284\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 283 save 3b924fff857015e9 state f85eafee71e1e1cd ram 0000000000000000",
+     "arrived frame 304 scene 284 save f372eaab2976904f state 3c493aef7073a610 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (364, 142): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 45,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27fc882bab03adb55de426c6062e2ccb"
+     },
+     {
+      "frames": 75,
+      "sha256": "311b4aad9474fde168d99c2aa79fbc0e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-shop-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-shop-exit-0",
+    "description": "Walking onto exit 0 of WAL_SHOP (scene 275) should lead to scene 274",
+    "plan": "# wal-wal-shop-exit-0: Walking onto exit 0 of WAL_SHOP (scene 275) should lead to scene 274\nlimit 20000\nenter 275 0 16716031 0\ncheckpoint entered\nexit 0 274\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 275 save f139524e4ffa652a state 710e1402f5a508fc ram 0000000000000000",
+     "arrived frame 314 scene 274 save f479da8d76e9f97d state d9c4bdf363d73fda ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 43,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e4917d678285d6897ab2e36f53981fe6"
+     },
+     {
+      "frames": 85,
+      "sha256": "98eab56c9bca5a01efaf2dee2cdd6d7a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-taki-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-taki-exit-0",
+    "description": "Walking onto exit 0 of WAL_TAKI (scene 279) should lead to scene 273",
+    "plan": "# wal-wal-taki-exit-0: Walking onto exit 0 of WAL_TAKI (scene 279) should lead to scene 273\nlimit 20000\nenter 279 0 16715785 0\ncheckpoint entered\nexit 0 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 279 save 0c98f8daf8a3506d state 37658047a4c5c274 ram 0000000000000000",
+     "arrived frame 292 scene 273 save dfef29276cd3e074 state 9ec8485d83cb0827 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 184): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f81ca3e0e0799650e86f0c5f98dcf2fc"
+     },
+     {
+      "frames": 63,
+      "sha256": "c9554ef392f0fa5a0c34795bc8151307"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-taki-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-taki-exit-1",
+    "description": "Walking onto exit 1 of WAL_TAKI (scene 279) should lead to scene 629",
+    "plan": "# wal-wal-taki-exit-1: Walking onto exit 1 of WAL_TAKI (scene 279) should lead to scene 629\nlimit 20000\nenter 279 0 16715785 0\ncheckpoint entered\nexit 1 629\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 279 save 0c98f8daf8a3506d state 37658047a4c5c274 ram 0000000000000000",
+     "arrived frame 474 scene 629 save 7d21d27b4909a284 state 3f4deae6cec4206b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (410, 145): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f81ca3e0e0799650e86f0c5f98dcf2fc"
+     },
+     {
+      "frames": 245,
+      "sha256": "4754c96a6be51b1e5d7321a041571eb3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-tmpl-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-tmpl-exit-0",
+    "description": "Walking onto exit 0 of WAL_TMPL (scene 281) should lead to scene 273",
+    "plan": "# wal-wal-tmpl-exit-0: Walking onto exit 0 of WAL_TMPL (scene 281) should lead to scene 273\nlimit 20000\nenter 281 0 16715785 0\ncheckpoint entered\nexit 0 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 281 save b805c5eb85dfc74f state 1a49f359fcba015a ram 0000000000000000",
+     "arrived frame 943 scene 273 save 8e0f67029b6730a8 state c017a4c979b31790 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (308, 88): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5afd44cbd979cad5d5eb6ed7c5ff82d7"
+     },
+     {
+      "frames": 714,
+      "sha256": "cce8a508ba511bd1a14e871aa91242c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-tmpl-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-tmpl-exit-1",
+    "description": "Walking onto exit 1 of WAL_TMPL (scene 281) should lead to scene 282",
+    "plan": "# wal-wal-tmpl-exit-1: Walking onto exit 1 of WAL_TMPL (scene 281) should lead to scene 282\nlimit 20000\nenter 281 0 16715785 0\ncheckpoint entered\nexit 1 282\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 281 save b805c5eb85dfc74f state 1a49f359fcba015a ram 0000000000000000",
+     "arrived frame 1093 scene 282 save 7ce24a169474e745 state 24a8380fce5883ce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 432): 14 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5afd44cbd979cad5d5eb6ed7c5ff82d7"
+     },
+     {
+      "frames": 864,
+      "sha256": "f704317e4b58ad617ff754502b398cc5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-trc1-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-trc1-cutscene",
+    "description": "Entering WAL_TRC1 (scene 278) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# wal-wal-trc1-cutscene: Entering WAL_TRC1 (scene 278) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 278 0 16715785 0\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 278 save c0c8bca638be0264 state fbfc6d127e57b5ad ram 0000000000000000",
+     "watched frame 3231 scene 278 save ce4156efc21f5c8a state 2185bf03345b22d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 32,
+     "instruction": 108,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c2f8e49721092fddd6ccaa8bc30afcb4"
+     },
+     {
+      "frames": 3002,
+      "sha256": "e57dae0ca977aacabb943b43249d9141"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-trce-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-trce-exit-0",
+    "description": "Walking onto exit 0 of WAL_TRCE (scene 277) should lead to scene 276",
+    "plan": "# wal-wal-trce-exit-0: Walking onto exit 0 of WAL_TRCE (scene 277) should lead to scene 276\nlimit 20000\nenter 277 0 16715785 0\ncheckpoint entered\nexit 0 276\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 277 save 7dcd2b959dbb4943 state fbfc6d127e57b5ad ram 0000000000000000",
+     "arrived frame 314 scene 276 save 05838e10a5f6aa11 state fc6135cdb132f8c6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (384, 399): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 133,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4dbd2bc0c911a49a95e17f935354a1dd"
+     },
+     {
+      "frames": 85,
+      "sha256": "ac7c852d133cc60e0dfe29492a58d1eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-vllg-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-vllg-exit-0",
+    "description": "Walking onto exit 0 of WAL_VLLG (scene 274) should lead to scene 273",
+    "plan": "# wal-wal-vllg-exit-0: Walking onto exit 0 of WAL_VLLG (scene 274) should lead to scene 273\nlimit 20000\nenter 274 0 16716031 0\ncheckpoint entered\nexit 0 273\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 274 save 767f50a403b5b073 state 7dfc187d2d1eab55 ram 0000000000000000",
+     "arrived frame 303 scene 273 save e7163a46a91ec9a5 state 4c1667e5816a5a47 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (336, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8246b44273b22b18c46494b6b546396f"
+     },
+     {
+      "frames": 74,
+      "sha256": "85d3bc88c8727b82f2e1940d928df539"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-vllg-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-vllg-exit-1",
+    "description": "Walking onto exit 1 of WAL_VLLG (scene 274) should lead to scene 276",
+    "plan": "# wal-wal-vllg-exit-1: Walking onto exit 1 of WAL_VLLG (scene 274) should lead to scene 276\nlimit 20000\nenter 274 0 16716031 0\ncheckpoint entered\nexit 1 276\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 274 save 767f50a403b5b073 state 7dfc187d2d1eab55 ram 0000000000000000",
+     "arrived frame 563 scene 276 save 0d7731cf1a2474a9 state 05bd2732c0aad889 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (464, 480): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8246b44273b22b18c46494b6b546396f"
+     },
+     {
+      "frames": 334,
+      "sha256": "9f87b4e291688d1ad39483c9dce07854"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-vllg-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-vllg-exit-2",
+    "description": "Walking onto exit 2 of WAL_VLLG (scene 274) should lead to scene 275",
+    "plan": "# wal-wal-vllg-exit-2: Walking onto exit 2 of WAL_VLLG (scene 274) should lead to scene 275\nlimit 20000\nenter 274 0 16716031 0\ncheckpoint entered\nexit 2 275\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 274 save 767f50a403b5b073 state 7dfc187d2d1eab55 ram 0000000000000000",
+     "arrived frame 517 scene 275 save 3e65cefd8be17c36 state f07d1189075b14ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (339, 295): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8246b44273b22b18c46494b6b546396f"
+     },
+     {
+      "frames": 288,
+      "sha256": "e226c02aa0f17e513c46a022b9f3c9b7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-way0-exit-0",
+    "description": "Walking onto exit 0 of WAL_WAY0 (scene 284) should lead to scene 282",
+    "plan": "# wal-wal-way0-exit-0: Walking onto exit 0 of WAL_WAY0 (scene 284) should lead to scene 282\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nexit 0 282\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 388d36c667ae0c37 state 0acaaebd455cd13e ram 0000000000000000",
+     "arrived frame 787 scene 282 save b46be424ba778237 state 4c8b2f4e99e48d0a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (195, 68): 11 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 37,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e45bfc0e494fb12a4975f276e1196b0"
+     },
+     {
+      "frames": 558,
+      "sha256": "a2299180646d079e4bc1232b8f5816a7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-way0-exit-1",
+    "description": "Walking onto exit 1 of WAL_WAY0 (scene 284) should lead to scene 282",
+    "plan": "# wal-wal-way0-exit-1: Walking onto exit 1 of WAL_WAY0 (scene 284) should lead to scene 282\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nexit 1 282\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 388d36c667ae0c37 state 0acaaebd455cd13e ram 0000000000000000",
+     "arrived frame 291 scene 282 save b89eb571f2e07a50 state 4bf007fc5f2e8d52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (442, 73): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 37,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e45bfc0e494fb12a4975f276e1196b0"
+     },
+     {
+      "frames": 62,
+      "sha256": "4d6b53d714977c937827a5fc53a411a7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-way0-exit-2",
+    "description": "Walking onto exit 2 of WAL_WAY0 (scene 284) should lead to scene 283",
+    "plan": "# wal-wal-way0-exit-2: Walking onto exit 2 of WAL_WAY0 (scene 284) should lead to scene 283\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nexit 2 283\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 388d36c667ae0c37 state 0acaaebd455cd13e ram 0000000000000000",
+     "arrived frame 786 scene 283 save af12012fb0cbdb70 state e052cf88c9d9bfd0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (18, 73): 10 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 43,
+     "exit": 1,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e45bfc0e494fb12a4975f276e1196b0"
+     },
+     {
+      "frames": 557,
+      "sha256": "b60250769b67e7c5123bd5c16223b7ef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-exit-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 3 of WAL_WAY0 needs",
+    "source": "built from the conditions in scene 284's script 3 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4b1": 1
+    }
+   },
+   "baseline": {
+    "route": "wal-wal-way0-exit-3",
+    "description": "Walking onto exit 3 of WAL_WAY0 (scene 284) should lead to one of scene 285, scene 625",
+    "plan": "# wal-wal-way0-exit-3: Walking onto exit 3 of WAL_WAY0 (scene 284) should lead to one of scene 285, scene 625\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 257ee7f5c1c15099 state 17eb518e78962b52 ram 0000000000000000",
+     "arrived frame 1133 scene 285 save 539cccc275ec359e state d153720683a8acdf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (321, 524): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 48,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abb1625ce348467259fe0dcf2041856d"
+     },
+     {
+      "frames": 904,
+      "sha256": "e6738935bafee157c8d2661ce6824242"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-way0-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-way0-exit-4",
+    "description": "Walking onto exit 4 of WAL_WAY0 (scene 284) should lead to scene 630",
+    "plan": "# wal-wal-way0-exit-4: Walking onto exit 4 of WAL_WAY0 (scene 284) should lead to scene 630\nlimit 20000\nenter 284 0 16723455 1\ncheckpoint entered\nexit 4 630\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 284 save 388d36c667ae0c37 state 0acaaebd455cd13e ram 0000000000000000",
+     "arrived frame 342 scene 630 save 9a4ff7f69d5f0a9c state 24ef02e85f967fd1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 73): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 44,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e45bfc0e494fb12a4975f276e1196b0"
+     },
+     {
+      "frames": 113,
+      "sha256": "3e8bee89b796466a3569ae5a79bc0f61"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

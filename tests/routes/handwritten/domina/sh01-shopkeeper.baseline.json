@@ -1,0 +1,66 @@
+{
+ "route": "domina-sh01-shopkeeper",
+ "description": "Talking to the person in SH01 should start a conversation that ends with the player in control",
+ "plan": "# domina-sh01-shopkeeper: Talking to the person in SH01 should start a conversation that ends with the player in control\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 189 334 0 0 0 3\ncheckpoint talked\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 44 save 86f4b345cc58d5eb state ecbaa2fc9d6da285 ram 0000000000000000",
+  "talked frame 586 scene 44 save 828e59e5ba711555 state c9745199afd84149 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 44 (HTW_SH01)",
+    "spawn 0 to 1",
+    "scene id 19 to 44",
+    "music id 7 to 4",
+    "actor 0 (the hero): at (101, 78), facing 192, animation 4,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (189, 334), facing 0, animation 0,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "talked",
+   "changes": [
+    "frame 586, scene 44 (HTW_SH01)",
+    "story word 24: f2f20000 to 09090000 (set 0x310, 0x313, 0x318, 0x31b; cleared 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 35: 00000000 to 04000000 (set 0x47a)",
+    "story word 38: 00000000 to 00002000 (set 0x4cd)",
+    "1 other saved-game byte changed, the first at offset 12518",
+    "scene word 17: 0065004e to 00bc0146",
+    "scene word 22: 00000000 to 00004668",
+    "scene word 47: 00000037 to 00000249",
+    "actor 0 (the hero): moved (101, 78) to (189, 326); control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): moved (189, 334) to (184, 334); animation 0,0 to 135,4; command 0 to 136"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (189, 314): 2 waypoints"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 158,
+  "instruction_end": 36,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 9e464d4c ccbcd047 c7260179 29552cd5 501b1dd0 2c304798 0cf2554a 1cb4ba7b d28f2e72 093b0651 0860f5c9 5cee2e31 ce4189e7 04bb9b12 09d55759 30c9e17d da97c8e0 835cf8f7 a208c1b8 86bef184 abf86272 0d0a2133 5630aef7 545a2eb3 9efd1942 a416872f 66b48d85 03b793b2 66b48d85 03b793b2 66b48d85 03b793b2 66b48d85 03b793b2 66b48d85 03b793b2 4cdecf70 2be282de d18d65dd fe5bd236 64e45a50 2135ef10 58a78e18 60d94eaa 83f2870c d21777f1 aafd3afb d149dea1 32ead032 a925ceea 73e8d0ad 62134efe ed07845c 2abb45c7 0948888d f6207b02 102d31d2 68cbdd76 0c3554ba 16c3478f eb4b9091 44f27416 b70c3584 1ead0058 2ab4bb8b 0acf5b1f 06c7c016 4e369660 7f241cda d4517d45 9c9d818e 8a4d6b19 1524d150 38b6595e 14b776c8 fbff7a26 ed1f33b2 69e89e47 67b4d561 d73f68b3 4b99f715 87bcf40d ffb40ad6 cf7284cd 80f51b89 5bab97e3 b42696cd 350e7e7f 97f0dc91 27506ede 9e61307d 9c907142 14c22e19 a582da13 2184d983 4cad74ce 001cd405 99e35d69 d22e00d8 06a22efe 5cbdef47 dcaf91a7 4837f069 de11cced cdafebbb 6248bad4 4a6935e0 eaf00743 a28b8ce3 fe137fd6 1ec050aa 2ac7d245 7e7cee2e 73ef7fc3 7d69151e 9c93cdb0 ba8218ad 6c82f276 2f3d7012 49d562d3 0c1382f4 5480fd36 b9229a8c 948cd10c c936b8f9 7c9852d0 dbc428b4 f7339d42 17eea5cc 13e3ffb1 faa0873b 06631075 82803a14 c8121441 e3d6eb8a 7828d536 2d775bbc d74473e3 c163a568 ee3aa039 bc96a6e4 224a59c0 1a601427 0b0dc317 ce83d1dc b55ccea7 ce83d1dc b55ccea7 a9bc750e 31ddb0a8 e6c5ae11 31ddb0a8 e169ac28 164b6446 11c54484 609c7a0b 7924614f 9d58d70c 6c725154 05c54a8f 0659c6af 332732fd ca351ce5 99894efa 54d40420 768d504b eb93f3da 19fec146 f01f5f1a f9101aac f01f5f1a f9101aac f54360fc 73e9f48a f54360fc 73e9f48a 06541eb0 9ca4d399 af5d4052 2152933a 67406b96 499d2837 67406b96 499d2837 a4fdd74f adb73c7c a4fdd74f adb73c7c 1d78a1dd 1e1443cd 4717434a f192de4e 33f610f8 77c51724 6c7c1379 ad6d3f3b ffa8bc02 f202d2b6 eadd0c7b 8ee0c515 c3dc8bf0 85b78f19 5594d5b8 1a6b0028 af1b14f0 e9c484ac 0ce5498f 30b60085 af24ce7d 176ab59f c018ce24 4af7fd50 2495d9a7 fa6db630 7944482e 83bcae58 e940d8ea 36203b6d 87ac69fe 6bde0772 fa31720c ed72df3b 8c2e5225 1868e601 6c11ef4d 9c369f5f fdfd65c8 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 92d596fb 4d52adc6 327c1675 16e2c025 e204f708 67250475 931cc00c ad093a51 931cc00c ad093a51 4294a889 ad093a51 931cc00c ad093a51 931cc00c 67250475 931cc00c ad093a51 931cc00c ad093a51 4294a889 ad093a51 931cc00c ad093a51 931cc00c e9dcb17e 22e50778 859f9e54 81552c06 777f6cba d9b0bcc7 71c65f16 a977d9dd 613bc2da bed040bd ad093a51 931cc00c ad093a51 931cc00c 8213dadc 931cc00c ad093a51 931cc00c ad093a51 3eb0ce96 ad093a51 931cc00c ad093a51 931cc00c 823ac171 7ad202f6 dbcf2668 2590c69b ac7fd73e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 92d596fb 4d52adc6 327c1675 9f16ad34 54c2b88a 69b7cdb0 931cc00c ad093a51 931cc00c ad093a51 269bed5b ad093a51 931cc00c ad093a51 931cc00c 23ce4e91 931cc00c ad093a51 931cc00c ad093a51 269bed5b ad093a51 931cc00c ad093a51 931cc00c 5811a4e1 f681c07f ed7d22a9 304044ed d2363a43 fc23052d a3633429 c3a13294 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a 4d52adc6 92d596fb def2f0d2 9b46caf7 7a2d5f37 d187d4b7 14b0811b b078bf9e 079cd2d0 cc39b0e0 35d300df 931cc00c ad093a51 931cc00c ad093a51 f53ed419 ad093a51 931cc00c ad093a51 931cc00c d4176a31 931cc00c ad093a51 931cc00c ad093a51 f7eb915e fbb10ceb 8861fea9 6d51e3f9 740fddae fc2baec4 6339e913 2189c7c8 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 92d596fb 4d52adc6 327c1675 24831642 7d64b909 2203a4e1 06545e1c 5a3bfba2 6d3462e8 ad093a51 931cc00c ad093a51 931cc00c 81e21720 931cc00c ad093a51 931cc00c ad093a51 8b2d6687 ad093a51 931cc00c ad093a51 931cc00c 81e21720 931cc00c ad093a51 931cc00c ad093a51 995e5a1b ea95c1eb 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 ced78a7e 1150ba43 c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a c66d1612 324ebd4a 4d52adc6 92d596fb 4d52adc6 e940d8ea 83bcae58 7944482e 9b8c8071 2495d9a7 f9d8969e 2495d9a7 f9d8969e 2495d9a7 f9d8969e 2495d9a7 f9d8969e 2495d9a7 f9d8969e 2495d9a7 f9d8969e 2495d9a7 f9d8969e 0ecb47fc ce836003 0ecb47fc ce836003 0ecb47fc ce836003 6bcbc0e4 8ff62b73 6bcbc0e4 8ff62b73 6c4fd84d 3667a64f 7b6e2b82 9c8d5e5e cb9ec494 0c93663b f1cb7f26 5251f198 4dc4d98c 6e7a2d1b 05d75070 6e9b2d69 5a0afec3 570e6ce7 2f2fce67 89720477 2f2fce67 89720477 2f2fce67 89720477 2f2fce67 89720477 2f2fce67 89720477 2f2fce67 ef4814fd 2c81054a ef4814fd 2c81054a ef4814fd 2c81054a a7f1fbe4 17d4ba1a a7f1fbe4 17d4ba1a 5724cfbb b8df8744 5c040c2c 34f368e5 33e5dbcb e8dd1794 af986889 280115a0 62926c3a",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "253f3e0e5e034f0e60f8d1c0b7b8778c"
+  },
+  {
+   "frames": 530,
+   "sha256": "f9501b2d8b1e52ee1e61a1a0489a5e00"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

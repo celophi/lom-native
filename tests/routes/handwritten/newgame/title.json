@@ -1,0 +1,32 @@
+{
+  "format": 1,
+  "id": "new-game-title",
+  "description": "Picking New Game with a save on the card should go through name entry and weapon select to placing the Mailbox, and home",
+  "title": "new_game",
+  "frame_limit": 60000,
+  "start": {
+    "save": "../saves/after-opening.json"
+  },
+  "steps": [
+    {
+      "place": {
+        "artifact": 0
+      },
+      "note": "the Mailbox: home"
+    },
+    {
+      "land": {
+        "index": 0
+      }
+    },
+    {
+      "checkpoint": "home"
+    },
+    {
+      "watch": 20000
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

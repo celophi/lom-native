@@ -1,0 +1,2507 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-gate-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-gate-exit-0",
+    "description": "Walking onto exit 0 of SEI_GATE (scene 683) should lead to scene 675",
+    "plan": "# sei-sei-gate-exit-0: Walking onto exit 0 of SEI_GATE (scene 683) should lead to scene 675\nlimit 20000\nenter 683 0 16719359 0\ncheckpoint entered\nexit 0 675\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 683 save bba0bf52a519af3c state 0282437773fdcfab ram 0000000000000000",
+     "arrived frame 294 scene 675 save 02bd1d785a8b8759 state eb08f6f07f73d2fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5e26a8e2acabd6462e1f65825f22d45b"
+     },
+     {
+      "frames": 65,
+      "sha256": "2210c9de9c5fdf7da1e407a36eb11a49"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-gate-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-gate-exit-1",
+    "description": "Walking onto exit 1 of SEI_GATE (scene 683) should lead to scene 684",
+    "plan": "# sei-sei-gate-exit-1: Walking onto exit 1 of SEI_GATE (scene 683) should lead to scene 684\nlimit 20000\nenter 683 0 16719359 0\ncheckpoint entered\nexit 1 684\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 683 save bba0bf52a519af3c state 0282437773fdcfab ram 0000000000000000",
+     "arrived frame 699 scene 684 save ed85629606ba90a4 state 6879a6bd9093bcb6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (391, 351): 5 waypoints",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 79,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5e26a8e2acabd6462e1f65825f22d45b"
+     },
+     {
+      "frames": 470,
+      "sha256": "9a8170fdcbeddee27cff895b7f9c3834"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni0-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNI0 (scene 672) should lead to scene 705",
+    "plan": "# sei-sei-mni0-exit-0: Walking onto exit 0 of SEI_MNI0 (scene 672) should lead to scene 705\nlimit 20000\nenter 33440 0 16719359 0\ncheckpoint entered\nexit 0 705\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 672 save eed6f1827e41b7f7 state 4dec1e2d60e5833b ram 0000000000000000",
+     "arrived frame 297 scene 705 save 5898a054b5b373f9 state a46bebe338541e31 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (37, 480): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 3,
+     "instruction": 140,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "74a9a39f59263b6afbdfa43a9d5513d8"
+     },
+     {
+      "frames": 68,
+      "sha256": "ef36c519383b4b366493e0ffbc82fe5e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni0-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNI0 (scene 672) should lead to scene 676",
+    "plan": "# sei-sei-mni0-exit-1: Walking onto exit 1 of SEI_MNI0 (scene 672) should lead to scene 676\nlimit 20000\nenter 33440 0 16719359 1\ncheckpoint entered\nexit 1 676\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 672 save ecbc641a15cffcea state d2027ea9a9573859 ram 0000000000000000",
+     "arrived frame 295 scene 676 save 0314c6d610c55a25 state 953700cb835434d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (582, 249): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "scene": 3,
+     "instruction_end": 45,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ef9cb2fc4e56d764450025c4f0d89adb"
+     },
+     {
+      "frames": 66,
+      "sha256": "7ed054cde142d1da58124e101e28eaa2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni1-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNI1 (scene 673) should lead to scene 679",
+    "plan": "# sei-sei-mni1-exit-0: Walking onto exit 0 of SEI_MNI1 (scene 673) should lead to scene 679\nlimit 20000\nenter 33441 0 16719359 2\ncheckpoint entered\nexit 0 679\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 673 save febff83bd55d0c4c state 1d80ec5c44385a36 ram 0000000000000000",
+     "arrived frame 837 scene 679 save f00f4145a258a484 state c19b1979b98caff7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (79, 331): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "061bb1e7e79b10b4b9c75397a64ab206"
+     },
+     {
+      "frames": 608,
+      "sha256": "e2864297f521dbab3494322b4a3319ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni1-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNI1 (scene 673) should lead to scene 680",
+    "plan": "# sei-sei-mni1-exit-1: Walking onto exit 1 of SEI_MNI1 (scene 673) should lead to scene 680\nlimit 20000\nenter 33441 0 16719359 0\ncheckpoint entered\nexit 1 680\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 673 save d457b06904f26f4a state 2b2e730dbb44ce77 ram 0000000000000000",
+     "arrived frame 797 scene 680 save b270e622027eea21 state b5e6263415e1c357 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (34, 734): 13 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "61574b2adc20986db550cfcf81add573"
+     },
+     {
+      "frames": 568,
+      "sha256": "16f59c7a5e12962ccd868076aa848066"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni1-exit-2",
+    "description": "Walking onto exit 2 of SEI_MNI1 (scene 673) should lead to scene 677",
+    "plan": "# sei-sei-mni1-exit-2: Walking onto exit 2 of SEI_MNI1 (scene 673) should lead to scene 677\nlimit 20000\nenter 33441 0 16719359 2\ncheckpoint entered\nexit 2 677\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 673 save febff83bd55d0c4c state 1d80ec5c44385a36 ram 0000000000000000",
+     "arrived frame 305 scene 677 save 0c273ef71ef2f857 state 785397d0d3b16001 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (586, 523): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "061bb1e7e79b10b4b9c75397a64ab206"
+     },
+     {
+      "frames": 76,
+      "sha256": "c9ee144112629357d2fd330c0e56d812"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni2-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNI2 (scene 674) should lead to scene 680",
+    "plan": "# sei-sei-mni2-exit-0: Walking onto exit 0 of SEI_MNI2 (scene 674) should lead to scene 680\nlimit 20000\nenter 33442 0 16719359 0\ncheckpoint entered\nexit 0 680\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 674 save 5dd45f26cbfa4991 state b3cfcd281ecea007 ram 0000000000000000",
+     "arrived frame 302 scene 680 save 60a4c438c85c9538 state 0bcef4cf82d764ee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (316, 736): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1449a1b5f1bdc2b4b8a5b0f6e9e352f1"
+     },
+     {
+      "frames": 73,
+      "sha256": "8391c84d64d0b4a21d4aa79e04a5a9f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni2-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNI2 (scene 674) should lead to scene 681",
+    "plan": "# sei-sei-mni2-exit-1: Walking onto exit 1 of SEI_MNI2 (scene 674) should lead to scene 681\nlimit 20000\nenter 33442 0 16719359 1\ncheckpoint entered\nexit 1 681\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 674 save 322e13b95ec1d414 state 9e8a4d8ea569f08a ram 0000000000000000",
+     "arrived frame 297 scene 681 save 0898c719022b1dc1 state 89b327d9cb54d1be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (213, 354): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6ed66ed65b19ce39b3ad7f5a9b3235de"
+     },
+     {
+      "frames": 68,
+      "sha256": "a52e4ca91435bf39adb8d308c06070ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni3-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNI3 (scene 675) should lead to scene 678",
+    "plan": "# sei-sei-mni3-exit-0: Walking onto exit 0 of SEI_MNI3 (scene 675) should lead to scene 678\nlimit 20000\nenter 33443 0 16719359 0\ncheckpoint entered\nexit 0 678\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 675 save 4b66e29014dffc74 state 445ac97ad2be9053 ram 0000000000000000",
+     "arrived frame 294 scene 678 save 543579a1a30fed3e state 3ca22f05da02241a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (51, 734): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4061082cedc2097abe4c9752f9b50397"
+     },
+     {
+      "frames": 65,
+      "sha256": "86686e96e89182e39b406415ea91839a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni3-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni3-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNI3 (scene 675) should lead to scene 683",
+    "plan": "# sei-sei-mni3-exit-1: Walking onto exit 1 of SEI_MNI3 (scene 675) should lead to scene 683\nlimit 20000\nenter 33443 0 16719359 1\ncheckpoint entered\nexit 1 683\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 675 save a60ebda084ff9131 state bae7f047dcbaa83d ram 0000000000000000",
+     "arrived frame 300 scene 683 save 98a35b252ab11e4a state f7499510f46f6708 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (579, 516): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 41,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "35fb36dcd81b0179254e3459ac284a06"
+     },
+     {
+      "frames": 71,
+      "sha256": "ac0b2f54f9c7edbbd4999b7eadf98fbc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni3-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni3-exit-2",
+    "description": "Walking onto exit 2 of SEI_MNI3 (scene 675) should lead to scene 682",
+    "plan": "# sei-sei-mni3-exit-2: Walking onto exit 2 of SEI_MNI3 (scene 675) should lead to scene 682\nlimit 20000\nenter 33443 0 16719359 2\ncheckpoint entered\nexit 2 682\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 675 save 1e56b67be9baf1e2 state 2bba051035736e6c ram 0000000000000000",
+     "arrived frame 305 scene 682 save cb2ccb29b273ef6a state 800b7111e8523703 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (102, 332): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e7109d80f153f1a52766885e58abd427"
+     },
+     {
+      "frames": 76,
+      "sha256": "c1cce7545c39f6cdf79ce26e43c12a52"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl0-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNL0 (scene 679) should lead to scene 677",
+    "plan": "# sei-sei-mnl0-exit-0: Walking onto exit 0 of SEI_MNL0 (scene 679) should lead to scene 677\nlimit 20000\nenter 33447 0 16719359 1\ncheckpoint entered\nexit 0 677\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 679 save 6005b2cbfccb6e4d state 24c27e8e8169ba95 ram 0000000000000000",
+     "arrived frame 1572 scene 677 save aafb9ab4cd021a05 state 4599ba0ee080426f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (436, 536): 10 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 395,
+     "instruction_end": 125,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce9be573d668bd781c9ea162b81e207f"
+     },
+     {
+      "frames": 1343,
+      "sha256": "e045576f5363c5cfaf3844a7cd1102fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl0-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNL0 (scene 679) should lead to scene 676",
+    "plan": "# sei-sei-mnl0-exit-1: Walking onto exit 1 of SEI_MNL0 (scene 679) should lead to scene 676\nlimit 20000\nenter 33447 0 16719359 2\ncheckpoint entered\nexit 1 676\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 679 save 492fdff827372ede state b1747a1fcdd39499 ram 0000000000000000",
+     "arrived frame 500 scene 676 save 9ce19f59b120976c state eb9c60c90323b1a5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (110, 11): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2082a8e74ba77817a784bb4d26176027"
+     },
+     {
+      "frames": 271,
+      "sha256": "b9d72a0c74df1ead33debfa3660e6c7b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl0-exit-2",
+    "description": "Walking onto exit 2 of SEI_MNL0 (scene 679) should lead to scene 673",
+    "plan": "# sei-sei-mnl0-exit-2: Walking onto exit 2 of SEI_MNL0 (scene 679) should lead to scene 673\nlimit 20000\nenter 33447 0 16719359 2\ncheckpoint entered\nexit 2 673\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 679 save 492fdff827372ede state b1747a1fcdd39499 ram 0000000000000000",
+     "arrived frame 307 scene 673 save ba24a629296a0070 state 9fe73eb5527d038c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (137, 562): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2082a8e74ba77817a784bb4d26176027"
+     },
+     {
+      "frames": 78,
+      "sha256": "0a1dcfd70131d21eb8f5a8e37e28ccb9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl1-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNL1 (scene 680) should lead to scene 673",
+    "plan": "# sei-sei-mnl1-exit-0: Walking onto exit 0 of SEI_MNL1 (scene 680) should lead to scene 673\nlimit 20000\nenter 33448 0 16719359 0\ncheckpoint entered\nexit 0 673\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 680 save af9487de52bf203f state c7cbfaf556385a85 ram 0000000000000000",
+     "arrived frame 292 scene 673 save 0932d7184ac71799 state 2edf5b7ddc34d95f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 75): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ad0adfa3e821c85e0763f71127e7cc31"
+     },
+     {
+      "frames": 63,
+      "sha256": "5ac453e2a6dda6a510696fc15de255b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl1-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNL1 (scene 680) should lead to scene 674",
+    "plan": "# sei-sei-mnl1-exit-1: Walking onto exit 1 of SEI_MNL1 (scene 680) should lead to scene 674\nlimit 20000\nenter 33448 0 16719359 0\ncheckpoint entered\nexit 1 674\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 680 save af9487de52bf203f state c7cbfaf556385a85 ram 0000000000000000",
+     "arrived frame 1844 scene 674 save 7c4ef8aec413512d state d498251ead7163d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (408, 187): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1490 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 131,
+     "instruction": 417,
+     "song": 3,
+     "exit": 1,
+     "monster": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ad0adfa3e821c85e0763f71127e7cc31"
+     },
+     {
+      "frames": 1615,
+      "sha256": "21ae489fc0cd84b98bcf4d3abfbf6342"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl2-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNL2 (scene 681) should lead to scene 677",
+    "plan": "# sei-sei-mnl2-exit-0: Walking onto exit 0 of SEI_MNL2 (scene 681) should lead to scene 677\nlimit 20000\nenter 33449 0 16719359 0\ncheckpoint entered\nexit 0 677\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 681 save 489be2e3100e2c52 state 02ab8fbb9acc424a ram 0000000000000000",
+     "arrived frame 297 scene 677 save 19e0e46f68b6d9cc state 620245f204e7b3bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (438, 176): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40f583c6dd3c9ae43e6290b635a91502"
+     },
+     {
+      "frames": 68,
+      "sha256": "5eb2784d148dbb295d93abd96d9898e7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl2-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNL2 (scene 681) should lead to scene 674",
+    "plan": "# sei-sei-mnl2-exit-1: Walking onto exit 1 of SEI_MNL2 (scene 681) should lead to scene 674\nlimit 20000\nenter 33449 0 16719359 1\ncheckpoint entered\nexit 1 674\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 681 save e449af5bd56265df state 277deb12b387a27c ram 0000000000000000",
+     "arrived frame 316 scene 674 save 6fb5e0a44680f302 state da117454c4fd3585 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (277, 622): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7787ac08d8f87b72ef3b10c239e11245"
+     },
+     {
+      "frames": 87,
+      "sha256": "c7cc978722e5c76fbf14d8792e4661fa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl3-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNL3 (scene 682) should lead to scene 677",
+    "plan": "# sei-sei-mnl3-exit-0: Walking onto exit 0 of SEI_MNL3 (scene 682) should lead to scene 677\nlimit 20000\nenter 33450 0 16719359 1\ncheckpoint entered\nexit 0 677\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 682 save 7bdf2bf9f27a8adc state f64d90752a136243 ram 0000000000000000",
+     "arrived frame 562 scene 677 save e8dc7c1379784d45 state b9dce92704965ac9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (111, 14): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "98962d8757f09cc9ded6fea682dd063d"
+     },
+     {
+      "frames": 333,
+      "sha256": "7ac1eac15dffe743c1d8c3ee95496713"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl3-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl3-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNL3 (scene 682) should lead to scene 675",
+    "plan": "# sei-sei-mnl3-exit-1: Walking onto exit 1 of SEI_MNL3 (scene 682) should lead to scene 675\nlimit 20000\nenter 33450 0 16719359 1\ncheckpoint entered\nexit 1 675\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 682 save 7bdf2bf9f27a8adc state f64d90752a136243 ram 0000000000000000",
+     "arrived frame 302 scene 675 save 80c7973a968dc3e8 state 5eaa06ba5eba925a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (326, 549): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "98962d8757f09cc9ded6fea682dd063d"
+     },
+     {
+      "frames": 73,
+      "sha256": "e59b883652e03b43727bc0d330c52fae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnl3-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnl3-exit-2",
+    "description": "Walking onto exit 2 of SEI_MNL3 (scene 682) should lead to scene 678",
+    "plan": "# sei-sei-mnl3-exit-2: Walking onto exit 2 of SEI_MNL3 (scene 682) should lead to scene 678\nlimit 20000\nenter 33450 0 16719359 1\ncheckpoint entered\nexit 2 678\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 682 save 7bdf2bf9f27a8adc state f64d90752a136243 ram 0000000000000000",
+     "arrived frame 361 scene 678 save fcf8e010e6ef743f state c24b1cf2f8ba34b0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (182, 607): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 67,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "98962d8757f09cc9ded6fea682dd063d"
+     },
+     {
+      "frames": 132,
+      "sha256": "6d4a0abd6771285c9033f47497dc68fc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr0-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNR0 (scene 676) should lead to scene 672",
+    "plan": "# sei-sei-mnr0-exit-0: Walking onto exit 0 of SEI_MNR0 (scene 676) should lead to scene 672\nlimit 20000\nenter 33444 0 16719359 0\ncheckpoint entered\nexit 0 672\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 676 save a7795ba2c04a8023 state 2230f92eba15548a ram 0000000000000000",
+     "arrived frame 293 scene 672 save 9e35f16008204b90 state 6ff6d4e255876938 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 192): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "scene": 3,
+     "instruction_end": 44,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ae7ad220455a282a0fd0d7b9c87767b"
+     },
+     {
+      "frames": 64,
+      "sha256": "65a9fa54672a23f94b30bfd0a071a76f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr0-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNR0 (scene 676) should lead to scene 679",
+    "plan": "# sei-sei-mnr0-exit-1: Walking onto exit 1 of SEI_MNR0 (scene 676) should lead to scene 679\nlimit 20000\nenter 33444 0 16719359 0\ncheckpoint entered\nexit 1 679\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 676 save a7795ba2c04a8023 state 2230f92eba15548a ram 0000000000000000",
+     "arrived frame 644 scene 679 save fbd23fb70064f35f state ba443449aeebda85 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (393, 641): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ae7ad220455a282a0fd0d7b9c87767b"
+     },
+     {
+      "frames": 415,
+      "sha256": "202dfad0ed115ad6933e9de71324e377"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr1-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNR1 (scene 677) should lead to scene 681",
+    "plan": "# sei-sei-mnr1-exit-0: Walking onto exit 0 of SEI_MNR1 (scene 677) should lead to scene 681\nlimit 20000\nenter 33445 0 16719359 0\ncheckpoint entered\nexit 0 681\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 677 save bc9f0d2786d8d5a6 state f8850c04ad5f3a08 ram 0000000000000000",
+     "arrived frame 294 scene 681 save aa531ae986fd5b98 state 48e957a25af99cc7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 653): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "291a1b4d9ccef0534a6cfe874c46fd36"
+     },
+     {
+      "frames": 65,
+      "sha256": "0b670444c6125d4420cd6a4e3a38db60"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr1-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNR1 (scene 677) should lead to scene 682",
+    "plan": "# sei-sei-mnr1-exit-1: Walking onto exit 1 of SEI_MNR1 (scene 677) should lead to scene 682\nlimit 20000\nenter 33445 0 16719359 0\ncheckpoint entered\nexit 1 682\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 677 save bc9f0d2786d8d5a6 state f8850c04ad5f3a08 ram 0000000000000000",
+     "arrived frame 640 scene 682 save 2882cdb9a39f414b state 819985a44358e978 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (272, 896): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "291a1b4d9ccef0534a6cfe874c46fd36"
+     },
+     {
+      "frames": 411,
+      "sha256": "158c8cebfc2158dd2e06dba681c356ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr1-exit-2",
+    "description": "Walking onto exit 2 of SEI_MNR1 (scene 677) should lead to scene 679",
+    "plan": "# sei-sei-mnr1-exit-2: Walking onto exit 2 of SEI_MNR1 (scene 677) should lead to scene 679\nlimit 20000\nenter 33445 0 16719359 3\ncheckpoint entered\nexit 2 679\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 677 save 930c63fe238ceb25 state 2d3524432bfa91d1 ram 0000000000000000",
+     "arrived frame 434 scene 679 save e9629b98de1c911e state dcf541faa4daf061 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (274, 8): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "74de1e52948cb98a5a2e4e9c1c5e9108"
+     },
+     {
+      "frames": 205,
+      "sha256": "1f9b9c9b2b6912235d6ef114c2714316"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr1-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr1-exit-3",
+    "description": "Walking onto exit 3 of SEI_MNR1 (scene 677) should lead to scene 673",
+    "plan": "# sei-sei-mnr1-exit-3: Walking onto exit 3 of SEI_MNR1 (scene 677) should lead to scene 673\nlimit 20000\nenter 33445 0 16719359 3\ncheckpoint entered\nexit 3 673\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 677 save 930c63fe238ceb25 state 2d3524432bfa91d1 ram 0000000000000000",
+     "arrived frame 303 scene 673 save 2eb69f64d12c705a state edb28913eb37b06b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 369): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "74de1e52948cb98a5a2e4e9c1c5e9108"
+     },
+     {
+      "frames": 74,
+      "sha256": "c64df31166622d80a1023f7f4429aa29"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr2-exit-0",
+    "description": "Walking onto exit 0 of SEI_MNR2 (scene 678) should lead to scene 682",
+    "plan": "# sei-sei-mnr2-exit-0: Walking onto exit 0 of SEI_MNR2 (scene 678) should lead to scene 682\nlimit 20000\nenter 33446 0 16719359 1\ncheckpoint entered\nexit 0 682\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 678 save 6a9a69e47c8612d0 state d62d3f4c71c03687 ram 0000000000000000",
+     "arrived frame 1620 scene 682 save 6d38a81491f6e978 state 5e2238c616f8067c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (269, 12): 10 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 391,
+     "instruction_end": 134,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1f83352489dc221e15de9bedeb1940ef"
+     },
+     {
+      "frames": 1391,
+      "sha256": "3b37cc60a9382ea2eeb9b6ac671c39ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr2-exit-1",
+    "description": "Walking onto exit 1 of SEI_MNR2 (scene 678) should lead to scene 675",
+    "plan": "# sei-sei-mnr2-exit-1: Walking onto exit 1 of SEI_MNR2 (scene 678) should lead to scene 675\nlimit 20000\nenter 33446 0 16719359 1\ncheckpoint entered\nexit 1 675\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 678 save 6a9a69e47c8612d0 state d62d3f4c71c03687 ram 0000000000000000",
+     "arrived frame 302 scene 675 save c47a2e42c1879de2 state a1a028febaa54107 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (118, 753): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1f83352489dc221e15de9bedeb1940ef"
+     },
+     {
+      "frames": 73,
+      "sha256": "27a5f8b03e985e47ea33b9ba7cfb8b2e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-os00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-os00-exit-0",
+    "description": "Walking onto exit 0 of SEI_OS00 (scene 671) should lead to the world map",
+    "plan": "# sei-sei-os00-exit-0: Walking onto exit 0 of SEI_OS00 (scene 671) should lead to the world map\nlimit 20000\nenter 671 0 16719359 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 671 save c41a80f9fe024665 state a8412bb203c7e1ea ram 0000000000000000",
+     "arrived frame 383 scene 32767 save f77e76e40975c56d state c0a1d83cb2f637ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 8): 1 waypoints",
+     "game state 1 at vblank 1091"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 115,
+     "instruction_end": 32,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "524ec8661a8abb916e4d4da5a000f5d9"
+     },
+     {
+      "frames": 153,
+      "sha256": "f11133ca81ab8faf1b6f4993d6f71c3b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-os00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-os00-exit-1",
+    "description": "Walking onto exit 1 of SEI_OS00 (scene 671) should lead to scene 705",
+    "plan": "# sei-sei-os00-exit-1: Walking onto exit 1 of SEI_OS00 (scene 671) should lead to scene 705\nlimit 20000\nenter 671 0 16719359 1\ncheckpoint entered\nexit 1 705\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 671 save c41a80f9fe024665 state a8412bb203c7e1ea ram 0000000000000000",
+     "arrived frame 961 scene 705 save f45ddd8a98724e96 state 988db4aaeff5a5ad ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (122, 132): 2 waypoints",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "524ec8661a8abb916e4d4da5a000f5d9"
+     },
+     {
+      "frames": 732,
+      "sha256": "88477e66e8da766e9f1e15edb1b5120e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-root-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-root-exit-0",
+    "description": "Walking onto exit 0 of SEI_ROOT (scene 705) should lead to scene 671",
+    "plan": "# sei-sei-root-exit-0: Walking onto exit 0 of SEI_ROOT (scene 705) should lead to scene 671\nlimit 20000\nenter 705 0 16719359 0\ncheckpoint entered\nexit 0 671\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 705 save 54922c234fc0a36a state d2f12c4132483504 ram 0000000000000000",
+     "arrived frame 510 scene 671 save b852e72a80bcf289 state b825ef9c6acc6e5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (44, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 42,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f62faeefddd767e37ff38ce2c796e7ad"
+     },
+     {
+      "frames": 281,
+      "sha256": "bc75747ac7101e34450416df381c9d54"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-root-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-root-exit-1",
+    "description": "Walking onto exit 1 of SEI_ROOT (scene 705) should lead to scene 672",
+    "plan": "# sei-sei-root-exit-1: Walking onto exit 1 of SEI_ROOT (scene 705) should lead to scene 672\nlimit 20000\nenter 705 0 16719359 0\ncheckpoint entered\nexit 1 672\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 705 save 54922c234fc0a36a state d2f12c4132483504 ram 0000000000000000",
+     "arrived frame 1419 scene 672 save d6b0c464b2b82507 state 9324c9d5504315cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (187, 880): 16 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "scene": 3,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f62faeefddd767e37ff38ce2c796e7ad"
+     },
+     {
+      "frames": 1190,
+      "sha256": "1892c6adf6f5028723e22648e604d3e2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc0-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC0 (scene 684) should lead to scene 683",
+    "plan": "# sei-sei-snc0-exit-0: Walking onto exit 0 of SEI_SNC0 (scene 684) should lead to scene 683\nlimit 20000\nenter 33452 0 16719359 0\ncheckpoint entered\nexit 0 683\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 684 save b131e652acf6cdcb state 188544a6abfe912b ram 0000000000000000",
+     "arrived frame 294 scene 683 save a2ee709e5d60bb77 state 8f24eb7a638484ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (13, 61): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 53,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0796a90a71e8b08217299a831834f3e5"
+     },
+     {
+      "frames": 65,
+      "sha256": "5f6682420463796cc78f073632bec299"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc0-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC0 (scene 684) should lead to scene 691",
+    "plan": "# sei-sei-snc0-exit-1: Walking onto exit 1 of SEI_SNC0 (scene 684) should lead to scene 691\nlimit 20000\nenter 33452 0 16719359 0\ncheckpoint entered\nexit 1 691\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 684 save b131e652acf6cdcb state 188544a6abfe912b ram 0000000000000000",
+     "arrived frame 485 scene 691 save d2fb22355caaf278 state 30b40115207c71e3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 530): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0796a90a71e8b08217299a831834f3e5"
+     },
+     {
+      "frames": 256,
+      "sha256": "4979b09e19e54d0163a1c2e48942a722"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc0-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC0 (scene 684) should lead to scene 685",
+    "plan": "# sei-sei-snc0-exit-2: Walking onto exit 2 of SEI_SNC0 (scene 684) should lead to scene 685\nlimit 20000\nenter 33452 0 16719359 0\ncheckpoint entered\nexit 2 685\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 684 save b131e652acf6cdcb state 188544a6abfe912b ram 0000000000000000",
+     "arrived frame 1718 scene 685 save dfa2929aa7d63154 state 23ca794e50d57dc9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (431, 459): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 125,
+     "instruction": 430,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0796a90a71e8b08217299a831834f3e5"
+     },
+     {
+      "frames": 1489,
+      "sha256": "6ad25d301de586e52716c2accf09667e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc1-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC1 (scene 685) should lead to scene 686",
+    "plan": "# sei-sei-snc1-exit-0: Walking onto exit 0 of SEI_SNC1 (scene 685) should lead to scene 686\nlimit 20000\nenter 33453 0 16719359 2\ncheckpoint entered\nexit 0 686\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 685 save 46d036e421a8c540 state f6e538103dcb55b1 ram 0000000000000000",
+     "arrived frame 489 scene 686 save d0d118db47c30db3 state 9c89657f12d700dc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (383, 459): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "beb7b67a014311dfe51e4c7585004f9c"
+     },
+     {
+      "frames": 260,
+      "sha256": "3b35029db4dab6428291f11bb0050c4c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc1-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc1-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC1 (scene 685) should lead to scene 692",
+    "plan": "# sei-sei-snc1-exit-1: Walking onto exit 1 of SEI_SNC1 (scene 685) should lead to scene 692\nlimit 20000\nenter 33453 0 16719359 2\ncheckpoint entered\nexit 1 692\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 685 save 46d036e421a8c540 state f6e538103dcb55b1 ram 0000000000000000",
+     "arrived frame 444 scene 692 save 11762587014c34dc state 7b326faf7e787436 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (86, 528): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "beb7b67a014311dfe51e4c7585004f9c"
+     },
+     {
+      "frames": 215,
+      "sha256": "2527e45ae70af4c44384e79f5de4775e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc1-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc1-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC1 (scene 685) should lead to scene 684",
+    "plan": "# sei-sei-snc1-exit-2: Walking onto exit 2 of SEI_SNC1 (scene 685) should lead to scene 684\nlimit 20000\nenter 33453 0 16719359 2\ncheckpoint entered\nexit 2 684\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 685 save 46d036e421a8c540 state f6e538103dcb55b1 ram 0000000000000000",
+     "arrived frame 294 scene 684 save a7af4c9f35c984bb state 8bd25912ea18f10a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 109): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "beb7b67a014311dfe51e4c7585004f9c"
+     },
+     {
+      "frames": 65,
+      "sha256": "aba670040f927b84e526cbe73a29b218"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc2-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc2-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC2 (scene 686) should lead to scene 685",
+    "plan": "# sei-sei-snc2-exit-0: Walking onto exit 0 of SEI_SNC2 (scene 686) should lead to scene 685\nlimit 20000\nenter 33454 0 16719359 0\ncheckpoint entered\nexit 0 685\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 686 save d079397d2117d275 state ffc8b59a40da4e46 ram 0000000000000000",
+     "arrived frame 294 scene 685 save 3a373beb7821a8f4 state 267fffc40b1643d0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 96): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b24573b2590b20a856927c564b19cfd"
+     },
+     {
+      "frames": 65,
+      "sha256": "f580ae44f11fcef57919e2ce9006fb8c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc2-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc2-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC2 (scene 686) should lead to scene 687",
+    "plan": "# sei-sei-snc2-exit-1: Walking onto exit 1 of SEI_SNC2 (scene 686) should lead to scene 687\nlimit 20000\nenter 33454 0 16719359 0\ncheckpoint entered\nexit 1 687\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 686 save d079397d2117d275 state ffc8b59a40da4e46 ram 0000000000000000",
+     "arrived frame 488 scene 687 save 05f4e53bd789ddd3 state 526c86cad8339693 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (134, 594): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b24573b2590b20a856927c564b19cfd"
+     },
+     {
+      "frames": 259,
+      "sha256": "2e12feb5ba04f54b08fab3d011077adc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc3-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc3-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC3 (scene 687) should lead to scene 692",
+    "plan": "# sei-sei-snc3-exit-0: Walking onto exit 0 of SEI_SNC3 (scene 687) should lead to scene 692\nlimit 20000\nenter 33455 0 16719359 1\ncheckpoint entered\nexit 0 692\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 687 save 4cd4f14c00d00715 state a4d14733ce03521e ram 0000000000000000",
+     "arrived frame 668 scene 692 save a509ce0bf31e5d93 state 95f09c2983393df3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 104): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 46,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6186164ef3c5e6ea05bc9a4a554738af"
+     },
+     {
+      "frames": 439,
+      "sha256": "c38bb6b6e29dbb9c8af68e643117838b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc3-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc3-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC3 (scene 687) should lead to scene 686",
+    "plan": "# sei-sei-snc3-exit-1: Walking onto exit 1 of SEI_SNC3 (scene 687) should lead to scene 686\nlimit 20000\nenter 33455 0 16719359 1\ncheckpoint entered\nexit 1 686\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 687 save 4cd4f14c00d00715 state a4d14733ce03521e ram 0000000000000000",
+     "arrived frame 298 scene 686 save 21653d89d39ac686 state 8e1a7094614dafa4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (415, 33): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6186164ef3c5e6ea05bc9a4a554738af"
+     },
+     {
+      "frames": 69,
+      "sha256": "4a53faf43d7198c66bdd648df822b417"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc3-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc3-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC3 (scene 687) should lead to scene 688",
+    "plan": "# sei-sei-snc3-exit-2: Walking onto exit 2 of SEI_SNC3 (scene 687) should lead to scene 688\nlimit 20000\nenter 33455 0 16719359 1\ncheckpoint entered\nexit 2 688\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 687 save 4cd4f14c00d00715 state a4d14733ce03521e ram 0000000000000000",
+     "arrived frame 527 scene 688 save c932c001af0d9d80 state 73af0f13129fea71 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 584): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6186164ef3c5e6ea05bc9a4a554738af"
+     },
+     {
+      "frames": 298,
+      "sha256": "96b8eb97f6426e52a6ed3de3d39161dd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc4-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc4-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC4 (scene 688) should lead to scene 689",
+    "plan": "# sei-sei-snc4-exit-0: Walking onto exit 0 of SEI_SNC4 (scene 688) should lead to scene 689\nlimit 20000\nenter 33456 0 16719359 0\ncheckpoint entered\nexit 0 689\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 688 save dfe5d33cdf8db727 state 5de6c1bb7ae351b0 ram 0000000000000000",
+     "arrived frame 294 scene 689 save 17d7fa1f77e522aa state 00ef7624b3e408ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1efec0b352b4dc4050a5c9575896e9b1"
+     },
+     {
+      "frames": 65,
+      "sha256": "c0b1d9c458b860b042112cd0f2a75189"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc4-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc4-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC4 (scene 688) should lead to scene 687",
+    "plan": "# sei-sei-snc4-exit-1: Walking onto exit 1 of SEI_SNC4 (scene 688) should lead to scene 687\nlimit 20000\nenter 33456 0 16719359 1\ncheckpoint entered\nexit 1 687\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 688 save 63c3e3db321b925a state ab4d42ccf3f0f7d0 ram 0000000000000000",
+     "arrived frame 299 scene 687 save d0bcd618a844ce9c state 9360ebaa6f279ef3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (412, 34): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 63,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d7152899bb4b1d241c0067916b3d8e49"
+     },
+     {
+      "frames": 70,
+      "sha256": "eace49910c611b720f460eb6adfef446"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc5-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc5-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC5 (scene 689) should lead to scene 690",
+    "plan": "# sei-sei-snc5-exit-0: Walking onto exit 0 of SEI_SNC5 (scene 689) should lead to scene 690\nlimit 20000\nenter 33457 0 16719359 2\ncheckpoint entered\nexit 0 690\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 689 save a71136bb3f88849c state b3235b6c5354a388 ram 0000000000000000",
+     "arrived frame 630 scene 690 save c76a42ef4f7762b2 state 435b1928f32e802f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 115): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d35114c7e5b73f875a59d7abc922450d"
+     },
+     {
+      "frames": 401,
+      "sha256": "72acc42a70a9c91108a483ef0bdf4ab5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc5-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc5-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC5 (scene 689) should lead to scene 692",
+    "plan": "# sei-sei-snc5-exit-1: Walking onto exit 1 of SEI_SNC5 (scene 689) should lead to scene 692\nlimit 20000\nenter 33457 0 16719359 2\ncheckpoint entered\nexit 1 692\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 689 save a71136bb3f88849c state b3235b6c5354a388 ram 0000000000000000",
+     "arrived frame 473 scene 692 save 7fcb9945bc59d4e6 state 7a4857dfa7daea06 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (406, 36): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d35114c7e5b73f875a59d7abc922450d"
+     },
+     {
+      "frames": 244,
+      "sha256": "5d5983ee592524923f6c4b6cfe4a98a1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc5-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc5-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC5 (scene 689) should lead to scene 688",
+    "plan": "# sei-sei-snc5-exit-2: Walking onto exit 2 of SEI_SNC5 (scene 689) should lead to scene 688\nlimit 20000\nenter 33457 0 16719359 2\ncheckpoint entered\nexit 2 688\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 689 save a71136bb3f88849c state b3235b6c5354a388 ram 0000000000000000",
+     "arrived frame 300 scene 688 save 5b6330e968d75db5 state 0948e618500a9111 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (429, 506): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d35114c7e5b73f875a59d7abc922450d"
+     },
+     {
+      "frames": 71,
+      "sha256": "7d62d8c9015f4d512d29dac79daf8647"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc6-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc6-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC6 (scene 690) should lead to scene 691",
+    "plan": "# sei-sei-snc6-exit-0: Walking onto exit 0 of SEI_SNC6 (scene 690) should lead to scene 691\nlimit 20000\nenter 33458 0 16719359 1\ncheckpoint entered\nexit 0 691\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 690 save 12825f183daafbc4 state d0f642d9a6924bb9 ram 0000000000000000",
+     "arrived frame 2123 scene 691 save ff249f53e89ceb4c state bc099eb66b6e910a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (362, 38): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1610 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 471,
+     "instruction_end": 128,
+     "song": 3,
+     "exit": 1,
+     "monster": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "499f69d9bc77d5b992dce70231f59fca"
+     },
+     {
+      "frames": 1894,
+      "sha256": "2b597f6c6f7bec82d720694e13158213"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc6-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc6-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC6 (scene 690) should lead to scene 689",
+    "plan": "# sei-sei-snc6-exit-1: Walking onto exit 1 of SEI_SNC6 (scene 690) should lead to scene 689\nlimit 20000\nenter 33458 0 16719359 1\ncheckpoint entered\nexit 1 689\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 690 save 12825f183daafbc4 state d0f642d9a6924bb9 ram 0000000000000000",
+     "arrived frame 302 scene 689 save 3250767ec0148b60 state b876de05ce0d2f12 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (384, 501): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "499f69d9bc77d5b992dce70231f59fca"
+     },
+     {
+      "frames": 73,
+      "sha256": "b57e9db05d72fd575d247fbc7e34106a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc7-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc7-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC7 (scene 691) should lead to scene 690",
+    "plan": "# sei-sei-snc7-exit-0: Walking onto exit 0 of SEI_SNC7 (scene 691) should lead to scene 690\nlimit 20000\nenter 33459 0 16719359 2\ncheckpoint entered\nexit 0 690\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 691 save f74d0e465c415532 state 024d612f2add7ce1 ram 0000000000000000",
+     "arrived frame 519 scene 690 save 7934954a94f3a5df state ccc8c36de8aa7a6d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (82, 529): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa3ed9fbd8fbb2a395731fa9b66703fa"
+     },
+     {
+      "frames": 290,
+      "sha256": "8ede6fe4f96316873afac8b3f33bc108"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc7-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc7-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC7 (scene 691) should lead to scene 692",
+    "plan": "# sei-sei-snc7-exit-1: Walking onto exit 1 of SEI_SNC7 (scene 691) should lead to scene 692\nlimit 20000\nenter 33459 0 16719359 2\ncheckpoint entered\nexit 1 692\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 691 save f74d0e465c415532 state 024d612f2add7ce1 ram 0000000000000000",
+     "arrived frame 460 scene 692 save c8bb79389cb40d41 state 894270c052da548d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (385, 448): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa3ed9fbd8fbb2a395731fa9b66703fa"
+     },
+     {
+      "frames": 231,
+      "sha256": "cbb97eb45e04ab2c791d5b1d2370156b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc7-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc7-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC7 (scene 691) should lead to scene 684",
+    "plan": "# sei-sei-snc7-exit-2: Walking onto exit 2 of SEI_SNC7 (scene 691) should lead to scene 684\nlimit 20000\nenter 33459 0 16719359 2\ncheckpoint entered\nexit 2 684\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 691 save f74d0e465c415532 state 024d612f2add7ce1 ram 0000000000000000",
+     "arrived frame 295 scene 684 save 4c99635b693f5f94 state eed2ceb6a1329b2f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (325, 18): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa3ed9fbd8fbb2a395731fa9b66703fa"
+     },
+     {
+      "frames": 66,
+      "sha256": "baf4cdc72da21a4a8940f4f3dc56898a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc8-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc8-exit-0",
+    "description": "Walking onto exit 0 of SEI_SNC8 (scene 692) should lead to scene 691",
+    "plan": "# sei-sei-snc8-exit-0: Walking onto exit 0 of SEI_SNC8 (scene 692) should lead to scene 691\nlimit 20000\nenter 33460 0 16719359 1\ncheckpoint entered\nexit 0 691\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 692 save de0ee205b356d7b6 state 54e89d73bcb7b235 ram 0000000000000000",
+     "arrived frame 546 scene 691 save 5e7aad41c2c69fff state 157edeb1a9c6d6d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (12, 109): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 51,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4643af1c1bac415a5a3aa808a010068"
+     },
+     {
+      "frames": 317,
+      "sha256": "8088015eeda9f3c96cbcd8e527d6e655"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc8-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc8-exit-1",
+    "description": "Walking onto exit 1 of SEI_SNC8 (scene 692) should lead to scene 685",
+    "plan": "# sei-sei-snc8-exit-1: Walking onto exit 1 of SEI_SNC8 (scene 692) should lead to scene 685\nlimit 20000\nenter 33460 0 16719359 1\ncheckpoint entered\nexit 1 685\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 692 save de0ee205b356d7b6 state 54e89d73bcb7b235 ram 0000000000000000",
+     "arrived frame 295 scene 685 save 1c07cf7436e94139 state a85324679475bbbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (407, 34): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4643af1c1bac415a5a3aa808a010068"
+     },
+     {
+      "frames": 66,
+      "sha256": "0a08520738552074c6b0da8f52816c0f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc8-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc8-exit-2",
+    "description": "Walking onto exit 2 of SEI_SNC8 (scene 692) should lead to scene 687",
+    "plan": "# sei-sei-snc8-exit-2: Walking onto exit 2 of SEI_SNC8 (scene 692) should lead to scene 687\nlimit 20000\nenter 33460 0 16719359 1\ncheckpoint entered\nexit 2 687\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 692 save de0ee205b356d7b6 state 54e89d73bcb7b235 ram 0000000000000000",
+     "arrived frame 472 scene 687 save d7d59ced094d5a66 state 9fcdf701e8adcdcb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (433, 489): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4643af1c1bac415a5a3aa808a010068"
+     },
+     {
+      "frames": 243,
+      "sha256": "d559f24aadc06f829f32106e42b205ed"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc8-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc8-exit-3",
+    "description": "Walking onto exit 3 of SEI_SNC8 (scene 692) should lead to scene 689",
+    "plan": "# sei-sei-snc8-exit-3: Walking onto exit 3 of SEI_SNC8 (scene 692) should lead to scene 689\nlimit 20000\nenter 33460 0 16719359 1\ncheckpoint entered\nexit 3 689\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 692 save de0ee205b356d7b6 state 54e89d73bcb7b235 ram 0000000000000000",
+     "arrived frame 531 scene 689 save 62279ca2298978d5 state fb4d7d665311ce47 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (133, 595): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 51,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4643af1c1bac415a5a3aa808a010068"
+     },
+     {
+      "frames": 302,
+      "sha256": "921b98ff28b86402eb44a70542f72b97"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

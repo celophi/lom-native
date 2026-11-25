@@ -1,0 +1,34 @@
+{
+  "format": 1,
+  "id": "mods-skip-battles",
+  "description": "With Skip battles on, a fight in RUI_B000 should be won as soon as it starts, by a new game's hero who hasn't gained a level, with no results window",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "skip-battles",
+  "steps": [
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900,
+      "note": "the battle ends by itself within a few frames; the baseline notes how many"
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

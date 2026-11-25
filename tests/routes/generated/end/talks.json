@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "end-end-0058-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0058-talk-1",
+    "description": "Talking to layout record 1 of END_0058 (scene 858) should run its event and hand control back",
+    "plan": "# end-end-0058-talk-1: Talking to layout record 1 of END_0058 (scene 858) should run its event and hand control back\nlimit 20000\nenter 858 0 16713727 0\ncheckpoint entered\ntalk 245 257 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 858 save 5ecc97d76c808144 state 673d615c86b9a9ab ram 0000000000000000",
+     "talked frame 827 scene 858 save 527ac65103fde742 state b2bc0748c675e804 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (245, 237): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 52,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "674e5f46ee782a415eeb967a64117c78"
+     },
+     {
+      "frames": 598,
+      "sha256": "8e4ed18668036d8d69984bb5fc9ed447"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0078-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0078-talk-1",
+    "description": "Talking to layout record 1 of END_0078 (scene 878) should run its event and hand control back",
+    "plan": "# end-end-0078-talk-1: Talking to layout record 1 of END_0078 (scene 878) should run its event and hand control back\nlimit 20000\nenter 878 0 16713727 0\ncheckpoint entered\ntalk 160 192 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 878 save 020a74e02eac7b60 state 8d9038a7bd303af0 ram 0000000000000000",
+     "talked frame 842 scene 878 save 020a74e02eac7b60 state 650d0a38805d2382 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56257b52ec3a55888ff4d21716e8c850"
+     },
+     {
+      "frames": 613,
+      "sha256": "4ce927dd1a605566d04389b94425fd93"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "end-end-0079-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "end-end-0079-talk-1",
+    "description": "Talking to layout record 1 of END_0079 (scene 879) should run its event and hand control back",
+    "plan": "# end-end-0079-talk-1: Talking to layout record 1 of END_0079 (scene 879) should run its event and hand control back\nlimit 20000\nenter 879 0 16713727 0\ncheckpoint entered\ntalk 160 192 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 879 save 44a1e484ad12baad state dbc526f8abe6cd18 ram 0000000000000000",
+     "talked frame 887 scene 879 save 44a1e484ad12baad state ed416357ccb28c39 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c5e73a055d3c173cbe3b4366d4a5addb"
+     },
+     {
+      "frames": 658,
+      "sha256": "a53f1d8b570ed20e2db1fbe6c1bf5814"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

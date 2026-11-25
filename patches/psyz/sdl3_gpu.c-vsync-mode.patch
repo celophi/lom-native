@@ -1,0 +1,13 @@
+Tell the port's frame clock when the game changes display mode, in the SDL
+GPU renderer.
+
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -1097,6 +1097,7 @@
+ }
+ 
+ void Draw_SetDisplayMode(DisplayMode* mode) {
++    Cadence_DisplayMode(mode->pal, mode->interlaced);
+     bool previous_rgb24 = display_rgb24;
+     Posi previous_size = display_size;
+     // TODO the interlace flag is ignored

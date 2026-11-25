@@ -1,0 +1,9 @@
+{
+  "id": "other-game",
+  "name": "Other game",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLPS-01740",
+  "api": 1
+}

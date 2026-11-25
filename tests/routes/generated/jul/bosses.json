@@ -1,0 +1,513 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jul-jul-bs01-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs01-boss",
+    "description": "Entering JUL_BS01 (scene 791) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-bs01-boss: Entering JUL_BS01 (scene 791) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33559 0 16720394 3\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 791 save 6cb8f32d95ed9192 state 1b2757967d11f175 ram 0000000000000000",
+     "fought frame 2130 scene 791 save 276e46b9e8013fc2 state 29e1b34b3e105f7e ram 0000000000000000",
+     "after frame 2201 scene 762 save a241e002d9b49bf8 state a8a794bdf4867f6e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 1670 frames",
+     "watched until the player got control, 69 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 420,
+     "instruction_end": 138,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "6133951675d1cef734e1d5f2913f719b"
+     },
+     {
+      "frames": 1870,
+      "sha256": "86d50f163d50e083b740cf4b63d65152"
+     },
+     {
+      "frames": 71,
+      "sha256": "c01d6b49a69f21da891c32a0fbca6ea5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs11-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs11-boss",
+    "description": "Entering JUL_BS11 (scene 792) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-bs11-boss: Entering JUL_BS11 (scene 792) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33560 0 16720394 3\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 792 save 18384e3cfe8de8a9 state 1b2757967d11f175 ram 0000000000000000",
+     "fought frame 2190 scene 792 save 7e24e128e2c53b29 state e21b11201148f5b5 ram 0000000000000000",
+     "after frame 2261 scene 763 save ad84166a2e9b2f6a state 84844ffca58281ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 1730 frames",
+     "watched until the player got control, 69 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 447,
+     "instruction_end": 139,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "042924c28677062b71a6fcde94293a55"
+     },
+     {
+      "frames": 1930,
+      "sha256": "5f76a645cf52b8366bd22b5673702d91"
+     },
+     {
+      "frames": 71,
+      "sha256": "92d4e24fc900ed5635f5c42e64884814"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs21-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs21-boss",
+    "description": "Entering JUL_BS21 (scene 793) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-bs21-boss: Entering JUL_BS21 (scene 793) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33561 0 16720394 3\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 793 save 2603cee79f93f184 state 1b2757967d11f175 ram 0000000000000000",
+     "fought frame 2550 scene 793 save e8619a5638d79197 state 92bfbf0edce8a079 ram 0000000000000000",
+     "after frame 2621 scene 764 save 32c53c108fc5778c state 918a9eca4f2e77a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 2090 frames",
+     "watched until the player got control, 69 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 434,
+     "instruction_end": 150,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "0b57232d82333dd6cd2c620f15194df8"
+     },
+     {
+      "frames": 2290,
+      "sha256": "6a0750593b7ee8bc00558fd35a01301d"
+     },
+     {
+      "frames": 71,
+      "sha256": "5d09fa1e53f057fa3ce6970ec3b060f8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm00-boss",
+    "description": "Entering JUL_RM00 (scene 767) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm00-boss: Entering JUL_RM00 (scene 767) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33535 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 767 save a39d27e153826e24 state d0ad91fbb444dd90 ram 0000000000000000",
+     "fought frame 1206 scene 767 save 0a0d08a86e58d4f0 state 55b2718838856f23 ram 0000000000000000",
+     "after frame 1252 scene 767 save d471dd772f73a602 state ca4b7888f65a36c7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 890 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 411,
+     "instruction_end": 123,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e0f45871708a4e988eb8b58021d3f383"
+     },
+     {
+      "frames": 946,
+      "sha256": "0e3bbda2d1f835261272688bd514f989"
+     },
+     {
+      "frames": 46,
+      "sha256": "d2527f5e015489768b0d9f241802c8de"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm01-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm01-boss",
+    "description": "Entering JUL_RM01 (scene 768) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm01-boss: Entering JUL_RM01 (scene 768) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33536 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 768 save f4ee96a928e632b8 state 5063667f0704ca9c ram 0000000000000000",
+     "fought frame 1566 scene 768 save a4754e8f4a7c072a state 21fbba12f4213fcf ram 0000000000000000",
+     "after frame 1612 scene 768 save b573dd6134adcf90 state a6258a16870fdebf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1250 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 444,
+     "instruction_end": 126,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "fa5568fe357c6d01a0a927363a34e735"
+     },
+     {
+      "frames": 1306,
+      "sha256": "b12320d05732d80d2519e6217e47361f"
+     },
+     {
+      "frames": 46,
+      "sha256": "452592e792e3320e8c0e9326ef364642"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm02-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm02-boss",
+    "description": "Entering JUL_RM02 (scene 769) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm02-boss: Entering JUL_RM02 (scene 769) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33537 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 769 save f231d21e7aac4059 state c741fbdcedf10da3 ram 0000000000000000",
+     "fought frame 846 scene 769 save 270f18d15f02f6ce state 3097f075314666a4 ram 0000000000000000",
+     "after frame 892 scene 769 save dd69cfd094c3b534 state 462ea9241f397ec1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 111,
+     "instruction": 317,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e36e942d5a09dcd2ed9194a4819e18bb"
+     },
+     {
+      "frames": 586,
+      "sha256": "60f28ca5e9bbd5a2a31347111f067559"
+     },
+     {
+      "frames": 46,
+      "sha256": "92f7f981f6c00ff2b2f68860ded9ccc9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm03-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm03-boss",
+    "description": "Entering JUL_RM03 (scene 770) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm03-boss: Entering JUL_RM03 (scene 770) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33538 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 770 save ad015dac776c096a state 1d898ea0ce01d1c7 ram 0000000000000000",
+     "fought frame 1146 scene 770 save c85636465e2fdc05 state d1f3c282de48c99b ram 0000000000000000",
+     "after frame 1192 scene 770 save 53be8f41823cb7cb state 461ce061e5058146 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 830 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 393,
+     "instruction_end": 120,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f32b4a31b765463738452185b3c5cae6"
+     },
+     {
+      "frames": 886,
+      "sha256": "a4967a2fa49cd014f6a97345c0cd0e69"
+     },
+     {
+      "frames": 46,
+      "sha256": "baa2cd6e7cc5e29a78b3f6b9b70f727d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm04-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm04-boss",
+    "description": "Entering JUL_RM04 (scene 771) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm04-boss: Entering JUL_RM04 (scene 771) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33539 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 771 save 0578eae959c4b1e3 state 061a3d7fb1dc31a7 ram 0000000000000000",
+     "fought frame 966 scene 771 save 20b739a9a5123966 state 42cadfe0598a9c6c ram 0000000000000000",
+     "after frame 1012 scene 771 save a2ba42abe27dfce8 state 80850124c6d0404c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 116,
+     "instruction": 353,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "5abfad2a8b922305b6c85fcc31d54966"
+     },
+     {
+      "frames": 706,
+      "sha256": "f62994e82df6b859616e990c29261582"
+     },
+     {
+      "frames": 46,
+      "sha256": "5333618cecd16b2e052999c84aca94e3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm05-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm05-boss",
+    "description": "Entering JUL_RM05 (scene 772) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm05-boss: Entering JUL_RM05 (scene 772) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33540 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 772 save bfd3501c18f5f4e4 state de80bfbf74003c2c ram 0000000000000000",
+     "fought frame 1086 scene 772 save ea02c8f00c8993c6 state 227c7c1d89b08d39 ram 0000000000000000",
+     "after frame 1132 scene 772 save e3247ed868fdea14 state 9ffda3264b6b07b1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 371,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "81025013c69f7c254f732e805da3ff84"
+     },
+     {
+      "frames": 826,
+      "sha256": "2fa2508d77f99fed38b974bf74b15237"
+     },
+     {
+      "frames": 46,
+      "sha256": "e47634fbec9dd9f880a9decc3ea52996"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm06-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm06-boss",
+    "description": "Entering JUL_RM06 (scene 773) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# jul-jul-rm06-boss: Entering JUL_RM06 (scene 773) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33541 0 16720127 0\ncheckpoint entered\nwalk 245 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 773 save e21daabdf1cda945 state 5c25f3aa6e455053 ram 0000000000000000",
+     "fought frame 3126 scene 773 save 111d42d86fc0d20b state 05aa114df8d1a5da ram 0000000000000000",
+     "after frame 3172 scene 773 save fc0f77dcf0eb46b9 state 46719307c264c026 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (245, 118): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2810 frames",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 447,
+     "instruction_end": 132,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "71decb3e9594000670e0abb2c3663a51"
+     },
+     {
+      "frames": 2866,
+      "sha256": "459b54e2d8c5a7969982db1e5252d0f4"
+     },
+     {
+      "frames": 46,
+      "sha256": "187562818cc6450a0617e4328aed6ff6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

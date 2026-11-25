@@ -1,0 +1,158 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mnt-mnt-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-bs00-boss",
+    "description": "Entering MNT_BS00 (scene 156) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# mnt-mnt-bs00-boss: Entering MNT_BS00 (scene 156) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32924 0 16712703 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 156 save 272539cd04051514 state 87a2705b314da10a ram 0000000000000000",
+     "fought frame 3477 scene 156 save fb88dc8bee5dca22 state 19ca7a25f4ebd0f9 ram 0000000000000000",
+     "after frame 3733 scene 156 save fb88dc8bee5dca22 state 8c1acfae0b45a483 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 3050 frames",
+     "watched until the player got control, 254 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 416,
+     "instruction_end": 150,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "b7149ddebb7d14836b1bb81c3175cc7b"
+     },
+     {
+      "frames": 3217,
+      "sha256": "ec981a0edb8729bea151d1538cf9bd9d"
+     },
+     {
+      "frames": 256,
+      "sha256": "0f00860c67b24eeb71de95f62b18ea9d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mnt-mnt-bs10-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-bs10-boss",
+    "description": "Entering MNT_BS10 (scene 158) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# mnt-mnt-bs10-boss: Entering MNT_BS10 (scene 158) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32926 0 16712703 0\ncheckpoint entered\ntalk 318 190 0 1 0 2\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 158 save aa02fe5ca40d3a56 state 2d46b6f65831f0ea ram 0000000000000000",
+     "fought frame 3772 scene 158 save a0f52d1c81a66498 state c55e37186dae5ae1 ram 0000000000000000",
+     "after frame 3940 scene 158 save a0f52d1c81a66498 state 61735496457c200a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (318, 170): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2810 frames",
+     "watched until the player got control, 166 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 384,
+     "instruction_end": 130,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "4e1a2edaa46836ae813f34a9be86d202"
+     },
+     {
+      "frames": 3512,
+      "sha256": "785d1f753a2fb9d7fbaf5ad82e173ddd"
+     },
+     {
+      "frames": 168,
+      "sha256": "e1acee6466fd24b52c3cfe98ca98dcd5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mnt-mnt-bs20-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mnt-mnt-bs20-boss",
+    "description": "Entering MNT_BS20 (scene 160) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# mnt-mnt-bs20-boss: Entering MNT_BS20 (scene 160) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32928 0 16712703 0\ncheckpoint entered\ntalk 324 215 0 1 0 1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 160 save 8df5fa6fd5d5c990 state 8f8a5c2bb9262b8e ram 0000000000000000",
+     "fought frame 2464 scene 160 save ba5cfc9ef755c3bf state 046f6ca9252cd112 ram 0000000000000000",
+     "after frame 2666 scene 160 save ba5cfc9ef755c3bf state 3ff6b021237e03db ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (324, 195): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1550 frames",
+     "watched until the player got control, 200 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 130,
+     "instruction": 375,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d986a4fd875318f69d2e2794b0ca13fc"
+     },
+     {
+      "frames": 2204,
+      "sha256": "5b12d09dc62b0ac5c4bd232dec0ebc89"
+     },
+     {
+      "frames": 202,
+      "sha256": "a280d19876f616e5b201c22e7e34e18c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+# Settings
+
+F1 or the controller's Guide button opens the port's settings while you play.
+Out of the box it's the PS1 game, apart from the Remaster's art if you have it
+(below). Everything else here is off until you turn it on.
+
+The pages are in the same order as here: Display, Audio, Controls, General and
+Mods.
+
+## Display
+
+**Scaling filter** is how the PS1's picture is stretched to fill your window. F5 switches between them while you play.
+
+- Sharp, the default, keeps the pixels crisp and softens the edges between them a little.
+- Integer scales by whole pixels, so every pixel is the same size. That leaves a border.
+- Smooth is bilinear, softer than the original.
+- xBR rounds off diagonal edges and keeps the shapes of the pixel art.
+
+**Internal resolution** is 1x, 2x or 4x, and 1x by default. It draws the game's polygons at a higher resolution, so their edges are cleaner. The game's own artwork keeps its pixels. F7 switches it while you play.
+
+**Fullscreen** is off by default. F4 does the same.
+
+**Widescreen** is off by default. With it on, towns, dungeons and fights show more of the world on each side, at 16:9. Places without the art for it, the world map, the menus and the movies stay 4:3, and during a fight nobody can walk into the extra space.
+
+**Restore display defaults** puts these back: Sharp, 1x, 4:3, in a window.
+
+## Audio
+
+**Volume** is everything, movies included, and each sound setting has its own mute that keeps the volume where you left it.
+
+**Music** and **Sound effects** each have their own volume, under the main Volume. The original game only has the one. Movies follow the main Volume only, since their music and sound come mixed together.
+
+**Restore audio defaults** puts everything back at full volume, not muted.
+
+## Controls
+
+Pick Player 1 or Player 2 at the top, then each PS1 button has its key and its gamepad button. Select a button with a key to change its key, or with a gamepad button to change its gamepad button, then press the new one. F2 clears it, and Esc cancels. The keyboard and a gamepad work at the same time.
+
+Some keys are kept for the port and can't be used: Esc, F1, F2 and F4 to F7. The Guide button is kept for opening the settings.
+
+Player 2 is for the game's own two-player mode. Recruit a companion in the game, then give player 2 a controller or some keys.
+
+**Restore player defaults** puts that player's keys and gamepad buttons back the way they started.
+
+## General
+
+**Pause when unfocused** is off by default. With it on, the game and its sound pause when you switch to another window, and carry on when you come back.
+
+**Skip the results window** is off by default. With it on, a fight goes straight back to the field instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away. You still get everything, it's only the window that's skipped.
+
+**No natural healing** is off by default. In the original game your hit points come back over time, and most fights fill them up again when they end. With it on, they only come back from items, techniques, pets and leaving a dungeon, so a long dungeon wears you down.
+
+A mod can turn either of those last two on. When one does, its row says which mod, and you can't change it there. Turn the mod off in the launcher's Mods window, or on F1's Mods page if the mod has a switch there, and the row is yours again.
+
+## Mods
+
+The Mods page lists the mods you turned on in the launcher that can be switched off and on while you play, like the ones that come with lom-native. Turning one off there lasts until you close the game. Which mods load at all is up to the launcher's Mods window.
+
+Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the US version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
+
+[modding.md](modding.md) has the rest about mods.
+
+## Language
+
+The launcher and the game's own settings (F1) follow your system's language if they have it: English, German, French, Spanish, Japanese, Korean or Chinese (Simplified or Traditional). You can pick another in the launcher's Settings, and F1 follows it. That's only the port's own screens; the game's text is the Remaster's Text setting below.
+
+## The Remaster
+
+If you also own the Legend of Mana Remaster on Steam, the game can use its art, music, sound and text. The launcher finds it in your Steam libraries, or you can choose its folder or turn it off in the launcher's Game files window. Nothing is copied; the game reads it where it's installed. The Flatpak can only look in Steam's main library, so if yours is on another drive, choose its folder there.
+
+With it, the settings have these:
+
+- **HD backgrounds** (Display), on by default. The Remaster's repainted backgrounds, from the next room you enter. Set Internal resolution to 4x to see all of their detail.
+- **HD pictures** (Display), on by default. The Remaster's repainted faces in conversations, and its encyclopedia pictures.
+- **Text** (Display). The game's text, or the Remaster's revised English or its German, French, Spanish, Japanese, Korean or Chinese. Only with the US disc; the Japanese one keeps its own text, since it's stored differently.
+- **Soundtrack** (Audio). The PS1's, the Remaster's, or the Remaster's arranged one. It changes from the next song.
+- **Effects** (Audio). The PS1's sound effects, or the Remaster's recordings of them.
+
+With Widescreen on too, rooms the Remaster painted wider show its extra art at the sides. In a few rooms the Remaster moved walls a little to fit its new art, and with HD backgrounds on you play those rooms its way.

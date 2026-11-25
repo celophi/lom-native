@@ -1,0 +1,63 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "defeat-wst-bf00-cross",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game",
+    "source": "written by the game at the end of tests/routes/handwritten/newgame/opening-save.json (record that route again and copy its card file here if it changes)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card"
+   },
+   "baseline": {
+    "route": "defeat-wst-bf00-cross",
+    "description": "A defeated hero answering the return-to-title prompt with cross should go where the game sends them",
+    "plan": "# defeat-wst-bf00-cross: A defeated hero answering the return-to-title prompt with cross should go where the game sends them\nlimit 60000\nenter 32883 1 16712191 0\ncheckpoint entered\nwalk 240 -1\nwait 3000\ncheckpoint waited\npress 0x4000 4\nwait 60\nwatch 3000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 115 save 9020364fda9ed5e0 state ef54dfd3c06cbbe6 ram 0000000000000000",
+     "waited frame 3151 scene 115 save 65d2798a4217f430 state acc7e69f1f45e7ba ram 0000000000000000",
+     "done frame 3249 scene 115 save a49c7cb6207b17cd state 98aa74161a5e6937 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 224): 1 waypoints",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 377,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "e3fd11f43adab5ef3cab713439772e82"
+     },
+     {
+      "frames": 3095,
+      "sha256": "e0e23ee745411b28f6fa5b6e67ab4ca0"
+     },
+     {
+      "frames": 98,
+      "sha256": "db475ced271350c601f3b5fb2c8a1518"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

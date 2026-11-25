@@ -1,0 +1,170 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jgl-jgl-b110-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b110-direct",
+    "description": "Entering JGL_B110 (scene 400) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jgl-jgl-b110-direct: Entering JGL_B110 (scene 400) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 400 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 400 save c5fd393656230f47 state 20d4a27760ce1034 ram 0000000000000000",
+     "watched frame 262 scene 400 save d920557c6e99b33f state ebc6bf86050a7c10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c375e795f44d5bc64f65ac8ec81aba8f"
+     },
+     {
+      "frames": 33,
+      "sha256": "a6188c29fea55e1a8ada8ac79f401608"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b120-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b120-direct",
+    "description": "Entering JGL_B120 (scene 401) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jgl-jgl-b120-direct: Entering JGL_B120 (scene 401) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 401 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 401 save 439a132b3e931e6a state 20d4a27760ce1034 ram 0000000000000000",
+     "watched frame 262 scene 401 save 9e3fa895909222ea state ebc6bf86050a7c10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64bda31b4797a1c9cc3f37042e7740d8"
+     },
+     {
+      "frames": 33,
+      "sha256": "61ad0c4797e4134b21383b99b28c0398"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b130-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b130-direct",
+    "description": "Entering JGL_B130 (scene 402) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jgl-jgl-b130-direct: Entering JGL_B130 (scene 402) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 402 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 402 save 9f7c3439cfecae01 state 20d4a27760ce1034 ram 0000000000000000",
+     "watched frame 262 scene 402 save 8e0dfa8784caf329 state ebc6bf86050a7c10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b6a70617848e823626b6c28534f6b8bc"
+     },
+     {
+      "frames": 33,
+      "sha256": "3a0c7cdc8a728c48dc8e0fbd83244f73"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b140-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b140-direct",
+    "description": "Entering JGL_B140 (scene 403) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jgl-jgl-b140-direct: Entering JGL_B140 (scene 403) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 403 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 403 save 2f6c8cd4f7d4b174 state 20d4a27760ce1034 ram 0000000000000000",
+     "watched frame 262 scene 403 save 55ca295617284e1c state ebc6bf86050a7c10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 46,
+     "instruction": 131,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fcb0b4786d700fbe838d3d40e96eaa3c"
+     },
+     {
+      "frames": 33,
+      "sha256": "3880f8927b993fdb60a5621ae8965ea8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

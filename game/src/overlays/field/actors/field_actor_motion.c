@@ -1,0 +1,171 @@
+#include "common.h"
+#include "main/display.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_actor_sequence_runtime.h"
+#include "../internal/field_held_action_buttons.h"
+#include "../internal/field_effect_render_state.h"
+#include "../internal/field_contact_geometry.h"
+#include "overlays/field/field_types.h"
+#include "common/vector.h"
+
+#define FIELD_SCREEN_EDGE_LEFT 6
+#define FIELD_SCREEN_EDGE_RIGHT (SCREEN_WIDTH - 6)
+#define FIELD_SCREEN_EDGE_TOP 9
+#define FIELD_SCREEN_EDGE_BOTTOM VRAM_DRAW_HEIGHT
+
+typedef struct
+{
+    FieldVector position;
+    Vec2s screen;
+} FieldScreenProbe;
+
+/**
+ * @brief Run one frame of an actor's action command.
+ * @param actor Actor running the action.
+ * @param update_action Non-zero runs the action state handler first.
+ * @note While the animation plays, the remaining slide speed moves the actor
+ *       along its facing; once it has finished, the action is wound down.
+ * @note JP expands field_get_held_action_buttons inline here.
+ */
+void field_update_actor_action(FieldActor* actor, s32 update_action)
+{
+    Vec3i* displacement = FIELD_SCRATCH_DISPLACEMENT;
+    s32 unused[2];
+    s32 animation;
+    s32 step;
+    FieldObjectPart* part;
+
+    if (update_action != 0 && (actor->animation_state != 0 || (actor->animation & FIELD_ANIMATION_INDEX_MASK) == FIELD_ABILITY_GRAPPLE))
+    {
+        field_update_actor_action_chain(actor);
+    }
+
+    if (actor->animation_state == 0)
+    {
+        animation = actor->animation & FIELD_ANIMATION_INDEX_MASK;
+
+        if (animation == FIELD_ABILITY_DEFEND || animation == FIELD_ABILITY_CROUCH)
+        {
+            if (g_field_object_states[actor->object_index].action < FIELD_RESOURCE_ACTION_BUTTON_COUNT)
+            {
+                if (field_get_held_action_buttons(actor->object_index, g_field_object_states[actor->object_index].action, actor) != 0)
+                {
+                    return;
+                }
+            }
+        }
+
+        if (g_field_object_states[actor->object_index].contact.bits.linked)
+        {
+            if (field_object_has_active_actor_tracks(actor->object_index) != 0)
+            {
+                return;
+            }
+
+            g_field_object_states[g_field_object_states[actor->object_index].linked_object_index].flags &= ~FIELD_OBJECT_FLAG_LINK_TARGET;
+        }
+
+        g_field_object_states[actor->object_index].flags &= ~FIELD_OBJECT_FLAG_DASH;
+        field_update_sequence_actor_binding(actor, 1);
+        g_field_object_states[actor->object_index].movement.word &= ~FIELD_MOVEMENT_SEQUENCE_MASK;
+        animation = actor->animation & FIELD_ANIMATION_INDEX_MASK;
+
+        if (animation == FIELD_ABILITY_BASH || animation == FIELD_ABILITY_MOONSAULT)
+        {
+            actor->animation ^= FIELD_ANIMATION_FACING;
+        }
+
+        if (actor->object_index < FIELD_PLAYER_COUNT && field_update_pending_action(actor) != 0)
+        {
+            return;
+        }
+
+        if (field_update_actor_landing(actor) != 0)
+        {
+            actor->command = FIELD_ACTOR_COMMAND_NONE;
+            actor->animation &= FIELD_ANIMATION_FACING;
+            field_restart_sequence_animation(actor);
+        }
+
+        if (actor->command == FIELD_ACTOR_COMMAND_NONE)
+        {
+            g_field_object_states[actor->object_index].action_parameter = FIELD_ACTION_PARAMETER_NONE;
+            field_release_object_link(actor);
+        }
+    }
+    else
+    {
+        step = actor->speed_accumulator / actor->frame_timer;
+        actor->speed_accumulator -= step;
+        part = &g_field_object_parts[actor->object_index];
+
+        if (actor->animation & FIELD_ANIMATION_FACING)
+        {
+            displacement->x = ((step << FIELD_POSITION_SHIFT) * part->appearance.fields.scale_xz) >> FIELD_PART_SCALE_SHIFT;
+        }
+        else
+        {
+            displacement->x = (-(step << FIELD_POSITION_SHIFT) * part->appearance.fields.scale_xz) >> FIELD_PART_SCALE_SHIFT;
+        }
+
+        displacement->y = 0;
+        displacement->z = 0;
+        field_resolve_actor_movement(actor, &displacement->x, 1);
+
+        if (g_field_resource_entries[actor->resource_index].multi_image == 0)
+        {
+            g_field_object_states[actor->object_index].movement.word &= ~FIELD_MOVEMENT_OVERLAPPING;
+        }
+    }
+}
+
+/**
+ * @brief Test whether a proposed move takes an actor past the edge of the screen.
+ * @param actor Actor whose fixed-point position is tested.
+ * @param delta Proposed displacement; only X and Z are tested.
+ * @return 1 when the move crosses the screen edge it heads for, otherwise 0.
+ * @note The projected coordinates are truncated to 16 bits before the view offsets are added.
+ */
+s32 field_move_leaves_screen(FieldActor* actor, Vec3i* delta)
+{
+    FieldScreenProbe probe;
+
+    probe.position.vx = actor->x + delta->x;
+    probe.position.vy = actor->y;
+    probe.position.vz = actor->z + delta->z;
+    probe.screen.x = g_field_view_offset_x / 256 + (s16)(probe.position.vx / 256 + FIELD_SCREEN_CENTER_X);
+    probe.screen.y =
+        g_field_view_offset_y / 256 + (s16)(probe.position.vy / 256 + FIELD_SCREEN_CENTER_Y) - probe.position.vz / 512 - g_field_view_offset_z / 512;
+    if (delta->x < 0)
+    {
+        if (probe.screen.x < FIELD_SCREEN_EDGE_LEFT)
+        {
+            return 1;
+        }
+    }
+    else if (delta->x > 0)
+    {
+        if (probe.screen.x >= FIELD_SCREEN_EDGE_RIGHT)
+        {
+            return 1;
+        }
+    }
+
+    if (delta->z > 0)
+    {
+        if (probe.screen.y < FIELD_SCREEN_EDGE_TOP)
+        {
+            return 1;
+        }
+    }
+    else if (delta->z < 0)
+    {
+        if (probe.screen.y >= FIELD_SCREEN_EDGE_BOTTOM)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}

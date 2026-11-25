@@ -1,0 +1,44 @@
+Drop the polygons the PS1 drops for being too big, in the OpenGL renderer.
+
+--- a/psyz/src/platform/sdl3_gl.c
++++ b/psyz/src/platform/sdl3_gl.c
+@@ -913,6 +913,18 @@
+     glBindVertexArray(0);
+ }
+ 
++static bool TriangleWithinSizeLimit(const Vertex* a, const Vertex* b, const Vertex* c) {
++    int min_x = a->x, max_x = a->x, min_y = a->y, max_y = a->y;
++    const Vertex* rest[2] = {b, c};
++    for (int i = 0; i < 2; ++i) {
++        if (rest[i]->x < min_x) min_x = rest[i]->x;
++        if (rest[i]->x > max_x) max_x = rest[i]->x;
++        if (rest[i]->y < min_y) min_y = rest[i]->y;
++        if (rest[i]->y > max_y) max_y = rest[i]->y;
++    }
++    return max_x - min_x <= 1023 && max_y - min_y <= 511;
++}
++
+ int Draw_PushPrim(u_long* packets, int max_len) {
+     int len = max_len;
+     int code = (int)(*packets >> 24) & 0xFF;
+@@ -988,7 +1000,19 @@
+             }
+ 
+             SET_TC_ALL(vertex_cur, tpage, clut);
+-            Draw_EnqueueBuffer(nVertices, nIndices);
++            nIndices = 0;
++            if (TriangleWithinSizeLimit(&vertex_cur[0], &vertex_cur[1], &vertex_cur[2])) {
++                index_cur[nIndices++] = n_vertices;
++                index_cur[nIndices++] = n_vertices + 1;
++                index_cur[nIndices++] = n_vertices + 2;
++            }
++            if (nVertices == 4 &&
++                TriangleWithinSizeLimit(&vertex_cur[1], &vertex_cur[3], &vertex_cur[2])) {
++                index_cur[nIndices++] = n_vertices + 1;
++                index_cur[nIndices++] = n_vertices + 3;
++                index_cur[nIndices++] = n_vertices + 2;
++            }
++            if (nIndices != 0) Draw_EnqueueBuffer(nVertices, nIndices);
+         } else {
+             // shouldn't happen on a normal PSX application
+             WARNF("code %02X not supported", code);

@@ -1,0 +1,88 @@
+{
+ "route": "wst-wst-bs10-event-30",
+ "description": "Coming into WST_BS10 (scene 112) from this save, walking to (128, 172) and pressing Cross should start its battle",
+ "plan": "# wst-wst-bs10-event-30: Coming into WST_BS10 (scene 112) from this save, walking to (128, 172) and pressing Cross should start its battle\nlimit 20000\nenter 32880 0 16720676 0\ncheckpoint entered\nwalk 128 172\npress 0x4000 4\nwait 300\ncheckpoint pressed\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 229 scene 112 save d6ac920ce868d92c state dc230f083a89f960 ram 0000000000000000",
+  "pressed frame 664 scene 112 save 4983a9ff5dd2ae15 state 68be7d26f7d35162 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 229, scene 112 (WST_BS10)",
+    "sound bank id 65535 to 36",
+    "scene id 19 to 32880",
+    "music id 7 to 35",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "actor 0 (the hero): at (428, 260), facing 96, animation 1,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (128, 152), facing 0, animation 128,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (470, 120), facing 128, animation 0,0, presence 0, control 2, command 141"
+   ]
+  },
+  {
+   "checkpoint": "pressed",
+   "changes": [
+    "frame 664, scene 112 (WST_BS10)",
+    "story word 24: f2f20000 to 53530000 (set 0x310, 0x318; cleared 0x315, 0x317, 0x31d, 0x31f)",
+    "1 other saved-game byte changed, the first at offset 12628",
+    "scene word 9: 00000008 to 000500ff",
+    "scene word 10: 00000100 to 00000320",
+    "scene word 11: 00000100 to 00000320",
+    "scene word 12: 00000100 to 00000008",
+    "scene word 17: 01ac0104 to 00fe00ab",
+    "scene word 20: 00000000 to 0000f011",
+    "scene word 21: 0000c000 to 00002000",
+    "scene word 40: 00008000 to 00010015",
+    "scene word 41: 00000000 to 00000160",
+    "scene word 46: 00000000 to 00000001",
+    "scene word 47: 000000e4 to 00000297",
+    "scene word 50: 00000000 to 5018ff7f",
+    "scene word 58: 00000000 to 4010ff7f",
+    "scene word 59: 00000000 to 000000ff",
+    "scene word 60: 00000000 to 08000000",
+    "scene word 66: 366a0000 to 026a0000",
+    "scene word 67: 2014fffe to 20140002",
+    "scene word 70: 00008861 to 00007861",
+    "actor 0 (the hero): moved (428, 260) to (254, 171); direction 96 to 128; animation 1,0 to 1,3; control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): moved (128, 152) to (217, 172); animation 128,0 to 132,0; command 0 to 136",
+    "actor 4 (layout record 1): command 141 to 0",
+    "battle record 0: monster -1, side 128, hp 19/50",
+    "battle record 3: monster 151, side 64, hp 800/800"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (128, 172): 2 waypoints"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 283,
+  "instruction_end": 96,
+  "song": 3,
+  "scene": 2,
+  "monster": 1
+ },
+ "pictures": "607efce6 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 840c0f71 ce6ff8bb 7fffd764 220e674f 39c89f1a d8988c1a 48b7a0d0 eb3b3ebb de16c02a c4564b16 e4f88186 6fabb54e ec2b511a 25f596f4 f03e307e 3242a2c3 b4e34bdc ec0e3a4e 14650fb0 38d7cdfd 94a72f22 4c4b8ba6 c256c77c c6eea54f 412ceea1 4f355f6f c65c101e e4195648 a4c56c97 d5548467 ab99a755 4781cab5 ab99a755 b5801d61 a7fca899 b5801d61 a7fca899 41f65e18 a2051a72 41f65e18 a2051a72 b34c02bb 5b23f8fa b34c02bb 5b23f8fa 92a105db 329a3a52 92a105db 5b23f8fa b34c02bb 5b23f8fa b34c02bb 5b23f8fa b34c02bb 5b23f8fa e3fb68e9 82217bf1 5e797f65 b9f865d5 f9baad83 b1b4bd61 04002b54 3b7dfabb 4b24cf0b 08d40906 bcbe6e16 44f1e63d b89fa74f 568cd93e 99fedd0a 311f5be8 0a9511c7 8a64d03f c138de41 288053aa a0918121 ea0197db 2036473f b526a041 fea19327 7554849f d07e7d07 8056fcdc dabeff3e a4d9a18d 53a98eec 9c3ceec8 8b300ed6 62be1b56 a187c928 0f73549c 58ac4d9b d01a0cfa 95017419 a2f7f4dc a1c097d8 0f3f70cd 5641165c 42108e11 f9375b9a d6cd5695 5223d25c 4a955146 d20afac4 fd00af7e 44f757cc 047022b7 1c87320b d4e5ebd0 3471163f 40dc8b0c 5025f438 309c6c9c ab904388 255e3ca5 79e8d17c 334d4b9a 0a7f01f1 49a2853d 3ff2afaa bbd425e6 75b711fa 67c622bd 7e5ed5cc 96ef2ab0 c8d15af6 49c2a959 5046d1e3 9bbd5fe8 4a50e94c 9d54dbde 4d7fa74d 0cc8eaa6 15b93651 052da931 fb3e02d0 7c9204dd 448cef15 6261fd55 791b389c a275bd87 60af9d24 e14aec6d 4e2df60a 195fc81b e9ee14db a10f1244 890aae05 67ee5805 e0ce258b 32e749f5 b1956b12 83b692a5 d6853c72 0bd7308d 9f0ea46a 0bd7308d 9f0ea46a 08f64efd ff0ec8b5 062a4fa0 bb869935 78063d76 632f5b7c cd58089a 74a04cfa 1285d1e3 fc62bf05 50907f0b 5c5cc792 f61df1d2 431c43cc 4ceec04b 182e2959 1d3b2da9 4f5dea14 bddb5ab8 3df74040 1069d38f e9370ab2 3f67bce7 665e3566 e23e1a91 33f8e5c9 2999cee7 1da22833 6f58423c 5b0c5b1d f60aaaf7 184d85c5 cd2ca141 a0b809b9 cd91d1da 88c0a009 6f5482c1 fd8649b7 8eed78ba 246a4318 ce956eca 249c4b31 0fd39725 bfcb65fd d5988deb 83bf3c03 c52fa4c4 01c7070d f5376d52 bfadde14 2ae86b8a b12efd2a 9b658a51 e1c9d046 01c7a39e dd0234db a7a9bfe1 d462b957 c4cb5f88 205b1f14 2db628aa ea76771f 5d4a1c74 f8bfa84e 88b91642 7dbe8ac6 a76b8574 7a8eada1 aa362585 507faaa9 c74bf870 31ba72d4 3236ef3d da8bc6a1 b833801f 758eb0a8 8f8e6cfd fc06c5e3 368c6202 fc06c5e3 800f2866 0161b822 64791520 0ba81ae5 02835870 78b0bfd9 84e5381b c6b9f089 44e12aa4 ea8c954d 6b8144d7 ec54761f 6b8144d7 b7a8ea46 53130ccf a36ccffc 7d5f8745 1729a70c 94640765 53e39b7c 8a34aa72 ec635674 adbf298d 5cff5acf 96d53e27 ed5c6d0f 39dff94f 8d9bdca8 0c42ea74 7e35ff37 1716bddc 3ce7901e 715c496f 9d5e6cb9 f0f9b899 9d5e6cb9 86c3ef08 2ec64e2f 7ad31b34 87bdfd09 e0d4a131 06588389 2b7d8818 e240f4e7 4b1287d7 587ed4de 1ead1dc9 ba0581d4 1ead1dc9 ba0581d4 c0905c45 2d563760 d24aa37b 8300698e f8128793 56d06e81 f8128793 c90f158b 3c76604a 968ede1f da5f659d c74596b3 7ea24d69 a944acc0 a1c62b65 61531cf9 e948f269 2a613a46 d63d142e de5b3893 765d611b f55a0059 ad99ec5b d1a08fc0 be0a0021 a7da353d a20e81b9 27d9e0bc 3c107d5f 2c4c3135 67a5b1e2 fc22d78f d1239f66 4f2a65b2 b1212185 6fc749d5 e8969fba f4b5f094 dd014769 4c76c377 b4025fdd dfd76f17 f4934de2 7f7c9e52 45d1f28b de1cd289 5df3d83a 9194f921 5df3d83a 265ddfdc 8791cf0a 265ddfdc ba0e7613 5b89c88d 730b247e 5b89c88d c5df3035 8279b4ef 6bb00240 4c254d95 bbe9ceea 4cf1767a 439eccff 950ee441 439eccff 950ee441 d92c5edb 6b92c918 ecc22bee d6a758d6 6dc40c18 35b6fe2d 90b0e2ed e648b58e cb0ef5d6 a45eadaa b038acb0 ce68fb1f 0f9a9d2e 80f009c9 e67e57c9 81d0be03 ee4ae340 7a51f017 486e5593 7fe9605f 9ce09398 aabbc10f 65312bf7 16fe4af0 f7cd3d54 a529a8da 33b1441c cc4559d7 c7a7db60 197d9f6a a3999227 3c3ebee1 305df5ca e4e292cb 54feb1ca ec172b19 f07f6992 55e9097a d9d557cd 9a5ec2a3 4a3b36d9 8815c984 f69efc33 eea3a124 af5f9d7c 78cc48b6 c4c0f72b 9132f0b0 93d889c1 2b76fe67 1aab8983 82437a75 c45500c8 898383be a061b692 1d4c961e 19711574 38a071e6 956728dc 7d0beed1 956728dc e64c9bbc b51ceb9b ba10940d 1a60ca9e cac648c4 86ef628f 48236a01 89c1ef53 b4c23757 594ce044 6005da31 c3323adb dfa71e6a 5e34cbb7 d600c069 acb3dc44 ae326d59 ea13a01e be234ab3 5a3944ba 2ba4424c f8651587 d8551958 12fa8ac1 dbe0bbdb 4d38b7e6 b73c907c 95e47aa5 9f11cca6 c5153f1a 3b9d9827 d3978dda 36140f72 d49ac158 640db691 5e0d17c3 f59b593d 549057fc ed69ff69 1f9693be 8692cf27",
+ "stretches": [
+  {
+   "frames": 230,
+   "sha256": "ead8924d6ea8ae08eb042de231e6fd9b"
+  },
+  {
+   "frames": 435,
+   "sha256": "d121a55579287dd62df6bd2a452d3863"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

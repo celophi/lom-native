@@ -1,0 +1,731 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mon-mon-dtw0-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-dtw0-talk-1",
+    "description": "Talking to layout record 1 of MON_DTW0 (scene 58) should run its event and hand control back",
+    "plan": "# mon-mon-dtw0-talk-1: Talking to layout record 1 of MON_DTW0 (scene 58) should run its event and hand control back\nlimit 20000\nenter 58 0 16722431 0\ncheckpoint entered\ntalk 300 180 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 58 save f3d65da474806e79 state 3baad325768d7b43 ram 0000000000000000",
+     "talked frame 487 scene 58 save 761bb254d5a48531 state 6067c6dec2502e76 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fd7b7ca1895f371acf4520ccec681f4"
+     },
+     {
+      "frames": 258,
+      "sha256": "ea13649c5cc3e6da0f264810da552f53"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-dtw0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1180 = 8 so layout record 2 of MON_DTW0 is there",
+    "source": "built from layout record 2's condition in scene 58 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1180": 8
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-dtw0-talk-2",
+    "description": "Talking to layout record 2 of MON_DTW0 (scene 58) should run its event and hand control back",
+    "plan": "# mon-mon-dtw0-talk-2: Talking to layout record 2 of MON_DTW0 (scene 58) should run its event and hand control back\nlimit 20000\nenter 58 0 16722431 0\ncheckpoint entered\ntalk 106 354 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 58 save bf769137831504c3 state edb63db3853405ee ram 0000000000000000",
+     "talked frame 1172 scene 58 save d4523fdaa867ae5a state 2c451bf9dad0fcb1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (106, 334): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "770b905cee7b6231d505f8d0179a3274"
+     },
+     {
+      "frames": 943,
+      "sha256": "49fb64b5ed8a3387731e9f2225635e8a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-lmp0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1208 = 8 so layout record 2 of MON_LMP0 is there",
+    "source": "built from layout record 2's condition in scene 61 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1208": 8
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-lmp0-talk-2",
+    "description": "Talking to layout record 2 of MON_LMP0 (scene 61) should run its event and hand control back",
+    "plan": "# mon-mon-lmp0-talk-2: Talking to layout record 2 of MON_LMP0 (scene 61) should run its event and hand control back\nlimit 20000\nenter 61 0 16722431 0\ncheckpoint entered\ntalk 156 127 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 61 save b757d7f9fbda7b18 state 8b37a0d2a6e50151 ram 0000000000000000",
+     "talked frame 1300 scene 61 save 941d4818c846fe9c state 941941f3481e669a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (156, 107): 5 waypoints",
+     "walk to (136, 127): 2 waypoints",
+     "walk to (176, 127): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "096ee4565c83210ef4250ca5c98af3b4"
+     },
+     {
+      "frames": 1071,
+      "sha256": "9358c43e1ec2d2b61b6422d06b2ebd00"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-3",
+    "description": "Talking to layout record 3 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-3: Talking to layout record 3 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 2\ncheckpoint entered\ntalk 251 116 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 311c66124fcbc1fe state 599acb4da74ad908 ram 0000000000000000",
+     "talked frame 1191 scene 54 save 3b0e15c87f98be4a state 2c2acc2371ab738b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 96): 4 waypoints",
+     "walk to (251, 136): 2 waypoints",
+     "walk to (231, 116): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 181,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "28f8b1c88ac0e840a4f7f04c5c8dd958"
+     },
+     {
+      "frames": 962,
+      "sha256": "0dafca0eea28e6fe3c2bd0d5c4ea667b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25f0 = 45 so layout record 4 of MON_OCF0 is there",
+    "source": "built from layout record 4's condition in scene 54 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 45
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-4",
+    "description": "Talking to layout record 4 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-4: Talking to layout record 4 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 465 122 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 7f5420cdf9bda59b state 3a8ffbe96b141ea5 ram 0000000000000000",
+     "talked frame 852 scene 54 save 383b1fb92552808f state 7416c0fa2a3ddb0d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (465, 102): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 163,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8f399e92fe2a3fa4b6cc97b26cbdaf0"
+     },
+     {
+      "frames": 623,
+      "sha256": "4d473e97f359d8f3d2cf31b1268ecf3f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 45 so layout record 5 of MON_OCF0 is there",
+    "source": "built from layout record 5's condition in scene 54 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 45
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-5",
+    "description": "Talking to layout record 5 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-5: Talking to layout record 5 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 2\ncheckpoint entered\ntalk 480 70 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 0ded7181d8a74623 state 6fe1c14e92a9c815 ram 0000000000000000",
+     "talked frame 1067 scene 54 save 83ad3dec639cfe30 state 91914ac4ce0c586a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 50): 5 waypoints",
+     "walk to (480, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 207,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "856c130c0e2c991dd6556538a121439a"
+     },
+     {
+      "frames": 838,
+      "sha256": "1921c95ecbd6c9bf79437cb58e2341a7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 45 so layout record 6 of MON_OCF0 is there",
+    "source": "built from layout record 6's condition in scene 54 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 45
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-6",
+    "description": "Talking to layout record 6 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-6: Talking to layout record 6 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 420 15 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 92251aaf320a41d9 state c4dccb7cbfc832f8 ram 0000000000000000",
+     "talked frame 830 scene 54 save 9123d7dda46e1a4d state 9000ed84a18a1853 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, -5): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 207,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7e34eb16efdfdbcef258f36612cbd094"
+     },
+     {
+      "frames": 601,
+      "sha256": "99eb270d0b03cdb8d04f7553066b30c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 45 so layout record 7 of MON_OCF0 is there",
+    "source": "built from layout record 7's condition in scene 54 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 45
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-7",
+    "description": "Talking to layout record 7 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-7: Talking to layout record 7 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 397 110 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save 92251aaf320a41d9 state c4dccb7cbfc832f8 ram 0000000000000000",
+     "talked frame 797 scene 54 save 9123d7dda46e1a4d state e538c66ebe9ee28d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (397, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 207,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7e34eb16efdfdbcef258f36612cbd094"
+     },
+     {
+      "frames": 568,
+      "sha256": "6087afd928af418510c096f78e96ea88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25e8 = 45 so layout record 8 of MON_OCF0 is there",
+    "source": "built from layout record 8's condition in scene 54 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 45
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-talk-8",
+    "description": "Talking to layout record 8 of MON_OCF0 (scene 54) should run its event and hand control back",
+    "plan": "# mon-mon-ocf0-talk-8: Talking to layout record 8 of MON_OCF0 (scene 54) should run its event and hand control back\nlimit 20000\nenter 54 0 2031615 1\ncheckpoint entered\ntalk 523 65 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 54 save be31da009416a898 state ac77a3f2073bc4bb ram 0000000000000000",
+     "talked frame 1285 scene 54 save a9c300cf8faf7e20 state ef91a104d3c61e26 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (523, 45): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 207,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8956696335d511f43301769e3db4ca12"
+     },
+     {
+      "frames": 1056,
+      "sha256": "b091877a88d7082be2d42520f5900a2a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh00-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh00-talk-1",
+    "description": "Talking to layout record 1 of MON_SH00 (scene 56) should run its event and hand control back",
+    "plan": "# mon-mon-sh00-talk-1: Talking to layout record 1 of MON_SH00 (scene 56) should run its event and hand control back\nlimit 20000\nenter 56 0 16722431 0\ncheckpoint entered\ntalk 170 128 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 56 save a668801ca743b735 state 9176d91ee6d6a49f ram 0000000000000000",
+     "talked frame 1270 scene 56 save bbd575255dd1b4b3 state c5506c2f26237ceb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 148): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b370f342cacfeed61cb2e88ad3d5082"
+     },
+     {
+      "frames": 1041,
+      "sha256": "8cd4fac86281b6eca4bda099c84870ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh00-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh00-talk-2",
+    "description": "Talking to layout record 2 of MON_SH00 (scene 56) should run its event and hand control back",
+    "plan": "# mon-mon-sh00-talk-2: Talking to layout record 2 of MON_SH00 (scene 56) should run its event and hand control back\nlimit 20000\nenter 56 0 16722431 0\ncheckpoint entered\ntalk 160 105 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 56 save a668801ca743b735 state 9176d91ee6d6a49f ram 0000000000000000",
+     "talked frame 1213 scene 56 save bbd575255dd1b4b3 state 074faa16e9b7ad3b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 85): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3b370f342cacfeed61cb2e88ad3d5082"
+     },
+     {
+      "frames": 984,
+      "sha256": "a16a4962a230d81c167bf0c6aa142d4e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh01-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh01-talk-1",
+    "description": "Talking to layout record 1 of MON_SH01 (scene 57) should run its event and hand control back",
+    "plan": "# mon-mon-sh01-talk-1: Talking to layout record 1 of MON_SH01 (scene 57) should run its event and hand control back\nlimit 20000\nenter 57 0 16722431 0\ncheckpoint entered\ntalk 142 175 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 57 save 9a9e314c015b0e1c state 007e63ac6755459c ram 0000000000000000",
+     "talked frame 1364 scene 57 save 2d80c1fd90e5569c state 07315a69240a58b9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (162, 175): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acd77c8610e52b5a7a8ff2e85895a227"
+     },
+     {
+      "frames": 1135,
+      "sha256": "b3077778333ba4af7852234dd572ad63"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh01-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh01-talk-2",
+    "description": "Talking to layout record 2 of MON_SH01 (scene 57) should run its event and hand control back",
+    "plan": "# mon-mon-sh01-talk-2: Talking to layout record 2 of MON_SH01 (scene 57) should run its event and hand control back\nlimit 20000\nenter 57 0 16722431 0\ncheckpoint entered\ntalk 170 175 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 57 save 9a9e314c015b0e1c state 007e63ac6755459c ram 0000000000000000",
+     "talked frame 1159 scene 57 save 2d80c1fd90e5569c state 824cc9b3d2334407 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 155): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acd77c8610e52b5a7a8ff2e85895a227"
+     },
+     {
+      "frames": 930,
+      "sha256": "ed0d6cdecd289831138077d8b3c6b7b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh02-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh02-talk-1",
+    "description": "Talking to layout record 1 of MON_SH02 (scene 59) should run its event and hand control back",
+    "plan": "# mon-mon-sh02-talk-1: Talking to layout record 1 of MON_SH02 (scene 59) should run its event and hand control back\nlimit 20000\nenter 59 0 16722431 0\ncheckpoint entered\ntalk 37 95 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 59 save 4797a729b8ab7d12 state a8ccc8d0f81b0336 ram 0000000000000000",
+     "talked frame 1266 scene 59 save cdcf333e26ba0bad state 714e8ff5562cc5f8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (37, 75): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88c90741007956aec5e0c95d88f03908"
+     },
+     {
+      "frames": 1037,
+      "sha256": "2c73d7cc9dd9e61b689c209763b4deb6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh02-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mon-mon-sh02-talk-3",
+    "description": "Talking to layout record 3 of MON_SH02 (scene 59) should run its event and hand control back",
+    "plan": "# mon-mon-sh02-talk-3: Talking to layout record 3 of MON_SH02 (scene 59) should run its event and hand control back\nlimit 20000\nenter 59 0 16722431 0\ncheckpoint entered\ntalk 207 157 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 59 save 4797a729b8ab7d12 state a8ccc8d0f81b0336 ram 0000000000000000",
+     "talked frame 1287 scene 59 save 5372b08226e1d0e0 state 1f67e76e1096d0e2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (207, 137): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88c90741007956aec5e0c95d88f03908"
+     },
+     {
+      "frames": 1058,
+      "sha256": "40d394ba6ef8edb6ca18366969af9f87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

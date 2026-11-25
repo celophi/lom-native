@@ -1,0 +1,497 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "bon-bon-e030-story-411",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-e030-story-411",
+    "description": "In BON_E030 (scene 592), talking to layout record 3 should write story variable 0x411",
+    "plan": "# bon-bon-e030-story-411: In BON_E030 (scene 592), talking to layout record 3 should write story variable 0x411\nlimit 20000\nenter 592 0 16713471 0\ncheckpoint entered\ntalk 1000 1000 0 1 0 3 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 592 save fc8e9b25f4bd1f1e state 3e925cf3a99fddd1 ram 0000000000000000",
+     "done frame 1202 scene 592 save a589d5b2d3515e66 state ef0f04d56aa25d30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "layout record 3's actor is at (193, 155)",
+     "walk to (193, 135): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 161,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8d393d8b72c389428725f2f0034c532d"
+     },
+     {
+      "frames": 973,
+      "sha256": "c748ddfce77898a8cb4ac7aae55ce452"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-13bc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x13bc needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 4
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-13bc",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x13bc",
+    "plan": "# bon-bon-vllg-story-13bc: In BON_VLLG (scene 586), entering should write story variable 0x13bc\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save 295901979106b0d4 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 486 scene 586 save f292f85d4444a24c state d6da57bc9583d8a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 255 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 80,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a15582895d3754e580ee98b293773a6a"
+     },
+     {
+      "frames": 257,
+      "sha256": "a7db97cd7ce88df55d8c200c26a34a24"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-438",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x438 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11a8": 1,
+     "0x121c": 8
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-438",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x438",
+    "plan": "# bon-bon-vllg-story-438: In BON_VLLG (scene 586), entering should write story variable 0x438\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save 589ed9f396c77c78 state 6da42ce723490652 ram 0000000000000000",
+     "done frame 740 scene 586 save f0eb89cb4076214b state de962d63d228fe14 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 509 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 261,
+     "instruction_end": 104,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "00a6192f6aa2b0a2f66e1ee13e493a48"
+     },
+     {
+      "frames": 511,
+      "sha256": "d5b13a8bc59a15cd6ccac3fa1a694cff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-491",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x491 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-491",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x491",
+    "plan": "# bon-bon-vllg-story-491: In BON_VLLG (scene 586), entering should write story variable 0x491\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-493",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x493 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-493",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x493",
+    "plan": "# bon-bon-vllg-story-493: In BON_VLLG (scene 586), entering should write story variable 0x493\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-495",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x495 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-495",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x495",
+    "plan": "# bon-bon-vllg-story-495: In BON_VLLG (scene 586), entering should write story variable 0x495\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-497",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x497 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-497",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x497",
+    "plan": "# bon-bon-vllg-story-497: In BON_VLLG (scene 586), entering should write story variable 0x497\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-499",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x499 needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-499",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x499",
+    "plan": "# bon-bon-vllg-story-499: In BON_VLLG (scene 586), entering should write story variable 0x499\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-vllg-story-49a",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state BON_VLLG's story 0x49a needs",
+    "source": "built from the conditions on the path to the write in scene 586 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x121c": 3
+    }
+   },
+   "baseline": {
+    "route": "bon-bon-vllg-story-49a",
+    "description": "In BON_VLLG (scene 586), entering should write story variable 0x49a",
+    "plan": "# bon-bon-vllg-story-49a: In BON_VLLG (scene 586), entering should write story variable 0x49a\nlimit 20000\nenter 586 0 16713234 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 586 save e7bd1314dda13a04 state d8f63fc1cd7192b9 ram 0000000000000000",
+     "done frame 426 scene 586 save 5e372c51d086816c state f473290196817944 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 195 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69c82c5871d7885b3ef570a5d1178b2e"
+     },
+     {
+      "frames": 197,
+      "sha256": "2c3f18ebb6b4c50fe9a0063948de4593"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

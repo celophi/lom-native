@@ -1,0 +1,309 @@
+Count vertical blanks in the platform layer and run the game's VSync
+callbacks from there, never from inside the renderer.
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -204,6 +204,84 @@
+ static PsyzDitherMode dither_mode = PSYZ_DITHER_AUTO;
+ static bool use_driver_vsync = false;
+ static PsyzVideoStats gpu_stats = {0};
++
++#include "lom_vsync_clock.h"
++int Psyz_AudioIsVirtualClock(void);
++void Psyz_AudioAdvanceVirtualBlank(void);
++void Psyz_DeliverVBlank(void);
++static LomVSyncClock cadence_clock;
++static LomVSyncLifecycle cadence_lifecycle;
++static SDL_SpinLock cadence_lifecycle_lock;
++static SDL_AtomicInt cadence_failed;
++static int cadence_delivering, cadence_presented;
++static uint32_t cadence_video_last_hcount, cadence_callback_hcount;
++
++int Psyz_LegacyVSyncReplayProfileActive(void);
++int Psyz_VSyncReplayOwnerBegin(void);
++void Psyz_VSyncReplayOwnerEnd(void);
++void Psyz_VSyncReplayOwnerAbort(void);
++void Psyz_VideoAbortVBlankDelivery(void)
++{
++    cadence_presented = 0; cadence_delivering = 0;
++    Psyz_VSyncReplayOwnerAbort();
++}
++#include "lom_vsync_failure.h"
++static void (*vblank_hook)(void);
++static int (*cadence_replay_elapsed)(void);
++static unsigned (*cadence_hcount_hook)(unsigned);
++static int (*cadence_count_hook)(unsigned);
++static int Cadence_Sync(int presented);
++void Psyz_VideoSetVBlankHook(void (*hook)(void)) { vblank_hook = hook; }
++void Psyz_VideoSetElapsedReplayHook(int (*hook)(void)) { cadence_replay_elapsed = hook; }
++void Psyz_VideoSetHCountHook(unsigned (*hook)(unsigned)) { cadence_hcount_hook = hook; }
++void Psyz_VideoSetCountHook(int (*hook)(unsigned)) { cadence_count_hook = hook; }
++int Psyz_VideoVBlankWasPresented(void) { return cadence_presented; }
++int Psyz_VideoClockFailed(void) { return SDL_GetAtomicInt(&cadence_failed); }
++
++static uint64_t Cadence_ActiveTime(void)
++{
++    uint64_t now;
++    SDL_LockSpinlock(&cadence_lifecycle_lock);
++    if (lvc_active_time(&cadence_lifecycle, SDL_GetTicksNS(), &now)) {
++        SDL_SetAtomicInt(&cadence_failed, 1); now = 0;
++    }
++    SDL_UnlockSpinlock(&cadence_lifecycle_lock);
++    return now;
++}
++static void Cadence_Background(int background)
++{
++    SDL_LockSpinlock(&cadence_lifecycle_lock);
++    int failed = background ? lvc_background(&cadence_lifecycle, SDL_GetTicksNS())
++                            : lvc_foreground(&cadence_lifecycle, SDL_GetTicksNS());
++    if (failed) SDL_SetAtomicInt(&cadence_failed, 1);
++    SDL_UnlockSpinlock(&cadence_lifecycle_lock);
++}
++static void Cadence_Configure(double fps, uint32_t lines)
++{
++    uint32_t num, den;
++    if (fabs(fps - 59.94) < 0.001) { num = 60000; den = 1001; }
++    else if (fabs(fps - 50.0) < 0.001) { num = 50; den = 1; }
++    else { num = (uint32_t)llround(fps * 1000000.0); den = 1000000; }
++    if (!cadence_clock.initialized) {
++        if (lvc_init(&cadence_clock, Cadence_ActiveTime(), num, den,
++                     Psyz_AudioIsVirtualClock())) SDL_SetAtomicInt(&cadence_failed, 1);
++        else cadence_clock.lines = lines;
++    } else if (lvc_observe(&cadence_clock, Cadence_ActiveTime()) ||
++               lvc_display(&cadence_clock, num, den, lines)) {
++        SDL_SetAtomicInt(&cadence_failed, 1);
++    }
++}
++
++static void Cadence_Rate(double fps)
++{
++    Cadence_Configure(fps, cadence_clock.initialized ? cadence_clock.lines : 263);
++}
++static void Cadence_DisplayMode(int pal, int interlaced)
++{
++    if (interlaced) { SDL_SetAtomicInt(&cadence_failed, 1); return; }
++    Cadence_Configure(pal ? 50.0 : 59.94, pal ? 314 : 263);
++}
++
+ 
+ static void PollEvents(void);
+ 
+@@ -524,6 +602,7 @@
+ }
+ 
+ static void UpdateTargetFramerate(double fps) {
++    Cadence_Rate(fps);
+     target_frame_rate = fps;
+     target_frame_time_us = 1000000.0 / fps;
+     last_frame_time = SDL_GetPerformanceCounter();
+@@ -542,6 +621,7 @@
+ #endif
+         break;
+     case SDL_EVENT_WILL_ENTER_BACKGROUND:
++        Cadence_Background(1);
+         SDL_SetAtomicInt(
+             &resume_audio_on_foreground, Psyz_AudioIsPaused() ? 0 : 1);
+         SDL_SetAtomicInt(&app_in_background, 1);
+@@ -551,6 +631,7 @@
+ #endif
+         break;
+     case SDL_EVENT_DID_ENTER_BACKGROUND:
++        Cadence_Background(1);
+         if (!SDL_GetAtomicInt(&app_in_background)) {
+             SDL_SetAtomicInt(
+                 &resume_audio_on_foreground, Psyz_AudioIsPaused() ? 0 : 1);
+@@ -564,6 +645,7 @@
+     case SDL_EVENT_WILL_ENTER_FOREGROUND:
+         break;
+     case SDL_EVENT_DID_ENTER_FOREGROUND:
++        Cadence_Background(0);
+         SDL_SetAtomicInt(&app_in_background, 0);
+         SDL_SetAtomicInt(&timing_reset_requested, 1);
+         if (SDL_SetAtomicInt(&resume_audio_on_foreground, 0)) {
+@@ -609,6 +691,7 @@
+ 
+ // Initialize the timing/vsync state. Call once at the end of InitPlatform.
+ static void Sdl3Common_TimingInit(void) {
++    Cadence_Background(0);
+ #ifdef __linux__
+     // Wake up from sleeps as close as possible to the frame limiter deadline.
+     // Fixes jittering on Linux. I only tested this on the default scheduler.
+@@ -627,6 +710,7 @@
+ }
+ 
+ static void Sdl3Common_Shutdown(void) {
++    Cadence_Background(1);
+     if (app_event_watch_installed) {
+         SDL_RemoveEventWatch(Sdl3Common_AppEventWatch, NULL);
+         app_event_watch_installed = false;
+@@ -688,42 +772,138 @@
+     last_frame_time = frame_end_time;
+ }
+ 
+-int Psyz_AudioIsVirtualClock(void);
+-void Psyz_AudioAdvanceVirtualBlank(void);
+-static Uint64 virtual_blanks;
+-static void (*vblank_hook)(void);
+-void Psyz_VideoSetVBlankHook(void (*hook)(void)) { vblank_hook = hook; }
+-
+-int Psyz_VideoVSync(int mode) {
+-    Uint32 now_us;
+-    unsigned short ret;
++static int Cadence_Deliver(int presented)
++{
++    uint64_t remaining = cadence_clock.queued;
++    cadence_delivering = 1;
++    while (remaining) {
++        cadence_presented = presented && remaining == 1;
++        cadence_callback_hcount = lvc_next_blank_hcount(&cadence_clock);
++        if (vblank_hook) vblank_hook();
++        if (lvc_pop(&cadence_clock)) goto fail;
++        --remaining;
++        if (cadence_clock.virtual_clock) {
++            cadence_callback_hcount = lvc_hcount(&cadence_clock);
++            Psyz_AudioAdvanceVirtualBlank();
++        }
++        if (!Psyz_LegacyVSyncReplayProfileActive()) Psyz_DeliverVBlank();
++        if (SDL_GetAtomicInt(&cadence_failed)) goto fail;
++    }
++    cadence_presented = 0; cadence_delivering = 0;
++    return 0;
++fail:
++    cadence_presented = 0; cadence_delivering = 0;
++    SDL_SetAtomicInt(&cadence_failed, 1);
++    return -1;
++}
++static int Cadence_Sync(int presented)
++{
++    if (cadence_delivering) return 0;
++    if (SDL_GetAtomicInt(&cadence_failed)) return -1;
++    if (!cadence_clock.initialized) Cadence_Rate(target_frame_rate);
++    uint64_t now = Cadence_ActiveTime();
++    if (lvc_observe(&cadence_clock, now)) goto fail;
++    int virtual_clock = Psyz_AudioIsVirtualClock();
++    if (virtual_clock != cadence_clock.virtual_clock) {
++        if (Cadence_Deliver(0) || lvc_switch(&cadence_clock, now, virtual_clock)) goto fail;
++    }
++    if (Cadence_Deliver(presented)) return -1;
++    if (cadence_clock.virtual_clock && cadence_replay_elapsed) {
++        int next;
++        while ((next = cadence_replay_elapsed()) > 0) {
++            if (lvc_queue_virtual(&cadence_clock) || Cadence_Deliver(0)) goto fail;
++        }
++        if (next < 0) goto fail;
++    }
++    return 0;
++fail:
++    SDL_SetAtomicInt(&cadence_failed, 1);
++    return -1;
++}
++static unsigned Cadence_GetHCount(void)
++{
++    if (Cadence_Sync(0)) Psyz_VideoClockFailure();
++    unsigned raw = cadence_delivering ? cadence_callback_hcount : lvc_hcount(&cadence_clock);
++    return cadence_hcount_hook ? cadence_hcount_hook(raw) : raw;
++}
++static int Cadence_VideoVSync(int mode,int legacy)
++{
++    if (Psyz_VideoClockFailed()) Psyz_VideoClockFailure();
++    if (cadence_delivering) {
++        if (mode < 0) return (int)cadence_clock.count;
++        if (mode != 0) return legacy ? 0 : (int)((cadence_callback_hcount - cadence_video_last_hcount) & 0xFFFFu);
++        ERRORF("blocking video VSync from a VBlank callback");
++        return -1;
++    }
+     Sdl3Common_ApplyPendingTimingReset();
++    if (Cadence_Sync(0)) Psyz_VideoClockFailure();
+     if (mode < 0) {
+-        if (Psyz_AudioIsVirtualClock()) {
+-            return (int)virtual_blanks;
+-        }
+-        return (int)((double)SDL_GetTicksNS() * target_frame_rate / 1e9);
+-    }
+-    // a line is approximated as 64 us
+-    now_us = (Uint32)(SDL_GetTicksNS() / 1000);
+-    ret = (unsigned short)((now_us - last_vsync_us) >> 6);
+-    if (Psyz_AudioIsVirtualClock()) {
+-        ret = 0;
+-    }
+-    if (mode == 0 || mode > 1) {
+-        PlatformBackend_Present();
++        unsigned count = (unsigned)cadence_clock.count;
++        if (cadence_count_hook) (void)cadence_count_hook(count);
++        return (int)count;
++    }
++    unsigned elapsed = (lvc_hcount(&cadence_clock) - cadence_video_last_hcount) & 0xFFFFu;
++    if (mode != 0) return legacy ? 0 : (int)elapsed;
++    if (cadence_delivering) {
++        ERRORF("blocking video VSync from a VBlank callback");
++        return -1;
++    }
++    while (Sdl3Common_IsInBackground()) {
+         PollEvents();
+-        WaitForNextFrame(mode > 1 ? mode : 1);
+-        if (vblank_hook) {
+-            vblank_hook();
+-        }
+-        if (Psyz_AudioIsVirtualClock()) {
+-            virtual_blanks++;
+-            Psyz_AudioAdvanceVirtualBlank();
+-        }
+-        last_vsync_us = (Uint32)(SDL_GetTicksNS() / 1000);
+-    }
+-    return ret;
++        if (Psyz_QuitRequested()) return -1;
++        SDL_DelayNS(1000000u);
++    }
++    uint64_t entry = cadence_clock.count;
++    PlatformBackend_Present();
++    PollEvents();
++    WaitForNextFrame(1);
++    if (cadence_clock.virtual_clock) {
++        if (lvc_queue_virtual(&cadence_clock) || Cadence_Deliver(1)) {
++            SDL_SetAtomicInt(&cadence_failed, 1); Psyz_VideoClockFailure();
++        }
++    } else {
++        if (Cadence_Sync(1)) Psyz_VideoClockFailure();
++        while (cadence_clock.count == entry) {
++            if (Psyz_QuitRequested()) return -1;
++            while (Sdl3Common_IsInBackground()) {
++                PollEvents();
++                if (Psyz_QuitRequested()) return -1;
++                SDL_DelayNS(1000000u);
++            }
++            uint64_t before = Cadence_ActiveTime();
++            SDL_DelayNS(lvc_next_wait_ns(&cadence_clock) + 1000u);
++            if (Sdl3Common_IsInBackground()) continue;
++            if (Cadence_ActiveTime() <= before || Cadence_Sync(1) ||
++                cadence_clock.count == entry) {
++                SDL_SetAtomicInt(&cadence_failed, 1);
++                ERRORF("video clock failed to advance a fresh blank");
++                Psyz_VideoClockFailure();
++            }
++        }
++    }
++    cadence_video_last_hcount = lvc_hcount(&cadence_clock);
++    return (int)elapsed;
++}
++
++void Psyz_VideoGetRawTiming(unsigned* count,unsigned* hcount)
++{
++    if (!cadence_clock.initialized) Cadence_Rate(target_frame_rate);
++    *count=(unsigned)cadence_clock.count;
++    *hcount=lvc_hcount(&cadence_clock);
++}
++unsigned Psyz_VideoGetHCount(void)
++{
++    Psyz_VSyncReplayOwnerBegin();
++    unsigned result=Cadence_GetHCount();
++    Psyz_VSyncReplayOwnerEnd();
++    return result;
++}
++int Psyz_VideoVSync(int mode)
++{
++    int legacy=Psyz_VSyncReplayOwnerBegin();
++    int result=Cadence_VideoVSync(mode,legacy);
++    Psyz_VSyncReplayOwnerEnd();
++    return result;
+ }
+ 
+ int Psyz_VideoSetVsyncMode(PsyzVsyncMode mode) {

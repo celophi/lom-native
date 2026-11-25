@@ -1,0 +1,64 @@
+{
+ "route": "domina-sh00-shop",
+ "description": "Talking to the shopkeeper in SH00 should open the shop, and backing out should return to the room",
+ "plan": "# domina-sh00-shop: Talking to the shopkeeper in SH00 should open the shop, and backing out should return to the room\nlimit 20000\nenter 43 0 16712959 0\ncheckpoint entered\ntalk 152 180 0 0 0 4\ncheckpoint talked\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 43 save 92143078c42311a5 state 5db1c1b105aa80c9 ram 0000000000000000",
+  "talked frame 617 scene 43 save 02a4702d0a7d7efd state ff3453f9598be54d ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 43 (HTW_SH00)",
+    "scene id 19 to 43",
+    "music id 7 to 4",
+    "actor 0 (the hero): at (147, 44), facing 192, animation 4,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (152, 206), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (152, 180), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 5 (layout record 2): at (67, 90), facing 0, animation 129,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "talked",
+   "changes": [
+    "frame 617, scene 43 (HTW_SH00)",
+    "story word 24: f2f20000 to 08080000 (set 0x313, 0x31b; cleared 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "1 other saved-game byte changed, the first at offset 12516",
+    "scene word 17: 0093002c to 0096009c",
+    "scene word 47: 00000037 to 000000ee",
+    "actor 0 (the hero): moved (147, 44) to (151, 157); control 2 to 0; command 129 to 0",
+    "actor 4 (layout record 1): command 0 to 168"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (152, 160): 2 waypoints"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 134,
+  "instruction_end": 33,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 da7356c7 78d28dee bc3b83af 5881122e eb270c5c a6cfbb95 03a695df 0d884c45 3424f40e c7e884a3 1e50017e 3e0da625 006a6546 80e194fa 006a6546 a1f45e1b 34473878 ac2f06a6 671151b4 522effc2 671151b4 9b13f3de aa365fc9 6c8e121a 88ca2f37 0230943c 88ca2f37 4e8aef06 eb1c37fe f7424167 8a63a2aa 884c4732 8a63a2aa ac9db028 06eab733 6c8e121a 45dca80a 8bc2ad1d 6b3d0154 8763fa51 9fbaa386 029d23c8 2f64eed6 d440ff3c f93b2d94 3051afcf 21bd7fd8 0322cc3f 88959b80 a85bf371 1e6560ed 2953c982 c39b713c 1952a907 c29d1313 ae6a5c3d d0ba965c 3c830e92 07bad325 a0af27ab c6486a2f 169e23a5 ff52b8c7 26b96fbc 4a486147 50aab4f0 b85888e3 87f2fa8c a96db8fd e482d4ec 11a0da24 ff75aa9d 23f290bd da94c108 86839fe9 773c60e0 92b5015d ddf00810 3664b328 bebc242b fa64d77b cf9a545a c0a20a3f bab94f8f 192639de a38a8243 4f9e5941 727bc2e4 c9e9e301 abde066f 2ecb997a 61d1d239 8072b875 29de4648 af832785 f308f877 023d291f 60c3642b 8bce1c07 2e182c7d 4fd3362d 4ce21897 083805f8 6c734615 083805f8 d7cacb2a 168795ca 878705df 1321573a 281a5567 0f0b7cf5 055670af 392bfda8 21f6d918 49d75225 ca697776 c8e7064c ffdaffe4 8ec6596a cf028a20 3b0e7ca4 b91d3c0a 3b0e7ca4 d447fb57 8246b2b7 a5c6c174 33902dfb 0990f101 4c29823b 3d865796 5bda3155 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b e6f88ed9 a2a433e1 320e97a1 0afa8b05 70af9f4f 30165141 8ce4aee7 ed2532cb 4af308d1 69cde2a6 67863182 a8129efb 8d3cb216 756dd6ab 3c64dcf8 60f6e9f0 a9ac231e dc8490b2 459f3b49 2465db7b 1379d4b9 cdc3de54 7a8ef7a7 b3873a03 4caf8595 f7cb04c7 f2462754 4204ec45 05e7ecda bd929306 1596d741 51d8d543 e8ecda6e abb78a8b 5c5e6ffc a1ab4986 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b e6f88ed9 a2a433e1 320e97a1 a2a433e1 d7ab8b4e 1b038f50 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 77277877 dab7abec 9f0c9489 dab7abec f4e94c83 41796f95 4f90f61c edd74af7 d210bc41 79c164c6 1f104a10 61adaa2f c3a402de 6f130a1b 49a80714 b94cf199 e61b4465 85270d89 7ca184fd 60f6e9f0 00b8a80c 16bd0272 eb90cd15 3bd8c8ae 237ab418 e5d16e48 e5859af2 19fcdef8 ba83ea6c 3e662aae 69de7463 8cf0eb04 aed591c7 55347283 2deb784b d0c21945 720a87a9 2954c35b 3fe52119 9e2bfaa0 eeb7ac33 b03fc19b 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 77277877 dab7abec 9f0c9489 dab7abec f4e94c83 41796f95 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b e6f88ed9 a2a433e1 320e97a1 a2a433e1 d7ab8b4e 1b038f50 632a6071 9e2bfaa0 614d0ef9 2954c35b bd655af4 617164f2 7270593b dd2cc6e5 64475980 cc0fd3d2 fcec2bb5 d9572a3f 23781b27 b94cf199 49031015 cdc3de54 7a8ef7a7 b3873a03 ec7ee0ba 567bd900 0dd26e09 ad1dd627 b5a64f40 ba652c94 13e50d39 8ec04b73 e1bfa6a9 3bd1fcab 48d4c997 4a762afc 3925df2f 79c164c6 dd1ea3f9 edd74af7 043622d1 11a6d714 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b e6f88ed9 a2a433e1 320e97a1 a2a433e1 d7ab8b4e 1b038f50 632a6071 9e2bfaa0 614d0ef9 9e2bfaa0 eeb7ac33 b03fc19b 2992c1b1 226ab145 bfb3bfa6 226ab145 802f5682 3c448e2f 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 77277877 dab7abec 9f0c9489 dab7abec f4e94c83 41796f95 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 225cae40 f1096a1a 4f3b8681 651f504b cbab97fb e29792ea 221fe76e cc0fd3d2 95d2285b 756dd6ab 03160536 1474b599 237ab418 e5d16e48 e5859af2 92e31f80 5a534591 a1874dd0 c8455c19 d16a4f79 776d86fb 0106d136 e4b4cd21 24d65d52 73bc51b1 69cde2a6 471254de ed2532cb a6fa4407 5a2e489e 558c607b 4c748eac 38852ec2 226ab145 802f5682 3c448e2f 95b3fa53 1c36fa75 bdab5a78 1c36fa75 fee419e0 64f83709 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 77277877 dab7abec 9f0c9489 dab7abec f4e94c83 41796f95 b18f4916 c70355c4 2424abdb c70355c4 2601fd54 5bda3155 95b3fa53 1c36fa75 bdab5a78 77977b62 7b34b4e6 2278ea53 69fdb593 eb30320c 81fbb26e 9d195561 f1eb4563 5b1149b9 7a62e297 88befa55 87cc547d 88befa55 e4ea1463 5009036b 5c8315c3 a30265d9 b185acb6 a30265d9 c76afacc f82cfb5a 7a62e297 88befa55 87cc547d 88befa55 e4ea1463 5009036b e6352092 f6e4fc31 c4621d47 592eeb3c 1b256744 ab2e1c38 e5e42231 220726a8 911c4c65 5932a457 607b0858 aa05cbbd c0ba66c4 4bcf39ac fb63ce58 3a262eab 1190149f 78692d1d 8ff33b3e 74012a0b b58144f7 afee606e 6eae41f4 d1643087 c0ba66c4 4bcf39ac fb63ce58 9f4d0984 e1ff600e f07e1c90 e5e42231 220726a8 911c4c65 5993b087 d1e4b235 bc88cbe9 e6352092 f6e4fc31 c4621d47 f6e4fc31 3ea125e0 5b1149b9",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "307069561d905a9f60ac174d4277873b"
+  },
+  {
+   "frames": 561,
+   "sha256": "735922eb55fc7907b6bce4527df0a80d"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

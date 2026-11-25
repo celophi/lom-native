@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-inn-innkeeper",
+  "description": "Talking to the innkeeper should start a conversation that ends with the player in control",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 38
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 1
+      },
+      "note": "layout record 1"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

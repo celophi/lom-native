@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/launcher">
+        <file alias="background.png">resources/background-home.png</file>
+        <file alias="theme.json">resources/theme.json</file>
+        <file alias="translations/de.json">translations/de.json</file>
+        <file alias="translations/fr.json">translations/fr.json</file>
+        <file alias="translations/es.json">translations/es.json</file>
+        <file alias="translations/ja.json">translations/ja.json</file>
+        <file alias="translations/ko.json">translations/ko.json</file>
+        <file alias="translations/zh_CN.json">translations/zh_CN.json</file>
+        <file alias="translations/zh_TW.json">translations/zh_TW.json</file>
+        <file alias="icon.png">../../packaging/icon/lom-native.png</file>
+    </qresource>
+</RCC>

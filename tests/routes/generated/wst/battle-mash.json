@@ -1,0 +1,49 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wst-wst-bf00-battle-0-lead-d32d7cd7",
+   "save": "../../handwritten/saves/home-bedroom-after-opening.json",
+   "baseline": {
+    "route": "wst-wst-bf00-battle-0-lead-d32d7cd7",
+    "description": "Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins",
+    "plan": "# wst-wst-bf00-battle-0-lead-d32d7cd7: Walking into battle zone 0 of WST_BF00 (scene 115) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 32883 1 16712191 0\ncheckpoint entered\nwalk 240 -1\nwait 40\npress 0x8000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x1000 4\nwait 40\npress 0x9000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0xa000 4\nwait 40\npress 0x3000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x1000 4\nwait 40\npress 0x1000 4\nwait 40\npress 0x9000 4\nwait 40\npress 0x4000 4\nwait 40\npress 0x0800 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x0400 4\nwait 40\npress 0xb000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x1000 4\nwait 40\npress 0x2000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x9000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x3000 4\nwait 40\npress 0x8000 4\nwait 40\npress 0x4000 4\nwait 40\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 87 scene 115 save 1954322239a6e644 state 7e1fb6878b893bac ram 0000000000000000",
+     "fought frame 1602 scene 115 save 445f00f60d8cfa90 state e245e629eb33a923 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (240, 224): 1 waypoints"
+    ],
+    "end": "steps 66 of 66 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 359,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 88,
+      "sha256": "1e913b9a7944c2855785bb07de00273d"
+     },
+     {
+      "frames": 1515,
+      "sha256": "0ec7a83068648f543880bd01735531e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

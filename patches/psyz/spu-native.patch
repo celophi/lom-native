@@ -1,0 +1,115 @@
+SPU behavior the game's sound driver needs: the end of one-shot samples, the
+shared noise generator, pitch modulation and live envelope changes.
+
+--- a/psyz/src/psyz/psyz_spu.c
++++ b/psyz/src/psyz/psyz_spu.c
+@@ -2,6 +2,7 @@
+ #include <psyz/log.h>
+ #include <assert.h>
+ #include <string.h>
++void Psyz_RcntAdd(int n);
+ #include "spu_voice.h"
+
+ #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+@@ -28,6 +29,9 @@
+     // Frames generated since the reset
+     unsigned ticks;
+
++    int noise_timer;
++    u16 noise_level;
++
+     unsigned reverb_cur;
+     int reverb_in[64][2];    // reverb input per frame
+     short reverb_out[2][32]; // network output per channel, one every 2 frames
+@@ -49,6 +53,7 @@
+     if (spu.initialized)
+         return;
+     memset(&spu, 0, sizeof(spu));
++    spu.noise_level = 1;
+     spu.initialized = 1;
+     INFOF("SPU emulation initialized");
+ }
+@@ -59,6 +64,7 @@
+         _spu_RXX->rxx.voice[v].volumex = 0;
+     }
+     memset(&spu, 0, sizeof(spu));
++    spu.noise_level = 1;
+ }
+
+ static void spu_reset_hot(void) {
+@@ -123,7 +129,8 @@
+ static void spu_key_on_voice(int v) {
+     VoiceState* vs = &spu.voice[v];
+     unsigned wait = spu.ticks & 1;
+-    spu_voice_key_on(vs, &_spu_RXX->rxx.voice[v], spu.ram);
++    spu_voice_key_on(v, vs, &_spu_RXX->rxx.voice[v], spu.ram);
++    _spu_RXX->rxx.chan_on &= ~(1u << v);
+     vs->hold_ticks += wait;
+     vs->delay_ticks += wait;
+     vs->env_counter = spu.ticks + ENV_CLOCK_PHASE;
+@@ -194,6 +201,23 @@
+     if (addr < PSYZ_SPU_RAM_SIZE) {
+         *(short*)&spu.ram[addr] = val;
+     }
++}
++
++static short spu_noise_tick(unsigned short spucnt) {
++    int step = 4 + ((spucnt >> 8) & 3);
++    int shift = (spucnt >> 10) & 0xF;
++    int parity;
++
++    spu.noise_timer -= step;
++    if (spu.noise_timer < 0) {
++        parity = ((spu.noise_level >> 15) ^ (spu.noise_level >> 12) ^
++                  (spu.noise_level >> 11) ^ (spu.noise_level >> 10) ^ 1) & 1;
++        spu.noise_level = (u16)((spu.noise_level << 1) | parity);
++        spu.noise_timer += 0x20000 >> shift;
++        if (spu.noise_timer < 0)
++            spu.noise_timer += 0x20000 >> shift;
++    }
++    return (short)spu.noise_level;
+ }
+
+ static inline int spu_s16(u16 value) { return (short)value; }
+@@ -340,16 +364,30 @@
+
+     // decode+resample, scale volume by ADSR envelope, then mix voices
+     short v1_sample = 0, v3_sample = 0;
++    short previous_voice_out = 0;
++    short noise_sample = spu_noise_tick(spucnt);
+     for (int v = 0; v < PSYZ_SPU_NUM_VOICES; v++) {
+-        if (!spu.voice[v].active)
++        if (!spu.voice[v].active) {
++            previous_voice_out = 0;
+             continue;
++        }
+         if (spu.voice[v].key_off_wait && !--spu.voice[v].key_off_wait) {
+             spu.voice[v].key_off = 1;
+         }
+-        short s = spu_voice_step(&spu.voice[v], rxx->voice[v].pitch, spu.ram);
++        unsigned step = rxx->voice[v].pitch;
++        if (v > 0 && (rxx->chan_fm[v >> 4] & (1u << (v & 15)))) {
++            int factor = (int)previous_voice_out + 0x8000;
++            step = (unsigned)(((int)(short)step * factor) >> 15) & 0xFFFFu;
++        }
++        short adpcm_sample = spu_voice_step(v, &spu.voice[v], step, spu.ram);
++        int noise_enabled = (rxx->noise_mode[v >> 4] & (1u << (v & 15))) != 0;
++        short s = noise_enabled ? noise_sample : adpcm_sample;
++        spu.voice[v].adsr_lo = rxx->voice[v].adsr[0];
++        spu.voice[v].adsr_hi = rxx->voice[v].adsr[1];
+         int env = spu_voice_envelope_step(&spu.voice[v]);
+         rxx->voice[v].volumex = (unsigned short)spu.voice[v].env_vol;
+         s = (short)(((int)s * env) >> 15);
++        previous_voice_out = s;
+         if (v == 1) {
+             v1_sample = s;
+         } else if (v == 3) {
+@@ -416,5 +454,6 @@
+     }
+     for (int i = 0; i < num_frames; i++) {
+         spu_tick(&out[i * 2]);
+-    }
+-}
++        Psyz_RcntAdd(1);
++    }
++}

@@ -1,0 +1,63 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-shp0-command-12",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk, with the story state MIN_SHP0's command 0x12 needs",
+    "source": "built from the conditions on the path to the write in scene 350 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d8": 5
+    }
+   },
+   "baseline": {
+    "route": "min-min-shp0-command-12",
+    "description": "In MIN_SHP0 (scene 350), entering should run misc_command 0x12",
+    "plan": "# min-min-shp0-command-12: In MIN_SHP0 (scene 350), entering should run misc_command 0x12\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 350 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 350 save d17b30a241423d0d state 4c426db92f9a59e2 ram 0000000000000000",
+     "done frame 2573 scene 357 save f4ed55aedc5f351b state 7b92756fffad5c15 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 2259 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 321,
+     "instruction_end": 128,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "8528e5128e84d8cf107f051cf89260c9"
+     },
+     {
+      "frames": 2261,
+      "sha256": "ac2dba1d7c399bb8fb20d5da63a55a24"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

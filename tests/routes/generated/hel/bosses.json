@@ -1,0 +1,67 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "hel-hel-bs10-boss",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HEL_BS10's battle needs",
+    "source": "built from the conditions on the path to start_battle in scene 480 (lom_routes.py generate-bosses)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 4
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-bs10-boss",
+    "description": "Entering HEL_BS10 (scene 480) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# hel-hel-bs10-boss: Entering HEL_BS10 (scene 480) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33248 0 16720413 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 480 save 691dd585a6240b73 state fd3c3f5b71460cb8 ram 0000000000000000",
+     "fought frame 3106 scene 480 save 24b3ab5558724ae5 state ead24d1fc69fedf9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 2330 frames",
+     "game state 1 at vblank 8354",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 543,
+     "instruction_end": 219,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c90054659faa763a107f3b08ad550b75"
+     },
+     {
+      "frames": 2846,
+      "sha256": "2702eee5fbc36006702a7d0420877e70"
+     },
+     {
+      "frames": 907,
+      "sha256": "641ad5cedb01a516be51243fa8a9775e"
+     }
+    ]
+   }
+  }
+ ]
+}

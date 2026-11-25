@@ -1,0 +1,958 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "rui-rui-b020-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b020-talk-3",
+    "description": "Talking to layout record 3 of RUI_B020 (scene 422) should run its event and hand control back",
+    "plan": "# rui-rui-b020-talk-3: Talking to layout record 3 of RUI_B020 (scene 422) should run its event and hand control back\nlimit 20000\nenter 33190 1 16719103 0\ncheckpoint entered\ntalk 170 140 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 422 save 4cfc6ac5ecb2e436 state 1df40b3fb8dd0e6a ram 0000000000000000",
+     "talked frame 502 scene 422 save d4e92ada0bdd6a08 state 3c325182642aaad8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "530bba0b9e6d04077a4d909422a59b09"
+     },
+     {
+      "frames": 273,
+      "sha256": "5494baad94f490bf4031efa5cc0219ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b040-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b040-talk-3",
+    "description": "Talking to layout record 3 of RUI_B040 (scene 424) should run its event and hand control back",
+    "plan": "# rui-rui-b040-talk-3: Talking to layout record 3 of RUI_B040 (scene 424) should run its event and hand control back\nlimit 20000\nenter 33192 0 16719103 0\ncheckpoint entered\ntalk 170 140 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 424 save 72d7a821e96f5759 state 59cf218bd970e79e ram 0000000000000000",
+     "talked frame 774 scene 424 save 6c220e4cb827ca07 state 4181002c0e0a20b6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c9e0fadeb294c4d3e500c2d5bc8adb95"
+     },
+     {
+      "frames": 545,
+      "sha256": "a0b880860dd57e80bdb266c3522955b5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b050-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b050-talk-3",
+    "description": "Talking to layout record 3 of RUI_B050 (scene 425) should run its event and hand control back",
+    "plan": "# rui-rui-b050-talk-3: Talking to layout record 3 of RUI_B050 (scene 425) should run its event and hand control back\nlimit 20000\nenter 33193 0 16719103 0\ncheckpoint entered\ntalk 170 140 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 425 save 74014bb0d4c738d8 state 163473559488c9f7 ram 0000000000000000",
+     "talked frame 792 scene 425 save 93452a425efbed86 state dfdf58ee2786a3c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b950ac71efbff8569ac8e0e16fb39dd"
+     },
+     {
+      "frames": 563,
+      "sha256": "ae343d7e5328397af36956b6806a583a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b060-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b060-talk-3",
+    "description": "Talking to layout record 3 of RUI_B060 (scene 426) should run its event and hand control back",
+    "plan": "# rui-rui-b060-talk-3: Talking to layout record 3 of RUI_B060 (scene 426) should run its event and hand control back\nlimit 20000\nenter 33194 2 16719103 0\ncheckpoint entered\ntalk 170 140 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 426 save 8ec7af9072a1406d state 777c5070a7e483b1 ram 0000000000000000",
+     "talked frame 809 scene 426 save bbde5ded9f9ea9cb state e75fb5f93e197942 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "703adf83c630186c23a17a22fdb51744"
+     },
+     {
+      "frames": 580,
+      "sha256": "7ea27351d8e7a7ed64a19573cb21fec4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b080-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b080-talk-3",
+    "description": "Talking to layout record 3 of RUI_B080 (scene 428) should run its event and hand control back",
+    "plan": "# rui-rui-b080-talk-3: Talking to layout record 3 of RUI_B080 (scene 428) should run its event and hand control back\nlimit 20000\nenter 33196 3 16719103 0\ncheckpoint entered\ntalk 170 120 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 428 save c4435e886cb2470a state e700395b5b54a1bc ram 0000000000000000",
+     "talked frame 778 scene 428 save 46f32ac1ef76039c state 43cd90fb71f19a3f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "acbb545b2afa0c1fd511fff311926766"
+     },
+     {
+      "frames": 549,
+      "sha256": "99f59c5a3ff6f8fb91eb9a2c7836aa32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-b110-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-b110-talk-4",
+    "description": "Talking to layout record 4 of RUI_B110 (scene 431) should run its event and hand control back",
+    "plan": "# rui-rui-b110-talk-4: Talking to layout record 4 of RUI_B110 (scene 431) should run its event and hand control back\nlimit 20000\nenter 33199 2 16719103 1\ncheckpoint entered\ntalk 90 90 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 431 save 633f4da07cf1dc49 state ba6f88acce8795e0 ram 0000000000000000",
+     "talked frame 872 scene 431 save fa2926f20d38d7ac state cc86ce6ec52162d8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (90, 70): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5afe87ee5a65ae08085885795b303d9c"
+     },
+     {
+      "frames": 643,
+      "sha256": "2ee8d0ebc71bf4cd9fc68b5159015a72"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs13-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-bs13-talk-3",
+    "description": "Talking to layout record 3 of RUI_BS13 (scene 913) should run its event and hand control back",
+    "plan": "# rui-rui-bs13-talk-3: Talking to layout record 3 of RUI_BS13 (scene 913) should run its event and hand control back\nlimit 20000\nenter 913 0 16717311 0\ncheckpoint entered\ntalk 136 72 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 913 save 19c292f729938c0d state 6ffffb650add7d16 ram 0000000000000000",
+     "talked frame 1241 scene 913 save 19c292f729938c0d state 86cee590d1ae588b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (136, 52): 1 waypoints",
+     "walk to (136, 92): 1 waypoints",
+     "walk to (116, 72): 1 waypoints",
+     "walk to (156, 72): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 284,
+     "instruction_end": 125,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eac1f3f3ea3e95787c0c78a0993da10d"
+     },
+     {
+      "frames": 1012,
+      "sha256": "573f6eaa2b55117dad3521f2047d0e32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e000-talk-1",
+    "description": "Talking to layout record 1 of RUI_E000 (scene 404) should run its event and hand control back",
+    "plan": "# rui-rui-e000-talk-1: Talking to layout record 1 of RUI_E000 (scene 404) should run its event and hand control back\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\ntalk 200 200 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save 11e1160845f9ef9c state f54da0ffc9193bf4 ram 0000000000000000",
+     "talked frame 799 scene 404 save 48ad585ba608a94c state f44569517bb8bdfb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 180): 1 waypoints",
+     "walk to (180, 200): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a46f39c711fe87d54110c6fdb77a627"
+     },
+     {
+      "frames": 570,
+      "sha256": "14df562fd7bb9aff0ef1ffe9b53d09ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e000-talk-5",
+    "description": "Talking to layout record 5 of RUI_E000 (scene 404) should run its event and hand control back",
+    "plan": "# rui-rui-e000-talk-5: Talking to layout record 5 of RUI_E000 (scene 404) should run its event and hand control back\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\ntalk 290 240 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save 11e1160845f9ef9c state f54da0ffc9193bf4 ram 0000000000000000",
+     "talked frame 1227 scene 404 save 8c9f7122cc355ba9 state 7cc6502afd41b998 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (290, 220): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3a46f39c711fe87d54110c6fdb77a627"
+     },
+     {
+      "frames": 998,
+      "sha256": "cf95afc3f5b4309486dde1f5ca7830e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e020-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e020-talk-2",
+    "description": "Talking to layout record 2 of RUI_E020 (scene 406) should run its event and hand control back",
+    "plan": "# rui-rui-e020-talk-2: Talking to layout record 2 of RUI_E020 (scene 406) should run its event and hand control back\nlimit 20000\nenter 406 1 16719103 0\ncheckpoint entered\ntalk 190 240 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 406 save 0f5f8ef081aec986 state eaed80708d5a5bf8 ram 0000000000000000",
+     "talked frame 951 scene 406 save ddfccef9cc169a3b state 4406eba557ce3502 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (190, 220): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46963587d294ee2dadae954438b74833"
+     },
+     {
+      "frames": 722,
+      "sha256": "96eff8fc132b5fbd81b329b174bde3e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x112c = 2 so layout record 3 of RUI_E030 is there",
+    "source": "built from layout record 3's condition in scene 407 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x112c": 2
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e030-talk-3",
+    "description": "Talking to layout record 3 of RUI_E030 (scene 407) should run its event and hand control back",
+    "plan": "# rui-rui-e030-talk-3: Talking to layout record 3 of RUI_E030 (scene 407) should run its event and hand control back\nlimit 20000\nenter 407 0 16719103 3\ncheckpoint entered\ntalk 203 236 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save 5c302d00a84f32b5 state e754b843861d2fc9 ram 0000000000000000",
+     "talked frame 1066 scene 407 save f50611526e0db177 state e937eb15d6b6a7b2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (203, 256): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5f2346e4763d333e1c979d6c7072285a"
+     },
+     {
+      "frames": 837,
+      "sha256": "432b6b4513b914d99c91dd3ed988dbab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e030-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e030-talk-4",
+    "description": "Talking to layout record 4 of RUI_E030 (scene 407) should run its event and hand control back",
+    "plan": "# rui-rui-e030-talk-4: Talking to layout record 4 of RUI_E030 (scene 407) should run its event and hand control back\nlimit 20000\nenter 407 0 16719103 2\ncheckpoint entered\ntalk 390 80 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 407 save 7722b44bfb04a074 state e2a3619946c114a4 ram 0000000000000000",
+     "talked frame 1064 scene 407 save f565ab78ae6be597 state c1221b3f5571d4f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (410, 80): 14 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f7bb1f10a171c32dc81b058e8ef320d2"
+     },
+     {
+      "frames": 835,
+      "sha256": "4d4c657696639b48c486153d21cd4ad0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e040-talk-1",
+    "description": "Talking to layout record 1 of RUI_E040 (scene 408) should run its event and hand control back",
+    "plan": "# rui-rui-e040-talk-1: Talking to layout record 1 of RUI_E040 (scene 408) should run its event and hand control back\nlimit 20000\nenter 408 0 16719103 1\ncheckpoint entered\ntalk 158 162 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save 57e79c1d7d8005c8 state 029527ca7ed9a07a ram 0000000000000000",
+     "talked frame 1220 scene 408 save 0e0d3acbf37f25d7 state 245a83339579a5c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (158, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 43,
+     "instruction": 150,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8962c1fad26e824e12a0f1b010c897b3"
+     },
+     {
+      "frames": 991,
+      "sha256": "0a3920bb2e2e557e7802a262535d2ec3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e040-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x458 = 1 so layout record 2 of RUI_E040 is there",
+    "source": "built from layout record 2's condition in scene 408 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x458": 1
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e040-talk-2",
+    "description": "Talking to layout record 2 of RUI_E040 (scene 408) should run its event and hand control back",
+    "plan": "# rui-rui-e040-talk-2: Talking to layout record 2 of RUI_E040 (scene 408) should run its event and hand control back\nlimit 20000\nenter 408 0 16719103 1\ncheckpoint entered\ntalk 108 264 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 408 save 9f3f6abaeaaed055 state 39c2df4f7a40bf65 ram 0000000000000000",
+     "talked frame 546 scene 408 save 4ecbb3649249f714 state 343f7086ffb375a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (108, 244): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "078d1b028df632b6704f58b895edfac4"
+     },
+     {
+      "frames": 317,
+      "sha256": "33a57bbcd5c60091455cb4e99ee4e020"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e060-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e060-talk-1",
+    "description": "Talking to layout record 1 of RUI_E060 (scene 410) should run its event and hand control back",
+    "plan": "# rui-rui-e060-talk-1: Talking to layout record 1 of RUI_E060 (scene 410) should run its event and hand control back\nlimit 20000\nenter 410 0 16719103 2\ncheckpoint entered\ntalk 210 200 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 410 save 29b0bde2334f3591 state 5cbefd127b4ae009 ram 0000000000000000",
+     "talked frame 1069 scene 410 save f440e442ca0fba0d state 5f8567487ed0d5b1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 180): 3 waypoints",
+     "walk to (210, 220): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "28ed6e6797f53b2868544ae47ba4d7e2"
+     },
+     {
+      "frames": 840,
+      "sha256": "be737a7df5c8f139267c2552303572f1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e070-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e070-talk-2",
+    "description": "Talking to layout record 2 of RUI_E070 (scene 411) should run its event and hand control back",
+    "plan": "# rui-rui-e070-talk-2: Talking to layout record 2 of RUI_E070 (scene 411) should run its event and hand control back\nlimit 20000\nenter 411 2 16719103 0\ncheckpoint entered\ntalk 165 265 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 411 save 26e28bfecc4ffd5c state d19db98528223576 ram 0000000000000000",
+     "talked frame 972 scene 411 save 9a224f08efd38e7d state 6f20348ce3db7219 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 245): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4f6082d35a985a81bdd9d04570736e0e"
+     },
+     {
+      "frames": 743,
+      "sha256": "40597e0cc302dce1f91f71c02fd6b55f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e070-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e070-talk-3",
+    "description": "Talking to layout record 3 of RUI_E070 (scene 411) should run its event and hand control back",
+    "plan": "# rui-rui-e070-talk-3: Talking to layout record 3 of RUI_E070 (scene 411) should run its event and hand control back\nlimit 20000\nenter 411 2 16719103 0\ncheckpoint entered\ntalk 105 245 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 411 save 26e28bfecc4ffd5c state d19db98528223576 ram 0000000000000000",
+     "talked frame 986 scene 411 save 33bc3e8c1a974773 state 2e86b63dc35cba10 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (105, 225): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4f6082d35a985a81bdd9d04570736e0e"
+     },
+     {
+      "frames": 757,
+      "sha256": "463216bae5b7c578a98e9187df0e1d5e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e090-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e090-talk-1",
+    "description": "Talking to layout record 1 of RUI_E090 (scene 413) should run its event and hand control back",
+    "plan": "# rui-rui-e090-talk-1: Talking to layout record 1 of RUI_E090 (scene 413) should run its event and hand control back\nlimit 20000\nenter 413 0 16719103 1\ncheckpoint entered\ntalk 420 60 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 413 save 804ba8aaf1a89fe5 state dce3b3ab35c41727 ram 0000000000000000",
+     "talked frame 777 scene 413 save 9e96fdbdef4ff555 state 61bd329c59369c3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (420, 40): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "546265333af5957964557b79f1adcc66"
+     },
+     {
+      "frames": 548,
+      "sha256": "28377a52969ccf8f633b9ba5e11d105a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e100-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x456 = 1 so layout record 1 of RUI_E100 is there",
+    "source": "built from layout record 1's condition in scene 414 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x456": 1
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e100-talk-1",
+    "description": "Talking to layout record 1 of RUI_E100 (scene 414) should run its event and hand control back",
+    "plan": "# rui-rui-e100-talk-1: Talking to layout record 1 of RUI_E100 (scene 414) should run its event and hand control back\nlimit 20000\nenter 414 0 16719103 0\ncheckpoint entered\ntalk 200 200 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 414 save cde0255fa8aed56b state 8ef3711fe8c17484 ram 0000000000000000",
+     "talked frame 924 scene 414 save fa55b5665bcfb91d state cbd20036ea8c1fa0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 180): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "21ab0806d48f0a7eafc4ffe12f127af5"
+     },
+     {
+      "frames": 695,
+      "sha256": "f4b29372d8e2594c85cb508156e50aa9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e120-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e120-talk-2",
+    "description": "Talking to layout record 2 of RUI_E120 (scene 416) should run its event and hand control back",
+    "plan": "# rui-rui-e120-talk-2: Talking to layout record 2 of RUI_E120 (scene 416) should run its event and hand control back\nlimit 20000\nenter 416 1 16719103 0\ncheckpoint entered\ntalk 160 85 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 416 save 049688e4472aa72c state c135e4b3623d1767 ram 0000000000000000",
+     "talked frame 936 scene 416 save b1c9935aee846ad9 state 3c20ffc847456625 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 65): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eab3b447f1be9f5ce068d80494f58a7a"
+     },
+     {
+      "frames": 707,
+      "sha256": "ae9c1ef8b9fd1c3ebec4ceb107e71517"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e130-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e130-talk-1",
+    "description": "Talking to layout record 1 of RUI_E130 (scene 417) should run its event and hand control back",
+    "plan": "# rui-rui-e130-talk-1: Talking to layout record 1 of RUI_E130 (scene 417) should run its event and hand control back\nlimit 20000\nenter 417 1 16719103 0\ncheckpoint entered\ntalk 210 160 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 417 save 78b14b921fd69ed5 state 2b3d57502baac562 ram 0000000000000000",
+     "talked frame 596 scene 417 save 4321ae0f608ffe11 state 8e043c876b0b1bc6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "07145d3f34dcfb16ce2e88d3b9b6931f"
+     },
+     {
+      "frames": 367,
+      "sha256": "25a95eedc93542cc23109b25c2cc7101"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e130-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "rui-rui-e130-talk-2",
+    "description": "Talking to layout record 2 of RUI_E130 (scene 417) should run its event and hand control back",
+    "plan": "# rui-rui-e130-talk-2: Talking to layout record 2 of RUI_E130 (scene 417) should run its event and hand control back\nlimit 20000\nenter 417 1 16719103 0\ncheckpoint entered\ntalk 110 210 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 417 save 78b14b921fd69ed5 state 2b3d57502baac562 ram 0000000000000000",
+     "talked frame 971 scene 417 save 6ba3f04f0ae80b65 state 0ec88248f0b5297e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (110, 190): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "07145d3f34dcfb16ce2e88d3b9b6931f"
+     },
+     {
+      "frames": 742,
+      "sha256": "6a165a5c663c2eaeb3714dd084f70f6a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

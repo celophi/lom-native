@@ -1,0 +1,242 @@
+{
+ "format": 1,
+ "id": "new-game-opening-save",
+ "description": "A new game should run its world select, the Mailbox's placement and the opening, then save at the desk, and the save should read back",
+ "start": {
+  "save": "saves/new-game-world-select.json"
+ },
+ "steps": [
+  {
+   "place": {
+    "artifact": 0
+   },
+   "note": "the Mailbox: home"
+  },
+  {
+   "land": {
+    "index": 0
+   }
+  },
+  {
+   "checkpoint": "home"
+  },
+  {
+   "watch": 20000
+  },
+  {
+   "checkpoint": "done"
+  },
+  {
+   "wait": 30,
+   "note": "control is back in the bedroom; the desk presses from tests/routes/handwritten/home/desk-save.json"
+  },
+  {
+   "press": {
+    "buttons": [
+     "up"
+    ],
+    "frames": 10
+   },
+   "note": "up to the desk"
+  },
+  {
+   "wait": 130
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 89
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 69
+  },
+  {
+   "press": {
+    "buttons": [
+     "right"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 29
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 29
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 99
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 79
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "circle"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 59
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "left"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 19
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 99
+  },
+  {
+   "press": {
+    "buttons": [
+     "cross"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 39
+  },
+  {
+   "press": {
+    "buttons": [
+     "circle"
+    ],
+    "frames": 1
+   }
+  },
+  {
+   "wait": 100
+  },
+  {
+   "wait": 100
+  },
+  {
+   "checkpoint": "saved"
+  }
+ ],
+ "expect_save": {
+  "scene_id": 19
+ }
+}

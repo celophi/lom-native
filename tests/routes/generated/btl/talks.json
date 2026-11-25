@@ -1,0 +1,211 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "btl-btl-menu-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-talk-1",
+    "description": "Talking to layout record 1 of BTL_MENU (scene 15) should run its event and hand control back",
+    "plan": "# btl-btl-menu-talk-1: Talking to layout record 1 of BTL_MENU (scene 15) should run its event and hand control back\nlimit 20000\nenter 15 0 16711935 0\ncheckpoint entered\ntalk 64 288 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "talked frame 808 scene 15 save 28eb2aa911ae8c11 state d76d1e3fae44e1a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 268): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 579,
+      "sha256": "1c3f9aab3290867281adb4480e89a458"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-menu-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-talk-2",
+    "description": "Talking to layout record 2 of BTL_MENU (scene 15) should run its event and hand control back",
+    "plan": "# btl-btl-menu-talk-2: Talking to layout record 2 of BTL_MENU (scene 15) should run its event and hand control back\nlimit 20000\nenter 15 0 16711935 0\ncheckpoint entered\ntalk 64 128 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "talked frame 888 scene 542 save 4d3db6a2a6d661c5 state dabb9d1f83f085e3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 659,
+      "sha256": "6524a86280811ef01e10580f2d9db02b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-menu-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-talk-3",
+    "description": "Talking to layout record 3 of BTL_MENU (scene 15) should run its event and hand control back",
+    "plan": "# btl-btl-menu-talk-3: Talking to layout record 3 of BTL_MENU (scene 15) should run its event and hand control back\nlimit 20000\nenter 15 0 16711935 0\ncheckpoint entered\ntalk 96 128 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "talked frame 802 scene 543 save 0be316370747270e state 2befa46c3d95288e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (96, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 573,
+      "sha256": "b57bddbe83d2a03f1c8c34e8351fcec9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-menu-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-talk-4",
+    "description": "Talking to layout record 4 of BTL_MENU (scene 15) should run its event and hand control back",
+    "plan": "# btl-btl-menu-talk-4: Talking to layout record 4 of BTL_MENU (scene 15) should run its event and hand control back\nlimit 20000\nenter 15 0 16711935 0\ncheckpoint entered\ntalk 128 128 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "talked frame 832 scene 544 save 9c10088009f446e5 state a39c0c15c2a28492 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 603,
+      "sha256": "6ea8ad384c6969c8f27ad8814942a522"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-menu-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-menu-talk-5",
+    "description": "Talking to layout record 5 of BTL_MENU (scene 15) should run its event and hand control back",
+    "plan": "# btl-btl-menu-talk-5: Talking to layout record 5 of BTL_MENU (scene 15) should run its event and hand control back\nlimit 20000\nenter 15 0 16711935 0\ncheckpoint entered\ntalk 160 128 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 15 save 28eb2aa911ae8c11 state 2e432e0b3c8ebeab ram 0000000000000000",
+     "talked frame 822 scene 546 save e098700f072b1491 state 4b1d07e3fa816a3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 108): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67cc2f11d20b2436d9d989f97ebcf7d8"
+     },
+     {
+      "frames": 593,
+      "sha256": "23430e90cd3565bd9c5302ddc3f8868c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

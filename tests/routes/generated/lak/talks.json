@@ -1,0 +1,586 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-b042-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b042-talk-3",
+    "description": "Talking to layout record 3 of LAK_B042 (scene 893) should run its event and hand control back",
+    "plan": "# lak-lak-b042-talk-3: Talking to layout record 3 of LAK_B042 (scene 893) should run its event and hand control back\nlimit 20000\nenter 893 2 16717311 0\ncheckpoint entered\ntalk 464 104 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 893 save 9fdf95fcfed89517 state e0e15fc434de5cd0 ram 0000000000000000",
+     "talked frame 633 scene 893 save 9fdf95fcfed89517 state fa450c683c8d8fdd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (464, 84): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 256,
+     "instruction_end": 109,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05d6d45fcea7ad56c76b8e050fcfeb1f"
+     },
+     {
+      "frames": 404,
+      "sha256": "f9914727dca6148fa883248457e777a3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-b060-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-b060-talk-6",
+    "description": "Talking to layout record 6 of LAK_B060 (scene 335) should run its event and hand control back",
+    "plan": "# lak-lak-b060-talk-6: Talking to layout record 6 of LAK_B060 (scene 335) should run its event and hand control back\nlimit 20000\nenter 33103 1 16718847 1\ncheckpoint entered\ntalk 825 210 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 335 save 064e4c7bcddce3d3 state 9d3d445d9b59c753 ram 0000000000000000",
+     "talked frame 967 scene 335 save 64ce4437800738f4 state 67a268ef78042f4a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (825, 190): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2293ffe5df2353823493000d7957b302"
+     },
+     {
+      "frames": 738,
+      "sha256": "e6352334ddde632cb3c1a0f407d691a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs10-talk-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1128 = 6 so layout record 9 of LAK_BS10 is there",
+    "source": "built from layout record 9's condition in scene 327 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1128": 6
+    }
+   },
+   "baseline": {
+    "route": "lak-lak-bs10-talk-9",
+    "description": "Talking to layout record 9 of LAK_BS10 (scene 327) should run its event and hand control back",
+    "plan": "# lak-lak-bs10-talk-9: Talking to layout record 9 of LAK_BS10 (scene 327) should run its event and hand control back\nlimit 20000\nenter 33095 0 16718847 0\ncheckpoint entered\ntalk 175 120 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 327 save f76df50d2ad8ffbd state 83b38c0b0eb87c1c ram 0000000000000000",
+     "talked frame 1194 scene 327 save f6aed085982f0cf4 state 0ba060fbc7f22197 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 411,
+     "instruction_end": 217,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a2acca525b00e5ac97c167c988775e02"
+     },
+     {
+      "frames": 965,
+      "sha256": "de6af3bb1e8c3381e9538518c77f0521"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs14-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs14-talk-3",
+    "description": "Talking to layout record 3 of LAK_BS14 (scene 891) should run its event and hand control back",
+    "plan": "# lak-lak-bs14-talk-3: Talking to layout record 3 of LAK_BS14 (scene 891) should run its event and hand control back\nlimit 20000\nenter 891 0 16717311 0\ncheckpoint entered\ntalk 224 96 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 891 save 5055db4201e3accf state 1077feac02f2825c ram 0000000000000000",
+     "talked frame 613 scene 891 save 5055db4201e3accf state 6610580aeb217eb5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (224, 76): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a8ba94b542c0d6a76d7473e8a2f2301e"
+     },
+     {
+      "frames": 384,
+      "sha256": "2bd9e71ee876ceb092b174c3753aabdb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e000-talk-1",
+    "description": "Talking to layout record 1 of LAK_E000 (scene 317) should run its event and hand control back",
+    "plan": "# lak-lak-e000-talk-1: Talking to layout record 1 of LAK_E000 (scene 317) should run its event and hand control back\nlimit 20000\nenter 317 0 16718847 2\ncheckpoint entered\ntalk 60 100 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save 91d8b29d1df7bdb7 state 3cfa92bc87350afc ram 0000000000000000",
+     "talked frame 1175 scene 317 save 563b59e786311eeb state a2956ae2d35603a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b2428a6deb63c6bc40d0095418f4351"
+     },
+     {
+      "frames": 946,
+      "sha256": "733c15200156484c8dcd7fca2d94e804"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e000-talk-6",
+    "description": "Talking to layout record 6 of LAK_E000 (scene 317) should run its event and hand control back",
+    "plan": "# lak-lak-e000-talk-6: Talking to layout record 6 of LAK_E000 (scene 317) should run its event and hand control back\nlimit 20000\nenter 317 0 16718847 1\ncheckpoint entered\ntalk 68 140 0 1 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save 8d963c507160ccbc state dedbccbcddb0e715 ram 0000000000000000",
+     "talked frame 1643 scene 317 save 3b6dd23f65ffac2c state 38b121e2806d14ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (68, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 245,
+     "instruction_end": 159,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5a9932c401732655efd9fa84d8eb9adc"
+     },
+     {
+      "frames": 1414,
+      "sha256": "1ce94dade1b3be87b0e6d514d6a4fbcc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e000-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x120c = 2 so layout record 7 of LAK_E000 is there",
+    "source": "built from layout record 7's condition in scene 317 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x120c": 2
+    }
+   },
+   "baseline": {
+    "route": "lak-lak-e000-talk-7",
+    "description": "Talking to layout record 7 of LAK_E000 (scene 317) should run its event and hand control back",
+    "plan": "# lak-lak-e000-talk-7: Talking to layout record 7 of LAK_E000 (scene 317) should run its event and hand control back\nlimit 20000\nenter 317 0 16718847 1\ncheckpoint entered\ntalk 60 220 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 317 save aaab8bc5e5e0b0dc state 3381e7f3bd48683d ram 0000000000000000",
+     "talked frame 574 scene 317 save c6f0ecfc08f9e830 state 824d6b5c7e616275 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e3be988c4377b6ee607e6611aa9916dd"
+     },
+     {
+      "frames": 345,
+      "sha256": "5188bf7a6fa242d243fddc7d049d88ba"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e010-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e010-talk-5",
+    "description": "Talking to layout record 5 of LAK_E010 (scene 318) should run its event and hand control back",
+    "plan": "# lak-lak-e010-talk-5: Talking to layout record 5 of LAK_E010 (scene 318) should run its event and hand control back\nlimit 20000\nenter 318 0 16718847 1\ncheckpoint entered\ntalk 145 175 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 318 save fe3225c55099ebcf state aa56809a3bd8e473 ram 0000000000000000",
+     "talked frame 1030 scene 318 save 1de7a2d2aa245b18 state 784c96ac41e88e09 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (145, 155): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a546c2d62fb32468390a2e078f3c98fc"
+     },
+     {
+      "frames": 801,
+      "sha256": "6a43d316512cd74128200e332ecdc380"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e020-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1124 = 2 so layout record 1 of LAK_E020 is there",
+    "source": "built from layout record 1's condition in scene 319 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1124": 2
+    }
+   },
+   "baseline": {
+    "route": "lak-lak-e020-talk-1",
+    "description": "Talking to layout record 1 of LAK_E020 (scene 319) should run its event and hand control back",
+    "plan": "# lak-lak-e020-talk-1: Talking to layout record 1 of LAK_E020 (scene 319) should run its event and hand control back\nlimit 20000\nenter 319 0 16718847 1\ncheckpoint entered\ntalk 354 125 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 319 save 342a98c494546076 state 92e9c9366653661c ram 0000000000000000",
+     "talked frame 1773 scene 319 save f083e87bfb053286 state 9bca736f47af0796 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (354, 105): 1 waypoints",
+     "walk to (354, 145): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 283,
+     "instruction_end": 101,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a608c7fdce8fab2136d47c51b721c990"
+     },
+     {
+      "frames": 1544,
+      "sha256": "c6aaaeb6b7aea4a2897635676ba582fe"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e020-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e020-talk-7",
+    "description": "Talking to layout record 7 of LAK_E020 (scene 319) should run its event and hand control back",
+    "plan": "# lak-lak-e020-talk-7: Talking to layout record 7 of LAK_E020 (scene 319) should run its event and hand control back\nlimit 20000\nenter 319 0 16718847 0\ncheckpoint entered\ntalk 180 175 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 319 save 88b533a0ebeafeaf state e5e1dc71bc1d8b8c ram 0000000000000000",
+     "talked frame 923 scene 319 save d07b8fe37a65b252 state e54d9f7def66d83d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 155): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fccec28cf4a32dddec97b7d28c552ef9"
+     },
+     {
+      "frames": 694,
+      "sha256": "539b3f054277d1f172e76c5fe4e27cea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e030-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e030-talk-1",
+    "description": "Talking to layout record 1 of LAK_E030 (scene 320) should run its event and hand control back",
+    "plan": "# lak-lak-e030-talk-1: Talking to layout record 1 of LAK_E030 (scene 320) should run its event and hand control back\nlimit 20000\nenter 320 0 16718847 2\ncheckpoint entered\ntalk 428 277 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 320 save ae734afea0580dc2 state 273db8e391374fac ram 0000000000000000",
+     "talked frame 1255 scene 320 save 3ce88406ae500e27 state d4cec9a57a198bee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (428, 257): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d71baedcae41cde21218e6057e245742"
+     },
+     {
+      "frames": 1026,
+      "sha256": "cc43d308e27a7d0855075d59a376ab54"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e040-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e040-talk-8",
+    "description": "Talking to layout record 8 of LAK_E040 (scene 321) should run its event and hand control back",
+    "plan": "# lak-lak-e040-talk-8: Talking to layout record 8 of LAK_E040 (scene 321) should run its event and hand control back\nlimit 20000\nenter 321 0 16723455 0\ncheckpoint entered\ntalk 290 265 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 321 save 8262919b35925ed3 state f45a333002a003fc ram 0000000000000000",
+     "talked frame 981 scene 321 save f093f81197b3f01c state a3b1e8a485082ecf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (290, 245): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa906fc9712eae6365e3daa893c79d77"
+     },
+     {
+      "frames": 752,
+      "sha256": "60dddb8d6117471f13ef9917249dc739"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-e060-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-e060-talk-7",
+    "description": "Talking to layout record 7 of LAK_E060 (scene 323) should run its event and hand control back",
+    "plan": "# lak-lak-e060-talk-7: Talking to layout record 7 of LAK_E060 (scene 323) should run its event and hand control back\nlimit 20000\nenter 323 1 16718847 0\ncheckpoint entered\ntalk 400 250 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 323 save 9227d25d7e65f406 state 3edc4d8b5ab7ee88 ram 0000000000000000",
+     "talked frame 1024 scene 323 save 63e0ce9e60501a2e state c8c0d5045a99be5a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (400, 230): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "63a2fd651b091d9dc453f8cd9fe47333"
+     },
+     {
+      "frames": 795,
+      "sha256": "ddb9191b4833a2ae7cf65aceef74052e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

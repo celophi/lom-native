@@ -1,0 +1,2846 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-azt0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-azt0-exit-0",
+    "description": "Walking onto exit 0 of MIN_AZT0 (scene 351) should lead to scene 363",
+    "plan": "# min-min-azt0-exit-0: Walking onto exit 0 of MIN_AZT0 (scene 351) should lead to scene 363\nlimit 20000\nenter 351 0 1572863 0\ncheckpoint entered\nexit 0 363\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 351 save def71429f8338433 state 58cedf8e1bf3526b ram 0000000000000000",
+     "arrived frame 378 scene 363 save a6513810f2746330 state bba2899bd40d172b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (63, 192): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 245,
+     "instruction_end": 85,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2eb128b13c8779cc4308328dfdc64907"
+     },
+     {
+      "frames": 149,
+      "sha256": "8de67af17eae3de6fe349a4a3c950353"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b000-exit-0",
+    "description": "Walking onto exit 0 of MIN_B000 (scene 357) should lead to scene 339",
+    "plan": "# min-min-b000-exit-0: Walking onto exit 0 of MIN_B000 (scene 357) should lead to scene 339\nlimit 20000\nenter 33125 1 16718847 0\ncheckpoint entered\nexit 0 339\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 357 save 4c4d377ef17aeef0 state a7af502c494df345 ram 0000000000000000",
+     "arrived frame 304 scene 339 save 9922e04dd96b2e6a state d1f22231178dc5ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (52, 439): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2811954a5dfd8a34339604c2c8ab17ae"
+     },
+     {
+      "frames": 75,
+      "sha256": "579972b55ca83c085d2be534b2619382"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b000-exit-1",
+    "description": "Walking onto exit 1 of MIN_B000 (scene 357) should lead to scene 350",
+    "plan": "# min-min-b000-exit-1: Walking onto exit 1 of MIN_B000 (scene 357) should lead to scene 350\nlimit 20000\nenter 33125 1 16718847 0\ncheckpoint entered\nexit 1 350\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 357 save 4c4d377ef17aeef0 state a7af502c494df345 ram 0000000000000000",
+     "arrived frame 796 scene 350 save 49c4696ee1680626 state 1b8bb6e8037b301b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (525, 452): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2811954a5dfd8a34339604c2c8ab17ae"
+     },
+     {
+      "frames": 567,
+      "sha256": "76b1bdec434112aed3dad7951be9a4c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b000-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b000-exit-2",
+    "description": "Walking onto exit 2 of MIN_B000 (scene 357) should lead to scene 340",
+    "plan": "# min-min-b000-exit-2: Walking onto exit 2 of MIN_B000 (scene 357) should lead to scene 340\nlimit 20000\nenter 33125 1 16718847 0\ncheckpoint entered\nexit 2 340\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 357 save 4c4d377ef17aeef0 state a7af502c494df345 ram 0000000000000000",
+     "arrived frame 2053 scene 340 save 05cdb00f9576e2ef state f64e72a06e313bdb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (940, 144): 11 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1370 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 331,
+     "instruction_end": 110,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2811954a5dfd8a34339604c2c8ab17ae"
+     },
+     {
+      "frames": 1824,
+      "sha256": "62d3387a95b5c752ee259cc61825ac44"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b020-exit-0",
+    "description": "Walking onto exit 0 of MIN_B020 (scene 358) should lead to scene 340",
+    "plan": "# min-min-b020-exit-0: Walking onto exit 0 of MIN_B020 (scene 358) should lead to scene 340\nlimit 20000\nenter 33126 0 16718847 0\ncheckpoint entered\nexit 0 340\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 358 save 235c4ba7c030e2be state b0f40bf04da685bb ram 0000000000000000",
+     "arrived frame 308 scene 340 save aecaa18f51b81945 state 34cf21f7cd2c0ca2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1057, 575): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "45e029d049794f5723397e19354a1ee9"
+     },
+     {
+      "frames": 79,
+      "sha256": "f8fa1ec2b80b1ef735edc0d48f1a03a3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b020-exit-1",
+    "description": "Walking onto exit 1 of MIN_B020 (scene 358) should lead to scene 341",
+    "plan": "# min-min-b020-exit-1: Walking onto exit 1 of MIN_B020 (scene 358) should lead to scene 341\nlimit 20000\nenter 33126 0 16718847 1\ncheckpoint entered\nexit 1 341\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 358 save 0a6b67c5a63a2757 state 0c14d4b414ccecc8 ram 0000000000000000",
+     "arrived frame 305 scene 341 save f9a506267c8826f0 state 140297dcb5cb051c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (455, 570): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "205f465b7e55fe7d819b61f6b94f27ef"
+     },
+     {
+      "frames": 76,
+      "sha256": "f26f8c80099ff7426bcd654df5ce05f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b020-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b020-exit-2",
+    "description": "Walking onto exit 2 of MIN_B020 (scene 358) should lead to scene 342",
+    "plan": "# min-min-b020-exit-2: Walking onto exit 2 of MIN_B020 (scene 358) should lead to scene 342\nlimit 20000\nenter 33126 0 16718847 1\ncheckpoint entered\nexit 2 342\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 358 save 0a6b67c5a63a2757 state 0c14d4b414ccecc8 ram 0000000000000000",
+     "arrived frame 618 scene 342 save 7c8612bc8a9dc69e state b836c0223da96a5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (18, 14): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "205f465b7e55fe7d819b61f6b94f27ef"
+     },
+     {
+      "frames": 389,
+      "sha256": "922fd7127c2d698f236ff0e7af6a6ce5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-0",
+    "description": "Walking onto exit 0 of MIN_B030 (scene 359) should lead to scene 342",
+    "plan": "# min-min-b030-exit-0: Walking onto exit 0 of MIN_B030 (scene 359) should lead to scene 342\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 0 342\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 307 scene 342 save aa4201e2e0826086 state c00cfe2274180af2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (551, 444): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 78,
+      "sha256": "77395b9d8739fa4d5f9865715f9c5ae8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-1",
+    "description": "Walking onto exit 1 of MIN_B030 (scene 359) should lead to scene 360",
+    "plan": "# min-min-b030-exit-1: Walking onto exit 1 of MIN_B030 (scene 359) should lead to scene 360\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 1 360\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 550 scene 360 save 566334d34af94d44 state cb527821e2ff52b3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (908, 448): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 321,
+      "sha256": "997cf049565486230578b20e5bef35e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-2",
+    "description": "Walking onto exit 2 of MIN_B030 (scene 359) should lead to scene 343",
+    "plan": "# min-min-b030-exit-2: Walking onto exit 2 of MIN_B030 (scene 359) should lead to scene 343\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 2 343\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 461 scene 343 save af8e2aea516643a6 state 3259718b895fc644 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (766, 25): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 232,
+      "sha256": "f4a53eed1a352e84cd9ee6b4a9ec2723"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-3",
+    "description": "Walking onto exit 3 of MIN_B030 (scene 359) should lead to scene 352",
+    "plan": "# min-min-b030-exit-3: Walking onto exit 3 of MIN_B030 (scene 359) should lead to scene 352\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 3 352\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 515 scene 352 save a362ee5e598a66f9 state 74c9f574b96b6e27 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 447): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 286,
+      "sha256": "f99807d93914b2ff5d6d23c94b1f9652"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-4",
+    "description": "Walking onto exit 4 of MIN_B030 (scene 359) should lead to scene 365",
+    "plan": "# min-min-b030-exit-4: Walking onto exit 4 of MIN_B030 (scene 359) should lead to scene 365\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 4 365\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 576 scene 365 save 37b7f66b07ade9b2 state 1d5c1d36caa69e07 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (72, 438): 10 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 66,
+     "instruction": 179,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 347,
+      "sha256": "637d38cab712fa5cad43a919220481f1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b030-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b030-exit-5",
+    "description": "Walking onto exit 5 of MIN_B030 (scene 359) should lead to scene 348",
+    "plan": "# min-min-b030-exit-5: Walking onto exit 5 of MIN_B030 (scene 359) should lead to scene 348\nlimit 20000\nenter 33127 0 16718847 0\ncheckpoint entered\nexit 5 348\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 359 save 898b37b71014c437 state cb5a3fb9bda55a3e ram 0000000000000000",
+     "arrived frame 609 scene 348 save dbd50c618caaa145 state 96fa54c5a9727a97 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (163, 25): 13 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "40ebb5dce2115e392a58ce12836b651b"
+     },
+     {
+      "frames": 380,
+      "sha256": "e1a277ce7af3e72a2af1a9cc8703c543"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b040-exit-0",
+    "description": "Walking onto exit 0 of MIN_B040 (scene 360) should lead to scene 359",
+    "plan": "# min-min-b040-exit-0: Walking onto exit 0 of MIN_B040 (scene 360) should lead to scene 359\nlimit 20000\nenter 33128 1 16718847 0\ncheckpoint entered\nexit 0 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 360 save d2072fcf9a198b7d state 40feaa4a2e20de71 ram 0000000000000000",
+     "arrived frame 295 scene 359 save e7f91ea4109599dc state 21504601a68c6d1f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 123): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b83394f78c02d1d4a31f651bf04507a5"
+     },
+     {
+      "frames": 66,
+      "sha256": "acff654c444a8ee2a1c659bfffe4f2e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b050-exit-0",
+    "description": "Walking onto exit 0 of MIN_B050 (scene 361) should lead to scene 343",
+    "plan": "# min-min-b050-exit-0: Walking onto exit 0 of MIN_B050 (scene 361) should lead to scene 343\nlimit 20000\nenter 33129 0 16718847 1\ncheckpoint entered\nexit 0 343\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 361 save 62f2f41e87e76558 state d3ce53889ed9696f ram 0000000000000000",
+     "arrived frame 1327 scene 343 save b1b2d29e939ae5d4 state f2c2b8d803e5ce5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (18, 175): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 770 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 331,
+     "instruction_end": 127,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ea0346df73ab0bcca35490a31e65f90f"
+     },
+     {
+      "frames": 1098,
+      "sha256": "f26b401ecb6f76e857b737e10bf6b541"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b050-exit-1",
+    "description": "Walking onto exit 1 of MIN_B050 (scene 361) should lead to scene 362",
+    "plan": "# min-min-b050-exit-1: Walking onto exit 1 of MIN_B050 (scene 361) should lead to scene 362\nlimit 20000\nenter 33129 0 16718847 0\ncheckpoint entered\nexit 1 362\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 361 save b9e31ff73d949df9 state 23148a98072adbf5 ram 0000000000000000",
+     "arrived frame 927 scene 362 save bdd2184b366d9e06 state 83d2fee75c4fc842 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (314, 199): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 410 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 289,
+     "instruction_end": 118,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "674328f89def6968488aa45f9293a94e"
+     },
+     {
+      "frames": 698,
+      "sha256": "cff48dfb2e3ad483789b4f0e05a727b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b050-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b050-exit-2",
+    "description": "Walking onto exit 2 of MIN_B050 (scene 361) should lead to scene 363",
+    "plan": "# min-min-b050-exit-2: Walking onto exit 2 of MIN_B050 (scene 361) should lead to scene 363\nlimit 20000\nenter 33129 0 16718847 0\ncheckpoint entered\nexit 2 363\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 361 save b9e31ff73d949df9 state 23148a98072adbf5 ram 0000000000000000",
+     "arrived frame 778 scene 363 save 79aab874f5ff365f state 944009a93ae38c5e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (131, 336): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 410 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 296,
+     "instruction_end": 133,
+     "song": 3,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "674328f89def6968488aa45f9293a94e"
+     },
+     {
+      "frames": 549,
+      "sha256": "3914db30f1870481f9a0a72ab7f0d959"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b060-exit-0",
+    "description": "Walking onto exit 0 of MIN_B060 (scene 362) should lead to scene 361",
+    "plan": "# min-min-b060-exit-0: Walking onto exit 0 of MIN_B060 (scene 362) should lead to scene 361\nlimit 20000\nenter 33130 0 16718847 0\ncheckpoint entered\nexit 0 361\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 362 save 2c0374309706dd92 state bd879e54a92cf6de ram 0000000000000000",
+     "arrived frame 291 scene 361 save b63ec44da6319dee state bab319d7cc4f94c9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 71,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ecc8304b6a8f3bdbaa0b0985aad3bb3"
+     },
+     {
+      "frames": 62,
+      "sha256": "8cab24d74d7fba3d1ff9b7c9f6a47ee4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b060-exit-1",
+    "description": "Walking onto exit 1 of MIN_B060 (scene 362) should lead to scene 364",
+    "plan": "# min-min-b060-exit-1: Walking onto exit 1 of MIN_B060 (scene 362) should lead to scene 364\nlimit 20000\nenter 33130 0 16718847 0\ncheckpoint entered\nexit 1 364\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 362 save 2c0374309706dd92 state bd879e54a92cf6de ram 0000000000000000",
+     "arrived frame 459 scene 364 save d0e138853960e9cb state 3fb02090cb4f65ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (261, 280): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ecc8304b6a8f3bdbaa0b0985aad3bb3"
+     },
+     {
+      "frames": 230,
+      "sha256": "c42b09a0e4bf691456bb0e3a182ad425"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b070-exit-0",
+    "description": "Walking onto exit 0 of MIN_B070 (scene 363) should lead to scene 361",
+    "plan": "# min-min-b070-exit-0: Walking onto exit 0 of MIN_B070 (scene 363) should lead to scene 361\nlimit 20000\nenter 33131 0 16718847 1\ncheckpoint entered\nexit 0 361\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 363 save f1b0dc4d324db132 state 48892dbeb8823021 ram 0000000000000000",
+     "arrived frame 1310 scene 361 save 9f49dcc6b79c28a2 state 4bd4ac5e569233a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (174, 8): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 141,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3399e24d9a7b1e00d017ea6ee5780214"
+     },
+     {
+      "frames": 1081,
+      "sha256": "8730f3b08142cfcfc394f992cf277c0b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b070-exit-1",
+    "description": "Walking onto exit 1 of MIN_B070 (scene 363) should lead to scene 351",
+    "plan": "# min-min-b070-exit-1: Walking onto exit 1 of MIN_B070 (scene 363) should lead to scene 351\nlimit 20000\nenter 33131 0 16718847 1\ncheckpoint entered\nexit 1 351\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 363 save f1b0dc4d324db132 state 48892dbeb8823021 ram 0000000000000000",
+     "arrived frame 301 scene 351 save f2b0b4e9c6087ff9 state 21fb87543af89cd5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (173, 306): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3399e24d9a7b1e00d017ea6ee5780214"
+     },
+     {
+      "frames": 72,
+      "sha256": "7ea5d2dac51bb21f776f984436ab546f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b080-exit-0",
+    "description": "Walking onto exit 0 of MIN_B080 (scene 364) should lead to scene 362",
+    "plan": "# min-min-b080-exit-0: Walking onto exit 0 of MIN_B080 (scene 364) should lead to scene 362\nlimit 20000\nenter 33132 1 16718847 0\ncheckpoint entered\nexit 0 362\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 364 save 9b6e5dfc6659b8d1 state 9e042033ca8b92d0 ram 0000000000000000",
+     "arrived frame 297 scene 362 save fac7a09d9fb83ec3 state 5b5d650f08dd8418 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "94bb6cdce874cd8c8d645061f0181a8a"
+     },
+     {
+      "frames": 68,
+      "sha256": "0749e311ef5876182092e5a8bbdb4122"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b090-exit-0",
+    "description": "Walking onto exit 0 of MIN_B090 (scene 365) should lead to scene 359",
+    "plan": "# min-min-b090-exit-0: Walking onto exit 0 of MIN_B090 (scene 365) should lead to scene 359\nlimit 20000\nenter 33133 2 16718847 1\ncheckpoint entered\nexit 0 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 365 save 16bcaf87825d815a state dc60a3633148666f ram 0000000000000000",
+     "arrived frame 3343 scene 359 save da28f049ed0936ac state 8f9362d2450fd518 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (907, 450): 8 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1670 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 540,
+     "instruction_end": 155,
+     "song": 3,
+     "monster": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "17c0d3f7e30ddef45dd7161d1a45fef9"
+     },
+     {
+      "frames": 3114,
+      "sha256": "809224aae8c472fc6c999398d40be33c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b090-exit-1",
+    "description": "Walking onto exit 1 of MIN_B090 (scene 365) should lead to scene 344",
+    "plan": "# min-min-b090-exit-1: Walking onto exit 1 of MIN_B090 (scene 365) should lead to scene 344\nlimit 20000\nenter 33133 2 16718847 1\ncheckpoint entered\nexit 1 344\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 365 save 16bcaf87825d815a state dc60a3633148666f ram 0000000000000000",
+     "arrived frame 306 scene 344 save d9f49cc9081e3345 state 4ecbaa66b8ee2945 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (67, 443): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 189,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "17c0d3f7e30ddef45dd7161d1a45fef9"
+     },
+     {
+      "frames": 77,
+      "sha256": "03706479ae985ef9f27f61979fd6537d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b100-exit-0",
+    "description": "Walking onto exit 0 of MIN_B100 (scene 366) should lead to scene 345",
+    "plan": "# min-min-b100-exit-0: Walking onto exit 0 of MIN_B100 (scene 366) should lead to scene 345\nlimit 20000\nenter 33134 0 16718847 0\ncheckpoint entered\nexit 0 345\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 366 save 9bf9a2123254a8c6 state 48b3dc38db5ab06a ram 0000000000000000",
+     "arrived frame 307 scene 345 save 999bfd8948877419 state bdf32e740d52ee58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1054, 446): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 69,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87ae17e535baa414e0640e62d937df79"
+     },
+     {
+      "frames": 78,
+      "sha256": "e927a464e0273fdd5327dd5132bce0f2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b100-exit-1",
+    "description": "Walking onto exit 1 of MIN_B100 (scene 366) should lead to scene 346",
+    "plan": "# min-min-b100-exit-1: Walking onto exit 1 of MIN_B100 (scene 366) should lead to scene 346\nlimit 20000\nenter 33134 0 16718847 0\ncheckpoint entered\nexit 1 346\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 366 save 9bf9a2123254a8c6 state 48b3dc38db5ab06a ram 0000000000000000",
+     "arrived frame 3213 scene 346 save 34747feebe5f249a state e534ee8f3ae06252 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (37, 434): 10 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 467,
+     "instruction_end": 145,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "87ae17e535baa414e0640e62d937df79"
+     },
+     {
+      "frames": 2984,
+      "sha256": "ffddb8543b4a7ea77eb83e381cb76c4a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b110-exit-0",
+    "description": "Walking onto exit 0 of MIN_B110 (scene 367) should lead to scene 347",
+    "plan": "# min-min-b110-exit-0: Walking onto exit 0 of MIN_B110 (scene 367) should lead to scene 347\nlimit 20000\nenter 367 0 16718847 0\ncheckpoint entered\nexit 0 347\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 367 save b13034c45aa0f7ff state 5351ca1cb9308f66 ram 0000000000000000",
+     "arrived frame 305 scene 347 save 18e48054991b0f36 state 5bc6ffd29a665ee0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (50, 312): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "47a89d2cbc8876ac2422441c0b571054"
+     },
+     {
+      "frames": 76,
+      "sha256": "37d2e237f7a4b82e2848f7a6b851fca5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b110-exit-1",
+    "description": "Walking onto exit 1 of MIN_B110 (scene 367) should lead to scene 368",
+    "plan": "# min-min-b110-exit-1: Walking onto exit 1 of MIN_B110 (scene 367) should lead to scene 368\nlimit 20000\nenter 367 0 16718847 0\ncheckpoint entered\nexit 1 368\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 367 save b13034c45aa0f7ff state 5351ca1cb9308f66 ram 0000000000000000",
+     "arrived frame 392 scene 368 save d0867915ba94bd05 state 3ddecdb1adfa6413 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (305, 244): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "47a89d2cbc8876ac2422441c0b571054"
+     },
+     {
+      "frames": 163,
+      "sha256": "e6f23407c32780074db761cf31cc9e11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b120-exit-0",
+    "description": "Walking onto exit 0 of MIN_B120 (scene 368) should lead to scene 367",
+    "plan": "# min-min-b120-exit-0: Walking onto exit 0 of MIN_B120 (scene 368) should lead to scene 367\nlimit 20000\nenter 33136 1 16718847 0\ncheckpoint entered\nexit 0 367\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 368 save 9f5fd8d3527e6905 state 86f3d09fc47cb78b ram 0000000000000000",
+     "arrived frame 298 scene 367 save 42c954b2602ce7da state 87eb231dd4e1c918 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (31, 222): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbf1a6fcd918538311b9f794dcba3a62"
+     },
+     {
+      "frames": 69,
+      "sha256": "1ff7f98c7ac7cb4c3e7da4299fb7a73a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b120-exit-1",
+    "description": "Walking onto exit 1 of MIN_B120 (scene 368) should lead to scene 369",
+    "plan": "# min-min-b120-exit-1: Walking onto exit 1 of MIN_B120 (scene 368) should lead to scene 369\nlimit 20000\nenter 33136 1 16718847 0\ncheckpoint entered\nexit 1 369\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 368 save 9f5fd8d3527e6905 state 86f3d09fc47cb78b ram 0000000000000000",
+     "arrived frame 2343 scene 369 save 1c1bd2e8580143dc state 37166852fc25e5a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (422, 308): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1850 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 464,
+     "instruction_end": 151,
+     "song": 3,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbf1a6fcd918538311b9f794dcba3a62"
+     },
+     {
+      "frames": 2114,
+      "sha256": "97e0b1a92050352d3145e8d8b0c6a7f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b120-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b120-exit-2",
+    "description": "Walking onto exit 2 of MIN_B120 (scene 368) should lead to scene 370",
+    "plan": "# min-min-b120-exit-2: Walking onto exit 2 of MIN_B120 (scene 368) should lead to scene 370\nlimit 20000\nenter 33136 1 16718847 0\ncheckpoint entered\nexit 2 370\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 368 save 9f5fd8d3527e6905 state 86f3d09fc47cb78b ram 0000000000000000",
+     "arrived frame 2410 scene 370 save 5f16fc0555c89c9e state f43f2e37b16198a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (619, 244): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1850 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 474,
+     "instruction_end": 157,
+     "song": 3,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbf1a6fcd918538311b9f794dcba3a62"
+     },
+     {
+      "frames": 2181,
+      "sha256": "72b5f43f1c92ef43a9ff3cad84dcf8e6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b120-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b120-exit-3",
+    "description": "Walking onto exit 3 of MIN_B120 (scene 368) should lead to scene 371",
+    "plan": "# min-min-b120-exit-3: Walking onto exit 3 of MIN_B120 (scene 368) should lead to scene 371\nlimit 20000\nenter 33136 1 16718847 0\ncheckpoint entered\nexit 3 371\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 368 save 9f5fd8d3527e6905 state 86f3d09fc47cb78b ram 0000000000000000",
+     "arrived frame 1609 scene 371 save 2e266f1272c02a90 state baf015a51d60cb11 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (547, 8): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 500,
+     "instruction_end": 160,
+     "song": 3,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbf1a6fcd918538311b9f794dcba3a62"
+     },
+     {
+      "frames": 1380,
+      "sha256": "ae5293846e4d18fa441b95c21811b4e7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b130-exit-0",
+    "description": "Walking onto exit 0 of MIN_B130 (scene 369) should lead to scene 368",
+    "plan": "# min-min-b130-exit-0: Walking onto exit 0 of MIN_B130 (scene 369) should lead to scene 368\nlimit 20000\nenter 33137 3 16718847 0\ncheckpoint entered\nexit 0 368\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 369 save efaadece6370068a state ff4f8a911c7167c9 ram 0000000000000000",
+     "arrived frame 298 scene 368 save 4304651e1b864020 state 98e486c59d3e0b81 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 77,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6a49cb68c06db29235047292476f09c"
+     },
+     {
+      "frames": 69,
+      "sha256": "b9a55ec4aebdd1ebc2f2a6f16ca74ccb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b140-exit-0",
+    "description": "Walking onto exit 0 of MIN_B140 (scene 370) should lead to scene 368",
+    "plan": "# min-min-b140-exit-0: Walking onto exit 0 of MIN_B140 (scene 370) should lead to scene 368\nlimit 20000\nenter 33138 2 16718847 0\ncheckpoint entered\nexit 0 368\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 370 save 8bf970d62826c58c state 854c3db98d1bac10 ram 0000000000000000",
+     "arrived frame 296 scene 368 save fa74f7d54057b49f state 4aeae7134c9f92dc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 221): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 85,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "46fae8d54326f6d64d24c17533d2e8bb"
+     },
+     {
+      "frames": 67,
+      "sha256": "cf581ad507e476eafc64194b1fb56b8d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b140-exit-1",
+    "description": "Walking onto exit 1 of MIN_B140 (scene 370) should lead to scene 348",
+    "plan": "# min-min-b140-exit-1: Walking onto exit 1 of MIN_B140 (scene 370) should lead to scene 348\nlimit 20000\nenter 33138 2 16718847 1\ncheckpoint entered\nexit 1 348\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 370 save 87f900b5c7c886bd state 14b6b2ac58e3b54a ram 0000000000000000",
+     "arrived frame 294 scene 348 save 19ee2ebcc9c7214d state eef7e51fec290106 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbc7d86747ff5e07e4bd18ed4eda6053"
+     },
+     {
+      "frames": 65,
+      "sha256": "bf0b48f744196cfeac7aaf70b8fabc3a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b150-exit-0",
+    "description": "Walking onto exit 0 of MIN_B150 (scene 371) should lead to scene 368",
+    "plan": "# min-min-b150-exit-0: Walking onto exit 0 of MIN_B150 (scene 371) should lead to scene 368\nlimit 20000\nenter 33139 0 16718847 0\ncheckpoint entered\nexit 0 368\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 371 save 664bd3c1fda9c863 state e4b7150c50e6e92a ram 0000000000000000",
+     "arrived frame 310 scene 368 save 1e97ea37b8317382 state d0f75419228d9c9a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (48, 441): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 87,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "da451573929c09a20f8396dfb2a56812"
+     },
+     {
+      "frames": 81,
+      "sha256": "32d80c04a8cc31420ba9d93f8e3c436b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-b150-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-b150-exit-1",
+    "description": "Walking onto exit 1 of MIN_B150 (scene 371) should lead to scene 349",
+    "plan": "# min-min-b150-exit-1: Walking onto exit 1 of MIN_B150 (scene 371) should lead to scene 349\nlimit 20000\nenter 33139 0 16718847 1\ncheckpoint entered\nexit 1 349\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 371 save 136c9237bfe3631a state b946e8dcd71fa302 ram 0000000000000000",
+     "arrived frame 295 scene 349 save 07e249a819261d6d state 1829d6a1375d244e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1112, 168): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 70,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2bd50e94cb937bc1d1889b29be5b6699"
+     },
+     {
+      "frames": 66,
+      "sha256": "e00e1b3a9de3f4b004de13ce83286d18"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs00-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS00 (scene 353) should lead to scene 346",
+    "plan": "# min-min-bs00-exit-0: Walking onto exit 0 of MIN_BS00 (scene 353) should lead to scene 346\nlimit 20000\nenter 33121 0 16712471 0\ncheckpoint entered\nexit 0 346\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 353 save cdedbab32d4b6c0c state 6c37f13b00b00d75 ram 0000000000000000",
+     "arrived frame 293 scene 346 save 1bd5ed57aaf8835d state 01bb46f046685622 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 64): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 86,
+     "instruction": 216,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f7500bf238544a00a0ececabdb84ef3"
+     },
+     {
+      "frames": 64,
+      "sha256": "5fd10f47ca9a0ad96f27d88c6dc7a59e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs01-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS01 (scene 354) should lead to scene 346",
+    "plan": "# min-min-bs01-exit-0: Walking onto exit 0 of MIN_BS01 (scene 354) should lead to scene 346\nlimit 20000\nenter 33122 0 16718847 0\ncheckpoint entered\nexit 0 346\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 354 save 61c08d3ddecd878a state 37b10d3cf9901981 ram 0000000000000000",
+     "arrived frame 293 scene 346 save 1bd5ed57aaf8835d state cf3fde970cbca3c4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 64): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41f438cd1c8a7615828616f522482712"
+     },
+     {
+      "frames": 64,
+      "sha256": "533ccea4721bd108e5f168818d015291"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs02-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS02 (scene 914) should lead to scene 346",
+    "plan": "# min-min-bs02-exit-0: Walking onto exit 0 of MIN_BS02 (scene 914) should lead to scene 346\nlimit 20000\nenter 914 0 16776959 0\ncheckpoint entered\nexit 0 346\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 914 save 19b86afd0f718447 state befc0fb993d643e9 ram 0000000000000000",
+     "arrived frame 388 scene 346 save 1bd5ed57aaf8835d state 688579bf45d0609a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 64): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 230,
+     "instruction_end": 72,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7bbbdccb8adf5f4d6dc84c90f0887c4a"
+     },
+     {
+      "frames": 159,
+      "sha256": "d1784f74b27b50be740fa9e16badac49"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs03-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS03 (scene 915) should lead to scene 346",
+    "plan": "# min-min-bs03-exit-0: Walking onto exit 0 of MIN_BS03 (scene 915) should lead to scene 346\nlimit 20000\nenter 915 0 16717311 0\ncheckpoint entered\nexit 0 346\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 915 save 1cbf4e055a9c4657 state d6cb91a929009c3a ram 0000000000000000",
+     "arrived frame 404 scene 346 save da9c35af7f5e354b state d3f8f44dd913de18 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 64): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 262,
+     "instruction_end": 116,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96b4e1bb6a4e2a0880d90f1899625f75"
+     },
+     {
+      "frames": 175,
+      "sha256": "44e2f8a80b7f1de3cf51016bf7865eb9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs10-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS10 (scene 355) should lead to scene 349",
+    "plan": "# min-min-bs10-exit-0: Walking onto exit 0 of MIN_BS10 (scene 355) should lead to scene 349\nlimit 20000\nenter 33123 0 16718847 0\ncheckpoint entered\nexit 0 349\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 355 save 3bb869ee571d2a73 state 0578dc43c77128e5 ram 0000000000000000",
+     "arrived frame 293 scene 349 save 667c73c558d80f62 state 766bcb2cf82f91da ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 50,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a5e58b79ddba6d5a5b7440b3869e1ed"
+     },
+     {
+      "frames": 64,
+      "sha256": "b376e19b8f656a542742554aff4990cc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-bs11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-bs11-exit-0",
+    "description": "Walking onto exit 0 of MIN_BS11 (scene 356) should lead to scene 349",
+    "plan": "# min-min-bs11-exit-0: Walking onto exit 0 of MIN_BS11 (scene 356) should lead to scene 349\nlimit 20000\nenter 356 0 16711422 0\ncheckpoint entered\nexit 0 349\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 356 save 6e4f256a6998dfc3 state d6cbd43ba8aa6a7a ram 0000000000000000",
+     "arrived frame 293 scene 349 save c864bdde25a3e8e3 state 766bcb2cf82f91da ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7a92c3b34461afd33b34bda660f23407"
+     },
+     {
+      "frames": 64,
+      "sha256": "1c8393c65d7c22fd908c8abd828cea34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e000-exit-0",
+    "description": "Walking onto exit 0 of MIN_E000 (scene 339) should lead to one of scene 339, the world map",
+    "plan": "# min-min-e000-exit-0: Walking onto exit 0 of MIN_E000 (scene 339) should lead to one of scene 339, the world map\nlimit 20000\nenter 339 0 16718847 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 339 save 8240cb257cbcd33a state 19a365a9fadb4b2f ram 0000000000000000",
+     "arrived frame 443 scene 32767 save e4c4407e95183caf state f631aced5431411d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (41, 312): 5 waypoints",
+     "game state 1 at vblank 1211"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "343cf75b290623331ca9c4dd7ea94244"
+     },
+     {
+      "frames": 213,
+      "sha256": "2c46c1f793401e8c03721e026aad25c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e000-exit-1",
+    "description": "Walking onto exit 1 of MIN_E000 (scene 339) should lead to scene 357",
+    "plan": "# min-min-e000-exit-1: Walking onto exit 1 of MIN_E000 (scene 339) should lead to scene 357\nlimit 20000\nenter 339 0 16718847 1\ncheckpoint entered\nexit 1 357\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 339 save 8240cb257cbcd33a state 19a365a9fadb4b2f ram 0000000000000000",
+     "arrived frame 303 scene 357 save a8338187cc9ab195 state 848d26a51ddd7260 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (294, 311): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "343cf75b290623331ca9c4dd7ea94244"
+     },
+     {
+      "frames": 74,
+      "sha256": "014174f1eb374cf3a98c4367798560e2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e010-exit-0",
+    "description": "Walking onto exit 0 of MIN_E010 (scene 340) should lead to scene 357",
+    "plan": "# min-min-e010-exit-0: Walking onto exit 0 of MIN_E010 (scene 340) should lead to scene 357\nlimit 20000\nenter 340 0 16718847 0\ncheckpoint entered\nexit 0 357\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 340 save e12cdd7b35396d94 state 6271e65a1725bac2 ram 0000000000000000",
+     "arrived frame 291 scene 357 save aca5c8809295b3b2 state 8250f345333ef3e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (37, 369): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7bd684eea0ec2a61e8d94588c1ab8820"
+     },
+     {
+      "frames": 62,
+      "sha256": "99f737488937f95875355d302da487ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e010-exit-1",
+    "description": "Walking onto exit 1 of MIN_E010 (scene 340) should lead to scene 358",
+    "plan": "# min-min-e010-exit-1: Walking onto exit 1 of MIN_E010 (scene 340) should lead to scene 358\nlimit 20000\nenter 340 0 16718847 1\ncheckpoint entered\nexit 1 358\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 340 save d43a7d2d6f111925 state 4938de5a0b486bf1 ram 0000000000000000",
+     "arrived frame 293 scene 358 save 12447680ef8be88e state a4178efb621e084d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (30, 77): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "85b85bf9aa6dfbe5ed0ab4179a8dc6bb"
+     },
+     {
+      "frames": 64,
+      "sha256": "4ee0082a467822e5ee5ebd89f5b3b4ce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e030-exit-0",
+    "description": "Walking onto exit 0 of MIN_E030 (scene 341) should lead to scene 358",
+    "plan": "# min-min-e030-exit-0: Walking onto exit 0 of MIN_E030 (scene 341) should lead to scene 358\nlimit 20000\nenter 341 1 16718847 0\ncheckpoint entered\nexit 0 358\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 341 save 948d94c32b7fb900 state 70213656bed464fc ram 0000000000000000",
+     "arrived frame 300 scene 358 save 11d56d65bdb4e26f state 95fd5bbf76e62de1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (164, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8fdf0c1f33200aad170a967531dfefc6"
+     },
+     {
+      "frames": 71,
+      "sha256": "177da2a3849f851bc78fa4a9994e1421"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e040-exit-0",
+    "description": "Walking onto exit 0 of MIN_E040 (scene 342) should lead to scene 358",
+    "plan": "# min-min-e040-exit-0: Walking onto exit 0 of MIN_E040 (scene 342) should lead to scene 358\nlimit 20000\nenter 342 0 16718847 0\ncheckpoint entered\nexit 0 358\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 342 save f3bf67a19620a38e state ba824b6641b7fff7 ram 0000000000000000",
+     "arrived frame 294 scene 358 save e18d9f31bc84e5bc state e41548a777d9bc4e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (287, 419): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7bb678faca1c15a7fd2bdc5b5f57b168"
+     },
+     {
+      "frames": 65,
+      "sha256": "b18d984d7d0c919389244d6cc3a567f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e040-exit-1",
+    "description": "Walking onto exit 1 of MIN_E040 (scene 342) should lead to scene 359",
+    "plan": "# min-min-e040-exit-1: Walking onto exit 1 of MIN_E040 (scene 342) should lead to scene 359\nlimit 20000\nenter 342 0 16718847 1\ncheckpoint entered\nexit 1 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 342 save ae63c51b9cc296a7 state 1612149debb5c440 ram 0000000000000000",
+     "arrived frame 293 scene 359 save 361e560001fcc487 state 58745c3997f884d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (286, 98): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4d4a061303959942532af38407322cc4"
+     },
+     {
+      "frames": 64,
+      "sha256": "4727c5be683aa8ec026b9767917f2aaf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e050-exit-0",
+    "description": "Walking onto exit 0 of MIN_E050 (scene 343) should lead to scene 359",
+    "plan": "# min-min-e050-exit-0: Walking onto exit 0 of MIN_E050 (scene 343) should lead to scene 359\nlimit 20000\nenter 343 0 16718847 0\ncheckpoint entered\nexit 0 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 343 save 5943cdc141810b47 state 783cff54b19222ec ram 0000000000000000",
+     "arrived frame 291 scene 359 save ed733ff578827017 state 5ec35428d889716f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (31, 403): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fafd646535e54cfa56156cfbd2e2e545"
+     },
+     {
+      "frames": 62,
+      "sha256": "bb6f5572eebc0407503e2b8ab467c47a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e050-exit-1",
+    "description": "Walking onto exit 1 of MIN_E050 (scene 343) should lead to scene 361",
+    "plan": "# min-min-e050-exit-1: Walking onto exit 1 of MIN_E050 (scene 343) should lead to scene 361\nlimit 20000\nenter 343 0 16718847 1\ncheckpoint entered\nexit 1 361\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 343 save f7f4065f89acb76e state 475d278699d75a07 ram 0000000000000000",
+     "arrived frame 292 scene 361 save 793422bfe94a0893 state f05ce6aa490573dc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 92): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 67,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "431a406b879e8fbf53846c6c235dbf80"
+     },
+     {
+      "frames": 63,
+      "sha256": "882ec82d366073f06226e83a8f435006"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e060-exit-0",
+    "description": "Walking onto exit 0 of MIN_E060 (scene 344) should lead to scene 365",
+    "plan": "# min-min-e060-exit-0: Walking onto exit 0 of MIN_E060 (scene 344) should lead to scene 365\nlimit 20000\nenter 344 3 16718847 0\ncheckpoint entered\nexit 0 365\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 344 save 13c58d326269ea93 state 6eff95d67f9bf041 ram 0000000000000000",
+     "arrived frame 306 scene 365 save 7291b72d66504c08 state 8a82eaf5495aa558 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (297, 324): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 65,
+     "instruction": 168,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "559593bcb5e8049583ac4e2fc804c4f2"
+     },
+     {
+      "frames": 77,
+      "sha256": "f9efc5498975ae41709075475de6c097"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e060-exit-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1134 = 5 for exit 2 of MIN_E060",
+    "source": "scene-wide search over the saved-game variables scene 344's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1134": 5
+    }
+   },
+   "baseline": {
+    "route": "min-min-e060-exit-2",
+    "description": "Walking onto exit 2 of MIN_E060 (scene 344) should lead to scene 345",
+    "plan": "# min-min-e060-exit-2: Walking onto exit 2 of MIN_E060 (scene 344) should lead to scene 345\nlimit 20000\nenter 344 3 16718847 2\ncheckpoint entered\nexit 2 345\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 344 save 20ef4a6015ae4551 state e6d8b2fe5ce75cd8 ram 0000000000000000",
+     "arrived frame 306 scene 345 save cd5f0606114c778e state 91780bfdb7e099cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 341): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 53,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6943592fd28a80d6801cca2af61d56b"
+     },
+     {
+      "frames": 77,
+      "sha256": "346a1ea38446d934c2a0a676eec6cdf4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e070-exit-0",
+    "description": "Walking onto exit 0 of MIN_E070 (scene 345) should lead to scene 366",
+    "plan": "# min-min-e070-exit-0: Walking onto exit 0 of MIN_E070 (scene 345) should lead to scene 366\nlimit 20000\nenter 345 0 16718847 0\ncheckpoint entered\nexit 0 366\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 345 save 3cf0f1f624cfd049 state 783cff54b19222ec ram 0000000000000000",
+     "arrived frame 291 scene 366 save e6665fbf57246976 state 089b46ac40181104 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (31, 403): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa2355c2b5d2b89d279abb23c7c96792"
+     },
+     {
+      "frames": 62,
+      "sha256": "97aeba63a6953dc69e5ce2d953d70580"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e070-exit-1",
+    "description": "Walking onto exit 1 of MIN_E070 (scene 345) should lead to scene 344",
+    "plan": "# min-min-e070-exit-1: Walking onto exit 1 of MIN_E070 (scene 345) should lead to scene 344\nlimit 20000\nenter 345 0 16718847 1\ncheckpoint entered\nexit 1 344\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 345 save cc0d2979df100728 state 475d278699d75a07 ram 0000000000000000",
+     "arrived frame 292 scene 344 save f8c6381d7bde8951 state 7d1865af585ae614 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 92): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b308e9555d7aa6d5f960df4d6b6a64fa"
+     },
+     {
+      "frames": 63,
+      "sha256": "8bb3574f472001b77f679da9971815b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e080-exit-0",
+    "description": "Walking onto exit 0 of MIN_E080 (scene 346) should lead to scene 366",
+    "plan": "# min-min-e080-exit-0: Walking onto exit 0 of MIN_E080 (scene 346) should lead to scene 366\nlimit 20000\nenter 346 0 16718847 1\ncheckpoint entered\nexit 0 366\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 346 save da9c35af7f5e354b state 90f95fd510e44a61 ram 0000000000000000",
+     "arrived frame 788 scene 366 save 86dbf295b543080f state d4483ad045ed01de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (290, 360): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 65,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abf024533d47809663712d33552f89d9"
+     },
+     {
+      "frames": 559,
+      "sha256": "f04c5a8833faac8f5aad44ca484c69e7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e080-exit-1",
+    "description": "Walking onto exit 1 of MIN_E080 (scene 346) should lead to one of scene 353, scene 354, scene 914, scene 915",
+    "plan": "# min-min-e080-exit-1: Walking onto exit 1 of MIN_E080 (scene 346) should lead to one of scene 353, scene 354, scene 914, scene 915\nlimit 20000\nenter 346 0 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 346 save da9c35af7f5e354b state 90f95fd510e44a61 ram 0000000000000000",
+     "arrived frame 388 scene 354 save 7b1746a2307bfefa state 13974c22f4c53332 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 72): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 47,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abf024533d47809663712d33552f89d9"
+     },
+     {
+      "frames": 159,
+      "sha256": "d3bed04b47bd74e22781f433b827809f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e090-exit-0",
+    "description": "Walking onto exit 0 of MIN_E090 (scene 347) should lead to scene 344",
+    "plan": "# min-min-e090-exit-0: Walking onto exit 0 of MIN_E090 (scene 347) should lead to scene 344\nlimit 20000\nenter 347 0 16718847 0\ncheckpoint entered\nexit 0 344\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 347 save e62334a97d0cf76b state 22b45ebd440b42e4 ram 0000000000000000",
+     "arrived frame 293 scene 344 save 062a334dbdf82fc0 state 4bc36d7bc6696223 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (287, 419): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 47,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f09c3c8bba245c50bafc9f38e77066cd"
+     },
+     {
+      "frames": 64,
+      "sha256": "7ce30d2bce54cbe02ca2d0064785d02b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e090-exit-1",
+    "description": "Walking onto exit 1 of MIN_E090 (scene 347) should lead to scene 367",
+    "plan": "# min-min-e090-exit-1: Walking onto exit 1 of MIN_E090 (scene 347) should lead to scene 367\nlimit 20000\nenter 347 0 16718847 1\ncheckpoint entered\nexit 1 367\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 347 save 8fe7abc42b130682 state ade00146e9628153 ram 0000000000000000",
+     "arrived frame 292 scene 367 save 76aee241b71731d1 state bbdcdd2a4710ba87 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (286, 98): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "df377c52a4d6837d0c1e7cf93ffbf5ab"
+     },
+     {
+      "frames": 63,
+      "sha256": "5b2bd6ef9d16db18ba6e789b60bd7e93"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e100-exit-0",
+    "description": "Walking onto exit 0 of MIN_E100 (scene 348) should lead to scene 359",
+    "plan": "# min-min-e100-exit-0: Walking onto exit 0 of MIN_E100 (scene 348) should lead to scene 359\nlimit 20000\nenter 348 0 16718847 0\ncheckpoint entered\nexit 0 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 348 save 548f593c9831c85c state ee8597838bc26f26 ram 0000000000000000",
+     "arrived frame 290 scene 359 save 75bc619ab504e6e0 state efb16acb1cd51d21 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (37, 369): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "34b15f3241b6f3763399336c4512996f"
+     },
+     {
+      "frames": 61,
+      "sha256": "f935f0e0aeed1df255435960ae4483a4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e100-exit-1",
+    "description": "Walking onto exit 1 of MIN_E100 (scene 348) should lead to scene 370",
+    "plan": "# min-min-e100-exit-1: Walking onto exit 1 of MIN_E100 (scene 348) should lead to scene 370\nlimit 20000\nenter 348 0 16718847 1\ncheckpoint entered\nexit 1 370\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 348 save d0697dcb690d0c8d state a42e3019e0957091 ram 0000000000000000",
+     "arrived frame 292 scene 370 save e6cb35bcf607aa27 state 51fa9bfbd8bdff8f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (30, 77): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 64,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9c8441fd98a563d657ac27bb92987f61"
+     },
+     {
+      "frames": 63,
+      "sha256": "20a0e7660b96c897e14c647c97fdf9d9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e110-exit-0",
+    "description": "Walking onto exit 0 of MIN_E110 (scene 349) should lead to scene 371",
+    "plan": "# min-min-e110-exit-0: Walking onto exit 0 of MIN_E110 (scene 349) should lead to scene 371\nlimit 20000\nenter 349 0 16718847 0\ncheckpoint entered\nexit 0 371\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 349 save 26c01f439cf7efad state 783cff54b19222ec ram 0000000000000000",
+     "arrived frame 291 scene 371 save 6a61a08d4db7fcce state 7f987e3c89c25890 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (31, 403): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "28193f971b076597d754b23ba07b312e"
+     },
+     {
+      "frames": 62,
+      "sha256": "b31655151b7ae6dede039f92db7e8aab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-e110-exit-1",
+    "description": "Walking onto exit 1 of MIN_E110 (scene 349) should lead to scene 355",
+    "plan": "# min-min-e110-exit-1: Walking onto exit 1 of MIN_E110 (scene 349) should lead to scene 355\nlimit 20000\nenter 349 0 16718847 1\ncheckpoint entered\nexit 1 355\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 349 save 7454370b6100983c state 475d278699d75a07 ram 0000000000000000",
+     "arrived frame 292 scene 355 save 75e3e375cf684473 state 3033946ce8ea21ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 92): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aafeda42dace1ce51978c456b25698a1"
+     },
+     {
+      "frames": 63,
+      "sha256": "0095293964f16ce0b30315dc73835a78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-gaia-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-gaia-exit-0",
+    "description": "Walking onto exit 0 of MIN_GAIA (scene 352) should lead to scene 359",
+    "plan": "# min-min-gaia-exit-0: Walking onto exit 0 of MIN_GAIA (scene 352) should lead to scene 359\nlimit 20000\nenter 352 0 16718847 0\ncheckpoint entered\nexit 0 359\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 352 save 8eb60b6a41d5cc90 state 69b591fa7d28c409 ram 0000000000000000",
+     "arrived frame 297 scene 359 save 18f88bb3f180b720 state 9fdd0698da38e1c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "813ed2528a74cdb5a34f46df7a961a7a"
+     },
+     {
+      "frames": 68,
+      "sha256": "4527e0441c2014e941fce7bf1edacdcd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-shp0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "min-min-shp0-exit-0",
+    "description": "Walking onto exit 0 of MIN_SHP0 (scene 350) should lead to scene 357",
+    "plan": "# min-min-shp0-exit-0: Walking onto exit 0 of MIN_SHP0 (scene 350) should lead to scene 357\nlimit 20000\nenter 350 0 16718847 0\ncheckpoint entered\nexit 0 357\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 350 save ab47b89077cdcd16 state 34c9a0c05368a325 ram 0000000000000000",
+     "arrived frame 291 scene 357 save 32eae1bcf086457b state 9612cf85008211b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (40, 200): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ffcc689288f222426ea92f17dadfe989"
+     },
+     {
+      "frames": 62,
+      "sha256": "a5b6aa3922b66f46aa85e864d1443632"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

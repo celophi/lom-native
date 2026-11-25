@@ -1,0 +1,281 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mon-mon-all0-story-54f",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MON_ALL0's story 0x54f needs",
+    "source": "built from the conditions on the path to the write in scene 53 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 8,
+     "0x1180": 8,
+     "0x1174": 8
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-all0-story-54f",
+    "description": "In MON_ALL0 (scene 53), entering should write story variable 0x54f",
+    "plan": "# mon-mon-all0-story-54f: In MON_ALL0 (scene 53), entering should write story variable 0x54f\nlimit 20000\nenter 53 0 16722431 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 53 save 7984b9a33ad5eda1 state cdc731b1d7b4416d ram 0000000000000000",
+     "done frame 262 scene 53 save 7984b9a33ad5eda1 state 5617fbe37dc78744 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 128,
+     "instruction_end": 32,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbd5d536156bea676b16dbafdaeccc7c"
+     },
+     {
+      "frames": 33,
+      "sha256": "34ba1aabbaf06331ebd28c52541ad1db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-all0-story-6d7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MON_ALL0's story 0x6d7 needs",
+    "source": "built from the conditions on the path to the write in scene 53 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1178": 8,
+     "0x1180": 8,
+     "0x1174": 8
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-all0-story-6d7",
+    "description": "In MON_ALL0 (scene 53), entering should write story variable 0x6d7",
+    "plan": "# mon-mon-all0-story-6d7: In MON_ALL0 (scene 53), entering should write story variable 0x6d7\nlimit 20000\nenter 53 0 16722431 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 53 save 7984b9a33ad5eda1 state cdc731b1d7b4416d ram 0000000000000000",
+     "done frame 262 scene 53 save 7984b9a33ad5eda1 state 5617fbe37dc78744 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 128,
+     "instruction_end": 32,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bbd5d536156bea676b16dbafdaeccc7c"
+     },
+     {
+      "frames": 33,
+      "sha256": "34ba1aabbaf06331ebd28c52541ad1db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-story-139c",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state MON_OCF0's story 0x139c needs",
+    "source": "built from the conditions on the path to the write in scene 54 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x139c": 2
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-story-139c",
+    "description": "In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x139c",
+    "plan": "# mon-mon-ocf0-story-139c: In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x139c\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 251 116 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 54 save 6f4c336e449f014f state 5a6cfa5657356cb4 ram 0000000000000000",
+     "done frame 311 scene 54 save 327d9d8493bccc1b state 2e545055d7f8b163 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 96): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 41,
+     "instruction": 173,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "8f1274d9b44f871ec4c4610484af3319"
+     },
+     {
+      "frames": 255,
+      "sha256": "802641beddba819fd3cbc47f207f573b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-story-13a0",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state MON_OCF0's story 0x13a0 needs",
+    "source": "built from the conditions on the path to the write in scene 54 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x13a0": 1
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-story-13a0",
+    "description": "In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x13a0",
+    "plan": "# mon-mon-ocf0-story-13a0: In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x13a0\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 251 116 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 54 save c64df680747f4478 state 5a6cfa5657356cb4 ram 0000000000000000",
+     "done frame 758 scene 54 save e5c8ae37610d7806 state 5c249978d46368a0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 96): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 59,
+     "instruction": 253,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "64263f80df4bb1ab6aa9f9bdb4640e7c"
+     },
+     {
+      "frames": 702,
+      "sha256": "60d43a1111c7fa7d75d6650b00b9783f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-ocf0-story-13a4",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state MON_OCF0's story 0x13a4 needs",
+    "source": "built from the conditions on the path to the write in scene 54 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x13a4": 2
+    }
+   },
+   "baseline": {
+    "route": "mon-mon-ocf0-story-13a4",
+    "description": "In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x13a4",
+    "plan": "# mon-mon-ocf0-story-13a4: In MON_OCF0 (scene 54), talking to layout record 3 should write story variable 0x13a4\nlimit 20000\nenter 54 0 2031615 0\ncheckpoint entered\ntalk 251 116 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 54 save b5a2960c7875c1cf state 5a6cfa5657356cb4 ram 0000000000000000",
+     "done frame 311 scene 54 save adc5967de71b853b state 2e545055d7f8b163 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 96): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 41,
+     "instruction": 173,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "e435509cb7181a60f2c3d05f9ac1a96e"
+     },
+     {
+      "frames": 255,
+      "sha256": "39095361c26b4dd2cff90ea2e0bde8ee"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

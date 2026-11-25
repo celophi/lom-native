@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "id": "mods-no-natural-healing",
+  "description": "With No natural healing on, the hero shouldn't regenerate during the fight or get refilled after it, and the damage taken should still be there afterwards",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "no-healing",
+  "steps": [
+    {
+      "experience": 9999999,
+      "note": "strong enough to win quickly"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900
+    },
+    {
+      "checkpoint": "fought"
+    },
+    {
+      "wait": 240,
+      "note": "after the fight, when the game would refill the party and regeneration would carry on"
+    },
+    {
+      "checkpoint": "after"
+    }
+  ]
+}

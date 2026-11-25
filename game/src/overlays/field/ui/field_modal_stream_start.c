@@ -1,0 +1,93 @@
+#include "main/cd_resources.h"
+#include "main/cdrom.h"
+#include "common.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_modal_runtime.h"
+#include "main/overlay_memory.h"
+#include "overlays/carda/carda.h"
+#include "overlays/field/field_overlay_handoff.h"
+#include "overlays/golem/golem.h"
+#include "lom_native_overlay_entry.h"
+
+#define FIELD_MODAL_WORK_BUFFER ((void*)SECONDARY_OVERLAY_AT(0x30000))
+
+void field_open_carda_unchecked(s32 mode)
+{
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        field_reset_actor_resources();
+        cdrom_stream(CD_RES_CARDA_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        g_field_card_overlay_mode = mode + 1;
+        g_field_gosub_state = 1;
+        g_gosub_result_count = 0;
+        g_field_modal_state = FIELD_MODAL_CARDA;
+        g_field_card_pet_slot = g_gosub_result_values[0];
+        carda_init(FIELD_MODAL_WORK_BUFFER, mode);
+    }
+}
+
+void field_open_carda(s32 mode)
+{
+    if (mode != 0 && mode != 1)
+    {
+        lom_native_field_fail("CARDA PocketStation mode unavailable");
+    }
+
+    field_open_carda_unchecked(mode);
+}
+
+/**
+ * @brief Load GOLEM, run its editor to completion, then rebuild the current land grid.
+ */
+void field_run_golem(void)
+{
+    field_reset_actor_resources();
+    cdrom_stream(CD_RES_GOLEM_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+    cdrom_wait_queue_empty();
+    golem_run(FIELD_GOLEM_RENDER_BUFFERS, 0);
+    field_golem_rebuild_current_grid();
+    field_reset_actor_resources();
+}
+
+/**
+ * @brief Empty per-frame hook, called with the render half after field_update_modal.
+ * @param render_half Render half being drawn (unused).
+ */
+void field_modal_frame_stub(FieldRenderHalf* render_half)
+{
+}
+
+/**
+ * @brief Load NIKI and start it, unless another modal is already running.
+ * @param mode Mode passed to the NIKI entry point.
+ */
+void field_open_niki(s32 mode)
+{
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        field_reset_actor_resources();
+        cdrom_stream(CD_RES_NIKI_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        g_field_niki_addhero_state = 1;
+        g_field_modal_state = FIELD_MODAL_NIKI;
+        niki_addhero_init(FIELD_MODAL_WORK_BUFFER, mode);
+    }
+}
+
+/**
+ * @brief Load ADDHERO and start it, unless another modal is already running.
+ * @param mode Mode passed to the ADDHERO entry point.
+ */
+void field_open_addhero(s32 mode)
+{
+    if (g_field_modal_state == FIELD_MODAL_NONE)
+    {
+        field_reset_actor_resources();
+        cdrom_stream(CD_RES_ADDHERO_BIN, SECONDARY_OVERLAY_LOAD_ADDRESS);
+        cdrom_wait_queue_empty();
+        g_field_niki_addhero_state = 1;
+        g_field_modal_state = FIELD_MODAL_ADDHERO;
+        niki_addhero_init(FIELD_MODAL_WORK_BUFFER, mode);
+    }
+}

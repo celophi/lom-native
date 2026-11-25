@@ -1,0 +1,210 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "btl-btl-smp1-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp1-boss",
+    "description": "Entering BTL_SMP1 (scene 542) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# btl-btl-smp1-boss: Entering BTL_SMP1 (scene 542) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33310 0 16712448 0\ncheckpoint entered\nwalk 128 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 542 save e364e1785ff3cf2a state 3274ec4def575b8f ram 0000000000000000",
+     "fought frame 1519 scene 542 save 8a28884db3ad5589 state 150c877a57b5a4fd ram 0000000000000000",
+     "after frame 1551 scene 542 save 8a28884db3ad5589 state 4ba5371733b0dee8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (128, 174): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 306,
+     "instruction_end": 98,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "d7559cccd2cf909c721830ed752d9fc0"
+     },
+     {
+      "frames": 1259,
+      "sha256": "0fef6ed0db5a024e2db647430917f277"
+     },
+     {
+      "frames": 32,
+      "sha256": "695cff203767f211f81174f296f03de9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp4-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp4-boss",
+    "description": "Entering BTL_SMP4 (scene 545) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# btl-btl-smp4-boss: Entering BTL_SMP4 (scene 545) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33313 0 16712191 0\ncheckpoint entered\nwalk 224 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 545 save 81afcc8a5ffffff1 state a4fc2c8526aa578d ram 0000000000000000",
+     "fought frame 759 scene 545 save 1d4487582c35c332 state 1527deb29e786433 ram 0000000000000000",
+     "after frame 791 scene 545 save 1d4487582c35c332 state d5780c0f9f755778 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (224, 174): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 410 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 249,
+     "instruction_end": 89,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "b55a846c969f0a83a7f287bb7391a6c4"
+     },
+     {
+      "frames": 499,
+      "sha256": "b44323e16b2132eaa8c02fdd269aef29"
+     },
+     {
+      "frames": 32,
+      "sha256": "34548213170f039cf790b602e0bae90e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp5-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp5-boss",
+    "description": "Entering BTL_SMP5 (scene 546) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# btl-btl-smp5-boss: Entering BTL_SMP5 (scene 546) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33314 0 16712448 0\ncheckpoint entered\nwalk 128 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 546 save eb265065ea924c1e state 39e9579dddf48409 ram 0000000000000000",
+     "fought frame 6537 scene 546 save 6d5b9c4cd97afedb state 414e23ddc0544b66 ram 0000000000000000",
+     "after frame 6569 scene 546 save 6d5b9c4cd97afedb state 813c2a8080427d60 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (128, 32): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 5990 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 433,
+     "instruction_end": 150,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c381460b30e1cd9bad1a101b1a86aa18"
+     },
+     {
+      "frames": 6277,
+      "sha256": "7467cbec99b33621f14c5fee0b76928f"
+     },
+     {
+      "frames": 32,
+      "sha256": "91908ad65ca919f2d2fb671c8c05cfb1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "btl-btl-smp7-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "btl-btl-smp7-boss",
+    "description": "Entering BTL_SMP7 (scene 548) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# btl-btl-smp7-boss: Entering BTL_SMP7 (scene 548) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33316 0 16712703 0\ncheckpoint entered\nwalk 240 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 548 save a1ca2160288bd8a6 state 5bab1dd09cc5be43 ram 0000000000000000",
+     "fought frame 6076 scene 548 save e73766d08fcf5532 state 53c33f38fa098dff ram 0000000000000000",
+     "after frame 6108 scene 548 save e73766d08fcf5532 state 516d4e907e535de1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (240, 82): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 5510 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 450,
+     "instruction_end": 131,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "811611cdf359b9ce60af71ba05875ac4"
+     },
+     {
+      "frames": 5816,
+      "sha256": "416924b21642410eaa5c2427e5dcfdec"
+     },
+     {
+      "frames": 32,
+      "sha256": "a53aef9e52ddded26caec8653fb8ee03"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

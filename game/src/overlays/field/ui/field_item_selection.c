@@ -1,0 +1,477 @@
+#include "common.h"
+#include <libgpu.h>
+#include "lom_native_gpu_packets.h"
+
+#include "../internal/field_actor_runtime.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_menu_element.h"
+#include "../internal/field_modal_runtime.h"
+#include "../internal/field_records.h"
+#include "common/gpu_packet.h"
+#include "main/audio/akao.h"
+#include "main/main.h"
+#include "overlays/field/field_input.h"
+#include "overlays/field/field_scene_transition.h"
+#include "overlays/field/field_sound.h"
+#include "overlays/field/field_text.h"
+
+#define FIELD_DROP_ITEM_FIRST 0x60
+#define FIELD_DROP_ITEM_LIMIT 0x90
+
+#define FIELD_ITEM_MENU_CONFIRM (PADi | PADRright)
+#define FIELD_ITEM_MENU_CANCEL PADRdown
+#define FIELD_ITEM_MENU_MOVE (PADLup | PADLdown | PADLleft | PADLright | PADL1 | PADR1)
+#define FIELD_ITEM_MENU_NEXT (PADLdown | PADLright)
+#define FIELD_ITEM_MENU_PREVIOUS (PADLup | PADLleft)
+#define FIELD_ITEM_MENU_PAGE_ROWS 10
+
+#define FIELD_ITEM_WINDOW_X 44
+#define FIELD_ITEM_WINDOW_Y 32
+#define FIELD_ITEM_WINDOW_WIDTH 232
+#define FIELD_ITEM_WINDOW_HEIGHT 160
+#define FIELD_ITEM_ROW_HEIGHT 16
+#define FIELD_ITEM_ROW_Y(row) ((row) * FIELD_ITEM_ROW_HEIGHT)
+#define FIELD_ITEM_COUNT_X 202
+#define FIELD_ITEM_SCROLL_TICKS 4
+
+#define FIELD_ITEM_HIGHLIGHT_HEIGHT 14
+
+#define FIELD_ITEM_ACTOR_RESOURCE 4
+#define FIELD_ITEM_ACTOR_KEY_BASE 0x14
+#define FIELD_ITEM_ACTOR_REMOVAL_DELAY 2
+#define FIELD_ITEM_ACTOR_CONTROL_MODE 2
+#define FIELD_ITEM_DROP_ANIMATION 0xAF
+
+#define FIELD_ITEM_NAME(table, item) ((u8*)((table)[item] + (uintptr_t)(table)))
+
+#define FIELD_FACING_OFFSET(table, facing) ((FieldDirectionOffset*)((facing) * sizeof(FieldDirectionOffset) + (uintptr_t)(table)))
+
+typedef struct FieldItemListEntry
+{
+    u8 item_id;
+    u8 count;
+} FieldItemListEntry;
+
+typedef struct FieldPackedTile
+{
+    GPU_PACKET_TAG(u32);
+    u32 color;
+    s16 x, y, w, h;
+} FieldPackedTile;
+
+extern u16 g_field_item_names[];
+extern FieldItemListEntry g_field_item_list[];
+extern s32 g_field_primary_held_buttons;
+extern s32 g_field_secondary_held_buttons;
+
+static void field_play_action_refused_sound(void);
+static u8* field_draw_item_drop_list(OT_TYPE* ot, u8* cursor, s32 scroll_x, s32 scroll_y, s32 unused, void* element);
+static void field_update_item_drop_menu(FieldMenuElement* window);
+
+/**
+ * @brief Clear delivered input and restart both pads' held-button delays.
+ * @note Same as field_reset_input_repeat, expanded inline.
+ */
+static inline void flush_input(void)
+{
+    g_pad_input = 0;
+    g_field_primary_held_buttons = field_read_controller_buttons(0);
+    g_field_primary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_pad_input_inject = 0;
+    g_field_secondary_held_buttons = field_read_controller_buttons(1);
+    g_field_secondary_repeat_delay = PAD_REPEAT_INITIAL_DELAY;
+    g_field_buffered_input = 0;
+}
+
+/**
+ * @brief Close every menu element at once.
+ * @note Same as field_reset_menu_elements, expanded inline.
+ */
+static inline void reset_menu_elements(void)
+{
+    FieldMenuElement* element;
+    s32 i;
+
+    g_field_menu_frame_style = FIELD_MENU_FRAME_STYLE_FIELD;
+    element = g_field_menu_elements;
+
+    for (i = 0; i < FIELD_MENU_ELEMENT_COUNT; i++)
+    {
+        element->attr.word &= ~FIELD_MENU_STATE_MASK;
+        element++;
+    }
+}
+
+/**
+ * @brief Claim the first idle menu element and put it in the opening state.
+ * @return The claimed element, or the first element when none is idle.
+ * @note Same as field_claim_menu_element, expanded inline.
+ */
+static inline FieldMenuElement* claim_menu_element(void)
+{
+    FieldMenuElement* element;
+    s32 i;
+
+    element = g_field_menu_elements;
+
+    for (i = 0; i < FIELD_MENU_ELEMENT_COUNT; i++, element++)
+    {
+        if ((element->attr.word & FIELD_MENU_STATE_MASK) == FIELD_MENU_STATE_IDLE)
+        {
+            element->attr.bits.state = FIELD_MENU_STATE_OPENING;
+            element->scroll = 0;
+            element->scroll_target = 0;
+            element->size.word &= ~FIELD_MENU_SIZE_BLINK;
+            element->size.word &= ~FIELD_MENU_SIZE_SCROLL_MODE;
+            element->size.fields.content_height = 0;
+            element->scroll_ticks = 0;
+            return element;
+        }
+    }
+
+    return g_field_menu_elements;
+}
+
+/**
+ * @brief Format a value and draw it with field_draw_text.
+ * @param cursor Primitive buffer cursor.
+ * @param ot Ordering table.
+ * @param value Value to format.
+ * @param position Screen position (x, y).
+ * @param color Text color selector.
+ * @param flags Text alignment flags.
+ * @return Cursor after the text primitives.
+ * @note Same as field_draw_number, expanded inline.
+ */
+static inline u8* draw_number(u8* cursor, OT_TYPE* ot, s32 value, s16* position, s32 color, s32 flags)
+{
+    u8 text[64];
+
+    field_format_number(text, value, 0);
+    return field_draw_text((SPRT*)cursor, ot, text, color, position[0], position[1], flags);
+}
+
+/** @brief Build the list of droppable items the player owns and open the item-drop menu. */
+void field_open_item_drop_menu(void)
+{
+    FieldMenuElement* window;
+    u32 attr;
+    s32 item_count;
+    s32 item_id;
+    s32 cursor_y;
+
+    reset_menu_elements();
+    item_count = 0;
+
+    for (item_id = FIELD_DROP_ITEM_FIRST; item_id < FIELD_DROP_ITEM_LIMIT; item_id++)
+    {
+        if (g_saved_game_ctx->item_counts[item_id] != 0)
+        {
+            g_field_item_list[item_count].item_id = item_id;
+            g_field_item_list[item_count].count = g_saved_game_ctx->item_counts[item_id];
+            item_count++;
+        }
+    }
+
+    g_field_item_list_count = item_count;
+
+    if (item_count == 0)
+    {
+        field_play_action_refused_sound();
+        return;
+    }
+
+    g_field_item_drop_menu_open = 1;
+    field_play_sound(FIELD_SOUND_WINDOW_OPEN, AKAO_PAN_CENTER);
+    window = claim_menu_element();
+    window->draw = (FieldMenuDrawFn)field_draw_item_drop_list;
+    window->scroll = 0;
+    window->attr.bits.step = 1;
+    window->attr.bits.x = FIELD_ITEM_WINDOW_X;
+    window->attr.bits.y = FIELD_ITEM_WINDOW_Y;
+    window->size.bits.width_high = 0;
+    window->size.bits.height = FIELD_ITEM_WINDOW_HEIGHT;
+    attr = window->attr.word;
+    attr &= ~FIELD_MENU_ATTR_WIDTH_LOW;
+    attr |= FIELD_ITEM_WINDOW_WIDTH << FIELD_MENU_ATTR_WIDTH_LOW_SHIFT;
+    window->attr.word = attr;
+    window->size.bits.scroll_mode = FIELD_MENU_SCROLL_BY_OWNER;
+    window->size.fields.content_height = g_field_item_list_count * FIELD_ITEM_ROW_HEIGHT;
+
+    if (g_field_item_list_cursor >= g_field_item_list_count)
+    {
+        g_field_item_list_cursor = g_field_item_list_count - 1;
+    }
+
+    cursor_y = FIELD_ITEM_ROW_Y(g_field_item_list_cursor);
+    window->scroll_target = 0;
+
+    if (cursor_y < 0)
+    {
+        window->scroll_target = cursor_y;
+    }
+    else if ((window->size.bits.height - FIELD_ITEM_ROW_HEIGHT) < cursor_y)
+    {
+        window->scroll_target = cursor_y - (window->size.bits.height - FIELD_ITEM_ROW_HEIGHT);
+    }
+
+    window->scroll_ticks = 0;
+    flush_input();
+}
+
+/** @brief Play the sound for an action that cannot be taken. */
+static void field_play_action_refused_sound(void)
+{
+    field_play_sound(SFX_ERROR, AKAO_PAN_CENTER);
+}
+
+/**
+ * @brief Draw callback of the item-drop menu: item rows, owned counts and the cursor highlight.
+ * @param ot Ordering table.
+ * @param cursor Primitive buffer cursor.
+ * @param scroll_x Horizontal scroll offset.
+ * @param scroll_y Vertical scroll offset.
+ * @param unused Visible height passed by the menu code; not used.
+ * @param element Menu element of the item list.
+ * @return Cursor after the list, the highlight tile and its draw-mode packet.
+ */
+static u8* field_draw_item_drop_list(OT_TYPE* ot, u8* cursor, s32 scroll_x, s32 scroll_y, s32 unused, void* element)
+{
+    s16 position[2];
+    FieldItemListEntry* entry;
+    s32 count_x;
+    s32 y;
+    s32 i;
+    FieldPackedTile* tile;
+    DR_TPAGE* mode;
+    u16* names;
+    FieldMenuElement* window;
+
+    window = element;
+    field_update_item_drop_menu(window);
+
+    if (g_field_item_drop_menu_open == 0)
+    {
+        return cursor;
+    }
+
+    for (i = 0; i < g_field_item_list_count; i++)
+    {
+        names = g_field_item_names;
+        count_x = FIELD_ITEM_COUNT_X - scroll_x;
+        entry = &g_field_item_list[i];
+        y = FIELD_ITEM_ROW_Y(i) - scroll_y;
+
+        if (y > -FIELD_ITEM_ROW_HEIGHT && y < window->size.bits.height)
+        {
+            cursor = field_draw_text((SPRT*)cursor, ot, FIELD_ITEM_NAME(names, entry->item_id), FIELD_TEXT_COLOR_NORMAL, -scroll_x, y, FIELD_TEXT_ALIGN_LEFT);
+            position[1] = y;
+            position[0] = count_x;
+            cursor = draw_number(cursor, ot, entry->count, position, FIELD_TEXT_COLOR_NORMAL, FIELD_TEXT_ALIGN_RIGHT);
+        }
+    }
+
+    tile = (FieldPackedTile*)cursor;
+    tile->color = GPU_COLOR_SELECTED_ROW;
+    lom_gpu_init_tile(tile);
+    lom_gpu_set_semi_trans(tile, 1);
+    tile->w = FIELD_ITEM_WINDOW_WIDTH;
+    mode = (DR_TPAGE*)(tile + 1);
+    tile->x = 0;
+    tile->h = FIELD_ITEM_HIGHLIGHT_HEIGHT;
+    tile->y = FIELD_ITEM_ROW_Y(g_field_item_list_cursor) - scroll_y;
+    lom_gpu_link(ot, tile);
+    lom_gpu_init_tpage_packet(mode, 0, 0, lom_gpu_tpage(GPU_TEXTURE_4BIT, GPU_BLEND_HALF, 320, 0));
+    lom_gpu_link(ot, mode);
+    return (u8*)(mode + 1);
+}
+
+/**
+ * @brief Drop the selected item: spawn its actor next to the leader and play the drop animation.
+ */
+static inline void drop_selected_item(void)
+{
+    FieldActor* actor;
+    FieldObjectState* state;
+    FieldDirectionOffset* offsets;
+    FieldDirectionOffset* facing;
+    s32 offset[3];
+    s32 actor_index;
+    s32 control;
+    s32 item_id;
+    s32 leader_animation;
+    s32 animation_slot;
+
+    actor_index = FIELD_ACTOR_COUNT - 1;
+    offsets = g_field_direction_offsets;
+
+    for (; actor_index >= FIELD_PARTY_COUNT; actor_index--)
+    {
+        actor = &g_field_actors[actor_index];
+
+        if (actor->presence == FIELD_ACTOR_UNUSED)
+        {
+            field_initialize_actor_record(actor_index, FIELD_ITEM_ACTOR_RESOURCE);
+            actor->x = g_field_actors[0].x;
+            actor->y = g_field_actors[0].y;
+            actor->z = g_field_actors[0].z;
+            facing = FIELD_FACING_OFFSET(offsets, g_field_actors[0].direction >> FIELD_HEADING_SECTOR_SHIFT);
+            offset[0] = -facing->dx;
+            offset[1] = 0;
+            offset[2] = -facing->dz;
+            field_move_actor_position(actor, offset);
+            control = actor->control.word;
+            state = &g_field_object_states[actor_index];
+            actor->presence = FIELD_ACTOR_HIDDEN;
+            item_id = g_field_item_list[g_field_item_list_cursor].item_id;
+            leader_animation = g_field_actors[0].animation;
+            control &= ~FIELD_CONTROL_MODE_MASK;
+            control |= FIELD_ITEM_ACTOR_CONTROL_MODE;
+            actor->animation_frame = 0;
+            actor->animation_active = 1;
+            actor->command = FIELD_ACTOR_COMMAND_HOLD;
+            actor->removal_delay = FIELD_ITEM_ACTOR_REMOVAL_DELAY;
+            actor->animation_state = 0xFE;
+            actor->control.word = control;
+            actor->script_index = 0;
+            actor->script_busy = 1;
+            actor->animation = (item_id - FIELD_DROP_ITEM_FIRST) | (leader_animation & FIELD_ANIMATION_FACING);
+            state->key = actor_index + FIELD_ITEM_ACTOR_KEY_BASE;
+            state->interaction_kind = FIELD_INTERACTION_ITEM;
+            state->enabled_events = 0;
+            field_restart_actor_animation(actor);
+            field_spawn_item_record(state->key, g_field_item_list[g_field_item_list_cursor].item_id);
+            animation_slot = field_find_free_actor_slot(actor_index, 0);
+
+            if ((animation_slot != FIELD_ACTOR_SLOT_NONE) && (field_start_builtin_animation(actor_index, animation_slot, FIELD_ITEM_DROP_ANIMATION) != 0))
+            {
+                field_start_actor_animation(animation_slot, 0, NULL);
+            }
+
+            break;
+        }
+    }
+}
+
+/**
+ * @brief Handle the item-drop menu's input: drop the selected item, cancel, or move the cursor.
+ * @param window Menu element of the item list.
+ */
+static void field_update_item_drop_menu(FieldMenuElement* window)
+{
+    s32 scroll_target;
+    u16 window_height;
+    s32 steps;
+
+    if (((window->attr.word & FIELD_MENU_STATE_MASK) != FIELD_MENU_STATE_OPEN) || (window->scroll_ticks != 0))
+    {
+        return;
+    }
+
+    if (g_field_buffered_input & FIELD_ITEM_MENU_CONFIRM)
+    {
+        flush_input();
+        field_play_sound(SFX_CONFIRM, AKAO_PAN_CENTER);
+        reset_menu_elements();
+        g_field_item_drop_menu_open = 0;
+        g_saved_game_ctx->item_counts[g_field_item_list[g_field_item_list_cursor].item_id]--;
+        drop_selected_item();
+        return;
+    }
+
+    if (g_field_buffered_input & FIELD_ITEM_MENU_CANCEL)
+    {
+        flush_input();
+        reset_menu_elements();
+        field_play_sound(SFX_CANCEL, AKAO_PAN_CENTER);
+        g_field_item_drop_menu_open = 0;
+        return;
+    }
+
+    if (!(g_field_buffered_input & FIELD_ITEM_MENU_MOVE))
+    {
+        return;
+    }
+
+    field_play_sound(SFX_CURSOR, AKAO_PAN_CENTER);
+    steps = 1;
+
+    if (g_field_buffered_input & PADR1)
+    {
+        steps = FIELD_ITEM_MENU_PAGE_ROWS;
+        g_field_buffered_input = PADLdown;
+    }
+
+    if (g_field_buffered_input & PADL1)
+    {
+        steps = FIELD_ITEM_MENU_PAGE_ROWS;
+        g_field_buffered_input = PADLup;
+    }
+
+    while (steps != 0)
+    {
+        if (g_field_buffered_input & FIELD_ITEM_MENU_NEXT)
+        {
+            g_field_item_list_cursor++;
+
+            if (g_field_item_list_cursor >= g_field_item_list_count)
+            {
+                g_field_item_list_cursor = 0;
+            }
+        }
+
+        if (g_field_buffered_input & FIELD_ITEM_MENU_PREVIOUS)
+        {
+            g_field_item_list_cursor--;
+
+            if (g_field_item_list_cursor < 0)
+            {
+                g_field_item_list_cursor = g_field_item_list_count - 1;
+            }
+        }
+
+        if ((g_field_item_list_cursor == g_field_item_list_count - 1) || (g_field_item_list_cursor == 0))
+        {
+            steps = 1;
+        }
+
+        steps--;
+    }
+
+    scroll_target = window->scroll_target;
+
+    if (FIELD_ITEM_ROW_Y(g_field_item_list_cursor) < scroll_target)
+    {
+        window->scroll_target = FIELD_ITEM_ROW_Y(g_field_item_list_cursor);
+        window->scroll_ticks = FIELD_ITEM_SCROLL_TICKS;
+        return;
+    }
+
+    window_height = window->size.bits.height;
+
+    if ((window_height - FIELD_ITEM_ROW_HEIGHT) < (FIELD_ITEM_ROW_Y(g_field_item_list_cursor) - scroll_target))
+    {
+        window->scroll_target = FIELD_ITEM_ROW_Y(g_field_item_list_cursor) - (window_height - FIELD_ITEM_ROW_HEIGHT);
+        window->scroll_ticks = FIELD_ITEM_SCROLL_TICKS;
+    }
+}
+
+/**
+ * @brief Pick an item actor up again: return its item to the inventory and free the actor.
+ * @param actor_index Field actor and object index of the item actor.
+ */
+void field_pick_up_item_actor(s32 actor_index)
+{
+    FieldActor* actor;
+    FieldObjectState* state;
+    SavedGameLayout* save = g_saved_game_ctx;
+    FieldActor* actors = g_field_actors;
+
+    actor = &actors[actor_index];
+    save->item_counts[FIELD_DROP_ITEM_FIRST + (actor->animation & FIELD_ANIMATION_INDEX_MASK)]++;
+    state = &g_field_object_states[actor_index];
+    field_spawn_item_record(state->key, FIELD_ITEM_RELEASE);
+    actor->presence = FIELD_ACTOR_UNUSED;
+    state->interaction_kind = 0;
+}

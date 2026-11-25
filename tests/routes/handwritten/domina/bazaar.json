@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-bazaar",
+  "description": "Talking to someone in the bazaar should start a conversation that ends with the player in control",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 50
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 5
+      },
+      "note": "layout record 5; record 1 doesn't react after the opening"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dmy-dmy-map1-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-entry",
+    "description": "Entering DMY_MAP1 (scene 532) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map1-entry: Entering DMY_MAP1 (scene 532) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 532 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "watched frame 261 scene 532 save 83eb061eb5d604e4 state 0ef37a8ef454b9ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 119,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 32,
+      "sha256": "5916202ec4ed1d66b35dd21b303701db"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map2-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map2-entry",
+    "description": "Entering DMY_MAP2 (scene 533) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map2-entry: Entering DMY_MAP2 (scene 533) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 533 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 533 save 3a25e101083a3b75 state 95defd75604d8971 ram 0000000000000000",
+     "watched frame 261 scene 533 save 3a25e101083a3b75 state 9bd2a8fce0cc389a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 112,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "78b336cedc4f320a7af6d70262bf214f"
+     },
+     {
+      "frames": 32,
+      "sha256": "d3552372485b9b375ad0acad561e54e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map3-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map3-entry",
+    "description": "Entering DMY_MAP3 (scene 534) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map3-entry: Entering DMY_MAP3 (scene 534) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 534 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 534 save 516f2d64072f598e state f70800e51483b715 ram 0000000000000000",
+     "watched frame 261 scene 534 save 516f2d64072f598e state eb22c0b784ce350a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 99,
+     "instruction_end": 26,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d36fe6a703d34a5a0b69e538c48c8d36"
+     },
+     {
+      "frames": 32,
+      "sha256": "0f89c497a8910e78707dbe6ad0326a12"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-entry",
+    "description": "Entering DMY_MAP4 (scene 535) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map4-entry: Entering DMY_MAP4 (scene 535) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 535 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "watched frame 262 scene 535 save 2a5e7d8f77cdadb1 state ac25ca6add79e8bb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 33,
+      "sha256": "ad1c79dcf4d2c229b18fdd85c0179b7a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map5-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map5-entry",
+    "description": "Entering DMY_MAP5 (scene 536) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map5-entry: Entering DMY_MAP5 (scene 536) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 536 0 16711935 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 536 save 1fdcc213d7a11218 state 76a1fb028b7368a3 ram 0000000000000000",
+     "watched frame 261 scene 536 save 1fdcc213d7a11218 state ee6e5170ad216e4c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bb2f473cfe5d91adaa3e5a392a3c217d"
+     },
+     {
+      "frames": 32,
+      "sha256": "15884f361c565e391c8ffda4e365784c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map6-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map6-direct",
+    "description": "Entering DMY_MAP6 (scene 537) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-map6-direct: Entering DMY_MAP6 (scene 537) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 537 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 537 save 5db3cd53fedfa56b state 6e232d562fcfb216 ram 0000000000000000",
+     "watched frame 261 scene 537 save 5db3cd53fedfa56b state de480bf5fa0047b9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d52ff3a6d4c3c91993053ba8d4d2193d"
+     },
+     {
+      "frames": 32,
+      "sha256": "86036303b57630d8a9393e41fc2dec23"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-menu-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-menu-direct",
+    "description": "Entering DMY_MENU (scene 13) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-menu-direct: Entering DMY_MENU (scene 13) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 13 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 13 save 0eebfad3e1857bc9 state 46645b86bd43af38 ram 0000000000000000",
+     "watched frame 261 scene 13 save 0eebfad3e1857bc9 state 44fcdf9864c8e94d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 128,
+     "instruction_end": 28,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1d451d0b170dcc93a2284c12d3dd96dd"
+     },
+     {
+      "frames": 32,
+      "sha256": "44fd496313da99896f6aff7d53492c6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-wmp0-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-wmp0-entry",
+    "description": "Entering DMY_WMP0 (scene 1) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# dmy-dmy-wmp0-entry: Entering DMY_WMP0 (scene 1) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 1 0 655615 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 1 save 5d3a55af2bd070c6 state 08ba7fb09be2c183 ram 0000000000000000",
+     "watched frame 261 scene 1 save 5d3a55af2bd070c6 state 12a540b24dee3674 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 110,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96e97ce37aa193930df23351b658c61a"
+     },
+     {
+      "frames": 32,
+      "sha256": "e8596d91d3611f1e995c0e962d044a8c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

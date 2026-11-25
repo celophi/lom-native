@@ -1,0 +1,34 @@
+Let the port register its own GPU commands as packets laid out like a
+primitive, in 32-bit words, so the queue splits them into its 64-bit words the
+same way (the Remaster's HD tiles, src/remaster/remaster.c). Without it they
+would be copied as 64-bit words, and read past the end of the packet.
+
+--- a/psyz/src/psyz/libgpu.c
++++ b/psyz/src/psyz/libgpu.c
+@@ -37,6 +37,16 @@ typedef struct {
+ 
+ static UserGpuCommand user_gpu_commands[256];
+ 
++static unsigned char user_gpu_packet_commands[256];
++
++int lom_psyz_gpu_command_is_packet(unsigned int opcode, int packet) {
++    if (opcode > 0xFF) {
++        return -1;
++    }
++    user_gpu_packet_commands[opcode] = packet != 0;
++    return 0;
++}
++
+ int Psyz_GpuRegisterCommandHandler(
+     unsigned int opcode, PsyzGpuCommandHandler handler, void* userdata) {
+     if (opcode > 0xFF) {
+@@ -261,7 +271,8 @@ static void GPU_Enqueue(u_long* packets)
+             // fine on both 32-bit and 64-bit compiled code.
+             // But primitives are mapped from structs, we need to align the data
+             int code = getcode(env) & ~3;
+-            if ((code >= 0x20 && code < 0x80) || getcode(env) == 0x02) {
++            if ((code >= 0x20 && code < 0x80) || getcode(env) == 0x02 ||
++                user_gpu_packet_commands[getcode(env)]) {
+                 // it is a prim, we need to split
+                 u32* prim_data = (u32*)env->code;
+                 for (u_long i = 0; i < env->len; i++) {

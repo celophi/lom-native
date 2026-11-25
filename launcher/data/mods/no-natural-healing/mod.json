@@ -1,0 +1,16 @@
+{
+  "id": "no-natural-healing",
+  "name": "No natural healing",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Hit points only come back from items, techniques, pets and leaving a dungeon.",
+  "game": [
+    "SLUS-01013",
+    "SLPS-02170"
+  ],
+  "api": 3,
+  "in_game_toggle": true,
+  "switches": {
+    "no_natural_healing": true
+  }
+}

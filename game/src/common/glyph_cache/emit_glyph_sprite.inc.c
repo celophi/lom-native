@@ -1,0 +1,36 @@
+#include "common/glyph_cache.h"
+#include "lom_native_gpu_packets.h"
+
+/**
+ * @brief Write a 16x16 sprite for a cached glyph at the current text cursor,
+ *        mark the slot used, and advance the cursor (wrapping to the next line).
+ * @param sprite     Destination sprite primitive.
+ * @param ot         Ordering table the sprite is linked into.
+ * @param cache_slot Glyph cache slot whose VRAM tile to sample.
+ * @param palette    Unused here; the CLUT is fixed.
+ * @return The primitive cursor advanced past the emitted sprite.
+ */
+void* emit_glyph_sprite(GlyphSprite* sprite, OT_TYPE* ot, s32 cache_slot, s32 palette)
+{
+    g_glyph_cache[cache_slot].raw |= GLYPH_CACHE_USED;
+
+    lom_gpu_init_sprite16(&sprite->packet);
+    sprite->packet.g0 = 0x80;
+    sprite->packet.b0 = 0x80;
+    sprite->packet.r0 = 0x80;
+    lom_gpu_set_xy0(&sprite->packet, g_glyph_cursor_x, g_glyph_cursor_y);
+    lom_gpu_set_uv0(&sprite->packet, (cache_slot % GLYPH_CACHE_COLUMNS) * GLYPH_SIZE, cache_slot & GLYPH_CACHE_ROW_MASK);
+    sprite->packet.clut = lom_gpu_clut(FIELD_TEXT_CLUT_X, FIELD_TEXT_ALT_CLUT_Y);
+    lom_gpu_link(ot, &sprite->packet);
+    sprite++;
+
+    g_glyph_cursor_x += GLYPH_SIZE;
+
+    if (g_glyph_cursor_x + GLYPH_SIZE >= GLYPH_TEXT_WRAP_X)
+    {
+        g_glyph_cursor_x = g_glyph_line_start_x;
+        g_glyph_cursor_y += GLYPH_SIZE;
+    }
+
+    return sprite;
+}

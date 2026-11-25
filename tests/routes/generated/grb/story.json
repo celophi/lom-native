@@ -1,0 +1,58 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "grb-grb-e020-story-11f8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state GRB_E020's story 0x11f8 needs",
+    "source": "built from the conditions on the path to the write in scene 436 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x120c": 7
+    }
+   },
+   "baseline": {
+    "route": "grb-grb-e020-story-11f8",
+    "description": "In GRB_E020 (scene 436), entering should write story variable 0x11f8",
+    "plan": "# grb-grb-e020-story-11f8: In GRB_E020 (scene 436), entering should write story variable 0x11f8\nlimit 20000\nenter 436 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 436 save f4c34d19a701e46d state 178fb11d0d6b2b4e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2107",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ae034876d28d986a14bd67fc8f3e035a"
+     },
+     {
+      "frames": 565,
+      "sha256": "4b2b952c5e208d6bb96046a17fc15793"
+     }
+    ]
+   }
+  }
+ ]
+}

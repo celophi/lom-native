@@ -1,0 +1,50 @@
+name: GNAME.BIN
+compressed_sha1: e428114bd699f557d3508a4f26a8e3c2c495db29
+sha1: 5ab13ed2fe3794914369eb662528238b7664a6f2
+options:
+  base_path: ../../../
+  basename: GNAME.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/us/decompressed/GNAME.BIN
+  asset_path: assets/us
+  elf_path: build/us/overlays/gname.elf
+
+  asm_path: asm/us/overlays/gname
+  src_path: src/overlays/gname
+  build_path: build/us/overlays/gname
+
+  ld_script_path: linker/us/overlays/gname/gname.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/us/overlays/gname/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/us/overlays/gname/undefined_syms_auto.txt
+
+  symbol_addrs_path:    
+    - config/us/symbols/shared_symbol_addrs.txt
+    - config/us/symbols/gname_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: gname
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, c, gname]
+      - [0x2C99, databin, gname_data]
+      - [0xF7B1, .bss, gname]
+  - [0xF8D9]

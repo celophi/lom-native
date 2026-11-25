@@ -1,0 +1,2138 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "hel-hel-b030-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b030-talk-2",
+    "description": "Talking to layout record 2 of HEL_B030 (scene 485) should run its event and hand control back",
+    "plan": "# hel-hel-b030-talk-2: Talking to layout record 2 of HEL_B030 (scene 485) should run its event and hand control back\nlimit 20000\nenter 33253 0 16713471 0\ncheckpoint entered\ntalk 180 100 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 485 save 7a4fc000b7dd2336 state a3fcc9dbc744ca25 ram 0000000000000000",
+     "talked frame 897 scene 485 save 9c9ea3e545f4034b state 43983baa4288ea95 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 80): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 60,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50411ca180e1d52c3f190667727f3d46"
+     },
+     {
+      "frames": 668,
+      "sha256": "0f487ae1bb1171029a86d194d6171ece"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b040-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x25f8 = 15 so layout record 1 of HEL_B040 is there",
+    "source": "built from layout record 1's condition in scene 486 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f8": 15
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-b040-talk-1",
+    "description": "Talking to layout record 1 of HEL_B040 (scene 486) should run its event and hand control back",
+    "plan": "# hel-hel-b040-talk-1: Talking to layout record 1 of HEL_B040 (scene 486) should run its event and hand control back\nlimit 20000\nenter 33254 0 16713471 0\ncheckpoint entered\ntalk 156 156 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 486 save 5d829fd5d0e7281e state 769eee409333d18d ram 0000000000000000",
+     "talked frame 458 scene 486 save 0a2002da3d8d1816 state 3513354af2714f08 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (156, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6b37faf867996a662238eee07877fdc9"
+     },
+     {
+      "frames": 229,
+      "sha256": "f536aeec050a8a3cbf6d570089d17137"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b040-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b040-talk-2",
+    "description": "Talking to layout record 2 of HEL_B040 (scene 486) should run its event and hand control back",
+    "plan": "# hel-hel-b040-talk-2: Talking to layout record 2 of HEL_B040 (scene 486) should run its event and hand control back\nlimit 20000\nenter 33254 0 16713471 0\ncheckpoint entered\ntalk 40 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 486 save 59df24ab818775cd state 1f6ad7595d671048 ram 0000000000000000",
+     "talked frame 911 scene 486 save 60fce64cca854afe state 21fa3631c4e181b0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 160): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "abc0a03a905187867829a8c097c0baef"
+     },
+     {
+      "frames": 682,
+      "sha256": "367faf045e2a5d8c7329b51a8e8b7b32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b050-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2660 = 91 so layout record 1 of HEL_B050 is there",
+    "source": "built from layout record 1's condition in scene 487 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2660": 91
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-b050-talk-1",
+    "description": "Talking to layout record 1 of HEL_B050 (scene 487) should run its event and hand control back",
+    "plan": "# hel-hel-b050-talk-1: Talking to layout record 1 of HEL_B050 (scene 487) should run its event and hand control back\nlimit 20000\nenter 33255 0 16713471 0\ncheckpoint entered\ntalk 156 156 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 487 save 8f2d1a9268d5a6c1 state 3cdcc9f114b777a8 ram 0000000000000000",
+     "talked frame 549 scene 487 save 4c40a1b7ce0a2ce9 state 02d822ddcdb7e225 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (156, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 50,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64113517871ca1cbb88eaa15f6ea5006"
+     },
+     {
+      "frames": 320,
+      "sha256": "3f4aa5d5440b15221250a050e31eb9ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b050-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b050-talk-2",
+    "description": "Talking to layout record 2 of HEL_B050 (scene 487) should run its event and hand control back",
+    "plan": "# hel-hel-b050-talk-2: Talking to layout record 2 of HEL_B050 (scene 487) should run its event and hand control back\nlimit 20000\nenter 33255 0 16713471 0\ncheckpoint entered\ntalk 40 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 487 save 08e4f06f57570630 state e3f7a6e66aa0a1c1 ram 0000000000000000",
+     "talked frame 972 scene 487 save 1745eeccd4aa1305 state 369077a5f7da4c17 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 49,
+     "scene": 2,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36c62330025a2a079ca9254b5c0cd96a"
+     },
+     {
+      "frames": 743,
+      "sha256": "26eb8947c6e1cb49b200d4f58115c67e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b060-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x26b0 = 3 so layout record 1 of HEL_B060 is there",
+    "source": "built from layout record 1's condition in scene 488 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26b0": 3
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-b060-talk-1",
+    "description": "Talking to layout record 1 of HEL_B060 (scene 488) should run its event and hand control back",
+    "plan": "# hel-hel-b060-talk-1: Talking to layout record 1 of HEL_B060 (scene 488) should run its event and hand control back\nlimit 20000\nenter 33256 0 16713471 0\ncheckpoint entered\ntalk 157 209 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 488 save 5cd1dbc34cd4f17e state 0d47ea08d258fdab ram 0000000000000000",
+     "talked frame 829 scene 488 save fb10ddee88c7ad46 state a42a1168cec1293f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (157, 189): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "670d14d7dc544c6102eb9475b1aaf41d"
+     },
+     {
+      "frames": 600,
+      "sha256": "6af3de9cab13085f800d62395d80b912"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b060-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b060-talk-2",
+    "description": "Talking to layout record 2 of HEL_B060 (scene 488) should run its event and hand control back",
+    "plan": "# hel-hel-b060-talk-2: Talking to layout record 2 of HEL_B060 (scene 488) should run its event and hand control back\nlimit 20000\nenter 33256 0 16713471 0\ncheckpoint entered\ntalk 40 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 488 save f0113c82998d152f state 1b8ddb283f749c5f ram 0000000000000000",
+     "talked frame 906 scene 488 save b17f6754926f7a65 state 07821458422daf12 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e9a1b5d5259caa8072ff25bb3e8be35"
+     },
+     {
+      "frames": 677,
+      "sha256": "cbc02c5ef629b2701a510017f67e3e8f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b100-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b100-talk-2",
+    "description": "Talking to layout record 2 of HEL_B100 (scene 491) should run its event and hand control back",
+    "plan": "# hel-hel-b100-talk-2: Talking to layout record 2 of HEL_B100 (scene 491) should run its event and hand control back\nlimit 20000\nenter 33259 0 16713471 0\ncheckpoint entered\ntalk 120 145 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 491 save 0170aeb09212583c state db89643fe06da2ce ram 0000000000000000",
+     "talked frame 902 scene 491 save a5a39420a2bbd231 state 54eb1b5169bbb643 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (120, 125): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 60,
+     "scene": 2,
+     "instruction": 163,
+     "song": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "834e3346c731f3133883ecbe54670f2a"
+     },
+     {
+      "frames": 673,
+      "sha256": "f6d1e2c1c3c6db1d3f1c0f86e4aec624"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b110-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b110-talk-2",
+    "description": "Talking to layout record 2 of HEL_B110 (scene 492) should run its event and hand control back",
+    "plan": "# hel-hel-b110-talk-2: Talking to layout record 2 of HEL_B110 (scene 492) should run its event and hand control back\nlimit 20000\nenter 33260 0 16713471 0\ncheckpoint entered\ntalk 175 95 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 492 save 9dd1acdfe401d18b state 3a3f08c9198caa80 ram 0000000000000000",
+     "talked frame 822 scene 492 save 7062eb02cb200d90 state 1d0513b81166e513 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 75): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a728ca6aacd7e5edf8269929e27f0f0f"
+     },
+     {
+      "frames": 593,
+      "sha256": "0e3e72def61eb27f00ecfef8a5c9beb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b120-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b120-talk-2",
+    "description": "Talking to layout record 2 of HEL_B120 (scene 493) should run its event and hand control back",
+    "plan": "# hel-hel-b120-talk-2: Talking to layout record 2 of HEL_B120 (scene 493) should run its event and hand control back\nlimit 20000\nenter 33261 0 16713471 0\ncheckpoint entered\ntalk 40 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 493 save 824bd28f7940226e state 6416919891441678 ram 0000000000000000",
+     "talked frame 905 scene 493 save b814ac7d75244c31 state 8b33bf9dc9c20c4b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14e115a4c2a5a7a7b33fc8693404d500"
+     },
+     {
+      "frames": 676,
+      "sha256": "2575f560e7fce5786f3dc73987c1ca82"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b140-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b140-talk-2",
+    "description": "Talking to layout record 2 of HEL_B140 (scene 495) should run its event and hand control back",
+    "plan": "# hel-hel-b140-talk-2: Talking to layout record 2 of HEL_B140 (scene 495) should run its event and hand control back\nlimit 20000\nenter 33263 0 16713471 0\ncheckpoint entered\ntalk 50 97 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 495 save c8aba0e4533355a8 state 3832b64ec3a7ac20 ram 0000000000000000",
+     "talked frame 912 scene 495 save 8b19a3e5fd13a303 state 1e08facfc48fa001 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (50, 77): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a95676ded6c096ceff6606194b866d34"
+     },
+     {
+      "frames": 683,
+      "sha256": "3ef07f3181877b9c46999d7b3fc7aad8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-b150-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-b150-talk-2",
+    "description": "Talking to layout record 2 of HEL_B150 (scene 496) should run its event and hand control back",
+    "plan": "# hel-hel-b150-talk-2: Talking to layout record 2 of HEL_B150 (scene 496) should run its event and hand control back\nlimit 20000\nenter 33264 0 16713471 0\ncheckpoint entered\ntalk 40 180 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 496 save 67bf00fb90d32ee7 state 598f92babf35e10c ram 0000000000000000",
+     "talked frame 909 scene 496 save d6b0c39a05115bb0 state e146533d9d3e45cb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f96d44d87f729bf656c0bcb6df37b70d"
+     },
+     {
+      "frames": 680,
+      "sha256": "3ea6f8c353f6e959d4978284f00cf012"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-bs14-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-bs14-talk-3",
+    "description": "Talking to layout record 3 of HEL_BS14 (scene 927) should run its event and hand control back",
+    "plan": "# hel-hel-bs14-talk-3: Talking to layout record 3 of HEL_BS14 (scene 927) should run its event and hand control back\nlimit 20000\nenter 927 0 16717311 0\ncheckpoint entered\ntalk 192 96 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 927 save a99f426a0548bfab state 91264253576d41a4 ram 0000000000000000",
+     "talked frame 915 scene 927 save a99f426a0548bfab state c993cbf9dd7cb2e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 76): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 264,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9377bfce1072d532d369c110dec03472"
+     },
+     {
+      "frames": 686,
+      "sha256": "9f74b604d8ffb31c9a86d950bee9b6bc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e000-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11b0 = 8 so layout record 1 of HEL_E000 is there",
+    "source": "built from layout record 1's condition in scene 457 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11b0": 8
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-e000-talk-1",
+    "description": "Talking to layout record 1 of HEL_E000 (scene 457) should run its event and hand control back",
+    "plan": "# hel-hel-e000-talk-1: Talking to layout record 1 of HEL_E000 (scene 457) should run its event and hand control back\nlimit 20000\nenter 457 0 16713471 1\ncheckpoint entered\ntalk 324 230 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 457 save 30d2086764c6ec77 state dc8843e34dbe70b0 ram 0000000000000000",
+     "talked frame 987 scene 457 save 3b820bddfda7d9cd state 35042e9086b07036 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (324, 210): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "54e9e5488a83f3f5e7c0085e243f6b3c"
+     },
+     {
+      "frames": 758,
+      "sha256": "d15f33cb5191ba670cd65cb28b357769"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e010-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e010-talk-2",
+    "description": "Talking to layout record 2 of HEL_E010 (scene 458) should run its event and hand control back",
+    "plan": "# hel-hel-e010-talk-2: Talking to layout record 2 of HEL_E010 (scene 458) should run its event and hand control back\nlimit 20000\nenter 458 0 16713471 0\ncheckpoint entered\ntalk 296 152 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 458 save 013b18c67c1789d9 state f96f5c2a078bd603 ram 0000000000000000",
+     "talked frame 529 scene 458 save e7715f14075771d7 state dc354f9d538a197f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (296, 132): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9edd20515a13e905905b87e5d932adf5"
+     },
+     {
+      "frames": 300,
+      "sha256": "cb00f8d9258285f3996a287fe819cc94"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e040-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e040-talk-1",
+    "description": "Talking to layout record 1 of HEL_E040 (scene 461) should run its event and hand control back",
+    "plan": "# hel-hel-e040-talk-1: Talking to layout record 1 of HEL_E040 (scene 461) should run its event and hand control back\nlimit 20000\nenter 461 0 16713471 0\ncheckpoint entered\ntalk 240 140 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 461 save 8b8ba49a033317ce state 78197fbc06889a7f ram 0000000000000000",
+     "talked frame 523 scene 461 save d986f3050947ff6e state b5f9ca362135f1fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 120): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 161,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9740e27ef81fdf0d5992ee2d92121612"
+     },
+     {
+      "frames": 294,
+      "sha256": "586e57181ddc0155f5b60cfd10381f87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e040-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e040-talk-2",
+    "description": "Talking to layout record 2 of HEL_E040 (scene 461) should run its event and hand control back",
+    "plan": "# hel-hel-e040-talk-2: Talking to layout record 2 of HEL_E040 (scene 461) should run its event and hand control back\nlimit 20000\nenter 461 0 16713471 0\ncheckpoint entered\ntalk 75 330 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 461 save 8b8ba49a033317ce state 78197fbc06889a7f ram 0000000000000000",
+     "talked frame 1208 scene 461 save d986f3050947ff6e state caa91b55ee7815d0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (75, 310): 10 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9740e27ef81fdf0d5992ee2d92121612"
+     },
+     {
+      "frames": 979,
+      "sha256": "c6e3863c2fedd423eaea867513ecc3ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-talk-2",
+    "description": "Talking to layout record 2 of HEL_E070 (scene 464) should run its event and hand control back",
+    "plan": "# hel-hel-e070-talk-2: Talking to layout record 2 of HEL_E070 (scene 464) should run its event and hand control back\nlimit 20000\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 237 160 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 464 save 2ec19eed134b6ec7 state 84ec8c734a86407e ram 0000000000000000",
+     "talked frame 861 scene 464 save e182b135cd0af89f state d92dce554c7624e2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (237, 140): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4ed6a5430034252e9a2acd5f3e4abae"
+     },
+     {
+      "frames": 632,
+      "sha256": "c06770c69d4f2893e1292a0204cc4c36"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-talk-3",
+    "description": "Talking to layout record 3 of HEL_E070 (scene 464) should run its event and hand control back",
+    "plan": "# hel-hel-e070-talk-3: Talking to layout record 3 of HEL_E070 (scene 464) should run its event and hand control back\nlimit 20000\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 255 161 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 464 save 2ec19eed134b6ec7 state 84ec8c734a86407e ram 0000000000000000",
+     "talked frame 877 scene 464 save e182b135cd0af89f state e1d00a21bd33088e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (255, 141): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4ed6a5430034252e9a2acd5f3e4abae"
+     },
+     {
+      "frames": 648,
+      "sha256": "6a802e23b4572b124e9aced58321eeb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-talk-5",
+    "description": "Talking to layout record 5 of HEL_E070 (scene 464) should run its event and hand control back",
+    "plan": "# hel-hel-e070-talk-5: Talking to layout record 5 of HEL_E070 (scene 464) should run its event and hand control back\nlimit 20000\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 240 197 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 464 save 2ec19eed134b6ec7 state 84ec8c734a86407e ram 0000000000000000",
+     "talked frame 504 scene 464 save e182b135cd0af89f state 4a5c43d8cdd3dda2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 217): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4ed6a5430034252e9a2acd5f3e4abae"
+     },
+     {
+      "frames": 275,
+      "sha256": "9a2b7bde82c6b80128fe4376fcc5ca34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e070-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e070-talk-6",
+    "description": "Talking to layout record 6 of HEL_E070 (scene 464) should run its event and hand control back",
+    "plan": "# hel-hel-e070-talk-6: Talking to layout record 6 of HEL_E070 (scene 464) should run its event and hand control back\nlimit 20000\nenter 464 0 16713471 0\ncheckpoint entered\ntalk 98 193 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 464 save 2ec19eed134b6ec7 state 84ec8c734a86407e ram 0000000000000000",
+     "talked frame 565 scene 464 save 08f0f0e57d23783f state a8156b6aece39b42 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (98, 173): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4ed6a5430034252e9a2acd5f3e4abae"
+     },
+     {
+      "frames": 336,
+      "sha256": "f0b881d0e6fdc1a7d67287b238950cda"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-1",
+    "description": "Talking to layout record 1 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-1: Talking to layout record 1 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 0\ncheckpoint entered\ntalk 210 190 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save c806fa3d747e84c2 state d208c4bea435c97a ram 0000000000000000",
+     "talked frame 498 scene 472 save fd2afb28c663a8da state 5b8abcf4cc08374d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 170): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4034e4bc11c4b65b7572f1b7ae5c838"
+     },
+     {
+      "frames": 269,
+      "sha256": "80fcb9acaf82dd8ff1a907594c116ff5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-4",
+    "description": "Talking to layout record 4 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-4: Talking to layout record 4 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 1\ncheckpoint entered\ntalk 275 110 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save e9202832afc94aff state 01c30b535afb5948 ram 0000000000000000",
+     "talked frame 533 scene 472 save fd2afb28c663a8da state 38529353483c33cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (275, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42a975dafd7458443d32c9ba1a8ee2fe"
+     },
+     {
+      "frames": 304,
+      "sha256": "86afbdf7cd6f4e68bb00deb81b8050fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-5",
+    "description": "Talking to layout record 5 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-5: Talking to layout record 5 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 1\ncheckpoint entered\ntalk 275 30 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save e9202832afc94aff state 01c30b535afb5948 ram 0000000000000000",
+     "talked frame 541 scene 472 save fd2afb28c663a8da state e84f13c27af15e97 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (275, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42a975dafd7458443d32c9ba1a8ee2fe"
+     },
+     {
+      "frames": 312,
+      "sha256": "ab731aa609be345f8973db486e8c908a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-7",
+    "description": "Talking to layout record 7 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-7: Talking to layout record 7 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 1\ncheckpoint entered\ntalk 360 160 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save e9202832afc94aff state 01c30b535afb5948 ram 0000000000000000",
+     "talked frame 490 scene 472 save fd2afb28c663a8da state ae15f27385252345 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (360, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42a975dafd7458443d32c9ba1a8ee2fe"
+     },
+     {
+      "frames": 261,
+      "sha256": "2f1fb282da019d95ddcc6261c3c2dca2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-8",
+    "description": "Talking to layout record 8 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-8: Talking to layout record 8 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 1\ncheckpoint entered\ntalk 380 110 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save e9202832afc94aff state 01c30b535afb5948 ram 0000000000000000",
+     "talked frame 491 scene 472 save fd2afb28c663a8da state a917cbe628c981e8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (380, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "42a975dafd7458443d32c9ba1a8ee2fe"
+     },
+     {
+      "frames": 262,
+      "sha256": "bdfa46dad17de2b62a8497065fcfa2ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e160-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e160-talk-9",
+    "description": "Talking to layout record 9 of HEL_E160 (scene 473) should run its event and hand control back",
+    "plan": "# hel-hel-e160-talk-9: Talking to layout record 9 of HEL_E160 (scene 473) should run its event and hand control back\nlimit 20000\nenter 473 0 16713471 0\ncheckpoint entered\ntalk 170 160 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 473 save c806fa3d747e84c2 state d208c4bea435c97a ram 0000000000000000",
+     "talked frame 496 scene 472 save fd2afb28c663a8da state 6e01be868f74ea13 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 71,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4034e4bc11c4b65b7572f1b7ae5c838"
+     },
+     {
+      "frames": 267,
+      "sha256": "35a8a35a9cbacf05c091e996800abf94"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-1",
+    "description": "Talking to layout record 1 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-1: Talking to layout record 1 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 0\ncheckpoint entered\ntalk 210 190 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save c5ec5be5fe4fc969 state 6333e6a350e7682f ram 0000000000000000",
+     "talked frame 450 scene 472 save 1df6d9c0b9f1b3cb state d1fe134ec708eecb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 170): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db390df8b2ffead0ee60eae688393a6d"
+     },
+     {
+      "frames": 221,
+      "sha256": "27b8e3e3231e0af3f575355b08b4212b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-2",
+    "description": "Talking to layout record 2 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-2: Talking to layout record 2 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 0\ncheckpoint entered\ntalk 180 130 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save c5ec5be5fe4fc969 state 6333e6a350e7682f ram 0000000000000000",
+     "talked frame 464 scene 472 save ec4c836c3a923ede state 89124043f9001e55 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 110): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 220,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db390df8b2ffead0ee60eae688393a6d"
+     },
+     {
+      "frames": 235,
+      "sha256": "42ccba34bb4853509f806757866c4fc2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-3",
+    "description": "Talking to layout record 3 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-3: Talking to layout record 3 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 0\ncheckpoint entered\ntalk 65 130 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save c5ec5be5fe4fc969 state 6333e6a350e7682f ram 0000000000000000",
+     "talked frame 455 scene 472 save bd406914eb781d09 state d72c71bfce991dea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 110): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 89,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db390df8b2ffead0ee60eae688393a6d"
+     },
+     {
+      "frames": 226,
+      "sha256": "5fc5e4bdba1902df781edaf676add0cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-4",
+    "description": "Talking to layout record 4 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-4: Talking to layout record 4 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 1\ncheckpoint entered\ntalk 275 190 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save d2a7c05de9c21374 state cc79d12ddf636f11 ram 0000000000000000",
+     "talked frame 471 scene 472 save d13c33232bbf224b state a7c836d7b023d27a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (275, 170): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 220,
+     "instruction_end": 90,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ea2d87e5e3a85720bac61013fd886dc"
+     },
+     {
+      "frames": 242,
+      "sha256": "8f9edb5950cae695d91fb6d2bde7fb59"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-5",
+    "description": "Talking to layout record 5 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-5: Talking to layout record 5 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 1\ncheckpoint entered\ntalk 405 190 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save d2a7c05de9c21374 state cc79d12ddf636f11 ram 0000000000000000",
+     "talked frame 414 scene 472 save 222ce7baac777a03 state 4f8823593eab6bff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (405, 170): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 82,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ea2d87e5e3a85720bac61013fd886dc"
+     },
+     {
+      "frames": 185,
+      "sha256": "c52f561e3a6d9be9027e5bfebce7a885"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e170-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e170-talk-8",
+    "description": "Talking to layout record 8 of HEL_E170 (scene 474) should run its event and hand control back",
+    "plan": "# hel-hel-e170-talk-8: Talking to layout record 8 of HEL_E170 (scene 474) should run its event and hand control back\nlimit 20000\nenter 474 1 16713471 0\ncheckpoint entered\ntalk 370 130 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 474 save c5ec5be5fe4fc969 state 6333e6a350e7682f ram 0000000000000000",
+     "talked frame 578 scene 472 save fcb40b459e11e350 state df92f7c81c6538ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (370, 110): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 233,
+     "instruction_end": 97,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "db390df8b2ffead0ee60eae688393a6d"
+     },
+     {
+      "frames": 349,
+      "sha256": "6a6859bd78856379f284bec85e0b804d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e180-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e180-talk-3",
+    "description": "Talking to layout record 3 of HEL_E180 (scene 475) should run its event and hand control back",
+    "plan": "# hel-hel-e180-talk-3: Talking to layout record 3 of HEL_E180 (scene 475) should run its event and hand control back\nlimit 20000\nenter 475 0 16713471 1\ncheckpoint entered\ntalk 180 100 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 475 save b70615292202e209 state 47a3e01dbd962da8 ram 0000000000000000",
+     "talked frame 441 scene 472 save 56ab6d05131d0df1 state 6f8fe858d4d1c1a2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d45e62c560cad6180698a7ec4a7b634e"
+     },
+     {
+      "frames": 212,
+      "sha256": "084d88aa3988835bbae2516239d26b67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e180-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e180-talk-7",
+    "description": "Talking to layout record 7 of HEL_E180 (scene 475) should run its event and hand control back",
+    "plan": "# hel-hel-e180-talk-7: Talking to layout record 7 of HEL_E180 (scene 475) should run its event and hand control back\nlimit 20000\nenter 475 0 16713471 0\ncheckpoint entered\ntalk 100 180 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 475 save c0af11edcbae812c state 0b8a54513e8011e8 ram 0000000000000000",
+     "talked frame 414 scene 472 save 56ab6d05131d0df1 state 1bc196677f03a4d5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e1f5d6cf210a8716345c852683c7422f"
+     },
+     {
+      "frames": 185,
+      "sha256": "6628527552a51452ec5fc3c59c3672e6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e180-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e180-talk-8",
+    "description": "Talking to layout record 8 of HEL_E180 (scene 475) should run its event and hand control back",
+    "plan": "# hel-hel-e180-talk-8: Talking to layout record 8 of HEL_E180 (scene 475) should run its event and hand control back\nlimit 20000\nenter 475 0 16713471 0\ncheckpoint entered\ntalk 140 180 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 475 save c0af11edcbae812c state 0b8a54513e8011e8 ram 0000000000000000",
+     "talked frame 418 scene 472 save 56ab6d05131d0df1 state 532912572d0bd3f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 61,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e1f5d6cf210a8716345c852683c7422f"
+     },
+     {
+      "frames": 189,
+      "sha256": "e69adf5662fe84a7fe2b456c200a8298"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-1",
+    "description": "Talking to layout record 1 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-1: Talking to layout record 1 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 0\ncheckpoint entered\ntalk 37 218 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save cef622c24e8d7c4a state c62b3581596994e7 ram 0000000000000000",
+     "talked frame 415 scene 472 save eca1519fee4be241 state 84ebd2b1a5de9f3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (37, 198): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dac6107779aaf1027caf2ed8a633a9bc"
+     },
+     {
+      "frames": 186,
+      "sha256": "08ca8558ef606a1c2d88e7ee9ed6c27c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-2",
+    "description": "Talking to layout record 2 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-2: Talking to layout record 2 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 0\ncheckpoint entered\ntalk 133 232 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save cef622c24e8d7c4a state c62b3581596994e7 ram 0000000000000000",
+     "talked frame 412 scene 472 save eca1519fee4be241 state d393eaeb97cdda00 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (133, 212): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dac6107779aaf1027caf2ed8a633a9bc"
+     },
+     {
+      "frames": 183,
+      "sha256": "9f7c408c5676861df60dce839426e732"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-4",
+    "description": "Talking to layout record 4 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-4: Talking to layout record 4 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 1\ncheckpoint entered\ntalk 200 156 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save 591cc6cd200f625f state 302ed24fab6a5779 ram 0000000000000000",
+     "talked frame 457 scene 472 save eca1519fee4be241 state 1a77b441b15802ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36e08c29ebc98cc0a4e1e14a500f90f1"
+     },
+     {
+      "frames": 228,
+      "sha256": "3f404e5b5bb2556b47d8442d154aed77"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-5",
+    "description": "Talking to layout record 5 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-5: Talking to layout record 5 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 0\ncheckpoint entered\ntalk 165 90 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save cef622c24e8d7c4a state c62b3581596994e7 ram 0000000000000000",
+     "talked frame 476 scene 472 save eca1519fee4be241 state 8623908628c3ee83 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 70): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dac6107779aaf1027caf2ed8a633a9bc"
+     },
+     {
+      "frames": 247,
+      "sha256": "7d7857e2b97b65ab0203dcd2da3415f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-6",
+    "description": "Talking to layout record 6 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-6: Talking to layout record 6 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 1\ncheckpoint entered\ntalk 306 157 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save 591cc6cd200f625f state 302ed24fab6a5779 ram 0000000000000000",
+     "talked frame 442 scene 472 save eca1519fee4be241 state a9e32ed9e6724aa2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (306, 137): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36e08c29ebc98cc0a4e1e14a500f90f1"
+     },
+     {
+      "frames": 213,
+      "sha256": "c609860698e0aea4cd5f5e3b38270557"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-e190-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-e190-talk-8",
+    "description": "Talking to layout record 8 of HEL_E190 (scene 476) should run its event and hand control back",
+    "plan": "# hel-hel-e190-talk-8: Talking to layout record 8 of HEL_E190 (scene 476) should run its event and hand control back\nlimit 20000\nenter 476 1 16713471 1\ncheckpoint entered\ntalk 272 118 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 476 save 591cc6cd200f625f state 302ed24fab6a5779 ram 0000000000000000",
+     "talked frame 442 scene 472 save eca1519fee4be241 state 25d2162f2ad4487a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (272, 98): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36e08c29ebc98cc0a4e1e14a500f90f1"
+     },
+     {
+      "frames": 213,
+      "sha256": "7dd6614032247a88e64b8d2b0a6f95bc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os00-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f98 = 1 so layout record 4 of HEL_OS00 is there",
+    "source": "built from layout record 4's condition in scene 455 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f98": 1
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os00-talk-4",
+    "description": "Talking to layout record 4 of HEL_OS00 (scene 455) should run its event and hand control back",
+    "plan": "# hel-hel-os00-talk-4: Talking to layout record 4 of HEL_OS00 (scene 455) should run its event and hand control back\nlimit 20000\nenter 455 0 16713471 1\ncheckpoint entered\ntalk 131 59 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 455 save 9105f3c29dac3464 state 752fe54155364c77 ram 0000000000000000",
+     "talked frame 586 scene 455 save e30256b7d26930a4 state f8a6d729ad3d0214 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (131, 39): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1c563fac91959789166579198843017d"
+     },
+     {
+      "frames": 357,
+      "sha256": "290d1a53f3399e08bc7808e50af4608e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os01-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os01-talk-1",
+    "description": "Talking to layout record 1 of HEL_OS01 (scene 706) should run its event and hand control back",
+    "plan": "# hel-hel-os01-talk-1: Talking to layout record 1 of HEL_OS01 (scene 706) should run its event and hand control back\nlimit 20000\nenter 706 0 16716799 1\ncheckpoint entered\ntalk 95 88 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 706 save deaf2fbb613935b2 state 5d29caa52e70979c ram 0000000000000000",
+     "talked frame 595 scene 457 save b5ce32c8838afb65 state 3f4bbbff74c7bc03 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (95, 68): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 47,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "48da1a941d547151dff1b6e2ec31ef2b"
+     },
+     {
+      "frames": 366,
+      "sha256": "2ffb814cf2d13f7257bddbb5cfe19865"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os10-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ac = 8 so layout record 1 of HEL_OS10 is there",
+    "source": "built from layout record 1's condition in scene 456 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 8
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os10-talk-1",
+    "description": "Talking to layout record 1 of HEL_OS10 (scene 456) should run its event and hand control back",
+    "plan": "# hel-hel-os10-talk-1: Talking to layout record 1 of HEL_OS10 (scene 456) should run its event and hand control back\nlimit 20000\nenter 456 0 16720383 0\ncheckpoint entered\nwatch 6000\ntalk 1000 1000 0 0 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 456 save cd221ae06b69502f state 40d81747aa212bd6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 8987",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 521,
+     "instruction_end": 260,
+     "song": 3,
+     "scene": 6
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5cb8f47cd011a81d5f2fc4c94471b489"
+     },
+     {
+      "frames": 3999,
+      "sha256": "3ba7a0524003c3da54402b8d7a4cd26a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os10-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ac = 8 so layout record 2 of HEL_OS10 is there",
+    "source": "built from layout record 2's condition in scene 456 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 8
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os10-talk-2",
+    "description": "Talking to layout record 2 of HEL_OS10 (scene 456) should run its event and hand control back",
+    "plan": "# hel-hel-os10-talk-2: Talking to layout record 2 of HEL_OS10 (scene 456) should run its event and hand control back\nlimit 20000\nenter 456 0 16720383 0\ncheckpoint entered\nwatch 6000\ntalk 1000 1000 0 0 0 2 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 456 save cd221ae06b69502f state 40d81747aa212bd6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 8987",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 521,
+     "instruction_end": 260,
+     "song": 3,
+     "scene": 6
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5cb8f47cd011a81d5f2fc4c94471b489"
+     },
+     {
+      "frames": 3999,
+      "sha256": "3ba7a0524003c3da54402b8d7a4cd26a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os10-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ac = 8 so layout record 3 of HEL_OS10 is there",
+    "source": "built from layout record 3's condition in scene 456 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ac": 8
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os10-talk-3",
+    "description": "Talking to layout record 3 of HEL_OS10 (scene 456) should run its event and hand control back",
+    "plan": "# hel-hel-os10-talk-3: Talking to layout record 3 of HEL_OS10 (scene 456) should run its event and hand control back\nlimit 20000\nenter 456 0 16720383 0\ncheckpoint entered\nwatch 6000\ntalk 1000 1000 0 0 0 3 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 456 save cd221ae06b69502f state 40d81747aa212bd6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 8987",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 521,
+     "instruction_end": 260,
+     "song": 3,
+     "scene": 6
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5cb8f47cd011a81d5f2fc4c94471b489"
+     },
+     {
+      "frames": 3999,
+      "sha256": "3ba7a0524003c3da54402b8d7a4cd26a"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os11-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "hel-hel-os11-talk-1",
+    "description": "Talking to layout record 1 of HEL_OS11 (scene 783) should run its event and hand control back",
+    "plan": "# hel-hel-os11-talk-1: Talking to layout record 1 of HEL_OS11 (scene 783) should run its event and hand control back\nlimit 20000\nenter 783 0 16716799 1\ncheckpoint entered\ntalk 95 88 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 783 save 768c5ca316c6167c state ffc81492ca7fb7f8 ram 0000000000000000",
+     "talked frame 595 scene 457 save b5ce32c8838afb65 state 3fb5fe0054fb8094 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (95, 68): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 48,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "928bce9c132e3316c3fc9fd6e6319b1d"
+     },
+     {
+      "frames": 366,
+      "sha256": "c16b901ccc03bc4556c4c40f6d5762d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hel-hel-os11-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f98 = 11 so layout record 2 of HEL_OS11 is there",
+    "source": "built from layout record 2's condition in scene 783 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f98": 11
+    }
+   },
+   "baseline": {
+    "route": "hel-hel-os11-talk-2",
+    "description": "Talking to layout record 2 of HEL_OS11 (scene 783) should run its event and hand control back",
+    "plan": "# hel-hel-os11-talk-2: Talking to layout record 2 of HEL_OS11 (scene 783) should run its event and hand control back\nlimit 20000\nenter 783 0 16716799 1\ncheckpoint entered\ntalk 131 59 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 783 save 93fd8936f7b276f7 state c1ee273dd07918cd ram 0000000000000000",
+     "talked frame 477 scene 783 save 84bd42d25000ed9b state 4396c6285c2e971c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (131, 39): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a51c3cdcb6ded24982fc5de2a2e4048d"
+     },
+     {
+      "frames": 248,
+      "sha256": "77874966a286b860f2b1b31dc8b0019f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+find_package(Git QUIET)
+execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE LOM_SESSION_REV OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+execute_process(COMMAND ${GIT_EXECUTABLE} diff --quiet HEAD WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    RESULT_VARIABLE LOM_SESSION_DIRTY ERROR_QUIET)
+execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD WORKING_DIRECTORY ${LOM_PSYZ_DIR}
+    OUTPUT_VARIABLE LOM_SESSION_PSYZ OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+if(NOT LOM_SESSION_DIRTY EQUAL 0)
+    set(LOM_SESSION_DIRTY 1)
+endif()
+set_property(SOURCE src/core/session_folder.c src/core/diagnostics.c APPEND PROPERTY COMPILE_DEFINITIONS
+    "LOM_NATIVE_BUILD_REV=\"${LOM_SESSION_REV}\";LOM_NATIVE_BUILD_DIRTY=${LOM_SESSION_DIRTY};LOM_NATIVE_PSYZ_PIN=\"${LOM_SESSION_PSYZ}\";LOM_NATIVE_BUILD_TYPE=\"${CMAKE_BUILD_TYPE}\"")
+
+foreach(version IN ITEMS us jp)
+    string(TOUPPER "${version}" version_define)
+    if(version STREQUAL "us")
+        set(suffix "")
+        set(target lom)
+    else()
+        set(suffix "_${version}")
+        set(target lom-${version})
+    endif()
+    add_executable(${target} src/core/main.c)
+    target_compile_definitions(${target} PRIVATE __psyz VERSION_${version_define} LOM_NATIVE=1)
+    if(PSYZ_RENDERER STREQUAL "sdl3_gpu")
+        target_compile_definitions(${target} PRIVATE LOM_NATIVE_MENU=1)
+    endif()
+    target_link_libraries(${target} PRIVATE lom_native_runtime${suffix} lom_native_port${suffix})
+    psyz_title(${target} "Legend of Mana Native")
+endforeach()

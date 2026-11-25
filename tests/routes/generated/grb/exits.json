@@ -1,0 +1,2680 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "grb-grb-b00a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00a-exit-0",
+    "description": "Walking onto exit 0 of GRB_B00A (scene 445) should lead to one of scene 432, scene 433",
+    "plan": "# grb-grb-b00a-exit-0: Walking onto exit 0 of GRB_B00A (scene 445) should lead to one of scene 432, scene 433\nlimit 20000\nenter 33213 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 445 save d7f729327966d88d state d51490e28dd55011 ram 0000000000000000",
+     "arrived frame 293 scene 432 save df810db557b6f4e0 state bdfda92b4e38a723 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (10, 184): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43bff63642486b2ace4d3c2904d9bce6"
+     },
+     {
+      "frames": 64,
+      "sha256": "35a108ec53c2ec1a4b59c33a058d4a80"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b00a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00a-exit-1",
+    "description": "Walking onto exit 1 of GRB_B00A (scene 445) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b00a-exit-1: Walking onto exit 1 of GRB_B00A (scene 445) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33213 0 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 445 save 17b8aa21fcaf385c state e2e04ab71911b8d0 ram 0000000000000000",
+     "arrived frame 293 scene 440 save a96b7eec0fbdd2d7 state 7f46d3c9dc88db96 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (792, 168): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5d9bb8a12d4098512671551c8e79e4c9"
+     },
+     {
+      "frames": 64,
+      "sha256": "bb5266ce4a0c41e79369621b16cba264"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b00b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00b-exit-0",
+    "description": "Walking onto exit 0 of GRB_B00B (scene 446) should lead to one of scene 432, scene 433",
+    "plan": "# grb-grb-b00b-exit-0: Walking onto exit 0 of GRB_B00B (scene 446) should lead to one of scene 432, scene 433\nlimit 20000\nenter 33214 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 446 save af948b48f3763bc3 state a057c6340b06598f ram 0000000000000000",
+     "arrived frame 293 scene 432 save df810db557b6f4e0 state c88377fe7f0bf17b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (10, 182): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8c87a780924efdf6eb05f6de572608c2"
+     },
+     {
+      "frames": 64,
+      "sha256": "02e3a01460ca9befa655d50a10e6eab6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b00b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00b-exit-1",
+    "description": "Walking onto exit 1 of GRB_B00B (scene 446) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b00b-exit-1: Walking onto exit 1 of GRB_B00B (scene 446) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33214 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 446 save af948b48f3763bc3 state a057c6340b06598f ram 0000000000000000",
+     "arrived frame 3695 scene 440 save 595e54404c5840db state 3db00df053189188 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (792, 168): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 3050 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 523,
+     "instruction_end": 140,
+     "song": 3,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8c87a780924efdf6eb05f6de572608c2"
+     },
+     {
+      "frames": 3466,
+      "sha256": "fe07decff783552676f3d3e2f6f879f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01a-exit-0",
+    "description": "Walking onto exit 0 of GRB_B01A (scene 447) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b01a-exit-0: Walking onto exit 0 of GRB_B01A (scene 447) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33215 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 447 save 70d55d3c67d4f1af state 413a7c8cdc4ae23c ram 0000000000000000",
+     "arrived frame 292 scene 439 save 429795144209488a state f2c91adde0d10138 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 208): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ff24852e608bf8a60d53781f5fb55643"
+     },
+     {
+      "frames": 63,
+      "sha256": "ec4c849cc08076b72f41f76c583167ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01a-exit-1",
+    "description": "Walking onto exit 1 of GRB_B01A (scene 447) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-b01a-exit-1: Walking onto exit 1 of GRB_B01A (scene 447) should lead to one of scene 441, scene 442\nlimit 20000\nenter 33215 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 447 save 70d55d3c67d4f1af state 413a7c8cdc4ae23c ram 0000000000000000",
+     "arrived frame 3741 scene 441 save b19f336271ac0cfd state 40f8b9977ec8daea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (776, 352): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1910 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 455,
+     "instruction_end": 129,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ff24852e608bf8a60d53781f5fb55643"
+     },
+     {
+      "frames": 3512,
+      "sha256": "d544224f324a7e881ed459f33005e852"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01b-exit-0",
+    "description": "Walking onto exit 0 of GRB_B01B (scene 448) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b01b-exit-0: Walking onto exit 0 of GRB_B01B (scene 448) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33216 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 448 save 9fa8faa0b8a79135 state e91ca1d190c7e6b4 ram 0000000000000000",
+     "arrived frame 292 scene 439 save 429795144209488a state f9b9c9be1aaf0d0e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 208): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 57,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ec3e3b86f5489846e8fa153208cce31"
+     },
+     {
+      "frames": 63,
+      "sha256": "df3b551e2072a791d36c9ae5ddc79037"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01b-exit-1",
+    "description": "Walking onto exit 1 of GRB_B01B (scene 448) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-b01b-exit-1: Walking onto exit 1 of GRB_B01B (scene 448) should lead to one of scene 441, scene 442\nlimit 20000\nenter 33216 1 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 448 save 58ec5fdbafc4db6c state 31e5cea4ed02405e ram 0000000000000000",
+     "arrived frame 299 scene 441 save 945d724977f39276 state 40db4c09d42fb819 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (776, 352): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6a4a9f8efa6d7b5ed63fdb4d73c957cb"
+     },
+     {
+      "frames": 70,
+      "sha256": "7e23fa7f1968dd38d29448bbfeb7c77a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02a-exit-0",
+    "description": "Walking onto exit 0 of GRB_B02A (scene 449) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-b02a-exit-0: Walking onto exit 0 of GRB_B02A (scene 449) should lead to one of scene 434, scene 435\nlimit 20000\nenter 33217 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 449 save 553c4cb941f5dc11 state d2cd320f74db1265 ram 0000000000000000",
+     "arrived frame 295 scene 435 save 61bfe38b6a4d5767 state ab25c76dd9102432 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ed491c28a4af798d4483fcebe3b8350"
+     },
+     {
+      "frames": 66,
+      "sha256": "8ad29f1a7afa7513f3847ec3dc71b567"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02a-exit-1",
+    "description": "Walking onto exit 1 of GRB_B02A (scene 449) should lead to one of scene 451, scene 452",
+    "plan": "# grb-grb-b02a-exit-1: Walking onto exit 1 of GRB_B02A (scene 449) should lead to one of scene 451, scene 452\nlimit 20000\nenter 33217 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 449 save 553c4cb941f5dc11 state d2cd320f74db1265 ram 0000000000000000",
+     "arrived frame 2550 scene 451 save 2434b38172558603 state 3c1d2ddb10bf3dd2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (792, 168): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1910 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 480,
+     "instruction_end": 157,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3ed491c28a4af798d4483fcebe3b8350"
+     },
+     {
+      "frames": 2321,
+      "sha256": "e2baed4400daec9c39d28e4bfaba87ea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02b-exit-0",
+    "description": "Walking onto exit 0 of GRB_B02B (scene 450) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-b02b-exit-0: Walking onto exit 0 of GRB_B02B (scene 450) should lead to one of scene 434, scene 435\nlimit 20000\nenter 33218 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 450 save 78c4080418f7a6b7 state d5c9c5dad66d4def ram 0000000000000000",
+     "arrived frame 294 scene 435 save 61bfe38b6a4d5767 state 052e233751a2ffb0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b0b423f5a8f15dd869543131a5391af"
+     },
+     {
+      "frames": 65,
+      "sha256": "7b05a0819cf6d8483ddce0abcce29ebc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02b-exit-1",
+    "description": "Walking onto exit 1 of GRB_B02B (scene 450) should lead to one of scene 437, scene 438",
+    "plan": "# grb-grb-b02b-exit-1: Walking onto exit 1 of GRB_B02B (scene 450) should lead to one of scene 437, scene 438\nlimit 20000\nenter 33218 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 450 save 78c4080418f7a6b7 state d5c9c5dad66d4def ram 0000000000000000",
+     "arrived frame 2233 scene 437 save f45b7bfadeec6030 state 227e795d12cfaece ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (788, 328): 7 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1670 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 438,
+     "instruction_end": 126,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b0b423f5a8f15dd869543131a5391af"
+     },
+     {
+      "frames": 2004,
+      "sha256": "b4abb57da153b8ff91e013dfec61a6fb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03a-exit-0",
+    "description": "Walking onto exit 0 of GRB_B03A (scene 451) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b03a-exit-0: Walking onto exit 0 of GRB_B03A (scene 451) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33219 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 451 save d984d814691bd053 state 3b924fe3136a6dd3 ram 0000000000000000",
+     "arrived frame 297 scene 440 save 19f38b5c80337bf4 state 468e8f23db300874 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (24, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d523f931f76c9e9379db9ee29b9fc428"
+     },
+     {
+      "frames": 68,
+      "sha256": "07ae629097cce3c5f5aaa61a2295e788"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03a-exit-1",
+    "description": "Walking onto exit 1 of GRB_B03A (scene 451) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-b03a-exit-1: Walking onto exit 1 of GRB_B03A (scene 451) should lead to one of scene 441, scene 442\nlimit 20000\nenter 33219 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 451 save d984d814691bd053 state 3b924fe3136a6dd3 ram 0000000000000000",
+     "arrived frame 1845 scene 441 save bb87324d94067e94 state 79ed3a4e99311302 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 100): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 449,
+     "instruction_end": 131,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d523f931f76c9e9379db9ee29b9fc428"
+     },
+     {
+      "frames": 1616,
+      "sha256": "8a631d44de86a9328fa139ecf3344711"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03a-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03a-exit-2",
+    "description": "Walking onto exit 2 of GRB_B03A (scene 451) should lead to one of scene 449, scene 450",
+    "plan": "# grb-grb-b03a-exit-2: Walking onto exit 2 of GRB_B03A (scene 451) should lead to one of scene 449, scene 450\nlimit 20000\nenter 33219 0 16718847 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 451 save d984d814691bd053 state 3b924fe3136a6dd3 ram 0000000000000000",
+     "arrived frame 562 scene 449 save aec749cf6df3b946 state 49fbe63af7520b47 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 336): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 210,
+     "instruction_end": 77,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d523f931f76c9e9379db9ee29b9fc428"
+     },
+     {
+      "frames": 333,
+      "sha256": "d18e7ce5bfd92c4f447041766b4ad969"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03b-exit-0",
+    "description": "Walking onto exit 0 of GRB_B03B (scene 452) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-b03b-exit-0: Walking onto exit 0 of GRB_B03B (scene 452) should lead to one of scene 439, scene 440\nlimit 20000\nenter 33220 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 452 save 16ab1860464e4189 state 6cce2b06dc974d01 ram 0000000000000000",
+     "arrived frame 294 scene 440 save 19f38b5c80337bf4 state 9aae2ab82dc36209 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 32): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 212,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "06c83a1b7c36168cb5f88dd6aa2017ba"
+     },
+     {
+      "frames": 65,
+      "sha256": "3a7eb19cbf35e204d6acd7e1762a52f6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03b-exit-1",
+    "description": "Walking onto exit 1 of GRB_B03B (scene 452) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-b03b-exit-1: Walking onto exit 1 of GRB_B03B (scene 452) should lead to one of scene 441, scene 442\nlimit 20000\nenter 33220 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 452 save 16ab1860464e4189 state 6cce2b06dc974d01 ram 0000000000000000",
+     "arrived frame 1137 scene 441 save 2f20c435ff7bde90 state 498ceec62e32d750 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (628, 100): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 384,
+     "instruction_end": 121,
+     "song": 3,
+     "scene": 3,
+     "monster": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "06c83a1b7c36168cb5f88dd6aa2017ba"
+     },
+     {
+      "frames": 908,
+      "sha256": "8e9422825dd785d3071bf8ce523261f3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04a-exit-0",
+    "description": "Walking onto exit 0 of GRB_B04A (scene 453) should lead to one of scene 437, scene 438",
+    "plan": "# grb-grb-b04a-exit-0: Walking onto exit 0 of GRB_B04A (scene 453) should lead to one of scene 437, scene 438\nlimit 20000\nenter 33221 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 453 save dfd6d8f0fe292095 state d248c17479558e78 ram 0000000000000000",
+     "arrived frame 295 scene 438 save a57198a55b76a68d state efa369c4c8420489 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1db9c15f784e5690074599f94b080b55"
+     },
+     {
+      "frames": 66,
+      "sha256": "eea16e1cc64a7574427e6df4a81206e7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04a-exit-1",
+    "description": "Walking onto exit 1 of GRB_B04A (scene 453) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-b04a-exit-1: Walking onto exit 1 of GRB_B04A (scene 453) should lead to one of scene 441, scene 442\nlimit 20000\nenter 33221 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 453 save dfd6d8f0fe292095 state d248c17479558e78 ram 0000000000000000",
+     "arrived frame 1669 scene 441 save bad2caffec16560d state d4d5d448f1784791 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (676, 8): 7 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 404,
+     "instruction_end": 123,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1db9c15f784e5690074599f94b080b55"
+     },
+     {
+      "frames": 1440,
+      "sha256": "1160d1e5f8901c7a60c5ce3195bf0654"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04b-exit-0",
+    "description": "Walking onto exit 0 of GRB_B04B (scene 454) should lead to one of scene 437, scene 438",
+    "plan": "# grb-grb-b04b-exit-0: Walking onto exit 0 of GRB_B04B (scene 454) should lead to one of scene 437, scene 438\nlimit 20000\nenter 33222 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 454 save 010ff113ba68ddab state b1473e7b2a4487e6 ram 0000000000000000",
+     "arrived frame 295 scene 438 save a57198a55b76a68d state ef9535219fc35288 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "af714097be69c7d001c5c1d526a239e2"
+     },
+     {
+      "frames": 66,
+      "sha256": "4186324f2423bc5c6a1ab05b95c5a6b7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04b-exit-1",
+    "description": "Walking onto exit 1 of GRB_B04B (scene 454) should lead to one of scene 444, scene 632, scene 902, scene 903, scene 904",
+    "plan": "# grb-grb-b04b-exit-1: Walking onto exit 1 of GRB_B04B (scene 454) should lead to one of scene 444, scene 632, scene 902, scene 903, scene 904\nlimit 20000\nenter 33222 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 454 save 010ff113ba68ddab state b1473e7b2a4487e6 ram 0000000000000000",
+     "arrived frame 1194 scene 444 save 3241deb77aaae4ca state e3f322ee7c95d167 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (872, 184): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 129,
+     "instruction": 325,
+     "monster": 1,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "af714097be69c7d001c5c1d526a239e2"
+     },
+     {
+      "frames": 965,
+      "sha256": "d241d549e9b26ceaf3f39bfb48a5e87a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs00-exit-0",
+    "description": "Walking onto exit 0 of GRB_BS00 (scene 444) should lead to scene 454",
+    "plan": "# grb-grb-bs00-exit-0: Walking onto exit 0 of GRB_BS00 (scene 444) should lead to scene 454\nlimit 20000\nenter 33212 0 16723455 0\ncheckpoint entered\nexit 0 454\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 444 save f898d6b576c2da92 state 7380d34661532f22 ram 0000000000000000",
+     "arrived frame 294 scene 454 save 494bb9f34b170b9a state c282a82ef88f9161 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 81,
+     "instruction": 204,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e53531d707013f6cf6993b5a01c8c4ea"
+     },
+     {
+      "frames": 65,
+      "sha256": "ebad69b86dbc85f03c1dfba18935a057"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs01-exit-0",
+    "description": "Walking onto exit 0 of GRB_BS01 (scene 632) should lead to scene 454",
+    "plan": "# grb-grb-bs01-exit-0: Walking onto exit 0 of GRB_BS01 (scene 632) should lead to scene 454\nlimit 20000\nenter 33400 0 16712470 0\ncheckpoint entered\nexit 0 454\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 632 save 5b7a56966ef7e2e1 state e0108428f575200b ram 0000000000000000",
+     "arrived frame 294 scene 454 save 494bb9f34b170b9a state 7b3cdb7905eac376 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 187,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "047e0ad90e47a4311b88dda8e7301b9c"
+     },
+     {
+      "frames": 65,
+      "sha256": "7b30be0d784f31e59032ebef374d31b2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs02-exit-0",
+    "description": "Walking onto exit 0 of GRB_BS02 (scene 902) should lead to scene 454",
+    "plan": "# grb-grb-bs02-exit-0: Walking onto exit 0 of GRB_BS02 (scene 902) should lead to scene 454\nlimit 20000\nenter 33670 0 16718847 0\ncheckpoint entered\nexit 0 454\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 902 save 3ca542b10c3c5e3c state cb6573e465e3b751 ram 0000000000000000",
+     "arrived frame 294 scene 454 save 494bb9f34b170b9a state 8a33627c4e3f97ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 63,
+     "instruction": 166,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "293a9e90a84c80d31bf46a91e9f16259"
+     },
+     {
+      "frames": 65,
+      "sha256": "8a7f457d666bb3b40f1793ceb6d71839"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs03-exit-0",
+    "description": "Walking onto exit 0 of GRB_BS03 (scene 903) should lead to scene 454",
+    "plan": "# grb-grb-bs03-exit-0: Walking onto exit 0 of GRB_BS03 (scene 903) should lead to scene 454\nlimit 20000\nenter 903 0 16776959 0\ncheckpoint entered\nexit 0 454\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 903 save 1b57db5f451a496a state 8e5d2cc932b7847d ram 0000000000000000",
+     "arrived frame 383 scene 454 save 494bb9f34b170b9a state 03c80c6411b5cf87 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 74,
+     "instruction": 226,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0869bcfb1219d407dbe279c8c5ad8bcd"
+     },
+     {
+      "frames": 154,
+      "sha256": "a64823e8a64bef7ea3000bc1666b30e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs04-exit-0",
+    "description": "Walking onto exit 0 of GRB_BS04 (scene 904) should lead to scene 454",
+    "plan": "# grb-grb-bs04-exit-0: Walking onto exit 0 of GRB_BS04 (scene 904) should lead to scene 454\nlimit 20000\nenter 904 0 16717311 0\ncheckpoint entered\nexit 0 454\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 904 save f3268b5bd63c8c4c state 2f1346728ea73205 ram 0000000000000000",
+     "arrived frame 405 scene 454 save ca9d4cec6412302a state f44b03414a2e347b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 81,
+     "instruction": 238,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b883bfe52f47fa0f13ea87bc613f8791"
+     },
+     {
+      "frames": 176,
+      "sha256": "52619ff72511411c1ccd883967da7a4b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00a-exit-0",
+    "description": "Walking onto exit 0 of GRB_E00A (scene 432) should lead to the world map",
+    "plan": "# grb-grb-e00a-exit-0: Walking onto exit 0 of GRB_E00A (scene 432) should lead to the world map\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 46a50bf4cb4af141 state 5b42459e39388e94 ram 0000000000000000",
+     "arrived frame 1680 scene 32767 save a0d1a291e5f67298 state 413a0c0702370e0c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 90): 3 waypoints",
+     "game state 1 at vblank 3685"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 81,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "99f1050ab3de259c0c95c4d0383ce670"
+     },
+     {
+      "frames": 1450,
+      "sha256": "fe026b0844766bda38adee505a29255e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00a-exit-1",
+    "description": "Walking onto exit 1 of GRB_E00A (scene 432) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-e00a-exit-1: Walking onto exit 1 of GRB_E00A (scene 432) should lead to one of scene 434, scene 435\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 46a50bf4cb4af141 state 5b42459e39388e94 ram 0000000000000000",
+     "arrived frame 1415 scene 435 save 4d11e74a9865ac82 state 39b6dbe10e08db6a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 308): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 89,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "99f1050ab3de259c0c95c4d0383ce670"
+     },
+     {
+      "frames": 1186,
+      "sha256": "76c579b27f5ed3fdd41788cce4213862"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00a-exit-2",
+    "description": "Walking onto exit 2 of GRB_E00A (scene 432) should lead to one of scene 445, scene 446",
+    "plan": "# grb-grb-e00a-exit-2: Walking onto exit 2 of GRB_E00A (scene 432) should lead to one of scene 445, scene 446\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 46a50bf4cb4af141 state 5b42459e39388e94 ram 0000000000000000",
+     "arrived frame 1559 scene 445 save ea24715fb458a564 state 71162a40906c04bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (501, 86): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 101,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "99f1050ab3de259c0c95c4d0383ce670"
+     },
+     {
+      "frames": 1330,
+      "sha256": "88840c1cac1e6223f72f36dac9b48055"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00b-exit-0",
+    "description": "Walking onto exit 0 of GRB_E00B (scene 433) should lead to the world map",
+    "plan": "# grb-grb-e00b-exit-0: Walking onto exit 0 of GRB_E00B (scene 433) should lead to the world map\nlimit 20000\nenter 433 1 16718847 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 433 save fca6a5a3ddb7e4e5 state 817e0b3d0ee530f2 ram 0000000000000000",
+     "arrived frame 563 scene 32767 save ece529551ded5045 state 23c759b23f33f873 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (7, 94): 3 waypoints",
+     "game state 1 at vblank 1451"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e34cbc20c564228885be4144e24b2c7a"
+     },
+     {
+      "frames": 333,
+      "sha256": "81810d27712682841955bba3d0e1b204"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00b-exit-1",
+    "description": "Walking onto exit 1 of GRB_E00B (scene 433) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-e00b-exit-1: Walking onto exit 1 of GRB_E00B (scene 433) should lead to one of scene 434, scene 435\nlimit 20000\nenter 433 1 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 433 save fca6a5a3ddb7e4e5 state 817e0b3d0ee530f2 ram 0000000000000000",
+     "arrived frame 298 scene 435 save 32202b6072aa9e87 state 2be640555889a98e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (498, 317): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e34cbc20c564228885be4144e24b2c7a"
+     },
+     {
+      "frames": 69,
+      "sha256": "934a98bb92b0efab68700a55cc54572f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00b-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00b-exit-2",
+    "description": "Walking onto exit 2 of GRB_E00B (scene 433) should lead to one of scene 445, scene 446",
+    "plan": "# grb-grb-e00b-exit-2: Walking onto exit 2 of GRB_E00B (scene 433) should lead to one of scene 445, scene 446\nlimit 20000\nenter 433 1 16718847 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 433 save fca6a5a3ddb7e4e5 state 817e0b3d0ee530f2 ram 0000000000000000",
+     "arrived frame 443 scene 445 save 7637971bbf2e15ad state ef6d5895173ac938 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (503, 86): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e34cbc20c564228885be4144e24b2c7a"
+     },
+     {
+      "frames": 214,
+      "sha256": "96b437aeef1b913d5e77c95a0bbae6c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-exit-0",
+    "description": "Walking onto exit 0 of GRB_E01A (scene 434) should lead to one of scene 432, scene 433",
+    "plan": "# grb-grb-e01a-exit-0: Walking onto exit 0 of GRB_E01A (scene 434) should lead to one of scene 432, scene 433\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "arrived frame 292 scene 433 save 741b02b87bf49f9a state 40f447bb3f3d797e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (11, 46): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 63,
+      "sha256": "3c317285428d5ffb1b4926b6773949bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-exit-1",
+    "description": "Walking onto exit 1 of GRB_E01A (scene 434) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-e01a-exit-1: Walking onto exit 1 of GRB_E01A (scene 434) should lead to one of scene 439, scene 440\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "arrived frame 553 scene 440 save 0464961fcac32902 state 5f5595dc6c020f73 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 16): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 49,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 324,
+      "sha256": "22f34cbcc40c174b0fb398d5653cbff0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-exit-2",
+    "description": "Walking onto exit 2 of GRB_E01A (scene 434) should lead to one of scene 449, scene 450",
+    "plan": "# grb-grb-e01a-exit-2: Walking onto exit 2 of GRB_E01A (scene 434) should lead to one of scene 449, scene 450\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "arrived frame 1314 scene 450 save 7ff553684ba9c33c state 242f054ef5aa30a7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 344): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 1085,
+      "sha256": "579de50ab7f574206fe42ad43aa07304"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-exit-3",
+    "description": "Walking onto exit 3 of GRB_E01A (scene 434) should lead to scene 436",
+    "plan": "# grb-grb-e01a-exit-3: Walking onto exit 3 of GRB_E01A (scene 434) should lead to scene 436\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\nexit 3 436\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "arrived frame 682 scene 436 save 81fabfbaa346f6d2 state 85070ba11fee66aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 568): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 453,
+      "sha256": "cdbec2763447262c20796e11364f49b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-exit-0",
+    "description": "Walking onto exit 0 of GRB_E01B (scene 435) should lead to one of scene 432, scene 433",
+    "plan": "# grb-grb-e01b-exit-0: Walking onto exit 0 of GRB_E01B (scene 435) should lead to one of scene 432, scene 433\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "arrived frame 294 scene 433 save 741b02b87bf49f9a state 085cab02be62ddfc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (11, 46): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 65,
+      "sha256": "e373df36e685d1dbb63941299bdd59c6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-exit-1",
+    "description": "Walking onto exit 1 of GRB_E01B (scene 435) should lead to one of scene 439, scene 440",
+    "plan": "# grb-grb-e01b-exit-1: Walking onto exit 1 of GRB_E01B (scene 435) should lead to one of scene 439, scene 440\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "arrived frame 559 scene 440 save 0464961fcac32902 state 6c387015f95012a5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 16): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 330,
+      "sha256": "ea5665c3fe269208fce3ceee8681c696"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-exit-2",
+    "description": "Walking onto exit 2 of GRB_E01B (scene 435) should lead to one of scene 449, scene 450",
+    "plan": "# grb-grb-e01b-exit-2: Walking onto exit 2 of GRB_E01B (scene 435) should lead to one of scene 449, scene 450\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "arrived frame 1199 scene 450 save 7ff553684ba9c33c state 05a6fbf082c26b55 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 344): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 970,
+      "sha256": "0406816920f8b78b0b62a8152ad3e67b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e020-exit-0",
+    "description": "Walking onto exit 0 of GRB_E020 (scene 436) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-e020-exit-0: Walking onto exit 0 of GRB_E020 (scene 436) should lead to one of scene 434, scene 435\nlimit 20000\nenter 436 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 436 save 0ba805afe120b174 state 72f877c5d8faa452 ram 0000000000000000",
+     "arrived frame 299 scene 434 save 1ba86fbaf24f39a7 state d44d8ecb74a91e0c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (52, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ab15c046d936f26ea57003ffb71860e2"
+     },
+     {
+      "frames": 70,
+      "sha256": "81ed95d7b8cdf402131ee71cbd3c6337"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03a-exit-0",
+    "description": "Walking onto exit 0 of GRB_E03A (scene 437) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-e03a-exit-0: Walking onto exit 0 of GRB_E03A (scene 437) should lead to one of scene 441, scene 442\nlimit 20000\nenter 437 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 437 save 822852f7258f6fa5 state 2d6e402d3bd1ef54 ram 0000000000000000",
+     "arrived frame 298 scene 442 save 6f03dad15744145f state 79b1139aff6da987 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0fa8904ecfd8d36638319089d4e4de23"
+     },
+     {
+      "frames": 69,
+      "sha256": "6c60ab23476742c5a2bcb52e8ca3eb88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03a-exit-1",
+    "description": "Walking onto exit 1 of GRB_E03A (scene 437) should lead to one of scene 453, scene 454",
+    "plan": "# grb-grb-e03a-exit-1: Walking onto exit 1 of GRB_E03A (scene 437) should lead to one of scene 453, scene 454\nlimit 20000\nenter 437 0 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 437 save 822852f7258f6fa5 state 2d6e402d3bd1ef54 ram 0000000000000000",
+     "arrived frame 583 scene 454 save be22845765d2ab98 state a9deeb8dc9b69410 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 240): 14 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 55,
+     "instruction": 179,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0fa8904ecfd8d36638319089d4e4de23"
+     },
+     {
+      "frames": 354,
+      "sha256": "f18bcd10fd7be167acd9f8f1d16ba8d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03b-exit-0",
+    "description": "Walking onto exit 0 of GRB_E03B (scene 438) should lead to one of scene 441, scene 442",
+    "plan": "# grb-grb-e03b-exit-0: Walking onto exit 0 of GRB_E03B (scene 438) should lead to one of scene 441, scene 442\nlimit 20000\nenter 438 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 438 save 5999d1ff8ad880bb state 175d05fdb77051f9 ram 0000000000000000",
+     "arrived frame 298 scene 442 save 6f03dad15744145f state 121a3753db13c38c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (532, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "52176591b222070777e227deff90da42"
+     },
+     {
+      "frames": 69,
+      "sha256": "b6d2ac589186d54c4d62cf07025b3d7c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03b-exit-1",
+    "description": "Walking onto exit 1 of GRB_E03B (scene 438) should lead to one of scene 453, scene 454",
+    "plan": "# grb-grb-e03b-exit-1: Walking onto exit 1 of GRB_E03B (scene 438) should lead to one of scene 453, scene 454\nlimit 20000\nenter 438 1 16718847 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 438 save 5999d1ff8ad880bb state 175d05fdb77051f9 ram 0000000000000000",
+     "arrived frame 572 scene 454 save be22845765d2ab98 state 0afa38a951b1a555 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 240): 13 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 165,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "52176591b222070777e227deff90da42"
+     },
+     {
+      "frames": 343,
+      "sha256": "f2cc7067cc93682bd599b5579c41d13d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03b-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03b-exit-2",
+    "description": "Walking onto exit 2 of GRB_E03B (scene 438) should lead to one of scene 449, scene 450",
+    "plan": "# grb-grb-e03b-exit-2: Walking onto exit 2 of GRB_E03B (scene 438) should lead to one of scene 449, scene 450\nlimit 20000\nenter 438 1 16718847 2\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 438 save 19d12b267ee939f1 state 241e5c22dd140697 ram 0000000000000000",
+     "arrived frame 297 scene 449 save aec749cf6df3b946 state d47c70087ff6cd05 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (76, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "520b6aee634fd01e6d9d9e139729cb1e"
+     },
+     {
+      "frames": 68,
+      "sha256": "f6309b52fd48031c90895f1eb3a01947"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-exit-0",
+    "description": "Walking onto exit 0 of GRB_E04A (scene 439) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-e04a-exit-0: Walking onto exit 0 of GRB_E04A (scene 439) should lead to one of scene 434, scene 435\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "arrived frame 291 scene 435 save 3eb62322b28f486c state a87ad15ce327f57c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (10, 377): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 49,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 62,
+      "sha256": "6f4cd3602d97474346c023edf27b1345"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-exit-1",
+    "description": "Walking onto exit 1 of GRB_E04A (scene 439) should lead to one of scene 445, scene 446",
+    "plan": "# grb-grb-e04a-exit-1: Walking onto exit 1 of GRB_E04A (scene 439) should lead to one of scene 445, scene 446\nlimit 20000\nenter 439 0 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e4c5f99e3ebfe40e state 3294ccdc50290c9c ram 0000000000000000",
+     "arrived frame 293 scene 446 save 1233d9bbab406d21 state 5d94318bde86a8d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "38421fe3acafdea2bebee01200aadbc5"
+     },
+     {
+      "frames": 64,
+      "sha256": "316bd1d58d11c156b451513ecc4cb879"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-exit-2",
+    "description": "Walking onto exit 2 of GRB_E04A (scene 439) should lead to one of scene 451, scene 452",
+    "plan": "# grb-grb-e04a-exit-2: Walking onto exit 2 of GRB_E04A (scene 439) should lead to one of scene 451, scene 452\nlimit 20000\nenter 439 0 16718847 3\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save b2bd2a47e190200c state 279c9e34346b1fcd ram 0000000000000000",
+     "arrived frame 1082 scene 452 save 815e1fe18f937fce state 4987e8747527bc92 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (629, 389): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05544c8967039cc10e8596bb13ce26db"
+     },
+     {
+      "frames": 853,
+      "sha256": "432ed36e03d1f5d6d4b973437e77b8b0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-exit-3",
+    "description": "Walking onto exit 3 of GRB_E04A (scene 439) should lead to one of scene 447, scene 448",
+    "plan": "# grb-grb-e04a-exit-3: Walking onto exit 3 of GRB_E04A (scene 439) should lead to one of scene 447, scene 448\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "arrived frame 768 scene 447 save dc612817eda8d5fd state 9ac34ee6120cea4b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 128): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 539,
+      "sha256": "b07db54558bf2d3150ee762eb2ed721f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-exit-0",
+    "description": "Walking onto exit 0 of GRB_E04B (scene 440) should lead to one of scene 434, scene 435",
+    "plan": "# grb-grb-e04b-exit-0: Walking onto exit 0 of GRB_E04B (scene 440) should lead to one of scene 434, scene 435\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "arrived frame 294 scene 435 save 3eb62322b28f486c state e0f955aba5fe38e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 391): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 65,
+      "sha256": "a419666a1f29ae8c146c5ae663e1dd9b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-exit-1",
+    "description": "Walking onto exit 1 of GRB_E04B (scene 440) should lead to one of scene 445, scene 446",
+    "plan": "# grb-grb-e04b-exit-1: Walking onto exit 1 of GRB_E04B (scene 440) should lead to one of scene 445, scene 446\nlimit 20000\nenter 440 1 16718847 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save d265fc46efd8ac24 state a252e131c2576ddc ram 0000000000000000",
+     "arrived frame 292 scene 446 save 1233d9bbab406d21 state 0b4a1c886a4c50ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 104): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "10a6e97da7af1e62cf806c189955cf92"
+     },
+     {
+      "frames": 63,
+      "sha256": "d11dcd0088b8c482c3ded77794d1177f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-exit-2",
+    "description": "Walking onto exit 2 of GRB_E04B (scene 440) should lead to one of scene 451, scene 452",
+    "plan": "# grb-grb-e04b-exit-2: Walking onto exit 2 of GRB_E04B (scene 440) should lead to one of scene 451, scene 452\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "arrived frame 893 scene 452 save 815e1fe18f937fce state c567ef2add72b4ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 400): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 64,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 664,
+      "sha256": "ce782d30bc16415419eb3625cc28497a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-exit-3",
+    "description": "Walking onto exit 3 of GRB_E04B (scene 440) should lead to one of scene 447, scene 448",
+    "plan": "# grb-grb-e04b-exit-3: Walking onto exit 3 of GRB_E04B (scene 440) should lead to one of scene 447, scene 448\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "arrived frame 808 scene 447 save dc612817eda8d5fd state 9103462151cf0bd4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 112): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 579,
+      "sha256": "2a4fb2e4b040dcd0598d1717f7cdfeea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-exit-0",
+    "description": "Walking onto exit 0 of GRB_E05A (scene 441) should lead to one of scene 451, scene 452",
+    "plan": "# grb-grb-e05a-exit-0: Walking onto exit 0 of GRB_E05A (scene 441) should lead to one of scene 451, scene 452\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "arrived frame 710 scene 451 save d53779d436433506 state 5c69ab4637428427 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 144): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 481,
+      "sha256": "1a585ed9abb332f26a095cc4d1851a60"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-exit-1",
+    "description": "Walking onto exit 1 of GRB_E05A (scene 441) should lead to one of scene 447, scene 448",
+    "plan": "# grb-grb-e05a-exit-1: Walking onto exit 1 of GRB_E05A (scene 441) should lead to one of scene 447, scene 448\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "arrived frame 426 scene 447 save fc61d370881be922 state e910bf9a96ec7dd3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 197,
+      "sha256": "e6f4dd885649514c385443564f6bde46"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-exit-2",
+    "description": "Walking onto exit 2 of GRB_E05A (scene 441) should lead to scene 443",
+    "plan": "# grb-grb-e05a-exit-2: Walking onto exit 2 of GRB_E05A (scene 441) should lead to scene 443\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\nexit 2 443\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "arrived frame 312 scene 443 save c1c497854fde3853 state eb8e51843cb07ef3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (552, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 83,
+      "sha256": "1b8eda3f71852784dc871b3988ede2df"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-exit-3",
+    "description": "Walking onto exit 3 of GRB_E05A (scene 441) should lead to one of scene 437, scene 438",
+    "plan": "# grb-grb-e05a-exit-3: Walking onto exit 3 of GRB_E05A (scene 441) should lead to one of scene 437, scene 438\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "arrived frame 1233 scene 438 save 39ab81f8e6d61136 state 3e813ffc6aa6702e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (54, 446): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 1004,
+      "sha256": "7cafb3b58e239bae977d8bdb19ff6c04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-exit-4",
+    "description": "Walking onto exit 4 of GRB_E05A (scene 441) should lead to one of scene 453, scene 454",
+    "plan": "# grb-grb-e05a-exit-4: Walking onto exit 4 of GRB_E05A (scene 441) should lead to one of scene 453, scene 454\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\nexit 4 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "arrived frame 616 scene 453 save ba7e92b3df268008 state dacd118956c713e2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (313, 496): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 61,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 387,
+      "sha256": "bfd8af6551dbefc3083efdad5768b903"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-exit-0",
+    "description": "Walking onto exit 0 of GRB_E05B (scene 442) should lead to one of scene 451, scene 452",
+    "plan": "# grb-grb-e05b-exit-0: Walking onto exit 0 of GRB_E05B (scene 442) should lead to one of scene 451, scene 452\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "arrived frame 1117 scene 451 save d53779d436433506 state 887af7ea133d31ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 144): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 888,
+      "sha256": "bdc27c1122b0e39f9cfd2a3f78e25598"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-exit-1",
+    "description": "Walking onto exit 1 of GRB_E05B (scene 442) should lead to one of scene 447, scene 448",
+    "plan": "# grb-grb-e05b-exit-1: Walking onto exit 1 of GRB_E05B (scene 442) should lead to one of scene 447, scene 448\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "arrived frame 745 scene 447 save fc61d370881be922 state 0a56d97e58a81749 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (298, 8): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 516,
+      "sha256": "4308d17895d9126481ebfef5eb6fc3fb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-exit-2",
+    "description": "Walking onto exit 2 of GRB_E05B (scene 442) should lead to scene 443",
+    "plan": "# grb-grb-e05b-exit-2: Walking onto exit 2 of GRB_E05B (scene 442) should lead to scene 443\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\nexit 2 443\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "arrived frame 733 scene 443 save c1c497854fde3853 state 534529e29238e693 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (552, 280): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 504,
+      "sha256": "ff84d26ccca24b176ac84b08d205f6c5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-exit-3",
+    "description": "Walking onto exit 3 of GRB_E05B (scene 442) should lead to one of scene 437, scene 438",
+    "plan": "# grb-grb-e05b-exit-3: Walking onto exit 3 of GRB_E05B (scene 442) should lead to one of scene 437, scene 438\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "arrived frame 303 scene 438 save 39ab81f8e6d61136 state a0b5ea150906d487 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (54, 446): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 74,
+      "sha256": "a979db5cee83420d606fda20a90fb9c6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e060-exit-0",
+    "description": "Walking onto exit 0 of GRB_E060 (scene 443) should lead to scene 441",
+    "plan": "# grb-grb-e060-exit-0: Walking onto exit 0 of GRB_E060 (scene 443) should lead to scene 441\nlimit 20000\nenter 443 0 16718847 0\ncheckpoint entered\nexit 0 441\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 443 save 20deadf7842a3dcb state 4f28a48e62377ffa ram 0000000000000000",
+     "arrived frame 291 scene 441 save 20c018620a0ba7e4 state 94b03647764d6cc0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (20, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 210,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14d02def8848f2a921f1ccc3f627e69f"
+     },
+     {
+      "frames": 62,
+      "sha256": "0ec5033ca8de2933043ed450d9b3d072"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

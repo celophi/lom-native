@@ -1,0 +1,170 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "twr-twr-i101-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i101-entry",
+    "description": "Entering TWR_I101 (scene 178) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# twr-twr-i101-entry: Entering TWR_I101 (scene 178) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 32946 0 16720639 2\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 178 save d9cf9a58641a47d8 state abf9890899f2dde9 ram 0000000000000000",
+     "watched frame 262 scene 178 save ce8cd72493414cdc state 4c0cc4f8a5747e41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3a1f0fbf83ff8a4666c28f4a2fdf078"
+     },
+     {
+      "frames": 33,
+      "sha256": "32dd0b7740dfc12743d7db3ad25c038e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i102-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i102-entry",
+    "description": "Entering TWR_I102 (scene 179) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# twr-twr-i102-entry: Entering TWR_I102 (scene 179) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 32947 0 16720639 2\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 179 save 8f6b72ec18bc3d49 state 54fd4fadb1112af3 ram 0000000000000000",
+     "watched frame 262 scene 179 save 799dc466d4c30a19 state 077df1563a9f0734 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5e40ec6b90a21bfd48e8da0936a9f9d8"
+     },
+     {
+      "frames": 33,
+      "sha256": "59a88b7120a7d97e9c623494402ad0e0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ra10-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ra10-direct",
+    "description": "Entering TWR_RA10 (scene 205) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# twr-twr-ra10-direct: Entering TWR_RA10 (scene 205) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 205 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 205 save ffd6260251cd0509 state 0c4db0cd03354dec ram 0000000000000000",
+     "watched frame 262 scene 205 save 5a8951bac6ec1987 state c4d9934fcfc02181 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 108,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fff55abfb16f72c7594f97264b2546e"
+     },
+     {
+      "frames": 33,
+      "sha256": "50d066ef165fccbde3a739fb12df1442"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-rb10-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-rb10-direct",
+    "description": "Entering TWR_RB10 (scene 207) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# twr-twr-rb10-direct: Entering TWR_RB10 (scene 207) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 207 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 207 save fab1d3b32a78d3e3 state 0c4db0cd03354dec ram 0000000000000000",
+     "watched frame 262 scene 207 save fde01797783b2ed9 state c4d9934fcfc02181 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 108,
+     "instruction_end": 34,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbaf54d1fd335cf380ac5b2bf236e840"
+     },
+     {
+      "frames": 33,
+      "sha256": "1e8f72f3bf53c7b41ace73c911c4b5da"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

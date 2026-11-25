@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-sh01-shopkeeper",
+  "description": "Talking to the person in SH01 should start a conversation that ends with the player in control",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 44
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 3
+      },
+      "note": "layout record 3"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

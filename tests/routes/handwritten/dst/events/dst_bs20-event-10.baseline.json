@@ -1,0 +1,94 @@
+{
+ "route": "dst-dst-bs20-event-10",
+ "description": "Coming into DST_BS20 (scene 226) from this save, walking to (180, 130) and pressing Cross should run (layout record 0's event; writes 0x4dc)",
+ "plan": "# dst-dst-bs20-event-10: Coming into DST_BS20 (scene 226) from this save, walking to (180, 130) and pressing Cross should run (layout record 0's event; writes 0x4dc)\nlimit 20000\nenter 32994 0 16712703 0\ncheckpoint entered\nwalk 180 130\npress 0x4000 4\nwait 300\ncheckpoint pressed\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 229 scene 226 save 3df84445f623db54 state a1b49c2eb051fdad ram 0000000000000000",
+  "pressed frame 736 scene 226 save dbea5b906cac77da state f09dccc9c86757b2 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 229, scene 226 (DST_BS20)",
+    "scene id 19 to 32994",
+    "music id 7 to 3",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "actor 0 (the hero): at (479, 132), facing 128, animation 2,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (48, 160), facing 0, animation 2,0, presence 0, control 2, command 168",
+    "actor 4 (layout record 1): at (180, 150), facing 0, animation 134,0, presence 0, control 2, command 168",
+    "actor 5 (layout record 2): at (350, 150), facing 0, animation 6,0, presence 0, control 2, command 168"
+   ]
+  },
+  {
+   "checkpoint": "pressed",
+   "changes": [
+    "frame 736, scene 226 (DST_BS20)",
+    "story word 24: f2f20000 to 7a7a0000 (set 0x313, 0x31b; cleared 0x317, 0x31f)",
+    "story word 38: 00000000 to 10000000 (set 0x4dc)",
+    "2 other saved-game bytes changed, the first at offset 12542",
+    "scene word 9: 00000008 to 000000ff",
+    "scene word 10: 00000100 to 00010900",
+    "scene word 11: 00000100 to 00000000",
+    "scene word 12: 00000100 to 0000b400",
+    "scene word 17: 01df0084 to 010900b4",
+    "scene word 20: 00000000 to 0000f021",
+    "scene word 21: 0000c000 to 00008900",
+    "scene word 40: 00008000 to 00000007",
+    "scene word 41: 00000000 to 000001c9",
+    "scene word 46: 00000000 to 00000001",
+    "scene word 47: 000000e4 to 000002df",
+    "scene word 50: 00000000 to 5018ff7f",
+    "scene word 58: 00000000 to 4010ff7f",
+    "scene word 59: 00000000 to 000000ff",
+    "scene word 60: 00000000 to 08000000",
+    "scene word 69: 806a0000 to 2c6a0000",
+    "scene word 70: 321efffe to 321e0001",
+    "scene word 73: 00008861 to 0000f861",
+    "scene word 74: 00000000 to 1f000000",
+    "scene word 75: 321efffe to 321e0001",
+    "scene word 78: 80090800 to 8000b800",
+    "actor 0 (the hero): moved (479, 132) to (265, 180); direction 128 to 164; animation 2,0 to 20,0; control 2 to 0; command 129 to 130",
+    "actor 3 (layout record 0): moved (48, 160) to (500, 600); command 168 to 0",
+    "actor 4 (layout record 1): moved (180, 150) to (255, 174); direction 0 to 235; animation 134,0 to 160,6; command 168 to 134",
+    "actor 5 (layout record 2): moved (350, 150) to (280, 180); direction 0 to 128; animation 6,0 to 31,5; command 168 to 134",
+    "battle record 0: monster -1, side 128, hp 11/50",
+    "battle record 3: monster 171, side 64, hp 800/800",
+    "battle record 4: monster 171, side 64, hp 800/800"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (180, 130): 1 waypoints"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 316,
+  "instruction_end": 125,
+  "song": 3,
+  "scene": 2,
+  "monster": 1
+ },
+ "pictures": "607efce6 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 840c0f71 ce6ff8bb 7fffd764 220e674f 39c89f1a d8988c1a 48b7a0d0 eb3b3ebb de16c02a c4564b16 e4f88186 6fabb54e ec2b511a 25f596f4 f03e307e 3242a2c3 b4e34bdc ec0e3a4e 14650fb0 a9efc920 f16605ce 36883087 f16605ce 0e8d1eb7 0f6bef95 966c8772 297a6897 04c14095 bd28a04b ca8dbe7c fdee328e 71ee9276 0323a60e 71ee9276 490fca9c a3756052 1b0fe64f a3756052 1b0fe64f 23841d99 1b0fe64f a3756052 1b0fe64f a3756052 d3f65b6e a3756052 1b0fe64f a3756052 e925d202 fca2df91 1fe1381f dd26b14e 4973b02b ac50d66c 77645336 ac50d66c 77645336 ac50d66c 74f7b5d4 0faa8987 56c1e963 7ede932f 5fca3b14 0803f267 bb63d193 46cb960b 5908a8a0 7190d74b 0f4b9274 c0baa618 8f8b4b4d a89e0d88 337b8351 468a071b ac648a35 172185df a229e106 903bacf9 0d825df3 d0a1fd5c f9dc1de2 8e574d52 dbf2d2c2 3edbda9d e8fb9db1 f1e4701f 06af13cc be63027a 97d2ba86 25bfcdce 9f87075d e3f1eabc c566fc91 9e934bbf 63a7276e e5964805 70da8faf f30b70d7 05a97aac fc6915fc 55833bea 4d4d1550 5ca75e22 d524e934 73d49749 92042a61 74016534 dc1c24bc 22957644 a374c555 b742ec7f 749a5508 ee877c99 66241ed6 c07b72dd 0aa814a0 a578241a 5344d2b9 bd538735 5b3c91c1 5749a94a 33545872 06080b80 4a2f4985 fe4f0bf2 f0461955 e62cccfe 3dc5d9ee d99fe178 039fc5e3 a5dc7e37 1c53e3c7 9b627f75 5df1e071 af18c53a fd76afc0 50c720a3 2ac8e09c 4f5afd87 61f23ccc f2e95f01 9f3306a4 a885fbb4 5cc6dc5d 2a9df749 ad734571 3c5fd3a4 060718bc 49ca56ce 3243323f b05a9115 2e326a9f ea26069b 08585633 1397726a b1aa395d a508807e 1beaeb1d 3aa82a2b 1854884e c8304d27 a1b599c1 39e895e7 32736928 2d876e35 830e993b 468821a2 d513d9c8 5d8f2ab4 de869fdc 39c43ead b496dbc4 03960c85 32358f1c b258c7c8 04855b7e 008ddc52 95111164 ee7277ba b9095857 dd1dff1e 509eec1f fcccf866 3514eba4 dfd5d877 96a096c8 8c42e17a 586cdda0 60bce7a2 736748e8 a3b76f4e 2055798b d331d300 ca282948 ca8b4256 ed1ac7bd cca52c26 e336b0b8 7276403d 70accd40 a8922fe5 2a385828 46ccec77 bd87fe85 8a3f7bad 8550b936 1fe68c8b d7a34ad3 99daadcb 491cc65c 99daadcb 491cc65c 99daadcb 80909c6a 9c06ae1e 58212759 9c06ae1e 58212759 c3cee513 744bdcd0 c3cee513 a6f79b7f 26421bcf 3e8a5f46 fc21f157 4560420c 64186e09 a91a458f 1db9bda7 e5717c11 8d7a0311 64dba9df 4a06f596 68ae1d00 25f2a41a 58dd45e2 877b199b 52e28125 14c39037 99222004 87101608 d0bf60f2 2b6c2034 4faafc50 bc164366 f6d714f8 ff4b164a 38c3e9e0 3cc4cd17 5cef79e1 9a1d0bdc cf3170f2 2daf39c5 f758cdfa f89a5095 341a6a6d 7cfaefc0 c9e74e08 0e181fc6 243d46bb 55ebb184 243d46bb 55ebb184 aebb415b 6bf6e635 a90f3aaa f2deef62 d469f651 6bf76392 00a26ba7 27bc79c6 73f3c8ca a71e00f6 19aa934d f8c3d397 6c571b90 021b5353 bc8e5607 fcde3a5f caf722cc 8262a8a8 b7fbfe78 47eb2a1d ce4e4e62 88d8ee26 7355cdde 35a43f70 c41d55d4 36e5fb8d d62efc98 dcd9f116 884aa781 71a8139f ad08f829 ae20f224 c21c0f59 93b2e872 8b115303 d604735d e489ca15 1e9572f1 d05ec7b1 c1ebf96c 55658a19 6f3e1e8b 4222a00e 10b5b665 45402649 df7f48b3 d0737e8f 3e8f00f9 ebfd11b6 157872a1 9fd44e6c a8690ba9 334b91ac 1e1f6534 63723f77 c025724f 9148f85e eda49d72 d7a04638 8f02d261 d5b3e29a a2b1529b f30f6cea 8ceb38ff bf769be8 f92dc1fb 328f7ab0 686cd6aa e0afb6ad c223580e e0afb6ad f3c47373 d2a267db 7ecec4b3 328c058f e335150b 1ee76406 c25f8b71 1ee76406 64ca7e32 469b4940 092c910d 2dadc1bd 57c0e869 05186aa0 17b0de9f 8142a08f 5af45a91 2a345bb1 21577489 f073aedc e4b3009b a7fa8d28 fd301227 c6e64d5f fe1cb592 e11975c0 c84a15a2 8159d908 3375544c 7441026f 88e35f89 118861b3 42ca4426 86555aec 45c6d51c 71dcbfc2 77bd41de 233f1895 601b6cf4 515b0c5d 1329b8d8 10e5ff06 bc2afb0b 4067a6a6 013f8bfe 9a387b07 6923d39e 74479440 1dcbf70e 249a19d7 350ffc40 290b7ae3 7bc77802 e7ab8abc 42e3d523 c20b8b57 a2c5bb48 afab205c 4c614085 703b8243 dfccbe38 aaf1c1fa a33ba7bd 0e85ba09 9d1a1f2a 43b47960 0915468e 55611c39 d5b41b37 4dc630b6 5a376677 cf0c293c a19380fd 3212e879 cf444dfe aa06e160 4516d09d 23d45646 96c611a7 450d7040 6d3d6c0a ef04e8d4 029785cd 90c76978 6069e226 d5e2fe57 212c3a06 ce1938b2 133b590d 9912d80a 5f0bc293 dacf8db2 cdd127a8 ecc177b8 1d6dd982 5a3813ff 38d332d7 461d42ec 00c63baf 69da55fe 90baa13d c151f778 2e41bb76 50aad059 44c043b5 34c34082 886a538a b40b6de6 8d8dae97 f84753dc bb10e09e f71ea1bc 7b6d4ff0 fc1b453d 20b26445 747ab0d5 f488c470 677e68e3 530d7ac3 e522500c 7c5da4e8 812c2023 778e74af 72907373 3624064e 718d5e22 0caf815c ac3d16d7 a0272ced 38b2ca5d 004a49a8 d695c46c 4e862060 0ee9522b 23064943 b7575934 d341ce8e 0812f70d f524a6c4 5cca1801 ae96922b 2e50c137 94f40f2e cb402656 9ccd4b65 3ba7c76f 02a6f18f a3208495 7bdd1c36 ad16eadd 3fe19d7d 4e90b6ad 8f23401d 6f661011 37f0c500 7d05aa21 7c4e2e3f 03aa8681 5feff4c9 39f89ecd f970ae82 890d7dc3 320b8e75 b62975d0 58a8ccfa 839211f0 7d36ba5b 32c2db77 0b7fd248 0ed225e5 2b345c9b a2a1447d e688de93 34e97824 27188c91 b7662e6f 34aeec62 00054873 97367745 8cc826df 076b0fd4 75030c46 1d825911 9f91a6d4 f0cfc866 1726ed65 cd038b83 152fddbe 453c5f43 80ddfb64 1b4e1b5f a4dd9a01 d6299b55 94ebd30a",
+ "stretches": [
+  {
+   "frames": 230,
+   "sha256": "40d45132be31bf0f9a96ca6618ea533f"
+  },
+  {
+   "frames": 507,
+   "sha256": "b7ba7f7cb70b9b025ea571d48a91b4ab"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

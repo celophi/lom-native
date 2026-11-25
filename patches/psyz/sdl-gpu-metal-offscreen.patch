@@ -1,0 +1,26 @@
+Lets SDL_GPU use Metal with the offscreen video driver, for headless test
+runs on macOS. That driver has no Metal view, so a window claim fails
+cleanly instead of making a swapchain with no layer, and the caller draws
+without one, like a headless run on Linux.
+
+--- a/external/SDL/src/gpu/metal/SDL_gpu_metal.m
++++ b/external/SDL/src/gpu/metal/SDL_gpu_metal.m
+@@ -3666,6 +3666,9 @@
+     CGSize drawableSize;
+ 
+     windowData->view = SDL_Metal_CreateView(windowData->window);
++    if (windowData->view == NULL) {
++        return false;
++    }
+     windowData->drawable = nil;
+     windowData->presentMode = SDL_GPU_PRESENTMODE_VSYNC;
+     windowData->frameCounter = 0;
+@@ -4362,7 +4365,7 @@
+     }
+ 
+     if (@available(macOS 10.14, iOS 13.0, tvOS 13.0, *)) {
+-        return (this->Metal_CreateView != NULL);
++        return (this->Metal_CreateView != NULL) || (this->name && SDL_strcmp(this->name, "offscreen") == 0);
+     }
+     return false;
+ }

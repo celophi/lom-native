@@ -1,0 +1,107 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wd1-wd1-bs00-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wd1-wd1-bs00-boss",
+    "description": "Entering WD1_BS00 (scene 133) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# wd1-wd1-bs00-boss: Entering WD1_BS00 (scene 133) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 32901 0 16712459 0\ncheckpoint entered\nwalk 352 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 133 save fb1237151064e4ac state 299eba74f566031e ram 0000000000000000",
+     "fought frame 3472 scene 133 save 7c65c51d73af8029 state 90914d4913dd7703 ram 0000000000000000",
+     "after frame 3654 scene 129 save 74a7d455c86ad5d5 state 2b659013e80748fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (352, 60): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2870 frames",
+     "watched until the player got control, 180 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 575,
+     "instruction_end": 217,
+     "scene": 4,
+     "song": 4,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "af5fb5571abda09e41251f6c8cac1918"
+     },
+     {
+      "frames": 3212,
+      "sha256": "e1fb156f4ee4741a65a951aa57a68877"
+     },
+     {
+      "frames": 182,
+      "sha256": "2b33ed58462bc5f10c93e3c3654fdd91"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wd1-wd1-bs02-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wd1-wd1-bs02-boss",
+    "description": "Entering WD1_BS02 (scene 709) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# wd1-wd1-bs02-boss: Entering WD1_BS02 (scene 709) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33477 0 16720673 0\ncheckpoint entered\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 709 save a77318c88790d7f0 state bfdd961db47045da ram 0000000000000000",
+     "fought frame 2194 scene 709 save 02b2ef5a491e02c6 state 00193d3238bba2f9 ram 0000000000000000",
+     "after frame 2249 scene 131 save 4bfcd33330d3ac1e state 57d099983caf11f5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "a battle is on; fighting it",
+     "the battle ended after 1610 frames",
+     "watched until the player got control, 53 frames"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "scene": 3,
+     "instruction": 338,
+     "instruction_end": 140,
+     "song": 4,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "ee5ff4daeed05c3d8186b0d2472cb26b"
+     },
+     {
+      "frames": 1934,
+      "sha256": "c936974b14e5faf6fa723998bcaf1dd9"
+     },
+     {
+      "frames": 55,
+      "sha256": "9515d6d27e2e3b19de0e8293a33bc9d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

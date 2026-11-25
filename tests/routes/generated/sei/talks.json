@@ -1,0 +1,375 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-mni2-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni2-talk-2",
+    "description": "Talking to layout record 2 of SEI_MNI2 (scene 674) should run its event and hand control back",
+    "plan": "# sei-sei-mni2-talk-2: Talking to layout record 2 of SEI_MNI2 (scene 674) should run its event and hand control back\nlimit 20000\nenter 33442 0 16719359 0\ncheckpoint entered\ntalk 620 580 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 674 save 5dd45f26cbfa4991 state b3cfcd281ecea007 ram 0000000000000000",
+     "talked frame 1001 scene 674 save cb11723bb2247d2e state a0d96d1190731199 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 560): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1449a1b5f1bdc2b4b8a5b0f6e9e352f1"
+     },
+     {
+      "frames": 772,
+      "sha256": "edd9914e26276682107bb6e338056774"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mni3-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mni3-talk-2",
+    "description": "Talking to layout record 2 of SEI_MNI3 (scene 675) should run its event and hand control back",
+    "plan": "# sei-sei-mni3-talk-2: Talking to layout record 2 of SEI_MNI3 (scene 675) should run its event and hand control back\nlimit 20000\nenter 33443 0 16719359 2\ncheckpoint entered\ntalk 140 215 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 675 save 1e56b67be9baf1e2 state 2bba051035736e6c ram 0000000000000000",
+     "talked frame 922 scene 675 save 344dda4422d267b5 state 967d0a4b432b23cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 195): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e7109d80f153f1a52766885e58abd427"
+     },
+     {
+      "frames": 693,
+      "sha256": "3b614e30b0578704363b2bff6554039b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr0-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr0-talk-2",
+    "description": "Talking to layout record 2 of SEI_MNR0 (scene 676) should run its event and hand control back",
+    "plan": "# sei-sei-mnr0-talk-2: Talking to layout record 2 of SEI_MNR0 (scene 676) should run its event and hand control back\nlimit 20000\nenter 33444 0 16719359 0\ncheckpoint entered\ntalk 160 505 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 676 save a7795ba2c04a8023 state 2230f92eba15548a ram 0000000000000000",
+     "talked frame 1001 scene 676 save b363bc1188dc5bd0 state bb5091fd104ab8f1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 485): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ae7ad220455a282a0fd0d7b9c87767b"
+     },
+     {
+      "frames": 772,
+      "sha256": "7af50085f48c911a489a49967e17de87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-mnr1-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-mnr1-talk-2",
+    "description": "Talking to layout record 2 of SEI_MNR1 (scene 677) should run its event and hand control back",
+    "plan": "# sei-sei-mnr1-talk-2: Talking to layout record 2 of SEI_MNR1 (scene 677) should run its event and hand control back\nlimit 20000\nenter 33445 0 16719359 0\ncheckpoint entered\ntalk 180 730 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 677 save bc9f0d2786d8d5a6 state f8850c04ad5f3a08 ram 0000000000000000",
+     "talked frame 929 scene 677 save 2e4801695c0960c6 state 387c2b20740c6e75 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 710): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "291a1b4d9ccef0534a6cfe874c46fd36"
+     },
+     {
+      "frames": 700,
+      "sha256": "62d160c41f9a6be8a98f51599de20af9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc1-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc1-talk-2",
+    "description": "Talking to layout record 2 of SEI_SNC1 (scene 685) should run its event and hand control back",
+    "plan": "# sei-sei-snc1-talk-2: Talking to layout record 2 of SEI_SNC1 (scene 685) should run its event and hand control back\nlimit 20000\nenter 33453 0 16719359 2\ncheckpoint entered\ntalk 315 315 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 685 save 46d036e421a8c540 state f6e538103dcb55b1 ram 0000000000000000",
+     "talked frame 952 scene 685 save c6717d96ca881af1 state 5b2c51b45d338a0a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (315, 295): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "beb7b67a014311dfe51e4c7585004f9c"
+     },
+     {
+      "frames": 723,
+      "sha256": "5e05f59e5b7ff3129b59296372afa580"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc3-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc3-talk-2",
+    "description": "Talking to layout record 2 of SEI_SNC3 (scene 687) should run its event and hand control back",
+    "plan": "# sei-sei-snc3-talk-2: Talking to layout record 2 of SEI_SNC3 (scene 687) should run its event and hand control back\nlimit 20000\nenter 33455 0 16719359 1\ncheckpoint entered\ntalk 305 452 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 687 save 4cd4f14c00d00715 state a4d14733ce03521e ram 0000000000000000",
+     "talked frame 1026 scene 687 save 69087ac8b03324b2 state afcd3981a575358a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (305, 432): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6186164ef3c5e6ea05bc9a4a554738af"
+     },
+     {
+      "frames": 797,
+      "sha256": "be7e0706eb61bc53285979a317012ec2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc5-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc5-talk-2",
+    "description": "Talking to layout record 2 of SEI_SNC5 (scene 689) should run its event and hand control back",
+    "plan": "# sei-sei-snc5-talk-2: Talking to layout record 2 of SEI_SNC5 (scene 689) should run its event and hand control back\nlimit 20000\nenter 33457 0 16719359 2\ncheckpoint entered\ntalk 212 470 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 689 save a71136bb3f88849c state b3235b6c5354a388 ram 0000000000000000",
+     "talked frame 927 scene 689 save 1969f6a60f44f26f state 6c1e1e558786f973 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (212, 450): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d35114c7e5b73f875a59d7abc922450d"
+     },
+     {
+      "frames": 698,
+      "sha256": "becaf48256f670164414b97dd3792938"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc7-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc7-talk-2",
+    "description": "Talking to layout record 2 of SEI_SNC7 (scene 691) should run its event and hand control back",
+    "plan": "# sei-sei-snc7-talk-2: Talking to layout record 2 of SEI_SNC7 (scene 691) should run its event and hand control back\nlimit 20000\nenter 33459 0 16719359 2\ncheckpoint entered\ntalk 115 200 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 691 save f74d0e465c415532 state 024d612f2add7ce1 ram 0000000000000000",
+     "talked frame 945 scene 691 save 5e5e2c32d84a3347 state f0c2bb884d71ac75 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (115, 180): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 140,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa3ed9fbd8fbb2a395731fa9b66703fa"
+     },
+     {
+      "frames": 716,
+      "sha256": "77e15febb1e433fa01dae1e6dbce7683"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc8-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc8-talk-1",
+    "description": "Talking to layout record 1 of SEI_SNC8 (scene 692) should run its event and hand control back",
+    "plan": "# sei-sei-snc8-talk-1: Talking to layout record 1 of SEI_SNC8 (scene 692) should run its event and hand control back\nlimit 20000\nenter 33460 0 16719359 1\ncheckpoint entered\ntalk 210 470 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 692 save de0ee205b356d7b6 state 54e89d73bcb7b235 ram 0000000000000000",
+     "talked frame 792 scene 692 save 11762587014c34dc state 089deeb4bb239feb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 450): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4643af1c1bac415a5a3aa808a010068"
+     },
+     {
+      "frames": 563,
+      "sha256": "b278bb3ab17ce9b54e60834355de5476"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

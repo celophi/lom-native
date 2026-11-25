@@ -1,0 +1,2816 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wmap-place-10",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 10 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "10": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-10",
+    "description": "Putting artifact 10 on the world map should play land 10's effect and let the party enter it",
+    "plan": "# wmap-place-10: Putting artifact 10 on the world map should play land 10's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 10\nland 10 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save e8b5c2081905d110 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save e8b5c2081905d110 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 317 save 07a972d9695cc48d state 7f63e2e50cb73f64 ram 0000000000000000",
+     "done frame 139 scene 317 save fd196d37dec0a1ed state 65824ce07d390539 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 10 on the world map as land 10",
+     "game state 0 at vblank 2695",
+     "entered land 10 from the world map at scene 317",
+     "watched until the player got control, 135 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 281,
+     "instruction_end": 57,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 370,
+      "sha256": "9fe1af85790899a96a374c1a7633a541"
+     },
+     {
+      "frames": 153,
+      "sha256": "4db19033b692064241fb3998d4ef7d60"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-11",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 11 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "11": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-11",
+    "description": "Putting artifact 11 on the world map should play land 11's effect and let the party enter it",
+    "plan": "# wmap-place-11: Putting artifact 11 on the world map should play land 11's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 11\nland 11 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 2de33cb4e5b35c10 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 2de33cb4e5b35c10 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 176 save 4e77c294ac581cb1 state 1c6c1d07bb61e73a ram 0000000000000000",
+     "done frame 304 scene 176 save 74036791e0ccc9cd state 2f114814bb73a8fb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 11 on the world map as land 11",
+     "game state 0 at vblank 2463",
+     "entered land 11 from the world map at scene 176",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 62,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "50b8de3109ce10e90ae58b37b961de5e"
+     },
+     {
+      "frames": 228,
+      "sha256": "55c1bd98823789f3bdb7d570dc16773a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-12",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 12 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "12": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-12",
+    "description": "Putting artifact 12 on the world map should play land 12's effect and let the party enter it",
+    "plan": "# wmap-place-12: Putting artifact 12 on the world map should play land 12's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 12\nland 12 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save c9bf412c39bf4370 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save c9bf412c39bf4370 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 125 save cf228a3403b0b5d6 state 7dffa6c26d343c7a ram 0000000000000000",
+     "done frame 304 scene 125 save 5ae612aaa1a67596 state 9b36b643113037af ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 12 on the world map as land 12",
+     "game state 0 at vblank 2351",
+     "entered land 12 from the world map at scene 125",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 294,
+     "instruction_end": 75,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "f18116d9aaba1dbe7cb3ca9a5c1aaaab"
+     },
+     {
+      "frames": 228,
+      "sha256": "68b2a8315773e20f9d0acc4fc609c7d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-13",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 13 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "13": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-13",
+    "description": "Putting artifact 13 on the world map should play land 13's effect and let the party enter it",
+    "plan": "# wmap-place-13: Putting artifact 13 on the world map should play land 13's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 13\nland 13 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 301263bbed2b1870 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 301263bbed2b1870 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 83 save 6b6e144c984d5038 state ddb68c89c7bff9bc ram 0000000000000000",
+     "done frame 160 scene 83 save 9edf1db2a9ba13a7 state 5a676891b23c35b6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 13 on the world map as land 13",
+     "game state 0 at vblank 2263",
+     "entered land 13 from the world map at scene 83",
+     "watched until the player got control, 156 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 271,
+     "instruction_end": 54,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 391,
+      "sha256": "3ea7e1d9c277f29aa198ab71147fab4d"
+     },
+     {
+      "frames": 153,
+      "sha256": "9992fbca1279a3aba213356b77596d00"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-14",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 14 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "14": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-14",
+    "description": "Putting artifact 14 on the world map should play land 14's effect and let the party enter it",
+    "plan": "# wmap-place-14: Putting artifact 14 on the world map should play land 14's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 14\nland 14 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 6326129272b81ed0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 6326129272b81ed0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 106 save d0aef023e05caf47 state a37cfbdd03448578 ram 0000000000000000",
+     "done frame 35 scene 106 save 751987a2dba9d977 state 76d011570c52a767 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 14 on the world map as land 14",
+     "game state 0 at vblank 1807",
+     "entered land 14 from the world map at scene 106",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "e573c71bac2b2a902042659ea11eb1d7"
+     },
+     {
+      "frames": 153,
+      "sha256": "20abe8a1e971817706f6ddaa2e7c9975"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-15",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 15 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "15": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-15",
+    "description": "Putting artifact 15 on the world map should play land 15's effect and let the party enter it",
+    "plan": "# wmap-place-15: Putting artifact 15 on the world map should play land 15's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 15\nland 15 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 04ad1a420ff613d0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 04ad1a420ff613d0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 149 save adc44bc788495455 state c8ef86142fc222ca ram 0000000000000000",
+     "done frame 34 scene 149 save 8eee349a1b248695 state c3823f0e6af4593c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 15 on the world map as land 15",
+     "game state 0 at vblank 2327",
+     "entered land 15 from the world map at scene 149",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 265,
+      "sha256": "4efdf8ee1331a3eef25aa11f28c31b14"
+     },
+     {
+      "frames": 153,
+      "sha256": "9cebe2dd932822fe9fd3b46ae7264b87"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-16",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 16 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "16": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-16",
+    "description": "Putting artifact 16 on the world map should play land 16's effect and let the party enter it",
+    "plan": "# wmap-place-16: Putting artifact 16 on the world map should play land 16's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 16\nland 16 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save e5b41ee640ebf230 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save e5b41ee640ebf230 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 455 save 8f395bc14f896bdb state 7b373b0253d26c6b ram 0000000000000000",
+     "done frame 144 scene 455 save f0feeb92cdedacff state 5c56267a48f54289 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 16 on the world map as land 16",
+     "game state 0 at vblank 2711",
+     "entered land 16 from the world map at scene 455",
+     "watched until the player got control, 140 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 289,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 375,
+      "sha256": "dc4b05a96196075c5fc1ddb4fd58edc1"
+     },
+     {
+      "frames": 153,
+      "sha256": "24f2fa56422af8834ea0f935d94d3d1d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-17",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 17 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "17": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-17",
+    "description": "Putting artifact 17 on the world map should play land 17's effect and let the party enter it",
+    "plan": "# wmap-place-17: Putting artifact 17 on the world map should play land 17's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 17\nland 17 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save dd888c5634700730 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save dd888c5634700730 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 227 save c1441797b9b6aea4 state 586a4eec20a5ea08 ram 0000000000000000",
+     "done frame 37 scene 227 save 6cf217eff4423d38 state 09943704ff8d0fb4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 17 on the world map as land 17",
+     "game state 0 at vblank 2535",
+     "entered land 17 from the world map at scene 227",
+     "watched until the player got control, 33 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 282,
+     "instruction_end": 53,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 268,
+      "sha256": "ae4f52411b6da5aeecc741a245f09abb"
+     },
+     {
+      "frames": 153,
+      "sha256": "08ab6a336c767e480d74324940930de4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-18",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 18 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "18": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-18",
+    "description": "Putting artifact 18 on the world map should play land 18's effect and let the party enter it",
+    "plan": "# wmap-place-18: Putting artifact 18 on the world map should play land 18's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 18\nland 18 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 52915994ee25e990 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 52915994ee25e990 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 106 save e72a8206a702f59f state 5ea1e41102ec8cdc ram 0000000000000000",
+     "done frame 35 scene 106 save 39d0a3b3422d34bf state bfd433b1a39867eb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 18 on the world map as land 18",
+     "game state 0 at vblank 2575",
+     "entered land 18 from the world map at scene 106",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "0f77441d61a320f0b18f56e563326c19"
+     },
+     {
+      "frames": 153,
+      "sha256": "6bbf45605e14a98c6feecf7899fc4400"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-19",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 19 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "19": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-19",
+    "description": "Putting artifact 19 on the world map should play land 19's effect and let the party enter it",
+    "plan": "# wmap-place-19: Putting artifact 19 on the world map should play land 19's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 19\nland 19 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 373e175f40e41e90 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 373e175f40e41e90 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 432 save 4e5d84635ea95ed1 state 92adaa11fdad7508 ram 0000000000000000",
+     "done frame 304 scene 432 save 321ebed7a2af2676 state 51bfcf82c381acc8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 19 on the world map as land 19",
+     "game state 0 at vblank 2719",
+     "entered land 19 from the world map at scene 432",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 263,
+     "instruction_end": 53,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "9678698a82a9e4b7a2d44d48d59174db"
+     },
+     {
+      "frames": 228,
+      "sha256": "bd2e804534dfbe93147db11a3ef5dca4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 2 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "2": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-2",
+    "description": "Putting artifact 2 on the world map should play land 2's effect and let the party enter it",
+    "plan": "# wmap-place-2: Putting artifact 2 on the world map should play land 2's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 2\nland 2 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 9759ecc51f2a75c0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 9759ecc51f2a75c0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 273 save ccd980c5ea0846b8 state 24deca7fd8d3b63a ram 0000000000000000",
+     "done frame 35 scene 273 save ccd980c5ea0846b8 state a8bf4d4640121893 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 2 on the world map as land 2",
+     "game state 0 at vblank 2415",
+     "entered land 2 from the world map at scene 273",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 274,
+     "instruction_end": 44,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "22a2462ae7785de736a9e59eaf30b910"
+     },
+     {
+      "frames": 153,
+      "sha256": "56e06c9fcb8cba0dd8748f9c73f953d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-20",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 20 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "20": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-20",
+    "description": "Putting artifact 20 on the world map should play land 20's effect and let the party enter it",
+    "plan": "# wmap-place-20: Putting artifact 20 on the world map should play land 20's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 20\nland 20 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 280df752bd85cbf0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 280df752bd85cbf0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 106 save 31e1958a3c8f0b75 state 6863184ddafa4512 ram 0000000000000000",
+     "done frame 35 scene 106 save ec9836037575c515 state 38cc4d08f3ccf33d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 20 on the world map as land 20",
+     "game state 0 at vblank 1807",
+     "entered land 20 from the world map at scene 106",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "8f72b7fd4bd294e4afb79b5cc8a79bbf"
+     },
+     {
+      "frames": 153,
+      "sha256": "683926c05eb7ac1b25e4ac57ca51208e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-21",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 21 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "21": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-21",
+    "description": "Putting artifact 21 on the world map should play land 21's effect and let the party enter it",
+    "plan": "# wmap-place-21: Putting artifact 21 on the world map should play land 21's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 21\nland 21 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 5cdfb3e564f220f0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 5cdfb3e564f220f0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 372 save 6c7463f04e442b48 state 3286fefa0b25c527 ram 0000000000000000",
+     "done frame 304 scene 372 save b62e3fa80dabf9dc state 3c4800c7d2d30c76 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 21 on the world map as land 21",
+     "game state 0 at vblank 2695",
+     "entered land 21 from the world map at scene 372",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 281,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "3c89c05b51c936bd5dfbac4e43242136"
+     },
+     {
+      "frames": 228,
+      "sha256": "18f7195e6d207a86ecdb79f921accfa4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-22",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 22 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "22": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-22",
+    "description": "Putting artifact 22 on the world map should play land 16's effect and let the party enter it",
+    "plan": "# wmap-place-22: Putting artifact 22 on the world map should play land 16's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 22\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 95971c7259138f50 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 95971c7259138f50 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 36 save 793e198ed97b621d state 23b5c12d06d1e804 ram 0000000000000000",
+     "done frame 35 scene 36 save 793e198ed97b621d state 7ff86d5f34d5683d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2817",
+     "placed artifact 22 as land 16; its effect handed over to the field (scene 36)",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 37,
+     "song": 5,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "ff8007ba412f0ddfe7a380c610b652f5"
+     },
+     {
+      "frames": 153,
+      "sha256": "36613611cf5a9adf45d023f1d7dc7d80"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-23",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 23 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "23": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-23",
+    "description": "Putting artifact 23 on the world map should play land 23's effect and let the party enter it",
+    "plan": "# wmap-place-23: Putting artifact 23 on the world map should play land 23's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 23\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save c36235cb41f05a50 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save c36235cb41f05a50 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 36 save 13711c9d1d2a2675 state 23b5c12d06d1e804 ram 0000000000000000",
+     "done frame 35 scene 36 save 13711c9d1d2a2675 state 7ff86d5f34d5683d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2999",
+     "placed artifact 23 as land 23; its effect handed over to the field (scene 36)",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 37,
+     "song": 5,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "1e0a72239d6074924943db54e7d981e8"
+     },
+     {
+      "frames": 153,
+      "sha256": "b5c48ee57fbb4337e05b999879a0e713"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-24",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 24 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "24": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-24",
+    "description": "Putting artifact 24 on the world map should play land 24's effect and let the party enter it",
+    "plan": "# wmap-place-24: Putting artifact 24 on the world map should play land 24's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 24\nland 24 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 1e98c6aedf51c2b0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 1e98c6aedf51c2b0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 633 save 7574bbd4ac64aa33 state b0cfa8fe1e48f8aa ram 0000000000000000",
+     "done frame 111 scene 633 save 822a5b1cc151f34b state efdd2c9aff0e21bf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 24 on the world map as land 24",
+     "game state 0 at vblank 4259",
+     "entered land 24 from the world map at scene 633",
+     "watched until the player got control, 107 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 263,
+     "instruction_end": 60,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 342,
+      "sha256": "5a085fd9789614d088bcc061895adee1"
+     },
+     {
+      "frames": 153,
+      "sha256": "acb5aa2dd700c7674b2ea4c0b949ece7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-25",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 25 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "25": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-25",
+    "description": "Putting artifact 25 on the world map should play land 25's effect and let the party enter it",
+    "plan": "# wmap-place-25: Putting artifact 25 on the world map should play land 25's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 25\nland 25 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 3d4cd17b527657b0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 3d4cd17b527657b0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 750 save 3711e3c778bb025c state 8a24faa2f9d12d41 ram 0000000000000000",
+     "done frame 35 scene 750 save 17d1a515493f16c4 state 5de2414eac37eaac ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 25 on the world map as land 25",
+     "game state 0 at vblank 3055",
+     "entered land 25 from the world map at scene 750",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 245,
+     "instruction_end": 53,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "9d80319d02c71e56271ea6d3f10a876a"
+     },
+     {
+      "frames": 153,
+      "sha256": "6df68a0253fc41212e28c422cb327721"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-26",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 26 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "26": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-26",
+    "description": "Putting artifact 26 on the world map should play land 26's effect and let the party enter it",
+    "plan": "# wmap-place-26: Putting artifact 26 on the world map should play land 26's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 26\nland 26 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save de1c179a49af0e10 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save de1c179a49af0e10 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 245 save 74ea11f611be19ec state bdbc4bb9442e6a7e ram 0000000000000000",
+     "done frame 302 scene 245 save 02e93d632aae998a state 811c103deb529819 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 26 on the world map as land 26",
+     "game state 0 at vblank 2391",
+     "entered land 26 from the world map at scene 245",
+     "watched until the player got control, 298 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 284,
+     "instruction_end": 56,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "f20d5b7e7b216c6f3397c67d16bb4612"
+     },
+     {
+      "frames": 226,
+      "sha256": "4a15b4e53e22aab6351a9a8c3a89d5bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-27",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 27 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "27": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-27",
+    "description": "Putting artifact 27 on the world map should play land 27's effect and let the party enter it",
+    "plan": "# wmap-place-27: Putting artifact 27 on the world map should play land 27's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 27\ncheckpoint arrived\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ef4f18af9a4eb910 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save ef4f18af9a4eb910 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 383 scene 32767 save 9a083e6c966ff0c9 state 0000000000000000 ram 0000000000000000",
+     "done frame 383 scene 32767 save 9a083e6c966ff0c9 state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 27 on the world map as land 27"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "93c27a38465441bffb17cfba3d115abd"
+     },
+     {
+      "frames": 153,
+      "sha256": "2b87117c1457c7115edc980863f17ae6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-28",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 28 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "28": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-28",
+    "description": "Putting artifact 28 on the world map should play land 28's effect and let the party enter it",
+    "plan": "# wmap-place-28: Putting artifact 28 on the world map should play land 28's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 28\nland 28 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ee085d165e475670 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save ee085d165e475670 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 106 save 9f2ce70c314c559d state eec366b6ef93594a ram 0000000000000000",
+     "done frame 35 scene 106 save bf8a4beaf51ea27d state 649db235ec99b545 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 28 on the world map as land 28",
+     "game state 0 at vblank 1807",
+     "entered land 28 from the world map at scene 106",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "6142ed5bc61f4b159018b32476a2da19"
+     },
+     {
+      "frames": 153,
+      "sha256": "b4f47d106ea2a65cbd3e5960623b7eae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-29",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 29 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "29": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-29",
+    "description": "Putting artifact 29 on the world map should play land 29's effect and let the party enter it",
+    "plan": "# wmap-place-29: Putting artifact 29 on the world map should play land 29's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 29\nland 29 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 27baa3ed58f42b70 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 27baa3ed58f42b70 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 106 save cadaa00cd2b1abfc state c759c9bdf1d9f6c5 ram 0000000000000000",
+     "done frame 35 scene 106 save 544aff76707fe1b0 state aad68e697c7daa52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 29 on the world map as land 29",
+     "game state 0 at vblank 1807",
+     "entered land 29 from the world map at scene 106",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "358294184300f8a3962d95247657793f"
+     },
+     {
+      "frames": 153,
+      "sha256": "82f9f245116cb20bdab72e7eb4863117"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 3 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "3": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-3",
+    "description": "Putting artifact 3 on the world map should play land 3's effect and let the party enter it",
+    "plan": "# wmap-place-3: Putting artifact 3 on the world map should play land 3's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 3\nland 3 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 87e025b116c7aac0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 87e025b116c7aac0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 265 save f47a45b5bd4fc809 state 549d2eadd93e0984 ram 0000000000000000",
+     "done frame 35 scene 265 save f47a45b5bd4fc809 state cfce31537b5181b5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 3 on the world map as land 3",
+     "game state 0 at vblank 2423",
+     "entered land 3 from the world map at scene 265",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 290,
+     "instruction_end": 48,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "5579bb990da0f5d4c562763b56177d91"
+     },
+     {
+      "frames": 153,
+      "sha256": "a714f7a9fd0e480d620a77b977bf4e68"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-30",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 30 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "30": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-30",
+    "description": "Putting artifact 30 on the world map should play land 30's effect and let the party enter it",
+    "plan": "# wmap-place-30: Putting artifact 30 on the world map should play land 30's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 30\nland 30 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 781ea200450c51d0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 781ea200450c51d0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 404 save 6a802865a586fde0 state d9bd102bc4ca986d ram 0000000000000000",
+     "done frame 161 scene 404 save f981deeb39745830 state 66c4635e9a41cdfa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 30 on the world map as land 30",
+     "game state 0 at vblank 2319",
+     "entered land 30 from the world map at scene 404",
+     "watched until the player got control, 157 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 296,
+     "instruction_end": 57,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 392,
+      "sha256": "0424877fa92fca2d86de76d671d68050"
+     },
+     {
+      "frames": 153,
+      "sha256": "60a08a2e5b32cc64de4df7a9f8ccdb8f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-31",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 31 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "31": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-31",
+    "description": "Putting artifact 31 on the world map should play land 31's effect and let the party enter it",
+    "plan": "# wmap-place-31: Putting artifact 31 on the world map should play land 31's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 31\nland 31 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 5d9d12152b2b46d0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 5d9d12152b2b46d0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 671 save 1872ae18dd82ef9d state 53ff1ddd1ea01fd4 ram 0000000000000000",
+     "done frame 35 scene 671 save 657ac94d852184d5 state 3f63a10c17242809 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 31 on the world map as land 31",
+     "game state 0 at vblank 3407",
+     "entered land 31 from the world map at scene 671",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 44,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "0956ca9728bcf2b7fbfd624f31546a95"
+     },
+     {
+      "frames": 153,
+      "sha256": "6632c2bf97673aa031e4425ab90b0857"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-32",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 32 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "32": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-32",
+    "description": "Putting artifact 32 on the world map should play land 32's effect and let the party enter it",
+    "plan": "# wmap-place-32: Putting artifact 32 on the world map should play land 32's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 32\nland 32 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 052aab5667eb17e8 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 052aab5667eb17e8 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 776 save 8de676d2107191f8 state 384a68fc50725661 ram 0000000000000000",
+     "done frame 39 scene 776 save e6f364fdefd1175a state 1f370df1c2eb9d3d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 32 on the world map as land 32",
+     "game state 0 at vblank 2423",
+     "entered land 32 from the world map at scene 776",
+     "watched until the player got control, 35 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "song": 6,
+     "instruction": 232,
+     "instruction_end": 52,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 270,
+      "sha256": "dde9de8837220965151f2b11415550af"
+     },
+     {
+      "frames": 153,
+      "sha256": "24c8ac7c9176106aaa4753fba64040ba"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-33",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 33 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "33": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-33",
+    "description": "Putting artifact 33 on the world map should play land 33's effect and let the party enter it",
+    "plan": "# wmap-place-33: Putting artifact 33 on the world map should play land 33's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 33\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 09feb0b0743942e8 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 09feb0b0743942e8 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 36 save a83e76b9f198fcd9 state 23b5c12d06d1e804 ram 0000000000000000",
+     "done frame 35 scene 36 save a83e76b9f198fcd9 state 7ff86d5f34d5683d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2559",
+     "placed artifact 33 as land 33; its effect handed over to the field (scene 36)",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 37,
+     "song": 5,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "d8a2d489200cd4141422cb6858ffc90c"
+     },
+     {
+      "frames": 153,
+      "sha256": "1b23a929e7a91abf1e4425850720cf41"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 4 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "4": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-4",
+    "description": "Putting artifact 4 on the world map should play land 4's effect and let the party enter it",
+    "plan": "# wmap-place-4: Putting artifact 4 on the world map should play land 4's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 4\nland 4 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 50c0e262af53e8a8 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 50c0e262af53e8a8 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 53 save 8be5f306ae7ba96a state 97b852a46573ff6d ram 0000000000000000",
+     "done frame 35 scene 53 save 8be5f306ae7ba96a state e12035e2b25369fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 4 on the world map as land 4",
+     "game state 0 at vblank 2351",
+     "entered land 4 from the world map at scene 53",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 253,
+     "instruction_end": 43,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "f60783a3cee5817a936ca0a37ff2b890"
+     },
+     {
+      "frames": 153,
+      "sha256": "334f5235c5011e626f38e4bef479d5ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 5 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "5": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-5",
+    "description": "Putting artifact 5 on the world map should play land 5's effect and let the party enter it",
+    "plan": "# wmap-place-5: Putting artifact 5 on the world map should play land 5's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 5\nland 5 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save ceebba9fadff3da8 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save ceebba9fadff3da8 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 566 save 5eed50319da70e3a state bfe477d7596ef7c6 ram 0000000000000000",
+     "done frame 35 scene 566 save 504f3a59ae21a4c4 state 5dc8a7ecbe6aef6c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 5 on the world map as land 5",
+     "game state 0 at vblank 2527",
+     "entered land 5 from the world map at scene 566",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 275,
+     "instruction_end": 51,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "6c2719dedd4c421eb486ccf74d807dba"
+     },
+     {
+      "frames": 153,
+      "sha256": "c52aa52136d64c7bd5bdc3532e8cc369"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 6 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "6": {
+      "flags": 13,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-6",
+    "description": "Putting artifact 6 on the world map should play land 6's effect and let the party enter it",
+    "plan": "# wmap-place-6: Putting artifact 6 on the world map should play land 6's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 6\nland 6 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 63e0ad7286846850 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 63e0ad7286846850 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 566 save 06ad5c54f8c2be75 state 6a83e15ff0bd931f ram 0000000000000000",
+     "done frame 35 scene 566 save e019d2a06ac2ae5f state bbd958df4a9f7659 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 6 on the world map as land 6",
+     "game state 0 at vblank 1807",
+     "entered land 6 from the world map at scene 566",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 275,
+     "instruction_end": 51,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "44f1fe0d59cf6c93432f1f467d7af4b0"
+     },
+     {
+      "frames": 153,
+      "sha256": "476c1d8a539e3cc26b837402e84a4c4f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 7 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "7": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-7",
+    "description": "Putting artifact 7 on the world map should play land 7's effect and let the party enter it",
+    "plan": "# wmap-place-7: Putting artifact 7 on the world map should play land 7's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 7\nland 7 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save cdbac6059a31dd50 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save cdbac6059a31dd50 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 63 save ed731bc55b4f2749 state 97babdcb55a8a034 ram 0000000000000000",
+     "done frame 304 scene 63 save 7567b82123c47b69 state af27e127593769df ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 7 on the world map as land 7",
+     "game state 0 at vblank 2375",
+     "entered land 7 from the world map at scene 63",
+     "watched 300 frames, still no control"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 300,
+     "instruction_end": 76,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 460,
+      "sha256": "8b25e38a809f1380a87f945a2650ee45"
+     },
+     {
+      "frames": 228,
+      "sha256": "96cc6064c4b74896fd299642534739fd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 8 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "8": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-8",
+    "description": "Putting artifact 8 on the world map should play land 8's effect and let the party enter it",
+    "plan": "# wmap-place-8: Putting artifact 8 on the world map should play land 8's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 8\nland 8 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 3e4b5339993545b0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 3e4b5339993545b0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 339 save 5ac22dcca143710a state e006c69541a823ba ram 0000000000000000",
+     "done frame 35 scene 339 save ed5245e2df8cfa1f state 093a9bac07be7394 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 8 on the world map as land 8",
+     "game state 0 at vblank 2463",
+     "entered land 8 from the world map at scene 339",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 52,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 266,
+      "sha256": "1d4b42767a69fc0cfb24cc5cd8aed9b9"
+     },
+     {
+      "frames": 153,
+      "sha256": "03fe75c79cda29d05f3584f3683a4f6c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmap-place-9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, after the opening: home and HTW's land on the map, HTW's land the current one, artifact 9 in hand, no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-places)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "9": {
+      "flags": 9,
+      "order": 2
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmap-place-9",
+    "description": "Putting artifact 9 on the world map should play land 9's effect and let the party enter it",
+    "plan": "# wmap-place-9: Putting artifact 9 on the world map should play land 9's effect and let the party enter it\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nplace 9\nland 9 -1\ncheckpoint arrived\nwatch 300\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 30ab6bfbdc58dab0 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 30ab6bfbdc58dab0 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "arrived frame 2 scene 586 save 3e8a046adb74178d state 89473741413c9c8e ram 0000000000000000",
+     "done frame 182 scene 586 save f3569da0f04599aa state 51e290eeb20af1f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "placed artifact 9 on the world map as land 9",
+     "game state 0 at vblank 2463",
+     "entered land 9 from the world map at scene 586",
+     "watched until the player got control, 178 frames"
+    ],
+    "end": "steps 9 of 9 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 283,
+     "instruction_end": 78,
+     "song": 6,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 413,
+      "sha256": "cd669f6da5d9d92ebc844326a34110bc"
+     },
+     {
+      "frames": 153,
+      "sha256": "9dd6085534e167a66f6bfd198c8094a7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,759 @@
+#include "common/gpu_packet.h"
+#include "internal/gosub_internal.h"
+#include "main/display.h"
+#include "overlays/field/field_equipment_combination_rules.h"
+#include "overlays/field/field_text.h"
+#include "lom_native_graphics.h"
+#include "lom_native_gpu_packets.h"
+
+#define GOSUB_ELEMENT_FULL_STEP 8
+
+#define GOSUB_LIST_MARGIN_X 12
+
+#define GOSUB_LIST_HIGHLIGHT_X 1
+#define GOSUB_SELECTION_MARK_COLOR GPU_COLOR_WORD(0x80, 0x80, 0x80)
+
+#define GOSUB_COMPANION_TEXT_X FIELD_PORTRAIT_SIZE
+#define GOSUB_COMPANION_LINE_2 FIELD_TEXT_LINE_SPACING
+#define GOSUB_COMPANION_LINE_3 (FIELD_TEXT_LINE_SPACING * 2)
+#define GOSUB_COMPANION_LEVEL_X 84
+#define GOSUB_COMPANION_SPECIES_X 132
+#if defined(VERSION_JP)
+#define GOSUB_COMPANION_HP_X 84
+#define GOSUB_COMPANION_ATTACK_LABEL_X 120
+#define GOSUB_COMPANION_ATTACK_X 156
+#else
+#define GOSUB_COMPANION_HP_X 72
+#define GOSUB_COMPANION_ATTACK_LABEL_X 100
+#define GOSUB_COMPANION_ATTACK_X 176
+#endif
+
+#define GOSUB_BLOCK_NAME_X 76
+#define GOSUB_BLOCK_TEXT_Y 8
+#define GOSUB_BLOCK_IN_USE_X 272
+
+/**
+ * @brief Transition step of an element.
+ * @param element Element to read.
+ * @return Step from 0 to GOSUB_ELEMENT_FULL_STEP.
+ */
+static inline s32 gosub_element_step(GosubElement* element)
+{
+    return element->transition_step;
+}
+
+/**
+ * @brief Height of an element.
+ * @param element Element to read.
+ * @return Height in pixels.
+ */
+static inline s32 gosub_element_height(GosubElement* element)
+{
+    return element->height;
+}
+
+/**
+ * @brief Close every element that is in use.
+ * @note The state is cleared rather than set to GOSUB_ELEMENT_STATE_EXITING, so
+ *       the elements vanish at once; the transition step is left at 8, where an
+ *       exit animation would start.
+ * @see decomp.me (100%) https://decomp.me/scratch/RsBVl
+ */
+void gosub_close_elements(void)
+{
+    GosubElement* element;
+    s32 i;
+
+    element = g_gosub_elements;
+
+    for (i = 0; i < GOSUB_ELEMENT_COUNT; i++)
+    {
+        if (element->state != GOSUB_ELEMENT_STATE_INACTIVE)
+        {
+            element->state = GOSUB_ELEMENT_STATE_INACTIVE;
+            element->transition_step = 8;
+        }
+
+        element++;
+    }
+}
+
+/**
+ * @brief Render and animate all allocated gosub elements.
+ * @param render_context Field render context and packet cursor.
+ * @see decomp.me (100%) https://decomp.me/scratch/nVefu
+ */
+void gosub_render_elements(FieldRenderHalf* render_context)
+{
+    gosub_update_and_render_elements(render_context);
+}
+
+/**
+ * @brief Mark every gosub element slot inactive.
+ * @see decomp.me (100%) https://decomp.me/scratch/dib6Q
+ */
+void gosub_clear_elements(void)
+{
+    GosubElement* element;
+    s32 i;
+
+    element = g_gosub_elements;
+
+    for (i = 0; i < GOSUB_ELEMENT_COUNT; i++)
+    {
+        element->state = GOSUB_ELEMENT_STATE_INACTIVE;
+        element++;
+    }
+}
+
+/**
+ * @brief Allocate the first inactive element after reserved element 0.
+ * @return The element, now entering; element 0 when every other slot is in use.
+ * @see decomp.me (100%) https://decomp.me/scratch/X1pXK
+ */
+GosubElement* gosub_allocate_element(void)
+{
+    GosubElement* element;
+    s32 i;
+
+    element = &g_gosub_elements[1];
+
+    for (i = 1; i < GOSUB_ELEMENT_COUNT; i++)
+    {
+        if (element->state == GOSUB_ELEMENT_STATE_INACTIVE)
+        {
+            element->state = GOSUB_ELEMENT_STATE_ENTERING;
+            return element;
+        }
+
+        element++;
+    }
+
+    return &g_gosub_elements[0];
+}
+
+/**
+ * @brief Animate, draw, frame, and link every allocated gosub element.
+ * @param render_context Field render context and packet cursor.
+ * @see decomp.me (100%) https://decomp.me/scratch/t79hi
+ */
+void gosub_update_and_render_elements(FieldRenderHalf* render_context)
+{
+    GosubTilePacket* packet_cursor;
+    s32 animated_width;
+    s32 animated_height;
+    OT_TYPE* ordering_table;
+    GosubElement* element;
+    s32 element_index;
+    DRAWENV draw_env;
+    s32 element_width;
+    s32 entering_step;
+    s32 entering_full_height;
+    s32 exiting_step;
+    s32 exiting_full_height;
+
+    packet_cursor = (GosubTilePacket*)render_context->primitive_cursor;
+    ordering_table = render_context->ordering_table;
+
+    if (render_context->display_rect.y != 0)
+    {
+        lom_graphics_default_drawing(&draw_env, 0, 0xF0, 0x140, 0xE0);
+    }
+    else
+    {
+        lom_graphics_default_drawing(&draw_env, 0, 8, 0x140, 0xE0);
+    }
+
+    element = g_gosub_elements;
+    element_index = 0;
+
+    for (; element_index < GOSUB_ELEMENT_COUNT; element_index++)
+    {
+        if (element->state != GOSUB_ELEMENT_STATE_INACTIVE)
+        {
+            if (element->draw_handler == gosub_draw_item_list)
+            {
+                if ((g_gosub_scroll_y + element->height) < g_gosub_row_count * g_gosub_row_height)
+                {
+                    packet_cursor = gosub_emit_scroll_marker((GosubScrollMarkerPacket*)packet_cursor, ordering_table, (element->x + element->width) - 16,
+                                                             element->y + element->height, 0);
+                }
+
+                if (g_gosub_scroll_y != 0)
+                {
+                    packet_cursor =
+                        gosub_emit_scroll_marker((GosubScrollMarkerPacket*)packet_cursor, ordering_table, element->x + element->width - 16, element->y, 1);
+                }
+
+                lom_gpu_init_drawing_packet((DR_ENV*)packet_cursor, &draw_env);
+                lom_gpu_link(ordering_table, packet_cursor);
+                packet_cursor = (GosubTilePacket*)((DR_ENV*)packet_cursor + 1);
+
+                if (g_gosub_row_count != 0)
+                {
+                    packet_cursor->color = 0xFFFF00;
+                    lom_gpu_init_tile(packet_cursor);
+                    packet_cursor->w = 6;
+                    packet_cursor->h = (element->height * (element->height / g_gosub_row_height)) / g_gosub_row_count;
+
+                    if (packet_cursor->h >= element->height - 2)
+                    {
+                        packet_cursor->h = element->height;
+                    }
+
+                    packet_cursor->x = 1;
+                    packet_cursor->y = (element->height * (g_gosub_scroll_y / g_gosub_row_height)) / g_gosub_row_count;
+                    lom_gpu_link(ordering_table, packet_cursor);
+                    packet_cursor++;
+                }
+
+                packet_cursor = gosub_emit_panel(packet_cursor, ordering_table, element->x + element->width + 3, element->y, 10, element->height,
+                                                 render_context->display_rect.y);
+            }
+
+            lom_gpu_init_drawing_packet((DR_ENV*)packet_cursor, &draw_env);
+            lom_gpu_link(ordering_table, packet_cursor);
+
+            packet_cursor = (GosubTilePacket*)((DR_ENV*)packet_cursor + 1);
+
+            switch (element->state)
+            {
+            case GOSUB_ELEMENT_STATE_ENTERING:
+                element_width = element->width;
+                entering_step = gosub_element_step(element);
+                animated_width = element_width * entering_step / GOSUB_ELEMENT_FULL_STEP;
+                entering_full_height = gosub_element_height(element);
+                animated_height = entering_full_height * entering_step / GOSUB_ELEMENT_FULL_STEP;
+                packet_cursor = (GosubTilePacket*)((GosubElementDrawHandler)element->draw_handler)(
+                    ordering_table, (u8*)packet_cursor, (element_width - animated_width) / 2, (entering_full_height - animated_height) / 2);
+                packet_cursor =
+                    gosub_emit_panel(packet_cursor, ordering_table, element->x + (element->width - animated_width) / 2,
+                                     element->y + (element->height - animated_height) / 2, animated_width, animated_height, render_context->display_rect.y);
+
+                element->transition_step++;
+
+                if (element->transition_step == GOSUB_ELEMENT_FULL_STEP)
+                {
+                    element->state = GOSUB_ELEMENT_STATE_ACTIVE;
+                }
+
+                break;
+
+            case GOSUB_ELEMENT_STATE_ACTIVE:
+                packet_cursor = (GosubTilePacket*)((GosubElementDrawHandler)element->draw_handler)(ordering_table, (u8*)packet_cursor, 0, 0);
+                packet_cursor =
+                    gosub_emit_panel(packet_cursor, ordering_table, element->x, element->y, element->width, element->height, render_context->display_rect.y);
+                break;
+
+            case GOSUB_ELEMENT_STATE_EXITING:
+                element_width = element->width;
+                exiting_step = gosub_element_step(element);
+                animated_width = element_width * exiting_step / GOSUB_ELEMENT_FULL_STEP;
+                exiting_full_height = gosub_element_height(element);
+                animated_height = exiting_full_height * exiting_step / GOSUB_ELEMENT_FULL_STEP;
+                packet_cursor = (GosubTilePacket*)((GosubElementDrawHandler)element->draw_handler)(
+                    ordering_table, (u8*)packet_cursor, (element_width - animated_width) / 2, (exiting_full_height - animated_height) / 2);
+                packet_cursor =
+                    gosub_emit_panel(packet_cursor, ordering_table, element->x + (element->width - animated_width) / 2,
+                                     element->y + (element->height - animated_height) / 2, animated_width, animated_height, render_context->display_rect.y);
+
+                element->transition_step--;
+
+                if (element->transition_step == 0)
+                {
+                    element->state = GOSUB_ELEMENT_STATE_INACTIVE;
+                }
+
+                g_gosub_dialog_accepting_input = 0;
+                break;
+            }
+        }
+
+        element++;
+    }
+
+    render_context->primitive_cursor = (u8*)packet_cursor;
+}
+
+/**
+ * @brief Emit an animated scroll arrow and its fill packet.
+ * @param prim Destination packet buffer.
+ * @param ot   Ordering-table tag for both packets.
+ * @param x    Center X coordinate.
+ * @param y    Center Y coordinate.
+ * @param flag Selects the up vs down vertex arrangement.
+ * @return Pointer to the next free packet slot.
+ */
+void* gosub_emit_scroll_marker(GosubScrollMarkerPacket* prim, OT_TYPE* ot, s32 x, s32 y, s32 flag)
+{
+    s32 pulse_value;
+    s32 working_y;
+    u32 i;
+    u32 addr_mask;
+    u8* source_bytes;
+    GosubScrollFillPacket* fill_packet;
+
+    lom_gpu_set_length(prim, 6);
+    lom_gpu_set_code(prim, 0x4C);
+    prim->mask = 0x55555555;
+
+    if (g_frame_counter & 0x10)
+    {
+        pulse_value = g_frame_counter & 0xF;
+    }
+    else
+    {
+        pulse_value = (~g_frame_counter) & 0xF;
+    }
+
+    working_y = pulse_value * 4;
+    pulse_value = working_y + 0x70;
+    prim->b = pulse_value;
+    prim->g = pulse_value;
+    prim->r = pulse_value;
+
+    if (flag != 0)
+    {
+        pulse_value = y - 8;
+        prim->y3 = pulse_value;
+        prim->y0 = pulse_value;
+        pulse_value = x - 6;
+        working_y = y + 4;
+        prim->x1 = pulse_value;
+        prim->x3 = x;
+        prim->x0 = x;
+        prim->y1 = working_y;
+        prim->x2 = x + 6;
+        prim->y2 = working_y;
+    }
+    else
+    {
+        pulse_value = y + 8;
+        prim->y3 = pulse_value;
+        prim->y0 = pulse_value;
+        pulse_value = x - 6;
+        working_y = y - 4;
+        prim->x1 = pulse_value;
+        prim->x3 = x;
+        prim->x0 = x;
+        prim->y1 = working_y;
+        prim->x2 = x + 6;
+        prim->y2 = working_y;
+    }
+
+    addr_mask = 0xFFFFFF;
+    source_bytes = (u8*)prim;
+    fill_packet = (GosubScrollFillPacket*)(prim + 1);
+    prim = (GosubScrollMarkerPacket*)fill_packet;
+#if defined(LOM_NATIVE_POINTERS)
+    lom_gpu_link(ot, source_bytes);
+    i = 0;
+#else
+    lom_gpu_set_next(source_bytes, lom_gpu_next(ot) & addr_mask);
+    i = 0;
+    lom_gpu_set_next(ot, (uintptr_t)source_bytes & addr_mask);
+#endif
+
+    while (i < sizeof(GosubScrollFillPacket))
+    {
+        i++;
+        *(u8*)prim = *source_bytes;
+        source_bytes++;
+        prim = (GosubScrollMarkerPacket*)((u8*)prim + 1);
+    }
+
+    lom_gpu_set_length(fill_packet, 4);
+    SET_BGR0_PACKED(fill_packet, 0);
+    lom_gpu_set_code(fill_packet, 0x20);
+    lom_gpu_link(ot, fill_packet);
+    return fill_packet + 1;
+}
+
+/**
+ * @brief Emit a clipped, framed gosub panel.
+ * @param prim Destination packet buffer.
+ * @param ot   Ordering-table tag for the panel packets.
+ * @param x    Panel left edge.
+ * @param y    Panel top edge.
+ * @param w    Panel width.
+ * @param h    Panel height.
+ * @param flag Non-zero selects the lower frame-buffer half.
+ * @return Pointer to the next free packet slot.
+ */
+GosubTilePacket* gosub_emit_panel(GosubTilePacket* prim, OT_TYPE* ot, s32 x, s32 y, s32 w, s32 h, s32 flag)
+{
+    DR_ENV* draw_env_packet;
+    GosubLinePacket* outline;
+    DR_TPAGE* draw_mode_packet;
+    DRAWENV draw_env;
+
+    draw_env_packet = (DR_ENV*)prim;
+
+    if (flag != 0)
+    {
+        lom_graphics_default_drawing(&draw_env, x + 2, y + 0xF2, w - 4, h - 4);
+    }
+    else
+    {
+        lom_graphics_default_drawing(&draw_env, x + 2, y + 0xA, w - 4, h - 4);
+    }
+
+    lom_gpu_init_drawing_packet(draw_env_packet, &draw_env);
+    lom_gpu_link(ot, draw_env_packet);
+    draw_env_packet++;
+
+    outline = (GosubLinePacket*)gosub_emit_panel_corners((SPRT*)draw_env_packet, ot, x, y, w, h);
+    outline = gosub_emit_panel_outline(outline, ot, x, y, w, h, GPU_COLOR_WHITE);
+    outline = gosub_emit_panel_outline(outline, ot, x + 1, y + 1, w - 2, h - 2, GPU_COLOR_BLACK);
+    prim = (GosubTilePacket*)gosub_emit_panel_outline(outline, ot, x - 1, y - 1, w + 2, h + 2, GPU_COLOR_BLACK);
+
+    prim->color = 0xC0C0C0;
+    lom_gpu_init_tile(prim);
+    lom_gpu_set_semi_trans(prim, 1);
+    prim->x = x;
+    prim->y = y;
+    prim->w = w;
+    prim->h = h;
+    lom_gpu_link(ot, prim);
+
+    draw_mode_packet = (DR_TPAGE*)(prim + 1);
+    lom_gpu_init_tpage_packet(draw_mode_packet, 0, 0, 0x45);
+    lom_gpu_link(ot, draw_mode_packet);
+    prim = (GosubTilePacket*)(draw_mode_packet + 1);
+    return prim;
+}
+
+/**
+ * @brief Emit a rectangle outline as four flat lines linked into @p ot.
+ * @param line  Destination packet buffer.
+ * @param ot    Ordering-table tag all four lines are linked into.
+ * @param x     Rectangle left edge.
+ * @param y     Rectangle top edge.
+ * @param w     Rectangle width.
+ * @param h     Rectangle height.
+ * @param color Packed 0x00BBGGRR color written to every line.
+ * @return Pointer to the next free packet slot.
+ */
+GosubLinePacket* gosub_emit_panel_outline(GosubLinePacket* line, OT_TYPE* ot, s32 x, s32 y, s32 w, s32 h, s32 color)
+{
+    SET_BGR0_PACKED(line, color);
+    lom_gpu_init_line_f2(line);
+    lom_gpu_set_xy0(line, x + 4, y);
+    line->x1 = (x + w) - 4;
+    line->y1 = y;
+    lom_gpu_link(ot, line);
+    line++;
+
+    SET_BGR0_PACKED(line, color);
+    lom_gpu_init_line_f2(line);
+    lom_gpu_set_xy0(line, x + w, y + 4);
+    line->x1 = x + w;
+    line->y1 = (y + h) - 4;
+    lom_gpu_link(ot, line);
+    line++;
+
+    SET_BGR0_PACKED(line, color);
+    lom_gpu_init_line_f2(line);
+    lom_gpu_set_xy0(line, (x + w) - 4, y + h);
+    line->x1 = x + 4;
+    line->y1 = y + h;
+    lom_gpu_link(ot, line);
+    line++;
+
+    SET_BGR0_PACKED(line, color);
+    lom_gpu_init_line_f2(line);
+    lom_gpu_set_xy0(line, x, y + 4);
+    line->x1 = x;
+    line->y1 = (y + h) - 4;
+    lom_gpu_link(ot, line);
+    return line + 1;
+}
+
+/**
+ * @brief Screen y of a plain list row's text.
+ * @param row Row index into g_gosub_rows.
+ * @param y_off Vertical element animation offset.
+ * @return Text y; the row's highlight bar starts FIELD_TEXT_ROW_INSET above it.
+ */
+static inline s32 gosub_list_row_y(s32 row, s32 y_off)
+{
+    s32 row_offset;
+
+    row_offset = row * g_gosub_row_height;
+    y_off -= FIELD_TEXT_ROW_INSET;
+    return row_offset - y_off - g_gosub_scroll_y;
+}
+
+/**
+ * @brief Draw the visible rows of the list, then the cursor and selection highlights.
+ *
+ * GOSUB_ROW_COMPANION rows show a portrait and three lines of pet or golem
+ * details, GOSUB_ROW_LOGIC_BLOCK rows the block's icon and name, and plain
+ * rows a name with an optional count. The cursor row gets a translucent pink
+ * bar and every selected row a translucent gray one.
+ *
+ * @param ot Ordering table to receive the packets.
+ * @param initial_prim First free GPU packet.
+ * @param x_off Horizontal element animation offset.
+ * @param y_off Vertical element animation offset.
+ * @return Packet cursor after the last highlight.
+ */
+u8* gosub_draw_item_list(OT_TYPE* ot, u8* initial_prim, s32 x_off, s32 y_off)
+{
+    void* prim;
+    s32 drawn_count;
+    Vec2s pos;
+    s32 row;
+    s32 y;
+    TILE* cursor_tile;
+    TILE* mark;
+
+    prim = initial_prim;
+    drawn_count = 0;
+
+    for (row = 0; row < g_gosub_row_count; row++)
+    {
+        if (g_gosub_rows[row].value == GOSUB_ROW_COMPANION)
+        {
+            y = row * GOSUB_COMPANION_ROW_HEIGHT - y_off - g_gosub_scroll_y;
+
+            if (y <= -GOSUB_COMPANION_ROW_HEIGHT || y >= g_gosub_window_height)
+            {
+                continue;
+            }
+
+            prim = gosub_draw_portrait(prim, ot, row, -x_off, y, drawn_count);
+            prim = field_draw_text(prim, ot, g_gosub_rows[row].name, g_gosub_rows[row].text_color, GOSUB_COMPANION_TEXT_X - x_off, y, FIELD_TEXT_ALIGN_LEFT);
+
+            if (g_gosub_rows[row].flags.companion.pet)
+            {
+                if ((g_gosub_rows[row].flags.half & GOSUB_COMPANION_EGG) == 0)
+                {
+                    prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_LEVEL), g_gosub_rows[row].text_color, GOSUB_COMPANION_TEXT_X - x_off,
+                                           y + GOSUB_COMPANION_LINE_2, FIELD_TEXT_ALIGN_LEFT);
+                    pos.x = GOSUB_COMPANION_LEVEL_X - x_off;
+                    pos.y = y + GOSUB_COMPANION_LINE_2;
+                    prim = field_draw_number(ot, prim, g_gosub_rows[row].detail_variant, g_gosub_rows[row].text_color, &pos, FIELD_TEXT_ALIGN_LEFT);
+                    prim = field_draw_text(prim, ot, GOSUB_TEXT(GOSUB_TEXT_PET_SPECIES, g_gosub_rows[row].detail_id), g_gosub_rows[row].text_color,
+                                           GOSUB_COMPANION_SPECIES_X - x_off, y + GOSUB_COMPANION_LINE_2, FIELD_TEXT_ALIGN_LEFT);
+                }
+                else
+                {
+                    prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_HATCH_ANY_TIME + g_gosub_rows[row].detail_variant), g_gosub_rows[row].text_color,
+                                           GOSUB_COMPANION_TEXT_X - x_off, y + GOSUB_COMPANION_LINE_2, FIELD_TEXT_ALIGN_LEFT);
+                }
+            }
+            else
+            {
+                prim = field_draw_text(prim, ot, GOSUB_TEXT(GOSUB_TEXT_GOLEM_TYPES, g_gosub_rows[row].detail_id), g_gosub_rows[row].text_color,
+                                       GOSUB_COMPANION_TEXT_X - x_off, y + GOSUB_COMPANION_LINE_2, FIELD_TEXT_ALIGN_LEFT);
+            }
+
+            prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_HP), g_gosub_rows[row].text_color, GOSUB_COMPANION_TEXT_X - x_off,
+                                   y + GOSUB_COMPANION_LINE_3, FIELD_TEXT_ALIGN_LEFT);
+            pos.x = GOSUB_COMPANION_HP_X - x_off;
+            pos.y = y + GOSUB_COMPANION_LINE_3;
+            prim = field_draw_number(ot, prim, g_gosub_rows[row].secondary_value, g_gosub_rows[row].text_color, &pos, FIELD_TEXT_ALIGN_LEFT);
+            prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_ATTACK_POWER), g_gosub_rows[row].text_color, GOSUB_COMPANION_ATTACK_LABEL_X - x_off,
+                                   y + GOSUB_COMPANION_LINE_3, FIELD_TEXT_ALIGN_LEFT);
+            pos.x = GOSUB_COMPANION_ATTACK_X - x_off;
+            pos.y = y + GOSUB_COMPANION_LINE_3;
+            prim = field_draw_number(ot, prim, g_gosub_rows[row].primary_value, g_gosub_rows[row].text_color, &pos, FIELD_TEXT_ALIGN_LEFT);
+
+            if (g_gosub_rows[row].detail_group != 0)
+            {
+                prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_ON_FIELD), g_gosub_rows[row].text_color,
+                                       g_gosub_window_width - GOSUB_LIST_MARGIN_X - x_off, y + GOSUB_COMPANION_LINE_3, FIELD_TEXT_ALIGN_RIGHT);
+            }
+            else if (g_gosub_rows[row].flags.half & GOSUB_COMPANION_EGG)
+            {
+                prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_MONSTER_EGG), g_gosub_rows[row].text_color,
+                                       g_gosub_window_width - GOSUB_LIST_MARGIN_X - x_off, y + GOSUB_COMPANION_LINE_3, FIELD_TEXT_ALIGN_RIGHT);
+            }
+            else if (g_gosub_rows[row].flags.companion.grazing)
+            {
+                prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_GRAZING), g_gosub_rows[row].text_color,
+                                       g_gosub_window_width - GOSUB_LIST_MARGIN_X - x_off, y + GOSUB_COMPANION_LINE_3, FIELD_TEXT_ALIGN_RIGHT);
+            }
+
+            drawn_count++;
+            continue;
+        }
+
+        if (g_gosub_rows[row].value == GOSUB_ROW_LOGIC_BLOCK)
+        {
+            y = row * GOSUB_BLOCK_ROW_HEIGHT - y_off - g_gosub_scroll_y;
+
+            if (y <= -GOSUB_BLOCK_ROW_HEIGHT || y >= g_gosub_window_height)
+            {
+                continue;
+            }
+
+            prim = gosub_draw_composite_icon(prim, ot, GOSUB_LIST_MARGIN_X - x_off, y, g_gosub_rows[row].detail_group, g_gosub_rows[row].detail_variant);
+            prim = field_draw_text(prim, ot, g_gosub_rows[row].name, g_gosub_rows[row].text_color, GOSUB_BLOCK_NAME_X - x_off, y + GOSUB_BLOCK_TEXT_Y,
+                                   FIELD_TEXT_ALIGN_LEFT);
+
+            if (g_gosub_rows[row].flags.block.in_use)
+            {
+                prim = field_draw_text(prim, ot, GOSUB_MESSAGE(GOSUB_MSG_IN_USE), g_gosub_rows[row].text_color, GOSUB_BLOCK_IN_USE_X - x_off,
+                                       y + GOSUB_BLOCK_TEXT_Y, FIELD_TEXT_ALIGN_RIGHT);
+            }
+
+            continue;
+        }
+
+        y = gosub_list_row_y(row, y_off);
+
+        if (y <= -g_gosub_row_height || y >= g_gosub_window_height)
+        {
+            continue;
+        }
+
+        prim = field_draw_text(prim, ot, g_gosub_rows[row].name, g_gosub_rows[row].text_color, GOSUB_LIST_MARGIN_X - x_off, y, FIELD_TEXT_ALIGN_LEFT);
+        pos.y = y;
+        pos.x = g_gosub_window_width - GOSUB_LIST_MARGIN_X - x_off;
+
+        if (g_gosub_rows[row].value >= 0)
+        {
+            prim = field_draw_number(ot, prim, g_gosub_rows[row].value, g_gosub_rows[row].text_color, &pos, FIELD_TEXT_ALIGN_RIGHT);
+        }
+    }
+
+    cursor_tile = prim;
+    y = gosub_list_row_y(g_gosub_cursor_row, y_off);
+    SET_BGR0_PACKED(cursor_tile, GPU_COLOR_SELECTED_ROW);
+    lom_gpu_init_tile(cursor_tile);
+    lom_gpu_set_semi_trans(cursor_tile, 1);
+    lom_gpu_set_xy0(cursor_tile, GOSUB_LIST_HIGHLIGHT_X, y - FIELD_TEXT_ROW_INSET);
+    lom_gpu_set_wh(cursor_tile, g_gosub_window_width, g_gosub_row_height - 1);
+    lom_gpu_link(ot, cursor_tile);
+
+    for (row = 0, mark = cursor_tile + 1; row < g_gosub_selection_count; row++, mark++)
+    {
+        mark->x0 = (y | 1) & 1;
+
+        SET_BGR0_PACKED(mark, GOSUB_SELECTION_MARK_COLOR);
+        lom_gpu_set_length(mark, 3);
+        lom_gpu_set_code(mark, GPU_CODE_TILE | GPU_CODE_SEMI_TRANS);
+        y = gosub_list_row_y(g_gosub_selected_rows[row], y_off);
+        mark->y0 = y - FIELD_TEXT_ROW_INSET;
+        lom_gpu_set_wh(mark, g_gosub_window_width, g_gosub_row_height - 1);
+        lom_gpu_link(ot, mark);
+    }
+
+    return (u8*)mark;
+}
+
+/**
+ * @brief Upload a row's portrait strip and CLUT, then emit its 48x48 sprite.
+ *
+ * The portrait index comes from the row's detail id (offset by 0x41 for the
+ * alternate record format); the pixel and CLUT rectangles are double-buffered by
+ * g_gosub_frame_parity. Draws nothing once five portraits are on screen.
+ *
+ * @param prim  Packet cursor.
+ * @param ot    Ordering-table tag to link into.
+ * @param row   g_gosub_rows index to portray.
+ * @param x     Sprite left edge.
+ * @param y     Sprite top edge.
+ * @param count How many portraits were already emitted this frame.
+ * @return Packet cursor past the sprite (gosub_finish_glyph_run's return), or prim
+ *         when count is 5 or more.
+ */
+u8* gosub_draw_portrait(u8* prim, OT_TYPE* ot, s32 row, s32 x, s32 y, s32 count)
+{
+    SPRT* sprite;
+    RECT rect;
+    s32 portrait;
+
+    if (count >= GOSUB_PORTRAIT_SLOTS)
+    {
+        return prim;
+    }
+
+    if (g_gosub_rows[row].flags.companion.pet)
+    {
+        portrait = g_gosub_rows[row].detail_id;
+    }
+    else
+    {
+        portrait = g_gosub_rows[row].detail_id + GOSUB_GOLEM_PORTRAIT_FIRST;
+    }
+
+    rect.x = count * GOSUB_PORTRAIT_VRAM_WIDTH + GOSUB_PORTRAIT_VRAM_X;
+    rect.w = GOSUB_PORTRAIT_VRAM_WIDTH;
+    rect.h = FIELD_PORTRAIT_SIZE;
+    rect.y = g_gosub_frame_parity * FIELD_PORTRAIT_SIZE;
+    lom_graphics_upload(&rect, (u_long*)((u8*)g_gosub_portrait_archive + g_gosub_portrait_archive[portrait] + GOSUB_PORTRAIT_PIXEL_OFFSET));
+
+    rect.y = VRAM_CLUT_Y;
+    rect.w = GPU_CLUT_4BIT_COLORS;
+    rect.h = 1;
+    rect.x = count * GPU_CLUT_4BIT_COLORS + g_gosub_frame_parity * (GOSUB_PORTRAIT_SLOTS * GPU_CLUT_4BIT_COLORS);
+    lom_graphics_upload(&rect, (u_long*)((u8*)g_gosub_portrait_archive + g_gosub_portrait_archive[portrait] + GOSUB_PORTRAIT_CLUT_OFFSET));
+
+    sprite = (SPRT*)prim;
+    SET_BGR0_PACKED(sprite, GPU_TINT_NEUTRAL);
+    lom_gpu_init_sprite(sprite);
+    sprite->u0 = count * FIELD_PORTRAIT_SIZE;
+    sprite->x0 = x;
+    sprite->v0 = g_gosub_frame_parity * FIELD_PORTRAIT_SIZE;
+    sprite->y0 = y;
+    lom_gpu_set_wh(sprite, FIELD_PORTRAIT_SIZE, FIELD_PORTRAIT_SIZE);
+    lom_gpu_set_clut(sprite, count * GPU_CLUT_4BIT_COLORS + g_gosub_frame_parity * (GOSUB_PORTRAIT_SLOTS * GPU_CLUT_4BIT_COLORS), VRAM_CLUT_Y);
+    lom_gpu_link(ot, sprite);
+    return gosub_finish_glyph_run((u8*)(sprite + 1), ot);
+}
+
+/**
+ * @brief Draw the logic block that the selected component and the cursor row would make.
+ *
+ * golem_find_logic_block_recipe fills g_gosub_block_id, g_gosub_block_level and
+ * g_gosub_block_shape; nothing is drawn when the pair makes no block.
+ *
+ * @param ot Ordering table to receive the packets.
+ * @param initial_prim First free GPU packet.
+ * @param x_off Horizontal element animation offset.
+ * @param y_off Vertical element animation offset.
+ * @return Packet cursor after the preview.
+ */
+u8* gosub_draw_block_preview(OT_TYPE* ot, u8* initial_prim, s32 x_off, s32 y_off)
+{
+    s32 unused[2];
+    u8 result_name[0x50];
+    u8 number_text[0x50];
+    s32 pair[3];
+    u8* name_cursor;
+    u8* prim;
+
+    g_gosub_block_id = 0;
+    prim = initial_prim;
+
+    if (g_gosub_selection_count != 0)
+    {
+        if (g_gosub_cursor_row != g_gosub_selected_rows[0])
+        {
+            pair[0] = g_gosub_rows[g_gosub_selected_rows[0]].index;
+            pair[1] = g_gosub_rows[g_gosub_cursor_row].index;
+            g_gosub_block_id = golem_find_logic_block_recipe(pair, &g_gosub_block_level, &g_gosub_block_shape);
+        }
+    }
+
+    if (g_gosub_block_id != 0)
+    {
+        prim = gosub_draw_composite_icon(prim, ot, GOSUB_LIST_MARGIN_X - x_off, -y_off, g_gosub_block_id, g_gosub_block_shape);
+        name_cursor = result_name;
+        encoded_text_copy(name_cursor, GOSUB_TEXT(GOSUB_TEXT_LOGIC_BLOCK_NAMES, g_gosub_block_id));
+
+        if (g_gosub_block_level != 0)
+        {
+            encoded_text_append(name_cursor, FIELD_UI_TEXT_AT(g_field_ui_text_plus, FIELD_UI_TEXT_PLUS));
+            field_format_number(number_text, g_gosub_block_level, 1);
+            encoded_text_append(name_cursor, number_text);
+        }
+
+        prim = field_draw_text((SPRT*)prim, ot, name_cursor, 4, GOSUB_BLOCK_NAME_X - x_off, 0xA - y_off, FIELD_TEXT_ALIGN_LEFT);
+    }
+
+    return prim;
+}

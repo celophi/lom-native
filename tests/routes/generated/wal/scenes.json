@@ -1,0 +1,88 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wal-wal-b071-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-b071-entry",
+    "description": "Entering WAL_B071 (scene 708) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# wal-wal-b071-entry: Entering WAL_B071 (scene 708) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33476 1 16720895 2\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 708 save 51d740bffe74b76a state 8a96e53ea03fb45a ram 0000000000000000",
+     "watched frame 262 scene 708 save ae7bdd27ad99d160 state 84d6ff1bd3215b1b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "82b4137cb306771b0e32373909d1a697"
+     },
+     {
+      "frames": 33,
+      "sha256": "1cb0679a0d9ee7a448c343d1c3117f65"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wal-wal-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wal-wal-bs01-entry",
+    "description": "Entering WAL_BS01 (scene 631) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# wal-wal-bs01-entry: Entering WAL_BS01 (scene 631) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33399 0 16723222 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 631 save f5449b426ee36284 state ab4c35237eea597f ram 0000000000000000",
+     "watched frame 262 scene 631 save 3bcc1bdb401b36d8 state bd543db1606ad353 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 129,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dd24182aca4c2c7d3591c3ca43785213"
+     },
+     {
+      "frames": 33,
+      "sha256": "9f8ecfa2ed6054f329d0c2527a67fcfb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

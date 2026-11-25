@@ -1,0 +1,12 @@
+{
+  "id": "quick-results",
+  "name": "Quick results",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 1,
+  "switches": {
+    "skip_battle_results": true
+  }
+}

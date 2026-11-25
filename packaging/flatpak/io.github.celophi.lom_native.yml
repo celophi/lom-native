@@ -1,0 +1,80 @@
+id: io.github.celophi.lom_native
+runtime: org.kde.Platform
+runtime-version: '6.11'
+sdk: org.kde.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.llvm22
+command: lom-launcher
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --device=all
+  - --filesystem=xdg-data/Steam:ro
+  - --filesystem=~/.steam:ro
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/.local/share/Steam:ro
+
+build-options:
+  append-path: /usr/lib/sdk/llvm22/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
+  env:
+    CC: clang
+    CXX: clang++
+    LOM_LIBCLANG: /usr/lib/sdk/llvm22/lib/libclang.so
+
+cleanup:
+  - /build-tools
+
+modules:
+  - name: python-clang
+    buildsystem: simple
+    build-commands:
+      - pip3 install --no-index --no-deps --prefix=/app/build-tools clang-21.1.7-py3-none-any.whl
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/50/a4/608c542925949b300a295baa422b568f835044c5e3ad20820676b840228a/clang-21.1.7-py3-none-any.whl
+        sha256: 23ee8f7b62af648009aee5139516b2a2a9320680dbce6e42a53e48bd5e8983ea
+
+  - name: parse-headers
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/build-tools/parse-include/gnu
+      - touch /app/build-tools/parse-include/gnu/stubs-32.h
+
+  - name: ffmpeg
+    buildsystem: simple
+    build-commands:
+      - sh lom-build-ffmpeg.sh --source . /app/build-tools/ffmpeg
+    sources:
+      - type: archive
+        url: https://ffmpeg.org/releases/ffmpeg-9.0.2.tar.xz
+        sha256: 8c3850283eb25fa026482078a04051e0be17347b09ef81a0849bec15a96e002e
+      - type: file
+        path: ../ffmpeg/build.sh
+        dest-filename: lom-build-ffmpeg.sh
+
+  - name: lom-native
+    buildsystem: cmake
+    builddir: true
+    build-options:
+      env:
+        PYTHONPATH: /app/build-tools/lib/python3.13/site-packages
+        PYTHONDONTWRITEBYTECODE: '1'
+        LOM_PARSE_INCLUDES: /usr/include/x86_64-linux-gnu:/app/build-tools/parse-include
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DLOM_BUILD_TESTS=OFF
+      - -DCMAKE_C_COMPILER=clang
+      - -DCMAKE_CXX_COMPILER=clang++
+      - -DPython3_EXECUTABLE=/usr/bin/python3
+      - -DLOM_BUNDLED_FFMPEG=/app/build-tools/ffmpeg
+      - -DLOM_APP_VERSION=@VERSION@
+      - -DLOM_UPDATE_REPOSITORY=
+    sources:
+      - type: dir
+        path: ../..
+        skip:
+          - build
+          - .venv

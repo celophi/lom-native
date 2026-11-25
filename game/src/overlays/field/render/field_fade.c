@@ -1,0 +1,180 @@
+#include "common.h"
+#include "../internal/field_calls.h"
+#include "main/display.h"
+#include "main/field_runtime.h"
+#include "common/gpu_packet.h"
+#include <libgte.h>
+#include <libgpu.h>
+#include "lom_native_widescreen.h"
+#include "lom_native_gpu_packets.h"
+
+#define FIELD_FADE_CD_ERROR_RED 0xD0
+
+/**
+ * @brief Reset the current and target field fade colors.
+ */
+void field_reset_fade_state(void)
+{
+    g_field_fade_current.red = 0;
+    g_field_fade_current.green = 0;
+    g_field_fade_current.blue = 0;
+    g_field_fade_target.red = 0;
+    g_field_fade_target.green = 0;
+    g_field_fade_target.blue = 0;
+    g_field_fade_target.steps_remaining = 0;
+}
+
+/**
+ * @brief Advance the screen fade one step and emit its blend tile + draw mode.
+ * @param render_half Render half whose ordering-table entry FIELD_FADE_OT_INDEX receives the packets.
+ */
+void field_update_and_render_fade(FieldRenderHalf* render_half)
+{
+    ScreenFadePrimitive* primitive = (ScreenFadePrimitive*)render_half->primitive_cursor;
+    OT_TYPE* ordering_table_tag = &render_half->ordering_table[FIELD_FADE_OT_INDEX];
+    s32 dr;
+    s32 dg;
+    s32 db;
+    s32 draw_mode;
+
+    if (g_field_fade_target.steps_remaining != 0)
+    {
+        dr = (g_field_fade_target.red - g_field_fade_current.red) / g_field_fade_target.steps_remaining;
+        dg = (g_field_fade_target.green - g_field_fade_current.green) / g_field_fade_target.steps_remaining;
+        db = (g_field_fade_target.blue - g_field_fade_current.blue) / g_field_fade_target.steps_remaining;
+        g_field_fade_target.steps_remaining--;
+        g_field_fade_current.red += dr;
+        g_field_fade_current.green += dg;
+        g_field_fade_current.blue += db;
+    }
+    else
+    {
+        g_field_fade_current.red = g_field_fade_target.red;
+        g_field_fade_current.green = g_field_fade_target.green;
+        g_field_fade_current.blue = g_field_fade_target.blue;
+    }
+
+    if ((g_field_fade_current.red != FADE_NEUTRAL) || (g_field_fade_current.green != g_field_fade_current.red) ||
+        (g_field_fade_current.blue != g_field_fade_current.green))
+    {
+        if (g_field_fade_current.red >= FADE_ADDITIVE_THRESHOLD)
+        {
+            lom_gpu_set_rgb0(&primitive->tile, g_field_fade_current.red - FADE_ADDITIVE_BIAS, g_field_fade_current.green - FADE_ADDITIVE_BIAS,
+                             g_field_fade_current.blue - FADE_ADDITIVE_BIAS);
+        }
+        else
+        {
+            if (g_field_fade_current.red == FADE_NEUTRAL)
+            {
+                primitive->tile.r0 = 0;
+            }
+            else
+            {
+                primitive->tile.r0 = ~g_field_fade_current.red;
+            }
+
+            if (g_field_fade_current.green == FADE_NEUTRAL)
+            {
+                primitive->tile.g0 = 0;
+            }
+            else
+            {
+                primitive->tile.g0 = ~g_field_fade_current.green;
+            }
+
+            if (g_field_fade_current.blue == FADE_NEUTRAL)
+            {
+                primitive->tile.b0 = 0;
+            }
+            else
+            {
+                primitive->tile.b0 = ~g_field_fade_current.blue;
+            }
+        }
+
+        lom_gpu_init_tile(&primitive->tile);
+        lom_gpu_set_semi_trans(&primitive->tile, 1);
+        primitive->tile.w = SCREEN_WIDTH + 2 * lom_native_widescreen_margin();
+        draw_mode = BLEND_ADD_TPAGE;
+        SET_YX0(&primitive->tile, 0, -lom_native_widescreen_margin());
+        primitive->tile.h = SCREEN_HEIGHT;
+        lom_gpu_link(ordering_table_tag, &primitive->tile);
+
+        primitive = SCREEN_FADE_NEXT_PRIMITIVE(primitive, TILE);
+
+        if (g_field_fade_current.red < FADE_ADDITIVE_THRESHOLD)
+        {
+            draw_mode = BLEND_SUBTRACT_TPAGE;
+        }
+
+        lom_gpu_init_tpage_packet(&primitive->draw_mode, 0, 0, draw_mode);
+        lom_gpu_link(ordering_table_tag, &primitive->draw_mode);
+
+        primitive = SCREEN_FADE_NEXT_PRIMITIVE(primitive, DR_TPAGE);
+    }
+
+    render_half->primitive_cursor = (u8*)primitive;
+}
+
+/**
+ * @brief Set both the target and saved restore color for the field fade.
+ * @param red Target red intensity.
+ * @param green Target green intensity.
+ * @param blue Target blue intensity.
+ * @param duration Transition duration in frames.
+ */
+void field_set_fade_target(s16 red, s16 green, s16 blue, s16 duration)
+{
+    FIELD_SET_FADE_TARGET(red, green, blue, duration);
+}
+
+/**
+ * @brief Set the field fade target used by the CD error overlay.
+ */
+void field_set_cd_error_fade_target(void)
+{
+    FIELD_SET_FADE_TARGET_ONLY(FIELD_FADE_CD_ERROR_RED, FADE_NEUTRAL, FADE_NEUTRAL, FIELD_FADE_DEFAULT_FRAMES);
+}
+
+/**
+ * @brief Set the field fade target without changing its saved restore color.
+ * @param red Target red intensity.
+ * @param green Target green intensity.
+ * @param blue Target blue intensity.
+ * @param duration Transition duration in frames.
+ */
+void field_set_fade_target_only(s16 red, s16 green, s16 blue, s16 duration)
+{
+    FIELD_SET_FADE_TARGET_ONLY(red, green, blue, duration);
+}
+
+/**
+ * @brief Restore the saved field fade color over FIELD_FADE_DEFAULT_FRAMES frames.
+ */
+void field_restore_fade_target(void)
+{
+    g_field_fade_target.steps_remaining = FIELD_FADE_DEFAULT_FRAMES;
+    g_field_fade_target.red = g_field_fade_restore_color.red;
+    g_field_fade_target.green = g_field_fade_restore_color.green;
+    g_field_fade_target.blue = g_field_fade_restore_color.blue;
+}
+
+/**
+ * @brief Restore the saved field fade color over the requested duration.
+ * @param duration Transition duration in frames.
+ */
+void field_restore_fade_target_with_duration(s16 duration)
+{
+    g_field_fade_target.steps_remaining = duration;
+    g_field_fade_target.red = g_field_fade_restore_color.red;
+    g_field_fade_target.green = g_field_fade_restore_color.green;
+    g_field_fade_target.blue = g_field_fade_restore_color.blue;
+}
+
+/**
+ * @brief Set the default modal-overlay fade target.
+ */
+void field_set_default_fade_target(void)
+{
+    FIELD_SET_FADE_TARGET_ONLY(FIELD_FADE_MODAL_LEVEL, FIELD_FADE_MODAL_LEVEL, FIELD_FADE_MODAL_LEVEL, FIELD_FADE_DEFAULT_FRAMES);
+}

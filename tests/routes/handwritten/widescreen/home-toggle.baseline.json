@@ -1,0 +1,130 @@
+{
+ "route": "widescreen-home-toggle",
+ "description": "Turning widescreen on and off mid-room should take effect on the next frame, in a room without a fixed sky and in the front yard, which has one",
+ "plan": "# widescreen-home-toggle: Turning widescreen on and off mid-room should take effect on the next frame, in a room without a fixed sky and in the front yard, which has one\nlimit 20000\nexit 0 18\nwait 120\ncheckpoint main-room-before\nwidescreen 1\nwait 2\ncheckpoint main-room-on\nwidescreen 0\nwait 2\ncheckpoint main-room-off\nexit 0 16\nwait 120\ncheckpoint outside-before\nwidescreen 1\nwait 2\ncheckpoint outside-on\nwidescreen 0\nwait 2\ncheckpoint outside-off\n",
+ "format": 3,
+ "checkpoints": [
+  "main-room-before frame 511 scene 18 save 370456050d382086 state 9503e42eda88b1e4 ram 0000000000000000",
+  "main-room-on frame 516 scene 18 save 370456050d382086 state f0988e19bba10344 ram 0000000000000000",
+  "main-room-off frame 521 scene 18 save 370456050d382086 state 8a5632be384d351f ram 0000000000000000",
+  "outside-before frame 811 scene 16 save baf1559a8bba82b9 state db9a08472d4c79bf ram 0000000000000000",
+  "outside-on frame 816 scene 16 save baf1559a8bba82b9 state c6a44d0c8fbc0558 ram 0000000000000000",
+  "outside-off frame 821 scene 16 save baf1559a8bba82b9 state b185afab1fb783b4 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "main-room-before",
+   "changes": [
+    "frame 511, scene 18 (MHM_RM00)",
+    "spawn 0 to 2",
+    "sound bank id 65535 to 3",
+    "scene id 19 to 18",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "actor 0 (the hero): at (219, 272), facing 96, animation 1,0, presence 0, control 0, command 0",
+    "actor 3 (layout record 0): at (1000, 1000), facing 0, animation 0,0, presence 0, control 2, command 168",
+    "actor 4 (layout record 1): at (1000, 1000), facing 0, animation 34,3, presence 0, control 2, command 168",
+    "actor 5 (layout record 2): at (42, 206), facing 0, animation 128,0, presence 0, control 2, command 141"
+   ]
+  },
+  {
+   "checkpoint": "main-room-on",
+   "changes": [
+    "frame 516, scene 18 (MHM_RM00)",
+    "scene word 47: 000001fe to 00000203",
+    "actor 3 (layout record 0): command 168 to 0"
+   ]
+  },
+  {
+   "checkpoint": "main-room-off",
+   "changes": [
+    "frame 521, scene 18 (MHM_RM00)",
+    "scene word 47: 00000203 to 00000208",
+    "actor 3 (layout record 0): command 0 to 168"
+   ]
+  },
+  {
+   "checkpoint": "outside-before",
+   "changes": [
+    "frame 811, scene 16 (MHM_OS00)",
+    "sound bank id 3 to 65535",
+    "scene id 18 to 16",
+    "land 1 flags 4 to 12",
+    "scene word 17: 00db0110 to 0121013e",
+    "scene word 21: 00005b00 to 00008000",
+    "scene word 22: 00001000 to 00003e00",
+    "scene word 47: 00000208 to 00000329",
+    "scene word 66: 80710000 to 802b0000",
+    "scene word 67: 00008069 to 0000803d",
+    "actor 0 (the hero): moved (219, 272) to (289, 318); direction 96 to 32; animation 1,0 to 129,0",
+    "actor 3 (layout record 0): moved (1000, 1000) to (443, 143); direction 0 to 128; animation 0,0 to 7,5; command 168 to 136",
+    "actor 4 (layout record 1): gone",
+    "actor 5 (layout record 2): gone"
+   ]
+  },
+  {
+   "checkpoint": "outside-on",
+   "changes": [
+    "frame 816, scene 16 (MHM_OS00)",
+    "scene word 47: 00000329 to 0000032e",
+    "actor 3 (layout record 0): moved (443, 143) to (439, 143); animation 7,5 to 7,0; command 136 to 129"
+   ]
+  },
+  {
+   "checkpoint": "outside-off",
+   "changes": [
+    "frame 821, scene 16 (MHM_OS00)",
+    "scene word 47: 0000032e to 00000333",
+    "actor 3 (layout record 0): animation 7,0 to 2,0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (240, 188): 16 waypoints",
+  "walk to (335, 43): 3 waypoints"
+ ],
+ "end": "steps 18 of 18 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 308,
+  "instruction_end": 63,
+  "song": 2,
+  "scene": 3,
+  "exit": 2
+ },
+ "pictures": "607efce6 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 1d8d5658 3e125b3d a5dae1e6 fd6adf77 ce308985 1674c87d d11a58c9 177c3758 8f18fd6b 2cc2614f 01db8e26 208b433a f4130397 4cc8108f 17f4b3ab d3449095 ce48f27e 8047d29e 83e19c6a 0ee25292 480c3b02 6fa7eccc 0bf83333 a75ba008 3596c0ab a76b95d0 f43a5679 186005d6 cad560a3 6228551c ee517aa4 ea848bef 404e02e2 48f71bcd b0079555 18483853 3a1d90b5 ace10a2b 51bbb838 4c07718e 239dd953 0610a65e 247d0e78 92848f49 e3355a48 8faea039 2bba21c0 8b62590a fec14bd0 125a67f8 829e6bb4 911fc348 a060a587 93bb5c67 56cb3851 fa218c7b c430b53c 9fd76a55 473ea5dc f0ab2c08 9c9b826b db3543f8 a7fd3a94 d2c761e2 a63aeae0 c0c2e7d3 eced1d7d aee9e365 abf7d2a0 01725070 8c581c43 112ab86d 8ba05329 73fae404 091a68c9 0bf54aed e58702b5 fc1bb35a de7f8ccb 1feb6d58 7c281cb1 45eaab1a e0b45b31 6aa8b8d7 048ac429 6b075829 5eda3803 1c1a4932 b7c8fb8b a7845057 ecab07aa 9a5826c3 a7cd6fbd 65069bd3 58100a4e 355dd251 a778c257 8da8500c b971c534 07900815 e051b81b 9a2e4205 0a163d2e 51ec4b83 c587162f 4fa7c79e eb30420c bffd06c8 68ef48f6 e58c2af1 c51457d2 ad8e061e b1ac82c0 d14c5158 1489ed91 f4ed75f2 a224495b 146c4835 16252ac8 95203ceb 9e3f8793 62bdb554 27e70fc3 7ab0c68e 5492ee9b fde6d762 a233cef7 cb65cf1b 74889fb6 837081df 069bf7dd f191ab89 5787f649 a745cb74 7a7b4aa9 7eb88a5c ac05b2f5 2ad08825 f1f36b8f 1595b3ec c50aa532 66bb2c9a 728ad174 24f82fe5 eec4b57d cda13bd4 f805d350 8e2a3532 750cfaed cd53253c fc0944b6 c0cc5edd c360d338 17e046fe 52e57314 f0502e7d ee8f70f9 e4fff983 74cdf0b1 b2607c4a 770bf118 628324fd e913d090 fb4a0c48 77750b6a 4832e198 007f761d b3479857 c7c3a69b f6be7adb 7d4f266e 0563b9ed c0a80e3e a2fd17f4 12462ce7 69fa3b30 910c3e23 48448848 14650fb0 ff89358c 68ad139b f475fe8f b8099789 d2947dc7 3f2f578a aba3098d 87c26ad5 96a6bede a546170c b85b39a7 17d0b664 eb8c8531 32d34848 c9eb0cb3 ff4e1b20 b97a76ca d33afe98 759a0b19 ae508105 50795e8e afb493bf 67d89f78 f67ed410 5a8956d8 32d34848 c9eb0cb3 43a59788 576f25c8 d33afe98 759a0b19 fef1d4da ca256722 afb493bf 67d89f78 17d0b664 eb8c8531 32d34848 c9eb0cb3 ff4e1b20 b97a76ca 77b24300 c95dae45 e131eaf8 81f310b2 18e0c185 7586ec5c ef297b40 f3d299b2 f0e342a4 88e8395f a40e1209 5238aa0b 77b24300 c95dae45 f15a3279 472577c9 18e0c185 7586ec5c 6971a78d 3c980c06 f0e342a4 88e8395f 4f65e50b 5cf15ff3 77b24300 c95dae45 e131eaf8 81f310b2 18e0c185 7586ec5c ef297b40 f3d299b2 f0e342a4 88e8395f a40e1209 576f25c8 d33afe98 759a0b19 fef1d4da ca256722 afb493bf 67d89f78 17d0b664 eb8c8531 32d34848 c9eb0cb3 ff4e1b20 b97a76ca d33afe98 759a0b19 ae508105 50795e8e afb493bf 67d89f78 f67ed410 5a8956d8 32d34848 c9eb0cb3 43a59788 576f25c8 d33afe98 759a0b19 fef1d4da ca256722 afb493bf 7586ec5c 6971a78d 3c980c06 f0e342a4 88e8395f 4f65e50b 5cf15ff3 77b24300 c95dae45 e131eaf8 81f310b2 18e0c185 7586ec5c ef297b40 f3d299b2 f0e342a4 88e8395f a40e1209 acb49e4a ffdca54a bf275a38 06a53268 d5f4c431 18e0c185 7586ec5c 6971a78d 3c980c06 f0e342a4 88e8395f 4f65e50b 5cf15ff3 77b24300 c95dae45 e131eaf8 81f310b2 18e0c185 7586ec5c ef297b40 f3d299b2 f0e342a4 88e8395f a40e1209 5238aa0b 77b24300 c95dae45 fef1d4da ca256722 afb493bf 67d89f78 17d0b664 eb8c8531 32d34848 c9eb0cb3 ff4e1b20 b97a76ca d33afe98 759a0b19 ae508105 50795e8e afb493bf c5a7de7c f9d07f94 c9acff49 baa95cb6 9ae245fa 191dd5a9 cb1fb3aa 3a5b2a5d 5ee4b1dd 0d2eaab8 66a761e3 f2bbebaa 3a0182ed 2540c05c ecf7ef78 5b0d0bde b886221f df41af38 5361604a 948b6a34 0508a1d2 08be1c98 5ada0329 ab6c3a65 7533f323 cc16c606 b98af9eb ff404300 2473f3d6 943440a4 1076a573 c58b0711 8f5dc6a0 3eb8cd27 9c92c67e 8b871679 8a5b4286 e9111994 32f92dda 976b14cb b508f47f 9cdb7055 723b44d1 573321d9 3b382a32 3c96cba2 56b66c6a 1bff32a8 453fde5c dbe46c22 db09bcfd acbc6e17 2fe12a49 964a22c4 1b1266df 72a443fe b1e30318 8ac7ccd4 4674f704 c6bb7e82 76263c49 30b72688 9001a3db fe59e6c8 fc329bb7 8f3b6e11 df16c6f0 d46b8386 697ed640 4fcbc598 39876f8a f56a3291 d0af731e d72a62f0 92471b6d f8335bf5 89c425dc 20d80de3 4bc060bb e8711a01 fb265f73 9e5297ae 1b0e4696 d951a08c 7d6185b1 37e5f44b c5313dd5 2a43815a 43557077 29200434 8d95a765 72d6cddb 6156e608 ffa20f6e 9bde0c6d 7cab597f d29cb522 80419780 9ec09b67 1af634ff 964cf37d e62a37d7 3e2e63bf b334dfa6 4bff9f27 ebac6456 1dc339ee f5dfd7ad 80b87d8c 8ed9f7c2 acf8ca8b 6af614fa f4c19cdb 26a2ccef 1a9fe2e9 bf4e828b 224a91c9 fa790c17 47196d43 2a902c2b 28d6e1ff bed62dff f6eb49c2 22a14c1b d47c5172 ca2b42de 68cf41d4 a54edbcd 1f49b395 301dc50c fc347eb7 25eaaabf 7fe4fdfe 14650fb0 d203cac5 69413592 88f961ba 4e0936dd 0feaac3d acd7bc6c 0d5cc423 db8c464c 67424367 5c279359 6050083a 7b1b4062 731e4573 c4f6ec18 dea5c038 da547712 0704f558 0cff9cf6 d8666f65 06f8a10e 7c744fee 5dd9dce6 b3381671 53ef79ef 9e6a9f80 ce02117c 6fc9222d a18f8f24 2823a537 a18d7e1e 2eec9d09 8e707fcc 2a515ca4 c1806538 aa0b851e 56b66c39 a5d03a5e 4241f862 bdedc76b c518f732 e64a0049 364fea3d 130141ea 4d806d8e 77c56409 975ad304 5fcb5502 8a6bd322 ecf7a0be 7bea7ea7 6c84f687 7310f60e 981bb757 28effbe5 38b70b12 de16b8f3 13858aec 6c24cf63 00f91303 e3afbe68 cf9601c4 bf950b01 10b27f28 896e68ab bc1918fb 9cb5d220 ab638c91 a3aa6d2d 4fe41e4b a046cc47 15531e9b 2f10e772 aea24f46 401b52a8 d85631ab d1089589 bec0a581 e090f8af 607d8ed8 c3ad1458 15bd0565 86bc10e9 67702f73 828f648b a4a09cd6 2d952ee0 b1f9031d 87b7c5e9 d3f10450 bbfee90f ab767aeb 6ba44866 e97d3e8a e86fc264 ebf1cedf af8ccb83 cd841cd5 42d83fbc 38c2ca05 bc75ca95 cf40fd14 467f3b9c cc5e8bd8 a27038e4 a6c243c9 41f5d409 74935c25 abe2982d d20a6b62 cb11eaff 1d025115 e3fbb748 4bbf4925 272b73c6 493ffda4 1e192b19 53c369b0 048151a7 b37d7d6e fcee8700 ec2933f7 d9690194 b7b7699b 09928a3b 6259f121 0f1f1b6d e585965d 28eaf1a8 b2ff4bae 926a9def 310388af cb9b1429 b695bf57",
+ "stretches": [
+  {
+   "frames": 512,
+   "sha256": "0f7620f61fee75cdf6b066d3e873c8f0"
+  },
+  {
+   "frames": 5,
+   "sha256": "7d6d6154089a300bc058735f70f54e6d"
+  },
+  {
+   "frames": 5,
+   "sha256": "e7777b2595a73aaf0f043571310af45b"
+  },
+  {
+   "frames": 290,
+   "sha256": "cba05f006c3ffb66f318bc9c0a662b89"
+  },
+  {
+   "frames": 5,
+   "sha256": "92c977f19f420677e1d583778ac88cf8"
+  },
+  {
+   "frames": 5,
+   "sha256": "37d0201a16ef6bc05e134d1d75c8dbf0"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wd1-wd1-bs11-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "wd1-wd1-bs11-entry",
+    "description": "Entering WD1_BS11 (scene 136) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# wd1-wd1-bs11-entry: Entering WD1_BS11 (scene 136) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 32904 0 16720414 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 136 save 893d0ac98148fcd4 state 68add6c586ed5780 ram 0000000000000000",
+     "watched frame 285 scene 136 save 1ff9056d2c6fa120 state 96ccab74aae64c52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 54 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 112,
+     "instruction": 258,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "03eb54bb4761e856202c724549e4a006"
+     },
+     {
+      "frames": 56,
+      "sha256": "28b9a95c9f121cb2531172cac06f8909"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

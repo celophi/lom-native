@@ -1,0 +1,60 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-e070-story-43d",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with the story state LAK_E070's story 0x43d needs",
+    "source": "built from the conditions on the path to the write in scene 324 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x1124": 4
+    }
+   },
+   "baseline": {
+    "route": "lak-lak-e070-story-43d",
+    "description": "In LAK_E070 (scene 324), talking to layout record 1 should write story variable 0x43d",
+    "plan": "# lak-lak-e070-story-43d: In LAK_E070 (scene 324), talking to layout record 1 should write story variable 0x43d\nlimit 20000\nenter 15 0 16711935 0\nguest 9\nenter 324 0 16718847 0\ncheckpoint entered\ntalk 300 320 0 1 0 1 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 139 scene 324 save 747fd4cd49375ab2 state 450441b053a42f7f ram 0000000000000000",
+     "done frame 1151 scene 324 save 1674c7b6780dc0f4 state a9d6d104cc9ea6ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 9 joined",
+     "walk to (425, 285): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 326,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 140,
+      "sha256": "99fa2038fd945270341d8d2224bd1e4f"
+     },
+     {
+      "frames": 1012,
+      "sha256": "3f9fbacc5c35df4c3dae1be2e20ca059"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

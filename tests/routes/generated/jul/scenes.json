@@ -1,0 +1,333 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jul-jul-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs01-entry",
+    "description": "Entering JUL_BS01 (scene 791) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs01-entry: Entering JUL_BS01 (scene 791) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33559 0 16720394 3\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 791 save c750c1480c100f3d state 4bebfbf457a15a2d ram 0000000000000000",
+     "watched frame 458 scene 791 save 5686c74446506ead state e382c82e3ad5b34b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 227 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a1bcb6d2ee4121e50d31337a9a24863d"
+     },
+     {
+      "frames": 229,
+      "sha256": "99aa7631a2b037cc01d50b87f4e2383e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs11-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs11-entry",
+    "description": "Entering JUL_BS11 (scene 792) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs11-entry: Entering JUL_BS11 (scene 792) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33560 0 16720394 3\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 792 save 78a8f8cbfabc4746 state 4bebfbf457a15a2d ram 0000000000000000",
+     "watched frame 458 scene 792 save 94f9468dab81268a state 74ed4379462fd23a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 227 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d65b18f216cfd15e0be9f3da5050c996"
+     },
+     {
+      "frames": 229,
+      "sha256": "458c4238fc077b93c583e2f39b220b65"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs21-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs21-entry",
+    "description": "Entering JUL_BS21 (scene 793) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs21-entry: Entering JUL_BS21 (scene 793) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33561 0 16720394 3\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 793 save 124ae5e697b9795f state 4bebfbf457a15a2d ram 0000000000000000",
+     "watched frame 458 scene 793 save 3d2def9b9a9ea58f state c3b4831c9acb9da9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 227 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 103,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7d19bdb3f1fee2ca7909b3db8692b9c4"
+     },
+     {
+      "frames": 229,
+      "sha256": "2467860190f39f4b5c313cda7142550b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs31-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs31-entry",
+    "description": "Entering JUL_BS31 (scene 794) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs31-entry: Entering JUL_BS31 (scene 794) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33562 0 16720416 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 794 save 2a30fc9f1ae54491 state 47fb493e5ea3f673 ram 0000000000000000",
+     "watched frame 262 scene 794 save 59345827c1675d3b state 4efb26a30f8abaae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 108,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c00156f0f651d0f7af2f7b54be47f95e"
+     },
+     {
+      "frames": 33,
+      "sha256": "eec87a85dc14b1d04d127f50299058cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs32-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs32-entry",
+    "description": "Entering JUL_BS32 (scene 795) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs32-entry: Entering JUL_BS32 (scene 795) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 795 0 16721663 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 795 save 3565c6a5d4478c8e state 5625226008e1ec3d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 4073",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9112bc889dfe590e3a8fbb2f8fc9499c"
+     },
+     {
+      "frames": 1644,
+      "sha256": "6d389214bcbcefddf50afa46682a9022"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs41-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs41-direct",
+    "description": "Entering JUL_BS41 (scene 797) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bs41-direct: Entering JUL_BS41 (scene 797) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 797 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 797 save febcea474e4ed29c state 4d9230380bfd5d14 ram 0000000000000000",
+     "watched frame 261 scene 797 save febcea474e4ed29c state fee6e7058cb67e3f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 111,
+     "instruction_end": 33,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e350979fcd7f6671b9c9b627ea762ff6"
+     },
+     {
+      "frames": 32,
+      "sha256": "2d5b85fe0b978ac39139f3fdd6f0ce49"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss3-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss3-entry",
+    "description": "Entering JUL_BSS3 (scene 765) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bss3-entry: Entering JUL_BSS3 (scene 765) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 765 0 16720127 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 765 save 4e0ea6f19b52762d state 8aab37a01e3a9305 ram 0000000000000000",
+     "watched frame 262 scene 765 save 72db744a116da897 state 8f036e942eb99ccd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 42,
+     "instruction": 140,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f99ef6b33f94be73b7ddee26b29b488"
+     },
+     {
+      "frames": 33,
+      "sha256": "e328a1cfc3b1f91a2001a09cfdfab047"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss4-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss4-entry",
+    "description": "Entering JUL_BSS4 (scene 766) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# jul-jul-bss4-entry: Entering JUL_BSS4 (scene 766) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33534 0 16722720 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 766 save 565b36b346efdead state 39e44177cff01a16 ram 0000000000000000",
+     "watched frame 262 scene 766 save ce416a854b98ffdb state 5eb9d55dce359de7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 44,
+     "instruction": 116,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "88b0c06d9aaee12ea13a18fb525237bc"
+     },
+     {
+      "frames": 33,
+      "sha256": "8aef47ea7c308ea9ef81d901a1268f36"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "id": "domina-inn-shop",
+  "description": "Talking to the shopkeeper in the inn's shop room should open the shop, and backing out should return to the room",
+  "start": {
+    "save": "../saves/home-bedroom-after-opening.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 41
+      }
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "talk_to": {
+        "record": 1
+      },
+      "note": "the shopkeeper behind the counter (layout record 1)"
+    },
+    {
+      "checkpoint": "talked"
+    }
+  ]
+}

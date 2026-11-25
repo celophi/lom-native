@@ -1,0 +1,1739 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mhm-mhm-bdr0-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fb8 = 24 so layout record 5 of MHM_BDR0 is there",
+    "source": "built from layout record 5's condition in scene 628 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 24
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdr0-talk-5",
+    "description": "Talking to layout record 5 of MHM_BDR0 (scene 628) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdr0-talk-5: Talking to layout record 5 of MHM_BDR0 (scene 628) should run its event and hand control back\nlimit 20000\nenter 628 0 16713727 0\ncheckpoint entered\ntalk 140 250 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 628 save 9cfbe73085d65d35 state ee9223edd4523ed7 ram 0000000000000000",
+     "talked frame 1174 scene 628 save bf375a4fa6997906 state a9a9da073a34872e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 230): 8 waypoints",
+     "walk to (140, 230): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2fc7b830311d1952b6cd7479bc18a33d"
+     },
+     {
+      "frames": 945,
+      "sha256": "4950349fd8a31726b7ad7802364209b3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdr0-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fd0 = 61 so layout record 6 of MHM_BDR0 is there",
+    "source": "built from layout record 6's condition in scene 628 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fd0": 61
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdr0-talk-6",
+    "description": "Talking to layout record 6 of MHM_BDR0 (scene 628) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdr0-talk-6: Talking to layout record 6 of MHM_BDR0 (scene 628) should run its event and hand control back\nlimit 20000\nenter 628 0 16713727 0\ncheckpoint entered\ntalk 184 178 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 628 save 1f60599925ee2a8e state 04f75bf74365339a ram 0000000000000000",
+     "talked frame 832 scene 628 save 1f60599925ee2a8e state baf1c876728ec2db ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (184, 158): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 37,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8ace76b05bc288307472641a35501317"
+     },
+     {
+      "frames": 603,
+      "sha256": "7a3a7d7f013ab5308631691001a65f20"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdr0-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fc8 = 61 so layout record 7 of MHM_BDR0 is there",
+    "source": "built from layout record 7's condition in scene 628 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fc8": 61
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-bdr0-talk-7",
+    "description": "Talking to layout record 7 of MHM_BDR0 (scene 628) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdr0-talk-7: Talking to layout record 7 of MHM_BDR0 (scene 628) should run its event and hand control back\nlimit 20000\nenter 628 0 16713727 0\ncheckpoint entered\ntalk 135 130 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 628 save 018fdc91ceda0d70 state b82a7113a565f3a9 ram 0000000000000000",
+     "talked frame 881 scene 628 save 018fdc91ceda0d70 state af2a69d166473e94 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 110): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 156,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "738efdbbef167e303d3bdb19d47019eb"
+     },
+     {
+      "frames": 652,
+      "sha256": "121ef5edd5413292a1a78ebd8a803c9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-talk-1",
+    "description": "Talking to layout record 1 of MHM_BDRM (scene 19) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdrm-talk-1: Talking to layout record 1 of MHM_BDRM (scene 19) should run its event and hand control back\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 122 238 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "talked frame 1284 scene 19 save 4c03b11f8fab9632 state 9059fb2aecb62368 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (122, 218): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 96,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 1075,
+      "sha256": "721abf70442bab8eef305bb00a973eb2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-talk-2",
+    "description": "Talking to layout record 2 of MHM_BDRM (scene 19) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdrm-talk-2: Talking to layout record 2 of MHM_BDRM (scene 19) should run its event and hand control back\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 145 238 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "talked frame 1281 scene 19 save 8d43317b9f0bf160 state 69b36d5870b54433 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (145, 218): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 96,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 1072,
+      "sha256": "290c14ee087c91272b07da308f99986e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-talk-3",
+    "description": "Talking to layout record 3 of MHM_BDRM (scene 19) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdrm-talk-3: Talking to layout record 3 of MHM_BDRM (scene 19) should run its event and hand control back\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 169 238 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "talked frame 1277 scene 19 save 665e9d8a098d68d8 state 8c807f898dd4d4fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (169, 218): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 96,
+     "instruction_end": 29,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 1068,
+      "sha256": "02c91fb0a1d68c191972e259ea453ba2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-talk-4",
+    "description": "Talking to layout record 4 of MHM_BDRM (scene 19) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdrm-talk-4: Talking to layout record 4 of MHM_BDRM (scene 19) should run its event and hand control back\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 80 100 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "talked frame 1005 scene 19 save b5ad87e9dc62c380 state 6ee523528baf6c33 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 80): 8 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 28,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 796,
+      "sha256": "f8840576d73679eff47a959536eca030"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-bdrm-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-bdrm-talk-7",
+    "description": "Talking to layout record 7 of MHM_BDRM (scene 19) should run its event and hand control back",
+    "plan": "# mhm-mhm-bdrm-talk-7: Talking to layout record 7 of MHM_BDRM (scene 19) should run its event and hand control back\nlimit 20000\nenter 19 0 16713727 0\ncheckpoint entered\ntalk 275 173 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 209 scene 19 save 839736077fab9ace state 36d63053fe5ac7f9 ram 0000000000000000",
+     "talked frame 805 scene 19 save 7d484bb3157d3d5c state 37263d0291fff42a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (275, 153): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 84,
+     "instruction_end": 25,
+     "song": 2,
+     "scene": 1
+    },
+    "stretches": [
+     {
+      "frames": 210,
+      "sha256": "d81af5ea939397ba56e05ce7875f5859"
+     },
+     {
+      "frames": 596,
+      "sha256": "1bf0ceaafc5427b0831d00ee0f58aadd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent0-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT0 is there",
+    "source": "built from layout record 2's condition in scene 28 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent0-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT0 (scene 28) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent0-talk-2: Talking to layout record 2 of MHM_ENT0 (scene 28) should run its event and hand control back\nlimit 20000\nenter 28 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 28 save 055235ac84621a4b state 4cfada92016a929f ram 0000000000000000",
+     "talked frame 1647 scene 28 save 78f598e1799b9a43 state 6978aa16593a1fae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d0b6954c05d67e269eee8412147c190c"
+     },
+     {
+      "frames": 1418,
+      "sha256": "035f639745dcbf704b5bd33116ec70b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent1-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT1 is there",
+    "source": "built from layout record 2's condition in scene 29 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent1-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT1 (scene 29) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent1-talk-2: Talking to layout record 2 of MHM_ENT1 (scene 29) should run its event and hand control back\nlimit 20000\nenter 29 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 29 save cd6023f3180ddc2e state d7ee8b2c3bdd6dd1 ram 0000000000000000",
+     "talked frame 1643 scene 29 save 656278591ce8566a state 77fe37444b42d4e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05246eea7b3727c418395caa52145714"
+     },
+     {
+      "frames": 1414,
+      "sha256": "f0292483467b2ffaccbe5c2708c7631d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent1-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 3 of MHM_ENT1 is there",
+    "source": "built from layout record 3's condition in scene 29 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent1-talk-3",
+    "description": "Talking to layout record 3 of MHM_ENT1 (scene 29) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent1-talk-3: Talking to layout record 3 of MHM_ENT1 (scene 29) should run its event and hand control back\nlimit 20000\nenter 29 0 16715775 0\ncheckpoint entered\ntalk 179 88 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 29 save cd6023f3180ddc2e state d7ee8b2c3bdd6dd1 ram 0000000000000000",
+     "talked frame 1736 scene 29 save 656278591ce8566a state 9cf9ef4c4ed50bed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 68): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05246eea7b3727c418395caa52145714"
+     },
+     {
+      "frames": 1507,
+      "sha256": "1f2467c16deb0b0c36e861f24fb39ff1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent2-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT2 is there",
+    "source": "built from layout record 2's condition in scene 30 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent2-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT2 (scene 30) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent2-talk-2: Talking to layout record 2 of MHM_ENT2 (scene 30) should run its event and hand control back\nlimit 20000\nenter 30 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 30 save 2b56dac4c5526315 state 5e9c244f3ceb3a51 ram 0000000000000000",
+     "talked frame 1647 scene 30 save 17bea6f5e4ecc47d state 21a0ae880b50a6ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b856a7b8757277f099a1829358320948"
+     },
+     {
+      "frames": 1418,
+      "sha256": "c9fd431b31697e7fd8e6c5a355f55989"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent3-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT3 is there",
+    "source": "built from layout record 2's condition in scene 31 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent3-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT3 (scene 31) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent3-talk-2: Talking to layout record 2 of MHM_ENT3 (scene 31) should run its event and hand control back\nlimit 20000\nenter 31 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 31 save 9129711eb22fbcb8 state 34caf8fa974289ab ram 0000000000000000",
+     "talked frame 1647 scene 31 save 0461e0d26c131c8c state 0be60d81ae723662 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e6810192864d8d6c525b6b020c1df03"
+     },
+     {
+      "frames": 1418,
+      "sha256": "f66af99ee47d41da552b8dc557a417f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent4-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT4 is there",
+    "source": "built from layout record 2's condition in scene 32 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent4-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT4 (scene 32) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent4-talk-2: Talking to layout record 2 of MHM_ENT4 (scene 32) should run its event and hand control back\nlimit 20000\nenter 32 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 32 save 59a19f2b8506ae27 state d7ee8b2c3bdd6dd1 ram 0000000000000000",
+     "talked frame 1643 scene 32 save 5631945b43f52a2f state 77fe37444b42d4e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 53,
+     "instruction": 179,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb87e1e45df992a141a52d8ca51d2525"
+     },
+     {
+      "frames": 1414,
+      "sha256": "b237a95b35cb9c5f6150ef48d727c7d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent4-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 3 of MHM_ENT4 is there",
+    "source": "built from layout record 3's condition in scene 32 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent4-talk-3",
+    "description": "Talking to layout record 3 of MHM_ENT4 (scene 32) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent4-talk-3: Talking to layout record 3 of MHM_ENT4 (scene 32) should run its event and hand control back\nlimit 20000\nenter 32 0 16715775 0\ncheckpoint entered\ntalk 179 88 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 32 save 59a19f2b8506ae27 state d7ee8b2c3bdd6dd1 ram 0000000000000000",
+     "talked frame 1740 scene 32 save 5631945b43f52a2f state af77338f696e0b0e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 68): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 177,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cb87e1e45df992a141a52d8ca51d2525"
+     },
+     {
+      "frames": 1511,
+      "sha256": "2c9e36cabdec0c13002bb454a603b98e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent5-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT5 is there",
+    "source": "built from layout record 2's condition in scene 33 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent5-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT5 (scene 33) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent5-talk-2: Talking to layout record 2 of MHM_ENT5 (scene 33) should run its event and hand control back\nlimit 20000\nenter 33 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 33 save 82f1f041c8ac503a state 34caf8fa974289ab ram 0000000000000000",
+     "talked frame 1647 scene 33 save 2024f725245ae326 state 0be60d81ae723662 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eb553f7afbfb9a16de57903f6c96452d"
+     },
+     {
+      "frames": 1418,
+      "sha256": "736f9bbab209815c96a1350fde542dea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent5-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 3 of MHM_ENT5 is there",
+    "source": "built from layout record 3's condition in scene 33 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent5-talk-3",
+    "description": "Talking to layout record 3 of MHM_ENT5 (scene 33) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent5-talk-3: Talking to layout record 3 of MHM_ENT5 (scene 33) should run its event and hand control back\nlimit 20000\nenter 33 0 16715775 2\ncheckpoint entered\ntalk 179 88 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 33 save bd7273096945e19c state 692db1e31b631511 ram 0000000000000000",
+     "talked frame 2188 scene 33 save b095987749a882d0 state 943dfed5570975d1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 68): 3 waypoints",
+     "walk to (179, 108): 1 waypoints",
+     "walk to (159, 88): 1 waypoints",
+     "walk to (199, 88): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cfe30a509dfc5e71dbd05766260a1dd2"
+     },
+     {
+      "frames": 1959,
+      "sha256": "39b3e3049b95be816eb0728ac9ec1505"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent6-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT6 is there",
+    "source": "built from layout record 2's condition in scene 34 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent6-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT6 (scene 34) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent6-talk-2: Talking to layout record 2 of MHM_ENT6 (scene 34) should run its event and hand control back\nlimit 20000\nenter 34 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 34 save cb327b280a90dee1 state 34caf8fa974289ab ram 0000000000000000",
+     "talked frame 1647 scene 34 save 3f95999598a6d679 state 0be60d81ae723662 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1eb9130d7b50687ae4e9a894cd7963a3"
+     },
+     {
+      "frames": 1418,
+      "sha256": "a39d94c495813df089b6b6452953c91e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent6-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 3 of MHM_ENT6 is there",
+    "source": "built from layout record 3's condition in scene 34 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent6-talk-3",
+    "description": "Talking to layout record 3 of MHM_ENT6 (scene 34) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent6-talk-3: Talking to layout record 3 of MHM_ENT6 (scene 34) should run its event and hand control back\nlimit 20000\nenter 34 0 16715775 0\ncheckpoint entered\ntalk 179 88 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 34 save cb327b280a90dee1 state 34caf8fa974289ab ram 0000000000000000",
+     "talked frame 1750 scene 34 save 3f95999598a6d679 state 4b8d2a8684bfc30b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 68): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1eb9130d7b50687ae4e9a894cd7963a3"
+     },
+     {
+      "frames": 1521,
+      "sha256": "9b2d950e3fff225e72eb9ab341580961"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 2 of MHM_ENT7 is there",
+    "source": "built from layout record 2's condition in scene 35 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent7-talk-2",
+    "description": "Talking to layout record 2 of MHM_ENT7 (scene 35) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent7-talk-2: Talking to layout record 2 of MHM_ENT7 (scene 35) should run its event and hand control back\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\ntalk 104 162 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 3025b967985dcc04 state c840df3342432bb1 ram 0000000000000000",
+     "talked frame 1647 scene 35 save 4cae4933ffe37bd8 state aaf8208dc0a51eec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 142): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cc463fded778edbcc79660df9a082757"
+     },
+     {
+      "frames": 1418,
+      "sha256": "b4247f13826bbddad17a2ed155c2c44e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-ent7-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11cc = 3 so layout record 3 of MHM_ENT7 is there",
+    "source": "built from layout record 3's condition in scene 35 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11cc": 3
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-ent7-talk-3",
+    "description": "Talking to layout record 3 of MHM_ENT7 (scene 35) should run its event and hand control back",
+    "plan": "# mhm-mhm-ent7-talk-3: Talking to layout record 3 of MHM_ENT7 (scene 35) should run its event and hand control back\nlimit 20000\nenter 35 0 16715775 0\ncheckpoint entered\ntalk 179 88 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 35 save 3025b967985dcc04 state c840df3342432bb1 ram 0000000000000000",
+     "talked frame 1745 scene 35 save 4cae4933ffe37bd8 state a77163a7bb85e60e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (179, 68): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cc463fded778edbcc79660df9a082757"
+     },
+     {
+      "frames": 1516,
+      "sha256": "d7c945bdc5afabfa28f4b40d2bf54698"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-gdn0-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-gdn0-talk-9",
+    "description": "Talking to layout record 9 of MHM_GDN0 (scene 22) should run its event and hand control back",
+    "plan": "# mhm-mhm-gdn0-talk-9: Talking to layout record 9 of MHM_GDN0 (scene 22) should run its event and hand control back\nlimit 20000\nenter 22 0 16713983 0\ncheckpoint entered\ntalk 0 0 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 22 save 17b7a889bc507274 state 6a81d2e3c59fd133 ram 0000000000000000",
+     "talked frame 1066 scene 22 save 605ee0f5281cc908 state 72e7fe914cbfd0d0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (0, 20): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "song": 3,
+     "instruction": 157,
+     "instruction_end": 57,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e88f303dcda65f14f0ca1f45e6ef0056"
+     },
+     {
+      "frames": 837,
+      "sha256": "6aeef9395d6f68b7097f2901a27ac622"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-os00-talk-1",
+    "description": "Talking to layout record 1 of MHM_OS00 (scene 16) should run its event and hand control back",
+    "plan": "# mhm-mhm-os00-talk-1: Talking to layout record 1 of MHM_OS00 (scene 16) should run its event and hand control back\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\ntalk 440 175 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save e7f4aefcb093b82b state 87c0505bf8a85406 ram 0000000000000000",
+     "talked frame 975 scene 16 save b3ecc333faf98d42 state 13d53d4085636ae1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (440, 155): 6 waypoints",
+     "walk to (440, 195): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 231,
+     "instruction_end": 91,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9ff80911f3b8288c576bbe5ab1053a0e"
+     },
+     {
+      "frames": 746,
+      "sha256": "8599b1eea95273036be74a78cf7c7374"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x408 = 1 so layout record 6 of MHM_OS00 is there",
+    "source": "built from layout record 6's condition in scene 16 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x408": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-talk-6",
+    "description": "Talking to layout record 6 of MHM_OS00 (scene 16) should run its event and hand control back",
+    "plan": "# mhm-mhm-os00-talk-6: Talking to layout record 6 of MHM_OS00 (scene 16) should run its event and hand control back\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\ntalk 495 132 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save f00944064ebd93ca state f1994ad9ee981a45 ram 0000000000000000",
+     "talked frame 2084 scene 16 save 07524aa7528bc25a state 64a6fb5f809a766b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (495, 112): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 81,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a1ba27d251cd09d6ad01c7f7193298cb"
+     },
+     {
+      "frames": 1855,
+      "sha256": "4ea16725d70f461be18379184d9b3ffd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-talk-7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x408 = 1 so layout record 7 of MHM_OS00 is there",
+    "source": "built from layout record 7's condition in scene 16 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x408": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-talk-7",
+    "description": "Talking to layout record 7 of MHM_OS00 (scene 16) should run its event and hand control back",
+    "plan": "# mhm-mhm-os00-talk-7: Talking to layout record 7 of MHM_OS00 (scene 16) should run its event and hand control back\nlimit 20000\nenter 16 0 16713727 2\ncheckpoint entered\ntalk 434 104 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save d20c5efdbd0a20ac state f8442e3dc8db018e ram 0000000000000000",
+     "talked frame 1930 scene 16 save 2129769cc17a91fc state 24a51ebe8294be75 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (434, 124): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 81,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "460f00cc060075d3f39e4ef248ab11fe"
+     },
+     {
+      "frames": 1701,
+      "sha256": "85521d66b84d92fe02d56a8757990cf7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-os00-talk-8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x408 = 1 so layout record 8 of MHM_OS00 is there",
+    "source": "built from layout record 8's condition in scene 16 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x408": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-os00-talk-8",
+    "description": "Talking to layout record 8 of MHM_OS00 (scene 16) should run its event and hand control back",
+    "plan": "# mhm-mhm-os00-talk-8: Talking to layout record 8 of MHM_OS00 (scene 16) should run its event and hand control back\nlimit 20000\nenter 16 0 16713727 4\ncheckpoint entered\ntalk 363 176 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 16 save f00944064ebd93ca state f1994ad9ee981a45 ram 0000000000000000",
+     "talked frame 1988 scene 16 save 07524aa7528bc25a state 4b83ad45668a63c6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (363, 196): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 81,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a1ba27d251cd09d6ad01c7f7193298cb"
+     },
+     {
+      "frames": 1759,
+      "sha256": "f13ce968bc6cac7c8075dce776838a59"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fd0 = 11 so layout record 2 of MHM_RM00 is there",
+    "source": "built from layout record 2's condition in scene 18 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fd0": 11
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-talk-2",
+    "description": "Talking to layout record 2 of MHM_RM00 (scene 18) should run its event and hand control back",
+    "plan": "# mhm-mhm-rm00-talk-2: Talking to layout record 2 of MHM_RM00 (scene 18) should run its event and hand control back\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\ntalk 200 120 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save ad5fa48e49211941 state 0768b60475e5cb93 ram 0000000000000000",
+     "talked frame 665 scene 18 save ffa453f822bb8e3b state c412f1361eb6f022 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 67,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e1b06a317b3e39715df463700ffbab6"
+     },
+     {
+      "frames": 436,
+      "sha256": "1dfb419c90339958ad3f1d3de6ff7d7f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x45d = 1 so layout record 5 of MHM_RM00 is there",
+    "source": "built from layout record 5's condition in scene 18 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x45d": 1
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-rm00-talk-5",
+    "description": "Talking to layout record 5 of MHM_RM00 (scene 18) should run its event and hand control back",
+    "plan": "# mhm-mhm-rm00-talk-5: Talking to layout record 5 of MHM_RM00 (scene 18) should run its event and hand control back\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\ntalk 104 228 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 33c3c84732a23a14 state 05d09f5f46624075 ram 0000000000000000",
+     "talked frame 878 scene 18 save 33c3c84732a23a14 state 1e4d621101f25bbe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 208): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 44,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9c030d0b0b31fb15b2983586a31cfbca"
+     },
+     {
+      "frames": 649,
+      "sha256": "696dd4f44494da81dcfa4d878aa49324"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-rm00-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "mhm-mhm-rm00-talk-7",
+    "description": "Talking to layout record 7 of MHM_RM00 (scene 18) should run its event and hand control back",
+    "plan": "# mhm-mhm-rm00-talk-7: Talking to layout record 7 of MHM_RM00 (scene 18) should run its event and hand control back\nlimit 20000\nenter 18 0 16713475 0\ncheckpoint entered\ntalk 42 206 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 18 save 6bcb514ab29c5ff4 state 9c668392503b1c99 ram 0000000000000000",
+     "talked frame 1016 scene 18 save 03d25234edf92755 state e3a7ddc8cc03770f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (42, 186): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 190,
+     "instruction_end": 47,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "60556b92c939df05d91e9787a1764dce"
+     },
+     {
+      "frames": 787,
+      "sha256": "7751e9282eb63a1ca35ef23fcd4710e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-stdy-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1198 = 8 so layout record 1 of MHM_STDY is there",
+    "source": "built from layout record 1's condition in scene 21 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1198": 8
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-stdy-talk-1",
+    "description": "Talking to layout record 1 of MHM_STDY (scene 21) should run its event and hand control back",
+    "plan": "# mhm-mhm-stdy-talk-1: Talking to layout record 1 of MHM_STDY (scene 21) should run its event and hand control back\nlimit 20000\nenter 21 0 16713727 0\ncheckpoint entered\ntalk 103 78 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 21 save 31f23c5357c64486 state f5e5655ec70f3870 ram 0000000000000000",
+     "talked frame 368 scene 21 save 0da34f54ba140f34 state e041098b3f712c35 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (103, 58): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a120a1c66811e8ce9cc030bcd9dc9252"
+     },
+     {
+      "frames": 139,
+      "sha256": "0125c9c64375fcfec2ec10d1ea8f7458"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-stdy-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1194 = 8 so layout record 2 of MHM_STDY is there",
+    "source": "built from layout record 2's condition in scene 21 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1194": 8
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-stdy-talk-2",
+    "description": "Talking to layout record 2 of MHM_STDY (scene 21) should run its event and hand control back",
+    "plan": "# mhm-mhm-stdy-talk-2: Talking to layout record 2 of MHM_STDY (scene 21) should run its event and hand control back\nlimit 20000\nenter 21 0 16713727 0\ncheckpoint entered\ntalk 140 50 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 21 save a77e5eee3e4dadd3 state ddd0d1e3f266bf01 ram 0000000000000000",
+     "talked frame 517 scene 21 save 7ea19dab65cf8373 state ea1f70070e6965be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 30): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 42,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "75d369b1eaf629bc5d26b10605dd503b"
+     },
+     {
+      "frames": 288,
+      "sha256": "80551041ebf73c966c5106f21dab9214"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-stdy-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11e8 = 8 so layout record 3 of MHM_STDY is there",
+    "source": "built from layout record 3's condition in scene 21 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11e8": 8
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-stdy-talk-3",
+    "description": "Talking to layout record 3 of MHM_STDY (scene 21) should run its event and hand control back",
+    "plan": "# mhm-mhm-stdy-talk-3: Talking to layout record 3 of MHM_STDY (scene 21) should run its event and hand control back\nlimit 20000\nenter 21 0 16713727 0\ncheckpoint entered\ntalk 140 144 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 21 save 56a256854fe6c2c6 state 801875c4a73bcc43 ram 0000000000000000",
+     "talked frame 370 scene 21 save 44e77fd8ddd12324 state b87f7735b6e152ff ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 124): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6afa0747a37feb66501c01244d0fa35b"
+     },
+     {
+      "frames": 141,
+      "sha256": "e1a9ee71f87b41b9ae61535e66d0d3b5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mhm-mhm-stdy-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x11ec = 8 so layout record 4 of MHM_STDY is there",
+    "source": "built from layout record 4's condition in scene 21 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11ec": 8
+    }
+   },
+   "baseline": {
+    "route": "mhm-mhm-stdy-talk-4",
+    "description": "Talking to layout record 4 of MHM_STDY (scene 21) should run its event and hand control back",
+    "plan": "# mhm-mhm-stdy-talk-4: Talking to layout record 4 of MHM_STDY (scene 21) should run its event and hand control back\nlimit 20000\nenter 21 0 16713727 0\ncheckpoint entered\ntalk 240 140 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 21 save a0a18d729e1166d3 state 24c5ae70cc2e0fe3 ram 0000000000000000",
+     "talked frame 412 scene 21 save 1c692cd43fa77033 state 7604f121e9619408 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 41,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa03b8d3e1b4de6eefd85bb185652b0f"
+     },
+     {
+      "frames": 183,
+      "sha256": "5af04d67a441a39c4aeb12dc9d4f5239"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

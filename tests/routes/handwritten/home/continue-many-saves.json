@@ -1,0 +1,21 @@
+{
+  "format": 1,
+  "id": "home-continue-many-saves",
+  "description": "Continue with six saves on the card should list five and draw the scroll arrow for the rest, then load the save in the bedroom",
+  "card_copies": 6,
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue"
+    },
+    {
+      "watch": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

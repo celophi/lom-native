@@ -1,0 +1,3731 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "drl-drl-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-exit-0",
+    "description": "Walking onto exit 0 of DRL_B000 (scene 736) should lead to scene 712",
+    "plan": "# drl-drl-b000-exit-0: Walking onto exit 0 of DRL_B000 (scene 736) should lead to scene 712\nlimit 20000\nenter 33504 0 16722687 0\ncheckpoint entered\nexit 0 712\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 736 save 906877bdd512476a state efa5fab201edd6e7 ram 0000000000000000",
+     "arrived frame 296 scene 712 save adc7e9f62e2701f7 state 33d4a0e0798bee42 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (672, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e9bdb1eb6eab1550bda7f59f8f74556"
+     },
+     {
+      "frames": 67,
+      "sha256": "878a4d3b98d27f986e895f3b1591c6ef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-exit-1",
+    "description": "Walking onto exit 1 of DRL_B000 (scene 736) should lead to scene 720",
+    "plan": "# drl-drl-b000-exit-1: Walking onto exit 1 of DRL_B000 (scene 736) should lead to scene 720\nlimit 20000\nenter 33504 0 16722687 0\ncheckpoint entered\nexit 1 720\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 736 save 906877bdd512476a state efa5fab201edd6e7 ram 0000000000000000",
+     "arrived frame 412 scene 720 save c5ef3150170e37ac state c78a8bdb01e2f3af ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (672, 368): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e9bdb1eb6eab1550bda7f59f8f74556"
+     },
+     {
+      "frames": 183,
+      "sha256": "6129df375ded6fe56ae1691ad889eca3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b000-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-exit-2",
+    "description": "Walking onto exit 2 of DRL_B000 (scene 736) should lead to scene 737",
+    "plan": "# drl-drl-b000-exit-2: Walking onto exit 2 of DRL_B000 (scene 736) should lead to scene 737\nlimit 20000\nenter 33504 0 16722687 0\ncheckpoint entered\nexit 2 737\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 736 save 906877bdd512476a state efa5fab201edd6e7 ram 0000000000000000",
+     "arrived frame 1511 scene 737 save 75ab97ad81127530 state a8a01ff9702e1f8b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1184, 304): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 382,
+     "instruction_end": 132,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e9bdb1eb6eab1550bda7f59f8f74556"
+     },
+     {
+      "frames": 1282,
+      "sha256": "6b918e9018bd4929700f7d551b654430"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b000-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b000-exit-3",
+    "description": "Walking onto exit 3 of DRL_B000 (scene 736) should lead to scene 713",
+    "plan": "# drl-drl-b000-exit-3: Walking onto exit 3 of DRL_B000 (scene 736) should lead to scene 713\nlimit 20000\nenter 33504 0 16722687 0\ncheckpoint entered\nexit 3 713\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 736 save 906877bdd512476a state efa5fab201edd6e7 ram 0000000000000000",
+     "arrived frame 1448 scene 713 save e0de9013fb1df5b7 state 11ea89ce748d04ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 304): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 890 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 421,
+     "instruction_end": 133,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e9bdb1eb6eab1550bda7f59f8f74556"
+     },
+     {
+      "frames": 1219,
+      "sha256": "6fd43f814f24cabf47362be48d1ee287"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b010-exit-0",
+    "description": "Walking onto exit 0 of DRL_B010 (scene 737) should lead to scene 736",
+    "plan": "# drl-drl-b010-exit-0: Walking onto exit 0 of DRL_B010 (scene 737) should lead to scene 736\nlimit 20000\nenter 33505 0 16722687 0\ncheckpoint entered\nexit 0 736\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 737 save 7fdd85586d6f1697 state b6d2b1691450e5dc ram 0000000000000000",
+     "arrived frame 299 scene 736 save 15ddab727829cd1c state ae22aad008bbd6da ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (684, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 70,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "913fff4f2c00d97daa7ea1135b415b90"
+     },
+     {
+      "frames": 70,
+      "sha256": "184d32e6cc1f1cbb61ede84767d4ac64"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b010-exit-1",
+    "description": "Walking onto exit 1 of DRL_B010 (scene 737) should lead to scene 714",
+    "plan": "# drl-drl-b010-exit-1: Walking onto exit 1 of DRL_B010 (scene 737) should lead to scene 714\nlimit 20000\nenter 33505 0 16722687 1\ncheckpoint entered\nexit 1 714\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 737 save 3eaa175c1174834a state 98c5587702b1a7bf ram 0000000000000000",
+     "arrived frame 302 scene 714 save 68b2371f3535d74c state 91cba9fd43c6ccc1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "eb4671342cb4ed07b5f37b7649848279"
+     },
+     {
+      "frames": 73,
+      "sha256": "e998ba4dff8e3b0cca53c02025340eb0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b020-exit-0",
+    "description": "Walking onto exit 0 of DRL_B020 (scene 738) should lead to scene 721",
+    "plan": "# drl-drl-b020-exit-0: Walking onto exit 0 of DRL_B020 (scene 738) should lead to scene 721\nlimit 20000\nenter 33506 0 16722687 0\ncheckpoint entered\nexit 0 721\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 738 save 1b400c87f2e15360 state 378bd8f5bdffa091 ram 0000000000000000",
+     "arrived frame 314 scene 721 save bedc724fa31a7f9f state d8d0c5483853395e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 304): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d47fdedaa2c9f3e91f0b1b3673a380b7"
+     },
+     {
+      "frames": 85,
+      "sha256": "65a20a89a7d3950a125f135cd6cb905e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b020-exit-1",
+    "description": "Walking onto exit 1 of DRL_B020 (scene 738) should lead to scene 733",
+    "plan": "# drl-drl-b020-exit-1: Walking onto exit 1 of DRL_B020 (scene 738) should lead to scene 733\nlimit 20000\nenter 33506 0 16722687 0\ncheckpoint entered\nexit 1 733\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 738 save 1b400c87f2e15360 state 378bd8f5bdffa091 ram 0000000000000000",
+     "arrived frame 2032 scene 733 save 946f129d45dba34d state a400d8a4a81df5d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (592, 304): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1490 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 128,
+     "instruction": 388,
+     "song": 4,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d47fdedaa2c9f3e91f0b1b3673a380b7"
+     },
+     {
+      "frames": 1803,
+      "sha256": "a1f253b2fa488101038ea070cff5c0ba"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b030-exit-0",
+    "description": "Walking onto exit 0 of DRL_B030 (scene 739) should lead to scene 714",
+    "plan": "# drl-drl-b030-exit-0: Walking onto exit 0 of DRL_B030 (scene 739) should lead to scene 714\nlimit 20000\nenter 33507 0 16722687 0\ncheckpoint entered\nexit 0 714\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 739 save e70004469b4430cd state d4e0aa6015cdab00 ram 0000000000000000",
+     "arrived frame 298 scene 714 save be92c7b779f74010 state 6addee76ac9f65f0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (622, 251): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a654d208671be518df23a51104dbe334"
+     },
+     {
+      "frames": 69,
+      "sha256": "90f27e5e08bc7d80c2b937f7855703d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b040-exit-0",
+    "description": "Walking onto exit 0 of DRL_B040 (scene 740) should lead to scene 714",
+    "plan": "# drl-drl-b040-exit-0: Walking onto exit 0 of DRL_B040 (scene 740) should lead to scene 714\nlimit 20000\nenter 33508 0 16722687 0\ncheckpoint entered\nexit 0 714\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 740 save 3fc5d01bf18ff87e state 6fcee7f24d076d04 ram 0000000000000000",
+     "arrived frame 299 scene 714 save 42bb5adb7dc16c37 state 83bc2a4a94afbfec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (600, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "11016a848ba2bd3ee1fc168e408faebc"
+     },
+     {
+      "frames": 70,
+      "sha256": "b83a73989dc9223e88925a0d19b8bc85"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b050-exit-0",
+    "description": "Walking onto exit 0 of DRL_B050 (scene 741) should lead to scene 715",
+    "plan": "# drl-drl-b050-exit-0: Walking onto exit 0 of DRL_B050 (scene 741) should lead to scene 715\nlimit 20000\nenter 33509 0 16722687 0\ncheckpoint entered\nexit 0 715\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 741 save da813f1a6f6eb66b state ee7a11c49858b216 ram 0000000000000000",
+     "arrived frame 299 scene 715 save 264b03dce5e667b6 state 5b7defcb86292870 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (600, 16): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce376e421e6b93150a6dc7dbed5a43fd"
+     },
+     {
+      "frames": 70,
+      "sha256": "fa4ec69395ac20c280b5c88ee8e31fab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b050-exit-1",
+    "description": "Walking onto exit 1 of DRL_B050 (scene 741) should lead to scene 732",
+    "plan": "# drl-drl-b050-exit-1: Walking onto exit 1 of DRL_B050 (scene 741) should lead to scene 732\nlimit 20000\nenter 33509 0 16722687 0\ncheckpoint entered\nexit 1 732\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 741 save da813f1a6f6eb66b state ee7a11c49858b216 ram 0000000000000000",
+     "arrived frame 1638 scene 732 save 23742e6666c664a0 state 1c54b709a96a9f01 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (16, 248): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 438,
+     "instruction_end": 141,
+     "song": 4,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce376e421e6b93150a6dc7dbed5a43fd"
+     },
+     {
+      "frames": 1409,
+      "sha256": "38403bd3ba7c242dac398161a7e87880"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b060-exit-0",
+    "description": "Walking onto exit 0 of DRL_B060 (scene 742) should lead to scene 720",
+    "plan": "# drl-drl-b060-exit-0: Walking onto exit 0 of DRL_B060 (scene 742) should lead to scene 720\nlimit 20000\nenter 33510 0 16722687 1\ncheckpoint entered\nexit 0 720\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 742 save e9bc47abf59700a1 state 8779acf496dc4379 ram 0000000000000000",
+     "arrived frame 1502 scene 720 save b3741d4212a66aee state 8611ccca4fb7a68b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 304): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 452,
+     "instruction_end": 124,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "77ee4bf09e0e6222f1bd7bf04924fa5d"
+     },
+     {
+      "frames": 1273,
+      "sha256": "e5940b3cc12bd9449741c37a462beb3c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b060-exit-1",
+    "description": "Walking onto exit 1 of DRL_B060 (scene 742) should lead to scene 719",
+    "plan": "# drl-drl-b060-exit-1: Walking onto exit 1 of DRL_B060 (scene 742) should lead to scene 719\nlimit 20000\nenter 33510 0 16722687 1\ncheckpoint entered\nexit 1 719\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 742 save e9bc47abf59700a1 state 8779acf496dc4379 ram 0000000000000000",
+     "arrived frame 302 scene 719 save 1ef43e460b186fd7 state 2def9d01597d98f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (664, 304): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "77ee4bf09e0e6222f1bd7bf04924fa5d"
+     },
+     {
+      "frames": 73,
+      "sha256": "dc0970f8a44ab900c939afd874291bf0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b060-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b060-exit-2",
+    "description": "Walking onto exit 2 of DRL_B060 (scene 742) should lead to scene 746",
+    "plan": "# drl-drl-b060-exit-2: Walking onto exit 2 of DRL_B060 (scene 742) should lead to scene 746\nlimit 20000\nenter 33510 0 16722687 1\ncheckpoint entered\nexit 2 746\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 742 save e9bc47abf59700a1 state 8779acf496dc4379 ram 0000000000000000",
+     "arrived frame 423 scene 746 save ae004a54bed3e676 state 41dd8da34cf5f0ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (820, 304): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 78,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "77ee4bf09e0e6222f1bd7bf04924fa5d"
+     },
+     {
+      "frames": 194,
+      "sha256": "9d59dc1d397b7beffc96902c23875619"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b070-exit-0",
+    "description": "Walking onto exit 0 of DRL_B070 (scene 743) should lead to scene 720",
+    "plan": "# drl-drl-b070-exit-0: Walking onto exit 0 of DRL_B070 (scene 743) should lead to scene 720\nlimit 20000\nenter 33511 0 16722687 1\ncheckpoint entered\nexit 0 720\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 743 save 408f8e2f68acb6f4 state bd9625457d154e44 ram 0000000000000000",
+     "arrived frame 394 scene 720 save 0cff71e38e3ad235 state e7b1a712e8334f72 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (808, 304): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cfd2ba55afe578f676a9f42e9071982"
+     },
+     {
+      "frames": 165,
+      "sha256": "5d7eeb27822645f913ca1f967f806629"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b070-exit-1",
+    "description": "Walking onto exit 1 of DRL_B070 (scene 743) should lead to scene 718",
+    "plan": "# drl-drl-b070-exit-1: Walking onto exit 1 of DRL_B070 (scene 743) should lead to scene 718\nlimit 20000\nenter 33511 0 16722687 1\ncheckpoint entered\nexit 1 718\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 743 save 408f8e2f68acb6f4 state bd9625457d154e44 ram 0000000000000000",
+     "arrived frame 298 scene 718 save c5e4ba7ed1c54577 state 579df7204ce9c7a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (816, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 73,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cfd2ba55afe578f676a9f42e9071982"
+     },
+     {
+      "frames": 69,
+      "sha256": "4b44bae3b250cb4b4ed53e2f46be572f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b070-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b070-exit-2",
+    "description": "Walking onto exit 2 of DRL_B070 (scene 743) should lead to scene 747",
+    "plan": "# drl-drl-b070-exit-2: Walking onto exit 2 of DRL_B070 (scene 743) should lead to scene 747\nlimit 20000\nenter 33511 0 16722687 2\ncheckpoint entered\nexit 2 747\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 743 save 7223ab8cbeba20c3 state d8e9efbecf6831c8 ram 0000000000000000",
+     "arrived frame 307 scene 747 save c66cddb458c6ba03 state 66bd0603704ea0ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 304): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 74,
+     "instruction": 188,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "905c84b8d9b573d2e653e207533a2c05"
+     },
+     {
+      "frames": 78,
+      "sha256": "e8e1133d3faa6ea53602ca213713b877"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b080-exit-0",
+    "description": "Walking onto exit 0 of DRL_B080 (scene 744) should lead to scene 719",
+    "plan": "# drl-drl-b080-exit-0: Walking onto exit 0 of DRL_B080 (scene 744) should lead to scene 719\nlimit 20000\nenter 33512 0 16722687 0\ncheckpoint entered\nexit 0 719\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 744 save 223bbd52a2a34352 state 97d84d4c72576835 ram 0000000000000000",
+     "arrived frame 298 scene 719 save c3d425d297ed46ba state 8b833c3cd5ea4d41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 92,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa2c5d94618dc1a30caaa2ead8bbcfe6"
+     },
+     {
+      "frames": 69,
+      "sha256": "24ae6e7ac556b4545747388cb60baf20"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b080-exit-1",
+    "description": "Walking onto exit 1 of DRL_B080 (scene 744) should lead to scene 715",
+    "plan": "# drl-drl-b080-exit-1: Walking onto exit 1 of DRL_B080 (scene 744) should lead to scene 715\nlimit 20000\nenter 33512 0 16722687 1\ncheckpoint entered\nexit 1 715\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 744 save 9b7ba51eeb4c451f state 315e9da13e71c887 ram 0000000000000000",
+     "arrived frame 302 scene 715 save 916e09128a578da3 state 0cf2f541128c9544 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (672, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 162,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d298f63c1ef4537a0cc72f16ce8248b5"
+     },
+     {
+      "frames": 73,
+      "sha256": "a6a8993f84d0a61e1a0e006b3cadd2b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b090-exit-0",
+    "description": "Walking onto exit 0 of DRL_B090 (scene 745) should lead to scene 720",
+    "plan": "# drl-drl-b090-exit-0: Walking onto exit 0 of DRL_B090 (scene 745) should lead to scene 720\nlimit 20000\nenter 33513 0 16722687 0\ncheckpoint entered\nexit 0 720\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 745 save 0b6c2235d4a99abf state 50daf5cf471679a7 ram 0000000000000000",
+     "arrived frame 309 scene 720 save c7ed67a44e4fbd23 state 2673234c7279ff2e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (248, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c83ff16b82c5da2e0b66a635fdb71282"
+     },
+     {
+      "frames": 80,
+      "sha256": "07bc3c3ab7f6988b8428d4207eb7fad5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b100-exit-0",
+    "description": "Walking onto exit 0 of DRL_B100 (scene 746) should lead to scene 742",
+    "plan": "# drl-drl-b100-exit-0: Walking onto exit 0 of DRL_B100 (scene 746) should lead to scene 742\nlimit 20000\nenter 33514 0 16722687 0\ncheckpoint entered\nexit 0 742\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 746 save cfb53ea4fcd6ddc8 state d42c9c8361187189 ram 0000000000000000",
+     "arrived frame 322 scene 742 save 16207f69228e09c6 state 03246ba433397c11 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1180, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 78,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3cb551768745e6ff442ab4d0f6fa4b74"
+     },
+     {
+      "frames": 93,
+      "sha256": "17d7b3d7eaca7741813d1e78e15b6e32"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b100-exit-1",
+    "description": "Walking onto exit 1 of DRL_B100 (scene 746) should lead to scene 726",
+    "plan": "# drl-drl-b100-exit-1: Walking onto exit 1 of DRL_B100 (scene 746) should lead to scene 726\nlimit 20000\nenter 33514 0 16722687 1\ncheckpoint entered\nexit 1 726\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 746 save 7a819e15debe9255 state ca92514cfafc5628 ram 0000000000000000",
+     "arrived frame 301 scene 726 save 8f732b08bc59ebc4 state 3e41340b1c4d3087 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (304, 304): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 228,
+     "instruction_end": 117,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c55f088275866bda10cfa4f7c70a1205"
+     },
+     {
+      "frames": 72,
+      "sha256": "652ba3bdda9a87c2638db4869dce687b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b110-exit-0",
+    "description": "Walking onto exit 0 of DRL_B110 (scene 747) should lead to scene 743",
+    "plan": "# drl-drl-b110-exit-0: Walking onto exit 0 of DRL_B110 (scene 747) should lead to scene 743\nlimit 20000\nenter 33515 0 16722687 0\ncheckpoint entered\nexit 0 743\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 747 save 02aefecb0b442c75 state 01797bbfe30188ed ram 0000000000000000",
+     "arrived frame 322 scene 743 save a081b5ef8cec1263 state d792f840a7be1429 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "33bf15a5e5a7b094b772c01309642b39"
+     },
+     {
+      "frames": 93,
+      "sha256": "c953071834bef45bad6ebcb28212b60f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b110-exit-1",
+    "description": "Walking onto exit 1 of DRL_B110 (scene 747) should lead to scene 749",
+    "plan": "# drl-drl-b110-exit-1: Walking onto exit 1 of DRL_B110 (scene 747) should lead to scene 749\nlimit 20000\nenter 33515 0 16722687 0\ncheckpoint entered\nexit 1 749\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 747 save 02aefecb0b442c75 state 01797bbfe30188ed ram 0000000000000000",
+     "arrived frame 1958 scene 749 save 4c4845493251a539 state 69f102efe0c7d792 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (669, 319): 9 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1490 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 395,
+     "instruction_end": 133,
+     "song": 3,
+     "monster": 2,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "33bf15a5e5a7b094b772c01309642b39"
+     },
+     {
+      "frames": 1729,
+      "sha256": "27a0db3370b9252c79ca75ff4d08c758"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b120-exit-0",
+    "description": "Walking onto exit 0 of DRL_B120 (scene 748) should lead to scene 724",
+    "plan": "# drl-drl-b120-exit-0: Walking onto exit 0 of DRL_B120 (scene 748) should lead to scene 724\nlimit 20000\nenter 33516 0 16722687 0\ncheckpoint entered\nexit 0 724\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 748 save 32f0e74550e20e46 state 85d2e9dc9da4f65f ram 0000000000000000",
+     "arrived frame 298 scene 724 save 53bbebe700f23d5b state 7a5e46baf82f051b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (464, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 102,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cbdc17326d8d283005cfadbd04899062"
+     },
+     {
+      "frames": 69,
+      "sha256": "3581058ffd0f3656e266bdf247964250"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b120-exit-1",
+    "description": "Walking onto exit 1 of DRL_B120 (scene 748) should lead to scene 727",
+    "plan": "# drl-drl-b120-exit-1: Walking onto exit 1 of DRL_B120 (scene 748) should lead to scene 727\nlimit 20000\nenter 33516 0 16722687 1\ncheckpoint entered\nexit 1 727\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 748 save ce4401ab09b2eff3 state cefc3e80b1cb958e ram 0000000000000000",
+     "arrived frame 301 scene 727 save bbbe4041db050081 state 94541b0387aa8b0a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (352, 304): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 112,
+     "instruction": 212,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3e93bbd1d4e7127ac6671155cc95954"
+     },
+     {
+      "frames": 72,
+      "sha256": "38ecb874271091469b0242cbb5eab4a9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b130-exit-0",
+    "description": "Walking onto exit 0 of DRL_B130 (scene 749) should lead to scene 747",
+    "plan": "# drl-drl-b130-exit-0: Walking onto exit 0 of DRL_B130 (scene 749) should lead to scene 747\nlimit 20000\nenter 33517 0 16722687 1\ncheckpoint entered\nexit 0 747\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 749 save d41468d04da65526 state 19bd09b6b399b19f ram 0000000000000000",
+     "arrived frame 1968 scene 747 save 0bd3722a220e1c62 state 57c55fc3665ce146 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (64, 16): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1490 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 310,
+     "instruction_end": 120,
+     "song": 3,
+     "monster": 1,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d576956ff9de99572902a40e875dacc5"
+     },
+     {
+      "frames": 1739,
+      "sha256": "eadcd4fb57cbc4f41ca2e6644e94dae5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b130-exit-1",
+    "description": "Walking onto exit 1 of DRL_B130 (scene 749) should lead to scene 729",
+    "plan": "# drl-drl-b130-exit-1: Walking onto exit 1 of DRL_B130 (scene 749) should lead to scene 729\nlimit 20000\nenter 33517 0 16722687 1\ncheckpoint entered\nexit 1 729\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 749 save d41468d04da65526 state 19bd09b6b399b19f ram 0000000000000000",
+     "arrived frame 298 scene 729 save 96c6faf89ee9c990 state 02ae419d315a2cd8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (500, 24): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 208,
+     "instruction_end": 117,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d576956ff9de99572902a40e875dacc5"
+     },
+     {
+      "frames": 69,
+      "sha256": "0933d01bd7c07c09c7840c24ee7e4be0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-b130-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-b130-exit-2",
+    "description": "Walking onto exit 2 of DRL_B130 (scene 749) should lead to scene 730",
+    "plan": "# drl-drl-b130-exit-2: Walking onto exit 2 of DRL_B130 (scene 749) should lead to scene 730\nlimit 20000\nenter 33517 0 16722687 1\ncheckpoint entered\nexit 2 730\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 749 save d41468d04da65526 state 19bd09b6b399b19f ram 0000000000000000",
+     "arrived frame 1312 scene 730 save e6434ece09cb264a state dd7578d9c9ce0eb0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (261, 288): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 890 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 335,
+     "instruction_end": 179,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d576956ff9de99572902a40e875dacc5"
+     },
+     {
+      "frames": 1083,
+      "sha256": "5c850e1da0d2fcdbbc031165b3f841eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs00-exit-0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x461 = 1 for exit 0 of DRL_BS00",
+    "source": "scene-wide search over the saved-game variables scene 732's scripts test (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x461": 1
+    }
+   },
+   "baseline": {
+    "route": "drl-drl-bs00-exit-0",
+    "description": "Walking onto exit 0 of DRL_BS00 (scene 732) should lead to scene 741",
+    "plan": "# drl-drl-bs00-exit-0: Walking onto exit 0 of DRL_BS00 (scene 732) should lead to scene 741\nlimit 20000\nenter 33500 0 16712703 0\ncheckpoint entered\nexit 0 741\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 732 save a68145fc9d5aa697 state 2919350ab08bb5d9 ram 0000000000000000",
+     "arrived frame 309 scene 741 save 3ee28f26cd20c7fa state fac1c3eeee4ee1e7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (667, 193): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 63,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d6b60c7c754066c497c05fcae534c9b5"
+     },
+     {
+      "frames": 80,
+      "sha256": "3854bcb2a4366bcd63b97b0328e1c813"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs10-exit-0",
+    "description": "Walking onto exit 0 of DRL_BS10 (scene 733) should lead to scene 713",
+    "plan": "# drl-drl-bs10-exit-0: Walking onto exit 0 of DRL_BS10 (scene 733) should lead to scene 713\nlimit 20000\nenter 33501 0 16712703 0\ncheckpoint entered\nexit 0 713\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 733 save 4fd2128f2c4b17f8 state 153a54a03c10fede ram 0000000000000000",
+     "arrived frame 298 scene 713 save b6e1c51413b91eee state 0893afee9cf87531 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (128, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 65,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a4456c60e756f65d546609ce470de93d"
+     },
+     {
+      "frames": 69,
+      "sha256": "c2968b781884a877bcfefcfd596ca8df"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs10-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs10-exit-1",
+    "description": "Walking onto exit 1 of DRL_BS10 (scene 733) should lead to scene 738",
+    "plan": "# drl-drl-bs10-exit-1: Walking onto exit 1 of DRL_BS10 (scene 733) should lead to scene 738\nlimit 20000\nenter 33501 0 16712703 1\ncheckpoint entered\nexit 1 738\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 733 save a7d290bcf8a64811 state 4e03359abae5a89d ram 0000000000000000",
+     "arrived frame 298 scene 738 save ebe4ce01d7d18705 state c5a068c5e17b293a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (832, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "exit": 1,
+     "instruction": 181,
+     "instruction_end": 68,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a6fd21659a21768f81bb3956349e6e18"
+     },
+     {
+      "frames": 69,
+      "sha256": "5b5aca8421d8def11c72b4eefbf1bf37"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs20-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs20-exit-0",
+    "description": "Walking onto exit 0 of DRL_BS20 (scene 734) should lead to scene 716",
+    "plan": "# drl-drl-bs20-exit-0: Walking onto exit 0 of DRL_BS20 (scene 734) should lead to scene 716\nlimit 20000\nexperience 9999999\nenter 33502 0 16712477 0\ncheckpoint entered\nexit 0 716\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 734 save 0bc65011be76aa33 state 190db99e3edc14f2 ram 0000000000000000",
+     "arrived frame 3188 scene 716 save 5779f6f8d11cfb53 state db8062f90ec70f66 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (504, 306): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2270 frames"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 503,
+     "instruction_end": 193,
+     "song": 4,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "03f201c4ac6661eca3700e024765bda0"
+     },
+     {
+      "frames": 2928,
+      "sha256": "b3af62d3ad9ca4244e52b73f70ba6b11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs20-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs20-exit-1",
+    "description": "Walking onto exit 1 of DRL_BS20 (scene 734) should lead to scene 717",
+    "plan": "# drl-drl-bs20-exit-1: Walking onto exit 1 of DRL_BS20 (scene 734) should lead to scene 717\nlimit 20000\nexperience 9999999\nenter 33502 0 16712477 0\ncheckpoint entered\nexit 1 717\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 734 save 0bc65011be76aa33 state 190db99e3edc14f2 ram 0000000000000000",
+     "arrived frame 2992 scene 717 save 90da8bfe1bea758a state d0afed82340452cc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (309, 313): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1970 frames"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 485,
+     "instruction_end": 166,
+     "song": 4,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "03f201c4ac6661eca3700e024765bda0"
+     },
+     {
+      "frames": 2732,
+      "sha256": "600f153c6f49fe236096d0711c3cde2d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-bs20-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-bs20-exit-2",
+    "description": "Walking onto exit 2 of DRL_BS20 (scene 734) should lead to scene 718",
+    "plan": "# drl-drl-bs20-exit-2: Walking onto exit 2 of DRL_BS20 (scene 734) should lead to scene 718\nlimit 20000\nenter 33502 0 16712477 1\ncheckpoint entered\nexit 2 718\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 734 save 42d6482ab611c291 state d7d2415d93d044c2 ram 0000000000000000",
+     "arrived frame 5997 scene 718 save 5bd389a0464b0e25 state c06bbd1a0ab00552 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (109, 307): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 4910 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 502,
+     "instruction_end": 178,
+     "song": 4,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "235410b2e1006fd8e22171b83f29dd50"
+     },
+     {
+      "frames": 5768,
+      "sha256": "f01950c32b721733ab3c1926bb1617d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e000-exit-1",
+    "description": "Walking onto exit 1 of DRL_E000 (scene 712) should lead to scene 736",
+    "plan": "# drl-drl-e000-exit-1: Walking onto exit 1 of DRL_E000 (scene 712) should lead to scene 736\nlimit 20000\nenter 712 0 16722687 0\ncheckpoint entered\nexit 1 736\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 712 save f0a1083e51f4af72 state 3d2d7ae73ca4ce2f ram 0000000000000000",
+     "arrived frame 421 scene 736 save 123ee6f265f5f826 state 9efc03390708ed33 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 392): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0d5dd7c7d04ca5d2fc7457eb369c8747"
+     },
+     {
+      "frames": 192,
+      "sha256": "9c7960951b7f3977febb48fc4a67850a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e010-exit-0",
+    "description": "Walking onto exit 0 of DRL_E010 (scene 713) should lead to scene 736",
+    "plan": "# drl-drl-e010-exit-0: Walking onto exit 0 of DRL_E010 (scene 713) should lead to scene 736\nlimit 20000\nenter 713 0 16722687 0\ncheckpoint entered\nexit 0 736\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 713 save dc2db993bb9cdedf state 3ef323eb20bf8f6b ram 0000000000000000",
+     "arrived frame 301 scene 736 save 6fd917a463e2d1fd state 02788e8b409699ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "185c4e8e37d44e81279d59a90bea0765"
+     },
+     {
+      "frames": 72,
+      "sha256": "601b49c1f520e5b11ca0b222ac64c1c0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e010-exit-1",
+    "description": "Walking onto exit 1 of DRL_E010 (scene 713) should lead to scene 733",
+    "plan": "# drl-drl-e010-exit-1: Walking onto exit 1 of DRL_E010 (scene 713) should lead to scene 733\nlimit 20000\nenter 713 0 16722687 1\ncheckpoint entered\nexit 1 733\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 713 save e5b38fb5c68ad692 state c6be828573c84fd8 ram 0000000000000000",
+     "arrived frame 300 scene 733 save 1ded84a82fa1b1dc state e429fe93a1c96b16 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 207,
+     "instruction_end": 66,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13936425f9c30f0f70332d3b9c6d1a62"
+     },
+     {
+      "frames": 71,
+      "sha256": "c3154c93e9c257f6a41fa1eac57d62b0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e010-exit-2",
+    "description": "Walking onto exit 2 of DRL_E010 (scene 713) should lead to scene 740",
+    "plan": "# drl-drl-e010-exit-2: Walking onto exit 2 of DRL_E010 (scene 713) should lead to scene 740\nlimit 20000\nenter 713 0 16722687 1\ncheckpoint entered\nexit 2 740\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 713 save e5b38fb5c68ad692 state c6be828573c84fd8 ram 0000000000000000",
+     "arrived frame 560 scene 740 save 075f43b8db32f87a state f709668c5006d4ab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 222,
+     "instruction_end": 91,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13936425f9c30f0f70332d3b9c6d1a62"
+     },
+     {
+      "frames": 331,
+      "sha256": "ea324c33dd06afd7a8528125d1e6fb76"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e020-exit-0",
+    "description": "Walking onto exit 0 of DRL_E020 (scene 714) should lead to scene 737",
+    "plan": "# drl-drl-e020-exit-0: Walking onto exit 0 of DRL_E020 (scene 714) should lead to scene 737\nlimit 20000\nenter 714 0 16722687 0\ncheckpoint entered\nexit 0 737\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 714 save a26965c3334474e8 state a0b7658fb04ae002 ram 0000000000000000",
+     "arrived frame 325 scene 737 save 3b66c674b71db720 state b3730135abf6f9e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (598, 266): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9eada3aa7510ee118d93b4f62dee20fe"
+     },
+     {
+      "frames": 96,
+      "sha256": "c076ed79500c3a1790327ad014d4e931"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e020-exit-1",
+    "description": "Walking onto exit 1 of DRL_E020 (scene 714) should lead to scene 740",
+    "plan": "# drl-drl-e020-exit-1: Walking onto exit 1 of DRL_E020 (scene 714) should lead to scene 740\nlimit 20000\nenter 714 0 16722687 0\ncheckpoint entered\nexit 1 740\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 714 save a26965c3334474e8 state a0b7658fb04ae002 ram 0000000000000000",
+     "arrived frame 509 scene 740 save 785fb8c110a69904 state f12efb670f4dde2e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (18, 247): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9eada3aa7510ee118d93b4f62dee20fe"
+     },
+     {
+      "frames": 280,
+      "sha256": "90b9551f6cf1c765826a7131e7438a0f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e020-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e020-exit-2",
+    "description": "Walking onto exit 2 of DRL_E020 (scene 714) should lead to scene 739",
+    "plan": "# drl-drl-e020-exit-2: Walking onto exit 2 of DRL_E020 (scene 714) should lead to scene 739\nlimit 20000\nenter 714 0 16722687 0\ncheckpoint entered\nexit 2 739\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 714 save a26965c3334474e8 state a0b7658fb04ae002 ram 0000000000000000",
+     "arrived frame 596 scene 739 save 77b7bd5dad51de8f state 9bb9269b899dd99e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (116, 8): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9eada3aa7510ee118d93b4f62dee20fe"
+     },
+     {
+      "frames": 367,
+      "sha256": "8b83749190c7ce692c74f2098052ffe9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e030-exit-0",
+    "description": "Walking onto exit 0 of DRL_E030 (scene 715) should lead to scene 744",
+    "plan": "# drl-drl-e030-exit-0: Walking onto exit 0 of DRL_E030 (scene 715) should lead to scene 744\nlimit 20000\nenter 715 0 16722687 0\ncheckpoint entered\nexit 0 744\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 715 save f1eb2c741e092d15 state f8af1e48744fd006 ram 0000000000000000",
+     "arrived frame 314 scene 744 save 039b865a9a328971 state 7f8149e098bf4670 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (179, 328): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e283cffbbe259bdd6766ba6f04fd5eb5"
+     },
+     {
+      "frames": 85,
+      "sha256": "a5dc68704ea33ed9391c5eea85dbe408"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e030-exit-1",
+    "description": "Walking onto exit 1 of DRL_E030 (scene 715) should lead to scene 741",
+    "plan": "# drl-drl-e030-exit-1: Walking onto exit 1 of DRL_E030 (scene 715) should lead to scene 741\nlimit 20000\nenter 715 0 16722687 1\ncheckpoint entered\nexit 1 741\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 715 save 35515cc4129dc908 state 14123691dded85da ram 0000000000000000",
+     "arrived frame 308 scene 741 save 0967304cd57f227d state b023e57cffe85517 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 114): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4f15e8cdd3a54cbf25f414c3a8f614b"
+     },
+     {
+      "frames": 79,
+      "sha256": "2b616520ed3870ea7b0a638e0873fb85"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e040-exit-0",
+    "description": "Walking onto exit 0 of DRL_E040 (scene 716) should lead to scene 734",
+    "plan": "# drl-drl-e040-exit-0: Walking onto exit 0 of DRL_E040 (scene 716) should lead to scene 734\nlimit 20000\nenter 716 0 16722687 0\ncheckpoint entered\nexit 0 734\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 716 save 00276fbce5545fe6 state 1d4c7ce06ebe1373 ram 0000000000000000",
+     "arrived frame 304 scene 734 save a70652dedf130aa6 state d89ef40bb89b3cc4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 86,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64c430baf608223c493bec2ba3db2869"
+     },
+     {
+      "frames": 75,
+      "sha256": "0f909ee8979672ba9ed798ca4458f756"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e040-exit-1",
+    "description": "Walking onto exit 1 of DRL_E040 (scene 716) should lead to scene 725",
+    "plan": "# drl-drl-e040-exit-1: Walking onto exit 1 of DRL_E040 (scene 716) should lead to scene 725\nlimit 20000\nenter 716 0 16722687 1\ncheckpoint entered\nexit 1 725\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 716 save a3a9558dd8b004d3 state 7f5ca906b19dd23d ram 0000000000000000",
+     "arrived frame 305 scene 725 save 6a9ee4ea32ef5799 state 0d5d9dae63f4656a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 406): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 68,
+     "instruction": 185,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf4357d23e9cc90ae8ec1e7320b472ad"
+     },
+     {
+      "frames": 76,
+      "sha256": "d7e26c606cc303c8ab527956733042c2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e040-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e040-exit-2",
+    "description": "Walking onto exit 2 of DRL_E040 (scene 716) should lead to scene 739",
+    "plan": "# drl-drl-e040-exit-2: Walking onto exit 2 of DRL_E040 (scene 716) should lead to scene 739\nlimit 20000\nenter 716 0 16722687 1\ncheckpoint entered\nexit 2 739\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 716 save a3a9558dd8b004d3 state 7f5ca906b19dd23d ram 0000000000000000",
+     "arrived frame 389 scene 739 save 5330577da5007b8b state 55b8ee24f6e3c458 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 101,
+     "instruction": 208,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf4357d23e9cc90ae8ec1e7320b472ad"
+     },
+     {
+      "frames": 160,
+      "sha256": "57aaf508cadd99d796cbbd14f53ebfd0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e050-exit-0",
+    "description": "Walking onto exit 0 of DRL_E050 (scene 717) should lead to scene 734",
+    "plan": "# drl-drl-e050-exit-0: Walking onto exit 0 of DRL_E050 (scene 717) should lead to scene 734\nlimit 20000\nenter 717 0 16722687 0\ncheckpoint entered\nexit 0 734\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 717 save 01e2527a92bf5ab3 state 3d2d7ae73ca4ce2f ram 0000000000000000",
+     "arrived frame 300 scene 734 save 915c38dc038111df state f9639e6032d3517b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 57,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "542ec0e50aa3b22bbcb4e5f099b5dc29"
+     },
+     {
+      "frames": 71,
+      "sha256": "a61f75063a3006c1b22f00de6b947c73"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e060-exit-0",
+    "description": "Walking onto exit 0 of DRL_E060 (scene 718) should lead to scene 734",
+    "plan": "# drl-drl-e060-exit-0: Walking onto exit 0 of DRL_E060 (scene 718) should lead to scene 734\nlimit 20000\nenter 718 0 16722687 0\ncheckpoint entered\nexit 0 734\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 718 save 1b2d4b53811dc0dc state 26cb622969cfa551 ram 0000000000000000",
+     "arrived frame 302 scene 734 save 79185eda16ea8488 state d6d555df7b6db4a4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 77,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b689cb1b0491013f4b5501a879f08164"
+     },
+     {
+      "frames": 73,
+      "sha256": "fedb0f91522a72c21d3534c8ff83dd07"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e060-exit-1",
+    "description": "Walking onto exit 1 of DRL_E060 (scene 718) should lead to scene 743",
+    "plan": "# drl-drl-e060-exit-1: Walking onto exit 1 of DRL_E060 (scene 718) should lead to scene 743\nlimit 20000\nenter 718 0 16722687 1\ncheckpoint entered\nexit 1 743\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 718 save 7d44514985ed08c9 state b8a336b1f90662e3 ram 0000000000000000",
+     "arrived frame 301 scene 743 save f5bd1c2f2e0c1452 state e49d3929a9a4b581 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "255d707bfabc4335c06bcaeb2c93b1e6"
+     },
+     {
+      "frames": 72,
+      "sha256": "4cacf62c7fa7159cd15a089566d56276"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e060-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e060-exit-2",
+    "description": "Walking onto exit 2 of DRL_E060 (scene 718) should lead to scene 739",
+    "plan": "# drl-drl-e060-exit-2: Walking onto exit 2 of DRL_E060 (scene 718) should lead to scene 739\nlimit 20000\nenter 718 0 16722687 0\ncheckpoint entered\nexit 2 739\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 718 save 1b2d4b53811dc0dc state 26cb622969cfa551 ram 0000000000000000",
+     "arrived frame 392 scene 739 save 5330577da5007b8b state 55a12da8cda6eb3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 202,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b689cb1b0491013f4b5501a879f08164"
+     },
+     {
+      "frames": 163,
+      "sha256": "62039ac1935f0a511f47c3b2c1e4d90c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e070-exit-0",
+    "description": "Walking onto exit 0 of DRL_E070 (scene 719) should lead to scene 742",
+    "plan": "# drl-drl-e070-exit-0: Walking onto exit 0 of DRL_E070 (scene 719) should lead to scene 742\nlimit 20000\nenter 719 0 16722687 0\ncheckpoint entered\nexit 0 742\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 719 save 517e6a1df1ea5d29 state 5ca4c9d37efc2a40 ram 0000000000000000",
+     "arrived frame 306 scene 742 save 37bb99561959d36f state e65ebe8ae51f445b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 95,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "899f585fb137cfee4359cf37ed25c864"
+     },
+     {
+      "frames": 77,
+      "sha256": "8ca13e3e71dffa11229586b92349fb04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e070-exit-1",
+    "description": "Walking onto exit 1 of DRL_E070 (scene 719) should lead to scene 744",
+    "plan": "# drl-drl-e070-exit-1: Walking onto exit 1 of DRL_E070 (scene 719) should lead to scene 744\nlimit 20000\nenter 719 0 16722687 1\ncheckpoint entered\nexit 1 744\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 719 save 18dc96e0a5b7607c state d3d97cdc107417ba ram 0000000000000000",
+     "arrived frame 305 scene 744 save a7de3c58ae03bee8 state 55bf1cf0ca56c489 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 95,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "17c47bef00c61090996ddbe646ed52da"
+     },
+     {
+      "frames": 76,
+      "sha256": "962025fd0eba8d23728efa194a4b8f74"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e070-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e070-exit-2",
+    "description": "Walking onto exit 2 of DRL_E070 (scene 719) should lead to scene 737",
+    "plan": "# drl-drl-e070-exit-2: Walking onto exit 2 of DRL_E070 (scene 719) should lead to scene 737\nlimit 20000\nenter 719 0 16722687 0\ncheckpoint entered\nexit 2 737\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 719 save 517e6a1df1ea5d29 state 5ca4c9d37efc2a40 ram 0000000000000000",
+     "arrived frame 396 scene 737 save dca748076fe61955 state fd031b55732da91c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 227,
+     "instruction_end": 114,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "899f585fb137cfee4359cf37ed25c864"
+     },
+     {
+      "frames": 167,
+      "sha256": "42dfd8241af6b86a061d729af263cbbc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e080-exit-0",
+    "description": "Walking onto exit 0 of DRL_E080 (scene 720) should lead to scene 742",
+    "plan": "# drl-drl-e080-exit-0: Walking onto exit 0 of DRL_E080 (scene 720) should lead to scene 742\nlimit 20000\nenter 720 0 16722687 2\ncheckpoint entered\nexit 0 742\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 720 save 7dd29fe1a6fdd548 state d4ce1fe2de28d492 ram 0000000000000000",
+     "arrived frame 536 scene 742 save f1f87f7c0f38c172 state c0a318d50e617b1b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (635, 51): -3 waypoints",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0c08418f2612860cd00af4c675b7317"
+     },
+     {
+      "frames": 307,
+      "sha256": "b81504473026f64b5f599a6883ee17cc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e080-exit-1",
+    "description": "Walking onto exit 1 of DRL_E080 (scene 720) should lead to scene 743",
+    "plan": "# drl-drl-e080-exit-1: Walking onto exit 1 of DRL_E080 (scene 720) should lead to scene 743\nlimit 20000\nenter 720 0 16722687 2\ncheckpoint entered\nexit 1 743\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 720 save 7dd29fe1a6fdd548 state d4ce1fe2de28d492 ram 0000000000000000",
+     "arrived frame 536 scene 743 save 8554d3d55574ee8f state c05ff119ede94a77 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (3, 56): -3 waypoints",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0c08418f2612860cd00af4c675b7317"
+     },
+     {
+      "frames": 307,
+      "sha256": "4ac2975eb81c420adba0e7235111ec71"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e080-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e080-exit-2",
+    "description": "Walking onto exit 2 of DRL_E080 (scene 720) should lead to scene 736",
+    "plan": "# drl-drl-e080-exit-2: Walking onto exit 2 of DRL_E080 (scene 720) should lead to scene 736\nlimit 20000\nenter 720 0 16722687 2\ncheckpoint entered\nexit 2 736\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 720 save 7dd29fe1a6fdd548 state d4ce1fe2de28d492 ram 0000000000000000",
+     "arrived frame 300 scene 736 save 76b8125b561b7a85 state 55b0202ee21d47af ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (320, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 152,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0c08418f2612860cd00af4c675b7317"
+     },
+     {
+      "frames": 71,
+      "sha256": "418aeeccafe40ad515586ca981c56d82"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e080-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e080-exit-3",
+    "description": "Walking onto exit 3 of DRL_E080 (scene 720) should lead to scene 745",
+    "plan": "# drl-drl-e080-exit-3: Walking onto exit 3 of DRL_E080 (scene 720) should lead to scene 745\nlimit 20000\nenter 720 0 16722687 2\ncheckpoint entered\nexit 3 745\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 720 save 7dd29fe1a6fdd548 state d4ce1fe2de28d492 ram 0000000000000000",
+     "arrived frame 357 scene 745 save f3891d2c2249a96d state ecd6462c33034b2f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (330, 199): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0c08418f2612860cd00af4c675b7317"
+     },
+     {
+      "frames": 128,
+      "sha256": "b560b4bd8b30e35a75078d3efe892099"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e090-exit-0",
+    "description": "Walking onto exit 0 of DRL_E090 (scene 721) should lead to scene 738",
+    "plan": "# drl-drl-e090-exit-0: Walking onto exit 0 of DRL_E090 (scene 721) should lead to scene 738\nlimit 20000\nenter 721 0 16722687 1\ncheckpoint entered\nexit 0 738\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 721 save e25a94eeac4234ba state c13e294c54a622bd ram 0000000000000000",
+     "arrived frame 422 scene 738 save eeb12b96dd45c6ae state 7fd172a998ad5296 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "118da0857c51b4cb1741cc15299d2b6e"
+     },
+     {
+      "frames": 193,
+      "sha256": "7c3ecd7ad1b10b5b586e0b353ed23e71"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e090-exit-1",
+    "description": "Walking onto exit 1 of DRL_E090 (scene 721) should lead to scene 728",
+    "plan": "# drl-drl-e090-exit-1: Walking onto exit 1 of DRL_E090 (scene 721) should lead to scene 728\nlimit 20000\nenter 721 0 16722687 1\ncheckpoint entered\nexit 1 728\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 721 save e25a94eeac4234ba state c13e294c54a622bd ram 0000000000000000",
+     "arrived frame 303 scene 728 save 9bb01f9923a0cf58 state a99cff6e3423d094 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 403): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "118da0857c51b4cb1741cc15299d2b6e"
+     },
+     {
+      "frames": 74,
+      "sha256": "bb786fb980f1f7aeba8e7a7039b286ad"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e100-exit-0",
+    "description": "Walking onto exit 0 of DRL_E100 (scene 722) should lead to scene 728",
+    "plan": "# drl-drl-e100-exit-0: Walking onto exit 0 of DRL_E100 (scene 722) should lead to scene 728\nlimit 20000\nenter 722 0 16722687 1\ncheckpoint entered\nexit 0 728\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 722 save 621abd9bf064859d state 58095df3da96e9c3 ram 0000000000000000",
+     "arrived frame 309 scene 728 save 18c2261800f5c3bb state 97e2e97fb915d227 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 406): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 97,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cefd56c1e82e43111235b1bab4e52f54"
+     },
+     {
+      "frames": 80,
+      "sha256": "459881ffb676a5c5a2104c36d283bf8f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e100-exit-1",
+    "description": "Walking onto exit 1 of DRL_E100 (scene 722) should lead to scene 732",
+    "plan": "# drl-drl-e100-exit-1: Walking onto exit 1 of DRL_E100 (scene 722) should lead to scene 732\nlimit 20000\nenter 722 0 16722687 1\ncheckpoint entered\nexit 1 732\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 722 save 621abd9bf064859d state 58095df3da96e9c3 ram 0000000000000000",
+     "arrived frame 393 scene 732 save 88bb54a64b36d2cf state 2287a3b1c6a77088 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 248,
+     "instruction_end": 125,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cefd56c1e82e43111235b1bab4e52f54"
+     },
+     {
+      "frames": 164,
+      "sha256": "99b5b59b5502367c43f1b4d49eecad58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e110-exit-0",
+    "description": "Walking onto exit 0 of DRL_E110 (scene 723) should lead to scene 724",
+    "plan": "# drl-drl-e110-exit-0: Walking onto exit 0 of DRL_E110 (scene 723) should lead to scene 724\nlimit 20000\nenter 723 0 16722687 0\ncheckpoint entered\nexit 0 724\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 723 save ba965d1a191cd17d state 253b9e083df00e16 ram 0000000000000000",
+     "arrived frame 310 scene 724 save a1713b7f38c1d97e state bdddd9aa69109f04 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (161, 316): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 88,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "72f938a7f80ac57fa212685e9d1846ae"
+     },
+     {
+      "frames": 81,
+      "sha256": "98aac09c57d6949bfcb5d2b42fdd2226"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e120-exit-0",
+    "description": "Walking onto exit 0 of DRL_E120 (scene 724) should lead to scene 723",
+    "plan": "# drl-drl-e120-exit-0: Walking onto exit 0 of DRL_E120 (scene 724) should lead to scene 723\nlimit 20000\nenter 724 0 16722687 0\ncheckpoint entered\nexit 0 723\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 724 save 92c0c68b8fce74ae state 15dcc12f5ae7fbaf ram 0000000000000000",
+     "arrived frame 310 scene 723 save dc80c1e24ebdcb9d state 2457d075f6571ce9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 210,
+     "instruction_end": 92,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "251d5a965ce6d21e37c9d1235d86f30f"
+     },
+     {
+      "frames": 81,
+      "sha256": "48c30447291fbe91402c769a327c3357"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e120-exit-1",
+    "description": "Walking onto exit 1 of DRL_E120 (scene 724) should lead to scene 748",
+    "plan": "# drl-drl-e120-exit-1: Walking onto exit 1 of DRL_E120 (scene 724) should lead to scene 748\nlimit 20000\nenter 724 0 16722687 1\ncheckpoint entered\nexit 1 748\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 724 save 2f94f6a96b646bfb state 5e208410525dc6c1 ram 0000000000000000",
+     "arrived frame 309 scene 748 save 718b28e0e76115d6 state a98582269614c638 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8be02ac1fbb05f9e0da4538a911d03f0"
+     },
+     {
+      "frames": 80,
+      "sha256": "f47cdfa2f3afbe8bc9b78416f8d8920c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e120-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e120-exit-2",
+    "description": "Walking onto exit 2 of DRL_E120 (scene 724) should lead to scene 717",
+    "plan": "# drl-drl-e120-exit-2: Walking onto exit 2 of DRL_E120 (scene 724) should lead to scene 717\nlimit 20000\nenter 724 0 16722687 0\ncheckpoint entered\nexit 2 717\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 724 save 92c0c68b8fce74ae state 15dcc12f5ae7fbaf ram 0000000000000000",
+     "arrived frame 400 scene 717 save 01b70bbf7ad1d583 state 3e70f362dc830a3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 221,
+     "instruction_end": 113,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "251d5a965ce6d21e37c9d1235d86f30f"
+     },
+     {
+      "frames": 171,
+      "sha256": "b7e5e35bec218375088862e4bdd63592"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e130-exit-0",
+    "description": "Walking onto exit 0 of DRL_E130 (scene 725) should lead to scene 716",
+    "plan": "# drl-drl-e130-exit-0: Walking onto exit 0 of DRL_E130 (scene 725) should lead to scene 716\nlimit 20000\nenter 725 0 16722687 0\ncheckpoint entered\nexit 0 716\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 725 save ee7a2aa847fe305b state 98102065d71a7bd4 ram 0000000000000000",
+     "arrived frame 300 scene 716 save e27b8105cc73f5f3 state b2ce5554e420a2fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 66,
+     "instruction": 178,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "11dbeadbd0bd26dc6d61cc666e03c589"
+     },
+     {
+      "frames": 71,
+      "sha256": "db5f3a55174c03830a0870003d665c6d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e130-exit-1",
+    "description": "Walking onto exit 1 of DRL_E130 (scene 725) should lead to scene 729",
+    "plan": "# drl-drl-e130-exit-1: Walking onto exit 1 of DRL_E130 (scene 725) should lead to scene 729\nlimit 20000\nenter 725 0 16722687 0\ncheckpoint entered\nexit 1 729\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 725 save ee7a2aa847fe305b state 98102065d71a7bd4 ram 0000000000000000",
+     "arrived frame 424 scene 729 save 61814c26c189221f state ee6dbb627e274aa6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 403): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 106,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "11dbeadbd0bd26dc6d61cc666e03c589"
+     },
+     {
+      "frames": 195,
+      "sha256": "ca60859015ba17811078023ced6e8a54"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e140-exit-0",
+    "description": "Walking onto exit 0 of DRL_E140 (scene 726) should lead to scene 746",
+    "plan": "# drl-drl-e140-exit-0: Walking onto exit 0 of DRL_E140 (scene 726) should lead to scene 746\nlimit 20000\nenter 726 0 16722687 0\ncheckpoint entered\nexit 0 746\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 726 save 4edcfc64aa7d7584 state b678db024b2841b4 ram 0000000000000000",
+     "arrived frame 312 scene 746 save 47954e52a7b63735 state ddbba4562049c6b9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 225,
+     "instruction_end": 123,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a340ee464202e68e0f0192da00eb1353"
+     },
+     {
+      "frames": 83,
+      "sha256": "3e1f91534feeb39f42ef9d03ffe7173f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e140-exit-1",
+    "description": "Walking onto exit 1 of DRL_E140 (scene 726) should lead to scene 728",
+    "plan": "# drl-drl-e140-exit-1: Walking onto exit 1 of DRL_E140 (scene 726) should lead to scene 728\nlimit 20000\nenter 726 0 16722687 1\ncheckpoint entered\nexit 1 728\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 726 save 0212f76f68187a51 state edb345e022e31396 ram 0000000000000000",
+     "arrived frame 311 scene 728 save f55d7ff20ce12f10 state d84af94141ba13f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 229,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e646b66b20413c7b7729ff60272741e4"
+     },
+     {
+      "frames": 82,
+      "sha256": "5fb868134dcae0aa121a97a101c66c2b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e140-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e140-exit-2",
+    "description": "Walking onto exit 2 of DRL_E140 (scene 726) should lead to scene 745",
+    "plan": "# drl-drl-e140-exit-2: Walking onto exit 2 of DRL_E140 (scene 726) should lead to scene 745\nlimit 20000\nenter 726 0 16722687 1\ncheckpoint entered\nexit 2 745\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 726 save 0212f76f68187a51 state edb345e022e31396 ram 0000000000000000",
+     "arrived frame 389 scene 745 save a0d426b3aac7ad9f state f7d0683bdf16ec05 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 232,
+     "instruction_end": 138,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e646b66b20413c7b7729ff60272741e4"
+     },
+     {
+      "frames": 160,
+      "sha256": "398d838839fbf80b1bb7266b59425ec1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e150-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e150-exit-0",
+    "description": "Walking onto exit 0 of DRL_E150 (scene 727) should lead to scene 748",
+    "plan": "# drl-drl-e150-exit-0: Walking onto exit 0 of DRL_E150 (scene 727) should lead to scene 748\nlimit 20000\nenter 727 0 16722687 1\ncheckpoint entered\nexit 0 748\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 727 save 9928866313b6c824 state cd167a585d2178de ram 0000000000000000",
+     "arrived frame 443 scene 748 save 79c0cc8578e8d493 state 2984106e4246a6f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit avoids other exits; taking one that crosses one",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 118,
+     "instruction": 217,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e571a9210ba684d9e0ffef43e3fb242b"
+     },
+     {
+      "frames": 214,
+      "sha256": "73217dab86ebb7950312e96bf86ea462"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e150-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e150-exit-1",
+    "description": "Walking onto exit 1 of DRL_E150 (scene 727) should lead to scene 728",
+    "plan": "# drl-drl-e150-exit-1: Walking onto exit 1 of DRL_E150 (scene 727) should lead to scene 728\nlimit 20000\nenter 727 0 16722687 1\ncheckpoint entered\nexit 1 728\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 727 save 9928866313b6c824 state cd167a585d2178de ram 0000000000000000",
+     "arrived frame 311 scene 728 save 57a06bb52606a43f state 6041692bcb23a7ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 229,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e571a9210ba684d9e0ffef43e3fb242b"
+     },
+     {
+      "frames": 82,
+      "sha256": "c5bd1e27e60b05393f033d12c656fa8d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e160-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e160-exit-0",
+    "description": "Walking onto exit 0 of DRL_E160 (scene 728) should lead to scene 721",
+    "plan": "# drl-drl-e160-exit-0: Walking onto exit 0 of DRL_E160 (scene 728) should lead to scene 721\nlimit 20000\nenter 728 0 16722687 0\ncheckpoint entered\nexit 0 721\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 728 save 298e5ee8cad28ac2 state 74bdb88dd0a76266 ram 0000000000000000",
+     "arrived frame 336 scene 721 save fd385087a1245e6a state c8f16dd5190a865d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (148, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4b0e12d652837c7b6f266c1ddf530a8"
+     },
+     {
+      "frames": 107,
+      "sha256": "b7c96a6c18d510a9d08a6ef6d5ea1295"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e160-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e160-exit-1",
+    "description": "Walking onto exit 1 of DRL_E160 (scene 728) should lead to scene 727",
+    "plan": "# drl-drl-e160-exit-1: Walking onto exit 1 of DRL_E160 (scene 728) should lead to scene 727\nlimit 20000\nenter 728 0 16722687 0\ncheckpoint entered\nexit 1 727\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 728 save 298e5ee8cad28ac2 state 74bdb88dd0a76266 ram 0000000000000000",
+     "arrived frame 583 scene 727 save 98031a21ab3ecb64 state fd2df12bca34a9ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 8): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 231,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4b0e12d652837c7b6f266c1ddf530a8"
+     },
+     {
+      "frames": 354,
+      "sha256": "386e446c0560fb83d4140a341cac6770"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e160-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e160-exit-2",
+    "description": "Walking onto exit 2 of DRL_E160 (scene 728) should lead to scene 726",
+    "plan": "# drl-drl-e160-exit-2: Walking onto exit 2 of DRL_E160 (scene 728) should lead to scene 726\nlimit 20000\nenter 728 0 16722687 0\ncheckpoint entered\nexit 2 726\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 728 save 298e5ee8cad28ac2 state 74bdb88dd0a76266 ram 0000000000000000",
+     "arrived frame 527 scene 726 save a935971760dba021 state 92876e88bf90ef00 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (688, 8): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 231,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4b0e12d652837c7b6f266c1ddf530a8"
+     },
+     {
+      "frames": 298,
+      "sha256": "cef2b917cab28e31cef371b6a0b0daf5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e160-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e160-exit-3",
+    "description": "Walking onto exit 3 of DRL_E160 (scene 728) should lead to scene 722",
+    "plan": "# drl-drl-e160-exit-3: Walking onto exit 3 of DRL_E160 (scene 728) should lead to scene 722\nlimit 20000\nenter 728 0 16722687 0\ncheckpoint entered\nexit 3 722\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 728 save 298e5ee8cad28ac2 state 74bdb88dd0a76266 ram 0000000000000000",
+     "arrived frame 690 scene 722 save bc5a2175d7223b3d state f4405f1f3baf29f6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (1024, 8): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 235,
+     "instruction_end": 100,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4b0e12d652837c7b6f266c1ddf530a8"
+     },
+     {
+      "frames": 461,
+      "sha256": "15a7731ea7173e0ad603f93e472fd2b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e170-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e170-exit-0",
+    "description": "Walking onto exit 0 of DRL_E170 (scene 729) should lead to scene 725",
+    "plan": "# drl-drl-e170-exit-0: Walking onto exit 0 of DRL_E170 (scene 729) should lead to scene 725\nlimit 20000\nenter 729 0 16722687 0\ncheckpoint entered\nexit 0 725\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 729 save 0b4c1753c9ce666f state 73655df3ed8c30b7 ram 0000000000000000",
+     "arrived frame 313 scene 725 save 14ce2755f66388ac state 49dfa696e7f896e3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 113,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "80e2a893ac9e1b5e1eb89cf99d8a288e"
+     },
+     {
+      "frames": 84,
+      "sha256": "addd9844216687463d8e1cd8207f2c21"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e170-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e170-exit-1",
+    "description": "Walking onto exit 1 of DRL_E170 (scene 729) should lead to scene 749",
+    "plan": "# drl-drl-e170-exit-1: Walking onto exit 1 of DRL_E170 (scene 729) should lead to scene 749\nlimit 20000\nenter 729 0 16722687 1\ncheckpoint entered\nexit 1 749\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 729 save 396a1124b0e34ae2 state 10e0324eec965b3d ram 0000000000000000",
+     "arrived frame 312 scene 749 save b9b25a6c80a4b764 state 318b807d9e2b2c71 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 393): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 124,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "062cf96f66fbce6c7bf92f7e1d006075"
+     },
+     {
+      "frames": 83,
+      "sha256": "5a3f136d0a347047d3e9c683fdf81def"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e170-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e170-exit-2",
+    "description": "Walking onto exit 2 of DRL_E170 (scene 729) should lead to scene 746",
+    "plan": "# drl-drl-e170-exit-2: Walking onto exit 2 of DRL_E170 (scene 729) should lead to scene 746\nlimit 20000\nenter 729 0 16722687 0\ncheckpoint entered\nexit 2 746\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 729 save 0b4c1753c9ce666f state 73655df3ed8c30b7 ram 0000000000000000",
+     "arrived frame 403 scene 746 save b14ee21bb3243bef state b840ca7b002bdfab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 250,
+     "instruction_end": 154,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "80e2a893ac9e1b5e1eb89cf99d8a288e"
+     },
+     {
+      "frames": 174,
+      "sha256": "58981af6d967a1358ee39a8179df52d5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e180-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e180-exit-0",
+    "description": "Walking onto exit 0 of DRL_E180 (scene 730) should lead to scene 749",
+    "plan": "# drl-drl-e180-exit-0: Walking onto exit 0 of DRL_E180 (scene 730) should lead to scene 749\nlimit 20000\nenter 730 0 16722687 0\ncheckpoint entered\nexit 0 749\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 730 save 1c402e3a0a48c6b8 state 64637fa1b57c0bc5 ram 0000000000000000",
+     "arrived frame 315 scene 749 save 61a9faf889eb00eb state ecd76dce3f46c6e1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 136,
+     "instruction": 240,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4f27c1677624de45d390bb9daa54cdfd"
+     },
+     {
+      "frames": 86,
+      "sha256": "165602d028df0a7fc6fb2acfcd5b2c02"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e180-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e180-exit-1",
+    "description": "Walking onto exit 1 of DRL_E180 (scene 730) should lead to scene 731",
+    "plan": "# drl-drl-e180-exit-1: Walking onto exit 1 of DRL_E180 (scene 730) should lead to scene 731\nlimit 20000\nenter 730 0 16722687 1\ncheckpoint entered\nexit 1 731\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 730 save 38b1312ef89eb985 state 2c5896c7b47244d3 ram 0000000000000000",
+     "arrived frame 316 scene 731 save 8966cba1b3eb4748 state 20e653846bba6c49 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (159, 406): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 124,
+     "instruction": 239,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6c439ec35ac120420ecd3ea37a0a5f5a"
+     },
+     {
+      "frames": 87,
+      "sha256": "3f54ece2c6f5a6b0ae694bbfd5095fb8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e180-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e180-exit-2",
+    "description": "Walking onto exit 2 of DRL_E180 (scene 730) should lead to scene 728",
+    "plan": "# drl-drl-e180-exit-2: Walking onto exit 2 of DRL_E180 (scene 730) should lead to scene 728\nlimit 20000\nenter 730 0 16722687 1\ncheckpoint entered\nexit 2 728\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 730 save 38b1312ef89eb985 state 2c5896c7b47244d3 ram 0000000000000000",
+     "arrived frame 603 scene 728 save f1ff3805d909d8f1 state 9d083991567b2da8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 155,
+     "instruction": 268,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6c439ec35ac120420ecd3ea37a0a5f5a"
+     },
+     {
+      "frames": 374,
+      "sha256": "e2d3402a3a398acbc3f91d8aba71c146"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e190-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e190-exit-0",
+    "description": "Walking onto exit 0 of DRL_E190 (scene 731) should lead to scene 730",
+    "plan": "# drl-drl-e190-exit-0: Walking onto exit 0 of DRL_E190 (scene 731) should lead to scene 730\nlimit 20000\nenter 731 0 16716799 0\ncheckpoint entered\nexit 0 730\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 731 save 362f9d5c8cd6dada state 2a99055b59615edc ram 0000000000000000",
+     "arrived frame 300 scene 730 save 3fbabc0702c3b3c5 state a8ba7847cfae18aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 210): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 227,
+     "instruction_end": 116,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e540f5924616ade56ff2a4ddeeef2981"
+     },
+     {
+      "frames": 71,
+      "sha256": "fd390358fa5eaa3059ac71150b94ba21"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-os00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-os00-exit-0",
+    "description": "Walking onto exit 0 of DRL_OS00 (scene 711) should lead to the world map",
+    "plan": "# drl-drl-os00-exit-0: Walking onto exit 0 of DRL_OS00 (scene 711) should lead to the world map\nlimit 20000\nenter 711 0 16716799 0\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 711 save 6bbae100cd788236 state a80a7d4927f204da ram 0000000000000000",
+     "arrived frame 830 scene 32767 save 155b3fe2a953bd6e state c9e892bbc0cfe65e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (168, 10): 1 waypoints",
+     "game state 1 at vblank 1985"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c77e9f89cf0a79cf34e30c56d010a60d"
+     },
+     {
+      "frames": 600,
+      "sha256": "eb4b242c9d5173a4b08f1c69a36e0b5f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-os00-exit-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 1 of DRL_OS00 needs",
+    "source": "built from the conditions in scene 711's script 1 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {}
+   },
+   "baseline": {
+    "route": "drl-drl-os00-exit-1",
+    "description": "Walking onto exit 1 of DRL_OS00 (scene 711) should lead to scene 712",
+    "plan": "# drl-drl-os00-exit-1: Walking onto exit 1 of DRL_OS00 (scene 711) should lead to scene 712\nlimit 20000\nenter 711 0 16716799 0\nguest 4\nenter 711 0 16716799 0\ncheckpoint entered\nexit 1 712\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 741 scene 711 save 7c7039c031b2afd7 state 90ced6e6a1d79765 ram 0000000000000000",
+     "arrived frame 961 scene 712 save 838ed3f14edb665b state 1fb2a262b4e0f9dd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 4 joined",
+     "walk to (157, 450): 1 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 55,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 742,
+      "sha256": "b0e65788ca165d1a34f0fa8e4ca542ae"
+     },
+     {
+      "frames": 220,
+      "sha256": "2c03c8db4b90e1035e9eb6cbb0b18d74"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,501 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "grb-grb-b00a-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00a-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B00A (scene 445) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b00a-battle-0: Walking into battle zone 0 of GRB_B00A (scene 445) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33213 0 16718847 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 445 save 577dbd64a4f251a2 state 3d9f18c861965ec5 ram 0000000000000000",
+     "fought frame 1171 scene 445 save aab5ec4bce637e13 state d59dd8b82dc6c5e6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 190): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 406,
+     "instruction_end": 118,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "16963c5aa31eb603481c5ec997891184"
+     },
+     {
+      "frames": 911,
+      "sha256": "f2ba00e4b65577f1a91917b72a6f917f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b00b-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b00b-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B00B (scene 446) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b00b-battle-0: Walking into battle zone 0 of GRB_B00B (scene 446) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33214 1 16718847 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 446 save c23edf01abcad340 state 9c82821aaeaccbc7 ram 0000000000000000",
+     "fought frame 1178 scene 446 save 65e8cf8fd10ebf9b state 81c56ab02cef451a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 190): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 770 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 322,
+     "instruction_end": 108,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "28ebc64d29327876f988d3aaf8b09ad3"
+     },
+     {
+      "frames": 918,
+      "sha256": "3cb73b86494bb9e7595d989e273792dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01a-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01a-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B01A (scene 447) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b01a-battle-0: Walking into battle zone 0 of GRB_B01A (scene 447) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33215 0 16718847 0\ncheckpoint entered\nwalk 264 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 447 save 562b3ed6c7fa7894 state d32915016a077ad4 ram 0000000000000000",
+     "fought frame 1114 scene 447 save 18d5ddd5cbe8e663 state f3f9172b2e2c1e33 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (264, 204): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 280,
+     "instruction_end": 100,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c78193ba3363f2e2179dc53ff435debf"
+     },
+     {
+      "frames": 854,
+      "sha256": "989b59cf560da901ab69ae3aa0fe620f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01a-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01a-battle-1",
+    "description": "Walking into battle zone 1 of GRB_B01A (scene 447) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b01a-battle-1: Walking into battle zone 1 of GRB_B01A (scene 447) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33215 0 16718847 0\ncheckpoint entered\nwalk 565 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 447 save 562b3ed6c7fa7894 state d32915016a077ad4 ram 0000000000000000",
+     "fought frame 967 scene 447 save fd3060d9c96c6a15 state aa844181bf310026 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (565, 204): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 338,
+     "instruction_end": 107,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c78193ba3363f2e2179dc53ff435debf"
+     },
+     {
+      "frames": 707,
+      "sha256": "c6f160c332b8e85bb3e23cd26d576b73"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b01b-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b01b-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B01B (scene 448) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b01b-battle-0: Walking into battle zone 0 of GRB_B01B (scene 448) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33216 1 16718847 0\ncheckpoint entered\nwalk 264 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 448 save 9820afba733c29da state ccb9a780acbcff8c ram 0000000000000000",
+     "fought frame 1371 scene 448 save 851d72b384841417 state 9bd5d263a51d4434 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (264, 204): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 314,
+     "instruction_end": 102,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "9e43c9c29cdfb69971672858192182b9"
+     },
+     {
+      "frames": 1111,
+      "sha256": "b9cf197c87a1ab7d4c016866527105a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02a-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02a-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B02A (scene 449) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b02a-battle-0: Walking into battle zone 0 of GRB_B02A (scene 449) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33217 0 16718847 0\ncheckpoint entered\nwalk 464 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 449 save eaff20c447b5629e state 14249b80b472e545 ram 0000000000000000",
+     "fought frame 1094 scene 449 save fe1a0f888e6af303 state 386f525301fb1818 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (464, 202): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 107,
+     "instruction": 319,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e12864dc7f4dbc248b58385797eff03f"
+     },
+     {
+      "frames": 834,
+      "sha256": "ee1bc932c022db9bb0a0649f5c1c6582"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b02b-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b02b-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B02B (scene 450) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b02b-battle-0: Walking into battle zone 0 of GRB_B02B (scene 450) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33218 1 16718847 0\ncheckpoint entered\nwalk 464 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 450 save 4e0ff06a7e724aec state edc4500d6d146a67 ram 0000000000000000",
+     "fought frame 1510 scene 450 save 10f28347440faa8e state ab6018da2d4ded48 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (464, 204): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1070 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 352,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c599ec81e0c0637692c7940b63a5277d"
+     },
+     {
+      "frames": 1250,
+      "sha256": "18f31c73e35f6a07319f0eab94ae48a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03a-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03a-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B03A (scene 451) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b03a-battle-0: Walking into battle zone 0 of GRB_B03A (scene 451) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33219 0 16718847 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 451 save 0e54e8502a23d310 state 8b55063873affa2f ram 0000000000000000",
+     "fought frame 927 scene 451 save e76528d9eead1e90 state 6f48c4104d732a74 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 52): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 339,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 2,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "a605c9448ddb9edfe5ee195d92728b8f"
+     },
+     {
+      "frames": 667,
+      "sha256": "b4ee9ae497ae7b7779b65e74eee77227"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b03b-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03b-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B03B (scene 452) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b03b-battle-0: Walking into battle zone 0 of GRB_B03B (scene 452) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33220 1 16718847 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 452 save aeb955c83dcbc6a6 state e8b29b22768aede9 ram 0000000000000000",
+     "fought frame 1112 scene 452 save 346d50a629ad8a14 state 58ef42f3370334fe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 46): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 346,
+     "instruction_end": 110,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "32eb77d2d126fbda029111755b7904c3"
+     },
+     {
+      "frames": 852,
+      "sha256": "603754d6320808e51926106b19bce433"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04a-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04a-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B04A (scene 453) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b04a-battle-0: Walking into battle zone 0 of GRB_B04A (scene 453) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33221 0 16718847 0\ncheckpoint entered\nwalk 304 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 453 save 558457996a5fc7ba state 9caab1297ccd6898 ram 0000000000000000",
+     "fought frame 958 scene 453 save 2866310deaebca63 state e8c9ab89fb6e1356 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (304, 110): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 301,
+     "instruction_end": 104,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "ebf7b3d0b28ee24b7e9fd53ef4cfbad9"
+     },
+     {
+      "frames": 698,
+      "sha256": "b3713999ef3bf6508b055495a8bc52d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-b04b-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b04b-battle-0",
+    "description": "Walking into battle zone 0 of GRB_B04B (scene 454) should start a battle that a strong hero wins",
+    "plan": "# grb-grb-b04b-battle-0: Walking into battle zone 0 of GRB_B04B (scene 454) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33222 1 16718847 0\ncheckpoint entered\nwalk 304 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 454 save a3b5ec5865990098 state 0caa40adbb1dee46 ram 0000000000000000",
+     "fought frame 778 scene 454 save b54e77e1d0a4b484 state e832b89b80c23fc7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (304, 110): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 410 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 93,
+     "instruction": 236,
+     "monster": 1,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "2a90aa6f6e883a00cce032b24b05d969"
+     },
+     {
+      "frames": 518,
+      "sha256": "f3d908b85feaee33abf036569ca95b7c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

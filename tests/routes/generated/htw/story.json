@@ -1,0 +1,1357 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "htw-htw-all0-story-11d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x11d4 needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8,
+     "0x4c3": 1,
+     "0x4c4": 1,
+     "0x135c": 1,
+     "0x1104": 8,
+     "0x1220": 9,
+     "0x114c": 8,
+     "0x11dc": 2,
+     "0x11d4": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-11d4",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x11d4",
+    "plan": "# htw-htw-all0-story-11d4: In HTW_ALL0 (scene 36), entering should write story variable 0x11d4\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 36 save 9c554bae17f08e32 state f0d4253fdbc8606e ram 0000000000000000",
+     "done frame 424 scene 36 save 0312bf88a20ddc34 state dcd97aeb340cd311 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 108 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "d62e730f8b60dd97da3002176d76d599"
+     },
+     {
+      "frames": 110,
+      "sha256": "71cb628cc7088611ff299851377211ec"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-all0-story-11d8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x11d8 needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8,
+     "0x4c3": 1,
+     "0x4c4": 1,
+     "0x135c": 1,
+     "0x1104": 8,
+     "0x1220": 9,
+     "0x114c": 8,
+     "0x11dc": 2,
+     "0x11d8": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-11d8",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x11d8",
+    "plan": "# htw-htw-all0-story-11d8: In HTW_ALL0 (scene 36), entering should write story variable 0x11d8\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 36 save e87c9c6e53c9f1b0 state f0d4253fdbc8606e ram 0000000000000000",
+     "done frame 424 scene 36 save ffa6905d44ee8cb9 state dcd97aeb340cd311 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 108 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "77ac0141cad0fde7478e89970af05245"
+     },
+     {
+      "frames": 110,
+      "sha256": "ab170220c0db4f92135b22def990f2b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-all0-story-11e4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x11e4 needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-11e4",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x11e4",
+    "plan": "# htw-htw-all0-story-11e4: In HTW_ALL0 (scene 36), entering should write story variable 0x11e4\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save c44ba2032a72e5ce state d749aeeb3c69e813 ram 0000000000000000",
+     "done frame 262 scene 36 save c44ba2032a72e5ce state 6b6951f4bc99919a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 203,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8cfce6f07566be046146ab60caf78062"
+     },
+     {
+      "frames": 33,
+      "sha256": "87dae3fee4c3240500e973941f697a1c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-all0-story-417",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x417 needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8,
+     "0x4c3": 1,
+     "0x4c4": 1,
+     "0x135c": 1,
+     "0x1104": 8,
+     "0x1220": 9,
+     "0x114c": 8,
+     "0x11dc": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-417",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x417",
+    "plan": "# htw-htw-all0-story-417: In HTW_ALL0 (scene 36), entering should write story variable 0x417\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 36 save 4c9ba3d9b677ec52 state f0d4253fdbc8606e ram 0000000000000000",
+     "done frame 424 scene 36 save 2804bdee114a5a24 state dcd97aeb340cd311 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 108 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "ea463408f138d1019e9db3f4cbc2e39b"
+     },
+     {
+      "frames": 110,
+      "sha256": "568ea19c151f3ebd747e7c68e2ffd84e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-all0-story-450",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x450 needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8,
+     "0x4c3": 1,
+     "0x4c4": 1,
+     "0x135c": 1,
+     "0x1104": 8,
+     "0x1220": 9,
+     "0x11dc": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-450",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x450",
+    "plan": "# htw-htw-all0-story-450: In HTW_ALL0 (scene 36), entering should write story variable 0x450\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 36 save 4524cd5d1f961352 state f0d4253fdbc8606e ram 0000000000000000",
+     "done frame 424 scene 36 save 6562db677302af74 state dcd97aeb340cd311 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 108 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "989358833f8db6f448eabb5192112b72"
+     },
+     {
+      "frames": 110,
+      "sha256": "143a2c63d50885cf0b35cc36f55418bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-all0-story-45e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_ALL0's story 0x45e needs",
+    "source": "built from the conditions on the path to the write in scene 36 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1100": 8,
+     "0x1110": 8,
+     "0x1160": 8,
+     "0x111c": 8,
+     "0x1180": 8,
+     "0x4c3": 1,
+     "0x4c4": 1,
+     "0x135c": 1,
+     "0x1104": 8,
+     "0x1220": 9,
+     "0x114c": 8
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-all0-story-45e",
+    "description": "In HTW_ALL0 (scene 36), entering should write story variable 0x45e",
+    "plan": "# htw-htw-all0-story-45e: In HTW_ALL0 (scene 36), entering should write story variable 0x45e\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 477f2317073a5403 state 047f454ac4d8f0e2 ram 0000000000000000",
+     "done frame 262 scene 36 save 477f2317073a5403 state d8954a870a15bdd7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 209,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "042bf448406dc90b5fb86c5a885a361b"
+     },
+     {
+      "frames": 33,
+      "sha256": "2ddc4d80da2747e7c968dd89c61f7c89"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-story-1390",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_BZR0's story 0x1390 needs",
+    "source": "built from the conditions on the path to the write in scene 50 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1390": 2
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-bzr0-story-1390",
+    "description": "In HTW_BZR0 (scene 50), talking to layout record 4 should write story variable 0x1390",
+    "plan": "# htw-htw-bzr0-story-1390: In HTW_BZR0 (scene 50), talking to layout record 4 should write story variable 0x1390\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 457 102 0 1 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save c35e07f348388dea state b88077a4d668293d ram 0000000000000000",
+     "done frame 1517 scene 50 save f7272766289b65a3 state 117621611f8ecc23 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (457, 82): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0f3e581e21ccb8edb44d8382c2fda53b"
+     },
+     {
+      "frames": 1288,
+      "sha256": "176625c5eb0159a763c9400bf979b26b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-story-406",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_BZR0's story 0x406 needs",
+    "source": "built from the conditions on the path to the write in scene 50 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11c4": 3
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-bzr0-story-406",
+    "description": "In HTW_BZR0 (scene 50), talking to layout record 1 should write story variable 0x406",
+    "plan": "# htw-htw-bzr0-story-406: In HTW_BZR0 (scene 50), talking to layout record 1 should write story variable 0x406\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\ntalk 175 317 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 54239464bc0532a4 state 2af81664637e559e ram 0000000000000000",
+     "done frame 1157 scene 50 save 2b26be3826353182 state a53ebf019531f837 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 297): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cdd80b0303988de2ab011ec4d7aa82cc"
+     },
+     {
+      "frames": 928,
+      "sha256": "7e5c45c61a646e5e15a4327d9f40e9bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-bzr0-story-a00",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_BZR0's story 0xa00 needs",
+    "source": "built from the conditions on the path to the write in scene 50 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1150": 8
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-bzr0-story-a00",
+    "description": "In HTW_BZR0 (scene 50), entering should write story variable 0xa00",
+    "plan": "# htw-htw-bzr0-story-a00: In HTW_BZR0 (scene 50), entering should write story variable 0xa00\nlimit 20000\nenter 50 0 16712959 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 50 save 9061cedd11a030ec state 65560e1a9c0146be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2426",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 235,
+     "instruction_end": 94,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a68f729ece1ba4877b2f8675711626ab"
+     },
+     {
+      "frames": 820,
+      "sha256": "aa0a641767c4e24005f2e82f05340bcf"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr0-story-415",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_CHR0's story 0x415 needs",
+    "source": "built from the conditions on the path to the write in scene 48 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr0-story-415",
+    "description": "In HTW_CHR0 (scene 48), talking to layout record 2 should write story variable 0x415",
+    "plan": "# htw-htw-chr0-story-415: In HTW_CHR0 (scene 48), talking to layout record 2 should write story variable 0x415\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\nanswer 1\ntalk 300 100 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 16c804f94619e215 state e16f88264984f51e ram 0000000000000000",
+     "done frame 1815 scene 786 save a2ee5331eccca585 state 1e8617e9b22076aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (300, 80): 2 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 408,
+     "instruction_end": 154,
+     "song": 5,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fa66a1992f246999f672ae895feca7c2"
+     },
+     {
+      "frames": 1586,
+      "sha256": "09a4f78744c1a69a1c73667b83a1414b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-chr0-story-424",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_CHR0's story 0x424 needs",
+    "source": "built from the conditions on the path to the write in scene 48 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-chr0-story-424",
+    "description": "In HTW_CHR0 (scene 48), talking to layout record 2 should write story variable 0x424",
+    "plan": "# htw-htw-chr0-story-424: In HTW_CHR0 (scene 48), talking to layout record 2 should write story variable 0x424\nlimit 20000\nenter 48 0 16712959 0\ncheckpoint entered\nanswer 1\ntalk 300 100 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 48 save 16c804f94619e215 state e16f88264984f51e ram 0000000000000000",
+     "done frame 1815 scene 786 save a2ee5331eccca585 state 1e8617e9b22076aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (300, 80): 2 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 408,
+     "instruction_end": 154,
+     "song": 5,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fa66a1992f246999f672ae895feca7c2"
+     },
+     {
+      "frames": 1586,
+      "sha256": "09a4f78744c1a69a1c73667b83a1414b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-frm0-story-1114",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_FRM0's story 0x1114 needs",
+    "source": "built from the conditions on the path to the write in scene 51 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2560": 3
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-frm0-story-1114",
+    "description": "In HTW_FRM0 (scene 51), talking to layout record 1 should write story variable 0x1114",
+    "plan": "# htw-htw-frm0-story-1114: In HTW_FRM0 (scene 51), talking to layout record 1 should write story variable 0x1114\nlimit 20000\nenter 51 0 16712959 0\ncheckpoint entered\ntalk 550 90 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 51 save 0fc7e84831a96100 state 77f967eae661de27 ram 0000000000000000",
+     "done frame 510 scene 51 save 4499ae5d1ddaff0b state 5b88cb1b033902b4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (550, 70): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e1abd621c3f7b33e08c6303d24b6d09"
+     },
+     {
+      "frames": 281,
+      "sha256": "85aec054274ee5de6f720431d65d161d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-inn0-story-25a8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_INN0's story 0x25a8 needs",
+    "source": "built from the conditions on the path to the write in scene 38 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25e8": 11
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-inn0-story-25a8",
+    "description": "In HTW_INN0 (scene 38), entering should write story variable 0x25a8",
+    "plan": "# htw-htw-inn0-story-25a8: In HTW_INN0 (scene 38), entering should write story variable 0x25a8\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 38 save 8526bbbc2d4133df state 332233cf26e32445 ram 0000000000000000",
+     "done frame 1295 scene 38 save 0a7e0880c0cda6be state fac49adee8feec54 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1064 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 89,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d46d041a1779f75c56894ad34ff8a231"
+     },
+     {
+      "frames": 1066,
+      "sha256": "d4bc06fd05ef8f70647ee439d2db8582"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-story-113c",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PRK0's story 0x113c needs",
+    "source": "built from the conditions on the path to the write in scene 47 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 72,
+     "0x113c": 1,
+     "0x11c4": 6
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-story-113c",
+    "description": "In HTW_PRK0 (scene 47), entering should write story variable 0x113c",
+    "plan": "# htw-htw-prk0-story-113c: In HTW_PRK0 (scene 47), entering should write story variable 0x113c\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 0bf14f83e3c1c704 state 4cc541a86462f688 ram 0000000000000000",
+     "done frame 2196 scene 47 save 1f695eb61f4fa8c4 state 4e55bbddcbbaea1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1965 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 138,
+     "instruction": 242,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c17a38488c95110c27ecdb68d7fe252b"
+     },
+     {
+      "frames": 1967,
+      "sha256": "01198e8957179d71fe90e1121565e1b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-story-5ef",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PRK0's story 0x5ef needs",
+    "source": "built from the conditions on the path to the write in scene 47 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 72,
+     "0x113c": 1,
+     "0x11c4": 6
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-story-5ef",
+    "description": "In HTW_PRK0 (scene 47), entering should write story variable 0x5ef",
+    "plan": "# htw-htw-prk0-story-5ef: In HTW_PRK0 (scene 47), entering should write story variable 0x5ef\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 0bf14f83e3c1c704 state 4cc541a86462f688 ram 0000000000000000",
+     "done frame 2196 scene 47 save 1f695eb61f4fa8c4 state 4e55bbddcbbaea1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1965 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 138,
+     "instruction": 242,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c17a38488c95110c27ecdb68d7fe252b"
+     },
+     {
+      "frames": 1967,
+      "sha256": "01198e8957179d71fe90e1121565e1b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-story-5f7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PRK0's story 0x5f7 needs",
+    "source": "built from the conditions on the path to the write in scene 47 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 72,
+     "0x113c": 1,
+     "0x11c4": 6
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-story-5f7",
+    "description": "In HTW_PRK0 (scene 47), entering should write story variable 0x5f7",
+    "plan": "# htw-htw-prk0-story-5f7: In HTW_PRK0 (scene 47), entering should write story variable 0x5f7\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 0bf14f83e3c1c704 state 4cc541a86462f688 ram 0000000000000000",
+     "done frame 2196 scene 47 save 1f695eb61f4fa8c4 state 4e55bbddcbbaea1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1965 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 138,
+     "instruction": 242,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c17a38488c95110c27ecdb68d7fe252b"
+     },
+     {
+      "frames": 1967,
+      "sha256": "01198e8957179d71fe90e1121565e1b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-prk0-story-617",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PRK0's story 0x617 needs",
+    "source": "built from the conditions on the path to the write in scene 47 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25f0": 72,
+     "0x113c": 1,
+     "0x11c4": 6
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-prk0-story-617",
+    "description": "In HTW_PRK0 (scene 47), entering should write story variable 0x617",
+    "plan": "# htw-htw-prk0-story-617: In HTW_PRK0 (scene 47), entering should write story variable 0x617\nlimit 20000\nenter 47 0 2031615 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 47 save 0bf14f83e3c1c704 state 4cc541a86462f688 ram 0000000000000000",
+     "done frame 2196 scene 47 save 1f695eb61f4fa8c4 state 4e55bbddcbbaea1c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1965 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 138,
+     "instruction": 242,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c17a38488c95110c27ecdb68d7fe252b"
+     },
+     {
+      "frames": 1967,
+      "sha256": "01198e8957179d71fe90e1121565e1b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-story-1188",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PUB0's story 0x1188 needs",
+    "source": "built from the conditions on the path to the write in scene 42 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 13,
+     "0x417": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-story-1188",
+    "description": "In HTW_PUB0 (scene 42), talking to layout record 5 should write story variable 0x1188",
+    "plan": "# htw-htw-pub0-story-1188: In HTW_PUB0 (scene 42), talking to layout record 5 should write story variable 0x1188\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 42 0 16712959 0\ncheckpoint entered\nanswer 1\ntalk 480 230 0 1 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 42 save 76aac6fc3eb616ba state f8b4516851c86b24 ram 0000000000000000",
+     "done frame 1809 scene 42 save d2f70218bcd7b8f6 state d2f08bf8bbaadba2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "answering choices with option 1",
+     "walk to (480, 210): 3 waypoints"
+    ],
+    "end": "steps 7 of 7 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 420,
+     "instruction_end": 125,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "3a938c6e978a6078806f237038c656bf"
+     },
+     {
+      "frames": 1495,
+      "sha256": "1387f1b29e6008a7048b613a90b3efc5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-story-48e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PUB0's story 0x48e needs",
+    "source": "built from the conditions on the path to the write in scene 42 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 7
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-story-48e",
+    "description": "In HTW_PUB0 (scene 42), talking to layout record 2 should write story variable 0x48e",
+    "plan": "# htw-htw-pub0-story-48e: In HTW_PUB0 (scene 42), talking to layout record 2 should write story variable 0x48e\nlimit 20000\nenter 42 0 16712959 0\ncheckpoint entered\nanswer 1\ntalk 1000 1000 0 1 0 2 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 42 save 0f7898b2368e85ab state 34d4683981c03e41 ram 0000000000000000",
+     "done frame 2007 scene 42 save bfc4fcedb2ed02df state 694543d8adb64368 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "layout record 2's actor is at (300, 210)",
+     "walk to (300, 190): 3 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 274,
+     "instruction_end": 130,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "349ed2a32686b4aaba4c08c67cb74822"
+     },
+     {
+      "frames": 1778,
+      "sha256": "e3219814690854be96b108eb666eeb02"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pub0-story-4cf",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_PUB0's story 0x4cf needs",
+    "source": "built from the conditions on the path to the write in scene 42 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fb8": 7
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-pub0-story-4cf",
+    "description": "In HTW_PUB0 (scene 42), talking to layout record 2 should write story variable 0x4cf",
+    "plan": "# htw-htw-pub0-story-4cf: In HTW_PUB0 (scene 42), talking to layout record 2 should write story variable 0x4cf\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 42 0 16712959 0\ncheckpoint entered\ntalk 1000 1000 0 1 0 2 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 42 save 4fc33b757a96773d state 7a282ea7679d827d ram 0000000000000000",
+     "done frame 1791 scene 42 save 5173f81e22214bc5 state c7026a44ebc9e316 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "layout record 2's actor is at (300, 210)",
+     "walk to (300, 190): 3 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 328,
+     "instruction_end": 134,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "13534ba31aa587864afc15730d14f5e5"
+     },
+     {
+      "frames": 1477,
+      "sha256": "697ad4f86614b3fe8dda3bdb933ba023"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh01-story-46f",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_SH01's story 0x46f needs",
+    "source": "built from the conditions on the path to the write in scene 44 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11e4": 1
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-sh01-story-46f",
+    "description": "In HTW_SH01 (scene 44), talking to layout record 3 should write story variable 0x46f",
+    "plan": "# htw-htw-sh01-story-46f: In HTW_SH01 (scene 44), talking to layout record 3 should write story variable 0x46f\nlimit 20000\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 189 334 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 44 save e2df54ad69426b17 state fb10abbbdb338a5b ram 0000000000000000",
+     "done frame 669 scene 44 save d7a881af783a9b59 state 3c114ac094b778b7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (189, 314): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 170,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "01421799fb7fdfe8d8ea04e28b4c3322"
+     },
+     {
+      "frames": 440,
+      "sha256": "e144cf2106dfef284d532d9ba7c0c147"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh01-story-48d",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-sh01-story-48d",
+    "description": "In HTW_SH01 (scene 44), talking to layout record 3 should write story variable 0x48d",
+    "plan": "# htw-htw-sh01-story-48d: In HTW_SH01 (scene 44), talking to layout record 3 should write story variable 0x48d\nlimit 20000\nenter 50 0 16712959 0\nguest 0\nenter 44 0 16712959 1\ncheckpoint entered\ntalk 189 334 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 314 scene 44 save f57d069b436937cd state 7404334f92de89b0 ram 0000000000000000",
+     "done frame 1655 scene 44 save 290e8e03cc6615d4 state 6722fe42f58f599d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "walk to (189, 314): 2 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 86,
+     "instruction": 305,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 315,
+      "sha256": "ff0b9f77bdecf0e235d03eafa243ea78"
+     },
+     {
+      "frames": 1341,
+      "sha256": "fd5f5987811424d106e56f7f2871572d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh02-story-4c3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state HTW_SH02's story 0x4c3 needs",
+    "source": "built from the conditions on the path to the write in scene 45 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x25c0": 21,
+     "0x25d0": 11
+    }
+   },
+   "baseline": {
+    "route": "htw-htw-sh02-story-4c3",
+    "description": "In HTW_SH02 (scene 45), talking to layout record 1 should write story variable 0x4c3",
+    "plan": "# htw-htw-sh02-story-4c3: In HTW_SH02 (scene 45), talking to layout record 1 should write story variable 0x4c3\nlimit 20000\nenter 45 0 16712959 0\ncheckpoint entered\ntalk 165 68 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 45 save 7e4d6421adcae441 state 04e6b6db2435e241 ram 0000000000000000",
+     "done frame 754 scene 45 save 0e1dd569ebf925d9 state eb726b942fe3cb2a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 48): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 50,
+     "instruction": 196,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b247c9007e5e87e5c62a8a2c7ba03d84"
+     },
+     {
+      "frames": 525,
+      "sha256": "b4d1a3011588e676673e38b20134dde2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

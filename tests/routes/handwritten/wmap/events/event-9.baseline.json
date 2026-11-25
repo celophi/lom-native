@@ -1,0 +1,111 @@
+{
+ "route": "wmap-event-9",
+ "description": "The world map should run its event 9 when the party comes out with it pending",
+ "plan": "# wmap-event-9: The world map should run its event 9 when the party comes out with it pending\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint arrived\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 229 scene 36 save e9e9505cd209bfbe state f8dd5477215af709 ram 0000000000000000",
+  "world-map frame 383 scene 32767 save e9e9505cd209bfbe state 3b75a1ea9951fda4 ram 0000000000000000",
+  "arrived frame 2 scene 20 save 5e73d2556157e8b2 state 332ea7a5ad1e853d ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 229, scene 36 (HTW_ALL0)",
+    "spawn 0 to 2",
+    "scene id 19 to 36",
+    "music id 7 to 4",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "story word 46: 00000000 to 0000000b (set 0x5c0, 0x5c1, 0x5c3)",
+    "actor 0 (the hero): at (248, 78), facing 96, animation 1,0, presence 0, control 2, command 129"
+   ]
+  },
+  {
+   "checkpoint": "world-map",
+   "changes": [
+    "frame 383, scene 32767",
+    "scene word 17: 00f8004e to 00bf000f",
+    "scene word 47: 000000e4 to 0000017d",
+    "actor 0 (the hero): moved (248, 78) to (191, 16); direction 96 to 64; animation 1,0 to 0,0; command 129 to 0"
+   ]
+  },
+  {
+   "checkpoint": "arrived",
+   "changes": [
+    "frame 2, scene 20 (MHM_WNDW)",
+    "spawn 2 to 0",
+    "track 4294705153 to 4294705214",
+    "scene id 36 to 20",
+    "music id 4 to 40",
+    "flag bits 0002000000000000 to 0000000000000000",
+    "6 other saved-game bytes changed, the first at offset 12564",
+    "scene word 7: 01000000 to 00000000",
+    "scene word 9: 00000008 to 00000000",
+    "scene word 10: 00000100 to 00000000",
+    "scene word 11: 00000100 to 00000000",
+    "scene word 12: 00000100 to 00000000",
+    "scene word 17: 00bf000f to 00f60044",
+    "scene word 21: 00000000 to 00002000",
+    "scene word 25: 00000101 to 00003e1a",
+    "scene word 47: 0000017d to 00000002",
+    "scene word 66: 806a0000 to 804f0000",
+    "scene word 67: 00008061 to 00008005",
+    "scene word 69: 806a0000 to 804f0000",
+    "scene word 70: 00008061 to 00008004",
+    "scene word 72: 806a0000 to 00000000",
+    "scene word 73: 00008061 to 00000000",
+    "scene word 75: 80170000 to 00000000",
+    "scene word 76: 00008017 to 00000000",
+    "scene word 78: 80690000 to 00000000",
+    "scene word 79: 00008014 to 00000000",
+    "scene word 81: 80180000 to 00000000",
+    "scene word 82: 00008018 to 00000000",
+    "scene word 84: 80690000 to 00000000",
+    "scene word 85: 00008061 to 00000000",
+    "actor 0 (the hero): moved (191, 16) to (246, 68); direction 64 to 192; animation 0,0 to 4,0; command 0 to 129",
+    "actor 3 (layout record 0): at (90, 109), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (190, 158), facing 0, animation 0,0, presence 0, control 2, command 0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (192, 8): 13 waypoints",
+  "game state 1 at vblank 1091",
+  "game state 0 at vblank 2017",
+  "entered land 0 from the world map at scene 20"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 254,
+  "instruction_end": 38,
+  "song": 4,
+  "scene": 3,
+  "exit": 1
+ },
+ "pictures": "9bc7cbf8 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 840c0f71 ce6ff8bb 7fffd764 220e674f 39c89f1a d8988c1a 48b7a0d0 eb3b3ebb de16c02a c4564b16 e4f88186 6fabb54e ec2b511a 25f596f4 f03e307e 3242a2c3 b4e34bdc ec0e3a4e 14650fb0 55307842 1684583b 5e42ea60 fa67d600 093f6b8c 4e61492c ff1a9358 1a926482 3073b0d7 b395df21 9570b8dd 30e6f942 bdc366d2 30e6f942 bdc366d2 f6ca39fa 7763ba01 f6ca39fa 7763ba01 fd26ade4 86e376cf fd26ade4 86e376cf f3812221 43e5d154 f3812221 43e5d154 3302e39f f446ef49 3302e39f f446ef49 e14e7e7c 34314e2c e14e7e7c 34314e2c 8e47e21b c93bfd1b b9d26a0b 23acef74 91939ef5 557073d2 31c1a5cd 8f1da28e df103e42 46ae74ba 4b9d9f7c d0299ad3 83347396 fe312bc7 23cefcc0 5d68648a 80a0349d d0507cfd 31d7b011 b22ea7ac b0a6aebe 741bb1c0 cbb79fbe 5ae665ee b01371c1 0a70f6a2 546f9248 f5fbd9f0 18d716e0 1d4f45fd 522481f0 1372281e 0a030f3a 8a539527 f54edc5c db880beb a5861b2d 1f0ab7cf 1877adc1 6805a96a 3660bd0a 8c04d0e6 15b06631 dc851284 3faa2ada fb9be3ce ca52574b 61b22132 97739411 ce8ad41d 226b8c63 662500da 0c4172f2 2eb4ae9c e8597575 05bf002e a53e468c 34ad431e 290805a7 a11d5618 aecdb836 d751292e 133ebc66 0ee3bbe2 1b96958b cf83d615 f14fb60f 7addb697 07d15820 86518045 32077266 07da63e7 f0cc4c87 19310f2e f40926cc 94e133e2 35114cf2 8e9ffa96 5f582c6e e41f1a13 f01082f0 a8810ca0 18bfa37e 5301ed23 fe69354c 26cbec1d 008052b1 a854cfbf 5f92eaae 0ba13631 4ade93bb c8f5b0a0 0da1b8a7 0769bd26 5774c4c6 51d1ab44 47c33a16 cd218f24 47c33a16 cd218f24 42ab3c8a dec4e8c6 e0c5c00d c8b75b7d f7ad574f 2d9123ed 572bf51b 5f2430c6 3f26e918 0b78fdc3 6de16b05 eddabc31 ac889633 c09f85ad 1db4a96f 445df27b a73e0b52 1dcac8b7 22e19409 1dcac8b7 7a607172 e8fb7b73 ff119d53",
+ "stretches": [
+  {
+   "frames": 233,
+   "sha256": "d657383244958478e87c621aa37a6da2"
+  },
+  {
+   "frames": 153,
+   "sha256": "6842541dc24af99c935f496d0bf2ba1d"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

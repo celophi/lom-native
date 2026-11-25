@@ -1,0 +1,106 @@
+{
+ "route": "wmap-esl-special-return",
+ "description": "Leaving Domina for the world map with land 24 (Lucemia) the current land should start the world map's special return, where the vehicle flies the party from land 24 home",
+ "plan": "# wmap-esl-special-return: Leaving Domina for the world map with land 24 (Lucemia) the current land should start the world map's special return, where the vehicle flies the party from land 24 home\nlimit 20000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\nland 0 -1\ncheckpoint home\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 36 save dacbf0c3f34a790e state 0d4b276b187a0126 ram 0000000000000000",
+  "world-map frame 210 scene 32767 save dacbf0c3f34a790e state 8867f9ecae0326ce ram 0000000000000000",
+  "home frame 2 scene 16 save 0a119bd27a1a36f8 state 69e666b185baac2d ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 36 (HTW_ALL0)",
+    "spawn 0 to 2",
+    "scene id 19 to 36",
+    "music id 7 to 4",
+    "story word 46: 00000000 to 0000000b (set 0x5c0, 0x5c1, 0x5c3)",
+    "actor 0 (the hero): at (248, 78), facing 96, animation 1,0, presence 0, control 2, command 129"
+   ]
+  },
+  {
+   "checkpoint": "world-map",
+   "changes": [
+    "frame 210, scene 32767",
+    "scene word 17: 00f8004e to 00bf000f",
+    "scene word 47: 00000037 to 000000d0",
+    "actor 0 (the hero): moved (248, 78) to (191, 16); direction 96 to 64; animation 1,0 to 0,0; command 129 to 0"
+   ]
+  },
+  {
+   "checkpoint": "home",
+   "changes": [
+    "frame 2, scene 16 (MHM_OS00)",
+    "spawn 2 to 0",
+    "track 4294705176 to 4294705152",
+    "scene id 36 to 16",
+    "music id 4 to 7",
+    "55 other saved-game bytes changed, the first at offset 742",
+    "scene word 7: 01000000 to 00000000",
+    "scene word 9: 00000008 to 000000ff",
+    "scene word 10: 00000100 to 0001b800",
+    "scene word 11: 00000100 to 00000000",
+    "scene word 12: 00000100 to 0000af00",
+    "scene word 17: 00bf000f to 00000000",
+    "scene word 20: 00000000 to 10000000",
+    "scene word 21: 00000000 to 0000e000",
+    "scene word 25: 00001802 to 00000000",
+    "scene word 47: 000000d0 to 00000002",
+    "scene word 66: 806a0000 to 802b0000",
+    "scene word 67: 00008061 to 0000803d",
+    "scene word 69: 806a0000 to 00000000",
+    "scene word 70: 00008061 to 00000000",
+    "scene word 72: 806a0000 to 00000000",
+    "scene word 73: 00008061 to 00000000",
+    "scene word 75: 80170000 to 00000000",
+    "scene word 76: 00008017 to 00000000",
+    "scene word 78: 80690000 to 00000000",
+    "scene word 79: 00008014 to 00000000",
+    "scene word 81: 80180000 to 00000000",
+    "scene word 82: 00008018 to 00000000",
+    "scene word 84: 80690000 to 00000000",
+    "scene word 85: 00008061 to 00000000",
+    "actor 0 (the hero): moved (191, 16) to (501, 98); direction 64 to 160; animation 0,0 to 3,0; command 0 to 129",
+    "actor 3 (layout record 0): at (440, 175), facing 0, animation 0,0, presence 0, control 2, command 0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (192, 8): 13 waypoints",
+  "game state 1 at vblank 745",
+  "game state 0 at vblank 2211",
+  "entered land 0 from the world map at scene 16"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 260,
+  "instruction_end": 40,
+  "song": 5,
+  "scene": 3,
+  "exit": 1
+ },
+ "pictures": "459c53bc b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 25c556eb 5e42ea60 1684583b 7dac2b21 5b931fb9 dddcb082 f160073e 5d83f59d e9d40755 5ef7a00e ef2c5ce3 bdc366d2 30e6f942 bdc366d2 30e6f942 7763ba01 f6ca39fa 7763ba01 f6ca39fa 86e376cf fd26ade4 86e376cf fd26ade4 43e5d154 f3812221 43e5d154 f3812221 f446ef49 3302e39f f446ef49 3302e39f 34314e2c e14e7e7c 34314e2c e14e7e7c 58c5e581 249454a7 587b0aaa f9bf1e5d 9621618c 81f93a30 b949e9d4 9a35db28 d4f86fa0 173142d4 ff78dc43 ba3780d7 f8551e39 23cefcc0 fe312bc7 11a9ea22 a6f27157 0ce81b63 cfa26d6b 2747d94c 7b7d0c29 3f79c54e 12fd0485 eafc70d2 1662375e a65d1a0a 88ecd284 1679d226 5abd6d84 0b4b34b9 701b0050 52683e62 963e080e 439d7d24 b7d83b6e 42e516bc 8ea8b4df 0d27aa5c fbde1daa 894ffccf 96ee50b9 a4ae9b9a 1fe68e27 8214db03 d0629663 f5aa8b5b d5fcdc46 b1b87337 2e224eba 32fd4374 ef11fce9 88098d8e 5025f24b 6817dfe1 f8f6d085 7af16159 47dc3b43 69b5461f 84d75aaa 5f495612 2fa2ff75 e0e66bf1 112b0e8f 3b8079b8 cf83d615 1b96958b 7addb697 f14fb60f 86518045 07d15820 07da63e7 32077266 19310f2e f0cc4c87 94e133e2 f40926cc 8e9ffa96 35114cf2 e41f1a13 5f582c6e a8810ca0 f01082f0 5301ed23 18bfa37e 26cbec1d fe69354c a854cfbf 008052b1 0ba13631 5f92eaae 9aac2d4b 755503c2 a88f0d29 ca304d13 51d1ab44 5774c4c6 cd218f24 47c33a16 cd218f24 47c33a16 dec4e8c6 42ab3c8a 0c871132 b7a5c531 89081ac8 c6c27cb2 4cb9f6bf 256ed998 f2cf2909 fbf96bc3 19cf71fa dab16fae c54bd3c3 3c8afabc 3535cb45 ebc0f17b 584c4504 22e19409 1dcac8b7 22e19409 13892325 c07634d7 658e4aa7",
+ "stretches": [
+  {
+   "frames": 60,
+   "sha256": "f00dd6806cda55ffc79ea23b3622ee89"
+  },
+  {
+   "frames": 153,
+   "sha256": "0e4918a3aae59d63a55e9318d0fceff1"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

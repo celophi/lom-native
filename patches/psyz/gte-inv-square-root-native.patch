@@ -1,0 +1,60 @@
+InvSquareRoot as the game's SDK does it, including what it reads for a
+negative input (the memory before the square root table).
+
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -1,4 +1,5 @@
+ #include <assert.h>
++#include <string.h>
+ #ifdef _MSC_VER
+ #include <intrin.h>
+ #endif
+@@ -2788,6 +2789,48 @@
+ }
+ 
+ extern short s_rsqrt_table[];
++extern short SQRT[192];
++_Static_assert(sizeof(int) == 4 && sizeof(unsigned int) == 4, "PS1 word size");
++
++static short lom_inv_sqrt_lookup(int index) {
++    static const short angle_words[12] = {
++        511, 0, 302, 0, 159, 0, 81, 0, 41, 0, 20, 0
++    };
++    if (index >= 0) return s_rsqrt_table[index];
++    if (index <= -234) return rcossin_tbl[index + 1258][0];
++    if (index >= -202) return SQRT[index + 202];
++    if (index >= -226 && index <= -215) return angle_words[index + 226];
++    return 0;
++}
++
++static int lom_inv_square_root32(unsigned int value, void* mantissa,
++                                 void* exponent) {
++    unsigned int lz, even, normalized;
++    int index, factor, power;
++    Psyz_GteDataWrite(30, value);
++    lz = Psyz_GteDataRead(31);
++    if (lz == 32 || lz == 0) return -1;
++    even = lz & ~1u;
++    if (even >= 24) {
++        normalized = value << (even - 24);
++    } else {
++        unsigned int shift = 24 - even;
++        normalized = value >> shift;
++        if (value & 0x80000000u) normalized |= ~0u << (32 - shift);
++    }
++    index = (normalized & 0x80000000u)
++                ? -(int)(~normalized) - 1 - 64 : (int)normalized - 64;
++    factor = lom_inv_sqrt_lookup(index);
++    power = (int)((31u - even) >> 1);
++    memcpy(exponent, &power, 4);
++    memcpy(mantissa, &factor, 4);
++    return 1;
++}
++
++void InvSquareRoot(long value, long* mantissa, long* exponent) {
++    (void)lom_inv_square_root32((unsigned int)value, mantissa, exponent);
++}
++
+ 
+ static long vector_normal(short x, short y, short z, int out[3]) {
+     int sq = (int)((unsigned)(x * x) + (unsigned)(y * y) + (unsigned)(z * z));

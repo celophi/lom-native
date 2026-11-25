@@ -1,0 +1,75 @@
+{
+ "route": "domina-inn-innkeeper",
+ "description": "Talking to the innkeeper should start a conversation that ends with the player in control",
+ "plan": "# domina-inn-innkeeper: Talking to the innkeeper should start a conversation that ends with the player in control\nlimit 20000\nenter 38 0 16712959 0\ncheckpoint entered\ntalk 140 160 0 0 0 1\ncheckpoint talked\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 38 save 6b3fa093159fc6e4 state 2a17a4705011d367 ram 0000000000000000",
+  "talked frame 411 scene 38 save 6a6156932882c4b8 state bb23b5a814fa684f ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 38 (HTW_INN0)",
+    "scene id 19 to 38",
+    "music id 7 to 4",
+    "actor 0 (the hero): at (107, 96), facing 224, animation 131,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (140, 160), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (200, 229), facing 128, animation 20,0, presence 0, control 2, command 141",
+    "actor 5 (layout record 2): at (176, 205), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 6 (layout record 3): at (226, 218), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 7 (layout record 4): at (213, 200), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 8 (layout record 5): at (185, 203), facing 0, animation 0,0, presence 254, control 2, command 0",
+    "actor 9 (layout record 6): at (300, 254), facing 0, animation 135,0, presence 0, control 2, command 136"
+   ]
+  },
+  {
+   "checkpoint": "talked",
+   "changes": [
+    "frame 411, scene 38 (HTW_INN0)",
+    "story word 24: f2f20000 to 06060000 (set 0x312, 0x31a; cleared 0x314, 0x315, 0x316, 0x317, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "1 other saved-game byte changed, the first at offset 12516",
+    "scene word 17: 00000000 to 008c00a7",
+    "scene word 47: 00000037 to 0000019a",
+    "actor 0 (the hero): moved (107, 96) to (140, 168); direction 224 to 64; animation 131,0 to 0,0; control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): moved (140, 160) to (170, 142); direction 0 to 64; animation 0,0 to 5,0; command 0 to 136",
+    "actor 4 (layout record 1): animation 20,0 to 20,3",
+    "actor 5 (layout record 2): animation 0,0 to 0,14; command 0 to 168",
+    "actor 6 (layout record 3): animation 0,0 to 0,14; command 0 to 168",
+    "actor 7 (layout record 4): animation 0,0 to 0,14; command 0 to 168",
+    "actor 8 (layout record 5): animation 0,0 to 0,14; command 0 to 168",
+    "actor 9 (layout record 6): moved (300, 254) to (310, 254); animation 135,0 to 1,3; command 136 to 0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (140, 140): 1 waypoints",
+  "walk to (140, 180): 1 waypoints"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 168,
+  "instruction_end": 42,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 cf957d89 ec7caf7f 0ff2e535 9bab6862 867a475c fa2f80f0 0ce7aac9 63af5901 33acce71 797b840a 9374de51 4488d5cb 362b3b18 945b9ffd 59370192 3f57d97b 9611a77e b2a369e1 27534968 934e06bb ed70ba65 7095af6a 667d3b6d b89fb637 41b06539 475a081f 5e2417b7 2dade411 2c6449cc 7fcbba03 28d655d6 0930e0df 49f3cd14 7252f20c 1921e380 545b9f43 065929d0 909dd9e1 ffaef017 5ba37ac6 1fea1dd4 8266b808 302be26c 58a2e350 6c0802ac 72bb7281 5bd0b95b 67589d07 761def11 fbe26b7c 20bef4d5 457e3815 788a9fd0 aa2f1b66 2c44fb05 278a9121 e8d9a45a 9d44fcf4 f521775d 77e3d220 354104f5 212f39a5 2dfe4e5d 6e0c8022 9fb83c33 cd294e4e d05d91c3 d9054a92 f6bec7f4 ab9b5a17 117a6eb1 b4044c9b 44cce8a6 4a5f7e44 ee1a84ee fce3109a b822252f 8b29b55e 15a1a6af cc36d476 fdff8bca 32452fab 1ef7145f d508cda5 76dfb15d b991c337 6cdc9714 b991c337 6cdc9714 d1e52090 b26db5e1 00891dd4 b26db5e1 00891dd4 b26db5e1 00891dd4 14824931 c0db1ee1 14824931 c0db1ee1 773a7f9e fda25e96 7038d4df f5c59c08 cd686604 6579ac43 40a2d628 197bed37 f5207afa 5023a88d 8fbcdceb a9955304 f0d171d7 7f90d0a7 47c5db09 d2e333b4 4b23a7d9 661721d3 aeb5c4b8 db15c917 0662422a 8217a790 df242561 a34225bb c1e29b25 3b52f76e fd3a7ea8 3da4b04a 89243b73 6331e2b2 53605614 34dd8360 b64d32dc 6e5b87d3 acc5a0b2 0138a870 acc5a0b2 0138a870 546ce55f 7501668e 546ce55f 7501668e 99af7009 66918fed c17866ee e6a38680 0e7f857f 2145ab62 e560fbd3 f9537ce1 7cda8b32 ba606d45 33c70005 284837f4 93f809ae 8cad0f5a 77f155f7 c7721643 ccf6df5b 685789a7 195528fc cc9935fd ff536bc2 5d0bba6b 65d58c3d f9300a99 b20ea13d 00eb6fc1 6b05b631 1f216166 a7662823 1a76ad57 f1e73fec 60e9a58c 795a6312 62db14f7 91b68c83 840b886a 91b68c83 840b886a 9667940e 816759aa 80ca3186 718a74ae ec622f18 2ebc67a8 5096bef0 310b028a 5096bef0 13f5b135 4d521eaa c52702eb e5d6d6f7 d064944c e5d6d6f7 515766e8 28639502 bb73cce9 71e37002 116722f8 49fdaeb6 4be8d4db 3ec872ae accad6ca 8a86a5fc a2e60caf 1da85a3a 8a92bc44 f18b9b4f dbd5859a bc71db9a 5ecf46ff 2def12ce 5bf2809e f8e6d627 adfd8d55 7ba00ade aab28c06 daa15429 52a74fd5 54ba0f11 a549b5f9 d4b6fa58 3b21ad72 54cc8607 fdc40cb5 2e688be1 eb920c96 296c5ae8 bd7dab4f 6693585c bd7dab4f 6693585c 9718cb2d 134adf6f 0c65cafe 3448e276 43d66e83 84285c52 fb626ecb 88dc7e96 c2c9bb5c b96d8cfd 8d9c1557 c0a2ca69 134a8c0a 754a1d1d 4ae80d0c d3e0e5d0 aff92783 34950739 4d0a2df8 7b1c1106 af570486 7b1c1106 af570486 8fb47bb5 6a77d601 76ed7830 cabc0637 9c049768 d05b00d2 9c049768 d05b00d2 c774ffea 536cc52c 296c5ae8 bd7dab4f 6693585c bd7dab4f a2816c6b 07b06385 aed7513d 2899cf80 cfd55444 e6f00ab8 21c319c7 4ba8f5b8 21c319c7 4d002fa6 b2c393d0 ff4e5dcf fbd86e44 c82b0495 fbd86e44 281a8cd0 8ad9f417 518277eb 4fcbc426 0c9617c4 8cb6b8cf 17fd5e4b 0150b6aa da49c1a6 e102b353 e28c3e14 0d461fd7 e90e14fb c14cd7be 9687e21d d4da4d36 9e237e5f c12928fd b51108a9 e3d80928 5041e187 49d605c6 650f3eb4 5d05a811 45deb727 f79249e2 ec4eed78 69039f1c 8ac99e0c 90489cc7 dc9086b1 cb8a2c7b c2de8794 3166a503 479f9fdf 1e75cf52 ab2c2658 0f5f2ac5 3bcfa037 c0efabec fc099bde b5851c5f 8c33a203 48e34948 b276b6ba 4a038611 110d4669 41e90a02 6f5c5498 e60a22f1 66aae056 5c51ea70 f5d56bfc 5c51ea70 f5d56bfc 5c51ea70 f5d56bfc d411ed38 6e4a8366 f031dbc6 6e4a8366 f031dbc6 5556f507 21eeeb32 e0ee78d9 21eeeb32 19bf586b edc58326 19bf586b ea3dc47c 8907b85e 49478f83",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "6a56bf779b75704ade947283e0fa31a5"
+  },
+  {
+   "frames": 355,
+   "sha256": "a56bc8c1a1765171b5c00755704ce834"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

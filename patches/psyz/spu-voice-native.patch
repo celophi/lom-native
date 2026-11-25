@@ -1,0 +1,76 @@
+Set a voice's ENDX bit when it ends and mark it keyed off, which AKAO reads.
+
+--- a/psyz/src/psyz/spu_voice.h
++++ b/psyz/src/psyz/spu_voice.h
+@@ -3,8 +3,8 @@
+ 
+ #include <psyz.h>
+ #include <psyz/log.h>
+-#include "../../decomp/src/libspu/libspu_private.h"
+-#include "spu_gauss.h"
++#include <libspu_private.h>
++#include <spu_gauss.h>
+ 
+ // One ADPCM block decodes to 28 samples
+ #define ADPCM_BLOCK_BYTES 16
+@@ -98,10 +98,10 @@
+     u16 adsr_hi;          // mirrors SPU_VOICE_REG::adsr[1]
+ } VoiceState;
+ 
+-static inline void spu_voice_decode_one_sample(VoiceState* vs, const u8* ram);
++static inline void spu_voice_decode_one_sample(int v, VoiceState* vs, const u8* ram);
+ 
+ static inline void spu_voice_key_on(
+-    VoiceState* vs, volatile SPU_VOICE_REG* reg, const u8* ram) {
++    int v, VoiceState* vs, volatile SPU_VOICE_REG* reg, const u8* ram) {
+     vs->cur_addr = ((unsigned)reg->addr << 3) & (PSYZ_SPU_RAM_SIZE - 1);
+     vs->repeat_addr = ((unsigned)reg->loop_addr << 3) & (PSYZ_SPU_RAM_SIZE - 1);
+     vs->hist1 = vs->hist2 = 0;
+@@ -115,7 +115,7 @@
+     vs->active = 1;
+     // the first output interpolates the first four samples at phase 0
+     for (int i = 0; i < 4; i++) {
+-        spu_voice_decode_one_sample(vs, ram);
++        spu_voice_decode_one_sample(v, vs, ram);
+     }
+ 
+     // reset the envelope to a fresh attack from zero
+@@ -130,10 +130,11 @@
+     reg->volumex = 0;
+ }
+ 
+-static inline void spu_voice_decode_one_sample(VoiceState* vs, const u8* ram) {
++static inline void spu_voice_decode_one_sample(int v, VoiceState* vs, const u8* ram) {
+     if (vs->sample_idx >= ADPCM_BLOCK_SAMPLES) {
+         // end of block, and handle loop/end flags
+         if (!vs->needs_decode && (vs->block_flags & 0x01)) {
++            _spu_RXX->rxx.chan_on |= 1u << v;
+             vs->cur_addr = vs->repeat_addr;
+         }
+         vs->needs_decode = 1;
+@@ -164,7 +165,7 @@
+ // Advance the voice by one output-rate tick (44.1 kHz) and return its
+ // pitch-resampled, gauss-interpolated short sample.
+ static inline short spu_voice_step(
+-    VoiceState* vs, unsigned pitch_reg, const u8* ram) {
++    int v, VoiceState* vs, unsigned pitch_reg, const u8* ram) {
+     // for pitch changes during voice on, enable vibrato or bends
+     if (vs->hold_ticks) {
+         vs->hold_ticks--;
+@@ -176,13 +177,15 @@
+         vs->active = 0;
+         vs->env_vol = 0;
+         vs->env_state = ADSR_OFF;
++        _spu_RXX->rxx.chan_on |= 1u << v;
++        vs->key_off = 1;
+         return 0;
+     }
+     unsigned pitch = pitch_reg > 0x3FFF ? 0x3FFF : pitch_reg;
+ 
+     // consume decoded samples until the pitch counter is below 1.0
+     while (vs->spos >= 0x10000) {
+-        spu_voice_decode_one_sample(vs, ram);
++        spu_voice_decode_one_sample(v, vs, ram);
+         vs->spos -= 0x10000;
+     }
+ 

@@ -1,0 +1,53 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "htw-htw-pmp1-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-pmp1-boss",
+    "description": "Entering HTW_PMP1 (scene 710) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# htw-htw-pmp1-boss: Entering HTW_PMP1 (scene 710) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33478 0 16720895 0\ncheckpoint entered\nwalk 160 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 710 save a8e9a9c9185d48d4 state 1bebea542fcf9023 ram 0000000000000000",
+     "fought frame 4968 scene 710 save 5fc8a05ed9915110 state d095ab6e59707ae9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (160, 46): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3830 frames",
+     "game state 1 at vblank 12346",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 502,
+     "instruction_end": 176,
+     "song": 4,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "c768b97734a365c1876e4b896e58b9cf"
+     },
+     {
+      "frames": 4708,
+      "sha256": "f3f8d1663bf50ab4a77574595c9b27b0"
+     },
+     {
+      "frames": 944,
+      "sha256": "0a6a724ea3a3879e7326cbcf43da243a"
+     }
+    ]
+   }
+  }
+ ]
+}

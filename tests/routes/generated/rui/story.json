@@ -1,0 +1,275 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "rui-rui-b080-story-457",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state RUI_B080's story 0x457 needs",
+    "source": "built from the conditions on the path to the write in scene 428 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x456": 1
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-b080-story-457",
+    "description": "In RUI_B080 (scene 428), talking to layout record 3 should write story variable 0x457",
+    "plan": "# rui-rui-b080-story-457: In RUI_B080 (scene 428), talking to layout record 3 should write story variable 0x457\nlimit 20000\nenter 33196 3 16719103 0\ncheckpoint entered\ntalk 170 120 0 0 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 428 save cb292622c3a62b4a state e700395b5b54a1bc ram 0000000000000000",
+     "done frame 778 scene 428 save 55af568a04b0015c state 43cd90fb71f19a3f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fd4b2276fec0b742bf01d3ce04f65c9d"
+     },
+     {
+      "frames": 549,
+      "sha256": "f0852ce4a3766845946f98f98a9c6459"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-bs00-story-44b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state RUI_BS00's story 0x44b needs",
+    "source": "built from the conditions on the path to the write in scene 418 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1130": 5
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-bs00-story-44b",
+    "description": "In RUI_BS00 (scene 418), entering should write story variable 0x44b",
+    "plan": "# rui-rui-bs00-story-44b: In RUI_BS00 (scene 418), entering should write story variable 0x44b\nlimit 20000\nenter 33186 0 16719103 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 418 save ef44a1a1399b38d8 state 8e97bc683475e73b ram 0000000000000000",
+     "done frame 529 scene 418 save 9ef4f604dd9c8607 state 9da5ffd9119aadcf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 298 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 300,
+     "instruction_end": 115,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "721ea742ceb4182c34d308ac242b09b8"
+     },
+     {
+      "frames": 300,
+      "sha256": "7271b095d499d1e4028bb51c4a8911a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-story-11d4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state RUI_E000's story 0x11d4 needs",
+    "source": "built from the conditions on the path to the write in scene 404 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d4": 5
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e000-story-11d4",
+    "description": "In RUI_E000 (scene 404), entering should write story variable 0x11d4",
+    "plan": "# rui-rui-e000-story-11d4: In RUI_E000 (scene 404), entering should write story variable 0x11d4\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save b4f82edad52e720c state fed421ff6871ec61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1667",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7449f848a3f642175a7630fe8e3abb11"
+     },
+     {
+      "frames": 345,
+      "sha256": "932ddd0e039d05d600c291c8e9dd1d5c"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e000-story-47e",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state RUI_E000's story 0x47e needs",
+    "source": "built from the conditions on the path to the write in scene 404 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d4": 5
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e000-story-47e",
+    "description": "In RUI_E000 (scene 404), entering should write story variable 0x47e",
+    "plan": "# rui-rui-e000-story-47e: In RUI_E000 (scene 404), entering should write story variable 0x47e\nlimit 20000\nenter 404 0 16719103 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 404 save b4f82edad52e720c state fed421ff6871ec61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 1667",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7449f848a3f642175a7630fe8e3abb11"
+     },
+     {
+      "frames": 345,
+      "sha256": "932ddd0e039d05d600c291c8e9dd1d5c"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rui-rui-e050-story-1140",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state RUI_E050's story 0x1140 needs",
+    "source": "built from the conditions on the path to the write in scene 409 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1130": 7
+    }
+   },
+   "baseline": {
+    "route": "rui-rui-e050-story-1140",
+    "description": "In RUI_E050 (scene 409), entering should write story variable 0x1140",
+    "plan": "# rui-rui-e050-story-1140: In RUI_E050 (scene 409), entering should write story variable 0x1140\nlimit 20000\nenter 409 0 16719103 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 409 save fb32d90c11926cd9 state 675570213fe303af ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 6427",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 251,
+     "instruction_end": 112,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "166f660aabef92aa700193afbe97ff0b"
+     },
+     {
+      "frames": 2725,
+      "sha256": "a0b00b69a070920db7e618709febca3a"
+     }
+    ]
+   }
+  }
+ ]
+}

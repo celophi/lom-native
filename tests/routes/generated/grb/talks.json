@@ -1,0 +1,1579 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "grb-grb-b03a-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-b03a-talk-4",
+    "description": "Talking to layout record 4 of GRB_B03A (scene 451) should run its event and hand control back",
+    "plan": "# grb-grb-b03a-talk-4: Talking to layout record 4 of GRB_B03A (scene 451) should run its event and hand control back\nlimit 20000\nenter 33219 0 16718847 0\ncheckpoint entered\ntalk 85 250 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 451 save d984d814691bd053 state 3b924fe3136a6dd3 ram 0000000000000000",
+     "talked frame 1006 scene 451 save c4f5841dae78882e state 457b097c35fd39d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (85, 230): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d523f931f76c9e9379db9ee29b9fc428"
+     },
+     {
+      "frames": 777,
+      "sha256": "21cd1ebbd7f27f88c693170b549030e5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-bs04-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-bs04-talk-3",
+    "description": "Talking to layout record 3 of GRB_BS04 (scene 904) should run its event and hand control back",
+    "plan": "# grb-grb-bs04-talk-3: Talking to layout record 3 of GRB_BS04 (scene 904) should run its event and hand control back\nlimit 20000\nenter 904 0 16717311 0\ncheckpoint entered\ntalk 416 112 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 904 save f3268b5bd63c8c4c state 2f1346728ea73205 ram 0000000000000000",
+     "talked frame 664 scene 904 save f3268b5bd63c8c4c state 8a7e15b2ca139157 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (416, 92): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 257,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b883bfe52f47fa0f13ea87bc613f8791"
+     },
+     {
+      "frames": 435,
+      "sha256": "ecb628de123bc103a28a954687825d76"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d8 = 6 so layout record 3 of GRB_E00A is there",
+    "source": "built from layout record 3's condition in scene 432 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d8": 6
+    }
+   },
+   "baseline": {
+    "route": "grb-grb-e00a-talk-3",
+    "description": "Talking to layout record 3 of GRB_E00A (scene 432) should run its event and hand control back",
+    "plan": "# grb-grb-e00a-talk-3: Talking to layout record 3 of GRB_E00A (scene 432) should run its event and hand control back\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\ntalk 277 251 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 90a45d93ec8daf53 state 66b94cf5e98e90cb ram 0000000000000000",
+     "talked frame 2121 scene 443 save f68bf5887162e563 state c263103b302a1a04 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (277, 231): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 272,
+     "instruction_end": 136,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50be1faad8e42ae280e7684f3a2b7802"
+     },
+     {
+      "frames": 1892,
+      "sha256": "23aedf8c466a73bdd2b7b5eed62adff9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00a-talk-4",
+    "description": "Talking to layout record 4 of GRB_E00A (scene 432) should run its event and hand control back",
+    "plan": "# grb-grb-e00a-talk-4: Talking to layout record 4 of GRB_E00A (scene 432) should run its event and hand control back\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\ntalk 277 251 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 46a50bf4cb4af141 state 5b42459e39388e94 ram 0000000000000000",
+     "talked frame 2056 scene 432 save a0d1a291e5f67298 state a3feec2211395395 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (277, 231): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 82,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "99f1050ab3de259c0c95c4d0383ce670"
+     },
+     {
+      "frames": 1827,
+      "sha256": "3fa3d69653706919d0965348cd9135cd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00a-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00a-talk-5",
+    "description": "Talking to layout record 5 of GRB_E00A (scene 432) should run its event and hand control back",
+    "plan": "# grb-grb-e00a-talk-5: Talking to layout record 5 of GRB_E00A (scene 432) should run its event and hand control back\nlimit 20000\nenter 432 0 16718847 1\ncheckpoint entered\ntalk 426 132 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 432 save 46a50bf4cb4af141 state 5b42459e39388e94 ram 0000000000000000",
+     "talked frame 2091 scene 432 save a0d1a291e5f67298 state 342f50fe04847fcf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (426, 112): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 82,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "99f1050ab3de259c0c95c4d0383ce670"
+     },
+     {
+      "frames": 1862,
+      "sha256": "a71ea5f3d64c86feb7bbfd9486259c2c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00b-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00b-talk-2",
+    "description": "Talking to layout record 2 of GRB_E00B (scene 433) should run its event and hand control back",
+    "plan": "# grb-grb-e00b-talk-2: Talking to layout record 2 of GRB_E00B (scene 433) should run its event and hand control back\nlimit 20000\nenter 433 1 16718847 1\ncheckpoint entered\ntalk 295 212 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 433 save fca6a5a3ddb7e4e5 state 817e0b3d0ee530f2 ram 0000000000000000",
+     "talked frame 981 scene 433 save ece529551ded5045 state 751801408a6c18cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (295, 192): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e34cbc20c564228885be4144e24b2c7a"
+     },
+     {
+      "frames": 752,
+      "sha256": "f52dc89925699fe67c2210e755ec8409"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e00b-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e00b-talk-3",
+    "description": "Talking to layout record 3 of GRB_E00B (scene 433) should run its event and hand control back",
+    "plan": "# grb-grb-e00b-talk-3: Talking to layout record 3 of GRB_E00B (scene 433) should run its event and hand control back\nlimit 20000\nenter 433 1 16718847 1\ncheckpoint entered\ntalk 426 132 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 433 save fca6a5a3ddb7e4e5 state 817e0b3d0ee530f2 ram 0000000000000000",
+     "talked frame 975 scene 433 save ece529551ded5045 state 6789465ecb4ae01a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (426, 112): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e34cbc20c564228885be4144e24b2c7a"
+     },
+     {
+      "frames": 746,
+      "sha256": "40202614b5eeed30d481482f0809a134"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-talk-1",
+    "description": "Talking to layout record 1 of GRB_E01A (scene 434) should run its event and hand control back",
+    "plan": "# grb-grb-e01a-talk-1: Talking to layout record 1 of GRB_E01A (scene 434) should run its event and hand control back\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\ntalk 360 233 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "talked frame 962 scene 434 save d6c3dc36327b8070 state bfb36e6e0291e7ee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (360, 213): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 733,
+      "sha256": "902fb095577ca70b331bb0050c8e54ae"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-talk-2",
+    "description": "Talking to layout record 2 of GRB_E01A (scene 434) should run its event and hand control back",
+    "plan": "# grb-grb-e01a-talk-2: Talking to layout record 2 of GRB_E01A (scene 434) should run its event and hand control back\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\ntalk 402 357 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "talked frame 1054 scene 434 save d6c3dc36327b8070 state dfcd236a21c9c941 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (402, 337): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 825,
+      "sha256": "2444a187ca1c9ee4b465856bcb7cd8dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-talk-3",
+    "description": "Talking to layout record 3 of GRB_E01A (scene 434) should run its event and hand control back",
+    "plan": "# grb-grb-e01a-talk-3: Talking to layout record 3 of GRB_E01A (scene 434) should run its event and hand control back\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\ntalk 450 590 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "talked frame 1124 scene 434 save 3e91ac06c4ed376d state a27ead45815d41e5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (450, 570): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 895,
+      "sha256": "590b9629b0073ad105aba3725845cfa3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01a-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01a-talk-4",
+    "description": "Talking to layout record 4 of GRB_E01A (scene 434) should run its event and hand control back",
+    "plan": "# grb-grb-e01a-talk-4: Talking to layout record 4 of GRB_E01A (scene 434) should run its event and hand control back\nlimit 20000\nenter 434 0 16718847 0\ncheckpoint entered\ntalk 90 310 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 434 save d7fc30d01f9f9dba state b9c414d90268d2fa ram 0000000000000000",
+     "talked frame 1016 scene 434 save b64c1e139de7fedd state eb48574ea4f53397 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (90, 290): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0128fd438ab487632568038db4813791"
+     },
+     {
+      "frames": 787,
+      "sha256": "184aba4c4b5da35d41021b41fce651d0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-talk-1",
+    "description": "Talking to layout record 1 of GRB_E01B (scene 435) should run its event and hand control back",
+    "plan": "# grb-grb-e01b-talk-1: Talking to layout record 1 of GRB_E01B (scene 435) should run its event and hand control back\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\ntalk 360 233 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "talked frame 1031 scene 435 save e597e2d81000059c state 444209b34d2378cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (360, 213): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 802,
+      "sha256": "741f14344f55554eb1403d4b59c2ce27"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-talk-2",
+    "description": "Talking to layout record 2 of GRB_E01B (scene 435) should run its event and hand control back",
+    "plan": "# grb-grb-e01b-talk-2: Talking to layout record 2 of GRB_E01B (scene 435) should run its event and hand control back\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\ntalk 402 357 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "talked frame 1120 scene 435 save e597e2d81000059c state 6c2126ee808e49d1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (402, 337): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 891,
+      "sha256": "8bdb746e608d8efaf1fde52c26885664"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e01b-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e01b-talk-4",
+    "description": "Talking to layout record 4 of GRB_E01B (scene 435) should run its event and hand control back",
+    "plan": "# grb-grb-e01b-talk-4: Talking to layout record 4 of GRB_E01B (scene 435) should run its event and hand control back\nlimit 20000\nenter 435 1 16718847 0\ncheckpoint entered\ntalk 90 310 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 435 save dd14afee95af0456 state b6ed95c1354e4ffd ram 0000000000000000",
+     "talked frame 1004 scene 435 save 87eabdde95ceddb9 state a35d83bf2c8588be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (90, 290): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "27bf26c0bb078df47a09de5b81c26a5e"
+     },
+     {
+      "frames": 775,
+      "sha256": "9f36e3cdfb3e0c797972dbf32c76eae7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e020-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e020-talk-1",
+    "description": "Talking to layout record 1 of GRB_E020 (scene 436) should run its event and hand control back",
+    "plan": "# grb-grb-e020-talk-1: Talking to layout record 1 of GRB_E020 (scene 436) should run its event and hand control back\nlimit 20000\nenter 436 0 16718847 0\ncheckpoint entered\ntalk 180 73 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 436 save 0ba805afe120b174 state 72f877c5d8faa452 ram 0000000000000000",
+     "talked frame 862 scene 436 save 84bed40de5715e2a state e129dc33a19c6906 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (180, 53): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ab15c046d936f26ea57003ffb71860e2"
+     },
+     {
+      "frames": 633,
+      "sha256": "a6c3e358773fc2bf9a1cf949b0116652"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03a-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03a-talk-1",
+    "description": "Talking to layout record 1 of GRB_E03A (scene 437) should run its event and hand control back",
+    "plan": "# grb-grb-e03a-talk-1: Talking to layout record 1 of GRB_E03A (scene 437) should run its event and hand control back\nlimit 20000\nenter 437 0 16718847 0\ncheckpoint entered\ntalk 558 302 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 437 save 822852f7258f6fa5 state 2d6e402d3bd1ef54 ram 0000000000000000",
+     "talked frame 1148 scene 437 save 8092ffaade3e9a0f state 32a847e3e1aec6f7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (558, 282): 12 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0fa8904ecfd8d36638319089d4e4de23"
+     },
+     {
+      "frames": 919,
+      "sha256": "ecc052dfa516bec04d55375ebbd26373"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e03b-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e03b-talk-2",
+    "description": "Talking to layout record 2 of GRB_E03B (scene 438) should run its event and hand control back",
+    "plan": "# grb-grb-e03b-talk-2: Talking to layout record 2 of GRB_E03B (scene 438) should run its event and hand control back\nlimit 20000\nenter 438 1 16718847 0\ncheckpoint entered\ntalk 215 105 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 438 save 5999d1ff8ad880bb state 175d05fdb77051f9 ram 0000000000000000",
+     "talked frame 1033 scene 438 save 3b37ed3be6db9fa2 state 27dd1989002260f0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (215, 85): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "52176591b222070777e227deff90da42"
+     },
+     {
+      "frames": 804,
+      "sha256": "39f451341284ac0d44b960448e948932"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-talk-2",
+    "description": "Talking to layout record 2 of GRB_E04A (scene 439) should run its event and hand control back",
+    "plan": "# grb-grb-e04a-talk-2: Talking to layout record 2 of GRB_E04A (scene 439) should run its event and hand control back\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\ntalk 150 320 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "talked frame 870 scene 439 save e9474c1f45759515 state 6e7f21ddb0f6e1fc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 641,
+      "sha256": "775d2cf39f24ac0a0760ff5786e21e67"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-talk-3",
+    "description": "Talking to layout record 3 of GRB_E04A (scene 439) should run its event and hand control back",
+    "plan": "# grb-grb-e04a-talk-3: Talking to layout record 3 of GRB_E04A (scene 439) should run its event and hand control back\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\ntalk 100 146 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "talked frame 992 scene 439 save e9474c1f45759515 state 79b157081690ae7e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 126): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 763,
+      "sha256": "67dcea11858fa3704824c012b4d2848e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-talk-4",
+    "description": "Talking to layout record 4 of GRB_E04A (scene 439) should run its event and hand control back",
+    "plan": "# grb-grb-e04a-talk-4: Talking to layout record 4 of GRB_E04A (scene 439) should run its event and hand control back\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\ntalk 570 190 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "talked frame 986 scene 439 save e9474c1f45759515 state 732d2c38529a6cbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (570, 170): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 757,
+      "sha256": "f3172c35bdd684f67fb7708a2aacc68d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04a-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04a-talk-5",
+    "description": "Talking to layout record 5 of GRB_E04A (scene 439) should run its event and hand control back",
+    "plan": "# grb-grb-e04a-talk-5: Talking to layout record 5 of GRB_E04A (scene 439) should run its event and hand control back\nlimit 20000\nenter 439 0 16718847 0\ncheckpoint entered\ntalk 320 300 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 439 save e2284193526ac727 state 84a62ecd57a48505 ram 0000000000000000",
+     "talked frame 975 scene 439 save 52ea9d2a7349ac78 state 487e18488c5497de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (320, 280): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "377671ddb40c7ab7cbcd2f8cae35b85a"
+     },
+     {
+      "frames": 746,
+      "sha256": "313cdfdd670fc84bc0d44c2b6e93cd07"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-talk-1",
+    "description": "Talking to layout record 1 of GRB_E04B (scene 440) should run its event and hand control back",
+    "plan": "# grb-grb-e04b-talk-1: Talking to layout record 1 of GRB_E04B (scene 440) should run its event and hand control back\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\ntalk 457 316 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "talked frame 958 scene 440 save d8b8b4f6dcfdf65b state a7d732e3c0b3a2e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (457, 296): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 729,
+      "sha256": "8e4ac2fa3c54785ecef3604ee3a6f998"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-talk-2",
+    "description": "Talking to layout record 2 of GRB_E04B (scene 440) should run its event and hand control back",
+    "plan": "# grb-grb-e04b-talk-2: Talking to layout record 2 of GRB_E04B (scene 440) should run its event and hand control back\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\ntalk 150 320 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "talked frame 860 scene 440 save d8b8b4f6dcfdf65b state 4ffda2917cddca7c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (150, 300): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 631,
+      "sha256": "d6d13aab03bc27d9abad554334c7918c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-talk-3",
+    "description": "Talking to layout record 3 of GRB_E04B (scene 440) should run its event and hand control back",
+    "plan": "# grb-grb-e04b-talk-3: Talking to layout record 3 of GRB_E04B (scene 440) should run its event and hand control back\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\ntalk 100 146 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "talked frame 1024 scene 440 save d8b8b4f6dcfdf65b state 27bce741d60b2ef5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 126): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 795,
+      "sha256": "f061b6c3e31122d87c6604c46c7fd734"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-talk-4",
+    "description": "Talking to layout record 4 of GRB_E04B (scene 440) should run its event and hand control back",
+    "plan": "# grb-grb-e04b-talk-4: Talking to layout record 4 of GRB_E04B (scene 440) should run its event and hand control back\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\ntalk 570 190 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "talked frame 1078 scene 440 save d8b8b4f6dcfdf65b state bfb1fa12588c875f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (570, 170): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 849,
+      "sha256": "22421d88554853944f1369796ea5aad3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e04b-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e04b-talk-5",
+    "description": "Talking to layout record 5 of GRB_E04B (scene 440) should run its event and hand control back",
+    "plan": "# grb-grb-e04b-talk-5: Talking to layout record 5 of GRB_E04B (scene 440) should run its event and hand control back\nlimit 20000\nenter 440 1 16718847 0\ncheckpoint entered\ntalk 320 300 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 440 save 85b83d12a056d02d state 6a42ea4207bf14f7 ram 0000000000000000",
+     "talked frame 1014 scene 440 save 49e495ba8dd18636 state 4d416d0bf684f62b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (320, 280): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d3fecfc17ef8db30a86779e537210fb2"
+     },
+     {
+      "frames": 785,
+      "sha256": "a349e83bce6569c919004d736de9954f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-talk-2",
+    "description": "Talking to layout record 2 of GRB_E05A (scene 441) should run its event and hand control back",
+    "plan": "# grb-grb-e05a-talk-2: Talking to layout record 2 of GRB_E05A (scene 441) should run its event and hand control back\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\ntalk 113 159 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "talked frame 979 scene 441 save 8a062aeb8d8e17db state f440b17150f2dda7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 139): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 750,
+      "sha256": "35bf21741a51c88914098e8319a6717e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-talk-3",
+    "description": "Talking to layout record 3 of GRB_E05A (scene 441) should run its event and hand control back",
+    "plan": "# grb-grb-e05a-talk-3: Talking to layout record 3 of GRB_E05A (scene 441) should run its event and hand control back\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\ntalk 365 68 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "talked frame 936 scene 441 save 8a062aeb8d8e17db state dfd27552ba63391c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (365, 48): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 707,
+      "sha256": "5764ff4c797a63a54fe15b9f5874ff8a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-talk-4",
+    "description": "Talking to layout record 4 of GRB_E05A (scene 441) should run its event and hand control back",
+    "plan": "# grb-grb-e05a-talk-4: Talking to layout record 4 of GRB_E05A (scene 441) should run its event and hand control back\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\ntalk 454 302 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "talked frame 827 scene 441 save 8a062aeb8d8e17db state e5ed8d25f80d0ed3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (454, 282): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 598,
+      "sha256": "8019abc3b23074ff2130d2f88997ea0b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05a-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05a-talk-5",
+    "description": "Talking to layout record 5 of GRB_E05A (scene 441) should run its event and hand control back",
+    "plan": "# grb-grb-e05a-talk-5: Talking to layout record 5 of GRB_E05A (scene 441) should run its event and hand control back\nlimit 20000\nenter 441 0 16718847 2\ncheckpoint entered\ntalk 175 325 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 441 save 6589db375135a293 state ca6df879fd6777be ram 0000000000000000",
+     "talked frame 1034 scene 441 save 90a87f43c22e84b3 state c40283dece20a0c8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 345): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43c775b038707961ef776bd8bae1d5b4"
+     },
+     {
+      "frames": 805,
+      "sha256": "b6bed8e4b7fa9292f2cb98aabf712aea"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-talk-2",
+    "description": "Talking to layout record 2 of GRB_E05B (scene 442) should run its event and hand control back",
+    "plan": "# grb-grb-e05b-talk-2: Talking to layout record 2 of GRB_E05B (scene 442) should run its event and hand control back\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\ntalk 113 159 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "talked frame 966 scene 442 save 542794d99b242cd0 state ad90b0664c7cfb0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (113, 139): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 737,
+      "sha256": "a394f59ea5e57d743fcac8ce035ddebb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-talk-3",
+    "description": "Talking to layout record 3 of GRB_E05B (scene 442) should run its event and hand control back",
+    "plan": "# grb-grb-e05b-talk-3: Talking to layout record 3 of GRB_E05B (scene 442) should run its event and hand control back\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\ntalk 365 68 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "talked frame 784 scene 442 save 542794d99b242cd0 state 7cdc509962cf6cc1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (365, 48): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 555,
+      "sha256": "af692a6e24694b28506b14d0d08acf17"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-talk-4",
+    "description": "Talking to layout record 4 of GRB_E05B (scene 442) should run its event and hand control back",
+    "plan": "# grb-grb-e05b-talk-4: Talking to layout record 4 of GRB_E05B (scene 442) should run its event and hand control back\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\ntalk 454 302 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "talked frame 1014 scene 442 save 542794d99b242cd0 state a6e5c38b99590f2d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (454, 282): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 785,
+      "sha256": "23df9b13305ca7b5ef441c7a5ca3a7dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e05b-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e05b-talk-5",
+    "description": "Talking to layout record 5 of GRB_E05B (scene 442) should run its event and hand control back",
+    "plan": "# grb-grb-e05b-talk-5: Talking to layout record 5 of GRB_E05B (scene 442) should run its event and hand control back\nlimit 20000\nenter 442 1 16718847 3\ncheckpoint entered\ntalk 175 325 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 442 save 6f5cf9f11c16056c state e56a498b8318e99b ram 0000000000000000",
+     "talked frame 944 scene 442 save 97fe4d68836a5c98 state 2f6ea90319822fe4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (175, 345): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "50fd0be0d461b9868969d58063eb656f"
+     },
+     {
+      "frames": 715,
+      "sha256": "4b5072a275e456255e006b73d6d6d6a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e060-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e060-talk-1",
+    "description": "Talking to layout record 1 of GRB_E060 (scene 443) should run its event and hand control back",
+    "plan": "# grb-grb-e060-talk-1: Talking to layout record 1 of GRB_E060 (scene 443) should run its event and hand control back\nlimit 20000\nenter 443 0 16718847 0\ncheckpoint entered\ntalk 142 158 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 443 save 20deadf7842a3dcb state 4f28a48e62377ffa ram 0000000000000000",
+     "talked frame 640 scene 443 save 6cca821551bb493a state bd22e39e2dd723bc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (142, 138): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14d02def8848f2a921f1ccc3f627e69f"
+     },
+     {
+      "frames": 411,
+      "sha256": "ff35d22de1d79e70250a2f2fe6cfe88b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e060-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e060-talk-3",
+    "description": "Talking to layout record 3 of GRB_E060 (scene 443) should run its event and hand control back",
+    "plan": "# grb-grb-e060-talk-3: Talking to layout record 3 of GRB_E060 (scene 443) should run its event and hand control back\nlimit 20000\nenter 443 0 16718847 0\ncheckpoint entered\ntalk 232 162 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 443 save 20deadf7842a3dcb state 4f28a48e62377ffa ram 0000000000000000",
+     "talked frame 1350 scene 443 save 553548b8aefc81a9 state 2d0d5d16dac1017a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (232, 142): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14d02def8848f2a921f1ccc3f627e69f"
+     },
+     {
+      "frames": 1121,
+      "sha256": "725d2faae345f48fde9c56aada44a474"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e060-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e060-talk-5",
+    "description": "Talking to layout record 5 of GRB_E060 (scene 443) should run its event and hand control back",
+    "plan": "# grb-grb-e060-talk-5: Talking to layout record 5 of GRB_E060 (scene 443) should run its event and hand control back\nlimit 20000\nenter 443 0 16718847 0\ncheckpoint entered\ntalk 220 110 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 443 save 20deadf7842a3dcb state 4f28a48e62377ffa ram 0000000000000000",
+     "talked frame 945 scene 443 save 8b1fbe0d7db04ace state 2fb1fb2f26aa1eda ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 90): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14d02def8848f2a921f1ccc3f627e69f"
+     },
+     {
+      "frames": 716,
+      "sha256": "c5bfe189a73fa86a0267d9b525f69654"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "grb-grb-e060-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "grb-grb-e060-talk-6",
+    "description": "Talking to layout record 6 of GRB_E060 (scene 443) should run its event and hand control back",
+    "plan": "# grb-grb-e060-talk-6: Talking to layout record 6 of GRB_E060 (scene 443) should run its event and hand control back\nlimit 20000\nenter 443 0 16718847 0\ncheckpoint entered\ntalk 190 75 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 443 save 20deadf7842a3dcb state 4f28a48e62377ffa ram 0000000000000000",
+     "talked frame 908 scene 443 save e411bba84d054d94 state a511a970202690d5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (190, 55): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "14d02def8848f2a921f1ccc3f627e69f"
+     },
+     {
+      "frames": 679,
+      "sha256": "1a2006d0509ca1099177aa91c61c973c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

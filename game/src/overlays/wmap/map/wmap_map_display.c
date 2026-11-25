@@ -1,0 +1,2125 @@
+#include "common.h"
+#include "lom_native_graphics.h"
+#include "lom_native_gpu_packets.h"
+
+#include "../internal/wmap_frame_render.h"
+#include "../internal/wmap_land_transition.h"
+#include "../internal/wmap_party_travel.h"
+#include "../internal/wmap_view_effects.h"
+#include "common/pad.h"
+#include <inline_c.h>
+#include <libetc.h>
+#include <libgpu.h>
+#include <libgte.h>
+#include <rand.h>
+
+#include "../internal/wmap_cells.h"
+#include "../internal/wmap_land_layout.h"
+#include "../internal/wmap_main.h"
+#include "../internal/wmap_map_display.h"
+#include "../internal/wmap_map_labels.h"
+#include "../internal/wmap_resource_support.h"
+#include "../internal/wmap_sequence_runtime.h"
+#include "common/gpu_packet.h"
+#include "common/saved_game.h"
+#include "sdk/gte_dmpsx_compat.h"
+
+#define WMAP_CACHE_SLOTS 16
+#define WMAP_FADE_STEP 8
+#define WMAP_BLEND_THRESHOLD 64
+#define WMAP_GAME_AREA_SIZE 3
+#define WMAP_LAND_SCALE_MAX 15
+#define WMAP_DYNAMIC_GLYPH 0xFF
+#define WMAP_SPIRIT_CLUT_X 736
+#define WMAP_SPIRIT_CLUT_Y 416
+#define WMAP_SPIRIT_ACCENT_CLUT_Y 424
+#define WMAP_GAME_COUNTDOWN 120
+#define WMAP_GAME_ROUND_TIME 900
+#define WMAP_INITIAL_SPAWN_DELAY 30
+
+typedef enum
+{
+    WMAP_LAND_HIDDEN = 0,
+    WMAP_LAND_MARKER = 1,
+    WMAP_LAND_ANIMATED = 2,
+    WMAP_LAND_EXPANDED = 5
+} WmapLandMode;
+
+typedef enum
+{
+    WMAP_TRANSITION_HIDDEN = 0,
+    WMAP_TRANSITION_MARKER = 1,
+    WMAP_TRANSITION_EXPANDED = 2,
+    WMAP_TRANSITION_GROW = 3,
+    WMAP_TRANSITION_SHRINK = 4
+} WmapLandTransition;
+
+typedef enum
+{
+    WMAP_GAME_PROMPT = 0,
+    WMAP_GAME_COUNTING_DOWN = 1,
+    WMAP_GAME_PLAYING = 2
+} WmapGamePhase;
+
+typedef struct
+{
+    union
+    {
+        RECT rect;
+
+        struct
+        {
+            s16 x;
+            u8 v_offset;
+            u8 y_high;
+            s16 width;
+            s16 height;
+        } uv;
+    } upload;
+
+    u16 clut[8];
+    u16 tpage_x;
+    u16 tpage_y;
+} WmapTextureInfo;
+
+typedef struct
+{
+    u8 sequence_id;
+    u8 duration;
+    u8 _pad02[2];
+} WmapAnimationEntry;
+
+typedef struct
+{
+    s8 x;
+    s8 y;
+    u8 u;
+    u8 v;
+    u8 width;
+    u8 height;
+    s8 texture_index;
+    u8 _pad07[2];
+    u8 blend_mode;
+    u8 _pad0a[2];
+} WmapQuadData;
+
+typedef struct
+{
+    SVECTOR position;
+    s32 blend_mode;
+    DVECTOR screen;
+    s32 depth;
+} WmapSpriteLocals;
+
+typedef struct
+{
+    u16 x;
+    u16 y;
+    u16 z;
+    u16 pad;
+} WmapQuadVertex;
+
+typedef struct
+{
+    WmapQuadVertex vertices[4];
+    CVECTOR colors[4];
+} WmapQuadTemplate;
+
+typedef struct
+{
+    u8 u, v, width, height;
+    u16 palette;
+    u8 pad_06[2];
+} WmapGlyph;
+
+typedef struct
+{
+    u16 x;
+    u8 y, glyph;
+} WmapGlyphPlacement;
+
+typedef struct
+{
+    s32 sprite_indices[FIELD_LAND_SPIRIT_COUNT];
+} WmapSpiritIndices;
+
+typedef struct
+{
+    u32 packed_xy;
+    u8 packet_tail[16];
+} WmapSpritePosition;
+
+#if !defined(LOM_NATIVE_POINTERS)
+extern WmapSpritePosition g_wmap_spirit_sprite_positions[8];
+#endif
+extern SPRT g_wmap_game_score_label;
+extern SPRT g_wmap_game_score_digit;
+extern SPRT g_wmap_game_round_label;
+extern SPRT g_wmap_game_round_digit;
+extern s32 g_wmap_game_displayed_score;
+extern s32 g_wmap_game_origin_x;
+extern s32 g_wmap_game_origin_y;
+extern s32 g_wmap_game_hits;
+
+extern s32 g_wmap_game_phase;
+
+extern s32 g_wmap_game_round;
+extern s32 g_wmap_game_timer;
+extern s32 g_wmap_game_score;
+extern SPRT g_wmap_game_continue_prompt;
+extern SPRT g_wmap_game_exit_prompt;
+extern SPRT g_wmap_game_countdown_sprite;
+extern s32 g_wmap_game_spawn_timer;
+extern s32 g_wmap_game_unused_buttons;
+extern u8 g_wmap_game_spawn_patterns[][9];
+extern s32 g_wmap_land_image_indices[];
+extern WmapTextureInfo g_wmap_land_image_uploads[];
+extern s32 g_wmap_land_scale_steps[];
+extern s32 g_wmap_cell_effect_steps[];
+extern WmapQuadTemplate g_wmap_cell_effect_quads[16];
+extern SPRT g_wmap_spirit_sprite_templates[];
+
+#if defined(LOM_NATIVE_POINTERS)
+#define WMAP_SPIRIT_SPRITE_XY(i) (*(u32*)&g_wmap_spirit_sprite_templates[i].x0)
+#else
+#define WMAP_SPIRIT_SPRITE_XY(i) (g_wmap_spirit_sprite_positions[i].packed_xy)
+#endif
+extern u8 g_wmap_spirit_sequence_bounds[];
+extern u8 g_wmap_spirit_sequences[];
+extern u8 g_wmap_spirit_timers[];
+extern u8 g_wmap_spirit_frames[];
+extern SPRT g_wmap_spirit_level_sprites[16];
+extern SPRT g_wmap_spirit_accent_sprites[16];
+extern const s32 g_wmap_spirit_level_positions[];
+extern WmapGlyph g_wmap_information_glyphs[];
+extern WmapGlyphPlacement g_wmap_information_placements[];
+extern s32 g_wmap_information_group_starts[];
+extern s32 g_wmap_information_values[];
+extern s32 g_wmap_information_unused_a;
+extern s32 g_wmap_information_unused_b;
+extern s32 g_wmap_information_unused_c;
+
+void wmap_update_map_game_prompt(void);
+void wmap_update_map_game_countdown(void);
+void wmap_update_map_game_round(void);
+void wmap_spawn_map_game_lands(s32 delay_min, s32 delay_range, s32 timer_min, s32 timer_range);
+void wmap_update_map_game_spawns(void);
+void wmap_draw_land_marker(s32 map_x, s32 map_y, WmapLandDisplay* marker);
+void wmap_draw_land_animation(s32 x, s32 y, WmapLandDisplay* state, s32 resource_index);
+void wmap_draw_cell_effect(s32 x, s32 y);
+void wmap_draw_spirit_icons(s32 selected_index);
+void wmap_draw_spirit_levels(void);
+void wmap_draw_spirit_grid(s32 spirit_index);
+void wmap_draw_information_labels(void);
+void wmap_draw_land(s32 map_x, s32 map_y, s32 resource_index);
+void wmap_set_cell_effect_mode(s32 x, s32 y, s32 mode);
+s32 wmap_classify_map_point(s32 x, s32 y);
+
+static inline s32 wmap_find_land_image(s16 resource_id);
+
+/**
+ * @brief Run the map game and draw its nine lands, score, and round counter.
+ */
+void wmap_update_map_game(void)
+{
+    s32 timer;
+    s32 valid;
+    s32 scan_x;
+    s32 scan_y;
+    s32 render_x;
+    s32 render_y;
+    SPRT* sprite;
+
+    if (g_wmap_game_start_delay != 0)
+    {
+        if ((g_wmap_buttons_held & PADL1) != 0)
+        {
+            timer = g_wmap_game_start_delay - 1;
+            g_wmap_game_start_delay = timer;
+
+            if (timer == 0)
+            {
+                valid = 1;
+                g_wmap_game_origin_y = g_wmap_view.y / WMAP_CELL_SPACING;
+                g_wmap_game_origin_x = g_wmap_view.x / WMAP_CELL_SPACING;
+
+                for (scan_y = g_wmap_game_origin_y; scan_y < g_wmap_game_origin_y + WMAP_GAME_AREA_SIZE; scan_y++)
+                {
+                    for (scan_x = g_wmap_game_origin_x; scan_x < g_wmap_game_origin_x + WMAP_GAME_AREA_SIZE; scan_x++)
+                    {
+                        if (g_wmap_cells[scan_x][scan_y].land_id == WMAP_NO_LAND)
+                        {
+                            valid = 0;
+                        }
+                    }
+                }
+
+                if ((g_wmap_carousel_mode != 0) || (g_wmap_view_mode != WMAP_VIEW_MODE_MAP) || (g_wmap_selection_phase != 0) || (g_wmap_party_moving != 0) ||
+                    (g_wmap_selected_artifact != -1))
+                {
+                    valid = 0;
+                }
+
+                if (valid == 0)
+                {
+                    g_wmap_game_start_delay = WMAP_GAME_RETRY_DELAY;
+                    return;
+                }
+
+                g_wmap_land_label_updates_enabled = 0;
+                wmap_load_tim_file(0x1154);
+                g_wmap_game_score = 0;
+                g_wmap_game_displayed_score = 0;
+                g_wmap_view_scroll_enabled = 0;
+                g_wmap_game_phase = WMAP_GAME_PROMPT;
+                g_wmap_game_timer = 0x708;
+                g_wmap_carousel_mode = 1;
+                g_wmap_spirit_target_brightness = 0;
+                g_wmap_spirit_brightness = 0;
+                g_wmap_auxiliary_labels_hidden = 1;
+                g_wmap_game_round = 0;
+                g_wmap_game_hits = 15;
+                g_wmap_map_button_mask = 0xF0E0;
+            }
+        }
+        else
+        {
+            g_wmap_game_start_delay = WMAP_GAME_RETRY_DELAY;
+        }
+
+        return;
+    }
+
+    switch (g_wmap_game_phase)
+    {
+    case WMAP_GAME_PROMPT:
+        wmap_update_map_game_prompt();
+        break;
+    case WMAP_GAME_COUNTING_DOWN:
+        wmap_update_map_game_countdown();
+        break;
+    case WMAP_GAME_PLAYING:
+        wmap_update_map_game_round();
+        break;
+    }
+
+    for (render_y = g_wmap_game_origin_y; render_y < g_wmap_game_origin_y + WMAP_GAME_AREA_SIZE; render_y++)
+    {
+        for (render_x = g_wmap_game_origin_x; render_x < g_wmap_game_origin_x + WMAP_GAME_AREA_SIZE; render_x++)
+        {
+            wmap_draw_land(render_x, render_y, g_wmap_cells[render_x][render_y].land_id);
+        }
+    }
+
+    render_y = g_wmap_game_displayed_score;
+    render_x = 0xF0;
+
+    if (g_wmap_game_score == 0)
+    {
+        sprite = g_wmap_current_frame->packet_cursor;
+        *sprite = g_wmap_game_score_digit;
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+        }
+    }
+    else
+    {
+        while (render_y != 0)
+        {
+            sprite = g_wmap_current_frame->packet_cursor;
+            *sprite = g_wmap_game_score_digit;
+            sprite->x0 = render_x;
+            sprite->u0 = (render_y % 10) * 16;
+            render_y /= 10;
+            lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+            if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+            {
+                g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+                g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+            }
+
+            render_x -= 16;
+        }
+    }
+
+    sprite = g_wmap_current_frame->packet_cursor;
+    *sprite = g_wmap_game_score_label;
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    sprite = g_wmap_current_frame->packet_cursor;
+    *sprite = g_wmap_game_round_digit;
+    sprite->u0 = g_wmap_game_round * 16;
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    sprite = g_wmap_current_frame->packet_cursor;
+    *sprite = g_wmap_game_round_label;
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    wmap_queue_texture_page(0x55, 1);
+
+    if (((g_wmap_game_displayed_score - g_wmap_game_score) >= 0) ? ((g_wmap_game_displayed_score - g_wmap_game_score) < 30)
+                                                                 : ((g_wmap_game_score - g_wmap_game_displayed_score) < 30))
+    {
+        if (g_wmap_game_displayed_score < g_wmap_game_score)
+        {
+            g_wmap_game_displayed_score++;
+        }
+
+        if (g_wmap_game_score < g_wmap_game_displayed_score)
+        {
+            g_wmap_game_displayed_score--;
+        }
+    }
+    else
+    {
+        if (g_wmap_game_displayed_score < g_wmap_game_score)
+        {
+            g_wmap_game_displayed_score += 15;
+        }
+
+        if (g_wmap_game_score < g_wmap_game_displayed_score)
+        {
+            g_wmap_game_displayed_score -= 15;
+        }
+    }
+
+    g_wmap_buttons_held = 0;
+    g_wmap_buttons_repeat = 0;
+}
+
+/**
+ * @brief Draw the map-game prompt and accept a new round or an exit.
+ */
+void wmap_update_map_game_prompt(void)
+{
+    SPRT* sprite;
+
+    sprite = g_wmap_current_frame->packet_cursor;
+
+    if (g_wmap_game_round < 8 && g_wmap_game_hits >= 12)
+    {
+        s32 state_flags;
+
+        state_flags = g_wmap_buttons_repeat;
+        *sprite = g_wmap_game_continue_prompt;
+
+        if (state_flags & PADRleft)
+        {
+            g_wmap_game_phase = WMAP_GAME_COUNTING_DOWN;
+            g_wmap_game_timer = WMAP_GAME_COUNTDOWN;
+            wmap_play_sound(0x3C, 0x80);
+            g_wmap_game_hits = 0;
+            g_wmap_game_round++;
+        }
+        else if (state_flags & WMAP_PAD_CANCEL)
+        {
+            g_wmap_game_start_delay = WMAP_GAME_RETRY_DELAY;
+            g_wmap_game_phase = WMAP_GAME_PROMPT;
+            g_wmap_view_scroll_enabled = 1;
+            g_wmap_land_label_updates_enabled = 1;
+            g_wmap_carousel_mode = 2;
+            wmap_reset_after_transition();
+        }
+    }
+    else
+    {
+        s32 state_flags;
+
+        state_flags = g_wmap_buttons_repeat;
+        *sprite = g_wmap_game_exit_prompt;
+
+        if (state_flags & WMAP_PAD_CANCEL)
+        {
+            g_wmap_game_start_delay = WMAP_GAME_RETRY_DELAY;
+            g_wmap_game_phase = WMAP_GAME_PROMPT;
+            g_wmap_view_scroll_enabled = 1;
+            g_wmap_land_label_updates_enabled = 1;
+            g_wmap_carousel_mode = 2;
+            wmap_reset_after_transition();
+        }
+    }
+
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    wmap_queue_texture_page(0x55, 1);
+}
+
+/**
+ * @brief Count down to the next map-game round and reset its land timers.
+ */
+void wmap_update_map_game_countdown(void)
+{
+    SPRT* sprite;
+    s32 i;
+    s32 j;
+    s32 object_id;
+
+    sprite = g_wmap_current_frame->packet_cursor;
+    *sprite = g_wmap_game_countdown_sprite;
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    g_wmap_game_timer--;
+
+    if (g_wmap_game_timer == 60)
+    {
+        for (i = g_wmap_game_origin_y; i < g_wmap_game_origin_y + WMAP_GAME_AREA_SIZE; i++)
+        {
+            for (j = g_wmap_game_origin_x; j < g_wmap_game_origin_x + WMAP_GAME_AREA_SIZE; j++)
+            {
+                object_id = g_wmap_cells[j][i].land_id;
+                wmap_set_land_display_mode(object_id, 1);
+                g_wmap_land_display[object_id].game_timer = 0;
+            }
+        }
+    }
+
+    if (g_wmap_game_timer == 0)
+    {
+        g_wmap_game_timer = WMAP_GAME_ROUND_TIME;
+        g_wmap_game_phase = WMAP_GAME_PLAYING;
+        g_wmap_game_spawn_timer = WMAP_INITIAL_SPAWN_DELAY;
+    }
+
+    wmap_queue_texture_page(0x55, 1);
+    wmap_set_map_label(-1);
+}
+
+/**
+ * @brief Score map-game hits and expire raised lands in the active neighborhood.
+ */
+void wmap_update_map_game_round(void)
+{
+    s32 x;
+    s32 y;
+    s32 object_id;
+    s32 step;
+    WmapLandDisplay* object;
+
+    g_wmap_game_timer--;
+
+    if (g_wmap_game_timer == 0)
+    {
+        g_wmap_game_phase = WMAP_GAME_PROMPT;
+    }
+
+    g_wmap_game_unused_buttons = g_wmap_buttons_held;
+    wmap_update_map_game_spawns();
+
+    y = g_wmap_game_origin_y + g_wmap_cursor_row;
+    x = g_wmap_game_origin_x + g_wmap_cursor_column;
+    object_id = g_wmap_cells[x][y].land_id;
+    object = &g_wmap_land_display[object_id];
+
+    if (g_wmap_buttons_repeat & WMAP_PAD_CONFIRM)
+    {
+        if ((u32)(object->transition - 2) < 2)
+        {
+            step = (g_wmap_game_round + 1) * 5;
+            g_wmap_game_score += step;
+            g_wmap_game_hits++;
+
+            if (object_id == 0x1F)
+            {
+                g_wmap_game_score += step;
+            }
+
+            g_wmap_unused_tally = g_wmap_game_score;
+            wmap_set_land_display_mode(object_id, 1);
+            object->scale_frame = 1;
+            wmap_play_sound(0x3E, 0x80);
+        }
+        else
+        {
+            g_wmap_game_score -= (g_wmap_game_round + 1) * 2;
+            g_wmap_game_hits--;
+
+            if (g_wmap_game_score < 0)
+            {
+                g_wmap_game_score = 0;
+            }
+
+            wmap_play_sound(0x3F, 0x80);
+        }
+    }
+
+    for (y = g_wmap_game_origin_y; y < g_wmap_game_origin_y + WMAP_GAME_AREA_SIZE; y++)
+    {
+        for (x = g_wmap_game_origin_x; x < g_wmap_game_origin_x + WMAP_GAME_AREA_SIZE; x++)
+        {
+            object_id = g_wmap_cells[x][y].land_id;
+            object = &g_wmap_land_display[object_id];
+
+            if (object->game_timer != 0)
+            {
+                object->game_timer--;
+
+                if ((object->game_timer == 0) && (object->transition != 1))
+                {
+                    wmap_set_land_display_mode(g_wmap_cells[x][y].land_id, 1);
+                    object->scale_frame = 4;
+                    wmap_play_sound(2, 0x80);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Schedule randomized timer updates for nearby world-map objects.
+ * @param delay_min Base value for the next update delay.
+ * @param delay_range Randomized span added to the next update delay.
+ * @param timer_min Base value assigned to selected object timers.
+ * @param timer_range Randomized span added to selected object timers.
+ */
+void wmap_spawn_map_game_lands(s32 delay_min, s32 delay_range, s32 timer_min, s32 timer_range)
+{
+    s32 row;
+    s32 column;
+    s32 pattern_index;
+    s32 object_id;
+    WmapLandDisplay* object;
+
+    if (g_wmap_game_spawn_timer-- > 0)
+    {
+        return;
+    }
+
+    g_wmap_game_spawn_timer = ((rand() * delay_range) >> 15) + delay_min;
+    column = (rand() % 3) + g_wmap_game_origin_x;
+    row = (rand() % 3) + g_wmap_game_origin_y;
+    object_id = g_wmap_cells[column][row].land_id;
+
+    if (rand() & 0xFF)
+    {
+        WmapLandDisplay* object_base;
+
+        object_base = g_wmap_land_display;
+        object = &object_base[object_id];
+
+        if (object->transition != 1)
+        {
+            return;
+        }
+
+        object->game_timer = ((rand() * timer_range) >> 15) + timer_min;
+        wmap_set_land_display_mode(object_id, 2);
+    }
+    else
+    {
+        pattern_index = 0;
+
+        for (row = g_wmap_game_origin_y; row < g_wmap_game_origin_y + WMAP_GAME_AREA_SIZE; row++)
+        {
+            for (column = g_wmap_game_origin_x; column < g_wmap_game_origin_x + WMAP_GAME_AREA_SIZE; column++)
+            {
+                object_id = g_wmap_cells[column][row].land_id;
+
+                if (g_wmap_game_spawn_patterns[g_wmap_game_round][pattern_index])
+                {
+                    WmapLandDisplay* object_base;
+
+                    object_base = g_wmap_land_display;
+                    object = &object_base[object_id];
+
+                    if (object->transition == 1)
+                    {
+                        object->game_timer = ((rand() * timer_range) >> 15) + timer_min;
+                        wmap_set_land_display_mode(object_id, 2);
+                    }
+                }
+
+                pattern_index++;
+            }
+        }
+    }
+
+    wmap_play_sound(0x3D, 0x80);
+}
+
+/**
+ * @brief Choose land spawn timing for the current map-game round.
+ */
+void wmap_update_map_game_spawns(void)
+{
+    switch (g_wmap_game_round)
+    {
+    case 1:
+        wmap_spawn_map_game_lands(40, 20, 25, 30);
+        break;
+    case 2:
+        wmap_spawn_map_game_lands(30, 20, 20, 25);
+        break;
+    case 3:
+        wmap_spawn_map_game_lands(10, 20, 20, 20);
+        break;
+    case 4:
+        wmap_spawn_map_game_lands(5, 25, 15, 20);
+        break;
+    default:
+        wmap_spawn_map_game_lands(5, 20, 8, 15);
+        break;
+    }
+}
+
+/**
+ * @brief Find a land image or an unused slot in the image cache.
+ * @param resource_id Land image id, or -1 for an unused slot.
+ * @return Matching cache slot index, or -1 when no slot matches.
+ */
+static inline s32 wmap_find_land_image(s16 resource_id)
+{
+    s32 cache_index;
+
+    for (cache_index = 0; cache_index < WMAP_CACHE_SLOTS; cache_index++)
+    {
+        if (g_wmap_land_image_cache[cache_index].resource_id == resource_id)
+        {
+            return cache_index;
+        }
+    }
+
+    return -1;
+}
+
+/**
+ * @brief Resolve or load the cache slot used by a world-map resource.
+ * @param resource Land whose image is needed; resets animation history when no sequence is active.
+ * @return Cache slot index, or -1 when the resource cannot be loaded.
+ */
+s32 wmap_resolve_land_image(WmapLandDisplay* resource)
+{
+    s32 resource_id;
+    s32 slot;
+    s32 oldest_slot;
+    u32 oldest_frame;
+    WmapCacheEntry* cache;
+    WmapCacheEntry* oldest_entry;
+    WmapCacheEntry* oldest_cache;
+    u8* oldest_image;
+    s16 oldest_resource_id;
+
+    resource_id = resource->resource_id;
+
+    if (resource_id == FIELD_LAND_TREE_OF_MANA)
+    {
+        return 0x10;
+    }
+
+    if (g_wmap_land_image_indices[resource_id] == -1)
+    {
+        return -1;
+    }
+
+    slot = wmap_find_land_image(resource_id);
+
+    if (slot < 0)
+    {
+        g_wmap_land_image_cache_missed = 1;
+
+        if (g_wmap_land_image_load_locked == 0)
+        {
+            if (g_wmap_land_image_load_count >= 10)
+            {
+                return -1;
+            }
+
+            slot = wmap_find_land_image(-1);
+
+            if (slot >= 0)
+            {
+                WmapCacheEntry* free_entry;
+                WmapCacheEntry* cache_base;
+                u8* image;
+                s16 resource_id;
+
+                cache_base = g_wmap_land_image_cache;
+                free_entry = &cache_base[slot];
+                resource_id = resource->resource_id;
+                free_entry->resource_id = resource_id;
+                image = (u8*)g_wmap_land_image_pack + g_wmap_land_image_pack[resource_id];
+                lom_graphics_upload(&g_wmap_land_image_uploads[slot].upload.rect, (u_long*)image);
+                free_entry->animation_data = image + 0x2004;
+                free_entry->loaded_frame = g_wmap_frame_count;
+
+                if (resource->animation_cursor == 0)
+                {
+                    resource->previous_animation_index = -1;
+                }
+
+                return slot;
+            }
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    if (slot >= 0)
+    {
+        if (resource->animation_cursor == 0)
+        {
+            resource->previous_animation_index = -1;
+        }
+
+        return slot;
+    }
+
+    oldest_slot = -1;
+    oldest_frame = 0x7FFFFFFF;
+
+    for (slot = 0; slot < WMAP_CACHE_SLOTS; slot++)
+    {
+        cache = &g_wmap_land_image_cache[slot];
+
+        if (g_wmap_land_display[cache->resource_id].transition == 0)
+        {
+            if (cache->loaded_frame < oldest_frame)
+            {
+                oldest_frame = cache->loaded_frame;
+                oldest_slot = slot;
+            }
+        }
+    }
+
+    oldest_cache = g_wmap_land_image_cache;
+    oldest_entry = &oldest_cache[oldest_slot];
+
+    if (oldest_entry->busy != 0)
+    {
+        return -1;
+    }
+
+    oldest_entry->resource_id = -1;
+    oldest_resource_id = resource->resource_id;
+    oldest_entry->resource_id = oldest_resource_id;
+    oldest_image = (u8*)g_wmap_land_image_pack + g_wmap_land_image_pack[oldest_resource_id];
+    lom_graphics_upload(&g_wmap_land_image_uploads[oldest_slot].upload.rect, (u_long*)oldest_image);
+    oldest_image += 0x2004;
+    oldest_entry->animation_data = oldest_image;
+    oldest_entry->loaded_frame = g_wmap_frame_count;
+    resource->animation_cursor = 0;
+    resource->previous_animation_index = -1;
+    return oldest_slot;
+}
+
+/**
+ * @brief Build and enqueue a world-map marker sprite.
+ * @param map_x Map-grid X coordinate.
+ * @param map_y Map-grid Y coordinate.
+ * @param marker Marker record containing the texture selection.
+ */
+void wmap_draw_land_marker(s32 map_x, s32 map_y, WmapLandDisplay* marker)
+{
+    s32 texture;
+    s32 u_index;
+    s32 v_index;
+    SPRT* sprite;
+    s32 depth;
+    s32 type;
+    SVECTOR position;
+    u32 screen;
+    u16* screen_ptr;
+    s32 projected_z;
+
+    sprite = g_wmap_current_frame->packet_cursor;
+
+    switch (g_wmap_view_mode)
+    {
+    case WMAP_VIEW_MODE_MAP:
+    {
+        s32 scale;
+        s32 z_bucket;
+        s32 sprite_y;
+
+        scale = g_wmap_view.projection_scale;
+        position.vx = ((((map_x - 1) * WMAP_CELL_SIZE) - ((g_wmap_view.x * WMAP_MAP_PROJECTION_SCALE) / scale)) * WMAP_VIEW_SCALE) / scale;
+        position.vy = ((((map_y - 1) * WMAP_CELL_SIZE) - ((g_wmap_view.y * WMAP_MAP_PROJECTION_SCALE) / scale)) * WMAP_VIEW_SCALE) / scale;
+        position.vz = 0;
+
+        gte_ldv0(&position);
+        gte_rtps();
+        gte_stsxy(&screen);
+        gte_stszotz(&projected_z);
+        screen_ptr = (u16*)&screen;
+
+        if ((screen_ptr[1] << 16) < 0)
+        {
+            return;
+        }
+
+        z_bucket = (0x1B91 - projected_z) / 4;
+        depth = z_bucket + 0x2F;
+
+        if (depth < 0x2E || depth > 0xAE)
+        {
+            depth = 0x2E;
+        }
+
+        sprite->x0 = screen_ptr[0] - 8;
+        sprite_y = screen_ptr[1] - 22;
+        sprite->y0 = sprite_y;
+        break;
+    }
+    case WMAP_VIEW_MODE_SPIRITS:
+    {
+        s32 sprite_x;
+        s32 sprite_y;
+
+        sprite_x = g_wmap_spirit_view_cell_positions[map_x + map_y * 6].point.x;
+        sprite_y = g_wmap_spirit_view_cell_positions[map_x + map_y * 6].point.y;
+        depth = 0xAE - map_y;
+        sprite->x0 = sprite_x;
+        sprite->y0 = sprite_y;
+        break;
+    }
+    default:
+        return;
+    }
+
+    SET_BGR0_PACKED(sprite, 0x808080);
+
+    texture = g_wmap_land_label_cells[marker->resource_id];
+    u_index = texture & 7;
+    sprite->u0 = u_index << 5;
+    v_index = texture / 8;
+    sprite->v0 = v_index << 5;
+
+    switch (v_index)
+    {
+    case 0:
+        sprite->clut = (u_index << 6) | 0x582E;
+        type = 12;
+        break;
+    case 1:
+        sprite->clut = (u_index << 6) | 0x5A2E;
+        type = 12;
+        break;
+    case 2:
+        sprite->clut = (u_index << 6) | 0x5C2E;
+        type = 12;
+        break;
+    case 3:
+        sprite->clut = (u_index << 6) | 0x5E2E;
+        type = 12;
+        break;
+    }
+
+    *(u32*)&sprite->w = PACK_U16_PAIR(32, 32);
+    lom_gpu_init_sprite(sprite);
+    lom_gpu_set_semi_trans(sprite, 1);
+
+    lom_gpu_link(&g_wmap_current_frame->ordering_table[depth], sprite);
+
+    if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+    {
+        g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+    }
+
+    wmap_queue_texture_page(type, depth);
+}
+
+/**
+ * @brief Update and render an animated world-map sprite.
+ * @param x World-map X cell coordinate.
+ * @param y World-map Y cell coordinate.
+ * @param state Animation and rendering state for the sprite.
+ * @param resource_index Resident image-cache slot and texture set.
+ */
+void wmap_draw_land_animation(s32 x, s32 y, WmapLandDisplay* state, s32 resource_index)
+{
+    WmapCacheEntry* resource;
+    WmapQuadScale* scale;
+    WmapTextureInfo* texture;
+    WmapTextureInfo* texture_base;
+    WmapAnimationEntry* animation;
+    WmapQuadData* quad;
+    POLY_FT4* packet;
+    WmapSpriteLocals locals;
+    DVECTOR* screen_ptr;
+    s32 depth_index;
+    s32 ot_depth;
+    s32 count;
+    s32 sequence_id;
+    s32 sequence_end;
+    s32 phase_delta;
+    s32 projection_scale;
+    s32 animation_offset;
+    s32 texture_offset;
+    u8* animation_data;
+    u32 address_mask;
+    u32 tag_mask;
+    DVECTOR* projected_screen;
+
+    phase_delta = g_wmap_land_scale_steps[state->transition];
+    state->scale_frame += phase_delta;
+    resource = &g_wmap_land_image_cache[resource_index];
+
+    if ((s8)state->scale_frame >= 15)
+    {
+        state->scale_frame = 15;
+        state->transition = 2;
+    }
+
+    if ((s8)state->scale_frame <= 0)
+    {
+        state->transition = 1;
+        return;
+    }
+
+    projection_scale = g_wmap_view.projection_scale;
+    locals.position.vx = (((x - 1) * WMAP_CELL_SIZE - (g_wmap_view.x * WMAP_MAP_PROJECTION_SCALE) / projection_scale) * WMAP_VIEW_SCALE) / projection_scale;
+    locals.position.vy = (((y - 1) * WMAP_CELL_SIZE - (g_wmap_view.y * WMAP_MAP_PROJECTION_SCALE) / projection_scale) * WMAP_VIEW_SCALE) / projection_scale;
+    locals.position.vz = 0;
+
+    gte_ldv0(&locals.position);
+    gte_rtps();
+    projected_screen = &locals.screen;
+    gte_stsxy(projected_screen);
+    gte_stszotz(&locals.depth);
+
+    if (((u16)projected_screen->vy << 16) < 0)
+    {
+        return;
+    }
+
+    animation_data = resource->animation_data;
+
+    if (state->previous_animation_index != state->animation_index)
+    {
+        state->previous_animation_index = state->animation_index;
+        animation_offset = *(s16*)(animation_data + state->animation_index * 2);
+        state->frame_timer = 1;
+        state->animation_start = animation_data + animation_offset;
+        state->animation_cursor = state->animation_start;
+    }
+
+    sequence_end = 0xFF;
+
+    if (state->frame_timer != sequence_end)
+    {
+        state->frame_timer--;
+    }
+
+    if (state->frame_timer == 0)
+    {
+        animation = (WmapAnimationEntry*)state->animation_cursor;
+        sequence_id = animation->sequence_id;
+        state->frame_timer = animation->duration;
+
+        if (sequence_id == sequence_end)
+        {
+            animation = (WmapAnimationEntry*)state->animation_start;
+            state->animation_cursor = (u8*)animation;
+            sequence_id = animation->sequence_id;
+            state->frame_timer = animation->duration;
+        }
+
+        state->animation_cursor += sizeof(WmapAnimationEntry);
+        state->quad_data = (s8*)(animation_data + *(s16*)(animation_data + 0x40 + sequence_id * 2));
+    }
+
+    quad = (WmapQuadData*)state->quad_data;
+    count = *(s8*)quad;
+    quad = (WmapQuadData*)((s8*)quad + 1);
+
+    if ((u32)(count - 1) >= 32)
+    {
+        wmap_report_error(animation_data, sequence_end, projection_scale, resource);
+        return;
+    }
+
+    depth_index = (0x1B91 - locals.depth) / 4;
+    ot_depth = depth_index + 0x2E;
+
+    if ((u32)depth_index >= 0x81)
+    {
+        ot_depth = 0x2E;
+    }
+
+    do
+    {
+        packet = g_wmap_current_frame->packet_cursor;
+        screen_ptr = &locals.screen;
+        texture_base = g_wmap_land_image_uploads;
+        address_mask = 0x00FFFFFF;
+        tag_mask = 0xFF000000;
+        scale = &g_wmap_land_quad_scales[0][(s8)state->scale_frame];
+
+        packet->x0 = locals.screen.vx + ((quad->x * scale->x0) >> 8);
+        packet->x1 = locals.screen.vx + (((quad->x + (s8)quad->width) * scale->x1) >> 8);
+        packet->x2 = locals.screen.vx + ((quad->x * scale->x2) >> 8);
+        packet->x3 = locals.screen.vx + (((quad->x + (s8)quad->width) * scale->x3) >> 8);
+        packet->y0 = screen_ptr->vy + ((quad->y * scale->y0) >> 8);
+        packet->y1 = screen_ptr->vy + ((quad->y * scale->y1) >> 8);
+        packet->y2 = screen_ptr->vy + (((quad->y + (s8)quad->height) * scale->y2) >> 8);
+        packet->y3 = screen_ptr->vy + (((quad->y + (s8)quad->height) * scale->y3) >> 8);
+
+        texture_offset = resource_index * sizeof(WmapTextureInfo);
+        texture = &texture_base[resource_index];
+        packet->u0 = quad->u;
+        packet->u1 = quad->u + quad->width;
+        packet->u2 = quad->u;
+        packet->u3 = quad->u + quad->width;
+        packet->v0 = quad->v + texture->upload.uv.v_offset;
+        packet->v1 = quad->v + texture->upload.uv.v_offset;
+        packet->v2 = quad->v + quad->height + texture->upload.uv.v_offset;
+        packet->v3 = quad->v + quad->height + texture->upload.uv.v_offset;
+        SET_BGR0_PACKED(packet, 0x80808080);
+        locals.blend_mode = (s8)quad->blend_mode;
+        packet->tpage = lom_gpu_tpage(GPU_TEXTURE_4BIT, quad->blend_mode & 3, texture->tpage_x, texture->tpage_y);
+        packet->clut = *(u16*)((u8*)texture_base->clut + (quad->texture_index * 2 + texture_offset));
+        lom_gpu_init_poly_ft4(packet);
+        lom_gpu_set_semi_trans(packet, 1);
+#if defined(LOM_NATIVE_POINTERS)
+        lom_gpu_link(&ot_depth[g_wmap_current_frame->ordering_table], packet);
+#else
+        packet->tag = (packet->tag & tag_mask) | (ot_depth[g_wmap_current_frame->ordering_table] & address_mask);
+        ot_depth[g_wmap_current_frame->ordering_table] = (ot_depth[g_wmap_current_frame->ordering_table] & tag_mask) | ((uintptr_t)packet & address_mask);
+#endif
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(POLY_FT4);
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(POLY_FT4);
+        }
+
+        quad++;
+        count--;
+    } while (count != 0);
+}
+
+/**
+ * @brief Update world-map object display states for the visible map grid.
+ */
+void wmap_draw_lands(void)
+{
+    MATRIX matrix;
+    VECTOR translation;
+    SVECTOR rotation;
+    VECTOR world_position;
+    s32 x;
+    s32 y;
+    s32 object_id;
+    s32 state;
+    s32 part_index;
+    s32 distance_state;
+
+    rotation.vx = g_wmap_camera_rotation.vx + g_wmap_effect_camera_rotation_offset.vx;
+    rotation.vy = g_wmap_camera_rotation.vy + g_wmap_effect_camera_rotation_offset.vy;
+    rotation.vz = g_wmap_camera_rotation.vz + g_wmap_effect_camera_rotation_offset.vz;
+
+    world_position.vx = g_wmap_camera_translation.vx + g_wmap_effect_camera_translation_offset.vx;
+    world_position.vy = g_wmap_camera_translation.vy + g_wmap_effect_camera_translation_offset.vy;
+    world_position.vz = g_wmap_camera_translation.vz + g_wmap_effect_camera_translation_offset.vz;
+
+    translation = world_position;
+    translation.vz = (translation.vz * g_wmap_view.projection_scale) / WMAP_VIEW_SCALE;
+
+    RotMatrix(&rotation, &matrix);
+    TransMatrix(&matrix, &translation);
+    SetRotMatrix(&matrix);
+    SetTransMatrix(&matrix);
+
+    for (y = 0; y < WMAP_GRID_SIZE; y++)
+    {
+        for (x = 0; x < WMAP_GRID_SIZE; x++)
+        {
+            object_id = g_wmap_cells[x][y].land_id;
+
+            if (g_wmap_view_mode == WMAP_VIEW_MODE_SPIRITS)
+            {
+                state = 1;
+            }
+            else if (object_id == g_wmap_forced_animated_land_id)
+            {
+                state = 2;
+            }
+            else
+            {
+                s32 base_state;
+
+                distance_state = wmap_classify_map_point(x * WMAP_CELL_SPACING, y * WMAP_CELL_SPACING);
+                base_state = g_wmap_land_display_limit;
+
+                if (base_state != 2)
+                {
+                    state = base_state;
+                }
+
+                if ((base_state == 2) || (distance_state < state))
+                {
+                    state = distance_state;
+                }
+            }
+
+            if (object_id >= WMAP_LAND_FULL_SIZE)
+            {
+                state = 5;
+                object_id &= 0xFF;
+            }
+
+            if (object_id != WMAP_NO_LAND)
+            {
+                WmapLandDisplay* current_object;
+
+                current_object = &g_wmap_land_display[object_id];
+
+                if ((s8)current_object->scale_frame >= 0x10)
+                {
+                    current_object->scale_frame = 0xF;
+                }
+                else if ((s8)current_object->scale_frame < 0)
+                {
+                    current_object->scale_frame = 0;
+                }
+
+                if (state == 5)
+                {
+                    current_object->display_mode = 2;
+                    current_object->transition = 2;
+                    current_object->scale_frame = 0xF;
+                }
+                else if (state != current_object->display_mode)
+                {
+                    switch (current_object->display_mode)
+                    {
+                    case 0:
+                        current_object->display_mode = state;
+
+                        if (state == 1)
+                        {
+                            current_object->transition = state;
+                        }
+                        else
+                        {
+                            current_object->transition = 3;
+                        }
+
+                        break;
+                    case 1:
+                        current_object->display_mode = state;
+
+                        if (state != 0)
+                        {
+                            current_object->transition = 3;
+                        }
+                        else
+                        {
+                            current_object->transition = 0;
+                            current_object->scale_frame = 0;
+                        }
+
+                        break;
+                    case 2:
+                        current_object->display_mode = state;
+
+                        if (state != 0)
+                        {
+                            current_object->transition = 4;
+                        }
+                        else
+                        {
+                            current_object->transition = 0;
+                            current_object->scale_frame = 0;
+                        }
+
+                        break;
+                    }
+                }
+
+                if (state != 0)
+                {
+                    WmapLandDisplay* active_object;
+
+                    active_object = &g_wmap_land_display[object_id];
+
+                    if (active_object->transition != 1)
+                    {
+                        part_index = wmap_resolve_land_image(active_object);
+
+                        if ((part_index != -1) && (g_wmap_land_image_cache[part_index].busy == 0))
+                        {
+                            wmap_draw_land_animation(x, y, active_object, part_index);
+                        }
+                        else
+                        {
+                            wmap_draw_land_marker(x, y, active_object);
+                        }
+                    }
+                    else
+                    {
+                        wmap_draw_land_marker(x, y, active_object);
+                    }
+                }
+            }
+
+            if ((g_wmap_selected_artifact == -1) || (g_wmap_placement_overlay_hidden != 0))
+            {
+                state = 0;
+            }
+
+            wmap_set_cell_effect_mode(x, y, state);
+
+            if ((g_wmap_cells[x][y].placement_allowed != 0) && (g_wmap_view_mode == WMAP_VIEW_MODE_MAP))
+            {
+                wmap_draw_cell_effect(x, y);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Render the animated world-map quad set for one map cell.
+ * @param x World-map grid X coordinate.
+ * @param y World-map grid Y coordinate.
+ */
+void wmap_draw_cell_effect(s32 x, s32 y)
+{
+    WmapEffectCell* cell;
+    WmapQuadVertex base;
+    WmapQuadVertex transformed[4];
+    s32 sxy0;
+    s32 sxy1;
+    s32 sxy2;
+    s32 sxy3;
+    s32 projected_x;
+    s32 projected_y;
+    s32 i;
+    s32 color_frame;
+    s32 frame_delta;
+
+    cell = &g_wmap_cell_effects[x][y];
+    frame_delta = g_wmap_cell_effect_steps[cell->state];
+    cell->frame += frame_delta;
+
+    if (cell->frame >= 0x11)
+    {
+        cell->frame = 0x10;
+    }
+    else if (cell->frame < 0)
+    {
+        cell->frame = 0;
+    }
+
+    if (cell->frame >= 0xF)
+    {
+        cell->state = 2;
+    }
+
+    if (cell->frame <= 0)
+    {
+        cell->state = 1;
+        return;
+    }
+
+    projected_x = (g_wmap_view.x * WMAP_MAP_PROJECTION_SCALE) / g_wmap_view.projection_scale;
+    projected_y = (g_wmap_view.y * WMAP_MAP_PROJECTION_SCALE) / g_wmap_view.projection_scale;
+    base.x = ((((x - 1) * WMAP_CELL_SIZE) - projected_x) * WMAP_VIEW_SCALE) / g_wmap_view.projection_scale + 0xA;
+    base.y = ((((y - 1) * WMAP_CELL_SIZE) - projected_y) * WMAP_VIEW_SCALE) / g_wmap_view.projection_scale + 0xC;
+    base.z = 0;
+
+    color_frame = cell->frame * 7;
+
+    for (i = 0; i < 16; i++)
+    {
+        WmapQuadTemplate* source;
+        POLY_G4* poly;
+
+        source = &g_wmap_cell_effect_quads[i];
+        poly = g_wmap_current_frame->packet_cursor;
+
+        transformed[0].x = base.x + source->vertices[0].x;
+        transformed[0].y = base.y + source->vertices[0].y;
+        transformed[0].z = base.z + source->vertices[0].z;
+        transformed[1].x = base.x + source->vertices[1].x;
+        transformed[1].y = base.y + source->vertices[1].y;
+        transformed[1].z = base.z + source->vertices[1].z;
+        transformed[2].x = base.x + source->vertices[2].x;
+        transformed[2].y = base.y + source->vertices[2].y;
+        transformed[2].z = base.z + source->vertices[2].z;
+        transformed[3].x = base.x + source->vertices[3].x;
+        transformed[3].y = base.y + source->vertices[3].y;
+        transformed[3].z = base.z + source->vertices[3].z;
+
+        gte_ldv3(&transformed[0], &transformed[1], &transformed[2]);
+        gte_rtpt();
+
+        SET_BGR0_PACKED(poly, wmap_scale_color(source->colors[0], color_frame));
+        *(u32*)&poly->r1 = wmap_scale_color(source->colors[1], color_frame);
+        *(u32*)&poly->r2 = wmap_scale_color(source->colors[2], color_frame);
+        *(u32*)&poly->r3 = wmap_scale_color(source->colors[3], color_frame);
+
+        if ((g_wmap_selected_artifact == 3) || (g_wmap_selected_artifact == 7) || (g_wmap_selected_artifact == 0x1B))
+        {
+            poly->r0 = poly->r1 = poly->r2 = poly->r3 = 0;
+        }
+
+        gte_stsxy3(&sxy0, &sxy1, &sxy2);
+        gte_ldv0(&transformed[3]);
+        gte_rtps();
+
+        SET_XY0_PACKED(poly, sxy0);
+        SET_XY1_PACKED(poly, sxy1);
+        SET_XY2_PACKED(poly, sxy2);
+        gte_stsxy(&sxy3);
+        SET_XY3_PACKED(poly, sxy3);
+
+        lom_gpu_set_length(poly, 8);
+        lom_gpu_set_code(poly, 0x3A);
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[174], poly);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(POLY_G4);
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(POLY_G4);
+        }
+    }
+
+    wmap_queue_texture_page(0xAE, 0xAE);
+}
+
+/**
+ * @brief Reset world-map objects and effect cells to their initial state.
+ */
+void wmap_init_land_display(void)
+{
+    s32 i;
+    s32 x;
+    s32 y;
+
+    for (i = 0; i < FIELD_LAND_COUNT; i++)
+    {
+        g_wmap_land_display[i].object_id = i;
+        g_wmap_land_display[i].resource_id = i;
+        g_wmap_land_display[i].previous_animation_index = 0;
+        g_wmap_land_display[i].animation_index = 0;
+        g_wmap_land_display[i].scale_frame = 0;
+        g_wmap_land_display[i].transition = 0;
+        g_wmap_land_display[i].display_mode = 0;
+        g_wmap_land_display[i].frame_timer = 0;
+    }
+
+    for (y = 0; y < WMAP_GRID_SIZE; y++)
+    {
+        for (x = 0; x < WMAP_GRID_SIZE; x++)
+        {
+            WmapEffectCell cell;
+
+            g_wmap_cell_effects[x][y].unused_00 = i;
+            g_wmap_cell_effects[x][y].frame = 0;
+            g_wmap_cell_effects[x][y].state = 0;
+            g_wmap_cell_effects[x][y].mode = 0;
+            g_wmap_cell_effects[x][y].unused_10 = 0;
+            cell = g_wmap_cell_effects[x][y];
+        }
+    }
+}
+
+/**
+ * @brief Advance selected spirit animations and draw their eight icons.
+ * @param selected_index Animation index to advance, or -1 to advance every animation.
+ */
+void wmap_draw_spirit_icons(s32 selected_index)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_LAND_SPIRIT_COUNT; i++)
+    {
+        SPRT* sprite;
+        u8 frame;
+
+        if (selected_index == -1 || selected_index == i)
+        {
+            g_wmap_spirit_timers[i]--;
+        }
+
+        if ((s8)g_wmap_spirit_timers[i] <= 0)
+        {
+            frame = g_wmap_spirit_frames[i] + 2;
+            g_wmap_spirit_frames[i] = frame;
+
+            if ((s8)frame >= g_wmap_spirit_sequence_bounds[i + 1])
+            {
+                g_wmap_spirit_frames[i] = g_wmap_spirit_sequence_bounds[i];
+            }
+
+            g_wmap_spirit_timers[i] = g_wmap_spirit_sequences[(s8)g_wmap_spirit_frames[i] + 1];
+        }
+
+        sprite = g_wmap_current_frame->packet_cursor;
+        *sprite = g_wmap_spirit_sprite_templates[i];
+        sprite->r0 = sprite->g0 = sprite->b0 = g_wmap_spirit_brightness;
+        sprite->u0 = (g_wmap_spirit_sequences[(s8)g_wmap_spirit_frames[i]] % 5) * 24;
+        sprite->v0 = (g_wmap_spirit_sequences[(s8)g_wmap_spirit_frames[i]] / 5) * 24;
+
+        if (g_wmap_spirit_brightness < WMAP_BLEND_THRESHOLD)
+        {
+            lom_gpu_set_semi_trans(sprite, 1);
+        }
+
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[4], sprite);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+        }
+    }
+
+    wmap_queue_texture_page(0x3D, 4);
+}
+
+/**
+ * @brief Draw spirit strength and accent sprites for the selected cell.
+ */
+void wmap_draw_spirit_levels(void)
+{
+    s32 sprite_indices[FIELD_LAND_SPIRIT_COUNT];
+    s32 x;
+    s32 y;
+    s32 i;
+    s32 color;
+
+    if (g_wmap_spirit_brightness == 0)
+    {
+        return;
+    }
+
+    x = g_wmap_view.x / WMAP_CELL_SPACING + g_wmap_cursor_column;
+    y = g_wmap_view.y / WMAP_CELL_SPACING + g_wmap_cursor_row;
+
+    if (x < 0)
+    {
+        x = 0;
+    }
+
+    if (y < 0)
+    {
+        y = 0;
+    }
+
+    if (x >= 6)
+    {
+        x = 5;
+    }
+
+    if (y >= 6)
+    {
+        y = 5;
+    }
+
+    color = g_wmap_spirit_brightness + (g_wmap_frame_count & 8);
+
+    if (color < 0)
+    {
+        color = 0;
+    }
+
+    if (g_wmap_selection_phase == 2)
+    {
+        wmap_get_artifact_spirit_sprites(wmap_get_selected_artifact(), sprite_indices);
+    }
+    else if (g_wmap_artifact_placement_active == 1)
+    {
+        wmap_get_proposed_spirit_sprites(x, y, g_wmap_selected_artifact, x, y, sprite_indices);
+    }
+    else
+    {
+        wmap_get_cell_spirit_sprites(x, y, sprite_indices);
+    }
+
+    for (i = 0; i < FIELD_LAND_SPIRIT_COUNT; i++)
+    {
+        SPRT* primary_sprite;
+        SPRT* secondary_sprite;
+
+        primary_sprite = g_wmap_current_frame->packet_cursor;
+        *primary_sprite = g_wmap_spirit_accent_sprites[sprite_indices[i]];
+        primary_sprite->r0 = primary_sprite->g0 = primary_sprite->b0 = color;
+        SET_XY0_PACKED(primary_sprite, WMAP_SPIRIT_SPRITE_XY(i));
+        primary_sprite->clut = lom_gpu_clut(WMAP_SPIRIT_CLUT_X, i + WMAP_SPIRIT_ACCENT_CLUT_Y);
+        lom_gpu_set_semi_trans(primary_sprite, 1);
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[1], primary_sprite);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+        }
+
+        secondary_sprite = g_wmap_current_frame->packet_cursor;
+        *secondary_sprite = g_wmap_spirit_level_sprites[sprite_indices[i]];
+        secondary_sprite->r0 = secondary_sprite->g0 = secondary_sprite->b0 = g_wmap_spirit_brightness;
+        SET_XY0_PACKED(secondary_sprite, WMAP_SPIRIT_SPRITE_XY(i));
+        secondary_sprite->clut = lom_gpu_clut(WMAP_SPIRIT_CLUT_X, i + WMAP_SPIRIT_CLUT_Y);
+        secondary_sprite->x0 += 4;
+        secondary_sprite->y0 += 0x14;
+
+        if (g_wmap_spirit_brightness < WMAP_BLEND_THRESHOLD)
+        {
+            lom_gpu_set_semi_trans(secondary_sprite, 1);
+        }
+
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[1], secondary_sprite);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+            g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+        }
+    }
+
+    wmap_queue_texture_page(0x3D, 1);
+}
+
+/**
+ * @brief Draw one spirit's strength across the map, blinking the selected cell.
+ * @param spirit_index Spirit palette and strength index, from zero through seven.
+ */
+void wmap_draw_spirit_grid(s32 spirit_index)
+{
+    WmapSpiritIndices cell_spirits;
+    s32 target_x;
+    s32 target_y;
+    s32 cur_x;
+    s32 cur_y;
+    s32 base_index;
+    WmapSpiritIndices* spirits;
+    SPRT* sprite;
+
+    if (g_wmap_spirit_brightness == 0)
+    {
+        return;
+    }
+
+    target_x = g_wmap_saved_view.x / WMAP_CELL_SPACING + g_wmap_cursor_column;
+    target_y = g_wmap_saved_view.y / WMAP_CELL_SPACING + g_wmap_cursor_row;
+
+    for (cur_y = 0; cur_y < WMAP_GRID_SIZE; cur_y++)
+    {
+        base_index = cur_y * WMAP_GRID_SIZE;
+        spirits = &cell_spirits;
+
+        for (cur_x = 0; cur_x < WMAP_GRID_SIZE; cur_x++)
+        {
+            if (g_wmap_artifact_placement_active == 1 && g_wmap_cells[target_x][target_y].placement_allowed != 0)
+            {
+                wmap_get_proposed_spirit_sprites(cur_x, cur_y, g_wmap_selected_artifact, target_x, target_y, cell_spirits.sprite_indices);
+            }
+            else
+            {
+                wmap_get_cell_spirit_sprites(cur_x, cur_y, cell_spirits.sprite_indices);
+            }
+
+            if (cur_x == target_x && cur_y == target_y && (g_wmap_frame_count & 4))
+            {
+                sprite = g_wmap_current_frame->packet_cursor;
+                *sprite = g_wmap_spirit_level_sprites[spirits->sprite_indices[spirit_index]];
+                SET_XY0_PACKED(sprite, g_wmap_spirit_level_positions[base_index + cur_x]);
+                sprite->r0 = sprite->g0 = sprite->b0 = g_wmap_spirit_brightness;
+                sprite->u0 = 0xD0;
+                sprite->v0 = 0;
+                sprite->clut = 0x6AAE;
+
+                if (g_wmap_spirit_brightness < WMAP_BLEND_THRESHOLD)
+                {
+                    lom_gpu_set_semi_trans(sprite, 1);
+                }
+
+                lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+                if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+                {
+                    g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+                    g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+                }
+            }
+
+            sprite = g_wmap_current_frame->packet_cursor;
+            *sprite = g_wmap_spirit_level_sprites[spirits->sprite_indices[spirit_index]];
+            SET_XY0_PACKED(sprite, g_wmap_spirit_level_positions[base_index + cur_x]);
+            sprite->r0 = sprite->g0 = sprite->b0 = g_wmap_spirit_brightness;
+            sprite->clut = lom_gpu_clut(WMAP_SPIRIT_CLUT_X, spirit_index + WMAP_SPIRIT_CLUT_Y);
+
+            if (g_wmap_spirit_brightness < WMAP_BLEND_THRESHOLD)
+            {
+                lom_gpu_set_semi_trans(sprite, 1);
+            }
+
+            lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+
+            if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+            {
+                g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+                g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+            }
+        }
+    }
+
+    wmap_queue_texture_page(0x3D, 1);
+}
+
+/** @brief Update map rendering and approach the requested fade intensity. */
+void wmap_update_map_display(void)
+{
+    if (g_wmap_spirit_brightness != 0)
+    {
+        switch (g_wmap_view_mode)
+        {
+        case WMAP_VIEW_MODE_MAP:
+            wmap_draw_spirit_icons(-1);
+            wmap_draw_spirit_levels();
+            wmap_draw_information_labels();
+            break;
+        case WMAP_VIEW_MODE_SPIRITS:
+            if (g_wmap_spirit_selection != 0)
+            {
+                wmap_draw_spirit_icons(g_wmap_spirit_selection - 1);
+                wmap_draw_spirit_grid(g_wmap_spirit_selection - 1);
+            }
+
+            break;
+        }
+    }
+
+    if (g_wmap_frame_count & 1)
+    {
+        g_wmap_spirit_unused_phase = (g_wmap_spirit_unused_phase + 1) & 7;
+    }
+
+    if (g_wmap_spirit_brightness > g_wmap_spirit_target_brightness)
+    {
+        g_wmap_spirit_brightness -= WMAP_FADE_STEP;
+    }
+
+    if (g_wmap_spirit_brightness < g_wmap_spirit_target_brightness)
+    {
+        g_wmap_spirit_brightness += WMAP_FADE_STEP;
+    }
+
+    if (g_wmap_spirit_brightness >= 0x81)
+    {
+        g_wmap_spirit_target_brightness = GPU_TINT_NEUTRAL_LEVEL;
+        g_wmap_spirit_brightness = GPU_TINT_NEUTRAL_LEVEL;
+    }
+}
+
+/** @brief Draw the enabled map information labels and substitute dynamic glyphs. */
+void wmap_draw_information_labels(void)
+{
+    s32 dynamic_index;
+    s32 group;
+    s32 i;
+    s32 end;
+    s32 next_offset;
+
+    s32 glyph;
+    u16 palette;
+    WmapGlyphPlacement* placement;
+    WmapGlyph* image;
+    SPRT* packet;
+
+    if ((g_wmap_buttons_repeat & PAD_BTN_DPAD) || g_wmap_view_scroll_mode != WMAP_SCROLL_NONE)
+    {
+        g_wmap_information_groups = 0;
+    }
+
+    if (!(g_wmap_buttons_held & PADRup) || g_wmap_selected_artifact == -1)
+    {
+        g_wmap_information_groups = 0;
+        return;
+    }
+
+    if (g_wmap_information_groups == 0)
+    {
+        wmap_build_placement_labels(g_wmap_cursor_column + g_wmap_cursor_row * 3, g_wmap_view.x / WMAP_CELL_SPACING + g_wmap_cursor_column,
+                                    g_wmap_view.y / WMAP_CELL_SPACING + g_wmap_cursor_row, &g_wmap_information_groups, g_wmap_information_values,
+                                    g_wmap_selected_artifact);
+    }
+
+    dynamic_index = 0;
+
+    for (group = 0; group < 10; group++)
+    {
+        if ((g_wmap_information_groups >> group) & 1)
+        {
+            i = g_wmap_information_group_starts[group];
+            next_offset = group * sizeof(s32) + sizeof(s32);
+            end = *(s32*)((u8*)g_wmap_information_group_starts + next_offset);
+
+            for (; i < end; i++)
+            {
+                placement = &g_wmap_information_placements[i];
+                glyph = placement->glyph;
+
+                if (glyph == WMAP_DYNAMIC_GLYPH)
+                {
+                    glyph = g_wmap_information_values[dynamic_index++];
+                }
+
+                packet = g_wmap_current_frame->packet_cursor;
+                packet->x0 = placement->x;
+                image = &g_wmap_information_glyphs[glyph];
+                packet->y0 = placement->y;
+                packet->u0 = image->u + 192;
+                packet->v0 = image->v + 96;
+                packet->w = image->width;
+                packet->h = image->height;
+                palette = image->palette;
+                lom_gpu_set_length(packet, 4);
+                packet->r0 = 128;
+                packet->g0 = 128;
+                packet->b0 = 128;
+                packet->code = 100;
+                packet->clut = ((palette + 432) << 6) | 46;
+                lom_gpu_link(&g_wmap_current_frame->ordering_table[2], packet);
+
+                if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+                {
+                    g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(SPRT);
+                    g_wmap_current_frame->packet_cursor = g_wmap_current_frame->packet_cursor + sizeof(SPRT);
+                }
+            }
+        }
+    }
+
+    wmap_queue_texture_page(59, 2);
+}
+
+/**
+ * @brief Clamp the land scale frame and select its display transition.
+ * @param index Land display index.
+ * @param mode Hidden (zero), marker (one), animated (two), or fully expanded (five).
+ */
+void wmap_set_land_display_mode(s32 index, s32 mode)
+{
+    s8 scale_frame;
+    u8 old_mode;
+    WmapLandDisplay* land;
+
+    land = &g_wmap_land_display[index];
+    scale_frame = land->scale_frame;
+
+    if (scale_frame > WMAP_LAND_SCALE_MAX)
+    {
+        land->scale_frame = WMAP_LAND_SCALE_MAX;
+    }
+    else if (scale_frame < 0)
+    {
+        land->scale_frame = 0;
+    }
+
+    if (mode == WMAP_LAND_EXPANDED)
+    {
+        land->display_mode = WMAP_LAND_ANIMATED;
+        land->transition = WMAP_TRANSITION_EXPANDED;
+        land->scale_frame = WMAP_LAND_SCALE_MAX;
+        return;
+    }
+
+    old_mode = land->display_mode;
+
+    if (mode != old_mode)
+    {
+        switch (old_mode)
+        {
+        case WMAP_LAND_HIDDEN:
+            land->display_mode = mode;
+
+            if (mode == WMAP_LAND_MARKER)
+            {
+                land->transition = mode;
+                return;
+            }
+
+            land->transition = WMAP_TRANSITION_GROW;
+            return;
+        case WMAP_LAND_MARKER:
+            land->display_mode = mode;
+
+            if (mode != WMAP_LAND_HIDDEN)
+            {
+                land->transition = WMAP_TRANSITION_GROW;
+                return;
+            }
+
+            land->transition = WMAP_TRANSITION_HIDDEN;
+            land->scale_frame = 0;
+            return;
+        case WMAP_LAND_ANIMATED:
+            land->display_mode = mode;
+
+            if (mode != WMAP_LAND_HIDDEN)
+            {
+                land->transition = WMAP_TRANSITION_SHRINK;
+                return;
+            }
+
+            land->transition = WMAP_TRANSITION_HIDDEN;
+
+            land->scale_frame = 0;
+            return;
+        }
+    }
+}
+
+/**
+ * @brief Upload a land image and retain its animation data and upload frame.
+ * @param resource Resource selecting the packed image data.
+ * @param slot Destination cache slot.
+ */
+void wmap_upload_land_image(WmapLandDisplay* resource, s32 slot)
+{
+    WmapCacheEntry* cache;
+    WmapCacheEntry* base;
+    s16 resource_id;
+    u8* image;
+
+    base = g_wmap_land_image_cache;
+    cache = &base[slot];
+    resource_id = resource->resource_id;
+    cache->resource_id = resource_id;
+    image = (u8*)g_wmap_land_image_pack + g_wmap_land_image_pack[resource_id];
+    lom_graphics_upload(&g_wmap_land_image_uploads[slot].upload.rect, (u_long*)image);
+    cache->animation_data = image + 0x2004;
+    cache->loaded_frame = g_wmap_frame_count;
+}
+
+/**
+ * @brief Draw a cached map resource, or its marker while the image is unavailable.
+ * @param map_x Map-grid X coordinate.
+ * @param map_y Map-grid Y coordinate.
+ * @param resource_index Index of the world-map resource to draw.
+ */
+void wmap_draw_land(s32 map_x, s32 map_y, s32 resource_index)
+{
+    WmapLandDisplay* resource;
+    s32 slot;
+
+    resource = &g_wmap_land_display[resource_index];
+
+    if (resource->transition == 1)
+    {
+        wmap_draw_land_marker(map_x, map_y, resource);
+    }
+    else
+    {
+        slot = wmap_resolve_land_image(resource);
+
+        if (slot != -1 && g_wmap_land_image_cache[slot].busy == 0)
+        {
+            wmap_draw_land_animation(map_x, map_y, resource, slot);
+        }
+        else
+        {
+            wmap_draw_land_marker(map_x, map_y, resource);
+        }
+    }
+}
+
+/** @brief Initialize the 16 reusable slots while preserving their animation pointers. */
+void wmap_init_land_image_cache(void)
+{
+    u32 slot_index;
+
+    for (slot_index = 0; slot_index < WMAP_CACHE_SLOTS; slot_index++)
+    {
+        g_wmap_land_image_cache[slot_index].slot_index = slot_index;
+        g_wmap_land_image_cache[slot_index].resource_id = -1;
+        g_wmap_land_image_cache[slot_index].loaded_frame = 0;
+        g_wmap_land_image_cache[slot_index].busy = 0;
+    }
+}
+
+/**
+ * @brief Reserved world-map entry point; performs no work.
+ */
+void wmap_map_display_stub_1(void)
+{
+}
+
+/**
+ * @brief Classify a point and apply the current land-display limit.
+ * @param x Map-space X coordinate.
+ * @param y Map-space Y coordinate.
+ * @param scale Unused projection scale supplied by the travel renderer.
+ * @return Hidden (zero), marker (one), or animated land (two).
+ */
+s32 wmap_get_point_display_mode(s32 x, s32 y, s32 scale)
+{
+    s32 current = wmap_classify_map_point(x, y);
+
+    if (g_wmap_land_display_limit != 2)
+    {
+        s32 limit = g_wmap_land_display_limit;
+
+        if (current >= limit)
+        {
+            return limit;
+        }
+    }
+
+    return current;
+}
+
+/** @brief Enable eight slots and copy their initial table values. */
+void wmap_init_spirit_animation(void)
+{
+    s32 index;
+
+    for (index = 0; index < FIELD_LAND_SPIRIT_COUNT; index++)
+    {
+        g_wmap_spirit_timers[index] = 1;
+        g_wmap_spirit_frames[index] = g_wmap_spirit_sequence_bounds[index + 1];
+    }
+}
+
+/**
+ * @brief Select a cell effect transition when its requested mode changes.
+ * @param x Map-grid X coordinate.
+ * @param y Map-grid Y coordinate.
+ * @param mode Requested mode: zero, one, or two.
+ */
+void wmap_set_cell_effect_mode(s32 x, s32 y, s32 mode)
+{
+    WmapEffectCell* cell;
+
+    cell = &g_wmap_cell_effects[x][y];
+
+    if (mode != cell->mode)
+    {
+        switch (cell->mode)
+        {
+        case 0:
+            cell->mode = mode;
+
+            if (mode == 1)
+            {
+                cell->state = mode;
+                return;
+            }
+
+            cell->state = 3;
+            return;
+        case 1:
+            cell->mode = mode;
+
+            if (mode != 0)
+            {
+                cell->state = 3;
+                return;
+            }
+
+            cell->state = 0;
+            cell->frame = 0;
+            return;
+        case 2:
+            cell->mode = mode;
+
+            if (mode != 0)
+            {
+                cell->state = 4;
+                return;
+            }
+
+            cell->state = 0;
+            cell->frame = 0;
+            return;
+        }
+    }
+}
+
+/**
+ * @brief Classify a point against two world-map coordinate regions.
+ * @param x Point X coordinate.
+ * @param y Point Y coordinate.
+ * @return Region code: zero, one, or two.
+ */
+s32 wmap_classify_map_point(s32 x, s32 y)
+{
+    s32 dy;
+    u32 dx;
+
+    dx = x - g_wmap_view.x;
+    dy = y - g_wmap_view.y;
+
+    if ((dx < 0x61U) && (dy >= 0) && (dy < 0x61))
+    {
+        if ((g_wmap_view_mode == WMAP_VIEW_MODE_ZOOM_OUT) || (g_wmap_view_mode == WMAP_VIEW_MODE_SPIRITS))
+        {
+            return 0;
+        }
+
+        return 2;
+    }
+
+    if ((dx - 16) < 97 && dy >= 16 && dy < 113)
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Return one; the purpose of this entry point is unknown.
+ * @return Always one.
+ */
+s32 wmap_map_display_stub_2(void)
+{
+    return 1;
+}
+
+/**
+ * @brief Reserved world-map entry point; performs no work.
+ */
+void wmap_map_display_stub_3(void)
+{
+}
+
+/**
+ * @brief Clear g_wmap_information_unused_a to _c; nothing calls it.
+ */
+void wmap_clear_information_unused(void)
+{
+    g_wmap_information_unused_a = 0;
+    g_wmap_information_unused_b = 0;
+    g_wmap_information_unused_c = 0;
+}

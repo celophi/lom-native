@@ -1,0 +1,25 @@
+{
+  "format": 1,
+  "id": "mhm-pet-level-up",
+  "description": "Giving the joined pet (party slot 2) experience should level it up the way the game's award does, growing its stats, then the bedroom should carry on",
+  "start": {
+    "save": "saves/ranch-pet.json"
+  },
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue"
+    },
+    {
+      "experience": 9999999,
+      "character": 2,
+      "note": "the pet, joined in WST_BS03"
+    },
+    {
+      "watch": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

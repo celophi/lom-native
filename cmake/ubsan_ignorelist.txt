@@ -1,0 +1,74 @@
+# UBSan reports I've checked and decided are fine, for LOM_SANITIZE builds.
+# Each one does the same thing natively as on the PS1. Entries name functions,
+# not files, so everything else stays checked. A new report is a real finding:
+# look at it before adding anything here.
+
+# Byte offsets: the code casts base + offset to a record pointer and reads a u8
+# (or a u16 at an even address) through it. The pointer is technically
+# misaligned, but the actual read is aligned on the PS1 and on x86-64.
+[alignment]
+fun:field_rebuild_party_actions
+fun:field_apply_region_effect
+fun:field_clamp_staged_stats
+fun:field_apply_status_effect
+fun:wmap_apply_land_influence
+# FieldScene's list heads get used as a record's next link or as a T** tail
+# ((FieldObj*)&scene->objects, &scene->anims). It's one pointer read at the
+# scene's 4-aligned PS1 address, and FieldScene is declared 4-aligned.
+fun:field_build_render_records
+fun:field_build_animation_list
+fun:field_begin_scene_fade_in
+
+# Indexes past an array's declared size that still land on the same bytes as
+# on the PS1, because the layouts match or the array is a view into data loaded
+# at its PS1 address.
+[array-bounds]
+fun:carda_draw_selected_entry_details
+fun:cload_draw_selected_entry_details
+fun:addhero_draw_selected_entry_details
+fun:field_start_builtin_animation
+fun:field_build_party_records
+fun:field_is_item_key_used
+fun:wmap_get_artifact_flag
+fun:wmap_update_land_preview
+fun:wmap_update_artifact_selection
+fun:field_refresh_actor_portraits
+fun:field_menu_publish_selected_pet_name
+fun:field_join_guest
+# The game writes one word past WMAP's ordering table, into the next record.
+# The port writes the same word to the same place.
+fun:wmap_draw_model
+# Reads route[-1] into a value the loop never uses.
+fun:wmap_build_route
+
+# The GOVER frames span two symbols bound back to back. The C declaration only
+# knows about the first one.
+[object-size]
+fun:gover_show_screen
+fun:gover_run
+fun:gover_build_otag
+
+# Calls through code tables where the pointer type doesn't quite match the
+# function, in ways that don't matter on x86-64: extra arguments the callee
+# ignores, different pointer types, signedness, or small parameters.
+[function]
+fun:akao_seq_step_opcode
+fun:akao_send_command
+fun:field_grant_actor_pickup
+fun:field_update_scene_transition
+fun:field_script_calc
+fun:field_script_op_86
+fun:field_draw_menu_elements
+fun:lom_native_field_draw_menu_elements_prepared
+fun:field_draw_ring_menu
+fun:field_script_command
+fun:field_command_set_fade
+fun:wmap_update_callbacks
+fun:wmap_install_callback
+
+# PSY-Z's own reports: its 64-bit u_long packet tags and GPU queue callback
+# types. Not ours to fix, so I haven't looked further.
+[alignment]
+fun:SetPolyG4
+[function]
+fun:psyz_addque2

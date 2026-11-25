@@ -1,0 +1,35 @@
+{
+  "format": 1,
+  "description": "After the opening: home, Domina and land 10 on the map, world map event 4 pending",
+  "source": "built for a world map route (lom_routes.py generate-lands)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255,
+    "track": 4294705152
+  },
+  "variables": {},
+  "lands": {
+    "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+    },
+    "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+    },
+    "10": {
+      "flags": 11,
+      "x": 3,
+      "z": 3
+    }
+  },
+  "current_land": 1,
+  "world_map_events": [
+    4
+  ]
+}

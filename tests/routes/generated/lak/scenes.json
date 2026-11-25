@@ -1,0 +1,88 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-bs00-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs00-entry",
+    "description": "Entering LAK_BS00 (scene 325) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# lak-lak-bs00-entry: Entering LAK_BS00 (scene 325) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33093 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 325 save c6a5d1d18e938d15 state d7bdc286dbaf57dd ram 0000000000000000",
+     "watched frame 262 scene 325 save af393b52b5a19c5f state a7f131d600da56f5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c1483d97a9e25bf8986f128ff93cf175"
+     },
+     {
+      "frames": 33,
+      "sha256": "76fdd8f15b5639f3b59d5bb97c93d15a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "lak-lak-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs01-entry",
+    "description": "Entering LAK_BS01 (scene 326) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# lak-lak-bs01-entry: Entering LAK_BS01 (scene 326) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33094 0 16723207 1\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 326 save 94acba356ed56464 state 812adc46dd3ac077 ram 0000000000000000",
+     "watched frame 262 scene 326 save 94acba356ed56464 state 1dd041dbb18b7dc3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f095144eb2d9641f23821cba91a527d6"
+     },
+     {
+      "frames": 33,
+      "sha256": "051eccb3ec35e73d7014cf1706c81bd3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,289 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "min-min-azt0-story-13ec",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MIN_AZT0's story 0x13ec needs",
+    "source": "built from the conditions on the path to the write in scene 351 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ec": 2
+    }
+   },
+   "baseline": {
+    "route": "min-min-azt0-story-13ec",
+    "description": "In MIN_AZT0 (scene 351), talking to layout record 5 should write story variable 0x13ec",
+    "plan": "# min-min-azt0-story-13ec: In MIN_AZT0 (scene 351), talking to layout record 5 should write story variable 0x13ec\nlimit 20000\nenter 351 0 1572863 0\ncheckpoint entered\ntalk 260 85 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 351 save 9ad26761d7378653 state 58cedf8e1bf3526b ram 0000000000000000",
+     "done frame 798 scene 351 save fe14f4b6e5d2dac1 state 44430e5ebd8a1b5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 65): 4 waypoints",
+     "walk to (260, 105): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8ab0f08f1e1f238f61bf938c602016b"
+     },
+     {
+      "frames": 569,
+      "sha256": "90d9994ac8bb5f2e9f04d1a02da5583f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-azt0-story-40d",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MIN_AZT0's story 0x40d needs",
+    "source": "built from the conditions on the path to the write in scene 351 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13ec": 2
+    }
+   },
+   "baseline": {
+    "route": "min-min-azt0-story-40d",
+    "description": "In MIN_AZT0 (scene 351), talking to layout record 5 should write story variable 0x40d",
+    "plan": "# min-min-azt0-story-40d: In MIN_AZT0 (scene 351), talking to layout record 5 should write story variable 0x40d\nlimit 20000\nenter 351 0 1572863 0\ncheckpoint entered\ntalk 260 85 0 0 0 5\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 351 save 9ad26761d7378653 state 58cedf8e1bf3526b ram 0000000000000000",
+     "done frame 798 scene 351 save fe14f4b6e5d2dac1 state 44430e5ebd8a1b5b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 65): 4 waypoints",
+     "walk to (260, 105): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 213,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d8ab0f08f1e1f238f61bf938c602016b"
+     },
+     {
+      "frames": 569,
+      "sha256": "90d9994ac8bb5f2e9f04d1a02da5583f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-azt0-story-61f",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MIN_AZT0's story 0x61f needs",
+    "source": "built from the conditions on the path to the write in scene 351 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x110c": 1
+    }
+   },
+   "baseline": {
+    "route": "min-min-azt0-story-61f",
+    "description": "In MIN_AZT0 (scene 351), entering should write story variable 0x61f",
+    "plan": "# min-min-azt0-story-61f: In MIN_AZT0 (scene 351), entering should write story variable 0x61f\nlimit 20000\nenter 351 0 1572863 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 351 save c124bb117ed577a3 state ab60935dfbe0c65d ram 0000000000000000",
+     "done frame 1600 scene 351 save 767a143186cf2911 state 02be95cc39bc38cf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 1369 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 274,
+     "instruction_end": 147,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "08046d09856a6432506f7079a76ab39f"
+     },
+     {
+      "frames": 1371,
+      "sha256": "a435b7ce5394e5eb691cb68d6d267c42"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-e000-story-1138",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MIN_E000's story 0x1138 needs",
+    "source": "built from the conditions on the path to the write in scene 339 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1138": 3
+    }
+   },
+   "baseline": {
+    "route": "min-min-e000-story-1138",
+    "description": "In MIN_E000 (scene 339), entering should write story variable 0x1138",
+    "plan": "# min-min-e000-story-1138: In MIN_E000 (scene 339), entering should write story variable 0x1138\nlimit 20000\nenter 339 0 16718847 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 339 save 771e5956b6757a1d state 4016cd64cf6c5955 ram 0000000000000000",
+     "done frame 1180 scene 339 save 1012626df0b68b5d state 33fa0ead2b352007 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 949 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 102,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a3d793ca86d585d312b97071f1827bf7"
+     },
+     {
+      "frames": 951,
+      "sha256": "cd8e874aea358f55e85ad06744e013fa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "min-min-shp0-story-11d8",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MIN_SHP0's story 0x11d8 needs",
+    "source": "built from the conditions on the path to the write in scene 350 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x11d8": 4
+    }
+   },
+   "baseline": {
+    "route": "min-min-shp0-story-11d8",
+    "description": "In MIN_SHP0 (scene 350), entering should write story variable 0x11d8",
+    "plan": "# min-min-shp0-story-11d8: In MIN_SHP0 (scene 350), entering should write story variable 0x11d8\nlimit 20000\nenter 15 0 16711935 0\nguest 0\nenter 350 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 312 scene 350 save 4475b2b51291e43e state 4c426db92f9a59e2 ram 0000000000000000",
+     "done frame 924 scene 357 save 2644b729263c161a state ee708cddccd4c625 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 0 joined",
+     "watched until the player got control, 610 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 266,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 4
+    },
+    "stretches": [
+     {
+      "frames": 313,
+      "sha256": "002e891fc8264e1e55ee233833c5c6de"
+     },
+     {
+      "frames": 612,
+      "sha256": "55ff5a377a589c377efd3c1a2edd99ac"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

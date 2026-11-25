@@ -1,0 +1,266 @@
+// FIELD immediate text exports used by this overlay.
+field_draw_text = 0x800A88A0;
+field_draw_number = 0x800A8A78;
+
+// Field dialogue/text renderer exports used by this overlay.
+field_text_reset_windows             = 0x800643E0;
+field_text_reset_scratch             = 0x8006441C;
+field_reset_fade_state                 = 0x80067B8C;
+field_update_and_render_fade           = 0x80067BBC;
+field_set_fade_target                  = 0x80067EB4;
+
+// Shared main-executable input state used by CLOAD.
+g_pad_input                          = 0x80122988;
+
+// Main-executable symbols referenced by CLOAD.  Keep these scoped to this
+// overlay symbol map so Splat emits the same recovered names in CLOAD target asm.
+cdrom_process_state                 = 0x800122C0;
+cdrom_wait_queue_empty              = 0x80013F2C;
+cdrom_queue_read                    = 0x800141EC;
+set_controller_vsync_interval       = 0x800157B0;
+update_controllers                  = 0x800157DC;
+reset_controller_vsync_state        = 0x800158E0;
+OpenEvent                           = 0x800167AC;
+CloseEvent                          = 0x800167BC;
+TestEvent                           = 0x800167CC;
+EnableEvent                         = 0x800167DC;
+EnterCriticalSection                = 0x800167EC;
+ExitCriticalSection                 = 0x800167FC;
+open                                = 0x8001680C;
+read                                = 0x8001681C;
+close                               = 0x8001683C;
+nextfile                            = 0x8001684C;
+erase                               = 0x8001686C;
+Krom2RawAdd                         = 0x8001687C;
+firstfile                           = 0x80016BCC;
+bcopy                               = 0x80016E7C;
+strcat                              = 0x80016F9C;
+strcpy                              = 0x800170BC;
+strncmp                             = 0x8001714C;
+_card_info                          = 0x8001724C;
+_card_load                          = 0x8001725C;
+_card_wait                          = 0x8001729C;
+_card_clear                         = 0x800172AC;
+SetDispMask                         = 0x800196F0;
+DrawSync                            = 0x80019788;
+ClearImage                          = 0x8001990C;
+LoadImage                           = 0x80019A34;
+ClearOTagR                          = 0x80019C74;
+DrawOTag                            = 0x80019D7C;
+PutDrawEnv                          = 0x80019DEC;
+PutDispEnv                          = 0x80019FB8;
+SetDrawEnv                          = 0x8001A5D4;
+SetDefDrawEnv                       = 0x8001C56C;
+SetDefDispEnv                       = 0x8001C62C;
+SetGeomOffset                       = 0x8001D58C;
+SetGeomScreen                       = 0x8001D5AC;
+VSync                               = 0x8002054C;
+McxCardType                         = 0x800342CC;
+g_save_compatibility_tag                   = 0x8003EC9C;
+g_saved_game                        = 0x80042FD8; // size:0x4000 allow_addend:True
+field_play_sound                       = 0x800A3938;
+
+// Icon-resource header fields inside the 0x80180000 scratch buffer. It is a raw
+// load target, not real data symbols, so keep splat from symbolizing the four
+// header reads in cload_load_icon_resources; the C reads them as plain offsets
+// off (u8 *)0x80180000. Same treatment as gover_symbol_addrs.txt.
+D_80180004 = 0x80180004; // ignore:true
+D_80180008 = 0x80180008; // ignore:true
+D_8018000C = 0x8018000C; // ignore:true
+D_80180010 = 0x80180010; // ignore:true
+
+// CLOAD code symbols.
+cload_main                               = 0x801400C4;
+cload_run_menu_loop                      = 0x8014019C;
+cload_init_display                       = 0x8014033C;
+card_menu_update_frame                       = 0x80140448;
+cload_build_ui_elements                  = 0x801404D4;
+card_menu_update_state                        = 0x801407BC;
+card_menu_update_card_sequence               = 0x801408A4;
+card_menu_handle_input                       = 0x80140964;
+cload_close_all_elements                 = 0x80140CD0;
+cload_scroll_to_selection                = 0x80140D20;
+card_menu_update_elements                    = 0x80140D84;
+cload_draw_entry_list                    = 0x80140DA4;
+skip_hex_digits                    = 0x80141428;
+cload_draw_header_label                  = 0x80141474;
+cload_draw_card_slot0_label              = 0x801414D0;
+cload_draw_card_slot1_label              = 0x80141544;
+cload_draw_selected_entry_details        = 0x801415B8;
+terminate_multibyte_text           = 0x80141C6C;
+cload_clear_elements                     = 0x80141CD0;
+cload_alloc_element                      = 0x80141D04;
+card_menu_update_and_draw_elements           = 0x80141D78;
+encoded_text_append                        = 0x8014232C;
+encoded_text_byte_length                   = 0x801423B0;
+encoded_text_copy                          = 0x801423FC;
+cload_emit_window_frame                  = 0x80142480;
+cload_emit_rect_outline                  = 0x8014269C;
+cload_emit_scroll_arrow                  = 0x801427F8;
+cload_draw_load_prompt                   = 0x801428DC;
+cload_draw_load_progress                 = 0x80142AD0;
+cload_draw_progress_bar                  = 0x80142C58;
+cload_open_status_dialog                 = 0x80142D68;
+cload_draw_status_dialog                 = 0x80142E7C;
+cload_draw_icon_highlight                = 0x801430C8;
+card_menu_deactivate_primary_element         = 0x8014330C;
+cload_load_icon_resources                = 0x80143324;
+cload_draw_backdrop          = 0x801433EC;
+cload_enable_choice_toggle               = 0x80143510;
+cload_draw_choice_prompt                 = 0x80143520;
+validate_save_file                 = 0x80143648;
+compute_save_checksum              = 0x8014369C;
+format_hex                         = 0x801436D4;
+hex_nibble_to_ascii                = 0x8014379C;
+parse_hex                          = 0x801437C0;
+parse_hex_suffix_byte              = 0x8014386C;
+parse_entry_fields                 = 0x80143964;
+card_rank_entries                       = 0x80143BA8;
+card_reset_entry_ranks                  = 0x80143DE4;
+card_has_known_entry_type               = 0x80143E1C;
+card_entry_blocks_reach_limit           = 0x80143EEC;
+card_erase_placeholder_files             = 0x80143F68;
+cload_advance_load_sequence              = 0x8014401C;
+cload_restart_load_sequence              = 0x801447B4;
+poll_and_retry_card_info    = 0x80144804;
+cload_init_card_events                = 0x8014485C;
+shutdown_card_events            = 0x80144A38;
+cload_begin_entry_scan                   = 0x80144AE8;
+cload_scan_next_entry                    = 0x80144BA4;
+cload_commit_selected_entry              = 0x80144D18;
+clear_software_card_events            = 0x80144EB8;
+clear_hardware_card_events          = 0x80144F10;
+poll_software_card_events          = 0x80144F68;
+poll_hardware_card_events        = 0x80144FFC;
+card_sort_entries_by_type               = 0x80145090;
+draw_signed_decimal                = 0x801454C0;
+draw_hex_byte                      = 0x801456E0;
+draw_cached_text                   = 0x80145764;
+render_cached_glyph                = 0x80145934;
+emit_glyph_sprite                  = 0x80145B54;
+begin_glyph_cache_frame            = 0x80145C5C;
+evict_unused_glyphs                = 0x80145C98;
+reset_glyph_cache                  = 0x80145CD8;
+expand_text_glyph_codes            = 0x80145D28;
+
+// CLOAD text-table entries decoded from the overlay data table.
+g_card_menu_text_table           = 0x80145E9C;
+g_card_menu_text_not_enough_blocks           = 0x80145E9E;
+g_card_menu_text_no_card              = 0x80145EA0;
+g_card_menu_text_mana_label                        = 0x80145EA2;
+g_card_menu_text_other_game_label                  = 0x80145EA4;
+g_card_menu_text_card_slot0_label                 = 0x80145EA8;
+g_card_menu_text_card_slot1_label                 = 0x80145EAA;
+g_card_menu_text_card_access_failed          = 0x80145EAC;
+g_card_menu_text_no_save_data                = 0x80145EAE;
+g_card_menu_text_new_save_label                    = 0x80145EB0;
+g_cload_text_new_save_prompt             = 0x80145EC4;
+g_cload_text_load                        = 0x80145EC8;
+g_card_menu_text_number_label               = 0x80145ECA;
+g_card_menu_text_load_prompt                 = 0x80145ECC;
+g_cload_text_loading                     = 0x80145ECE;
+g_card_menu_text_no_game_save_data            = 0x80145ED0;
+g_card_menu_text_save_failed                 = 0x80145ED8;
+g_card_menu_text_load_failed                 = 0x80145EDA;
+g_card_menu_text_card_not_inserted           = 0x80145EDC;
+g_cload_text_version_error               = 0x80145EF0;
+
+// CLOAD data/BSS symbols named from their observed roles.
+g_cload_render_buffers                   = 0x8014A988; // size:0xF988 allow_addend:True
+g_cload_primitive_buffers                = 0x8015A350;
+g_card_menu_exit_requested                   = 0x80146918;
+g_card_menu_element_pool                     = 0x801468B8;
+g_card_slot                        = 0x8014A920;
+g_card_menu_choice_toggle                    = 0x8014A924;
+g_card_menu_io_busy                          = 0x8015A310;
+g_cload_icon_resource                    = 0x8015A314;
+g_card_menu_scroll_y                         = 0x8015A318;
+g_card_menu_icon_palette                     = 0x8015A31C;
+g_card_menu_progress_active                  = 0x8015A320;
+g_card_menu_scroll_target_y                  = 0x8015A324;
+g_card_menu_icon_phase                       = 0x8015A328;
+g_card_menu_icon_context                     = 0x8015A330;
+g_card_entry_state                      = 0x80162350;
+g_card_menu_selected_row                     = 0x80162354;
+g_cload_result                           = 0x80162358;
+g_card_menu_scroll_frames                    = 0x8016235C;
+g_card_menu_dialog_state                     = 0x80162360;
+g_card_menu_selection_status                 = 0x80162364;
+g_card_menu_frame_parity                     = 0x80162368;
+g_card_step                        = 0x80162374;
+g_card_rank_count                       = 0x8016237C;
+g_card_entry_ranks                      = 0x80162380;
+g_card_entries                          = 0x801623D0;
+g_card_entry_fields                     = 0x80162CD0;
+g_card_entry_suffix_values              = 0x80162D78;
+g_card_menu_progress_bar_active              = 0x80162DC8;
+g_card_menu_progress_start_tick              = 0x80162DD0;
+g_card_menu_entry_scan_active                = 0x80162E20;
+g_card_software_event_io_complete                  = 0x80162E18;
+g_card_software_event_error                  = 0x80162E1C;
+g_card_software_event_timeout                  = 0x80162E24;
+g_card_software_event_new_card                  = 0x80162E28;
+g_card_hardware_event_io_complete                = 0x80162E2C;
+g_card_hardware_event_error                = 0x80162E30;
+g_card_hardware_event_timeout                = 0x80162E34;
+g_card_hardware_event_new_card                = 0x80162E38;
+g_card_menu_file_handle                      = 0x80162E3C;
+g_glyph_line_start_x                = 0x80162E40;
+g_glyph_upload_x                   = 0x80162E44;
+g_glyph_upload_y                   = 0x80162E48;
+g_glyph_raster_cursor              = 0x80162E4C;
+g_glyph_raster_buffer              = 0x80162E50;
+g_glyph_cache                      = 0x8016AE50;
+g_glyph_cursor_x                   = 0x8016B250;
+g_glyph_cursor_y                   = 0x8016B254;
+g_glyph_decimal_digits                   = 0x8014687C;
+g_glyph_hex_digits                       = 0x80146894;
+g_cload_double_byte_char_table           = 0x801466E0;
+g_glyph_single_byte_chart           = 0x80146544;
+g_cload_save_file                        = 0x80146920;
+jtbl_80140040                             = 0x80140040;
+g_card_menu_retry_count                      = 0x80162378;
+g_card_menu_new_card_retries           = 0x80162D70;
+g_card_menu_load_error_retries         = 0x80162DD4;
+g_card_menu_selected_entry_extended          = 0x80162DCC;
+g_card_entry_value_limit                = 0x80162D74;
+
+// Shared save/card constants named from their contents and CLOAD usage.
+g_lom_save_filename_prefix              = 0x800ECF7C;
+g_lom_pocketstation_filename_prefix          = 0x800ECF8C;
+g_lom_save_dummy_filename               = 0x800ECF9C;
+g_lom_pocketstation_dummy_filename           = 0x800ECFB0;
+g_new_save_entry_prefix                 = 0x800ECFC4;
+g_playtime_vsync_origin                 = 0x80042FB4;
+
+// CLOAD load-state scripts (byte values dispatch cload_advance_load_sequence cases).
+g_card_steps_initial_scan              = 0x8014651C;
+g_card_steps_idle                      = 0x80146528;
+g_card_steps_rescan           = 0x8014652C;
+g_card_steps_card_info                = 0x80146534;
+g_card_steps_read_selected_header      = 0x80146538;
+g_card_steps_read_save        = 0x8014653C;
+
+// Selected memory-card file/header buffer and derived views.
+g_cload_selected_file            = 0x80162A10;
+g_card_selected_save_path              = 0x80162C90;
+g_cload_overlay_id = 0x80140000;
+
+field_text_upload_immediate_cache = 0x80063194;
+
+// FIELD exports used by this overlay.
+field_update_input_repeat = 0x800A9E78;
+field_reset_input_repeat = 0x800AA02C;
+field_upload_image_resource              = 0x80086374;
+g_card_menu_text_ring_ring_land_label                    = 0x80145ED6;
+g_card_menu_text_plus_marker                 = 0x80145F4C;
+g_card_menu_location_names                   = 0x80146338;
+McxSync                                    = 0x80032174;
+field_copy_golem_portrait_palette = 0x800A55E4;
+field_copy_portrait_palette = 0x800A5638;
+g_card_menu_text_not_pocketstation       = 0x80145EDE;
+g_card_menu_write_in_progress            = 0x80162370;
+
+// FIELD UI string table entries.
+g_field_ui_text_time_separator = 0x800EC3F6;
+g_field_ui_text_yes = 0x800EC3FA;

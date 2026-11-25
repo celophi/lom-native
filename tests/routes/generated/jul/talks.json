@@ -1,0 +1,1489 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jul-jul-bs33-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs33-talk-6",
+    "description": "Talking to layout record 6 of JUL_BS33 (scene 796) should run its event and hand control back",
+    "plan": "# jul-jul-bs33-talk-6: Talking to layout record 6 of JUL_BS33 (scene 796) should run its event and hand control back\nlimit 20000\nenter 796 0 16715263 0\ncheckpoint entered\ntalk 208 179 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 796 save 42194170df6497d0 state 1fe70f9f93b23041 ram 0000000000000000",
+     "talked frame 872 scene 796 save 933a1cc2cf2a4856 state a2bdb08378326529 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (208, 159): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3547c24a7a168937c9ed6bcfbae16571"
+     },
+     {
+      "frames": 643,
+      "sha256": "13e22857a27ba3317ef1a8b837e411b3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bs33-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bs33-talk-7",
+    "description": "Talking to layout record 7 of JUL_BS33 (scene 796) should run its event and hand control back",
+    "plan": "# jul-jul-bs33-talk-7: Talking to layout record 7 of JUL_BS33 (scene 796) should run its event and hand control back\nlimit 20000\nenter 796 0 16715263 0\ncheckpoint entered\ntalk 251 203 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 796 save 42194170df6497d0 state 1fe70f9f93b23041 ram 0000000000000000",
+     "talked frame 924 scene 796 save 933a1cc2cf2a4856 state bcc9403f3057be19 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (251, 183): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3547c24a7a168937c9ed6bcfbae16571"
+     },
+     {
+      "frames": 695,
+      "sha256": "f7cc06f86947cbb7da6c2f1a8718485c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 11 so layout record 3 of JUL_BSS0 is there",
+    "source": "built from layout record 3's condition in scene 762 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 11
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-bss0-talk-3",
+    "description": "Talking to layout record 3 of JUL_BSS0 (scene 762) should run its event and hand control back",
+    "plan": "# jul-jul-bss0-talk-3: Talking to layout record 3 of JUL_BSS0 (scene 762) should run its event and hand control back\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\ntalk 446 80 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 5a09363ee87db6e7 state a4a29e6662fe765b ram 0000000000000000",
+     "talked frame 674 scene 762 save 83a56f05bc3c8777 state 3fcecc5b05b98f82 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (446, 60): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "630f269a20be647aba87d58b773436e9"
+     },
+     {
+      "frames": 445,
+      "sha256": "32f0ae0fdc38a54c650a2ef4aa26a572"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 11 so layout record 4 of JUL_BSS0 is there",
+    "source": "built from layout record 4's condition in scene 762 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 11
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-bss0-talk-4",
+    "description": "Talking to layout record 4 of JUL_BSS0 (scene 762) should run its event and hand control back",
+    "plan": "# jul-jul-bss0-talk-4: Talking to layout record 4 of JUL_BSS0 (scene 762) should run its event and hand control back\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\ntalk 382 80 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 5a09363ee87db6e7 state a4a29e6662fe765b ram 0000000000000000",
+     "talked frame 897 scene 762 save 83a56f05bc3c8777 state de8147454cf9b2c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (382, 60): 5 waypoints",
+     "walk to (382, 100): 1 waypoints",
+     "walk to (362, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "630f269a20be647aba87d58b773436e9"
+     },
+     {
+      "frames": 668,
+      "sha256": "cc13ca3ea60c0217bc6f180809646a12"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-talk-5",
+    "description": "Talking to layout record 5 of JUL_BSS0 (scene 762) should run its event and hand control back",
+    "plan": "# jul-jul-bss0-talk-5: Talking to layout record 5 of JUL_BSS0 (scene 762) should run its event and hand control back\nlimit 20000\nenter 33530 0 16720127 2\ncheckpoint entered\ntalk 203 242 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 02e7f2d6e4eb21f0 state 1ff4027fa8e9e1b7 ram 0000000000000000",
+     "talked frame 789 scene 762 save 5c0c0d38001d1174 state 33d9d510c0899efd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (203, 262): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6168245dea0bbc8209668ee23ab36e71"
+     },
+     {
+      "frames": 560,
+      "sha256": "3182e49e620a388e6e4e418ce7f93638"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-talk-6",
+    "description": "Talking to layout record 6 of JUL_BSS0 (scene 762) should run its event and hand control back",
+    "plan": "# jul-jul-bss0-talk-6: Talking to layout record 6 of JUL_BSS0 (scene 762) should run its event and hand control back\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\ntalk 169 221 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 223568908c0d77a2 state 75254e272d4cae4d ram 0000000000000000",
+     "talked frame 404 scene 762 save e9fd0f53dd847896 state cd378ac16083ab9f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (169, 201): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43fbc343bfce3aad134b3b54dacba7ae"
+     },
+     {
+      "frames": 175,
+      "sha256": "b710d1caf2f9cb0fe9dd14eaf4a30d19"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss0-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss0-talk-7",
+    "description": "Talking to layout record 7 of JUL_BSS0 (scene 762) should run its event and hand control back",
+    "plan": "# jul-jul-bss0-talk-7: Talking to layout record 7 of JUL_BSS0 (scene 762) should run its event and hand control back\nlimit 20000\nenter 33530 0 16720127 0\ncheckpoint entered\ntalk 235 205 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 762 save 223568908c0d77a2 state 75254e272d4cae4d ram 0000000000000000",
+     "talked frame 448 scene 762 save e9fd0f53dd847896 state 0a4fc791f99df64a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 185): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "43fbc343bfce3aad134b3b54dacba7ae"
+     },
+     {
+      "frames": 219,
+      "sha256": "b46d82d2bf5a622cff53ff8405b3cab7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 11 so layout record 4 of JUL_BSS1 is there",
+    "source": "built from layout record 4's condition in scene 763 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 11
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-bss1-talk-4",
+    "description": "Talking to layout record 4 of JUL_BSS1 (scene 763) should run its event and hand control back",
+    "plan": "# jul-jul-bss1-talk-4: Talking to layout record 4 of JUL_BSS1 (scene 763) should run its event and hand control back\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\ntalk 382 80 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save b8215d5944493486 state ac677ddcfb2bb39b ram 0000000000000000",
+     "talked frame 601 scene 763 save f44d10c8236c3dea state 58d8041d60ae9f3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (382, 60): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "95334d4622719811aa4083fdc6844988"
+     },
+     {
+      "frames": 372,
+      "sha256": "6dcabf05700632f809acc893cbc912be"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-talk-5",
+    "description": "Talking to layout record 5 of JUL_BSS1 (scene 763) should run its event and hand control back",
+    "plan": "# jul-jul-bss1-talk-5: Talking to layout record 5 of JUL_BSS1 (scene 763) should run its event and hand control back\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\ntalk 203 242 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "talked frame 1347 scene 763 save e9e830215d7824eb state 101071f459fd145c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (203, 222): 3 waypoints",
+     "walk to (203, 222): 2 waypoints",
+     "walk to (203, 222): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 1118,
+      "sha256": "1ddd1bb1f5209d31808a8229ac6a22b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-talk-6",
+    "description": "Talking to layout record 6 of JUL_BSS1 (scene 763) should run its event and hand control back",
+    "plan": "# jul-jul-bss1-talk-6: Talking to layout record 6 of JUL_BSS1 (scene 763) should run its event and hand control back\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\ntalk 78 215 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "talked frame 371 scene 763 save e9e830215d7824eb state 6ca7be43c4afa584 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (78, 235): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 142,
+      "sha256": "6039be356faaef07c7b18696f6279d62"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-talk-7",
+    "description": "Talking to layout record 7 of JUL_BSS1 (scene 763) should run its event and hand control back",
+    "plan": "# jul-jul-bss1-talk-7: Talking to layout record 7 of JUL_BSS1 (scene 763) should run its event and hand control back\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\ntalk 169 221 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "talked frame 404 scene 763 save e9e830215d7824eb state 647228c1f1d7dafc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (169, 201): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 175,
+      "sha256": "c2075e5737917b144518683c2b806b02"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss1-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss1-talk-8",
+    "description": "Talking to layout record 8 of JUL_BSS1 (scene 763) should run its event and hand control back",
+    "plan": "# jul-jul-bss1-talk-8: Talking to layout record 8 of JUL_BSS1 (scene 763) should run its event and hand control back\nlimit 20000\nenter 33531 0 16720127 0\ncheckpoint entered\ntalk 235 205 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 763 save 3fc6faeb0a7da98b state 662c428d50f17ace ram 0000000000000000",
+     "talked frame 690 scene 763 save e9e830215d7824eb state ac61aeffc0017ee9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 185): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "97dfac7451c89649b11e6b2aada4eb9e"
+     },
+     {
+      "frames": 461,
+      "sha256": "74ccf9947f176d5b03d7a92a305cd9a5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 11 so layout record 3 of JUL_BSS2 is there",
+    "source": "built from layout record 3's condition in scene 764 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 11
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-bss2-talk-3",
+    "description": "Talking to layout record 3 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-3: Talking to layout record 3 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 446 80 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 6095afd4aa715b48 state 53557b1b793d10a5 ram 0000000000000000",
+     "talked frame 682 scene 764 save 05fb8ac6060c572c state 96f627a81720f0e7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (446, 60): 1 waypoints",
+     "walk to (446, 100): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 59,
+     "instruction": 228,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d546ee1c72be09151466e53a9fff6a9b"
+     },
+     {
+      "frames": 453,
+      "sha256": "e15956b9a47bc28dfb953e3975b6a839"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-talk-5",
+    "description": "Talking to layout record 5 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-5: Talking to layout record 5 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 211 231 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "talked frame 530 scene 764 save 84941b6374f70ead state e1b70df5b82a1fb0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (211, 211): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 161,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 301,
+      "sha256": "48ad3e72aa4240c8cbee810bfe6adefd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-talk-6",
+    "description": "Talking to layout record 6 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-6: Talking to layout record 6 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 111 201 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "talked frame 1178 scene 764 save 84941b6374f70ead state 89c3eac141d3a7ec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (111, 221): 4 waypoints",
+     "walk to (91, 201): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 158,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 949,
+      "sha256": "1ee0d83af151c81d1a854548a5d5e8e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-talk-7",
+    "description": "Talking to layout record 7 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-7: Talking to layout record 7 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 187 181 0 0 0 7\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "talked frame 548 scene 764 save 84941b6374f70ead state 57f56ee1fb6a3a3a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (187, 201): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 158,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 319,
+      "sha256": "6265d971ec61055ac6d5ab8d20d4ffb6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-talk-8",
+    "description": "Talking to layout record 8 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-8: Talking to layout record 8 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 169 225 0 0 0 8\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "talked frame 555 scene 764 save 84941b6374f70ead state 9140d44ea527cc84 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (169, 205): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 158,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 326,
+      "sha256": "cd29ccc25fac5345d5e447ea716af864"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-bss2-talk-9",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-bss2-talk-9",
+    "description": "Talking to layout record 9 of JUL_BSS2 (scene 764) should run its event and hand control back",
+    "plan": "# jul-jul-bss2-talk-9: Talking to layout record 9 of JUL_BSS2 (scene 764) should run its event and hand control back\nlimit 20000\nenter 33532 0 16720127 1\ncheckpoint entered\ntalk 235 205 0 0 0 9\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 764 save 54be05a97fd2328d state d4cf0e07ce91d7f9 ram 0000000000000000",
+     "talked frame 531 scene 764 save 84941b6374f70ead state 25bfe948a0b55284 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 185): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 47,
+     "instruction": 158,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c4c417fbdb82aebf78a3f4a94106e752"
+     },
+     {
+      "frames": 302,
+      "sha256": "d5cde6cbd76911d73351448dc561d103"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dia1-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-dia1-talk-1",
+    "description": "Talking to layout record 1 of JUL_DIA1 (scene 789) should run its event and hand control back",
+    "plan": "# jul-jul-dia1-talk-1: Talking to layout record 1 of JUL_DIA1 (scene 789) should run its event and hand control back\nlimit 20000\nenter 789 0 16720127 1\ncheckpoint entered\ntalk 323 297 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 789 save 1c9917621534006f state 3d2d72ed2d431f8d ram 0000000000000000",
+     "talked frame 1032 scene 789 save 68a4b67b2464cedf state c67a1fe5c1863777 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (323, 277): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 198,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f52b9222a2db3acd619d7458146e095"
+     },
+     {
+      "frames": 803,
+      "sha256": "1eba0c0ee64f68e7128a887b5181f4eb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-dia1-talk-6",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2fa8 = 81 so layout record 6 of JUL_DIA1 is there",
+    "source": "built from layout record 6's condition in scene 789 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2fa8": 81
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-dia1-talk-6",
+    "description": "Talking to layout record 6 of JUL_DIA1 (scene 789) should run its event and hand control back",
+    "plan": "# jul-jul-dia1-talk-6: Talking to layout record 6 of JUL_DIA1 (scene 789) should run its event and hand control back\nlimit 20000\nenter 789 0 16720127 1\ncheckpoint entered\ntalk 343 143 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 789 save 7613d57c7982fb8a state b947f61841a0eca2 ram 0000000000000000",
+     "talked frame 601 scene 789 save e6c82cddfa186fda state f6beeeea8d9b48bf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (343, 123): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 199,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d833331bdd6200c88f4e3388114f4595"
+     },
+     {
+      "frames": 372,
+      "sha256": "bfedac5a6d64417e3305dccc36850f88"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm00-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm00-talk-5",
+    "description": "Talking to layout record 5 of JUL_RM00 (scene 767) should run its event and hand control back",
+    "plan": "# jul-jul-rm00-talk-5: Talking to layout record 5 of JUL_RM00 (scene 767) should run its event and hand control back\nlimit 20000\nenter 33535 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 767 save fecaa1b12005ad7f state 3f65b28c0a3e17ec ram 0000000000000000",
+     "talked frame 887 scene 767 save 3ab31fb051b0d9f2 state c28cb862a98fc58a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69d95f3e79fc22490dd8f707b8cb1a5d"
+     },
+     {
+      "frames": 658,
+      "sha256": "d5017ea327af81332fcf22d99edddbe7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm01-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm01-talk-5",
+    "description": "Talking to layout record 5 of JUL_RM01 (scene 768) should run its event and hand control back",
+    "plan": "# jul-jul-rm01-talk-5: Talking to layout record 5 of JUL_RM01 (scene 768) should run its event and hand control back\nlimit 20000\nenter 33536 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 768 save c6b1db1858a6194b state 7767fae7efb158d8 ram 0000000000000000",
+     "talked frame 887 scene 768 save 7164b6af1e7e6368 state 05fda8a170144da2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 67,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f3251153d0cebd2355d0d0e4f9826ef3"
+     },
+     {
+      "frames": 658,
+      "sha256": "e787d38c4c1706d5cf7ee0fdb8a946dc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm02-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm02-talk-4",
+    "description": "Talking to layout record 4 of JUL_RM02 (scene 769) should run its event and hand control back",
+    "plan": "# jul-jul-rm02-talk-4: Talking to layout record 4 of JUL_RM02 (scene 769) should run its event and hand control back\nlimit 20000\nenter 33537 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 769 save 92f58873489496f6 state 6fe47ec0c564704f ram 0000000000000000",
+     "talked frame 887 scene 769 save 3ce9a8a4b7f36871 state f8e76ea6d64ecc9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 66,
+     "instruction": 192,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2434bf87a38adc8510e4fe435dfe64d9"
+     },
+     {
+      "frames": 658,
+      "sha256": "a4ffc0595732b9cc9c1ae1e1ce1d8974"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm03-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm03-talk-4",
+    "description": "Talking to layout record 4 of JUL_RM03 (scene 770) should run its event and hand control back",
+    "plan": "# jul-jul-rm03-talk-4: Talking to layout record 4 of JUL_RM03 (scene 770) should run its event and hand control back\nlimit 20000\nenter 33538 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 770 save c98ff8ef3bcd7305 state 6e1bfbda0b1084eb ram 0000000000000000",
+     "talked frame 887 scene 770 save 3dad67351661e9e2 state 84c61e0866baef4f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3fe9e2e3cc233f405e6b46b912229e17"
+     },
+     {
+      "frames": 658,
+      "sha256": "10f41920d96cbff93ae448448ca899d6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm04-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm04-talk-4",
+    "description": "Talking to layout record 4 of JUL_RM04 (scene 771) should run its event and hand control back",
+    "plan": "# jul-jul-rm04-talk-4: Talking to layout record 4 of JUL_RM04 (scene 771) should run its event and hand control back\nlimit 20000\nenter 33539 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 771 save cf42a66ad6dd1a28 state bf11fe0112c38be3 ram 0000000000000000",
+     "talked frame 887 scene 771 save d6ffbdf51c0ca59b state ad5bbbac37ef45d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 67,
+     "instruction": 191,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0462c5fd2ea34a4d496c70a6b3c76bff"
+     },
+     {
+      "frames": 658,
+      "sha256": "07a16f93ac6778cd5ceb6d67015bc28a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm05-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm05-talk-4",
+    "description": "Talking to layout record 4 of JUL_RM05 (scene 772) should run its event and hand control back",
+    "plan": "# jul-jul-rm05-talk-4: Talking to layout record 4 of JUL_RM05 (scene 772) should run its event and hand control back\nlimit 20000\nenter 33540 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 772 save 0efd31a8647a7b3f state 0a9743025214ba40 ram 0000000000000000",
+     "talked frame 887 scene 772 save 2299ee286f8b1e71 state cd03edb5a640915d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7120981c170c4b110bc5c9f941f71dc9"
+     },
+     {
+      "frames": 658,
+      "sha256": "9d7fe1b991f40acd8d3e1b54da1934b1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rm06-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rm06-talk-3",
+    "description": "Talking to layout record 3 of JUL_RM06 (scene 773) should run its event and hand control back",
+    "plan": "# jul-jul-rm06-talk-3: Talking to layout record 3 of JUL_RM06 (scene 773) should run its event and hand control back\nlimit 20000\nenter 33541 0 16720127 0\ncheckpoint entered\ntalk 60 120 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 773 save f8a65cc93f84521a state 324ab3d1a671b9ff ram 0000000000000000",
+     "talked frame 887 scene 773 save d49bfd4ef04ad521 state 9a4c35178bc22e38 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (60, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "045c4e436337a06fd1e784544ba2746f"
+     },
+     {
+      "frames": 658,
+      "sha256": "86eea5accd8b02c6962048f04a2addd6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rub1-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rub1-talk-1",
+    "description": "Talking to layout record 1 of JUL_RUB1 (scene 790) should run its event and hand control back",
+    "plan": "# jul-jul-rub1-talk-1: Talking to layout record 1 of JUL_RUB1 (scene 790) should run its event and hand control back\nlimit 20000\nenter 790 0 16720127 1\ncheckpoint entered\ntalk 428 280 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 790 save 8e5d0f666da7837c state 5b1f537542774a26 ram 0000000000000000",
+     "talked frame 1067 scene 790 save 543259f154bf936a state b103ee226a6dd5b0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (428, 260): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f1236fedb42cdaf963e714b55f4753f"
+     },
+     {
+      "frames": 838,
+      "sha256": "ae118a92483f6f2a09f20efc6b6756cf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rub1-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rub1-talk-2",
+    "description": "Talking to layout record 2 of JUL_RUB1 (scene 790) should run its event and hand control back",
+    "plan": "# jul-jul-rub1-talk-2: Talking to layout record 2 of JUL_RUB1 (scene 790) should run its event and hand control back\nlimit 20000\nenter 790 0 16720127 1\ncheckpoint entered\ntalk 198 208 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 790 save 8e5d0f666da7837c state 5b1f537542774a26 ram 0000000000000000",
+     "talked frame 785 scene 790 save 543259f154bf936a state b9feb8f4706a1102 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (198, 188): 1 waypoints",
+     "walk to (198, 228): 1 waypoints",
+     "walk to (178, 208): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f1236fedb42cdaf963e714b55f4753f"
+     },
+     {
+      "frames": 556,
+      "sha256": "a3e81fc72046f228ced3d982ae83c21f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rub1-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jul-jul-rub1-talk-3",
+    "description": "Talking to layout record 3 of JUL_RUB1 (scene 790) should run its event and hand control back",
+    "plan": "# jul-jul-rub1-talk-3: Talking to layout record 3 of JUL_RUB1 (scene 790) should run its event and hand control back\nlimit 20000\nenter 790 0 16720127 0\ncheckpoint entered\ntalk 232 283 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 790 save 9a140037dd8afab9 state f7af892057b563be ram 0000000000000000",
+     "talked frame 1211 scene 790 save 15226b039c63a377 state 12c9fbfb2598b6c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (232, 263): 7 waypoints",
+     "walk to (232, 303): 1 waypoints",
+     "walk to (212, 283): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c7ffb2270b0c81a68859b14fb32f3225"
+     },
+     {
+      "frames": 982,
+      "sha256": "8ab2cfc192adaac80d453588137ca3c7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rube-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 5 so layout record 1 of JUL_RUBE is there",
+    "source": "built from layout record 1's condition in scene 760 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 5
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-rube-talk-1",
+    "description": "Talking to layout record 1 of JUL_RUBE (scene 760) should run its event and hand control back",
+    "plan": "# jul-jul-rube-talk-1: Talking to layout record 1 of JUL_RUBE (scene 760) should run its event and hand control back\nlimit 20000\nenter 760 0 16720127 1\ncheckpoint entered\ntalk 429 287 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 760 save e5d6158230c25856 state d3c55b29ec83a81e ram 0000000000000000",
+     "talked frame 933 scene 760 save 6a0337e60c688b68 state 893814e33ea85f53 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (429, 267): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "409aafbdab56cb1a191675ed862a884c"
+     },
+     {
+      "frames": 704,
+      "sha256": "0a80e7c932836ea2af354726f84fe226"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rube-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 5 so layout record 3 of JUL_RUBE is there",
+    "source": "built from layout record 3's condition in scene 760 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 5
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-rube-talk-3",
+    "description": "Talking to layout record 3 of JUL_RUBE (scene 760) should run its event and hand control back",
+    "plan": "# jul-jul-rube-talk-3: Talking to layout record 3 of JUL_RUBE (scene 760) should run its event and hand control back\nlimit 20000\nenter 760 0 16720127 1\ncheckpoint entered\ntalk 437 180 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 760 save e5d6158230c25856 state d3c55b29ec83a81e ram 0000000000000000",
+     "talked frame 919 scene 760 save 6a0337e60c688b68 state 410dbb97892e62fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (437, 160): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "409aafbdab56cb1a191675ed862a884c"
+     },
+     {
+      "frames": 690,
+      "sha256": "5c017bbce948241ed0bb2b9b6633660e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jul-jul-rube-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1190 = 5 so layout record 4 of JUL_RUBE is there",
+    "source": "built from layout record 4's condition in scene 760 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1190": 5
+    }
+   },
+   "baseline": {
+    "route": "jul-jul-rube-talk-4",
+    "description": "Talking to layout record 4 of JUL_RUBE (scene 760) should run its event and hand control back",
+    "plan": "# jul-jul-rube-talk-4: Talking to layout record 4 of JUL_RUBE (scene 760) should run its event and hand control back\nlimit 20000\nenter 760 0 16720127 1\ncheckpoint entered\ntalk 394 173 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 760 save e5d6158230c25856 state d3c55b29ec83a81e ram 0000000000000000",
+     "talked frame 911 scene 760 save 6a0337e60c688b68 state 7b006f4b2f40bf5a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (394, 153): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 65,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "409aafbdab56cb1a191675ed862a884c"
+     },
+     {
+      "frames": 682,
+      "sha256": "4de2510e3651d30c4330f1aa924d060e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

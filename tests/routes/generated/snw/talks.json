@@ -1,0 +1,672 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "snw-snw-b082-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b082-talk-3",
+    "description": "Talking to layout record 3 of SNW_B082 (scene 910) should run its event and hand control back",
+    "plan": "# snw-snw-b082-talk-3: Talking to layout record 3 of SNW_B082 (scene 910) should run its event and hand control back\nlimit 20000\nenter 910 1 16717311 0\ncheckpoint entered\ntalk 400 136 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 910 save b4eec2144d2d7593 state e25a7b045a7fe549 ram 0000000000000000",
+     "talked frame 647 scene 910 save b4eec2144d2d7593 state b5b863f0a4da3c88 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (400, 116): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 105,
+     "instruction": 253,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d572792fc8af5399407568eb76d8d660"
+     },
+     {
+      "frames": 418,
+      "sha256": "2ae53ad6f7c7a957e995d0bd88c98267"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e010-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e010-talk-4",
+    "description": "Talking to layout record 4 of SNW_E010 (scene 246) should run its event and hand control back",
+    "plan": "# snw-snw-e010-talk-4: Talking to layout record 4 of SNW_E010 (scene 246) should run its event and hand control back\nlimit 20000\nenter 246 0 16718335 0\ncheckpoint entered\ntalk 235 245 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 246 save 37cf477b516b52e7 state 973859e706a4248d ram 0000000000000000",
+     "talked frame 1107 scene 246 save bc4fff1f63d860dc state c440eed3959c4b0a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 225): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6e54e1d538e1cf666c68bbf94c2d043b"
+     },
+     {
+      "frames": 878,
+      "sha256": "3bab0f900a9ab3e71d08de93b96ca620"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e020-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e020-talk-1",
+    "description": "Talking to layout record 1 of SNW_E020 (scene 247) should run its event and hand control back",
+    "plan": "# snw-snw-e020-talk-1: Talking to layout record 1 of SNW_E020 (scene 247) should run its event and hand control back\nlimit 20000\nenter 247 0 16718335 3\ncheckpoint entered\ntalk 260 327 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 247 save 9bce11b6ae3f8b09 state a974d9ad628a81a3 ram 0000000000000000",
+     "talked frame 1280 scene 247 save d8cd01875c2d74cd state eab1f1149bd6edae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (260, 307): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 140,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "96a2deb268a4684db183bf1af8e37aa6"
+     },
+     {
+      "frames": 1051,
+      "sha256": "556d29c13570159066f5ed478c09b453"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e030-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e030-talk-5",
+    "description": "Talking to layout record 5 of SNW_E030 (scene 248) should run its event and hand control back",
+    "plan": "# snw-snw-e030-talk-5: Talking to layout record 5 of SNW_E030 (scene 248) should run its event and hand control back\nlimit 20000\nenter 248 0 16718335 0\ncheckpoint entered\ntalk 210 440 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 248 save df032618acb7ff65 state 5360a0fe90f3a475 ram 0000000000000000",
+     "talked frame 956 scene 248 save 9394f0366154b040 state bf8a7f359c4bc5e2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 420): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "de54a2665092b5d6e430a04b789863ac"
+     },
+     {
+      "frames": 727,
+      "sha256": "6ce4a8544deb955495bd3fa2eab50bf4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e040-talk-3",
+   "save": {
+    "format": 1,
+    "description": "After the opening, saved at the bedroom desk by the game, with 0x13cc = 6 so layout record 3 of SNW_E040 is there",
+    "source": "built from layout record 3's condition in scene 249 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0
+    },
+    "card": "handwritten/saves/after-opening.card",
+    "variables": {
+     "0x13cc": 6
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e040-talk-3",
+    "description": "Talking to layout record 3 of SNW_E040 (scene 249) should run its event and hand control back",
+    "plan": "# snw-snw-e040-talk-3: Talking to layout record 3 of SNW_E040 (scene 249) should run its event and hand control back\nlimit 20000\nenter 249 2 16718335 0\ncheckpoint entered\ntalk 220 200 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 56 scene 249 save 0355f09a04c3d4b5 state d036dd913c548925 ram 0000000000000000",
+     "talked frame 1148 scene 249 save 8ba5302ad2e0cac1 state 121930803928eb6b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 180): 2 waypoints",
+     "walk to (220, 220): 1 waypoints",
+     "walk to (200, 200): 1 waypoints",
+     "walk to (240, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 216,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 57,
+      "sha256": "47ec437c348aa7aa6dd53330746edbae"
+     },
+     {
+      "frames": 1092,
+      "sha256": "a5cb7342147d152cf8bae0bbbfeedfa8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e040-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e040-talk-4",
+    "description": "Talking to layout record 4 of SNW_E040 (scene 249) should run its event and hand control back",
+    "plan": "# snw-snw-e040-talk-4: Talking to layout record 4 of SNW_E040 (scene 249) should run its event and hand control back\nlimit 20000\nenter 249 2 16718335 1\ncheckpoint entered\ntalk 65 210 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 249 save aa46cab8356ab4bb state 1dcd9eb074577f6b ram 0000000000000000",
+     "talked frame 1135 scene 249 save 35c6a0e1568f8cb4 state ba822f5bd37d776b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (65, 190): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c7d3e4a4e3c39cdaada01313fbd6a61a"
+     },
+     {
+      "frames": 906,
+      "sha256": "14813bfcb0a3537248b3119cd6aeec68"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e040-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e040-talk-5",
+    "description": "Talking to layout record 5 of SNW_E040 (scene 249) should run its event and hand control back",
+    "plan": "# snw-snw-e040-talk-5: Talking to layout record 5 of SNW_E040 (scene 249) should run its event and hand control back\nlimit 20000\nenter 249 2 16718335 1\ncheckpoint entered\ntalk 140 240 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 249 save aa46cab8356ab4bb state 1dcd9eb074577f6b ram 0000000000000000",
+     "talked frame 1043 scene 249 save 701766e244a02576 state d1b595ceabc8775c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (140, 220): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c7d3e4a4e3c39cdaada01313fbd6a61a"
+     },
+     {
+      "frames": 814,
+      "sha256": "628e68140e7f9066673bf24b1986b464"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1168 = 3 so layout record 1 of SNW_E050 is there",
+    "source": "built from layout record 1's condition in scene 250 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 3
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e050-talk-1",
+    "description": "Talking to layout record 1 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-1: Talking to layout record 1 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 230 66 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save 10eea6d294679a54 state b91b7da1a54c3e73 ram 0000000000000000",
+     "talked frame 1858 scene 250 save 257fe650301eb358 state 0cb8d12c55c35a94 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (230, 46): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 274,
+     "instruction_end": 87,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b4690c60d97c3dfb902f27b97d8d4a36"
+     },
+     {
+      "frames": 1629,
+      "sha256": "1bc152492771a29df2b10dce2e18423a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1168 = 2 so layout record 2 of SNW_E050 is there",
+    "source": "built from layout record 2's condition in scene 250 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 2
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e050-talk-2",
+    "description": "Talking to layout record 2 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-2: Talking to layout record 2 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 100 172 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save a7c516f9437ff9ed state b83cfb5311c7da28 ram 0000000000000000",
+     "talked frame 879 scene 250 save 738edf0a275592e7 state e9a373c0d40e27be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (100, 152): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b48a7001da60aeb9feb24c2ccb43299"
+     },
+     {
+      "frames": 650,
+      "sha256": "89d97b0331581cc1fb7dc6aab037efbf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1168 = 2 so layout record 3 of SNW_E050 is there",
+    "source": "built from layout record 3's condition in scene 250 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 2
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e050-talk-3",
+    "description": "Talking to layout record 3 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-3: Talking to layout record 3 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 187 56 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save a7c516f9437ff9ed state b83cfb5311c7da28 ram 0000000000000000",
+     "talked frame 675 scene 250 save 738edf0a275592e7 state 2722685974349021 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (187, 36): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b48a7001da60aeb9feb24c2ccb43299"
+     },
+     {
+      "frames": 446,
+      "sha256": "c41bc51369f977957cd7f27c3b088b43"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1168 = 2 so layout record 4 of SNW_E050 is there",
+    "source": "built from layout record 4's condition in scene 250 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 2
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e050-talk-4",
+    "description": "Talking to layout record 4 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-4: Talking to layout record 4 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 166 27 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save a7c516f9437ff9ed state b83cfb5311c7da28 ram 0000000000000000",
+     "talked frame 1213 scene 250 save 738edf0a275592e7 state dcb76a1dffa69160 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (166, 7): 2 waypoints",
+     "walk to (166, 47): 1 waypoints",
+     "walk to (146, 27): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 178,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b48a7001da60aeb9feb24c2ccb43299"
+     },
+     {
+      "frames": 984,
+      "sha256": "c1fc86046226fb89070442ee605c9cb0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e050-talk-5",
+    "description": "Talking to layout record 5 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-5: Talking to layout record 5 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 210 155 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save d887a138c772008b state da0fea77233cff9c ram 0000000000000000",
+     "talked frame 664 scene 250 save 4b06b09587cab6ca state 9cba08a80a1ac72c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (210, 135): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d943720da31266a2345b668035f50162"
+     },
+     {
+      "frames": 435,
+      "sha256": "bc8c4b5a289d9c8b9e061e65fab598e3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e050-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-e050-talk-6",
+    "description": "Talking to layout record 6 of SNW_E050 (scene 250) should run its event and hand control back",
+    "plan": "# snw-snw-e050-talk-6: Talking to layout record 6 of SNW_E050 (scene 250) should run its event and hand control back\nlimit 20000\nenter 250 0 16718335 0\ncheckpoint entered\ntalk 240 138 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 250 save d887a138c772008b state da0fea77233cff9c ram 0000000000000000",
+     "talked frame 677 scene 250 save 37a08957031f53de state beaaa608532a1275 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (240, 118): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d943720da31266a2345b668035f50162"
+     },
+     {
+      "frames": 448,
+      "sha256": "aff2fc94accb4af3ecdb0a074737f54c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e060-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1168 = 2 so layout record 2 of SNW_E060 is there",
+    "source": "built from layout record 2's condition in scene 251 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 2
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e060-talk-2",
+    "description": "Talking to layout record 2 of SNW_E060 (scene 251) should run its event and hand control back",
+    "plan": "# snw-snw-e060-talk-2: Talking to layout record 2 of SNW_E060 (scene 251) should run its event and hand control back\nlimit 20000\nenter 251 1 16718335 1\ncheckpoint entered\ntalk 473 139 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 251 save 8bc5127f4a975298 state 0c1a3bcbb85cfb36 ram 0000000000000000",
+     "talked frame 425 scene 251 save 5404c0853d26a7f4 state d047de1f0fc0c9f2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (473, 119): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "793f06303db092754258808baa24dfa1"
+     },
+     {
+      "frames": 196,
+      "sha256": "cfea1971cb300651190d72187cc30b9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

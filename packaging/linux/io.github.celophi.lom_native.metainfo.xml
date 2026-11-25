@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.celophi.lom_native</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT AND MPL-2.0 AND Zlib AND LGPL-2.1-or-later</project_license>
+
+  <name>Legend of Mana Native</name>
+  <summary>A native source port of Legend of Mana, for your own copy of the game</summary>
+  <developer id="io.github.celophi">
+    <name>Christopher Harris</name>
+  </developer>
+
+  <description>
+    <p>
+      This is my native source port of Legend of Mana, built from lom-decomp. The
+      game runs as a real program on your computer, not in an emulator.
+    </p>
+    <p>
+      It isn't finished. You can get into the game and play, but it hasn't been
+      played all the way through yet and there are still bugs, so expect things
+      to break.
+    </p>
+    <p>
+      You need your own copy of Legend of Mana, the US version (SLUS-01013) or the
+      Japanese one (SLPS-02170), as a disc image or an extracted folder. No game
+      data is included. The launcher checks your files against the real disc and
+      sets them up, then you can play.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.celophi.lom_native.desktop</launchable>
+
+  <url type="homepage">https://github.com/celophi/lom-native</url>
+  <url type="bugtracker">https://github.com/celophi/lom-native/issues</url>
+  <url type="vcs-browser">https://github.com/celophi/lom-native</url>
+
+  <categories>
+    <category>Game</category>
+    <category>RolePlaying</category>
+  </categories>
+
+  <supports>
+    <control>keyboard</control>
+  </supports>
+  <recommends>
+    <control>gamepad</control>
+  </recommends>
+
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-fantasy">moderate</content_attribute>
+  </content_rating>
+
+  <releases>
+  </releases>
+</component>

@@ -1,0 +1,414 @@
+#include "common.h"
+#include <libapi.h>
+#include <libgpu.h>
+#include <libgte.h>
+
+#include "common/gpu_packet.h"
+#include "internal/checkps_internal.h"
+#include "internal/font.h"
+#include "main/display.h"
+
+#define CHECKPS_GLYPH_CLUT_Y (VRAM_HEIGHT - 1)
+#define CHECKPS_TEXT_SPACE 0x20
+#define CHECKPS_SJIS_LEAD_BYTE_THRESHOLD 0x80
+#define CHECKPS_HEX_RADIX 16
+#define CHECKPS_DECIMAL_FIRST_DIGIT 1
+#define CHECKPS_DECIMAL_DIGIT_COUNT 5
+#define CHECKPS_DECIMAL_TERMINATOR_INDEX 6
+#define CHECKPS_DECIMAL_GLYPH_BUFFER_SIZE 7
+#define CHECKPS_DEFAULT_GLYPH_PALETTE 0
+#define CHECKPS_INVALID_KROM_ADDRESS (-1)
+
+typedef enum
+{
+    CHECKPS_TEXT_ALIGN_LEFT = 0,
+    CHECKPS_TEXT_ALIGN_RIGHT = 1,
+    CHECKPS_TEXT_ALIGN_CENTER = 2
+} CheckPSTextAlignment;
+
+typedef union
+{
+    u32 raw;
+
+    struct
+    {
+        u16 character_code;
+        u16 flags;
+    } data;
+} GlyphCacheEntry;
+
+typedef struct
+{
+    SPRT_16 sprite;
+    u32 padding;
+} CheckPSGlyphPacket;
+
+extern u16 g_decimal_glyph_table[12];
+
+extern u16 g_hex_glyph_table[18];
+
+static void* render_cached_glyph(void* primitive, OT_TYPE* ot_tag, u16 character_code, s32 palette);
+static CheckPSGlyphPacket* emit_glyph_sprite(CheckPSGlyphPacket* packet, OT_TYPE* ot_tag, s32 cache_slot);
+
+extern u_long g_glyph_clut_prefix[3];
+
+u8 g_glyph_raster_buffer[GLYPH_RASTER_BUFFER_BYTES];
+
+GlyphCacheEntry g_glyph_cache[GLYPH_CACHE_SLOTS];
+
+s32 g_glyph_cursor_x;
+
+s32 g_glyph_cursor_y;
+
+u8* g_glyph_raster_cursor;
+
+s32 g_text_line_start_x;
+
+s32 g_glyph_upload_x;
+
+s32 g_glyph_upload_y;
+
+/**
+ * @brief Format and draw a signed decimal value with cached glyphs.
+ * @param primitive Primitive-buffer cursor.
+ * @param ot_tag Ordering-table tag to append to.
+ * @param value Signed value whose magnitude fits in five decimal digits.
+ * @param x Screen-space x coordinate.
+ * @param y Screen-space y coordinate.
+ * @param palette Glyph palette index.
+ * @param alignment One of the CheckPSTextAlignment values.
+ * @return Updated primitive-buffer cursor.
+ */
+void* draw_signed_decimal(void* primitive, OT_TYPE* ot_tag, s32 value, s32 x, s32 y, s32 palette, s32 alignment)
+{
+    u16 glyph_buffer[CHECKPS_DECIMAL_GLYPH_BUFFER_SIZE];
+    s32 first_digit;
+    s32 magnitude;
+    s32 negative;
+
+    magnitude = value;
+
+    if (magnitude < 0)
+    {
+        magnitude = -magnitude;
+        negative = 1;
+    }
+    else
+    {
+        negative = 0;
+    }
+
+    glyph_buffer[1] = g_decimal_glyph_table[magnitude / 10000];
+    glyph_buffer[2] = g_decimal_glyph_table[(magnitude % 10000) / 1000];
+    glyph_buffer[3] = g_decimal_glyph_table[(magnitude % 1000) / 100];
+    glyph_buffer[4] = g_decimal_glyph_table[(magnitude % 100) / 10];
+    glyph_buffer[5] = g_decimal_glyph_table[magnitude % 10];
+
+    first_digit = CHECKPS_DECIMAL_FIRST_DIGIT;
+
+    glyph_buffer[CHECKPS_DECIMAL_TERMINATOR_INDEX] = 0;
+
+    while (first_digit < CHECKPS_DECIMAL_DIGIT_COUNT && glyph_buffer[first_digit] == GLYPH_PAIR_ZERO)
+    {
+        first_digit++;
+    }
+
+    if (negative != 0)
+    {
+        first_digit--;
+        glyph_buffer[first_digit] = GLYPH_PAIR_MINUS;
+    }
+
+    primitive = draw_cached_text(primitive, ot_tag, (const u8*)&glyph_buffer[first_digit], x, y, palette, alignment);
+    return primitive;
+}
+
+/**
+ * @brief Draw a two-digit hexadecimal value with cached glyphs.
+ * @param primitive Primitive-buffer cursor.
+ * @param ot_tag Ordering-table tag to append to.
+ * @param value Byte value from 0 to 255; no range checking is performed.
+ * @param x Screen-space x coordinate.
+ * @param y Screen-space y coordinate.
+ * @param alignment One of the CheckPSTextAlignment values.
+ */
+void draw_hex_byte(void* primitive, OT_TYPE* ot_tag, s32 value, s32 x, s32 y, s32 alignment)
+{
+    u16 glyph_buffer[3];
+    u16* high_glyph;
+
+    high_glyph = &g_hex_glyph_table[value / CHECKPS_HEX_RADIX];
+    glyph_buffer[0] = *high_glyph;
+    glyph_buffer[1] = g_hex_glyph_table[value % CHECKPS_HEX_RADIX];
+    glyph_buffer[2] = 0;
+    draw_cached_text(primitive, ot_tag, (const u8*)glyph_buffer, x, y, CHECKPS_DEFAULT_GLYPH_PALETTE, alignment);
+}
+
+/**
+ * @brief Draw a cached Shift-JIS text string into the ordering table.
+ * @param primitive Primitive-buffer cursor.
+ * @param ot_tag Ordering-table tag to append to.
+ * @param text Encoded text terminated by a byte below 0x20.
+ * @param x Screen-space x coordinate.
+ * @param y Screen-space y coordinate.
+ * @param palette Glyph palette index.
+ * @param alignment One of the CheckPSTextAlignment values.
+ * @return Updated primitive-buffer cursor.
+ */
+void* draw_cached_text(void* primitive, OT_TYPE* ot_tag, const u8* text, s32 x, s32 y, s32 palette, s32 alignment)
+{
+    const u8* cursor;
+    s32 glyph_count;
+    u16 character_code;
+    const u8* scan;
+    DR_TPAGE* draw_mode_packet;
+
+    cursor = text;
+    glyph_count = 0;
+
+    if (*cursor >= GLYPH_TEXT_FIRST_PRINTABLE)
+    {
+        scan = cursor;
+
+        while (*scan >= GLYPH_TEXT_FIRST_PRINTABLE)
+        {
+            if (*scan >= CHECKPS_SJIS_LEAD_BYTE_THRESHOLD)
+            {
+                scan++;
+            }
+
+            scan++;
+            glyph_count++;
+        }
+    }
+
+    switch (alignment)
+    {
+    case CHECKPS_TEXT_ALIGN_RIGHT:
+        x -= glyph_count * GLYPH_SIZE;
+        break;
+    case CHECKPS_TEXT_ALIGN_CENTER:
+        x -= glyph_count * (GLYPH_SIZE / 2);
+        break;
+    case CHECKPS_TEXT_ALIGN_LEFT:
+    default:
+        break;
+    }
+
+    g_text_line_start_x = x;
+    g_glyph_cursor_x = x;
+    g_glyph_cursor_y = y;
+
+    while (1)
+    {
+        if (*cursor == CHECKPS_TEXT_SPACE)
+        {
+            cursor++;
+            g_glyph_cursor_x += GLYPH_SIZE;
+            continue;
+        }
+
+        if (*cursor >= CHECKPS_SJIS_LEAD_BYTE_THRESHOLD)
+        {
+            character_code = cursor[0];
+            character_code = (character_code << 8) | cursor[1];
+            cursor += 2;
+        }
+        else
+        {
+            if (*cursor < GLYPH_TEXT_FIRST_PRINTABLE)
+            {
+                break;
+            }
+
+            character_code = *cursor + GLYPH_SJIS_SYMBOL_OFFSET;
+            cursor++;
+        }
+
+        primitive = render_cached_glyph(primitive, ot_tag, character_code, palette);
+    }
+
+    draw_mode_packet = primitive;
+    setDrawTPage(draw_mode_packet, 0, 0, getTPage(GPU_TEXTURE_4BIT, GPU_BLEND_HALF, CHECKPS_GLYPH_VRAM_X, 0));
+    addPrim(ot_tag, draw_mode_packet);
+    return draw_mode_packet + 1;
+}
+
+/**
+ * @brief Draw a cached glyph, rasterizing and uploading it on a cache miss.
+ * @param primitive Primitive-buffer cursor.
+ * @param ot_tag Ordering-table tag to append to.
+ * @param character_code Shift-JIS character code.
+ * @param palette Selects color index palette + 1 for newly rasterized glyphs.
+ * @return Updated cursor, or the original cursor if the glyph is missing or the cache is full.
+ * @note Cached glyphs retain the color index used when first rasterized.
+ */
+static void* render_cached_glyph(void* primitive, OT_TYPE* ot_tag, u16 character_code, s32 palette)
+{
+    const u8* font_data;
+    u8* raster_cursor;
+    s32 index;
+    s32 row;
+    s32 row_byte_index;
+    s32 color_index;
+    s32 high_nibble_color;
+    u16 source_mask;
+    RECT upload_rect;
+
+    for (index = 0; index < GLYPH_CACHE_SLOTS; index++)
+    {
+        if (character_code == g_glyph_cache[index].data.character_code)
+        {
+            return emit_glyph_sprite(primitive, ot_tag, index);
+        }
+    }
+
+    font_data = (const u8*)Krom2RawAdd(character_code);
+
+    if (font_data == (const u8*)CHECKPS_INVALID_KROM_ADDRESS)
+    {
+        return primitive;
+    }
+
+    raster_cursor = g_glyph_raster_cursor;
+    row = 0;
+    color_index = palette + 1;
+    high_nibble_color = color_index * GLYPH_HIGH_NIBBLE_SCALE;
+
+    for (; row < GLYPH_ROWS; row++)
+    {
+        for (row_byte_index = 0; row_byte_index < GLYPH_FONT_ROW_BYTES; row_byte_index++)
+        {
+            source_mask = GLYPH_FONT_SOURCE_MSB;
+
+            for (index = 0; index < GLYPH_FONT_PIXEL_PAIRS; index++)
+            {
+                *raster_cursor = (*font_data & source_mask) ? color_index : 0;
+                source_mask >>= 1;
+                *raster_cursor += (*font_data & source_mask) ? high_nibble_color : 0;
+                source_mask >>= 1;
+                raster_cursor++;
+            }
+
+            font_data++;
+        }
+    }
+
+    for (index = 0; index < GLYPH_CACHE_SLOTS; index++)
+    {
+        if (g_glyph_cache[index].raw == 0)
+        {
+            break;
+        }
+    }
+
+    if (index == GLYPH_CACHE_SLOTS)
+    {
+        return primitive;
+    }
+
+    g_glyph_cache[index].raw = character_code;
+    primitive = emit_glyph_sprite(primitive, ot_tag, index);
+
+    g_glyph_upload_x = (index % GLYPH_SIZE) * GLYPH_VRAM_WORD_PIXELS;
+    g_glyph_upload_y = index & GLYPH_CACHE_ROW_MASK;
+
+    setWH(&upload_rect, GLYPH_VRAM_WORD_PIXELS, GLYPH_ROWS);
+    upload_rect.x = g_glyph_upload_x + CHECKPS_GLYPH_VRAM_X;
+    upload_rect.y = g_glyph_upload_y;
+
+    LoadImage(&upload_rect, (u_long*)g_glyph_raster_cursor);
+    DrawSync(0);
+
+    g_glyph_raster_cursor += GLYPH_RASTER_BYTES;
+    return primitive;
+}
+
+/**
+ * @brief Emit a 16x16 sprite for one cached glyph slot.
+ * @param packet Sprite packet to initialize.
+ * @param ot_tag Ordering-table tag to append to.
+ * @param cache_slot Glyph-cache slot index.
+ * @return Pointer to the next primitive-buffer packet.
+ */
+static CheckPSGlyphPacket* emit_glyph_sprite(CheckPSGlyphPacket* packet, OT_TYPE* ot_tag, s32 cache_slot)
+{
+    g_glyph_cache[cache_slot].raw |= GLYPH_CACHE_USED;
+
+    setSprt16(&packet->sprite);
+    packet->sprite.g0 = GPU_TINT_NEUTRAL_LEVEL;
+    packet->sprite.b0 = GPU_TINT_NEUTRAL_LEVEL;
+    packet->sprite.r0 = GPU_TINT_NEUTRAL_LEVEL;
+    setXY0(&packet->sprite, g_glyph_cursor_x, g_glyph_cursor_y);
+    setUV0(&packet->sprite, (cache_slot % GLYPH_SIZE) * GLYPH_SIZE, cache_slot & GLYPH_CACHE_ROW_MASK);
+    packet->sprite.clut = getClut(0, CHECKPS_GLYPH_CLUT_Y);
+    addPrim(ot_tag, &packet->sprite);
+    packet++;
+
+    g_glyph_cursor_x += GLYPH_SIZE;
+
+    if (g_glyph_cursor_x + GLYPH_SIZE >= GLYPH_TEXT_WRAP_X)
+    {
+        g_glyph_cursor_x = g_text_line_start_x;
+        g_glyph_cursor_y += GLYPH_SIZE;
+    }
+
+    return packet;
+}
+
+/**
+ * @brief Clear per-frame usage marks and reset the glyph raster cursor.
+ */
+void begin_glyph_cache_frame(void)
+{
+    s32 cache_slot;
+
+    g_glyph_raster_cursor = g_glyph_raster_buffer;
+
+    for (cache_slot = 0; cache_slot < GLYPH_CACHE_SLOTS; cache_slot++)
+    {
+        g_glyph_cache[cache_slot].raw &= GLYPH_CACHE_CODE_MASK;
+    }
+}
+
+/**
+ * @brief Release glyph-cache entries that were not used this frame.
+ */
+void evict_unused_glyphs(void)
+{
+    s32 cache_slot;
+
+    for (cache_slot = 0; cache_slot < GLYPH_CACHE_SLOTS; cache_slot++)
+    {
+        if (!(g_glyph_cache[cache_slot].raw & GLYPH_CACHE_USED))
+        {
+            g_glyph_cache[cache_slot].raw = 0;
+        }
+    }
+}
+
+/**
+ * @brief Clear glyph-cache state and upload the renderer CLUT.
+ */
+void reset_glyph_renderer(void)
+{
+    s32 i;
+    RECT clut_rect;
+
+    for (i = GLYPH_CACHE_SLOTS - 1; i >= 0; i--)
+    {
+        g_glyph_cache[i].raw = 0;
+    }
+
+    for (i = 0; i < GLYPH_RASTER_BUFFER_BYTES; i++)
+    {
+        g_glyph_raster_buffer[i] = 0;
+    }
+
+    clut_rect.y = CHECKPS_GLYPH_CLUT_Y;
+    clut_rect.w = GLYPH_SIZE;
+    clut_rect.x = 0;
+    clut_rect.h = 1;
+
+    LoadImage(&clut_rect, g_glyph_clut_prefix);
+}

@@ -1,0 +1,334 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "drl-drl-e010-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e010-talk-1",
+    "description": "Talking to layout record 1 of DRL_E010 (scene 713) should run its event and hand control back",
+    "plan": "# drl-drl-e010-talk-1: Talking to layout record 1 of DRL_E010 (scene 713) should run its event and hand control back\nlimit 20000\nenter 713 0 16722687 1\ncheckpoint entered\ntalk 135 300 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 713 save e5b38fb5c68ad692 state c6be828573c84fd8 ram 0000000000000000",
+     "talked frame 945 scene 713 save 2cd338aeb1dbf61d state bc0b157553fa84ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13936425f9c30f0f70332d3b9c6d1a62"
+     },
+     {
+      "frames": 716,
+      "sha256": "0ea29c662409a28c9e6cf73db48fe332"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e020-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e020-talk-1",
+    "description": "Talking to layout record 1 of DRL_E020 (scene 714) should run its event and hand control back",
+    "plan": "# drl-drl-e020-talk-1: Talking to layout record 1 of DRL_E020 (scene 714) should run its event and hand control back\nlimit 20000\nenter 714 0 16722687 0\ncheckpoint entered\ntalk 475 220 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 714 save a26965c3334474e8 state a0b7658fb04ae002 ram 0000000000000000",
+     "talked frame 887 scene 714 save 2986deaa32386866 state a1b978f8a99656d1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (475, 200): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9eada3aa7510ee118d93b4f62dee20fe"
+     },
+     {
+      "frames": 658,
+      "sha256": "9fcf1f5233c4f3a2e35c092bb97753f2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e020-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e020-talk-2",
+    "description": "Talking to layout record 2 of DRL_E020 (scene 714) should run its event and hand control back",
+    "plan": "# drl-drl-e020-talk-2: Talking to layout record 2 of DRL_E020 (scene 714) should run its event and hand control back\nlimit 20000\nenter 714 0 16722687 0\ncheckpoint entered\ntalk 316 226 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 714 save a26965c3334474e8 state a0b7658fb04ae002 ram 0000000000000000",
+     "talked frame 1248 scene 714 save 672c177b2730cde7 state 5260c1cf1a5043d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (316, 206): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9eada3aa7510ee118d93b4f62dee20fe"
+     },
+     {
+      "frames": 1019,
+      "sha256": "0a5556c8db906923fc125eebb7caf748"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e110-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e110-talk-2",
+    "description": "Talking to layout record 2 of DRL_E110 (scene 723) should run its event and hand control back",
+    "plan": "# drl-drl-e110-talk-2: Talking to layout record 2 of DRL_E110 (scene 723) should run its event and hand control back\nlimit 20000\nenter 723 0 16722687 0\ncheckpoint entered\ntalk 160 170 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 723 save ba965d1a191cd17d state 253b9e083df00e16 ram 0000000000000000",
+     "talked frame 939 scene 723 save 505086f3ea567146 state 0fa78450bb415b0b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 150): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "72f938a7f80ac57fa212685e9d1846ae"
+     },
+     {
+      "frames": 710,
+      "sha256": "86369e89ea142c688de28d6a4972f421"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e130-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e130-talk-2",
+    "description": "Talking to layout record 2 of DRL_E130 (scene 725) should run its event and hand control back",
+    "plan": "# drl-drl-e130-talk-2: Talking to layout record 2 of DRL_E130 (scene 725) should run its event and hand control back\nlimit 20000\nenter 725 0 16722687 0\ncheckpoint entered\ntalk 225 265 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 725 save ee7a2aa847fe305b state 98102065d71a7bd4 ram 0000000000000000",
+     "talked frame 912 scene 725 save a2835284bf0ccf36 state 10ef2f54c1c5edee ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (225, 245): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "11dbeadbd0bd26dc6d61cc666e03c589"
+     },
+     {
+      "frames": 683,
+      "sha256": "c0f0ea72f5d9a4dc2941e4ce1d446fbf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e130-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e130-talk-3",
+    "description": "Talking to layout record 3 of DRL_E130 (scene 725) should run its event and hand control back",
+    "plan": "# drl-drl-e130-talk-3: Talking to layout record 3 of DRL_E130 (scene 725) should run its event and hand control back\nlimit 20000\nenter 725 0 16722687 0\ncheckpoint entered\ntalk 90 265 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 725 save ee7a2aa847fe305b state 98102065d71a7bd4 ram 0000000000000000",
+     "talked frame 914 scene 725 save e8b20067521bee4c state 302743d667368303 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (90, 245): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "11dbeadbd0bd26dc6d61cc666e03c589"
+     },
+     {
+      "frames": 685,
+      "sha256": "eec79261c38741ee8ccceee62e2fae58"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e160-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e160-talk-1",
+    "description": "Talking to layout record 1 of DRL_E160 (scene 728) should run its event and hand control back",
+    "plan": "# drl-drl-e160-talk-1: Talking to layout record 1 of DRL_E160 (scene 728) should run its event and hand control back\nlimit 20000\nenter 728 0 16722687 0\ncheckpoint entered\ntalk 583 188 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 728 save 298e5ee8cad28ac2 state 74bdb88dd0a76266 ram 0000000000000000",
+     "talked frame 1362 scene 728 save 5358d7f45a3daf04 state 7a6f50a65e429246 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (583, 168): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f4b0e12d652837c7b6f266c1ddf530a8"
+     },
+     {
+      "frames": 1133,
+      "sha256": "5ebe58b9d85d3913042e0cc16f103971"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "drl-drl-e180-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "drl-drl-e180-talk-1",
+    "description": "Talking to layout record 1 of DRL_E180 (scene 730) should run its event and hand control back",
+    "plan": "# drl-drl-e180-talk-1: Talking to layout record 1 of DRL_E180 (scene 730) should run its event and hand control back\nlimit 20000\nenter 730 0 16722687 1\ncheckpoint entered\ntalk 185 300 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 730 save 38b1312ef89eb985 state 2c5896c7b47244d3 ram 0000000000000000",
+     "talked frame 937 scene 730 save 579506a8327bb550 state 2ba1703687d582eb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (185, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 127,
+     "instruction": 215,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6c439ec35ac120420ecd3ea37a0a5f5a"
+     },
+     {
+      "frames": 708,
+      "sha256": "2ecc0ee2c5d95d7b3d9b58d189453e4e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

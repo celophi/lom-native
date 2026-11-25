@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Legend of Mana Native
+GenericName=Game launcher
+Comment=Play your own copy of Legend of Mana as a native game
+Exec=lom-launcher
+Icon=io.github.celophi.lom_native
+Terminal=false
+Categories=Game;RolePlaying;
+Keywords=Legend of Mana;PlayStation;PS1;source port;
+SingleMainWindow=true

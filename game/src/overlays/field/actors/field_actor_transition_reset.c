@@ -1,0 +1,347 @@
+#include "common.h"
+#include "lom_native_input.h"
+#include "lom_native_sound.h"
+
+#include "../internal/field_actor_runtime.h"
+#include "../internal/field_actor_tables.h"
+#include "../internal/field_calls.h"
+#include "../internal/field_effect_render_state.h"
+#include "../internal/field_modal_runtime.h"
+#include "common/saved_game.h"
+#include "main/audio/akao.h"
+#include "main/controller_internal.h"
+#include "main/audio/akao_cmd.h"
+#include "../internal/field_state_ops.h"
+
+#define FIELD_RESET_IDLE_CHECKS 15
+
+#define FIELD_DEFEATING_ACTOR_FOUND 0x100
+
+typedef struct
+{
+#if defined(VERSION_JP)
+    u8 before_object_states[0x5588];
+#else
+    u8 before_object_states[0x5AE0];
+#endif
+    FieldObjectState object_states[FIELD_ACTOR_COUNT];
+} FieldStatePage;
+
+#define FIELD_STATE_PAGE ((FieldStatePage*)PRIMARY_OVERLAY_UPPER_ADDRESS)
+
+extern s32 g_field_restore_group;
+extern s32 g_field_battle_idle_checks;
+s32 field_find_defeating_actor(void);
+s32 field_defeat_animation_playing(void);
+
+/**
+ * @brief Start a battle with a trigger group, or reset the party when a battle ends.
+ * @param mode 0 resets the party actors; otherwise the trigger group that starts fighting.
+ * @param actor_data Unused.
+ */
+void field_set_battle_group(s32 mode, void* actor_data)
+{
+    FieldObjectState* state;
+    s32 animation;
+    s32 index;
+    u32 progress;
+    u8 animation_flags;
+    SavedGameLayout* saved_game;
+
+    field_clear_actor_texts();
+
+    if (mode == 0)
+    {
+        field_cancel_animation_bindings();
+        g_field_restore_group = 0;
+        field_battle_setup(0);
+        g_field_actions_limited = 1;
+
+        for (index = 0; index < FIELD_PARTY_COUNT; index++)
+        {
+            state = &g_field_object_states[index];
+            state->tint_timer = 0;
+            state->flags = state->flags & FIELD_OBJECT_FLAG_KNOCKED_OUT;
+            state->contact.bits.no_hit_test = 0;
+            state->movement.bits.invulnerable = 0;
+            state->contact.bits.targeted = 0;
+            g_field_actor_slots[FIELD_OBJECT_EFFECT_SLOT_BASE + index].status.parts.hiding_objects = 0;
+            field_stop_actor_slot(&g_field_actors[index], &g_field_actor_slots[FIELD_OBJECT_EFFECT_SLOT_BASE + index], 1);
+            state->retry_count = 0;
+            g_field_actors[index].variant = 0;
+            field_command_history_clear(index);
+            field_update_object_effects(index);
+        }
+
+        g_field_battle_idle_checks = 0;
+        return;
+    }
+
+    if (g_field_duel_mode != 0)
+    {
+        field_begin_duel_intro();
+    }
+
+    g_field_active_group = mode;
+    field_camera_select_scroll_limits();
+
+    for (index = 0; index < FIELD_PARTY_COUNT; index++)
+    {
+        progress = g_saved_game_ctx->characters[index].progress.word;
+        g_field_experience_snapshot[index] = progress >> 8;
+        g_field_player_records[index].pickup_counts[FIELD_REWARD_MONEY_SMALL] = 0;
+        g_field_player_records[index].pickup_counts[FIELD_REWARD_MONEY_LARGE] = 0;
+        g_field_player_records[index].pickup_counts[FIELD_REWARD_EXPERIENCE_SMALL] = 0;
+        g_field_player_records[index].pickup_counts[FIELD_REWARD_EXPERIENCE_LARGE] = 0;
+    }
+
+    saved_game = g_saved_game_ctx;
+    g_field_menu_locked = 1;
+    g_field_money_snapshot = saved_game->money;
+    field_begin_battle_entry();
+
+    g_field_actors[0].animation_active = g_field_actors[0].animation_state = 1;
+    g_field_actors[0].animation_frame = 0;
+    g_field_actors[0].control.word = g_field_actors[0].control.word & ~FIELD_CONTROL_PLAY_ONCE;
+    animation = g_field_actors[0].animation;
+    animation &= FIELD_ANIMATION_INDEX_MASK;
+    animation_flags = g_field_actors[0].animation & FIELD_ANIMATION_FACING;
+    animation %= FIELD_ANIMATION_DIRECTIONS;
+    animation_flags += animation;
+    g_field_actors[0].animation = animation_flags;
+    field_restart_actor_animation(&g_field_actors[0]);
+
+    if (g_field_duel_mode == 0)
+    {
+        for (index = 1; index < FIELD_PARTY_COUNT; index++)
+        {
+            if (g_field_player_records[index].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+            {
+                if (g_field_actors[index].control.half[0] & FIELD_CONTROL_MODE_MASK)
+                {
+                    g_field_actors[index].command = FIELD_ACTOR_COMMAND_FOLLOW_LEADER;
+                    g_field_actors[index].animation_state = 0xFFFF;
+                    g_field_object_parts[index].spawn_flags.word = g_field_object_parts[index].spawn_flags.word | FIELD_PART_IGNORE_MAP_COLLISION;
+                }
+                else
+                {
+                    field_route_actor_to_object(&g_field_actors[index], 0, 1);
+                    g_field_object_parts[index].spawn_flags.word = g_field_object_parts[index].spawn_flags.word | FIELD_PART_IGNORE_MAP_COLLISION;
+
+                    if (g_field_actors[index].command == FIELD_ACTOR_COMMAND_LEAVE_PATH)
+                    {
+                        g_field_actors[index].command = FIELD_ACTOR_COMMAND_RUN_PATH;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Find an actor that is still going through its defeat sequence.
+ * @return The actor index plus FIELD_DEFEATING_ACTOR_FOUND, or 0 when none is.
+ */
+s32 field_find_defeating_actor(void)
+{
+    s32 i;
+
+    for (i = 0; i < FIELD_ACTOR_COUNT; i++)
+    {
+        if (g_field_actors[i].presence != FIELD_ACTOR_UNUSED)
+        {
+            if (g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEATED || g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_END ||
+                g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_WAIT || g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_DELAY ||
+                g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_END || g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_BOUND)
+            {
+                return i + FIELD_DEFEATING_ACTOR_FOUND;
+            }
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief In a duel, report whether a player's defeat animation is still playing.
+ * @return 1 while a defeated or knocked-down player's reserved slot has tracks, otherwise 0.
+ */
+s32 field_defeat_animation_playing(void)
+{
+    s32 i;
+
+    if (g_field_duel_mode == 0)
+    {
+        return 0;
+    }
+
+    for (i = 0; i < FIELD_PLAYER_COUNT; i++)
+    {
+        if (g_field_actors[i].presence != FIELD_ACTOR_UNUSED)
+        {
+            if (g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEATED || g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_END ||
+                g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_WAIT || g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_DELAY ||
+                g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_END || g_field_actors[i].command == FIELD_ACTOR_COMMAND_KNOCKED_DOWN ||
+                g_field_actors[i].command == FIELD_ACTOR_COMMAND_DEFEAT_BOUND)
+            {
+                if (g_field_actor_slots[FIELD_OBJECT_EFFECT_SLOT_BASE + i].track_mask != 0)
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief While the scene fades, cancel every pending animation binding and undo what the animations changed.
+ */
+void field_cancel_animation_bindings(void)
+{
+    ControllerPortState* controller_ports = lom_input_ports();
+    FieldStatePage* page;
+    FieldObjectState* states;
+    s32 i;
+    s32 j;
+    s32 k;
+    s32 index;
+    s32 owner;
+
+    if (field_is_scene_fading() != 0)
+    {
+        page = FIELD_STATE_PAGE;
+
+        for (i = 0; i < FIELD_ACTOR_BINDING_COUNT; i++)
+        {
+            if (g_field_actor_bindings[i].state != 0)
+            {
+                g_field_actor_bindings[i].state = 0;
+                g_field_actors[g_field_actor_bindings[i].owner].presence = FIELD_ACTOR_VISIBLE;
+                g_field_actors[g_field_actor_bindings[i].owner].command = 0;
+
+                for (j = 0; j < FIELD_ACTOR_SLOT_TOTAL; j++)
+                {
+                    if (g_field_actor_slots[j].active != 0)
+                    {
+                        index = g_field_actor_slots[j].owner_object_index;
+
+                        if (index == g_field_actor_bindings[i].owner)
+                        {
+                            g_field_actor_slots[j].duration = 0;
+                            g_field_actors[index].command = 0;
+                            field_release_sfx_group(g_field_actor_slots[j].owner_object_index);
+                            field_clear_actor_effects(&g_field_actor_slots[j]);
+                            owner = g_field_actor_slots[j].owner_object_index;
+                            g_field_actor_slots[j].active = 0;
+                            g_field_actor_slots[j].track_mask = 0;
+                            index = g_field_actors[owner].command;
+
+                            if ((index != FIELD_ACTOR_COMMAND_DEFEATED && index != FIELD_ACTOR_COMMAND_DEFEAT_END) ||
+                                (g_field_object_states[owner].flags & FIELD_OBJECT_FLAG_KNOCKED_OUT))
+                            {
+                                g_field_actors[g_field_actor_slots[j].owner_object_index].presence = FIELD_ACTOR_VISIBLE;
+                            }
+
+                            g_field_object_states[g_field_actor_slots[j].owner_object_index].contact.word &= ~FIELD_CONTACT_ANIMATION_HIDDEN;
+
+                            for (k = 0; k < g_field_actor_slots[j].target_count; k++)
+                            {
+                                if (g_field_actor_slots[j].targets[k] != FIELD_TARGET_NONE)
+                                {
+                                    g_field_actors[g_field_actor_slots[j].targets[k]].presence = FIELD_ACTOR_VISIBLE;
+                                    g_field_object_states[g_field_actor_slots[j].targets[k]].contact.word &= ~FIELD_CONTACT_ANIMATION_HIDDEN;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                g_field_camera_offset_z = 0;
+                g_field_camera_offset_y = 0;
+                g_field_camera_offset_x = 0;
+                states = page->object_states;
+                states[g_field_actor_bindings[i].owner].contact.word &= ~FIELD_CONTACT_ANIMATION_HIDDEN;
+                field_set_global_color_scale(FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL);
+                controller_ports[1].small_motor_command = 0;
+                controller_ports[0].small_motor_command = 0;
+                controller_ports[1].actuator_control.fields.large_motor_command = 0;
+                controller_ports[0].actuator_control.fields.large_motor_command = 0;
+            }
+        }
+    }
+}
+
+/**
+ * @brief After a battle, reset the field once nothing has been animating for FIELD_RESET_IDLE_CHECKS checks.
+ */
+void field_update_battle_end(void)
+{
+    s32 i;
+
+    if (g_field_actions_limited != 0)
+    {
+        if ((field_find_active_special_attack_actor() == 0) && (field_find_defeating_actor() == 0) && (g_field_text_session_active == 0) &&
+            (field_is_scene_fading() == 0) && (field_defeat_animation_playing() == 0))
+        {
+            g_field_battle_idle_checks++;
+        }
+        else
+        {
+            g_field_battle_idle_checks = 0;
+        }
+
+        if (g_field_battle_idle_checks == FIELD_RESET_IDLE_CHECKS)
+        {
+            field_initialize_actor_slots();
+            field_clear_actor_slots();
+            field_reset_draw_state();
+            field_reset_actor_resources();
+            g_field_camera_offset_z = 0;
+            g_field_camera_offset_y = 0;
+            g_field_camera_offset_x = 0;
+            g_field_active_group = g_field_restore_group;
+            field_show_battle_results();
+            lom_sound_release_all_effects();
+            field_reset_global_color_scale();
+            field_set_color_scale(-1, FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL, FIELD_COLOR_SCALE_NEUTRAL);
+            field_clear_actor_texts();
+            field_play_sound(0x24, AKAO_PAN_CENTER);
+
+            for (i = 0; i < FIELD_PARTY_COUNT; i++)
+            {
+                if (g_field_player_records[i].head.bytes.flags & FIELD_PLAYER_ACTIVE)
+                {
+                    g_field_object_states[i].flags = 0;
+                    g_field_object_states[i].contact.word &= ~FIELD_CONTACT_ANIMATION_HIDDEN;
+                    g_field_object_states[i].contact.word &= ~FIELD_CONTACT_LINKED;
+                    g_field_object_states[i].contact.word &= ~FIELD_CONTACT_NO_HIT_TEST;
+                    g_field_object_states[i].contact.bytes.target_count = 0;
+                    g_field_object_states[i].action_parameter = FIELD_ACTION_PARAMETER_NONE;
+                    g_field_actors[i].y = 0;
+
+                    if ((g_field_duel_mode != 0) && (g_field_actors[i].command == FIELD_ACTOR_COMMAND_KNOCKED_DOWN))
+                    {
+                        g_field_actors[i].animation = (g_field_actors[i].animation & FIELD_ANIMATION_FACING) + FIELD_ABILITY_CROUCH;
+                    }
+                    else
+                    {
+                        g_field_actors[i].animation = (g_field_actors[i].animation & FIELD_ANIMATION_FACING) + FIELD_ANIMATION_13;
+                    }
+
+                    g_field_actors[i].animation_state = 1;
+                    g_field_actors[i].animation_active = 1;
+                    g_field_actors[i].command = 0;
+                    g_field_actors[i].presence = FIELD_ACTOR_VISIBLE;
+                    g_field_actors[i].animation_frame = 0;
+                    g_field_actors[i].control.word = g_field_actors[i].control.word & ~FIELD_CONTROL_PLAY_ONCE;
+                    g_field_object_states[i].movement.word = g_field_object_states[i].movement.word & ~FIELD_MOVEMENT_SEQUENCE_MASK;
+                    field_restart_actor_animation(&g_field_actors[i]);
+                }
+            }
+
+            g_field_actions_limited = 0;
+        }
+    }
+}

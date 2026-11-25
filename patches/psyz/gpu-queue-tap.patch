@@ -1,0 +1,38 @@
+A weak tap that sees every GP0 word PSY-Z runs, so the 1.x and native
+builds can be checked to draw the same. Unused unless a test defines it.
+
+--- a/psyz/src/psyz/libgpu.c
++++ b/psyz/src/psyz/libgpu.c
+@@ -60,9 +60,20 @@
+     return x & 0x400 ? x - 0x800 : x;
+ }
+ 
++void Psyz_GpuQueueTap(unsigned int word) __attribute__((weak));
++
++static void TapWords(const u_long* words, int count) {
++    if (Psyz_GpuQueueTap) {
++        for (int i = 0; i < count; i++) {
++            Psyz_GpuQueueTap((unsigned int)words[i]);
++        }
++    }
++}
++
+ static void DispatchPackets(u_long* buf, int len) {
+     RECT rect;
+     unsigned int x, y;
++    TapWords(buf, len);
+     for (int i = 0; i < len; i++) {
+         u_long op = buf[i];
+         int code = (int)(buf[i] >> 24) & 0xFF;
+@@ -300,6 +311,11 @@
+ }
+ static int psyz_cwb(u32* data, s32 n) {
+     gpu_busy = 1;
++    if (Psyz_GpuQueueTap) {
++        for (s32 i = 0; i < n; i++) {
++            Psyz_GpuQueueTap(data[i]);
++        }
++    }
+     if (n > 0) {
+         Draw_PushPrim((u_long*)data, n);
+     }

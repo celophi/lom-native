@@ -1,0 +1,3860 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "twr-twr-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs00-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS00 (scene 208) should lead to scene 202",
+    "plan": "# twr-twr-bs00-exit-0: Walking onto exit 0 of TWR_BS00 (scene 208) should lead to scene 202\nlimit 20000\nenter 32976 0 16723228 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 208 save 047fe857a917fedf state 553da5d54ffea38a ram 0000000000000000",
+     "arrived frame 8742 scene 202 save 71317af2fef6a49f state 0254e26f32162a87 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (47, 136): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 5810 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 664,
+     "instruction_end": 326,
+     "song": 4,
+     "monster": 1,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "469dbe1a0c40aa3739a9a848c13e12a4"
+     },
+     {
+      "frames": 8513,
+      "sha256": "4d04549e5e84a21bd42397f32b92c12d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs01-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS01 (scene 209) should lead to scene 202",
+    "plan": "# twr-twr-bs01-exit-0: Walking onto exit 0 of TWR_BS01 (scene 209) should lead to scene 202\nlimit 20000\nexperience 9999999\nenter 32977 0 16723228 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 209 save e07388152fdbdb29 state 97136703250b5fef ram 0000000000000000",
+     "arrived frame 5469 scene 202 save 44309ed7b81adf3d state 186ca1d59ba2822c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "no route to the exit; walking straight at it",
+     "walk to (47, 136): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2750 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 610,
+     "instruction_end": 300,
+     "song": 4,
+     "scene": 3,
+     "monster": 1,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "e05d7b2295c2b721f85ee86fd80273b7"
+     },
+     {
+      "frames": 5209,
+      "sha256": "372d361fa213047d62f07fb64bf3daac"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs02-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS02 (scene 210) should lead to scene 202",
+    "plan": "# twr-twr-bs02-exit-0: Walking onto exit 0 of TWR_BS02 (scene 210) should lead to scene 202\nlimit 20000\nexperience 9999999\nenter 32978 0 16723228 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 210 save 695030831e1cd426 state c999939b1d2b43a3 ram 0000000000000000",
+     "arrived frame 5530 scene 202 save 2c35c35b53c9e97e state 8774a6d222d5851a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "no route to the exit; walking straight at it",
+     "walk to (47, 136): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2690 frames",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 603,
+     "instruction_end": 287,
+     "song": 4,
+     "monster": 1,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "90a2615bf487f49668d95d5fe2304cd1"
+     },
+     {
+      "frames": 5270,
+      "sha256": "9db269863c065c9bb2f7eeb6405be35f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs03-exit-0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 0 of TWR_BS03 needs",
+    "source": "built from the conditions in scene 211's script 0 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {}
+   },
+   "baseline": {
+    "route": "twr-twr-bs03-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS03 (scene 211) should lead to one of scene 178, scene 179",
+    "plan": "# twr-twr-bs03-exit-0: Walking onto exit 0 of TWR_BS03 (scene 211) should lead to one of scene 178, scene 179\nlimit 20000\nenter 211 0 16715263 0\nguest 6\nenter 211 0 16715263 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 294 scene 211 save f2666e555dab1394 state a156b816b465b789 ram 0000000000000000",
+     "arrived frame 542 scene 179 save ee6d27fc94500ac0 state ac767ddeb71069f2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "guest 6 joined",
+     "walk to (53, 144): 2 waypoints"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 219,
+     "instruction_end": 102,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 295,
+      "sha256": "6f909c497477b1e2285d0ff3372157c9"
+     },
+     {
+      "frames": 248,
+      "sha256": "e38dbeb90fceefdbc602a21226858569"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs04-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs04-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS04 (scene 212) should lead to scene 202",
+    "plan": "# twr-twr-bs04-exit-0: Walking onto exit 0 of TWR_BS04 (scene 212) should lead to scene 202\nlimit 20000\nenter 32980 0 16713471 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 212 save ee0390b7ce96f508 state 0c4db0cd03354dec ram 0000000000000000",
+     "arrived frame 299 scene 202 save 87d7a46bd4a7c669 state 79f6d6fa85d8da73 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (53, 144): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 37,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "69f8b49086fa76f0aad9cacd9f4c7ce0"
+     },
+     {
+      "frames": 70,
+      "sha256": "b4a80257e4868ae70709e5d2bfca788d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs05-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs05-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS05 (scene 916) should lead to scene 202",
+    "plan": "# twr-twr-bs05-exit-0: Walking onto exit 0 of TWR_BS05 (scene 916) should lead to scene 202\nlimit 20000\nenter 916 0 16776959 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 916 save 32b2c826a62e2ccd state 34a53b2f38be8be6 ram 0000000000000000",
+     "arrived frame 336 scene 202 save 87d7a46bd4a7c669 state 4c17856bbb7bce59 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (53, 144): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3cfcf88072b3376374204e3eb0a9c138"
+     },
+     {
+      "frames": 107,
+      "sha256": "6268d600518ba3568eb85d172a7ce079"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-bs06-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-bs06-exit-0",
+    "description": "Walking onto exit 0 of TWR_BS06 (scene 917) should lead to scene 202",
+    "plan": "# twr-twr-bs06-exit-0: Walking onto exit 0 of TWR_BS06 (scene 917) should lead to scene 202\nlimit 20000\nenter 917 0 16717311 0\ncheckpoint entered\nexit 0 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 917 save 970573208fcc01c9 state 8fa901dbb28db19f ram 0000000000000000",
+     "arrived frame 410 scene 202 save 6b1911e3befecda7 state 78e496b2a20c9b35 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (53, 144): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 227,
+     "instruction_end": 66,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7186259ef0692ff94843b30e4cef848b"
+     },
+     {
+      "frames": 181,
+      "sha256": "a5bb012869d62deec2f18ff293b91ac8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-e000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-e000-exit-0",
+    "description": "Walking onto exit 0 of TWR_E000 (scene 176) should lead to the world map",
+    "plan": "# twr-twr-e000-exit-0: Walking onto exit 0 of TWR_E000 (scene 176) should lead to the world map\nlimit 20000\nenter 176 0 16713471 0\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 176 save 8a7b7be18e7eb8fc state 412d9e423fef4b93 ram 0000000000000000",
+     "arrived frame 948 scene 32767 save 59d52fc0764bbe75 state d63331f32d290fd4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (160, 10): 1 waypoints",
+     "game state 1 at vblank 2221"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 66,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4082a93fbc8ecc96c424d30d0526eec4"
+     },
+     {
+      "frames": 718,
+      "sha256": "90edca7a6183d7475b1b68b8c423ed9e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-e000-exit-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 1 of TWR_E000 needs",
+    "source": "built from the conditions in scene 176's script 1 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1158": 2
+    }
+   },
+   "baseline": {
+    "route": "twr-twr-e000-exit-1",
+    "description": "Walking onto exit 1 of TWR_E000 (scene 176) should lead to scene 180",
+    "plan": "# twr-twr-e000-exit-1: Walking onto exit 1 of TWR_E000 (scene 176) should lead to scene 180\nlimit 20000\nenter 176 0 16713471 1\ncheckpoint entered\nexit 1 180\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 176 save c369035e9090789b state 93a1121312921c0f ram 0000000000000000",
+     "arrived frame 874 scene 180 save b4835f2dcdf44a62 state a02400ecb7c21d9f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (209, 276): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 59,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "38aab701c5ec50e842f84639d9b43cb6"
+     },
+     {
+      "frames": 645,
+      "sha256": "e86b5940fa9c31c3f4672ddc79c91603"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i100-exit-0",
+    "description": "Walking onto exit 0 of TWR_I100 (scene 177) should lead to scene 176",
+    "plan": "# twr-twr-i100-exit-0: Walking onto exit 0 of TWR_I100 (scene 177) should lead to scene 176\nlimit 20000\nenter 32945 0 16720394 1\ncheckpoint entered\nexit 0 176\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 177 save c0b3dc09459aee70 state 0cf21e9f64a76b73 ram 0000000000000000",
+     "arrived frame 594 scene 176 save de4c041d347d9635 state ea4d371574757e36 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (413, 244): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 49,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ef25d3f1e280d0e61f1bd9af56b1aca7"
+     },
+     {
+      "frames": 365,
+      "sha256": "dcba66ce1e4ecabdf496046cbb2a4923"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i100-exit-1",
+    "description": "Walking onto exit 1 of TWR_I100 (scene 177) should lead to scene 181",
+    "plan": "# twr-twr-i100-exit-1: Walking onto exit 1 of TWR_I100 (scene 177) should lead to scene 181\nlimit 20000\nenter 32945 0 16720394 1\ncheckpoint entered\nexit 1 181\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 177 save c0b3dc09459aee70 state 0cf21e9f64a76b73 ram 0000000000000000",
+     "arrived frame 294 scene 181 save b7cc739b01e41924 state 87f3eee36255988c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 63,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ef25d3f1e280d0e61f1bd9af56b1aca7"
+     },
+     {
+      "frames": 65,
+      "sha256": "bdf4f1c758ce0e035485adabb67bec8f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i100-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i100-exit-2",
+    "description": "Walking onto exit 2 of TWR_I100 (scene 177) should lead to scene 182",
+    "plan": "# twr-twr-i100-exit-2: Walking onto exit 2 of TWR_I100 (scene 177) should lead to scene 182\nlimit 20000\nenter 32945 0 16720394 1\ncheckpoint entered\nexit 2 182\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 177 save c0b3dc09459aee70 state 0cf21e9f64a76b73 ram 0000000000000000",
+     "arrived frame 525 scene 182 save 73fe1b83c8da587c state 1fa3dc77319dcd74 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 112): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 52,
+     "instruction": 147,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ef25d3f1e280d0e61f1bd9af56b1aca7"
+     },
+     {
+      "frames": 296,
+      "sha256": "383d39d4b14dbed54bb23e1a2797d5a4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i103-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i103-exit-0",
+    "description": "Walking onto exit 0 of TWR_I103 (scene 180) should lead to scene 176",
+    "plan": "# twr-twr-i103-exit-0: Walking onto exit 0 of TWR_I103 (scene 180) should lead to scene 176\nlimit 20000\nenter 180 0 16713471 0\ncheckpoint entered\nexit 0 176\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 180 save 2f83374c8f958568 state b1be1deb40c0afc5 ram 0000000000000000",
+     "arrived frame 321 scene 176 save de4c041d347d9635 state c9ca0a0a13a0b8cd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (413, 244): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 45,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c713b4586aa993792d0c645c5fd1746b"
+     },
+     {
+      "frames": 92,
+      "sha256": "f9f417d3c54ce0a884f020640fef4c84"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i103-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i103-exit-1",
+    "description": "Walking onto exit 1 of TWR_I103 (scene 180) should lead to scene 181",
+    "plan": "# twr-twr-i103-exit-1: Walking onto exit 1 of TWR_I103 (scene 180) should lead to scene 181\nlimit 20000\nenter 180 0 16713471 0\ncheckpoint entered\nexit 1 181\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 180 save 2f83374c8f958568 state b1be1deb40c0afc5 ram 0000000000000000",
+     "arrived frame 428 scene 181 save b7cc739b01e41924 state 79a947e51b6db8ba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 112): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c713b4586aa993792d0c645c5fd1746b"
+     },
+     {
+      "frames": 199,
+      "sha256": "58f3835a4c6453de164d5527b746d25a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i103-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i103-exit-2",
+    "description": "Walking onto exit 2 of TWR_I103 (scene 180) should lead to scene 182",
+    "plan": "# twr-twr-i103-exit-2: Walking onto exit 2 of TWR_I103 (scene 180) should lead to scene 182\nlimit 20000\nenter 180 0 16713471 0\ncheckpoint entered\nexit 2 182\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 180 save 2f83374c8f958568 state b1be1deb40c0afc5 ram 0000000000000000",
+     "arrived frame 429 scene 182 save 73fe1b83c8da587c state 9e242a45a3434295 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 112): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 48,
+     "instruction": 145,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c713b4586aa993792d0c645c5fd1746b"
+     },
+     {
+      "frames": 200,
+      "sha256": "c21ae73a86278fdf772395beed2d6ca5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i110-exit-0",
+    "description": "Walking onto exit 0 of TWR_I110 (scene 181) should lead to one of scene 177, scene 180",
+    "plan": "# twr-twr-i110-exit-0: Walking onto exit 0 of TWR_I110 (scene 181) should lead to one of scene 177, scene 180\nlimit 20000\nenter 32949 1 16713471 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 181 save cda5482b3e75f6a0 state b5fdc3337994ac6b ram 0000000000000000",
+     "arrived frame 307 scene 180 save 9f51de547a778881 state db6c49c1447e9718 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (182, 252): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5853db49db2b5c1c4baa58bce9d943a5"
+     },
+     {
+      "frames": 78,
+      "sha256": "3da2d81ab9097e899687b44ce3c71b1e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i120-exit-0",
+    "description": "Walking onto exit 0 of TWR_I120 (scene 182) should lead to one of scene 177, scene 180",
+    "plan": "# twr-twr-i120-exit-0: Walking onto exit 0 of TWR_I120 (scene 182) should lead to one of scene 177, scene 180\nlimit 20000\nenter 32950 2 16713471 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 182 save 4d90f50854b8bdf8 state 04755e087c62e6a9 ram 0000000000000000",
+     "arrived frame 307 scene 180 save 0707d13b6e2f1a4e state d92bec0c09e5ef48 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (710, 254): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 49,
+     "instruction": 157,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a686207305e9155e3c8ae02f81349a7e"
+     },
+     {
+      "frames": 78,
+      "sha256": "3522b829c828ee1151134185f675d0e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i120-exit-1",
+    "description": "Walking onto exit 1 of TWR_I120 (scene 182) should lead to scene 183",
+    "plan": "# twr-twr-i120-exit-1: Walking onto exit 1 of TWR_I120 (scene 182) should lead to scene 183\nlimit 20000\nenter 32950 2 16713471 0\ncheckpoint entered\nexit 1 183\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 182 save 4d90f50854b8bdf8 state 04755e087c62e6a9 ram 0000000000000000",
+     "arrived frame 1564 scene 183 save d84ec168ee43d55e state d712101de1581270 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (7, 121): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 377,
+     "instruction_end": 126,
+     "exit": 1,
+     "song": 3,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a686207305e9155e3c8ae02f81349a7e"
+     },
+     {
+      "frames": 1335,
+      "sha256": "505fe16ac31b1bd6818caed747e3b4c9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i130-exit-0",
+    "description": "Walking onto exit 0 of TWR_I130 (scene 183) should lead to scene 182",
+    "plan": "# twr-twr-i130-exit-0: Walking onto exit 0 of TWR_I130 (scene 183) should lead to scene 182\nlimit 20000\nenter 32951 3 16713471 0\ncheckpoint entered\nexit 0 182\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 183 save 854b218246beabb0 state 052b9fc203460fd6 ram 0000000000000000",
+     "arrived frame 305 scene 182 save fbc77457295f0d91 state 003940b2e1327215 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (718, 284): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 64,
+     "instruction": 165,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "66933b4707ad27bdd950142243052e8b"
+     },
+     {
+      "frames": 76,
+      "sha256": "a53725d4e945ec11557e6088ddfb58cb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i130-exit-1",
+    "description": "Walking onto exit 1 of TWR_I130 (scene 183) should lead to scene 184",
+    "plan": "# twr-twr-i130-exit-1: Walking onto exit 1 of TWR_I130 (scene 183) should lead to scene 184\nlimit 20000\nenter 32951 3 16713471 0\ncheckpoint entered\nexit 1 184\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 183 save 854b218246beabb0 state 052b9fc203460fd6 ram 0000000000000000",
+     "arrived frame 2226 scene 184 save 83add7ed22fa125f state 5d0d10508deae594 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (25, 171): -3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1550 frames",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 353,
+     "instruction_end": 108,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "66933b4707ad27bdd950142243052e8b"
+     },
+     {
+      "frames": 1997,
+      "sha256": "e8da935debdcabf358d496976fd2e5d6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i200-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i200-exit-0",
+    "description": "Walking onto exit 0 of TWR_I200 (scene 184) should lead to scene 183",
+    "plan": "# twr-twr-i200-exit-0: Walking onto exit 0 of TWR_I200 (scene 184) should lead to scene 183\nlimit 20000\nenter 184 0 16713471 0\ncheckpoint entered\nexit 0 183\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 184 save 625bda7d1074d334 state 0c0dcc1b7b1fa216 ram 0000000000000000",
+     "arrived frame 325 scene 183 save 6b164d2651316197 state e0403d63a98a2616 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (32, 5): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13c0dbc9d8a0e1515add594524bae365"
+     },
+     {
+      "frames": 96,
+      "sha256": "20e66444a195ff0eec379afbfa0a9616"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i200-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i200-exit-1",
+    "description": "Walking onto exit 1 of TWR_I200 (scene 184) should lead to scene 185",
+    "plan": "# twr-twr-i200-exit-1: Walking onto exit 1 of TWR_I200 (scene 184) should lead to scene 185\nlimit 20000\nenter 184 0 16713471 0\ncheckpoint entered\nexit 1 185\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 184 save 625bda7d1074d334 state 0c0dcc1b7b1fa216 ram 0000000000000000",
+     "arrived frame 619 scene 185 save a10a767cb7b9a7f2 state e54ca3034253cab2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (788, 258): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 56,
+     "instruction": 156,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13c0dbc9d8a0e1515add594524bae365"
+     },
+     {
+      "frames": 390,
+      "sha256": "74a3c89547c0eb2fe61183078924bcf1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i200-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i200-exit-2",
+    "description": "Walking onto exit 2 of TWR_I200 (scene 184) should lead to scene 214",
+    "plan": "# twr-twr-i200-exit-2: Walking onto exit 2 of TWR_I200 (scene 184) should lead to scene 214\nlimit 20000\nenter 184 0 16713471 0\ncheckpoint entered\nexit 2 214\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 184 save 625bda7d1074d334 state 0c0dcc1b7b1fa216 ram 0000000000000000",
+     "arrived frame 624 scene 214 save c7e6296015cf9520 state fc2b2b9d4e713f3b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (911, 138): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "13c0dbc9d8a0e1515add594524bae365"
+     },
+     {
+      "frames": 395,
+      "sha256": "166fad3cee5263ca931577adea0c96d6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i210-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i210-exit-0",
+    "description": "Walking onto exit 0 of TWR_I210 (scene 185) should lead to scene 184",
+    "plan": "# twr-twr-i210-exit-0: Walking onto exit 0 of TWR_I210 (scene 185) should lead to scene 184\nlimit 20000\nenter 32953 1 16713471 0\ncheckpoint entered\nexit 0 184\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 185 save 6cf9c866f725a22c state 4f365d739499dce9 ram 0000000000000000",
+     "arrived frame 305 scene 184 save be60b28ded4aa7bb state b029a4ddfa66d23a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (900, 12): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 57,
+     "instruction": 174,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "786a3d77a5d93e56f68d1e25902bb6c9"
+     },
+     {
+      "frames": 76,
+      "sha256": "119453392095bda8db4c617a02c1dd03"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i210-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i210-exit-1",
+    "description": "Walking onto exit 1 of TWR_I210 (scene 185) should lead to scene 213",
+    "plan": "# twr-twr-i210-exit-1: Walking onto exit 1 of TWR_I210 (scene 185) should lead to scene 213\nlimit 20000\nenter 32953 1 16713471 1\ncheckpoint entered\nexit 1 213\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 185 save de930853288ec575 state 789a97df6a07f0ac ram 0000000000000000",
+     "arrived frame 298 scene 213 save c336f59b154b9f5f state c124c376a1793676 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 152): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 57,
+     "instruction": 174,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cfa94dc0610d705ce3445ec7045d9ea4"
+     },
+     {
+      "frames": 69,
+      "sha256": "c2264c4462f89e3c766315421028d811"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i300-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i300-exit-0",
+    "description": "Walking onto exit 0 of TWR_I300 (scene 186) should lead to scene 213",
+    "plan": "# twr-twr-i300-exit-0: Walking onto exit 0 of TWR_I300 (scene 186) should lead to scene 213\nlimit 20000\nenter 186 0 16713471 1\ncheckpoint entered\nexit 0 213\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 186 save 622597ed943b7c57 state 39613bdb5d5f80ca ram 0000000000000000",
+     "arrived frame 500 scene 213 save a7654f9b590ea5b0 state 0dda4d9f133530bd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (49, 136): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4e3853391b66c5540a04e649c41eb3c2"
+     },
+     {
+      "frames": 271,
+      "sha256": "acaa5e043d695bb2989f547980361b34"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i300-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i300-exit-1",
+    "description": "Walking onto exit 1 of TWR_I300 (scene 186) should lead to scene 204",
+    "plan": "# twr-twr-i300-exit-1: Walking onto exit 1 of TWR_I300 (scene 186) should lead to scene 204\nlimit 20000\nenter 186 0 16713471 1\ncheckpoint entered\nexit 1 204\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 186 save 622597ed943b7c57 state 39613bdb5d5f80ca ram 0000000000000000",
+     "arrived frame 310 scene 204 save 3658eeca6590aa78 state b68fccee52bbc3a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (479, 292): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4e3853391b66c5540a04e649c41eb3c2"
+     },
+     {
+      "frames": 81,
+      "sha256": "7d3fc80464f016780fec24acff47a32b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i310-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i310-exit-0",
+    "description": "Walking onto exit 0 of TWR_I310 (scene 187) should lead to scene 214",
+    "plan": "# twr-twr-i310-exit-0: Walking onto exit 0 of TWR_I310 (scene 187) should lead to scene 214\nlimit 20000\nenter 32955 1 16713471 0\ncheckpoint entered\nexit 0 214\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 187 save 95c5f30cadef7576 state 767ef88f4135ba8e ram 0000000000000000",
+     "arrived frame 299 scene 214 save 6058c8b25bb3f8a3 state af4e8bd2874f63a9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (935, 152): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "00a28ab796aa021e4081deaecbb9283a"
+     },
+     {
+      "frames": 70,
+      "sha256": "95399cf85f8c241c5e74b896ecc7915e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i310-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i310-exit-1",
+    "description": "Walking onto exit 1 of TWR_I310 (scene 187) should lead to scene 215",
+    "plan": "# twr-twr-i310-exit-1: Walking onto exit 1 of TWR_I310 (scene 187) should lead to scene 215\nlimit 20000\nenter 32955 1 16713471 0\ncheckpoint entered\nexit 1 215\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 187 save 95c5f30cadef7576 state 767ef88f4135ba8e ram 0000000000000000",
+     "arrived frame 4078 scene 215 save 193feb666fc2b81e state ff06552bc94ffb4d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 152): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1010 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2510 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 539,
+     "instruction_end": 147,
+     "song": 3,
+     "exit": 1,
+     "scene": 3,
+     "monster": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "00a28ab796aa021e4081deaecbb9283a"
+     },
+     {
+      "frames": 3849,
+      "sha256": "b9beb59ed5f65daf13c536a83e96b316"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i400-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i400-exit-0",
+    "description": "Walking onto exit 0 of TWR_I400 (scene 188) should lead to scene 215",
+    "plan": "# twr-twr-i400-exit-0: Walking onto exit 0 of TWR_I400 (scene 188) should lead to scene 215\nlimit 20000\nenter 32956 0 16713471 1\ncheckpoint entered\nexit 0 215\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 188 save ac6f5afbd7a68229 state 6e5119b680332ae0 ram 0000000000000000",
+     "arrived frame 349 scene 215 save 23929042413d9a28 state 376c209477f78cde ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (48, 136): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 171,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f3ec820e587676eda0c993d2a0044f3"
+     },
+     {
+      "frames": 120,
+      "sha256": "b446546499ce24240f0ba2a9a54214fc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i400-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i400-exit-1",
+    "description": "Walking onto exit 1 of TWR_I400 (scene 188) should lead to scene 189",
+    "plan": "# twr-twr-i400-exit-1: Walking onto exit 1 of TWR_I400 (scene 188) should lead to scene 189\nlimit 20000\nenter 32956 0 16713471 1\ncheckpoint entered\nexit 1 189\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 188 save ac6f5afbd7a68229 state 6e5119b680332ae0 ram 0000000000000000",
+     "arrived frame 307 scene 189 save b706486220cf93c6 state 0fa01f916e221dc0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (172, 254): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 62,
+     "instruction": 187,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f3ec820e587676eda0c993d2a0044f3"
+     },
+     {
+      "frames": 78,
+      "sha256": "2cb2b1e4ac94c094b661c2100683adce"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i400-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i400-exit-2",
+    "description": "Walking onto exit 2 of TWR_I400 (scene 188) should lead to scene 216",
+    "plan": "# twr-twr-i400-exit-2: Walking onto exit 2 of TWR_I400 (scene 188) should lead to scene 216\nlimit 20000\nenter 32956 0 16713471 1\ncheckpoint entered\nexit 2 216\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 188 save ac6f5afbd7a68229 state 6e5119b680332ae0 ram 0000000000000000",
+     "arrived frame 3048 scene 216 save 5ac61e82ede8884a state 6c45f0a5701408ea ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (912, 136): 2 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1070 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1310 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 471,
+     "instruction_end": 131,
+     "song": 3,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3f3ec820e587676eda0c993d2a0044f3"
+     },
+     {
+      "frames": 2819,
+      "sha256": "2d50187b71fb4b8f98cd17b33793d506"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i410-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i410-exit-0",
+    "description": "Walking onto exit 0 of TWR_I410 (scene 189) should lead to scene 188",
+    "plan": "# twr-twr-i410-exit-0: Walking onto exit 0 of TWR_I410 (scene 189) should lead to scene 188\nlimit 20000\nenter 189 1 16713471 0\ncheckpoint entered\nexit 0 188\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 189 save 1100eaa4767be6d8 state 7ef2b43dc0e4ec26 ram 0000000000000000",
+     "arrived frame 304 scene 188 save 670c946ae0b43ebb state 39f8ac0cc06317c2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (75, 12): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 61,
+     "instruction": 177,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2aedc52e8d412d8e5d378466445f711b"
+     },
+     {
+      "frames": 75,
+      "sha256": "6ec2ca524c598409bb78c8edc482163f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i500-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i500-exit-0",
+    "description": "Walking onto exit 0 of TWR_I500 (scene 190) should lead to scene 191",
+    "plan": "# twr-twr-i500-exit-0: Walking onto exit 0 of TWR_I500 (scene 190) should lead to scene 191\nlimit 20000\nenter 32958 0 16713471 0\ncheckpoint entered\nexit 0 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 190 save c6f37fbe475df40a state b04e600a1ad54435 ram 0000000000000000",
+     "arrived frame 310 scene 191 save a7706346de260c63 state 3cd16ffff74f3b01 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (691, 254): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "34f386f4bbd631d3e6e8b9b889738a28"
+     },
+     {
+      "frames": 81,
+      "sha256": "3b416135a56e018b3b981125ac6f20b5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i500-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i500-exit-1",
+    "description": "Walking onto exit 1 of TWR_I500 (scene 190) should lead to scene 193",
+    "plan": "# twr-twr-i500-exit-1: Walking onto exit 1 of TWR_I500 (scene 190) should lead to scene 193\nlimit 20000\nenter 32958 0 16713471 0\ncheckpoint entered\nexit 1 193\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 190 save c6f37fbe475df40a state b04e600a1ad54435 ram 0000000000000000",
+     "arrived frame 3034 scene 193 save 00a8092578c1f181 state b6ead845fc04845c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (23, 196): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1550 frames",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 437,
+     "instruction_end": 124,
+     "song": 3,
+     "monster": 2,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "34f386f4bbd631d3e6e8b9b889738a28"
+     },
+     {
+      "frames": 2805,
+      "sha256": "ec8edb7327d25d83f658dc4aec9b3683"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i510-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i510-exit-0",
+    "description": "Walking onto exit 0 of TWR_I510 (scene 191) should lead to scene 216",
+    "plan": "# twr-twr-i510-exit-0: Walking onto exit 0 of TWR_I510 (scene 191) should lead to scene 216\nlimit 20000\nenter 191 1 16713471 1\ncheckpoint entered\nexit 0 216\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 191 save 5c48a058fddafbdb state 101fb9575614a7b3 ram 0000000000000000",
+     "arrived frame 332 scene 216 save 94b2df090d5bc3c5 state 19db043e6eda03a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (935, 152): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31eacaec458cd0fff47b7cfa895cc908"
+     },
+     {
+      "frames": 103,
+      "sha256": "c9d2db31c77162e4c9bf918c09b6b4d7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i510-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i510-exit-1",
+    "description": "Walking onto exit 1 of TWR_I510 (scene 191) should lead to scene 190",
+    "plan": "# twr-twr-i510-exit-1: Walking onto exit 1 of TWR_I510 (scene 191) should lead to scene 190\nlimit 20000\nenter 191 1 16713471 1\ncheckpoint entered\nexit 1 190\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 191 save 5c48a058fddafbdb state 101fb9575614a7b3 ram 0000000000000000",
+     "arrived frame 306 scene 190 save 91f91a39a4d3f946 state df627e0d641ca827 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (908, 12): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31eacaec458cd0fff47b7cfa895cc908"
+     },
+     {
+      "frames": 77,
+      "sha256": "9fb21f7afcd6a2cbefa1bd156a583ff9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i510-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i510-exit-2",
+    "description": "Walking onto exit 2 of TWR_I510 (scene 191) should lead to scene 217",
+    "plan": "# twr-twr-i510-exit-2: Walking onto exit 2 of TWR_I510 (scene 191) should lead to scene 217\nlimit 20000\nenter 191 1 16713471 1\ncheckpoint entered\nexit 2 217\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 191 save 5c48a058fddafbdb state 101fb9575614a7b3 ram 0000000000000000",
+     "arrived frame 640 scene 217 save 134fc2ff1d953a65 state 28ecd41376709205 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 152): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 40,
+     "instruction": 157,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "31eacaec458cd0fff47b7cfa895cc908"
+     },
+     {
+      "frames": 411,
+      "sha256": "a8ee171438486bc0065ef349c029578d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i600-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i600-exit-0",
+    "description": "Walking onto exit 0 of TWR_I600 (scene 192) should lead to scene 217",
+    "plan": "# twr-twr-i600-exit-0: Walking onto exit 0 of TWR_I600 (scene 192) should lead to scene 217\nlimit 20000\nenter 192 0 16713471 1\ncheckpoint entered\nexit 0 217\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 192 save 96f4d826a3b34ce5 state 39613bdb5d5f80ca ram 0000000000000000",
+     "arrived frame 491 scene 217 save a4cdc903f332e612 state 8d577fc8abe17602 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (48, 136): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a98bd8bbd0b0a3105acee9f6d2d9f8ab"
+     },
+     {
+      "frames": 262,
+      "sha256": "9475264390f77d0af3a0e5e62c9ec6f4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i600-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i600-exit-1",
+    "description": "Walking onto exit 1 of TWR_I600 (scene 192) should lead to scene 204",
+    "plan": "# twr-twr-i600-exit-1: Walking onto exit 1 of TWR_I600 (scene 192) should lead to scene 204\nlimit 20000\nenter 192 0 16713471 1\ncheckpoint entered\nexit 1 204\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 192 save 96f4d826a3b34ce5 state 39613bdb5d5f80ca ram 0000000000000000",
+     "arrived frame 310 scene 204 save d24421c16e496a87 state b68fccee52bbc3a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (479, 292): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a98bd8bbd0b0a3105acee9f6d2d9f8ab"
+     },
+     {
+      "frames": 81,
+      "sha256": "14622a1631bc1bbf847800e0f24e809f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i600-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i600-exit-2",
+    "description": "Walking onto exit 2 of TWR_I600 (scene 192) should lead to scene 219",
+    "plan": "# twr-twr-i600-exit-2: Walking onto exit 2 of TWR_I600 (scene 192) should lead to scene 219\nlimit 20000\nenter 192 0 16713471 1\ncheckpoint entered\nexit 2 219\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 192 save 96f4d826a3b34ce5 state 39613bdb5d5f80ca ram 0000000000000000",
+     "arrived frame 486 scene 219 save bc2c7ea635d2b465 state 97a08ea739102b3c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (912, 136): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a98bd8bbd0b0a3105acee9f6d2d9f8ab"
+     },
+     {
+      "frames": 257,
+      "sha256": "22ba0e59832e23fa1ffbbe6d2c38359f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i610-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i610-exit-0",
+    "description": "Walking onto exit 0 of TWR_I610 (scene 193) should lead to scene 190",
+    "plan": "# twr-twr-i610-exit-0: Walking onto exit 0 of TWR_I610 (scene 193) should lead to scene 190\nlimit 20000\nenter 193 1 16713471 0\ncheckpoint entered\nexit 0 190\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 193 save 7022d773b0547be4 state d95b841c9d1fb3fb ram 0000000000000000",
+     "arrived frame 326 scene 190 save f05e2319d9957731 state 6757611ab31dd247 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (31, 4): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa51a56be8ea54e3e58e15614dd83c9c"
+     },
+     {
+      "frames": 97,
+      "sha256": "50ea40ac22f4848eabd7440538416edf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i610-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i610-exit-1",
+    "description": "Walking onto exit 1 of TWR_I610 (scene 193) should lead to scene 218",
+    "plan": "# twr-twr-i610-exit-1: Walking onto exit 1 of TWR_I610 (scene 193) should lead to scene 218\nlimit 20000\nenter 193 1 16713471 0\ncheckpoint entered\nexit 1 218\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 193 save 7022d773b0547be4 state d95b841c9d1fb3fb ram 0000000000000000",
+     "arrived frame 429 scene 218 save 2c5e928c3bf357e4 state 5e1f24e4b1851bc9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (48, 152): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 36,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa51a56be8ea54e3e58e15614dd83c9c"
+     },
+     {
+      "frames": 200,
+      "sha256": "76d7131d7a142c2684e9cfb913e0c49f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i620-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i620-exit-0",
+    "description": "Walking onto exit 0 of TWR_I620 (scene 194) should lead to scene 191",
+    "plan": "# twr-twr-i620-exit-0: Walking onto exit 0 of TWR_I620 (scene 194) should lead to scene 191\nlimit 20000\nenter 194 2 16713471 1\ncheckpoint entered\nexit 0 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 194 save 52e9f255f5013035 state 5d81dc184ce9e224 ram 0000000000000000",
+     "arrived frame 407 scene 191 save 49ced1e8ab8f5b6f state e9dfc3a59617be96 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (165, 260): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "461c310da053619002db0c7b7dbd2791"
+     },
+     {
+      "frames": 178,
+      "sha256": "c5a19b0801c95051f7fbe4040b4badc4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i700-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i700-exit-0",
+    "description": "Walking onto exit 0 of TWR_I700 (scene 195) should lead to scene 218",
+    "plan": "# twr-twr-i700-exit-0: Walking onto exit 0 of TWR_I700 (scene 195) should lead to scene 218\nlimit 20000\nenter 32963 0 16713471 0\ncheckpoint entered\nexit 0 218\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 195 save 6d95a88b7873d88f state be1487e2ae7f4cfb ram 0000000000000000",
+     "arrived frame 297 scene 218 save 3b2dd8d615992427 state 82e24f9a06252da1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (47, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b785bb0050cf2582b2cfa2b9c283224"
+     },
+     {
+      "frames": 68,
+      "sha256": "21f99f763761aac5802174bedce83946"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i700-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i700-exit-1",
+    "description": "Walking onto exit 1 of TWR_I700 (scene 195) should lead to scene 220",
+    "plan": "# twr-twr-i700-exit-1: Walking onto exit 1 of TWR_I700 (scene 195) should lead to scene 220\nlimit 20000\nenter 32963 0 16713471 1\ncheckpoint entered\nexit 1 220\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 195 save 2221688776fe7976 state 8d59aa9c0e1a7225 ram 0000000000000000",
+     "arrived frame 299 scene 220 save dbedd3aa3e6b9750 state 7657f94607715c58 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (912, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "72b50b7db833be320d85e60461c3f4f8"
+     },
+     {
+      "frames": 70,
+      "sha256": "5891a27167a15d1297b49970f38b9b46"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i710-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i710-exit-0",
+    "description": "Walking onto exit 0 of TWR_I710 (scene 196) should lead to scene 219",
+    "plan": "# twr-twr-i710-exit-0: Walking onto exit 0 of TWR_I710 (scene 196) should lead to scene 219\nlimit 20000\nenter 32964 1 16713471 0\ncheckpoint entered\nexit 0 219\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 196 save 82b881e2cf8e8c29 state 894b79815fbbfc09 ram 0000000000000000",
+     "arrived frame 300 scene 219 save dfcc302fc7ad284e state ad01a3015dddf7a7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (936, 152): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1eba9b1fc5fbe51b3d900b9bb9753602"
+     },
+     {
+      "frames": 71,
+      "sha256": "32e2c84ad4f34f4bb46e6f76c4355a95"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i710-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i710-exit-1",
+    "description": "Walking onto exit 1 of TWR_I710 (scene 196) should lead to scene 191",
+    "plan": "# twr-twr-i710-exit-1: Walking onto exit 1 of TWR_I710 (scene 196) should lead to scene 191\nlimit 20000\nenter 32964 1 16713471 0\ncheckpoint entered\nexit 1 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 196 save 82b881e2cf8e8c29 state 894b79815fbbfc09 ram 0000000000000000",
+     "arrived frame 2879 scene 191 save 2729f789cd99969e state 40072ef6a655cfdb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (495, 260): 3 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1970 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 402,
+     "instruction_end": 123,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1eba9b1fc5fbe51b3d900b9bb9753602"
+     },
+     {
+      "frames": 2650,
+      "sha256": "ab86a0cf8e8eeaecd173033ba7b69b33"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i710-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i710-exit-2",
+    "description": "Walking onto exit 2 of TWR_I710 (scene 196) should lead to scene 189",
+    "plan": "# twr-twr-i710-exit-2: Walking onto exit 2 of TWR_I710 (scene 196) should lead to scene 189\nlimit 20000\nenter 32964 1 16713471 0\ncheckpoint entered\nexit 2 189\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 196 save 82b881e2cf8e8c29 state 894b79815fbbfc09 ram 0000000000000000",
+     "arrived frame 2315 scene 189 save b574ae37d924c414 state bc2968e69af25070 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (261, 263): 4 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1730 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 414,
+     "instruction_end": 126,
+     "song": 3,
+     "monster": 1,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1eba9b1fc5fbe51b3d900b9bb9753602"
+     },
+     {
+      "frames": 2086,
+      "sha256": "d204788b95a9c079241b66f3849e6e63"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i800-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i800-exit-0",
+    "description": "Walking onto exit 0 of TWR_I800 (scene 197) should lead to scene 198",
+    "plan": "# twr-twr-i800-exit-0: Walking onto exit 0 of TWR_I800 (scene 197) should lead to scene 198\nlimit 20000\nenter 197 0 16713471 0\ncheckpoint entered\nexit 0 198\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 197 save 18d95b702d08e501 state b90087afb2cc3e4b ram 0000000000000000",
+     "arrived frame 304 scene 198 save 514850686524b90b state 1e1af1ab15e49d5f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (174, 258): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 55,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "02ad398229816f7127fa50553981cd80"
+     },
+     {
+      "frames": 75,
+      "sha256": "35ed99482205f6f451c5ca344a0f2435"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i800-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i800-exit-1",
+    "description": "Walking onto exit 1 of TWR_I800 (scene 197) should lead to scene 206",
+    "plan": "# twr-twr-i800-exit-1: Walking onto exit 1 of TWR_I800 (scene 197) should lead to scene 206\nlimit 20000\nenter 197 0 16713471 0\ncheckpoint entered\nexit 1 206\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 197 save 18d95b702d08e501 state b90087afb2cc3e4b ram 0000000000000000",
+     "arrived frame 457 scene 206 save d5a46b65e5c18888 state 2d6faa4de16dcad2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (479, 292): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "02ad398229816f7127fa50553981cd80"
+     },
+     {
+      "frames": 228,
+      "sha256": "5cc8045ce055e0b85e9e9e4979149297"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i810-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i810-exit-0",
+    "description": "Walking onto exit 0 of TWR_I810 (scene 198) should lead to scene 220",
+    "plan": "# twr-twr-i810-exit-0: Walking onto exit 0 of TWR_I810 (scene 198) should lead to scene 220\nlimit 20000\nenter 32966 1 16713471 0\ncheckpoint entered\nexit 0 220\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 198 save fa0ab2e0d36f66d3 state 8ede417474eb50ad ram 0000000000000000",
+     "arrived frame 300 scene 220 save bb7ef2841bbfefc3 state adac31c2ac85ccdf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (935, 152): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ce5b773264a0f1a82c083f779e3d286a"
+     },
+     {
+      "frames": 71,
+      "sha256": "4f1f2989efe62a0a31c4fbf6a4662d53"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i810-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i810-exit-1",
+    "description": "Walking onto exit 1 of TWR_I810 (scene 198) should lead to scene 221",
+    "plan": "# twr-twr-i810-exit-1: Walking onto exit 1 of TWR_I810 (scene 198) should lead to scene 221\nlimit 20000\nenter 32966 1 16713471 2\ncheckpoint entered\nexit 1 221\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 198 save 7676a213f9badf51 state 150f1436b74072e2 ram 0000000000000000",
+     "arrived frame 332 scene 221 save ec112938d9d1aae3 state 0c328077430590de ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (40, 152): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0df9b2e159e340413fd86af9f0f6dacc"
+     },
+     {
+      "frames": 103,
+      "sha256": "e2210aabdb6ab169407199fe23812715"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i810-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i810-exit-2",
+    "description": "Walking onto exit 2 of TWR_I810 (scene 198) should lead to scene 197",
+    "plan": "# twr-twr-i810-exit-2: Walking onto exit 2 of TWR_I810 (scene 198) should lead to scene 197\nlimit 20000\nenter 32966 1 16713471 2\ncheckpoint entered\nexit 2 197\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 198 save 7676a213f9badf51 state 150f1436b74072e2 ram 0000000000000000",
+     "arrived frame 303 scene 197 save ffc377780ed5a8fb state 1d8e2eb049d424e0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (76, 12): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0df9b2e159e340413fd86af9f0f6dacc"
+     },
+     {
+      "frames": 74,
+      "sha256": "8f109f430c428681a6ada377f97a4680"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i900-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i900-exit-0",
+    "description": "Walking onto exit 0 of TWR_I900 (scene 199) should lead to scene 221",
+    "plan": "# twr-twr-i900-exit-0: Walking onto exit 0 of TWR_I900 (scene 199) should lead to scene 221\nlimit 20000\nenter 32967 0 16713471 1\ncheckpoint entered\nexit 0 221\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 199 save 0371d1a6aa82fec2 state ff1ae5d5391ef4d2 ram 0000000000000000",
+     "arrived frame 350 scene 221 save 53d5889e21253214 state a79a84c89fdaa331 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (47, 136): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05fa69bdf73dda94cdd010fdf297c362"
+     },
+     {
+      "frames": 121,
+      "sha256": "3002aa33c9442aa6bf9c70492a0ae56e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i900-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i900-exit-1",
+    "description": "Walking onto exit 1 of TWR_I900 (scene 199) should lead to scene 200",
+    "plan": "# twr-twr-i900-exit-1: Walking onto exit 1 of TWR_I900 (scene 199) should lead to scene 200\nlimit 20000\nenter 32967 0 16713471 1\ncheckpoint entered\nexit 1 200\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 199 save 0371d1a6aa82fec2 state ff1ae5d5391ef4d2 ram 0000000000000000",
+     "arrived frame 307 scene 200 save eda9f5a42635f425 state 82466bcd51902fba ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (172, 254): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05fa69bdf73dda94cdd010fdf297c362"
+     },
+     {
+      "frames": 78,
+      "sha256": "d0c99a39de9044253124715eb5851125"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i900-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i900-exit-2",
+    "description": "Walking onto exit 2 of TWR_I900 (scene 199) should lead to scene 200",
+    "plan": "# twr-twr-i900-exit-2: Walking onto exit 2 of TWR_I900 (scene 199) should lead to scene 200\nlimit 20000\nenter 32967 0 16713471 1\ncheckpoint entered\nexit 2 200\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 199 save 0371d1a6aa82fec2 state ff1ae5d5391ef4d2 ram 0000000000000000",
+     "arrived frame 1155 scene 200 save 9ea0597e053e1113 state 000b55702261411d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (788, 254): 5 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 650 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 287,
+     "instruction_end": 98,
+     "song": 3,
+     "scene": 3,
+     "exit": 1,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05fa69bdf73dda94cdd010fdf297c362"
+     },
+     {
+      "frames": 926,
+      "sha256": "2461b360fc49b63077f3a85ea61d8a3c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i910-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i910-exit-0",
+    "description": "Walking onto exit 0 of TWR_I910 (scene 200) should lead to scene 199",
+    "plan": "# twr-twr-i910-exit-0: Walking onto exit 0 of TWR_I910 (scene 200) should lead to scene 199\nlimit 20000\nenter 200 1 16713471 0\ncheckpoint entered\nexit 0 199\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 200 save 6a7953985a1d01e5 state d30f7236e0499850 ram 0000000000000000",
+     "arrived frame 304 scene 199 save 2543caa1049a7056 state 4e3ce04457978f33 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (76, 12): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b4a418c85ec44f94d63b3dd8a536fda"
+     },
+     {
+      "frames": 75,
+      "sha256": "8d101e4a49428ab0e3536b6ec31b298b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i910-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i910-exit-1",
+    "description": "Walking onto exit 1 of TWR_I910 (scene 200) should lead to scene 199",
+    "plan": "# twr-twr-i910-exit-1: Walking onto exit 1 of TWR_I910 (scene 200) should lead to scene 199\nlimit 20000\nenter 200 1 16713471 0\ncheckpoint entered\nexit 1 199\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 200 save 6a7953985a1d01e5 state d30f7236e0499850 ram 0000000000000000",
+     "arrived frame 624 scene 199 save d6ff9a6f6a73c589 state 195e0507d5a9c222 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (907, 12): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b4a418c85ec44f94d63b3dd8a536fda"
+     },
+     {
+      "frames": 395,
+      "sha256": "d8bae120cf6a345d1f8a0e45f771c826"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-i910-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-i910-exit-2",
+    "description": "Walking onto exit 2 of TWR_I910 (scene 200) should lead to scene 194",
+    "plan": "# twr-twr-i910-exit-2: Walking onto exit 2 of TWR_I910 (scene 200) should lead to scene 194\nlimit 20000\nenter 200 1 16713471 0\ncheckpoint entered\nexit 2 194\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 200 save 6a7953985a1d01e5 state d30f7236e0499850 ram 0000000000000000",
+     "arrived frame 858 scene 194 save d652ca71c4e5d66d state 3db80d5f8fde21a6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (724, 261): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 47,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b4a418c85ec44f94d63b3dd8a536fda"
+     },
+     {
+      "frames": 629,
+      "sha256": "4f5d6e090261ec42f01429e6c0129406"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ia00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ia00-exit-0",
+    "description": "Walking onto exit 0 of TWR_IA00 (scene 201) should lead to scene 206",
+    "plan": "# twr-twr-ia00-exit-0: Walking onto exit 0 of TWR_IA00 (scene 201) should lead to scene 206\nlimit 20000\nenter 201 0 16713471 1\ncheckpoint entered\nexit 0 206\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 201 save 92a613423ea09da4 state 018baaefc3b67bf8 ram 0000000000000000",
+     "arrived frame 451 scene 206 save 657b5961467d0766 state 6cdcd37139f75f19 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (382, 297): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 147,
+     "instruction_end": 44,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7de6a1de19cb62606e7e033cd5d57440"
+     },
+     {
+      "frames": 222,
+      "sha256": "ab3ec1b331ecbc8b93286b7bfcc845e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ia00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ia00-exit-1",
+    "description": "Walking onto exit 1 of TWR_IA00 (scene 201) should lead to scene 203",
+    "plan": "# twr-twr-ia00-exit-1: Walking onto exit 1 of TWR_IA00 (scene 201) should lead to scene 203\nlimit 20000\nenter 201 0 16713471 1\ncheckpoint entered\nexit 1 203\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 201 save 92a613423ea09da4 state 018baaefc3b67bf8 ram 0000000000000000",
+     "arrived frame 323 scene 203 save 0d2f7650f6b12594 state 157dcbfa59f2137c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (24, 198): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7de6a1de19cb62606e7e033cd5d57440"
+     },
+     {
+      "frames": 94,
+      "sha256": "834746d3b505f2e3bce84ac6bbbaeee8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ib00-exit-0",
+    "description": "Walking onto exit 0 of TWR_IB00 (scene 202) should lead to scene 203",
+    "plan": "# twr-twr-ib00-exit-0: Walking onto exit 0 of TWR_IB00 (scene 202) should lead to scene 203\nlimit 20000\nenter 202 0 16713471 0\ncheckpoint entered\nexit 0 203\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 202 save e44e550680559a4e state 0d6f711c400187f5 ram 0000000000000000",
+     "arrived frame 305 scene 203 save a921f63b96c583af state b05e14ca527bbaab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (786, 258): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 135,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "76336f7db61ad56ff91ac5cc983a5b35"
+     },
+     {
+      "frames": 76,
+      "sha256": "a8491dfcf1bd04607506b4a71f6ff20b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib00-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ib00-exit-1",
+    "description": "Walking onto exit 1 of TWR_IB00 (scene 202) should lead to one of scene 208, scene 209, scene 210, scene 211, scene 212, scene 916, scene 917",
+    "plan": "# twr-twr-ib00-exit-1: Walking onto exit 1 of TWR_IB00 (scene 202) should lead to one of scene 208, scene 209, scene 210, scene 211, scene 212, scene 916, scene 917\nlimit 20000\nenter 202 0 16713471 0\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 202 save e44e550680559a4e state 0d6f711c400187f5 ram 0000000000000000",
+     "arrived frame 458 scene 212 save 393a05d1e16109bc state c986c053c260bd41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (480, 270): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 151,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "76336f7db61ad56ff91ac5cc983a5b35"
+     },
+     {
+      "frames": 229,
+      "sha256": "2c897736cb2a913308b4c797dc68c087"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ib10-exit-0",
+    "description": "Walking onto exit 0 of TWR_IB10 (scene 203) should lead to scene 201",
+    "plan": "# twr-twr-ib10-exit-0: Walking onto exit 0 of TWR_IB10 (scene 203) should lead to scene 201\nlimit 20000\nenter 203 1 16713471 0\ncheckpoint entered\nexit 0 201\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 203 save 84027e0444154786 state 8a77fe52b21268db ram 0000000000000000",
+     "arrived frame 329 scene 201 save bc5d6520420259d8 state c17c2c4b3f575b61 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (32, 5): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbc5923e30f6aeb9137afafca5547708"
+     },
+     {
+      "frames": 100,
+      "sha256": "a5436561d10915bf8ec44c86b5a04dd6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib10-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ib10-exit-1",
+    "description": "Walking onto exit 1 of TWR_IB10 (scene 203) should lead to scene 202",
+    "plan": "# twr-twr-ib10-exit-1: Walking onto exit 1 of TWR_IB10 (scene 203) should lead to scene 202\nlimit 20000\nenter 203 1 16713471 0\ncheckpoint entered\nexit 1 202\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 203 save 84027e0444154786 state 8a77fe52b21268db ram 0000000000000000",
+     "arrived frame 616 scene 202 save 1c3c2d152fb23be2 state e8eb9c00cddbe753 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (906, 12): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 37,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbc5923e30f6aeb9137afafca5547708"
+     },
+     {
+      "frames": 387,
+      "sha256": "9ddba1a585755602314307b0be5899de"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ib10-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ib10-exit-2",
+    "description": "Walking onto exit 2 of TWR_IB10 (scene 203) should lead to scene 191",
+    "plan": "# twr-twr-ib10-exit-2: Walking onto exit 2 of TWR_IB10 (scene 203) should lead to scene 191\nlimit 20000\nenter 203 1 16713471 0\ncheckpoint entered\nexit 2 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 203 save 84027e0444154786 state 8a77fe52b21268db ram 0000000000000000",
+     "arrived frame 612 scene 191 save 9403c26780bbf521 state 35f9fee76b28fe44 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (492, 271): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbc5923e30f6aeb9137afafca5547708"
+     },
+     {
+      "frames": 383,
+      "sha256": "3321d113f67f5334cefd8b3895e1e308"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o200-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o200-exit-0",
+    "description": "Walking onto exit 0 of TWR_O200 (scene 213) should lead to scene 185",
+    "plan": "# twr-twr-o200-exit-0: Walking onto exit 0 of TWR_O200 (scene 213) should lead to scene 185\nlimit 20000\nenter 213 0 16713471 0\ncheckpoint entered\nexit 0 185\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 213 save 8b4713690c9573d1 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 185 save 701d854705f684c3 state bf257969666652a5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 57,
+     "instruction": 156,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7086e44569618da2b82028f366e5b83f"
+     },
+     {
+      "frames": 71,
+      "sha256": "ceb5d6612852e53b1c8c329b2f53bd1f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o200-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o200-exit-1",
+    "description": "Walking onto exit 1 of TWR_O200 (scene 213) should lead to scene 186",
+    "plan": "# twr-twr-o200-exit-1: Walking onto exit 1 of TWR_O200 (scene 213) should lead to scene 186\nlimit 20000\nenter 213 0 16713471 0\ncheckpoint entered\nexit 1 186\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 213 save 8b4713690c9573d1 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 186 save d89d3c4b145eedfc state c89cf90f54602bf6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7086e44569618da2b82028f366e5b83f"
+     },
+     {
+      "frames": 577,
+      "sha256": "2d50d7b2129a193ffc5ee38120f476b9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o210-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o210-exit-0",
+    "description": "Walking onto exit 0 of TWR_O210 (scene 214) should lead to scene 184",
+    "plan": "# twr-twr-o210-exit-0: Walking onto exit 0 of TWR_O210 (scene 214) should lead to scene 184\nlimit 20000\nenter 214 0 16713471 0\ncheckpoint entered\nexit 0 184\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 214 save 44968b3a9e378df2 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 184 save ee13d37e5817b394 state 16eee55e3a6048c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "022b9d592e1e7cf72e7ad8ccb5c7ce4e"
+     },
+     {
+      "frames": 71,
+      "sha256": "2d3515b93812c13e1c63072cb50ab4e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o210-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o210-exit-1",
+    "description": "Walking onto exit 1 of TWR_O210 (scene 214) should lead to scene 187",
+    "plan": "# twr-twr-o210-exit-1: Walking onto exit 1 of TWR_O210 (scene 214) should lead to scene 187\nlimit 20000\nenter 214 0 16713471 0\ncheckpoint entered\nexit 1 187\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 214 save 44968b3a9e378df2 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 187 save f08ee93d4e08c734 state 0f1293d5e6819b23 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "022b9d592e1e7cf72e7ad8ccb5c7ce4e"
+     },
+     {
+      "frames": 577,
+      "sha256": "ed1ff0d6cbb46fd824ecf31f725241c6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o300-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o300-exit-0",
+    "description": "Walking onto exit 0 of TWR_O300 (scene 215) should lead to scene 187",
+    "plan": "# twr-twr-o300-exit-0: Walking onto exit 0 of TWR_O300 (scene 215) should lead to scene 187\nlimit 20000\nenter 215 0 16713471 0\ncheckpoint entered\nexit 0 187\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 215 save 428434eb4810577b state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 187 save 5a155fdca08ae877 state 488032ed8d17dd59 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 57,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "003f396866324e7c72a5e89c9cb7873e"
+     },
+     {
+      "frames": 71,
+      "sha256": "fd3f04ce71314484df49a2e94e112eda"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o300-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o300-exit-1",
+    "description": "Walking onto exit 1 of TWR_O300 (scene 215) should lead to scene 188",
+    "plan": "# twr-twr-o300-exit-1: Walking onto exit 1 of TWR_O300 (scene 215) should lead to scene 188\nlimit 20000\nenter 215 0 16713471 0\ncheckpoint entered\nexit 1 188\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 215 save 428434eb4810577b state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 188 save 4b69317f417e6b28 state 6ba6ad6566d21ab1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "003f396866324e7c72a5e89c9cb7873e"
+     },
+     {
+      "frames": 577,
+      "sha256": "80f782aa1e68f92b22a292322f05aaa1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o400-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o400-exit-0",
+    "description": "Walking onto exit 0 of TWR_O400 (scene 216) should lead to scene 188",
+    "plan": "# twr-twr-o400-exit-0: Walking onto exit 0 of TWR_O400 (scene 216) should lead to scene 188\nlimit 20000\nenter 216 0 16713471 0\ncheckpoint entered\nexit 0 188\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 216 save 71290839c80947d4 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 188 save 1662bcb45ab1dff8 state 1aff4fbe3d3ed90f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0eca23f33b0f27549230215b9478d5c"
+     },
+     {
+      "frames": 71,
+      "sha256": "370b3ccb05f3960d1d174b2da1df3a40"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o400-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o400-exit-1",
+    "description": "Walking onto exit 1 of TWR_O400 (scene 216) should lead to scene 191",
+    "plan": "# twr-twr-o400-exit-1: Walking onto exit 1 of TWR_O400 (scene 216) should lead to scene 191\nlimit 20000\nenter 216 0 16713471 0\ncheckpoint entered\nexit 1 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 216 save 71290839c80947d4 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 191 save 769d8b9e24a68218 state df1b209a301da827 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0eca23f33b0f27549230215b9478d5c"
+     },
+     {
+      "frames": 577,
+      "sha256": "fb732c5db6f91d1a3bd1cf88861eac9c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o500-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o500-exit-0",
+    "description": "Walking onto exit 0 of TWR_O500 (scene 217) should lead to scene 191",
+    "plan": "# twr-twr-o500-exit-0: Walking onto exit 0 of TWR_O500 (scene 217) should lead to scene 191\nlimit 20000\nenter 217 0 16713471 0\ncheckpoint entered\nexit 0 191\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 217 save 41e69e85fce1118d state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 191 save fd91b160f1e4c934 state d0a740fcd4bd3f67 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2ffe1c9b6d187ae78e3278d47931f01f"
+     },
+     {
+      "frames": 71,
+      "sha256": "41c2a1a0a99a07685e46db8f98232818"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o500-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o500-exit-1",
+    "description": "Walking onto exit 1 of TWR_O500 (scene 217) should lead to scene 192",
+    "plan": "# twr-twr-o500-exit-1: Walking onto exit 1 of TWR_O500 (scene 217) should lead to scene 192\nlimit 20000\nenter 217 0 16713471 0\ncheckpoint entered\nexit 1 192\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 217 save 41e69e85fce1118d state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 192 save 8fe26aefa9f1d5d0 state c89cf90f54602bf6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2ffe1c9b6d187ae78e3278d47931f01f"
+     },
+     {
+      "frames": 577,
+      "sha256": "1cc9aa782b6590d616c43fe9f85782bb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o600-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o600-exit-0",
+    "description": "Walking onto exit 0 of TWR_O600 (scene 218) should lead to scene 193",
+    "plan": "# twr-twr-o600-exit-0: Walking onto exit 0 of TWR_O600 (scene 218) should lead to scene 193\nlimit 20000\nenter 218 0 16713471 0\ncheckpoint entered\nexit 0 193\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 218 save 9f16e6929ade709e state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 193 save 42fbe529251a8ebb state b051e52f2502cc91 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf29ed674c0bc181d688826d83aafbbb"
+     },
+     {
+      "frames": 71,
+      "sha256": "0123264995c60787bffdf41ea1cf846a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o600-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o600-exit-1",
+    "description": "Walking onto exit 1 of TWR_O600 (scene 218) should lead to scene 195",
+    "plan": "# twr-twr-o600-exit-1: Walking onto exit 1 of TWR_O600 (scene 218) should lead to scene 195\nlimit 20000\nenter 218 0 16713471 0\ncheckpoint entered\nexit 1 195\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 218 save 9f16e6929ade709e state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 195 save df701a33e59ec53d state 2472c5a4e4dcdb3e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "bf29ed674c0bc181d688826d83aafbbb"
+     },
+     {
+      "frames": 577,
+      "sha256": "8ede332457fe18e71a3883bb77f75baa"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o610-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o610-exit-0",
+    "description": "Walking onto exit 0 of TWR_O610 (scene 219) should lead to scene 192",
+    "plan": "# twr-twr-o610-exit-0: Walking onto exit 0 of TWR_O610 (scene 219) should lead to scene 192\nlimit 20000\nenter 219 0 16713471 0\ncheckpoint entered\nexit 0 192\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 219 save 8457c52e6a29aa57 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 192 save 6f89d7fa91d29504 state 16eee55e3a6048c0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 130,
+     "instruction_end": 34,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c7495ccc6ec6c90bd99553518775831"
+     },
+     {
+      "frames": 71,
+      "sha256": "406e9c6a7153325bfa0daafce478ed24"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o610-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o610-exit-1",
+    "description": "Walking onto exit 1 of TWR_O610 (scene 219) should lead to scene 196",
+    "plan": "# twr-twr-o610-exit-1: Walking onto exit 1 of TWR_O610 (scene 219) should lead to scene 196\nlimit 20000\nenter 219 0 16713471 0\ncheckpoint entered\nexit 1 196\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 219 save 8457c52e6a29aa57 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 196 save 05d762efd8ed55d7 state 0e5f6a418dad6714 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3c7495ccc6ec6c90bd99553518775831"
+     },
+     {
+      "frames": 577,
+      "sha256": "b3f311b83e1d40dadb3209461e5dc756"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o700-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o700-exit-0",
+    "description": "Walking onto exit 0 of TWR_O700 (scene 220) should lead to scene 195",
+    "plan": "# twr-twr-o700-exit-0: Walking onto exit 0 of TWR_O700 (scene 220) should lead to scene 195\nlimit 20000\nenter 220 0 16713471 0\ncheckpoint entered\nexit 0 195\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 220 save 3e34dfb79d4e4b20 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 195 save 2b5cf776eba38e46 state f6ad05dec935dbec ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "75e16efd824dd2d797ac62f29520e127"
+     },
+     {
+      "frames": 71,
+      "sha256": "b276c5f453156d9c394d91e695f23a93"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o700-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o700-exit-1",
+    "description": "Walking onto exit 1 of TWR_O700 (scene 220) should lead to scene 198",
+    "plan": "# twr-twr-o700-exit-1: Walking onto exit 1 of TWR_O700 (scene 220) should lead to scene 198\nlimit 20000\nenter 220 0 16713471 0\ncheckpoint entered\nexit 1 198\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 220 save 3e34dfb79d4e4b20 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 198 save ee85eb3db7640ef3 state 36d08a82392c261c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "75e16efd824dd2d797ac62f29520e127"
+     },
+     {
+      "frames": 577,
+      "sha256": "915163ef04f56a63e90e54e5fa0c5e03"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o800-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o800-exit-0",
+    "description": "Walking onto exit 0 of TWR_O800 (scene 221) should lead to scene 198",
+    "plan": "# twr-twr-o800-exit-0: Walking onto exit 0 of TWR_O800 (scene 221) should lead to scene 198\nlimit 20000\nenter 221 0 16713471 0\ncheckpoint entered\nexit 0 198\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 221 save 65f7abd6016bfea9 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 300 scene 198 save ff5b447eedd97e88 state aa78c6db34f74e8e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (152, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 56,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "658f05ea8ab46256fac2dc79001522ee"
+     },
+     {
+      "frames": 71,
+      "sha256": "9e7ddd20a7968950142c9ffc2b8d5009"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-o800-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-o800-exit-1",
+    "description": "Walking onto exit 1 of TWR_O800 (scene 221) should lead to scene 199",
+    "plan": "# twr-twr-o800-exit-1: Walking onto exit 1 of TWR_O800 (scene 221) should lead to scene 199\nlimit 20000\nenter 221 0 16713471 0\ncheckpoint entered\nexit 1 199\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 221 save 65f7abd6016bfea9 state 32cc2d6a4262774b ram 0000000000000000",
+     "arrived frame 806 scene 199 save 6bc39b5de5851cdd state 717af731ec8e5073 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "no route to the exit; walking straight at it",
+     "walk to (808, 280): -3 waypoints",
+     "no route to the exit; walking straight at it",
+     "no route to the exit; walking straight at it"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 49,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "658f05ea8ab46256fac2dc79001522ee"
+     },
+     {
+      "frames": 577,
+      "sha256": "9ebf0b30b143aaf11d7f5cf93bb5e1d8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ra00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ra00-exit-0",
+    "description": "Walking onto exit 0 of TWR_RA00 (scene 204) should lead to one of scene 186, scene 192",
+    "plan": "# twr-twr-ra00-exit-0: Walking onto exit 0 of TWR_RA00 (scene 204) should lead to one of scene 186, scene 192\nlimit 20000\nenter 32972 0 16713471 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 204 save 01b2d78ec8abb390 state 9214b8a3588c2f9a ram 0000000000000000",
+     "arrived frame 312 scene 186 save 70eacc0abbe5e70d state d7ae4283e5c7ae92 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (45, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "56026507f884f32b29facbe009f23be9"
+     },
+     {
+      "frames": 83,
+      "sha256": "5bd8e12c61658b4ee10b816c7cc8de46"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-ra10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-ra10-exit-0",
+    "description": "Walking onto exit 0 of TWR_RA10 (scene 205) should lead to scene 192",
+    "plan": "# twr-twr-ra10-exit-0: Walking onto exit 0 of TWR_RA10 (scene 205) should lead to scene 192\nlimit 20000\nenter 205 0 16711422 0\ncheckpoint entered\nexit 0 192\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 205 save ffd6260251cd0509 state 0c4db0cd03354dec ram 0000000000000000",
+     "arrived frame 312 scene 192 save 53e931d232f1e06a state d7ae4283e5c7ae92 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (45, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 132,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5fff55abfb16f72c7594f97264b2546e"
+     },
+     {
+      "frames": 83,
+      "sha256": "0a10452e7bf6c5526f0e579f6b6e080e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-rb00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-rb00-exit-0",
+    "description": "Walking onto exit 0 of TWR_RB00 (scene 206) should lead to one of scene 197, scene 201",
+    "plan": "# twr-twr-rb00-exit-0: Walking onto exit 0 of TWR_RB00 (scene 206) should lead to one of scene 197, scene 201\nlimit 20000\nenter 32974 0 16713471 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 206 save 3488aade7bc9d89a state 9214b8a3588c2f9a ram 0000000000000000",
+     "arrived frame 311 scene 197 save 974bdfb85874bb9e state 2cb46b1f29a12571 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (45, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb32e9add248e3d6dc26b4db3909604d"
+     },
+     {
+      "frames": 82,
+      "sha256": "4776ab20ad04202f97016351026a236d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "twr-twr-rb10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "twr-twr-rb10-exit-0",
+    "description": "Walking onto exit 0 of TWR_RB10 (scene 207) should lead to scene 201",
+    "plan": "# twr-twr-rb10-exit-0: Walking onto exit 0 of TWR_RB10 (scene 207) should lead to scene 201\nlimit 20000\nenter 207 0 16711422 0\ncheckpoint entered\nexit 0 201\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 207 save fab1d3b32a78d3e3 state 0c4db0cd03354dec ram 0000000000000000",
+     "arrived frame 311 scene 201 save 73f722fc652fac02 state f275cbdf1b126fc0 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (45, 136): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 42,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "dbaf54d1fd335cf380ac5b2bf236e840"
+     },
+     {
+      "frames": 82,
+      "sha256": "3338bdd3284ea43656e2cd33972e1b17"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

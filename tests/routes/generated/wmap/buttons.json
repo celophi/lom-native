@@ -1,0 +1,469 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "wmapfull-map-game-held",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and 29 more lands filling the map (all placed and active), no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "2": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "3": {
+      "flags": 15,
+      "x": 1,
+      "z": 0
+     },
+     "4": {
+      "flags": 15,
+      "x": 2,
+      "z": 0
+     },
+     "5": {
+      "flags": 15,
+      "x": 3,
+      "z": 0
+     },
+     "6": {
+      "flags": 15,
+      "x": 4,
+      "z": 0
+     },
+     "7": {
+      "flags": 15,
+      "x": 5,
+      "z": 0
+     },
+     "8": {
+      "flags": 15,
+      "x": 0,
+      "z": 1
+     },
+     "9": {
+      "flags": 15,
+      "x": 1,
+      "z": 1
+     },
+     "10": {
+      "flags": 15,
+      "x": 2,
+      "z": 1
+     },
+     "11": {
+      "flags": 15,
+      "x": 3,
+      "z": 1
+     },
+     "12": {
+      "flags": 15,
+      "x": 4,
+      "z": 1
+     },
+     "13": {
+      "flags": 15,
+      "x": 5,
+      "z": 1
+     },
+     "14": {
+      "flags": 15,
+      "x": 0,
+      "z": 2
+     },
+     "15": {
+      "flags": 15,
+      "x": 1,
+      "z": 2
+     },
+     "16": {
+      "flags": 15,
+      "x": 3,
+      "z": 2
+     },
+     "17": {
+      "flags": 15,
+      "x": 4,
+      "z": 2
+     },
+     "18": {
+      "flags": 15,
+      "x": 5,
+      "z": 2
+     },
+     "19": {
+      "flags": 15,
+      "x": 0,
+      "z": 3
+     },
+     "20": {
+      "flags": 15,
+      "x": 1,
+      "z": 3
+     },
+     "21": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     },
+     "22": {
+      "flags": 15,
+      "x": 4,
+      "z": 3
+     },
+     "23": {
+      "flags": 15,
+      "x": 5,
+      "z": 3
+     },
+     "25": {
+      "flags": 15,
+      "x": 0,
+      "z": 4
+     },
+     "26": {
+      "flags": 15,
+      "x": 1,
+      "z": 4
+     },
+     "27": {
+      "flags": 15,
+      "x": 2,
+      "z": 4
+     },
+     "28": {
+      "flags": 15,
+      "x": 3,
+      "z": 4
+     },
+     "29": {
+      "flags": 15,
+      "x": 4,
+      "z": 4
+     },
+     "30": {
+      "flags": 15,
+      "x": 5,
+      "z": 4
+     },
+     "31": {
+      "flags": 15,
+      "x": 0,
+      "z": 5
+     },
+     "32": {
+      "flags": 15,
+      "x": 1,
+      "z": 5
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmapfull-map-game-held",
+    "description": "The world map should answer the map game held buttons the way it did",
+    "plan": "# wmapfull-map-game-held: The world map should answer the map game held buttons the way it did\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\npress 0x2000 12\nwait 60\npress 0x0400 400\nwait 1200\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\npress 0x8000 4\nwait 30\npress 0x4000 4\nwait 30\ncheckpoint pressed\nwatch 3000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 4232bb2a27f57620 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 4232bb2a27f57620 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "pressed frame 383 scene 32767 save aa71aafba33c448d state 0000000000000000 ram 0000000000000000",
+     "watched frame 383 scene 32767 save aa71aafba33c448d state 0000000000000000 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "watched the world map"
+    ],
+    "end": "steps 51 of 51 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 35,
+     "song": 4,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "311a25a7d743ef1f315cc7535b54e4ef"
+     },
+     {
+      "frames": 153,
+      "sha256": "94ea7969e83346d84d35d205658ebdd7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wmapfull-spirits",
+   "save": {
+    "format": 1,
+    "description": "After the opening: home, Domina and 29 more lands filling the map (all placed and active), no world map event pending",
+    "source": "built for a world map route (lom_routes.py generate-lands)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 2,
+      "z": 2
+     },
+     "1": {
+      "flags": 15,
+      "x": 2,
+      "z": 3
+     },
+     "2": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "3": {
+      "flags": 15,
+      "x": 1,
+      "z": 0
+     },
+     "4": {
+      "flags": 15,
+      "x": 2,
+      "z": 0
+     },
+     "5": {
+      "flags": 15,
+      "x": 3,
+      "z": 0
+     },
+     "6": {
+      "flags": 15,
+      "x": 4,
+      "z": 0
+     },
+     "7": {
+      "flags": 15,
+      "x": 5,
+      "z": 0
+     },
+     "8": {
+      "flags": 15,
+      "x": 0,
+      "z": 1
+     },
+     "9": {
+      "flags": 15,
+      "x": 1,
+      "z": 1
+     },
+     "10": {
+      "flags": 15,
+      "x": 2,
+      "z": 1
+     },
+     "11": {
+      "flags": 15,
+      "x": 3,
+      "z": 1
+     },
+     "12": {
+      "flags": 15,
+      "x": 4,
+      "z": 1
+     },
+     "13": {
+      "flags": 15,
+      "x": 5,
+      "z": 1
+     },
+     "14": {
+      "flags": 15,
+      "x": 0,
+      "z": 2
+     },
+     "15": {
+      "flags": 15,
+      "x": 1,
+      "z": 2
+     },
+     "16": {
+      "flags": 15,
+      "x": 3,
+      "z": 2
+     },
+     "17": {
+      "flags": 15,
+      "x": 4,
+      "z": 2
+     },
+     "18": {
+      "flags": 15,
+      "x": 5,
+      "z": 2
+     },
+     "19": {
+      "flags": 15,
+      "x": 0,
+      "z": 3
+     },
+     "20": {
+      "flags": 15,
+      "x": 1,
+      "z": 3
+     },
+     "21": {
+      "flags": 15,
+      "x": 3,
+      "z": 3
+     },
+     "22": {
+      "flags": 15,
+      "x": 4,
+      "z": 3
+     },
+     "23": {
+      "flags": 15,
+      "x": 5,
+      "z": 3
+     },
+     "25": {
+      "flags": 15,
+      "x": 0,
+      "z": 4
+     },
+     "26": {
+      "flags": 15,
+      "x": 1,
+      "z": 4
+     },
+     "27": {
+      "flags": 15,
+      "x": 2,
+      "z": 4
+     },
+     "28": {
+      "flags": 15,
+      "x": 3,
+      "z": 4
+     },
+     "29": {
+      "flags": 15,
+      "x": 4,
+      "z": 4
+     },
+     "30": {
+      "flags": 15,
+      "x": 5,
+      "z": 4
+     },
+     "31": {
+      "flags": 15,
+      "x": 0,
+      "z": 5
+     },
+     "32": {
+      "flags": 15,
+      "x": 1,
+      "z": 5
+     }
+    },
+    "current_land": 1,
+    "world_map_events": []
+   },
+   "baseline": {
+    "route": "wmapfull-spirits",
+    "description": "The world map should answer the spirits buttons the way it did",
+    "plan": "# wmapfull-spirits: The world map should answer the spirits buttons the way it did\nlimit 60000\nenter 36 0 16712959 2\ncheckpoint entered\nexit 0 32767\ncheckpoint world-map\npress 0x2000 12\nwait 60\npress 0x1000 12\nwait 120\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0020 12\nwait 40\npress 0x0080 12\nwait 40\npress 0x1000 12\nwait 120\ncheckpoint pressed\nland 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 36 save 4232bb2a27f57620 state f8dd5477215af709 ram 0000000000000000",
+     "world-map frame 383 scene 32767 save 4232bb2a27f57620 state 3b75a1ea9951fda4 ram 0000000000000000",
+     "pressed frame 383 scene 32767 save aa71aafba33c448d state 0000000000000000 ram 0000000000000000",
+     "arrived frame 2 scene 16 save ad9f330f3d37381e state 405fe9957a57de9d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (192, 8): 13 waypoints",
+     "game state 1 at vblank 1091",
+     "game state 0 at vblank 2367",
+     "entered land 0 from the world map at scene 16"
+    ],
+    "end": "steps 31 of 31 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 268,
+     "instruction_end": 48,
+     "song": 5,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 233,
+      "sha256": "c5e47254f5a65cb7e4190fefef311d00"
+     },
+     {
+      "frames": 153,
+      "sha256": "ad5d8cb06e686041884a0f2e587f4ba6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

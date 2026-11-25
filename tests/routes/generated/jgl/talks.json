@@ -1,0 +1,1411 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jgl-jgl-b010-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b010-talk-5",
+    "description": "Talking to layout record 5 of JGL_B010 (scene 390) should run its event and hand control back",
+    "plan": "# jgl-jgl-b010-talk-5: Talking to layout record 5 of JGL_B010 (scene 390) should run its event and hand control back\nlimit 20000\nenter 33158 1 16713471 0\ncheckpoint entered\ntalk 135 235 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 390 save 12a2094d5381ffac state d493840bd8ae845c ram 0000000000000000",
+     "talked frame 946 scene 390 save 2a697752be568419 state f7e3a96f32c6f07a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (135, 215): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 189,
+     "instruction_end": 69,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ab61f9b8b32727f81a962cb614ff879"
+     },
+     {
+      "frames": 717,
+      "sha256": "2669f0d631fcfbf992695fc637baae04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b040-talk-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b040-talk-4",
+    "description": "Talking to layout record 4 of JGL_B040 (scene 393) should run its event and hand control back",
+    "plan": "# jgl-jgl-b040-talk-4: Talking to layout record 4 of JGL_B040 (scene 393) should run its event and hand control back\nlimit 20000\nenter 33161 2 16713471 0\ncheckpoint entered\ntalk 125 195 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 393 save ff4cec54488f62d8 state 6687e680abe51713 ram 0000000000000000",
+     "talked frame 904 scene 393 save c8e981e3d0cdc7c5 state a39ae12bf9410768 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (125, 175): 6 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f25f6e9870c397cc40e7d97199d8395c"
+     },
+     {
+      "frames": 675,
+      "sha256": "673776d652a355262a1353c3ef40cbca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs10-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x1120 = 5 so layout record 1 of JGL_BS10 is there",
+    "source": "built from layout record 1's condition in scene 387 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1120": 5
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-bs10-talk-1",
+    "description": "Talking to layout record 1 of JGL_BS10 (scene 387) should run its event and hand control back",
+    "plan": "# jgl-jgl-bs10-talk-1: Talking to layout record 1 of JGL_BS10 (scene 387) should run its event and hand control back\nlimit 20000\nenter 33155 0 16720895 0\ncheckpoint entered\ntalk 300 100 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 387 save 2397c30ec5e2f554 state e597c979baa1e844 ram 0000000000000000",
+     "talked frame 741 scene 387 save 90c95cbd472d3747 state cc119c3c6a425a65 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "190f10840c33b50f7fd71089b9fa6702"
+     },
+     {
+      "frames": 512,
+      "sha256": "450ba246a6039bbc07829d7bfdf1eff5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs13-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs13-talk-3",
+    "description": "Talking to layout record 3 of JGL_BS13 (scene 908) should run its event and hand control back",
+    "plan": "# jgl-jgl-bs13-talk-3: Talking to layout record 3 of JGL_BS13 (scene 908) should run its event and hand control back\nlimit 20000\nenter 908 0 16717311 0\ncheckpoint entered\ntalk 144 104 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 908 save 0aa12c8519717958 state 47786edd419f4a05 ram 0000000000000000",
+     "talked frame 605 scene 908 save 0aa12c8519717958 state 4569e375a00951e7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (144, 84): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 112,
+     "instruction": 232,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec5fb5442df6a7d01c8bd29cdb4b7c36"
+     },
+     {
+      "frames": 376,
+      "sha256": "b63da8c85774398140ab4e43a9f64b11"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e000-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x111c = 9 so layout record 4 of JGL_E000 is there",
+    "source": "built from layout record 4's condition in scene 372 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x111c": 9
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e000-talk-4",
+    "description": "Talking to layout record 4 of JGL_E000 (scene 372) should run its event and hand control back",
+    "plan": "# jgl-jgl-e000-talk-4: Talking to layout record 4 of JGL_E000 (scene 372) should run its event and hand control back\nlimit 20000\nenter 372 0 16713471 1\ncheckpoint entered\ntalk 400 110 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 372 save 455b8ede466efd5b state 02e89ce80b26c2ae ram 0000000000000000",
+     "talked frame 563 scene 382 save fe196957097afdde state 1a024c4f675d1568 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (400, 90): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 218,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8b7bb1b5c0a352da25ae9eccc7a4dd25"
+     },
+     {
+      "frames": 334,
+      "sha256": "7987092993b5866c5dfb144f52af9a30"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 2 so layout record 4 of JGL_E010 is there",
+    "source": "built from layout record 4's condition in scene 373 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 2
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e010-talk-4",
+    "description": "Talking to layout record 4 of JGL_E010 (scene 373) should run its event and hand control back",
+    "plan": "# jgl-jgl-e010-talk-4: Talking to layout record 4 of JGL_E010 (scene 373) should run its event and hand control back\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\ntalk 80 200 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 98406c0d3cd97324 state 5de20ce57a703cd1 ram 0000000000000000",
+     "talked frame 813 scene 373 save 0b0e030fcff53b9e state 7544fffae51c3fbe ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c6dcbd57e21b10dc7685d113561d4480"
+     },
+     {
+      "frames": 584,
+      "sha256": "d302f47329212c3cf0490084ec5aeb7a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 8 so layout record 5 of JGL_E010 is there",
+    "source": "built from layout record 5's condition in scene 373 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 8
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e010-talk-5",
+    "description": "Talking to layout record 5 of JGL_E010 (scene 373) should run its event and hand control back",
+    "plan": "# jgl-jgl-e010-talk-5: Talking to layout record 5 of JGL_E010 (scene 373) should run its event and hand control back\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\ntalk 324 263 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 5edfbec54e24706d state b90f8a2e041e21c8 ram 0000000000000000",
+     "talked frame 553 scene 373 save f38dc0234ad90b83 state 32376f7122e9fcda ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (324, 243): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a9fb87a2e6f2ae07490c36ed6eebba7d"
+     },
+     {
+      "frames": 324,
+      "sha256": "372c939b6f647f9dfc9f0f02aeb58992"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e020-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e020-talk-3",
+    "description": "Talking to layout record 3 of JGL_E020 (scene 374) should run its event and hand control back",
+    "plan": "# jgl-jgl-e020-talk-3: Talking to layout record 3 of JGL_E020 (scene 374) should run its event and hand control back\nlimit 20000\nenter 374 0 16713471 2\ncheckpoint entered\ntalk 385 90 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 374 save a97bc6e2b336a06b state 0edbef3de66c7a26 ram 0000000000000000",
+     "talked frame 1088 scene 374 save ab9a85c2fc1b31e2 state 7f9d42ed3fc11c70 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (385, 70): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5e40b17941421ce734e12dca5b358ac"
+     },
+     {
+      "frames": 859,
+      "sha256": "856c47e2f13347d767d4de168fe7339c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e030-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e030-talk-1",
+    "description": "Talking to layout record 1 of JGL_E030 (scene 375) should run its event and hand control back",
+    "plan": "# jgl-jgl-e030-talk-1: Talking to layout record 1 of JGL_E030 (scene 375) should run its event and hand control back\nlimit 20000\nenter 375 1 16713471 1\ncheckpoint entered\ntalk 200 200 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 375 save 2f3886f3a99c0dfc state 74c290c22df3749a ram 0000000000000000",
+     "talked frame 464 scene 375 save f1486b57170fa63a state 7da5f750413cadd4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f33926062794c2fe085bf0d7265e2e27"
+     },
+     {
+      "frames": 235,
+      "sha256": "0754d0ff74585c62cab6e372c4333b2b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e030-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e030-talk-2",
+    "description": "Talking to layout record 2 of JGL_E030 (scene 375) should run its event and hand control back",
+    "plan": "# jgl-jgl-e030-talk-2: Talking to layout record 2 of JGL_E030 (scene 375) should run its event and hand control back\nlimit 20000\nenter 375 1 16713471 1\ncheckpoint entered\ntalk 385 90 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 375 save 2f3886f3a99c0dfc state 74c290c22df3749a ram 0000000000000000",
+     "talked frame 1067 scene 375 save c4c1e70a02300c41 state 75840aa2c86a216a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (385, 70): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 166,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f33926062794c2fe085bf0d7265e2e27"
+     },
+     {
+      "frames": 838,
+      "sha256": "4afa84718e34900f0765da044d64f6a6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e040-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x26a0 = 53 so layout record 1 of JGL_E040 is there",
+    "source": "built from layout record 1's condition in scene 376 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26a0": 53
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e040-talk-1",
+    "description": "Talking to layout record 1 of JGL_E040 (scene 376) should run its event and hand control back",
+    "plan": "# jgl-jgl-e040-talk-1: Talking to layout record 1 of JGL_E040 (scene 376) should run its event and hand control back\nlimit 20000\nenter 376 0 16713471 3\ncheckpoint entered\ntalk 1000 1000 0 0 0 1 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 376 save f64f022aa9b0ef9f state 98e16a4b922af194 ram 0000000000000000",
+     "talked frame 1016 scene 376 save 5653b008b726381e state e7b3b14d2a5846d2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "layout record 1's actor is at (640, 280)",
+     "walk to (640, 260): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "55fee0096afc83dbea5cffeba18a9aa6"
+     },
+     {
+      "frames": 787,
+      "sha256": "db445f67b26878b953e96674a237061f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x26a0 = 57 so layout record 1 of JGL_E050 is there",
+    "source": "built from layout record 1's condition in scene 377 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26a0": 57
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e050-talk-1",
+    "description": "Talking to layout record 1 of JGL_E050 (scene 377) should run its event and hand control back",
+    "plan": "# jgl-jgl-e050-talk-1: Talking to layout record 1 of JGL_E050 (scene 377) should run its event and hand control back\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\ntalk 434 170 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save 319224f805645dfa state 834e636f9d4eff8c ram 0000000000000000",
+     "talked frame 543 scene 377 save dc8fce4c68dfe834 state 003e29ab530ceab6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (434, 150): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 46,
+     "instruction": 163,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "03b66f681b601170c0877e159bae0d9e"
+     },
+     {
+      "frames": 314,
+      "sha256": "f75b06507ce9f2341d59b7159fbf17fb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 9 so layout record 2 of JGL_E050 is there",
+    "source": "built from layout record 2's condition in scene 377 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 9
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e050-talk-2",
+    "description": "Talking to layout record 2 of JGL_E050 (scene 377) should run its event and hand control back",
+    "plan": "# jgl-jgl-e050-talk-2: Talking to layout record 2 of JGL_E050 (scene 377) should run its event and hand control back\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\ntalk 437 256 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save 327041a0be34772c state 8e5a7b8d033615a5 ram 0000000000000000",
+     "talked frame 886 scene 377 save 49a2888e3b21337a state 35676cb03fe80f71 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (437, 236): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 54,
+     "instruction": 157,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b842fe1c7c1afad55f846e81c02d134"
+     },
+     {
+      "frames": 657,
+      "sha256": "4b4554b3db3b915d10aef244a8f1a49f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-talk-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e050-talk-3",
+    "description": "Talking to layout record 3 of JGL_E050 (scene 377) should run its event and hand control back",
+    "plan": "# jgl-jgl-e050-talk-3: Talking to layout record 3 of JGL_E050 (scene 377) should run its event and hand control back\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\ntalk 205 270 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save ac91c248b44348e5 state 8488ad1c152c4e04 ram 0000000000000000",
+     "talked frame 1041 scene 377 save 8b142186d79a163c state ce3ec9dcca29666f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (205, 250): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 134,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3617dfda235ff9328168e62399822e25"
+     },
+     {
+      "frames": 812,
+      "sha256": "78ec8fe83a8dd6b76d9a56ca0049678e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e060-talk-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e060-talk-2",
+    "description": "Talking to layout record 2 of JGL_E060 (scene 378) should run its event and hand control back",
+    "plan": "# jgl-jgl-e060-talk-2: Talking to layout record 2 of JGL_E060 (scene 378) should run its event and hand control back\nlimit 20000\nenter 378 0 16713471 0\ncheckpoint entered\ntalk 130 175 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 378 save 442cda938bedf5c9 state 4e536937ba8c6d9d ram 0000000000000000",
+     "talked frame 1094 scene 378 save a00c8e7f6bf50776 state b8d0e77340527d52 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (130, 155): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "096d52073dbf90b7f571a6c10282446d"
+     },
+     {
+      "frames": 865,
+      "sha256": "6bdbe4f08b5a8753b92d63f289ba5875"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e070-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x26a0 = 58 so layout record 1 of JGL_E070 is there",
+    "source": "built from layout record 1's condition in scene 379 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26a0": 58
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e070-talk-1",
+    "description": "Talking to layout record 1 of JGL_E070 (scene 379) should run its event and hand control back",
+    "plan": "# jgl-jgl-e070-talk-1: Talking to layout record 1 of JGL_E070 (scene 379) should run its event and hand control back\nlimit 20000\nenter 379 1 16713471 0\ncheckpoint entered\ntalk 485 182 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 379 save ff71cacf9c6f761b state a608c4cfabc58ba6 ram 0000000000000000",
+     "talked frame 522 scene 379 save 668a2b34d6d6c9d3 state 7ded402c29dda5dc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (485, 162): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "12ede157f6b37bef101fd05a7411d6aa"
+     },
+     {
+      "frames": 293,
+      "sha256": "1f868816e7a289a9ac41cc8f32173883"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-talk-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x26a0 = 57 so layout record 1 of JGL_E080 is there",
+    "source": "built from layout record 1's condition in scene 380 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x26a0": 57
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e080-talk-1",
+    "description": "Talking to layout record 1 of JGL_E080 (scene 380) should run its event and hand control back",
+    "plan": "# jgl-jgl-e080-talk-1: Talking to layout record 1 of JGL_E080 (scene 380) should run its event and hand control back\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\ntalk 434 170 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save 7eab9b995a65b2bc state dced44aa5a7412e5 ram 0000000000000000",
+     "talked frame 580 scene 380 save ef508dada61fb164 state 71fce41109fd883a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (434, 150): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "83247dd16f16896ed9f7278ce6ba0610"
+     },
+     {
+      "frames": 351,
+      "sha256": "05d04f56db46aee7ebd107a4ddcc8f0c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 3 so layout record 2 of JGL_E080 is there",
+    "source": "built from layout record 2's condition in scene 380 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 3
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e080-talk-2",
+    "description": "Talking to layout record 2 of JGL_E080 (scene 380) should run its event and hand control back",
+    "plan": "# jgl-jgl-e080-talk-2: Talking to layout record 2 of JGL_E080 (scene 380) should run its event and hand control back\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\ntalk 620 270 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save 559efa8169cd11cb state f44832f1d5f796b0 ram 0000000000000000",
+     "talked frame 830 scene 380 save 708068cd1e1880a7 state b07b2aef257fcd4d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (620, 250): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 146,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2e7711d9f3ffa6877adef7ed2946ec97"
+     },
+     {
+      "frames": 601,
+      "sha256": "34be3b1d97d0ccdc4926324198d84868"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 7 so layout record 3 of JGL_E080 is there",
+    "source": "built from layout record 3's condition in scene 380 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 7
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e080-talk-3",
+    "description": "Talking to layout record 3 of JGL_E080 (scene 380) should run its event and hand control back",
+    "plan": "# jgl-jgl-e080-talk-3: Talking to layout record 3 of JGL_E080 (scene 380) should run its event and hand control back\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\ntalk 170 190 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save 2fe158228a43c326 state 0ea87fded0d81885 ram 0000000000000000",
+     "talked frame 1021 scene 380 save b340dd3e99e3236a state 4770a3d30cb9d585 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (170, 170): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a1d8eacc5b7326ef680a92e6f36aec75"
+     },
+     {
+      "frames": 792,
+      "sha256": "06009a3510b3aca66ec222c65514f277"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 4 so layout record 3 of JGL_E090 is there",
+    "source": "built from layout record 3's condition in scene 381 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 4
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e090-talk-3",
+    "description": "Talking to layout record 3 of JGL_E090 (scene 381) should run its event and hand control back",
+    "plan": "# jgl-jgl-e090-talk-3: Talking to layout record 3 of JGL_E090 (scene 381) should run its event and hand control back\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\ntalk 553 173 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save f7d532fa742ac2ca state 9e6eb31088050dd2 ram 0000000000000000",
+     "talked frame 816 scene 381 save 4969f84132b02daa state 3a447588ab6796c6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (553, 153): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f0be1d17fbcf4cda6bf5d550a6d02261"
+     },
+     {
+      "frames": 587,
+      "sha256": "6aee5d07e3fccf6fb648090e14c16045"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x13d4 = 6 so layout record 4 of JGL_E090 is there",
+    "source": "built from layout record 4's condition in scene 381 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13d4": 6
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e090-talk-4",
+    "description": "Talking to layout record 4 of JGL_E090 (scene 381) should run its event and hand control back",
+    "plan": "# jgl-jgl-e090-talk-4: Talking to layout record 4 of JGL_E090 (scene 381) should run its event and hand control back\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\ntalk 235 161 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save ba3a43f45cfbb76a state b8bd3669eb15a1ae ram 0000000000000000",
+     "talked frame 956 scene 381 save 53670dd93cd5de4a state 0233cebbed8f8de4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (235, 141): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 165,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b584396c5786e8dbe24199e7818b8c9b"
+     },
+     {
+      "frames": 727,
+      "sha256": "4f4b92eb8460d5109c8619e97e60607b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-talk-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e090-talk-5",
+    "description": "Talking to layout record 5 of JGL_E090 (scene 381) should run its event and hand control back",
+    "plan": "# jgl-jgl-e090-talk-5: Talking to layout record 5 of JGL_E090 (scene 381) should run its event and hand control back\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\ntalk 245 175 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save c84592570e27698a state 86b2ce96360f4e3d ram 0000000000000000",
+     "talked frame 1011 scene 381 save 36465be648abd86b state f861aa901d268e4f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (245, 155): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b24b27d165887d45f31ff3d1ae53874c"
+     },
+     {
+      "frames": 782,
+      "sha256": "88c887cd11cb77e4062dd5297c8ae260"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e100-talk-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e100-talk-1",
+    "description": "Talking to layout record 1 of JGL_E100 (scene 382) should run its event and hand control back",
+    "plan": "# jgl-jgl-e100-talk-1: Talking to layout record 1 of JGL_E100 (scene 382) should run its event and hand control back\nlimit 20000\nenter 382 0 16713471 0\ncheckpoint entered\ntalk 297 308 0 0 0 1\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 382 save 5002427c5d6d7635 state 025337cf8a24f71e ram 0000000000000000",
+     "talked frame 1259 scene 382 save 91d48fff899c1ce2 state e42bf7539f9e9c26 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (297, 288): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec321a7e8add4e0a0ae39cbc5c1d641b"
+     },
+     {
+      "frames": 1030,
+      "sha256": "6141a0af39661372364668ef95624f91"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e100-talk-2",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2698 = 54 so layout record 2 of JGL_E100 is there",
+    "source": "built from layout record 2's condition in scene 382 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2698": 54
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e100-talk-2",
+    "description": "Talking to layout record 2 of JGL_E100 (scene 382) should run its event and hand control back",
+    "plan": "# jgl-jgl-e100-talk-2: Talking to layout record 2 of JGL_E100 (scene 382) should run its event and hand control back\nlimit 20000\nenter 382 0 16713471 2\ncheckpoint entered\ntalk 190 300 0 0 0 2\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 382 save 7f18d75ad773e055 state d7c36d609e2e228e ram 0000000000000000",
+     "talked frame 539 scene 382 save 2fffca83f80d0712 state 2d16f751a397ad04 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (190, 280): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4ae99fb70c94380c0648dbfd435231fd"
+     },
+     {
+      "frames": 310,
+      "sha256": "901eeba7254e1e7000b5ae243158a77e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-talk-3",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4b2 = 1 so layout record 3 of JGL_E110 is there",
+    "source": "built from layout record 3's condition in scene 383 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4b2": 1
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e110-talk-3",
+    "description": "Talking to layout record 3 of JGL_E110 (scene 383) should run its event and hand control back",
+    "plan": "# jgl-jgl-e110-talk-3: Talking to layout record 3 of JGL_E110 (scene 383) should run its event and hand control back\nlimit 20000\nenter 383 0 16713471 0\ncheckpoint entered\ntalk 325 160 0 0 0 3\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 383 save 4bc8e574359b98d4 state 6be58b65c9fe4545 ram 0000000000000000",
+     "talked frame 576 scene 383 save ba85f896cabf7992 state 1c200e215e981c57 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (325, 140): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4cb4b2bc77db0d6c7b8057b4d93a4260"
+     },
+     {
+      "frames": 347,
+      "sha256": "bd23f0fd1de4a01bcea9a31f2c3fc9d1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-talk-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x4b3 = 1 so layout record 4 of JGL_E110 is there",
+    "source": "built from layout record 4's condition in scene 383 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x4b3": 1
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e110-talk-4",
+    "description": "Talking to layout record 4 of JGL_E110 (scene 383) should run its event and hand control back",
+    "plan": "# jgl-jgl-e110-talk-4: Talking to layout record 4 of JGL_E110 (scene 383) should run its event and hand control back\nlimit 20000\nenter 383 0 16713471 0\ncheckpoint entered\ntalk 220 70 0 0 0 4\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 383 save 9ea95afa3a7e41d0 state 5a4f7fdaa6e60f01 ram 0000000000000000",
+     "talked frame 627 scene 383 save f0d24dd66c8b28b6 state d4c8afb0f53804fd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 50): 1 waypoints",
+     "walk to (220, 90): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fef128ac2281d8c97c410a0869e797cb"
+     },
+     {
+      "frames": 398,
+      "sha256": "aa440b8d14af103e205af52e381abf76"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-talk-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with 0x2f88 = 95 so layout record 5 of JGL_E110 is there",
+    "source": "built from layout record 5's condition in scene 383 (lom_routes.py generate-talks)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x2f88": 95
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e110-talk-5",
+    "description": "Talking to layout record 5 of JGL_E110 (scene 383) should run its event and hand control back",
+    "plan": "# jgl-jgl-e110-talk-5: Talking to layout record 5 of JGL_E110 (scene 383) should run its event and hand control back\nlimit 20000\nenter 383 0 16713471 0\ncheckpoint entered\ntalk 280 100 0 0 0 5\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 383 save 0b683f6d6c32838f state dc39bc4a66250ac6 ram 0000000000000000",
+     "talked frame 973 scene 383 save a32b7a57256bf695 state 2d1f21d9c6b59ff4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 80): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9c0cb0b85b5376c5655e54fd53b95137"
+     },
+     {
+      "frames": 744,
+      "sha256": "d8e2711d1658df76bdcde0c7700cbf1c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-talk-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e110-talk-6",
+    "description": "Talking to layout record 6 of JGL_E110 (scene 383) should run its event and hand control back",
+    "plan": "# jgl-jgl-e110-talk-6: Talking to layout record 6 of JGL_E110 (scene 383) should run its event and hand control back\nlimit 20000\nenter 383 0 16713471 0\ncheckpoint entered\ntalk 360 170 0 0 0 6\ncheckpoint talked\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 383 save 82fd7f5531fdfa78 state 81dda9ee5ad667e3 ram 0000000000000000",
+     "talked frame 906 scene 383 save 99a3e3f437b1fe93 state c61ee4c8b118a977 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (360, 150): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "276d7c3c81f22af01cedfe32f3237481"
+     },
+     {
+      "frames": 677,
+      "sha256": "8f1417b8f519b1aecb4b780575e252b4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,3009 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "jgl-jgl-b000-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b000-exit-0",
+    "description": "Walking onto exit 0 of JGL_B000 (scene 389) should lead to scene 373",
+    "plan": "# jgl-jgl-b000-exit-0: Walking onto exit 0 of JGL_B000 (scene 389) should lead to scene 373\nlimit 20000\nenter 33157 0 16713471 0\ncheckpoint entered\nexit 0 373\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 389 save 1b27079f1e35c8d6 state 5e98c6e945defbec ram 0000000000000000",
+     "arrived frame 298 scene 373 save 2c0a5e9294e0b898 state a5ee175e57777256 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (17, 66): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a5781b0f6717931bea9130d494aa23e8"
+     },
+     {
+      "frames": 69,
+      "sha256": "59d83c9144e09fea6d2d9f66018fdd92"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b000-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b000-exit-1",
+    "description": "Walking onto exit 1 of JGL_B000 (scene 389) should lead to scene 391",
+    "plan": "# jgl-jgl-b000-exit-1: Walking onto exit 1 of JGL_B000 (scene 389) should lead to scene 391\nlimit 20000\nenter 33157 0 16713471 2\ncheckpoint entered\nexit 1 391\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 389 save 0cd8b95ac1ed6f38 state f31b00b106644793 ram 0000000000000000",
+     "arrived frame 465 scene 391 save 0065f892873c4f70 state bf1135b4a3e3de40 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (514, 299): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "25d1b3ad859e1a1bfcf26501657295be"
+     },
+     {
+      "frames": 236,
+      "sha256": "8ae7d006d50f4824ba0a66492c70f801"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b000-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b000-exit-2",
+    "description": "Walking onto exit 2 of JGL_B000 (scene 389) should lead to scene 390",
+    "plan": "# jgl-jgl-b000-exit-2: Walking onto exit 2 of JGL_B000 (scene 389) should lead to scene 390\nlimit 20000\nenter 33157 0 16713471 2\ncheckpoint entered\nexit 2 390\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 389 save 0cd8b95ac1ed6f38 state f31b00b106644793 ram 0000000000000000",
+     "arrived frame 295 scene 390 save c5f8f5321b3a67fa state 980d468d2c29a3e8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (629, 166): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 201,
+     "instruction_end": 76,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "25d1b3ad859e1a1bfcf26501657295be"
+     },
+     {
+      "frames": 66,
+      "sha256": "ac8c48f1fd79148e65240bb0e92c3ac4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b010-exit-0",
+    "description": "Walking onto exit 0 of JGL_B010 (scene 390) should lead to scene 389",
+    "plan": "# jgl-jgl-b010-exit-0: Walking onto exit 0 of JGL_B010 (scene 390) should lead to scene 389\nlimit 20000\nenter 33158 1 16713471 0\ncheckpoint entered\nexit 0 389\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 390 save 12a2094d5381ffac state d493840bd8ae845c ram 0000000000000000",
+     "arrived frame 295 scene 389 save 3576e974fa334086 state a3e7d8ec46976c44 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (184, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 211,
+     "instruction_end": 77,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7ab61f9b8b32727f81a962cb614ff879"
+     },
+     {
+      "frames": 66,
+      "sha256": "c97bfbd52e7faf2ff37b9425d8a5afde"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b020-exit-0",
+    "description": "Walking onto exit 0 of JGL_B020 (scene 391) should lead to scene 389",
+    "plan": "# jgl-jgl-b020-exit-0: Walking onto exit 0 of JGL_B020 (scene 391) should lead to scene 389\nlimit 20000\nenter 33159 2 16713471 0\ncheckpoint entered\nexit 0 389\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 391 save 3cce2ef01ab2794a state 28604c7a40a5698b ram 0000000000000000",
+     "arrived frame 297 scene 389 save 35655008919b7541 state 228268a4d6864ade ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (246, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "154347b111bc4ee951bf40e4de63bca1"
+     },
+     {
+      "frames": 68,
+      "sha256": "bf45430bf87edce515041fd272064b6e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b020-exit-1",
+    "description": "Walking onto exit 1 of JGL_B020 (scene 391) should lead to one of scene 374, scene 375",
+    "plan": "# jgl-jgl-b020-exit-1: Walking onto exit 1 of JGL_B020 (scene 391) should lead to one of scene 374, scene 375\nlimit 20000\nenter 33159 2 16713471 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 391 save b6cd39c99c371f47 state e54fc43a636255bf ram 0000000000000000",
+     "arrived frame 292 scene 375 save e16660f5a1325c6f state 18c8130299592505 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 175): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "af927ab357463c7280a006624eb756c2"
+     },
+     {
+      "frames": 63,
+      "sha256": "71fae1bd509a7b34e0e321cd9ea5b5f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b030-exit-0",
+    "description": "Walking onto exit 0 of JGL_B030 (scene 392) should lead to scene 376",
+    "plan": "# jgl-jgl-b030-exit-0: Walking onto exit 0 of JGL_B030 (scene 392) should lead to scene 376\nlimit 20000\nenter 33160 1 16713471 0\ncheckpoint entered\nexit 0 376\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 392 save 3c2c91bf08b05b2e state 4e525dd91ce8ad1e ram 0000000000000000",
+     "arrived frame 301 scene 376 save ea9fd9c611e51fa1 state 4a5d7ccc3bd06713 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (71, 342): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 164,
+     "instruction_end": 53,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "daf55c5c99a2173c6bc711ff4cc6ca9f"
+     },
+     {
+      "frames": 72,
+      "sha256": "64013517dcf9ef4c600f5877ffa7abbe"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b030-exit-1",
+    "description": "Walking onto exit 1 of JGL_B030 (scene 392) should lead to scene 393",
+    "plan": "# jgl-jgl-b030-exit-1: Walking onto exit 1 of JGL_B030 (scene 392) should lead to scene 393\nlimit 20000\nenter 33160 1 16713471 1\ncheckpoint entered\nexit 1 393\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 392 save 0acdc8fb0aad8583 state 1919f65775e41959 ram 0000000000000000",
+     "arrived frame 313 scene 393 save 3d620c4ed579d1e6 state 2c1993282875380e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (595, 346): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 196,
+     "instruction_end": 75,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ba9f570ed915d7ddde0a156a08075693"
+     },
+     {
+      "frames": 84,
+      "sha256": "d598a5542fb55581b3a6838930c672f6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b040-exit-0",
+    "description": "Walking onto exit 0 of JGL_B040 (scene 393) should lead to scene 392",
+    "plan": "# jgl-jgl-b040-exit-0: Walking onto exit 0 of JGL_B040 (scene 393) should lead to scene 392\nlimit 20000\nenter 33161 2 16713471 0\ncheckpoint entered\nexit 0 392\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 393 save ff4cec54488f62d8 state 6687e680abe51713 ram 0000000000000000",
+     "arrived frame 295 scene 392 save 0d087adde14c4c85 state 9a8803bf5a874ace ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (4, 216): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f25f6e9870c397cc40e7d97199d8395c"
+     },
+     {
+      "frames": 66,
+      "sha256": "14fbb499ee5a795a781f763d68cd9e41"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b040-exit-1",
+    "description": "Walking onto exit 1 of JGL_B040 (scene 393) should lead to scene 394",
+    "plan": "# jgl-jgl-b040-exit-1: Walking onto exit 1 of JGL_B040 (scene 393) should lead to scene 394\nlimit 20000\nenter 33161 2 16713471 1\ncheckpoint entered\nexit 1 394\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 393 save 131df77b50772075 state 50a39329fef77867 ram 0000000000000000",
+     "arrived frame 294 scene 394 save a0e1fc82e7066408 state 9091c7081a4a5aa4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (632, 192): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 208,
+     "instruction_end": 78,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "aa85f3c0c3e1d6937d6e6d839d5f96dc"
+     },
+     {
+      "frames": 65,
+      "sha256": "bc2c410453b7f98c988620bc232900ef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b050-exit-0",
+    "description": "Walking onto exit 0 of JGL_B050 (scene 394) should lead to scene 393",
+    "plan": "# jgl-jgl-b050-exit-0: Walking onto exit 0 of JGL_B050 (scene 394) should lead to scene 393\nlimit 20000\nenter 33162 3 16713471 1\ncheckpoint entered\nexit 0 393\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 394 save 8a7de279974d0bb7 state 05a84b74eec682ff ram 0000000000000000",
+     "arrived frame 4676 scene 393 save 6da4b018550eb936 state d6fe2802eb97574e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (9, 180): 1 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 1190 frames",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 2690 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 569,
+     "instruction_end": 172,
+     "song": 3,
+     "monster": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "62e9c365985167a9e66bde168b65b6b4"
+     },
+     {
+      "frames": 4447,
+      "sha256": "10c4ea913ca5c1f10b68df4d62287e04"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b050-exit-1",
+    "description": "Walking onto exit 1 of JGL_B050 (scene 394) should lead to one of scene 385, scene 386, scene 905, scene 906",
+    "plan": "# jgl-jgl-b050-exit-1: Walking onto exit 1 of JGL_B050 (scene 394) should lead to one of scene 385, scene 386, scene 905, scene 906\nlimit 20000\nenter 33162 3 16713471 1\ncheckpoint entered\nexit 1 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 394 save 8a7de279974d0bb7 state 05a84b74eec682ff ram 0000000000000000",
+     "arrived frame 295 scene 386 save 60ee808cc8135793 state 6470d15a0dc604d6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (789, 231): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 60,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "62e9c365985167a9e66bde168b65b6b4"
+     },
+     {
+      "frames": 66,
+      "sha256": "e18dc8c848dbc883fd2a7f35e8e355bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b060-exit-0",
+    "description": "Walking onto exit 0 of JGL_B060 (scene 395) should lead to scene 380",
+    "plan": "# jgl-jgl-b060-exit-0: Walking onto exit 0 of JGL_B060 (scene 395) should lead to scene 380\nlimit 20000\nenter 33163 1 16713471 0\ncheckpoint entered\nexit 0 380\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 395 save f4feb6e1c115811d state 2b7d4a1d2b6d4164 ram 0000000000000000",
+     "arrived frame 294 scene 380 save db55c8e6f418288a state 530d37c1ea34e4ae ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (501, 120): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 163,
+     "instruction_end": 53,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b80d259211eee0d1177d139be65e820d"
+     },
+     {
+      "frames": 65,
+      "sha256": "a8d4e356707907662fd138d768e55e84"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b060-exit-1",
+    "description": "Walking onto exit 1 of JGL_B060 (scene 395) should lead to scene 381",
+    "plan": "# jgl-jgl-b060-exit-1: Walking onto exit 1 of JGL_B060 (scene 395) should lead to scene 381\nlimit 20000\nenter 33163 1 16713471 1\ncheckpoint entered\nexit 1 381\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 395 save f04dce90386acec8 state b10a98c1f9da7aa0 ram 0000000000000000",
+     "arrived frame 305 scene 381 save 6d920b32e366c8c9 state 1553d4816eb152c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (70, 294): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 56,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "063daf532ea1f44ec88f73b5d025e30a"
+     },
+     {
+      "frames": 76,
+      "sha256": "15a80aa846ff1e51e6b42412d63dfbb4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b070-exit-0",
+    "description": "Walking onto exit 0 of JGL_B070 (scene 396) should lead to scene 381",
+    "plan": "# jgl-jgl-b070-exit-0: Walking onto exit 0 of JGL_B070 (scene 396) should lead to scene 381\nlimit 20000\nenter 33164 3 16713471 0\ncheckpoint entered\nexit 0 381\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 396 save d5e0bb9ceb9ad440 state dcf6edcb95c8931e ram 0000000000000000",
+     "arrived frame 294 scene 381 save 35e9f834ed4af50c state cc252b5cba6fe9c3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (544, 24): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 64,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "1a6a8b33b0fbd318443380a1d691828e"
+     },
+     {
+      "frames": 65,
+      "sha256": "8c1af305ff7d3e821719acadf38844a9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b080-exit-0",
+    "description": "Walking onto exit 0 of JGL_B080 (scene 397) should lead to scene 384",
+    "plan": "# jgl-jgl-b080-exit-0: Walking onto exit 0 of JGL_B080 (scene 397) should lead to scene 384\nlimit 20000\nenter 33165 0 16713471 1\ncheckpoint entered\nexit 0 384\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 397 save 7b9f7f9f0e13a38b state 705ec9cf65860963 ram 0000000000000000",
+     "arrived frame 1242 scene 384 save 8be29d67343e53c4 state 9d8624e6f4b2bf2e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (9, 180): 6 waypoints",
+     "a battle started on the way to the exit; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 363,
+     "instruction_end": 111,
+     "song": 3,
+     "monster": 1,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e729c14bc2e86747bc676ff4d5360ca"
+     },
+     {
+      "frames": 1013,
+      "sha256": "af4eb18002716b147db6804d8c3cbcc0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b080-exit-1",
+    "description": "Walking onto exit 1 of JGL_B080 (scene 397) should lead to scene 378",
+    "plan": "# jgl-jgl-b080-exit-1: Walking onto exit 1 of JGL_B080 (scene 397) should lead to scene 378\nlimit 20000\nenter 33165 0 16713471 1\ncheckpoint entered\nexit 1 378\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 397 save 7b9f7f9f0e13a38b state 705ec9cf65860963 ram 0000000000000000",
+     "arrived frame 295 scene 378 save fd0163cd5f248a2f state 876dfa87a2609158 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (630, 274): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9e729c14bc2e86747bc676ff4d5360ca"
+     },
+     {
+      "frames": 66,
+      "sha256": "b5e069ed9727e4c4a6f1068a86d87ac8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b090-exit-0",
+    "description": "Walking onto exit 0 of JGL_B090 (scene 398) should lead to scene 399",
+    "plan": "# jgl-jgl-b090-exit-0: Walking onto exit 0 of JGL_B090 (scene 398) should lead to scene 399\nlimit 20000\nenter 33166 2 16713471 0\ncheckpoint entered\nexit 0 399\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 398 save 8942351f773e213f state 418b556c60f06771 ram 0000000000000000",
+     "arrived frame 306 scene 399 save f5ca6e1f407223fe state 5a51c3e4ecdfa709 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (167, 244): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 193,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "edeb04c6ffd4d7a73afa2308d615e784"
+     },
+     {
+      "frames": 77,
+      "sha256": "629cabc4cb72a1446166280b5270713b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b090-exit-1",
+    "description": "Walking onto exit 1 of JGL_B090 (scene 398) should lead to scene 384",
+    "plan": "# jgl-jgl-b090-exit-1: Walking onto exit 1 of JGL_B090 (scene 398) should lead to scene 384\nlimit 20000\nenter 33166 2 16713471 1\ncheckpoint entered\nexit 1 384\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 398 save 4b1f6f945199e942 state 033c7fb5c7ee1c35 ram 0000000000000000",
+     "arrived frame 313 scene 384 save 73bdd3cdcb5a00f6 state 520eb70396018fe6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (487, 263): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 58,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6482d535ca1ffa13d67c4afe55220761"
+     },
+     {
+      "frames": 84,
+      "sha256": "1d919ebee09fad3f529fd402869d231a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b100-exit-0",
+    "description": "Walking onto exit 0 of JGL_B100 (scene 399) should lead to one of scene 387, scene 388, scene 907, scene 908",
+    "plan": "# jgl-jgl-b100-exit-0: Walking onto exit 0 of JGL_B100 (scene 399) should lead to one of scene 387, scene 388, scene 907, scene 908\nlimit 20000\nenter 33167 3 16713471 0\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 399 save 142d7587cb0b84d3 state 27a216382008bd94 ram 0000000000000000",
+     "arrived frame 296 scene 388 save f23394b00aeaef8b state 524739ab2f544a41 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 320): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 60,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4b34e307c4b81444c1399e386c82cd1c"
+     },
+     {
+      "frames": 67,
+      "sha256": "81361d9191ed984905833f981eea8fd7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b100-exit-1",
+    "description": "Walking onto exit 1 of JGL_B100 (scene 399) should lead to scene 398",
+    "plan": "# jgl-jgl-b100-exit-1: Walking onto exit 1 of JGL_B100 (scene 399) should lead to scene 398\nlimit 20000\nenter 33167 3 16713471 1\ncheckpoint entered\nexit 1 398\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 399 save fbc6b8eaf27b343e state db73bf7711b7c3ef ram 0000000000000000",
+     "arrived frame 297 scene 398 save 448844bd3952cd17 state 54b049df057465be ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (792, 128): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 197,
+     "instruction_end": 75,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f763a226a94827fa9a47e81bce7c17df"
+     },
+     {
+      "frames": 68,
+      "sha256": "8043de6b63c23aff6032d2f16539da23"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b110-exit-0",
+    "description": "Walking onto exit 0 of JGL_B110 (scene 400) should lead to scene 387",
+    "plan": "# jgl-jgl-b110-exit-0: Walking onto exit 0 of JGL_B110 (scene 400) should lead to scene 387\nlimit 20000\nenter 400 0 16711422 0\ncheckpoint entered\nexit 0 387\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 400 save c5fd393656230f47 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 298 scene 387 save c720601aae0f15fa state 34a40b4058222430 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (565, 9): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 54,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c375e795f44d5bc64f65ac8ec81aba8f"
+     },
+     {
+      "frames": 69,
+      "sha256": "020050339f8b3aeb3ec1383a967d25e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b110-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b110-exit-1",
+    "description": "Walking onto exit 1 of JGL_B110 (scene 400) should lead to scene 398",
+    "plan": "# jgl-jgl-b110-exit-1: Walking onto exit 1 of JGL_B110 (scene 400) should lead to scene 398\nlimit 20000\nenter 400 0 16711422 0\ncheckpoint entered\nexit 1 398\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 400 save c5fd393656230f47 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 489 scene 398 save a125b2ec4049a1da state d82b9dcf2f7770a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (126, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 68,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c375e795f44d5bc64f65ac8ec81aba8f"
+     },
+     {
+      "frames": 260,
+      "sha256": "1fa80196a10c73f6b999bdaa98ffa949"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b120-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b120-exit-0",
+    "description": "Walking onto exit 0 of JGL_B120 (scene 401) should lead to scene 387",
+    "plan": "# jgl-jgl-b120-exit-0: Walking onto exit 0 of JGL_B120 (scene 401) should lead to scene 387\nlimit 20000\nenter 401 0 16711422 0\ncheckpoint entered\nexit 0 387\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 401 save 439a132b3e931e6a state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 298 scene 387 save c720601aae0f15fa state 34a40b4058222430 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (565, 9): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64bda31b4797a1c9cc3f37042e7740d8"
+     },
+     {
+      "frames": 69,
+      "sha256": "049535ad8ae8c6b135ce5ed63658eb3a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b120-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b120-exit-1",
+    "description": "Walking onto exit 1 of JGL_B120 (scene 401) should lead to scene 398",
+    "plan": "# jgl-jgl-b120-exit-1: Walking onto exit 1 of JGL_B120 (scene 401) should lead to scene 398\nlimit 20000\nenter 401 0 16711422 0\ncheckpoint entered\nexit 1 398\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 401 save 439a132b3e931e6a state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 489 scene 398 save a125b2ec4049a1da state d82b9dcf2f7770a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (126, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "64bda31b4797a1c9cc3f37042e7740d8"
+     },
+     {
+      "frames": 260,
+      "sha256": "d271a0fb0c5a6136a4fe62d0bfdff902"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b130-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b130-exit-0",
+    "description": "Walking onto exit 0 of JGL_B130 (scene 402) should lead to scene 387",
+    "plan": "# jgl-jgl-b130-exit-0: Walking onto exit 0 of JGL_B130 (scene 402) should lead to scene 387\nlimit 20000\nenter 402 0 16711422 0\ncheckpoint entered\nexit 0 387\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 402 save 9f7c3439cfecae01 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 298 scene 387 save c720601aae0f15fa state 34a40b4058222430 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (565, 9): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 54,
+     "exit": 1,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b6a70617848e823626b6c28534f6b8bc"
+     },
+     {
+      "frames": 69,
+      "sha256": "4721a85dcd33b116d311ed8f6a0a359e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b130-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b130-exit-1",
+    "description": "Walking onto exit 1 of JGL_B130 (scene 402) should lead to scene 398",
+    "plan": "# jgl-jgl-b130-exit-1: Walking onto exit 1 of JGL_B130 (scene 402) should lead to scene 398\nlimit 20000\nenter 402 0 16711422 0\ncheckpoint entered\nexit 1 398\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 402 save 9f7c3439cfecae01 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 489 scene 398 save a125b2ec4049a1da state d82b9dcf2f7770a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (126, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 68,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b6a70617848e823626b6c28534f6b8bc"
+     },
+     {
+      "frames": 260,
+      "sha256": "a5d39535e28b699940e83f9c388ee170"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b140-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b140-exit-0",
+    "description": "Walking onto exit 0 of JGL_B140 (scene 403) should lead to scene 387",
+    "plan": "# jgl-jgl-b140-exit-0: Walking onto exit 0 of JGL_B140 (scene 403) should lead to scene 387\nlimit 20000\nenter 403 0 16711422 0\ncheckpoint entered\nexit 0 387\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 403 save 2f6c8cd4f7d4b174 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 298 scene 387 save c720601aae0f15fa state 34a40b4058222430 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (565, 9): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 54,
+     "instruction": 154,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fcb0b4786d700fbe838d3d40e96eaa3c"
+     },
+     {
+      "frames": 69,
+      "sha256": "7ae1b48cfe1667d04d73859b2acda29b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-b140-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-b140-exit-1",
+    "description": "Walking onto exit 1 of JGL_B140 (scene 403) should lead to scene 398",
+    "plan": "# jgl-jgl-b140-exit-1: Walking onto exit 1 of JGL_B140 (scene 403) should lead to scene 398\nlimit 20000\nenter 403 0 16711422 0\ncheckpoint entered\nexit 1 398\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 403 save 2f6c8cd4f7d4b174 state 20d4a27760ce1034 ram 0000000000000000",
+     "arrived frame 489 scene 398 save a125b2ec4049a1da state d82b9dcf2f7770a3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (126, 8): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 177,
+     "instruction_end": 68,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fcb0b4786d700fbe838d3d40e96eaa3c"
+     },
+     {
+      "frames": 260,
+      "sha256": "4cf2dfa0eb4f3fdabbe29e515cc35ba7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs00-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs00-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS00 (scene 385) should lead to scene 394",
+    "plan": "# jgl-jgl-bs00-exit-0: Walking onto exit 0 of JGL_BS00 (scene 385) should lead to scene 394\nlimit 20000\nenter 33153 0 16712460 0\ncheckpoint entered\nexit 0 394\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 385 save 8478de545294338b state 185c7d9f59704669 ram 0000000000000000",
+     "arrived frame 293 scene 394 save a10bb242ee03f0b9 state 30694d1fe3d72d0c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 63): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 200,
+     "instruction_end": 81,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b3ecaac2343b8c1c7d50df51d6624ab"
+     },
+     {
+      "frames": 64,
+      "sha256": "9bcee4ff758bc3b0b56d598751017f78"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs01-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs01-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS01 (scene 386) should lead to scene 394",
+    "plan": "# jgl-jgl-bs01-exit-0: Walking onto exit 0 of JGL_BS01 (scene 386) should lead to scene 394\nlimit 20000\nenter 33154 0 16713471 0\ncheckpoint entered\nexit 0 394\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 386 save adb59456b382acc1 state 180ad5c5a7af7a0c ram 0000000000000000",
+     "arrived frame 293 scene 394 save a10bb242ee03f0b9 state f65e8b15ef73b613 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 63): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "95ed88436f5453b4732451346bff45f8"
+     },
+     {
+      "frames": 64,
+      "sha256": "d1e2bfb251b5dcbaeca507d60c13bd99"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs02-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs02-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS02 (scene 905) should lead to scene 394",
+    "plan": "# jgl-jgl-bs02-exit-0: Walking onto exit 0 of JGL_BS02 (scene 905) should lead to scene 394\nlimit 20000\nenter 905 0 16776959 0\ncheckpoint entered\nexit 0 394\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 905 save 44c2f7956e0bf8a8 state c47526bb4fb16238 ram 0000000000000000",
+     "arrived frame 321 scene 394 save a10bb242ee03f0b9 state 2c596fa659ea77ca ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 63): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 81,
+     "instruction": 238,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ccfea8736aaecebf3f5ef8d28eca83fe"
+     },
+     {
+      "frames": 92,
+      "sha256": "c835485b8f2de9192c5aa819acbae715"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs03-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs03-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS03 (scene 906) should lead to scene 394",
+    "plan": "# jgl-jgl-bs03-exit-0: Walking onto exit 0 of JGL_BS03 (scene 906) should lead to scene 394\nlimit 20000\nenter 906 0 16717311 0\ncheckpoint entered\nexit 0 394\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 906 save f62c2d4a9a099696 state 5dabed900ac3c7ce ram 0000000000000000",
+     "arrived frame 404 scene 394 save 8a7de279974d0bb7 state f6d5eba8d81c4800 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (6, 63): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 234,
+     "instruction_end": 88,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c93e3b921f05dbde30f7aac41b649a15"
+     },
+     {
+      "frames": 175,
+      "sha256": "8e79a9924fc6f734d064a11971d1c887"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs10-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs10-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS10 (scene 387) should lead to scene 399",
+    "plan": "# jgl-jgl-bs10-exit-0: Walking onto exit 0 of JGL_BS10 (scene 387) should lead to scene 399\nlimit 20000\nenter 33155 0 16720895 0\ncheckpoint entered\nexit 0 399\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 387 save 15aac5d412906acb state e3886cfc5cc648a3 ram 0000000000000000",
+     "arrived frame 302 scene 399 save 4a616ded4a5b77ab state 2b39a7c309d19dbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 96): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 155,
+     "instruction_end": 60,
+     "song": 4,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f41cbf2cec77332b7bcb61d159fa8cd8"
+     },
+     {
+      "frames": 73,
+      "sha256": "bf5f22a7aaaab1bca0b696e4c2c20b1f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs11-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs11-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS11 (scene 388) should lead to scene 399",
+    "plan": "# jgl-jgl-bs11-exit-0: Walking onto exit 0 of JGL_BS11 (scene 388) should lead to scene 399\nlimit 20000\nenter 33156 0 16713471 0\ncheckpoint entered\nexit 0 399\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 388 save 330a819f40264db3 state 3855603094700f7c ram 0000000000000000",
+     "arrived frame 302 scene 399 save 4a616ded4a5b77ab state 2b39a7c309d19dbb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 96): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 59,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cf79aabb0a1b31da75fdf6177d86dfe0"
+     },
+     {
+      "frames": 73,
+      "sha256": "b5bc50bce6c978d2ba166624f09a4824"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs12-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs12-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS12 (scene 907) should lead to scene 399",
+    "plan": "# jgl-jgl-bs12-exit-0: Walking onto exit 0 of JGL_BS12 (scene 907) should lead to scene 399\nlimit 20000\nenter 907 0 16776959 0\ncheckpoint entered\nexit 0 399\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 907 save 5323637bdc83da36 state 5fb4484a138bf375 ram 0000000000000000",
+     "arrived frame 354 scene 399 save 4a616ded4a5b77ab state 05bafd0b6bd01176 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 96): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 85,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fd8c5afc8f53880adb6b1b330f80fb34"
+     },
+     {
+      "frames": 125,
+      "sha256": "f302ccbc02238f8e79a801b1f0561c51"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-bs13-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-bs13-exit-0",
+    "description": "Walking onto exit 0 of JGL_BS13 (scene 908) should lead to scene 399",
+    "plan": "# jgl-jgl-bs13-exit-0: Walking onto exit 0 of JGL_BS13 (scene 908) should lead to scene 399\nlimit 20000\nenter 908 0 16717311 0\ncheckpoint entered\nexit 0 399\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 908 save 0aa12c8519717958 state 47786edd419f4a05 ram 0000000000000000",
+     "arrived frame 413 scene 399 save 142d7587cb0b84d3 state b0880b55bfa0748f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (504, 96): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 130,
+     "instruction": 272,
+     "song": 4,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec5fb5442df6a7d01c8bd29cdb4b7c36"
+     },
+     {
+      "frames": 184,
+      "sha256": "02dde16a44f89d1fa25a44e0595937bd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e000-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e000-cutscene",
+    "description": "Entering JGL_E000 (scene 372) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# jgl-jgl-e000-cutscene: Entering JGL_E000 (scene 372) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 372 0 16713471 1\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 372 save 0b7a58a981740d26 state 28f2ed59b2b3505d ram 0000000000000000",
+     "watched frame 3231 scene 372 save 0b7a58a981740d26 state 8a4c953db39e920e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3000 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 119,
+     "instruction_end": 28,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e0120c906c298b207decbfa4154eb2c8"
+     },
+     {
+      "frames": 3002,
+      "sha256": "df4a259413da7e108045f60c9537a840"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e000-exit-1",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state exit 1 of JGL_E000 needs",
+    "source": "built from the conditions in scene 372's script 1 (lom_routes.py generate-exits)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x111c": 3
+    }
+   },
+   "baseline": {
+    "route": "jgl-jgl-e000-exit-1",
+    "description": "Walking onto exit 1 of JGL_E000 (scene 372) should lead to scene 373",
+    "plan": "# jgl-jgl-e000-exit-1: Walking onto exit 1 of JGL_E000 (scene 372) should lead to scene 373\nlimit 20000\nenter 372 0 16713471 1\ncheckpoint entered\nexit 1 373\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 372 save 78c01bfdedacf796 state a272e5beefb4ce2b ram 0000000000000000",
+     "arrived frame 388 scene 373 save 7e4ee5fc39360318 state 2691f4030d5cc850 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (394, 273): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 206,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a7c54d712b9365cc33c0045f496a0c9b"
+     },
+     {
+      "frames": 159,
+      "sha256": "cb57b6539331851b52e8baefa852f8d4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e010-exit-0",
+    "description": "Walking onto exit 0 of JGL_E010 (scene 373) should lead to scene 377",
+    "plan": "# jgl-jgl-e010-exit-0: Walking onto exit 0 of JGL_E010 (scene 373) should lead to scene 377\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\nexit 0 377\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 665e329012226604 state 8f6cba5203971301 ram 0000000000000000",
+     "arrived frame 584 scene 377 save 2ea965cfd734d923 state 16b4a8d550ac9e2c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (786, 199): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "73ce585c2d37a30a8ed64d1884db63da"
+     },
+     {
+      "frames": 355,
+      "sha256": "4d7df7e7c32fd011836b06871e8f1692"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e010-exit-1",
+    "description": "Walking onto exit 1 of JGL_E010 (scene 373) should lead to scene 389",
+    "plan": "# jgl-jgl-e010-exit-1: Walking onto exit 1 of JGL_E010 (scene 373) should lead to scene 389\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\nexit 1 389\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 665e329012226604 state 8f6cba5203971301 ram 0000000000000000",
+     "arrived frame 506 scene 389 save 2b4e57b1ed0068fc state 3b96ac3b5a4ae06c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (525, 12): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 172,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "73ce585c2d37a30a8ed64d1884db63da"
+     },
+     {
+      "frames": 277,
+      "sha256": "902c488f9a6b3bf97966d61fb0f9848a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e010-exit-2",
+    "description": "Walking onto exit 2 of JGL_E010 (scene 373) should lead to scene 380",
+    "plan": "# jgl-jgl-e010-exit-2: Walking onto exit 2 of JGL_E010 (scene 373) should lead to scene 380\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\nexit 2 380\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 665e329012226604 state 8f6cba5203971301 ram 0000000000000000",
+     "arrived frame 492 scene 380 save 6f3d3178e404e369 state 0f5cddff7426a498 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (232, 360): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 40,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "73ce585c2d37a30a8ed64d1884db63da"
+     },
+     {
+      "frames": 263,
+      "sha256": "9fbadfab2433b807daae635860e11ebd"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e010-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e010-exit-3",
+    "description": "Walking onto exit 3 of JGL_E010 (scene 373) should lead to scene 372",
+    "plan": "# jgl-jgl-e010-exit-3: Walking onto exit 3 of JGL_E010 (scene 373) should lead to scene 372\nlimit 20000\nenter 373 1 16713471 3\ncheckpoint entered\nexit 3 372\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 373 save 665e329012226604 state 8f6cba5203971301 ram 0000000000000000",
+     "arrived frame 295 scene 372 save 9168311e994b80cc state 659be3ad40949912 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (18, 198): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 45,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "73ce585c2d37a30a8ed64d1884db63da"
+     },
+     {
+      "frames": 66,
+      "sha256": "a46c610a43b08975a9d0edd905208e55"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e020-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e020-exit-0",
+    "description": "Walking onto exit 0 of JGL_E020 (scene 374) should lead to scene 377",
+    "plan": "# jgl-jgl-e020-exit-0: Walking onto exit 0 of JGL_E020 (scene 374) should lead to scene 377\nlimit 20000\nenter 374 0 16713471 2\ncheckpoint entered\nexit 0 377\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 374 save a97bc6e2b336a06b state 0edbef3de66c7a26 ram 0000000000000000",
+     "arrived frame 493 scene 377 save 3e48aef3c6ae7964 state 04194d41061ddd6b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (111, 332): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5e40b17941421ce734e12dca5b358ac"
+     },
+     {
+      "frames": 264,
+      "sha256": "db7136ef0535a8537f6017c0cb58f6ff"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e020-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e020-exit-1",
+    "description": "Walking onto exit 1 of JGL_E020 (scene 374) should lead to scene 391",
+    "plan": "# jgl-jgl-e020-exit-1: Walking onto exit 1 of JGL_E020 (scene 374) should lead to scene 391\nlimit 20000\nenter 374 0 16713471 2\ncheckpoint entered\nexit 1 391\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 374 save a97bc6e2b336a06b state 0edbef3de66c7a26 ram 0000000000000000",
+     "arrived frame 469 scene 391 save e52386c80661fd55 state 48e70beba9c36d33 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 8): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 159,
+     "instruction_end": 51,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5e40b17941421ce734e12dca5b358ac"
+     },
+     {
+      "frames": 240,
+      "sha256": "f5bc5ed57ddc54366341d047f3126300"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e020-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e020-exit-2",
+    "description": "Walking onto exit 2 of JGL_E020 (scene 374) should lead to scene 376",
+    "plan": "# jgl-jgl-e020-exit-2: Walking onto exit 2 of JGL_E020 (scene 374) should lead to scene 376\nlimit 20000\nenter 374 0 16713471 2\ncheckpoint entered\nexit 2 376\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 374 save a97bc6e2b336a06b state 0edbef3de66c7a26 ram 0000000000000000",
+     "arrived frame 313 scene 376 save ab503296bb6f7252 state e7a68340cfd26094 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (540, 343): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 149,
+     "instruction_end": 36,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f5e40b17941421ce734e12dca5b358ac"
+     },
+     {
+      "frames": 84,
+      "sha256": "b0fde31f71a380cd5a5d91df2d8cc901"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e030-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e030-exit-0",
+    "description": "Walking onto exit 0 of JGL_E030 (scene 375) should lead to scene 391",
+    "plan": "# jgl-jgl-e030-exit-0: Walking onto exit 0 of JGL_E030 (scene 375) should lead to scene 391\nlimit 20000\nenter 375 1 16713471 1\ncheckpoint entered\nexit 0 391\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 375 save 2f3886f3a99c0dfc state 74c290c22df3749a ram 0000000000000000",
+     "arrived frame 418 scene 391 save e52386c80661fd55 state ef8d2c858f9aab43 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (300, 8): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 185,
+     "instruction_end": 57,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f33926062794c2fe085bf0d7265e2e27"
+     },
+     {
+      "frames": 189,
+      "sha256": "3a5d185925a9edceb5e95bc214cd01a0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e030-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e030-exit-1",
+    "description": "Walking onto exit 1 of JGL_E030 (scene 375) should lead to scene 377",
+    "plan": "# jgl-jgl-e030-exit-1: Walking onto exit 1 of JGL_E030 (scene 375) should lead to scene 377\nlimit 20000\nenter 375 1 16713471 1\ncheckpoint entered\nexit 1 377\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 375 save 2f3886f3a99c0dfc state 74c290c22df3749a ram 0000000000000000",
+     "arrived frame 310 scene 377 save 3e48aef3c6ae7964 state c11bbb6853d09182 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (111, 332): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 180,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "f33926062794c2fe085bf0d7265e2e27"
+     },
+     {
+      "frames": 81,
+      "sha256": "261e1863a954d32238c5fefda74284cc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e040-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e040-exit-0",
+    "description": "Walking onto exit 0 of JGL_E040 (scene 376) should lead to scene 392",
+    "plan": "# jgl-jgl-e040-exit-0: Walking onto exit 0 of JGL_E040 (scene 376) should lead to scene 392\nlimit 20000\nenter 376 0 16713471 3\ncheckpoint entered\nexit 0 392\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 376 save faa2d66e9614b464 state f94fbd9febb350e8 ram 0000000000000000",
+     "arrived frame 600 scene 392 save 15c7945f76ec2294 state ddbd7536d54eabfa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (785, 191): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 52,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b0ff243d979576676da4b7f2bfba042"
+     },
+     {
+      "frames": 371,
+      "sha256": "146557e87afb0ab742a64126d9eccfef"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e040-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e040-exit-1",
+    "description": "Walking onto exit 1 of JGL_E040 (scene 376) should lead to scene 382",
+    "plan": "# jgl-jgl-e040-exit-1: Walking onto exit 1 of JGL_E040 (scene 376) should lead to scene 382\nlimit 20000\nenter 376 0 16713471 3\ncheckpoint entered\nexit 1 382\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 376 save faa2d66e9614b464 state f94fbd9febb350e8 ram 0000000000000000",
+     "arrived frame 579 scene 382 save 5463578d0991e773 state fdf10a8751347f59 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (674, 379): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 154,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b0ff243d979576676da4b7f2bfba042"
+     },
+     {
+      "frames": 350,
+      "sha256": "bc2681a82e6330f4db59332b0da10ef3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e040-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e040-exit-3",
+    "description": "Walking onto exit 3 of JGL_E040 (scene 376) should lead to scene 374",
+    "plan": "# jgl-jgl-e040-exit-3: Walking onto exit 3 of JGL_E040 (scene 376) should lead to scene 374\nlimit 20000\nenter 376 0 16713471 3\ncheckpoint entered\nexit 3 374\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 376 save faa2d66e9614b464 state f94fbd9febb350e8 ram 0000000000000000",
+     "arrived frame 295 scene 374 save 395c81d1156da5b9 state 91abe4c52d336884 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (10, 172): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5b0ff243d979576676da4b7f2bfba042"
+     },
+     {
+      "frames": 66,
+      "sha256": "e265cdf72dd72d3976723e463c3baf68"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e050-exit-0",
+    "description": "Walking onto exit 0 of JGL_E050 (scene 377) should lead to one of scene 378, scene 379",
+    "plan": "# jgl-jgl-e050-exit-0: Walking onto exit 0 of JGL_E050 (scene 377) should lead to one of scene 378, scene 379\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\nexit 0 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save ac91c248b44348e5 state 8488ad1c152c4e04 ram 0000000000000000",
+     "arrived frame 493 scene 379 save f5578f78c4423ec6 state a210693e63b67362 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (11, 262): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 142,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3617dfda235ff9328168e62399822e25"
+     },
+     {
+      "frames": 264,
+      "sha256": "4d9292f41cbf510eec98e5c69e371438"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e050-exit-1",
+    "description": "Walking onto exit 1 of JGL_E050 (scene 377) should lead to scene 373",
+    "plan": "# jgl-jgl-e050-exit-1: Walking onto exit 1 of JGL_E050 (scene 377) should lead to scene 373\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\nexit 1 373\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save ac91c248b44348e5 state 8488ad1c152c4e04 ram 0000000000000000",
+     "arrived frame 299 scene 373 save afe4877326870c55 state 0bf88294869c8270 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (426, 13): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 160,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3617dfda235ff9328168e62399822e25"
+     },
+     {
+      "frames": 70,
+      "sha256": "ea7c652c92897e1286bdbfab9ff2cef7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e050-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e050-exit-2",
+    "description": "Walking onto exit 2 of JGL_E050 (scene 377) should lead to one of scene 374, scene 375",
+    "plan": "# jgl-jgl-e050-exit-2: Walking onto exit 2 of JGL_E050 (scene 377) should lead to one of scene 374, scene 375\nlimit 20000\nenter 377 2 16713471 1\ncheckpoint entered\nexit 2 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 377 save ac91c248b44348e5 state 8488ad1c152c4e04 ram 0000000000000000",
+     "arrived frame 390 scene 375 save f0ecc56ecec8b08a state a2522ce3cafac449 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (631, 162): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 173,
+     "instruction_end": 41,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3617dfda235ff9328168e62399822e25"
+     },
+     {
+      "frames": 161,
+      "sha256": "c77a68bcd733c978e0583d694cae495f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e060-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e060-exit-0",
+    "description": "Walking onto exit 0 of JGL_E060 (scene 378) should lead to scene 377",
+    "plan": "# jgl-jgl-e060-exit-0: Walking onto exit 0 of JGL_E060 (scene 378) should lead to scene 377\nlimit 20000\nenter 378 0 16713471 0\ncheckpoint entered\nexit 0 377\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 378 save 442cda938bedf5c9 state 4e536937ba8c6d9d ram 0000000000000000",
+     "arrived frame 320 scene 377 save cf4f8af7408110bc state eaeddd2fa6fd98e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (561, 342): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 168,
+     "instruction_end": 42,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "096d52073dbf90b7f571a6c10282446d"
+     },
+     {
+      "frames": 91,
+      "sha256": "3cb9fcdb89d4c3ec6528b2d28f13339c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e060-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e060-exit-1",
+    "description": "Walking onto exit 1 of JGL_E060 (scene 378) should lead to scene 380",
+    "plan": "# jgl-jgl-e060-exit-1: Walking onto exit 1 of JGL_E060 (scene 378) should lead to scene 380\nlimit 20000\nenter 378 0 16713471 0\ncheckpoint entered\nexit 1 380\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 378 save 442cda938bedf5c9 state 4e536937ba8c6d9d ram 0000000000000000",
+     "arrived frame 562 scene 380 save 5804e691adcebec4 state d40ef9a9b893a1f9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (301, 10): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 156,
+     "instruction_end": 39,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "096d52073dbf90b7f571a6c10282446d"
+     },
+     {
+      "frames": 333,
+      "sha256": "40e6780818adfe7e407b9c35b82f9ede"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e060-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e060-exit-2",
+    "description": "Walking onto exit 2 of JGL_E060 (scene 378) should lead to scene 397",
+    "plan": "# jgl-jgl-e060-exit-2: Walking onto exit 2 of JGL_E060 (scene 378) should lead to scene 397\nlimit 20000\nenter 378 0 16713471 0\ncheckpoint entered\nexit 2 397\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 378 save 442cda938bedf5c9 state 4e536937ba8c6d9d ram 0000000000000000",
+     "arrived frame 633 scene 397 save f10d12b225c5ec03 state 94761ec9e991c08d ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (122, 266): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 174,
+     "instruction_end": 54,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "096d52073dbf90b7f571a6c10282446d"
+     },
+     {
+      "frames": 404,
+      "sha256": "bd0b31d439682d5ac556d2c7253add48"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e070-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e070-exit-0",
+    "description": "Walking onto exit 0 of JGL_E070 (scene 379) should lead to scene 380",
+    "plan": "# jgl-jgl-e070-exit-0: Walking onto exit 0 of JGL_E070 (scene 379) should lead to scene 380\nlimit 20000\nenter 379 1 16713471 1\ncheckpoint entered\nexit 0 380\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 379 save 1366b0db4240a438 state 58ff162fe02be4f8 ram 0000000000000000",
+     "arrived frame 562 scene 380 save 5804e691adcebec4 state c7d8f6e4ee428bc2 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (301, 10): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 33,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8a3fd6eff5421f63f74bbf23e54ede63"
+     },
+     {
+      "frames": 333,
+      "sha256": "c927a4cc91d20ccfeac60f3f409de5b6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e070-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e070-exit-1",
+    "description": "Walking onto exit 1 of JGL_E070 (scene 379) should lead to scene 377",
+    "plan": "# jgl-jgl-e070-exit-1: Walking onto exit 1 of JGL_E070 (scene 379) should lead to scene 377\nlimit 20000\nenter 379 1 16713471 1\ncheckpoint entered\nexit 1 377\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 379 save 1366b0db4240a438 state 58ff162fe02be4f8 ram 0000000000000000",
+     "arrived frame 320 scene 377 save cf4f8af7408110bc state 72739ae817808549 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (561, 342): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "8a3fd6eff5421f63f74bbf23e54ede63"
+     },
+     {
+      "frames": 91,
+      "sha256": "62214863e4fa6e90ea9eb82f1fd2af40"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e080-exit-0",
+    "description": "Walking onto exit 0 of JGL_E080 (scene 380) should lead to scene 373",
+    "plan": "# jgl-jgl-e080-exit-0: Walking onto exit 0 of JGL_E080 (scene 380) should lead to scene 373\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\nexit 0 373\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save a6fde6f606d42e1b state 188efd77f44843d6 ram 0000000000000000",
+     "arrived frame 317 scene 373 save db6a8b4434250dc1 state 133b39266db58c28 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (692, 367): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b041908ec24d924495219c20cd9bc91f"
+     },
+     {
+      "frames": 88,
+      "sha256": "09cf8c6a04d189c3ad3220c27f5be94e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e080-exit-1",
+    "description": "Walking onto exit 1 of JGL_E080 (scene 380) should lead to scene 395",
+    "plan": "# jgl-jgl-e080-exit-1: Walking onto exit 1 of JGL_E080 (scene 380) should lead to scene 395\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\nexit 1 395\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save a6fde6f606d42e1b state 188efd77f44843d6 ram 0000000000000000",
+     "arrived frame 419 scene 395 save 4997acfb5d8a5585 state 43bd926211e878aa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (506, 9): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b041908ec24d924495219c20cd9bc91f"
+     },
+     {
+      "frames": 190,
+      "sha256": "b41f1a51e31612e7f690c63ad983cc35"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e080-exit-2",
+    "description": "Walking onto exit 2 of JGL_E080 (scene 380) should lead to scene 381",
+    "plan": "# jgl-jgl-e080-exit-2: Walking onto exit 2 of JGL_E080 (scene 380) should lead to scene 381\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\nexit 2 381\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save a6fde6f606d42e1b state 188efd77f44843d6 ram 0000000000000000",
+     "arrived frame 537 scene 381 save 87179626e775ebd6 state aa2a0d9628f0ef20 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (161, 12): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 138,
+     "instruction_end": 36,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b041908ec24d924495219c20cd9bc91f"
+     },
+     {
+      "frames": 308,
+      "sha256": "887c23f28209243d70aa019bb2e665e9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e080-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e080-exit-3",
+    "description": "Walking onto exit 3 of JGL_E080 (scene 380) should lead to one of scene 378, scene 379",
+    "plan": "# jgl-jgl-e080-exit-3: Walking onto exit 3 of JGL_E080 (scene 380) should lead to one of scene 378, scene 379\nlimit 20000\nenter 380 0 16713471 0\ncheckpoint entered\nexit 3 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 380 save a6fde6f606d42e1b state 188efd77f44843d6 ram 0000000000000000",
+     "arrived frame 579 scene 379 save e6aaa369039808b5 state 80abefddb1b376d7 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (7, 163): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 127,
+     "instruction_end": 33,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b041908ec24d924495219c20cd9bc91f"
+     },
+     {
+      "frames": 350,
+      "sha256": "f0d7486b60b803d1f43c175269cb95b5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e090-exit-0",
+    "description": "Walking onto exit 0 of JGL_E090 (scene 381) should lead to scene 396",
+    "plan": "# jgl-jgl-e090-exit-0: Walking onto exit 0 of JGL_E090 (scene 381) should lead to scene 396\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\nexit 0 396\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save c84592570e27698a state 86b2ce96360f4e3d ram 0000000000000000",
+     "arrived frame 530 scene 396 save 4f3c2dec3d5943d4 state 11aa368521277c4f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (9, 196): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 194,
+     "instruction_end": 62,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b24b27d165887d45f31ff3d1ae53874c"
+     },
+     {
+      "frames": 301,
+      "sha256": "a119f2bb02133c754e00c9e8d58d37e1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e090-exit-1",
+    "description": "Walking onto exit 1 of JGL_E090 (scene 381) should lead to scene 395",
+    "plan": "# jgl-jgl-e090-exit-1: Walking onto exit 1 of JGL_E090 (scene 381) should lead to scene 395\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\nexit 1 395\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save c84592570e27698a state 86b2ce96360f4e3d ram 0000000000000000",
+     "arrived frame 423 scene 395 save 048e8a4c205c01bc state f8839d9f55a9b669 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (325, 10): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 55,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b24b27d165887d45f31ff3d1ae53874c"
+     },
+     {
+      "frames": 194,
+      "sha256": "07e9823f7a94f5683f806c9444fb1c33"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e090-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e090-exit-2",
+    "description": "Walking onto exit 2 of JGL_E090 (scene 381) should lead to scene 380",
+    "plan": "# jgl-jgl-e090-exit-2: Walking onto exit 2 of JGL_E090 (scene 381) should lead to scene 380\nlimit 20000\nenter 381 2 16713471 2\ncheckpoint entered\nexit 2 380\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 381 save c84592570e27698a state 86b2ce96360f4e3d ram 0000000000000000",
+     "arrived frame 294 scene 380 save 3d7533caa6c18ed5 state 47040431323466fa ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (630, 145): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 144,
+     "instruction_end": 36,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b24b27d165887d45f31ff3d1ae53874c"
+     },
+     {
+      "frames": 65,
+      "sha256": "c1a5cd541475fe7377e4a7c345eff9b8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e100-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e100-exit-0",
+    "description": "Walking onto exit 0 of JGL_E100 (scene 382) should lead to scene 376",
+    "plan": "# jgl-jgl-e100-exit-0: Walking onto exit 0 of JGL_E100 (scene 382) should lead to scene 376\nlimit 20000\nenter 382 0 16713471 0\ncheckpoint entered\nexit 0 376\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 382 save 5002427c5d6d7635 state 025337cf8a24f71e ram 0000000000000000",
+     "arrived frame 294 scene 376 save 09a12a973a79b402 state 1273462dbb138e2c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (453, 63): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 157,
+     "instruction_end": 36,
+     "song": 3,
+     "exit": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec321a7e8add4e0a0ae39cbc5c1d641b"
+     },
+     {
+      "frames": 65,
+      "sha256": "b1487b15a1169b72eaf1cdab4d7cb5bc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e100-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e100-exit-1",
+    "description": "Walking onto exit 1 of JGL_E100 (scene 382) should lead to scene 384",
+    "plan": "# jgl-jgl-e100-exit-1: Walking onto exit 1 of JGL_E100 (scene 382) should lead to scene 384\nlimit 20000\nenter 382 0 16713471 0\ncheckpoint entered\nexit 1 384\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 382 save 5002427c5d6d7635 state 025337cf8a24f71e ram 0000000000000000",
+     "arrived frame 479 scene 384 save f69fd6440a3a3058 state 5e4b887b3a941651 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (41, 35): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 181,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec321a7e8add4e0a0ae39cbc5c1d641b"
+     },
+     {
+      "frames": 250,
+      "sha256": "6a69114ad523368bf08e0fd77ae5250b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e100-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e100-exit-2",
+    "description": "Walking onto exit 2 of JGL_E100 (scene 382) should lead to scene 383",
+    "plan": "# jgl-jgl-e100-exit-2: Walking onto exit 2 of JGL_E100 (scene 382) should lead to scene 383\nlimit 20000\nenter 382 0 16713471 0\ncheckpoint entered\nexit 2 383\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 382 save 5002427c5d6d7635 state 025337cf8a24f71e ram 0000000000000000",
+     "arrived frame 713 scene 383 save 17ab658b519c8c78 state 59347b57eccfc37e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (80, 333): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 183,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ec321a7e8add4e0a0ae39cbc5c1d641b"
+     },
+     {
+      "frames": 484,
+      "sha256": "b94e10b122f1a72d47082cc5f2e55bcc"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e110-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e110-exit-0",
+    "description": "Walking onto exit 0 of JGL_E110 (scene 383) should lead to scene 382",
+    "plan": "# jgl-jgl-e110-exit-0: Walking onto exit 0 of JGL_E110 (scene 383) should lead to scene 382\nlimit 20000\nenter 383 0 16713471 0\ncheckpoint entered\nexit 0 382\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 383 save 82fd7f5531fdfa78 state 81dda9ee5ad667e3 ram 0000000000000000",
+     "arrived frame 302 scene 382 save 1b08cf1bfa6de6e9 state e79a709c1cbc65e5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (384, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 192,
+     "instruction_end": 43,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "276d7c3c81f22af01cedfe32f3237481"
+     },
+     {
+      "frames": 73,
+      "sha256": "766a7d64899b88173a61cd6ded586085"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "jgl-jgl-e120-cutscene",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "jgl-jgl-e120-cutscene",
+    "description": "Entering JGL_E120 (scene 384) should play its event, until the player gets control or the scene stops changing",
+    "plan": "# jgl-jgl-e120-cutscene: Entering JGL_E120 (scene 384) should play its event, until the player gets control or the scene stops changing\nlimit 60000\nenter 384 1 16713471 1\ncheckpoint entered\nwatch 20000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 384 save 9d38c9cc81fea8eb state 9429087e9f45e549 ram 0000000000000000",
+     "watched frame 3368 scene 372 save 83d87761e96fae97 state 6671cc19e5092391 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched 3137 frames; no control and no scene change for 3000"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 195,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e5ad15c9ffa053119f5055fce8b996b5"
+     },
+     {
+      "frames": 3139,
+      "sha256": "61527fab3c8c2caa4ea70b06b24d23d1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

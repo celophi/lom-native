@@ -1,0 +1,64 @@
+#ifndef _FIELD_RUNTIME_H
+#define _FIELD_RUNTIME_H
+
+#include "common.h"
+#include <libgpu.h>
+
+#define FIELD_ORDERING_TABLE_SIZE 4112
+#define FIELD_WORLD_OT_OFFSET 16
+#define FIELD_WORLD_OT_SIZE (FIELD_ORDERING_TABLE_SIZE - FIELD_WORLD_OT_OFFSET)
+#define FIELD_WORLD_OT_LAST (FIELD_WORLD_OT_SIZE - 1)
+#define FIELD_WORLD_OT_DEPTH_SHIFT 7
+#define FIELD_WORLD_OT_DEPTH_STEP (1 << FIELD_WORLD_OT_DEPTH_SHIFT)
+#define FIELD_PRIMITIVE_ARENA_SIZE 15360
+
+typedef struct FieldRenderHalf
+{
+    OT_TYPE ordering_table[FIELD_ORDERING_TABLE_SIZE];
+    DISPENV disp_env;
+    DRAWENV draw_env;
+    RECT display_rect;
+    u8* primitive_cursor;
+    u8 primitive_arena[FIELD_PRIMITIVE_ARENA_SIZE];
+    DR_TPAGE draw_mode;
+} FieldRenderHalf;
+
+extern s32 g_text_cursor_x;
+extern s32 g_text_cursor_y;
+extern s32 g_text_clut_base;
+
+s32 run_field_scene(void);
+void field_init_text_renderer(FieldRenderHalf* render_buffers);
+/**
+ * @brief Draw one glyph at the text cursor and advance it (field_runtime_glyph.c).
+ * @param character Character code; only the low byte is used.
+ * @param ot_depth Ordering-table depth used to link the sprite.
+ * @param clut_offset Offset added to the base font CLUT identifier.
+ */
+void field_draw_glyph(s32 character, s32 ot_depth, s32 clut_offset);
+
+/**
+ * @brief Reset the scene selection, the fade state and the text state.
+ * @param render_buffers Unused; the main executable passes the field render buffers or NULL.
+ */
+void field_scene_reset(FieldRenderHalf* render_buffers);
+void field_initialize_subsystems(FieldRenderHalf* render_context);
+void field_build_frame_commands(FieldRenderHalf* render_half, s32 alternate);
+void field_flush_vram_uploads(void);
+void field_stop_song(void);
+#if defined(VERSION_JP)
+void field_draw_frame(s32 alternate_half, FieldRenderHalf* buffer, s32 update_mode);
+void field_clear_node_accumulators(s32 update_mode);
+#else
+void field_draw_frame(s32 alternate_half, FieldRenderHalf* buffer, s32 update_mode, s32 force_unscaled);
+void field_clear_node_accumulators(s32 update_mode, s32 force_unscaled);
+#endif
+void field_restore_entry_music(void);
+
+extern u8 g_hex_digit_table[];
+
+extern FieldRenderHalf* g_field_current_render_half;
+
+extern void* g_field_primitive_cursor;
+
+#endif

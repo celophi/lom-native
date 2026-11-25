@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "htw-htw-pmp1-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-pmp1-entry",
+    "description": "Entering HTW_PMP1 (scene 710) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# htw-htw-pmp1-entry: Entering HTW_PMP1 (scene 710) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33478 0 16720895 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 710 save f70da182d6b056ef state 6ad74aff27a3a177 ram 0000000000000000",
+     "watched frame 987 scene 710 save 0d4f5d007272e755 state 89287b4436a8792a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 756 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 63,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9b45fe6bee3b04dd07134d8246fbd440"
+     },
+     {
+      "frames": 758,
+      "sha256": "080017ffcdc0f6d794ce3fa7987fe2f1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-pmpk-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-pmpk-entry",
+    "description": "Entering HTW_PMPK (scene 623) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# htw-htw-pmpk-entry: Entering HTW_PMPK (scene 623) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33391 0 16720895 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 623 save 0e8b9d085ae1d91e state e948c2958a02206c ram 0000000000000000",
+     "watched frame 747 scene 623 save f71675658f5ef7fc state e7fcc424bb279bce ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 516 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 62,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "9f63c5dcfc7cea3aa0e4f132a240bcac"
+     },
+     {
+      "frames": 518,
+      "sha256": "327bf4e3db25fd1b3c8c7ad12d0d57bb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "htw-htw-sh03-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "htw-htw-sh03-direct",
+    "description": "Entering HTW_SH03 (scene 46) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# htw-htw-sh03-direct: Entering HTW_SH03 (scene 46) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 46 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 46 save 35ba1a01bf9000ca state 757547286454cf29 ram 0000000000000000",
+     "watched frame 262 scene 46 save 30798ea496488738 state 720eda2cdca94e30 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 108,
+     "instruction_end": 30,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "2469ee183c95fd6795c05ddb293bf7d6"
+     },
+     {
+      "frames": 33,
+      "sha256": "87c2275133301fd9ad9bdfc6853bc597"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

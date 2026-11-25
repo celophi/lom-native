@@ -1,0 +1,21 @@
+{
+  "format": 1,
+  "id": "home-continue-other-game",
+  "description": "Continue with another game's save on the card should show that file's title when the cursor is on it, then load the save in the bedroom",
+  "card_other_game": true,
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue, after the cursor stepped onto the other game's save and back"
+    },
+    {
+      "watch": 300
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}

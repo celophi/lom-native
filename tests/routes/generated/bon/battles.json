@@ -1,0 +1,231 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "bon-bon-b010-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b010-battle-0",
+    "description": "Walking into battle zone 0 of BON_B010 (scene 606) should start a battle that a strong hero wins",
+    "plan": "# bon-bon-b010-battle-0: Walking into battle zone 0 of BON_B010 (scene 606) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33374 0 16713471 0\ncheckpoint entered\nwalk 263 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 606 save 4960be759a82b0c3 state 988ac05fa102b4c2 ram 0000000000000000",
+     "fought frame 2390 scene 606 save 66361aa014f19a57 state 1ec4cba7d20db312 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (263, 46): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 2090 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 405,
+     "instruction_end": 121,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "824bcfd44b56364b5ee5e36d5e2f1e5d"
+     },
+     {
+      "frames": 2130,
+      "sha256": "3fd44b9e2ecc0ad0c10f7f87a4af4217"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b020-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b020-battle-0",
+    "description": "Walking into battle zone 0 of BON_B020 (scene 607) should start a battle that a strong hero wins",
+    "plan": "# bon-bon-b020-battle-0: Walking into battle zone 0 of BON_B020 (scene 607) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33375 0 16713471 0\ncheckpoint entered\nwalk 200 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 607 save c252e940a60c3a4a state 16b9eee3a817ea9b ram 0000000000000000",
+     "fought frame 1322 scene 607 save bd7360509f309465 state f15fa7472a7ddf51 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (200, 46): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1010 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 296,
+     "instruction_end": 97,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "63354c3ab96065dfd7b8351ce37d47bc"
+     },
+     {
+      "frames": 1062,
+      "sha256": "8200b5fa3a186980cd973ae805a1faa6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b110-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b110-battle-0",
+    "description": "Walking into battle zone 0 of BON_B110 (scene 610) should start a battle that a strong hero wins",
+    "plan": "# bon-bon-b110-battle-0: Walking into battle zone 0 of BON_B110 (scene 610) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33378 0 16713471 0\ncheckpoint entered\nwalk 180 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 610 save 748cd48083103fd7 state c766d8d8cbefb263 ram 0000000000000000",
+     "fought frame 1190 scene 610 save cca685681c91971d state 0d98a06e0a3dcf62 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (180, 124): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 890 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 360,
+     "instruction_end": 111,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8c7b22edd045b20a97534f388b3176dd"
+     },
+     {
+      "frames": 930,
+      "sha256": "4f32f256893db6d8520f49d50fa1bb94"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b120-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b120-battle-0",
+    "description": "Walking into battle zone 0 of BON_B120 (scene 611) should start a battle that a strong hero wins",
+    "plan": "# bon-bon-b120-battle-0: Walking into battle zone 0 of BON_B120 (scene 611) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33379 0 16713471 0\ncheckpoint entered\nwalk 220 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 611 save 543a2af915361a7e state fb497ea07a463129 ram 0000000000000000",
+     "fought frame 1012 scene 611 save 7b2917042b0a88eb state 203e9ab664808d6c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (220, 248): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 324,
+     "instruction_end": 108,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "96fc4727767de60bb400f9320af5258d"
+     },
+     {
+      "frames": 752,
+      "sha256": "fec558fa086ebc9180f8cdff1934b5bf"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bon-bon-b140-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "bon-bon-b140-battle-0",
+    "description": "Walking into battle zone 0 of BON_B140 (scene 613) should start a battle that a strong hero wins",
+    "plan": "# bon-bon-b140-battle-0: Walking into battle zone 0 of BON_B140 (scene 613) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33381 0 16713471 0\ncheckpoint entered\nwalk 160 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 613 save f951485182b2ce84 state 028bfec77457c737 ram 0000000000000000",
+     "fought frame 780 scene 613 save 16d59012f3c8a47e state b8c5156d85b759e4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (160, 104): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 246,
+     "instruction_end": 90,
+     "song": 3,
+     "monster": 1,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "f87e78bb86ca9997970db54615d3297b"
+     },
+     {
+      "frames": 520,
+      "sha256": "56ca6e59f75edf0e289cbb47e7ea2392"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

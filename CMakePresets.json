@@ -1,0 +1,95 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "opt",
+      "inherits": "base",
+      "displayName": "Optimized with debug info, with tests (default)",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "LOM_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "displayName": "Debug, with tests",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "LOM_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "runtime",
+      "inherits": "base",
+      "displayName": "Optimized game and launcher, no tests",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "LOM_BUILD_TESTS": "OFF"
+      }
+    },
+    {
+      "name": "opt32",
+      "inherits": "opt",
+      "displayName": "Optimized game and tests, 32-bit x86 (needs 32-bit glibc and, to run, 32-bit Vulkan)",
+      "cacheVariables": {
+        "CMAKE_C_FLAGS": "-m32",
+        "CMAKE_CXX_FLAGS": "-m32",
+        "CMAKE_EXE_LINKER_FLAGS": "-m32",
+        "CMAKE_SHARED_LINKER_FLAGS": "-m32"
+      }
+    },
+    {
+      "name": "sanitize",
+      "inherits": "opt",
+      "displayName": "Optimized with tests, under AddressSanitizer and UBSan, reporting every finding instead of stopping",
+      "cacheVariables": {
+        "LOM_SANITIZE": "address,undefined",
+        "LOM_SANITIZE_RECOVER": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "opt",
+      "configurePreset": "opt",
+      "jobs": 8
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "jobs": 8
+    },
+    {
+      "name": "runtime",
+      "configurePreset": "runtime",
+      "jobs": 8
+    },
+    {
+      "name": "opt32",
+      "configurePreset": "opt32",
+      "jobs": 8
+    },
+    {
+      "name": "sanitize",
+      "configurePreset": "sanitize",
+      "jobs": 8
+    }
+  ]
+}

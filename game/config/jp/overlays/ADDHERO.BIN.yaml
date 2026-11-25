@@ -1,0 +1,55 @@
+name: ADDHERO.BIN
+compressed_sha1: 232fb31d4be2e8be38be2b2f0079c9ad2fdcf690
+sha1: ed7252e8cee9eb112c4aa2fc0b0cc814a4f3333c
+options:
+  base_path: ../../../
+  basename: ADDHERO.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/ADDHERO.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/addhero.elf
+
+  asm_path: asm/jp/overlays/addhero
+  src_path: src/overlays/addhero
+  build_path: build/jp/overlays/addhero
+
+  ld_script_path: linker/jp/overlays/addhero/addhero.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/addhero/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/addhero/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/addhero_symbol_addrs.txt
+
+  reloc_addrs_path:
+    - config/jp/relocations/addhero_reloc_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: addhero
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, addhero]
+      - [0x89, .rodata, addhero_card]
+      - [0x11D, c, addhero]
+      - [0x41C5, c, addhero_card]
+      - [0x65C1, c, addhero_glyph]
+      - [0x6F9D, databin, addhero_data]
+  - [0x2E721]

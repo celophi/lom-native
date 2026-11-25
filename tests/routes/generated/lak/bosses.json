@@ -1,0 +1,57 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-bs01-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "lak-lak-bs01-boss",
+    "description": "Entering LAK_BS01 (scene 326) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# lak-lak-bs01-boss: Entering LAK_BS01 (scene 326) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33094 0 16723207 1\ncheckpoint entered\nwalk 336 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 326 save 832348d9bc61dba7 state f6ecbf4e8b34a39f ram 0000000000000000",
+     "fought frame 3730 scene 326 save dcb8115daea98734 state 82b3161b33f2edb1 ram 0000000000000000",
+     "after frame 3785 scene 325 save 174205e062d8de9f state 8c109501e8f3b94c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 100): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 3110 frames",
+     "watched until the player got control, 53 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 587,
+     "instruction_end": 199,
+     "song": 4,
+     "monster": 1,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "a2c952532eee1511a92661fb33fa905e"
+     },
+     {
+      "frames": 3470,
+      "sha256": "b888f1e89d33a442297bcdd936361287"
+     },
+     {
+      "frames": 55,
+      "sha256": "321bc497bc1cc5fbf4c6538370d3f3c0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,163 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+import struct
+
+from tools.data.scenes.scene_format import SceneHeader
+
+
+LAYOUT_RECORD = struct.Struct("<IHBBIHH16H")
+
+COMMON_CHEST_INITIALIZER = bytes.fromhex(
+    "40 84 20 c0 "
+    "0c 01 02 ff 10 00 08 40 40 e0 "
+    "0c 01 02 ff 10 00 09 40 50 e0"
+)
+
+
+@dataclass(frozen=True)
+class FieldLayoutRecord:
+    control: int
+    condition_variable_ref: int
+    condition_minimum: int
+    condition_maximum: int
+    position: int
+    source: int
+    enabled_events: int
+    scripts: tuple[int, ...]
+
+    @classmethod
+    def parse(cls, data: bytes, offset: int) -> FieldLayoutRecord:
+        """Read one record at an absolute IMG offset, after validating its section."""
+        control, variable_ref, minimum, maximum, position, source, events, *scripts = (
+            LAYOUT_RECORD.unpack_from(data, offset)
+        )
+        return cls(control, variable_ref, minimum, maximum, position, source, events, tuple(scripts))
+
+    def is_common_chest(self, event_scripts: bytes) -> bool:
+        """Require both the chest resource selector and the known initializer."""
+        kind = (self.control >> 4) & 0xF
+        if kind not in (0, 7) or (self.source & 7) != 5:
+            return False
+        initializer = self.scripts[15]
+        if initializer == 0xFFFF or (initializer & 0x8000) == 0:
+            return False
+        table_offset = (initializer & 0x7FFF) * 2
+        if table_offset + 2 > len(event_scripts):
+            return False
+        script_offset = struct.unpack_from("<H", event_scripts, table_offset)[0]
+        if script_offset < table_offset + 2:
+            return False
+        return event_scripts[script_offset:].startswith(COMMON_CHEST_INITIALIZER)
+
+    @property
+    def chest_id(self) -> int:
+        """Collection flag of a common chest; every placement of one chest shares it."""
+        return self.scripts[5] & 0x7FFF
+
+    def chest_yaml(self, record_bytes: bytes) -> str:
+        """Keep the existing chest export, including its decoded parameters."""
+        return self.layout_yaml(record_bytes, chest=True)
+
+    def chest_lines(self, report: dict, money: bool) -> list[str]:
+        """Chest identity, kind and settings, shown above the generic layout fields.
+
+        A money chest stores an amount of Lucre in scripts[4], not an item ID.
+        also_placed_in is only known to a batch export, so it can be missing.
+        """
+        lines = [
+            "# The collection flag identifies the chest. Scene versions of one room can",
+            "# place the same chest; opening it in one removes it from all of them.",
+            f"chest_id: 0x{self.chest_id:04X}",
+        ]
+        if "kind" in report:
+            lines.extend([
+                "# loot: a script hands over the item or money loaded into 0xE040.",
+                "# quest: no script does; the interaction runs scene-specific script.",
+                f"chest_kind: {report['kind']}",
+            ])
+        if "also_placed_in" in report:
+            others = report["also_placed_in"]
+            lines.append("# Other scene versions placing this chest, relative to the batch output.")
+            lines.append("also_placed_in:" + ("" if others else " []"))
+            lines.extend(f"  - {path}" for path in others)
+        lines.extend([
+            f"x: {self.position & 0xFFFF}",
+            f"z: {(self.position >> 16) & 0x7FF}",
+            f"money: {self.scripts[4]}" if money else f"item_id: 0x{self.scripts[4]:04X}",
+            "# Reference to a collection variable, not its current saved value.",
+            f"collection_variable_ref: 0x{self.chest_id:04X}",
+            f"alternate_facing: {'true' if self.scripts[5] & 0x8000 else 'false'}",
+        ])
+        return lines
+
+    def layout_yaml(self, record_bytes: bytes, chest: bool = False, chest_report: dict | None = None) -> str:
+        """Show every layout field, plus decoded chest settings and packed bits.
+
+        Script slots contain both references and parameters. Their comments
+        describe the common chest template, not a rule for other actor kinds.
+        The original record remains the source for byte-preserving recovery.
+        chest_report is the chest part of the scene's object report, when known.
+        """
+        money = chest_report is not None and chest_report.get("reward") == "money"
+        slot_roles = {
+            0: "interaction script",
+            1: "interaction script",
+            4: "money amount" if money else "item ID",
+            5: "collection-variable reference and alternate-facing bit",
+            8: "idle script",
+            15: "initialization script",
+        }
+        lines = self.chest_lines(chest_report or {}, money) if chest else []
+        lines.extend([
+            "# The current variable value must be within this inclusive range.",
+            "condition:",
+            f"  variable_ref: 0x{self.condition_variable_ref:04X}",
+            f"  minimum: {self.condition_minimum}",
+            f"  maximum: {self.condition_maximum}",
+            "# Fields of the original FieldLayoutRecord, before installation.",
+            "control:",
+            f"  raw: 0x{self.control:08X}",
+            f"  trigger_group: {self.control & 0xF}",
+            f"  kind: {(self.control >> 4) & 0xF}",
+            f"  selector: {(self.control >> 8) & 0xFF}",
+            f"  local_variable_count: {(self.control >> 16) & 0xFF}",
+            f"  palette: {(self.control >> 24) & 0xF}",
+            f"  group: {(self.control >> 28) & 3}",
+            f"  hidden: {'true' if self.control & 0x40000000 else 'false'}",
+            f"  active: {'true' if self.control & 0x80000000 else 'false'}",
+            "position:",
+            f"  raw: 0x{self.position:08X}",
+            f"  x: {self.position & 0xFFFF}",
+            f"  z: {(self.position >> 16) & 0x7FF}",
+            f"  unknown_bits_27_29: {(self.position >> 27) & 7}",
+            f"  y: {(self.position >> 30) & 3}",
+            "source:",
+            f"  raw: 0x{self.source:04X}",
+            f"  resource_selector: {self.source & 7}",
+            f"enabled_events: 0x{self.enabled_events:04X}",
+            "# Zero-based slots; 0xFFFF means no script in script-reference slots.",
+            "scripts:",
+        ])
+        for index, value in enumerate(self.scripts):
+            role = slot_roles.get(index) if chest else None
+            comment = f"[{index}]" + (f" {role}" if role else "")
+            lines.append(f"  - 0x{value:04X}  # {comment}")
+        lines.extend([
+            "# Original 48 bytes, retained for byte-preserving recovery.",
+            f'record_bytes: "{record_bytes.hex()}"',
+        ])
+        return "\n".join(lines) + "\n"
+
+
+
+def read_layout_records(data: bytes, header: SceneHeader) -> list[FieldLayoutRecord]:
+    """Validate the counted layout section and read its records in file order."""
+    size = header.event_scripts - header.layout
+    if size < 4:
+        raise ValueError("missing layout record count")
+    count = struct.unpack_from("<I", data, header.layout)[0]
+    if size != 4 + count * LAYOUT_RECORD.size:
+        raise ValueError("layout count does not match the section size")
+    return [FieldLayoutRecord.parse(data, header.layout + 4 + index * LAYOUT_RECORD.size)
+            for index in range(count)]

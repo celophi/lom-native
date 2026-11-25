@@ -1,0 +1,16 @@
+{
+  "id": "skip-movies",
+  "name": "Skip movies",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Skips all the movies that play in the game.",
+  "game": [
+    "SLUS-01013",
+    "SLPS-02170"
+  ],
+  "api": 3,
+  "in_game_toggle": true,
+  "switches": {
+    "skip_movies": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "generated_files": [
+        "src/cd/disc_resource_paths.inc",
+        "src/cd/disc_resource_paths_jp.inc",
+        "src/gpu/shaders/lom_psx_frag_dxil.h",
+        "src/gpu/shaders/lom_psx_frag_msl.h",
+        "src/gpu/shaders/lom_psx_frag_spv.h",
+        "src/gpu/shaders/lom_psx_vert_dxil.h",
+        "src/gpu/shaders/lom_psx_vert_msl.h",
+        "src/gpu/shaders/lom_psx_vert_spv.h",
+        "src/gpu/shaders/xbr_dxil.h",
+        "src/gpu/shaders/xbr_msl.h",
+        "src/gpu/shaders/xbr_spv.h",
+        "src/mods/japanese_balance_data.inc",
+        "tests/smoke/platform/remaster_fixture.h"
+    ],
+    "skipped_folders": [
+        ".git",
+        ".venv",
+        "__pycache__",
+        "build",
+        "docs",
+        "external",
+        "out"
+    ],
+    "license_markers": [
+        "Copyright",
+        "SPDX-License-Identifier",
+        "Permission is hereby granted"
+    ]
+}

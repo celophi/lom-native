@@ -1,0 +1,12 @@
+{
+  "id": "fixed",
+  "name": "Fixed",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 3,
+  "switches": {
+    "skip_movies": true
+  }
+}

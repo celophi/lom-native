@@ -1,0 +1,34 @@
+Textured polygons set the draw mode's texture page, as on the PS1, keeping
+the dithering and draw-to-display bits.
+
+--- a/psyz/src/psyz/libgpu.c
++++ b/psyz/src/psyz/libgpu.c
+@@ -1,9 +1,9 @@
+ #include <psyz.h>
+ #include <libgpu.h>
+-#include "../../../decomp/src/libgpu/libgpu_private.h"
++#include <libgpu_private.h>
+ #include <psyz/log.h>
+-#include "../draw.h"
+-#include "../internal.h"
++#include <draw.h>
++#include <internal.h>
+ 
+ // The GPU is a FIFO: the register reflects what it has consumed by the GPU the
+ // moment it's queried. The problem with the current PsyZ implementation is
+@@ -115,6 +115,15 @@
+             break;
+         default:
+             if (code >= 0x20 && code < 0x80) {
++                if (code < 0x40 && (code & 4)) {
++                    int page_word = (code & 0x10) ? 5 : 4;
++                    if (i + page_word < len) {
++                        u_long mode = 0xE1000000u | (GPU_STATUS & 0x600u) |
++                                      ((buf[i + page_word] >> 16) & 0x1FFu);
++                        GPU_STATUS = (GPU_STATUS & ~0x1FFu) | (mode & 0x1FFu);
++                        Draw_SetTexpageMode((ParamDrawTexpageMode*)&mode);
++                    }
++                }
+                 i += Draw_PushPrim(&buf[i], len - i) - 1;
+                 break;
+             }

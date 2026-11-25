@@ -1,0 +1,13 @@
+/build/
+
+CMakeUserPresets.json
+
+__pycache__/
+
+/.venv/
+
+/tests/routes/*
+!/tests/routes/handwritten/
+!/tests/routes/generated/
+!/tests/routes/jp/
+!/tests/routes/boundaries.json

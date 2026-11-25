@@ -1,0 +1,12 @@
+{
+  "id": "needs-base",
+  "name": "Needs base",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2,
+  "requires": {
+    "base": ">=1.0.0 <2.0.0"
+  }
+}

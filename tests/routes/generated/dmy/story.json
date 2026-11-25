@@ -1,0 +1,299 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "dmy-dmy-map1-story-1188",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-story-1188",
+    "description": "In DMY_MAP1 (scene 532), talking to layout record 6 should write story variable 0x1188",
+    "plan": "# dmy-dmy-map1-story-1188: In DMY_MAP1 (scene 532), talking to layout record 6 should write story variable 0x1188\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 179 108 0 1 0 6\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "done frame 937 scene 16 save 2d2a13c2c8281b2c state c495f733e86866d3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (179, 88): 1 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 239,
+     "instruction_end": 70,
+     "song": 2,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 708,
+      "sha256": "1d8c5a49afd766586f98cf2ead52b940"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-story-435",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-story-435",
+    "description": "In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x435",
+    "plan": "# dmy-dmy-map1-story-435: In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x435\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 263 129 0 1 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "done frame 906 scene 762 save e2e41c907bbeb0b1 state 423cf9e38ba1937c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (263, 109): 1 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 80,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 677,
+      "sha256": "f34804fcb3e832dcfc12e3cd47b7305b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-story-436",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-story-436",
+    "description": "In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x436",
+    "plan": "# dmy-dmy-map1-story-436: In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x436\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 263 129 0 1 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "done frame 906 scene 762 save e2e41c907bbeb0b1 state 423cf9e38ba1937c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (263, 109): 1 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 80,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 677,
+      "sha256": "f34804fcb3e832dcfc12e3cd47b7305b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map1-story-437",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map1-story-437",
+    "description": "In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x437",
+    "plan": "# dmy-dmy-map1-story-437: In DMY_MAP1 (scene 532), talking to layout record 4 should write story variable 0x437\nlimit 20000\nenter 532 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 263 129 0 1 0 4\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 532 save 83eb061eb5d604e4 state 58fb295fb66b0c97 ram 0000000000000000",
+     "done frame 906 scene 762 save e2e41c907bbeb0b1 state 423cf9e38ba1937c ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (263, 109): 1 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 215,
+     "instruction_end": 80,
+     "song": 3,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e370373b555df10648535a0d8cb35cc8"
+     },
+     {
+      "frames": 677,
+      "sha256": "f34804fcb3e832dcfc12e3cd47b7305b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-story-447",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-story-447",
+    "description": "In DMY_MAP4 (scene 535), talking to layout record 3 should write story variable 0x447",
+    "plan": "# dmy-dmy-map4-story-447: In DMY_MAP4 (scene 535), talking to layout record 3 should write story variable 0x447\nlimit 20000\nenter 535 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 151 142 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "done frame 887 scene 535 save 275c526932b6f4f4 state bdf8436ae18c12ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (171, 142): -3 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 49,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 658,
+      "sha256": "a439782f06ee9f47b0d744ff1452657d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-map4-story-449",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-map4-story-449",
+    "description": "In DMY_MAP4 (scene 535), talking to layout record 3 should write story variable 0x449",
+    "plan": "# dmy-dmy-map4-story-449: In DMY_MAP4 (scene 535), talking to layout record 3 should write story variable 0x449\nlimit 20000\nenter 535 0 16711935 0\ncheckpoint entered\nanswer 1\ntalk 151 142 0 1 0 3\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 535 save 2a5e7d8f77cdadb1 state aaaac02fe40b31cf ram 0000000000000000",
+     "done frame 887 scene 535 save 275c526932b6f4f4 state bdf8436ae18c12ef ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "answering choices with option 1",
+     "walk to (171, 142): -3 waypoints"
+    ],
+    "end": "steps 5 of 5 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 175,
+     "instruction_end": 49,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0affaab93c5c37223a6ca5b16109a44b"
+     },
+     {
+      "frames": 658,
+      "sha256": "a439782f06ee9f47b0d744ff1452657d"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "dmy-dmy-pub0-story-b25",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "dmy-dmy-pub0-story-b25",
+    "description": "In DMY_PUB0 (scene 538), talking to layout record 1 should write story variable 0xb25",
+    "plan": "# dmy-dmy-pub0-story-b25: In DMY_PUB0 (scene 538), talking to layout record 1 should write story variable 0xb25\nlimit 20000\nenter 33306 0 16711935 0\ncheckpoint entered\ntalk 200 200 0 1 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 538 save dc6104d1981d5822 state 9dbc30e7653482a0 ram 0000000000000000",
+     "done frame 2146 scene 351 save 70846054cad07795 state 985fd650b0b41464 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (200, 180): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 305,
+     "instruction_end": 175,
+     "song": 4,
+     "scene": 3
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fb6a2915031468dff8ce9dad14698fa4"
+     },
+     {
+      "frames": 1917,
+      "sha256": "dee21f38a780b89b8911a53d08cf0dc4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

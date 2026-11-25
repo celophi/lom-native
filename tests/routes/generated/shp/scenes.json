@@ -1,0 +1,375 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "shp-shp-bs00-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-bs00-entry",
+    "description": "Entering SHP_BS00 (scene 510) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-bs00-entry: Entering SHP_BS00 (scene 510) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33278 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 510 save e39eb67d824d773e state 2f0b0b45a247e357 ram 0000000000000000",
+     "watched frame 262 scene 510 save 3bbe7f23c1c6991e state 114523de270fe1e9 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 51,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "138da87df602ea0bface6f9da5de3b70"
+     },
+     {
+      "frames": 33,
+      "sha256": "71ce76a0d2772698b2a903bd0e83f213"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-bs01-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-bs01-entry",
+    "description": "Entering SHP_BS01 (scene 511) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-bs01-entry: Entering SHP_BS01 (scene 511) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33279 0 16712703 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 511 save d134f29917964947 state e1b67d5e99a4ebc3 ram 0000000000000000",
+     "watched frame 262 scene 511 save 5ba3d57c8c81407f state dbc2fa08a48fc741 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 143,
+     "instruction_end": 49,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "cd0c16b10ca919e5dee30542790d4861"
+     },
+     {
+      "frames": 33,
+      "sha256": "42f6ea764cc438df590af7d6763f6438"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-bs10-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-bs10-entry",
+    "description": "Entering SHP_BS10 (scene 563) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-bs10-entry: Entering SHP_BS10 (scene 563) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33331 0 16723221 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 563 save c625d8da29bb946f state 53133f4f869b820a ram 0000000000000000",
+     "watched frame 262 scene 563 save 5dc2c2f114e060c7 state f709e2f65c20cf43 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 123,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "afedb8656386e18538861f5815bedb22"
+     },
+     {
+      "frames": 33,
+      "sha256": "ced0198ee72479f6b597037f51bd9a28"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-bs11-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-bs11-entry",
+    "description": "Entering SHP_BS11 (scene 564) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-bs11-entry: Entering SHP_BS11 (scene 564) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 33332 0 16712479 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 564 save b7bbd510fda72454 state 581dda15e45c37c7 ram 0000000000000000",
+     "watched frame 262 scene 564 save 5aa848c606f6b19c state 123ab0d78ca751c1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 125,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "fd39182a96bbd24f47a4e99a3c9bb026"
+     },
+     {
+      "frames": 33,
+      "sha256": "5f6017af32753a467aef29f963e1a7e8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-dk32-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-dk32-direct",
+    "description": "Entering SHP_DK32 (scene 616) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-dk32-direct: Entering SHP_DK32 (scene 616) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 616 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 616 save 6df195a2d3440ed6 state 9b848d3a5d64bbd3 ram 0000000000000000",
+     "watched frame 262 scene 616 save 5809be92518a6d16 state 0d81001affb99974 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 137,
+     "instruction_end": 48,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "5cc35304ede778a4d48f84aa7e5b4578"
+     },
+     {
+      "frames": 33,
+      "sha256": "a866a87fdaba2a6955872fc6ed50cce5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-dk41-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-dk41-direct",
+    "description": "Entering SHP_DK41 (scene 617) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-dk41-direct: Entering SHP_DK41 (scene 617) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 617 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 617 save 4a2ca58255e8263b state 6198961eb832d156 ram 0000000000000000",
+     "watched frame 262 scene 617 save 5dbcf89e5d4096d3 state ce8b0cdfd542d829 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 145,
+     "instruction_end": 49,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d354e0ddbd4d45c6f220eef4b56ab18c"
+     },
+     {
+      "frames": 33,
+      "sha256": "e7296f968b624bd7124862cb9e12f1a5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r010-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r010-direct",
+    "description": "Entering SHP_R010 (scene 513) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-r010-direct: Entering SHP_R010 (scene 513) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 513 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 513 save 9420e04279b67a13 state d34f0511e3ddccff ram 0000000000000000",
+     "watched frame 262 scene 513 save 07f3dad41100e749 state d73bccd8d07ae8a1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 66,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "545f2a98049b3242c9bea789008c524c"
+     },
+     {
+      "frames": 33,
+      "sha256": "72d0f8f4fd7006c35b83542a1af12364"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r030-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r030-direct",
+    "description": "Entering SHP_R030 (scene 515) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-r030-direct: Entering SHP_R030 (scene 515) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 515 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 515 save 28f2fbf74e828f21 state 72baaccb1bfb2b21 ram 0000000000000000",
+     "watched frame 262 scene 515 save 25d6b54d28775faf state e5e020b3a7e754bd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "74075b0b37227ecd847bbba84c49abc6"
+     },
+     {
+      "frames": 33,
+      "sha256": "72ad32b81416694dab4f8973d0948ffb"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-r170-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-r170-direct",
+    "description": "Entering SHP_R170 (scene 529) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# shp-shp-r170-direct: Entering SHP_R170 (scene 529) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 529 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 529 save a84136da2febd9f3 state 72baaccb1bfb2b21 ram 0000000000000000",
+     "watched frame 262 scene 529 save 1f5ffb7692071889 state e5e020b3a7e754bd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 136,
+     "instruction_end": 46,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e6b7ea3964419adc6fa692feed15690"
+     },
+     {
+      "frames": 33,
+      "sha256": "6cbb24a58a323b82a3bda6d16532a885"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

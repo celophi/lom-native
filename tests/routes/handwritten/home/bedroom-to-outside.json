@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "id": "home-bedroom-to-outside",
+  "description": "Walking out of the bedroom should arrive in the main room, and the main room's front door should lead outside",
+  "start": {"save": "../saves/home-bedroom-new-game.json"},
+  "steps": [
+    {"checkpoint": "loaded", "note": "the save has loaded through Continue"},
+    {"walk_to": {"exit": 0}, "note": "the bedroom door, to the main room (scene 18)"},
+    {"checkpoint": "main-room"},
+    {"walk_to": {"exit": 0}, "note": "the front door, to outside (scene 16)"},
+    {"checkpoint": "outside"}
+  ]
+}

@@ -1,0 +1,130 @@
+{
+ "route": "domina-nearby-battle",
+ "description": "Walking into the monsters' area should start a battle, and attacking a monster with Square should hurt it",
+ "plan": "# domina-nearby-battle: Walking into the monsters' area should start a battle, and attacking a monster with Square should hurt it\nlimit 20000\nenter 32839 3 16714751 0\ncheckpoint entered\nwalk 300 96\nwait_battle 600\ncheckpoint battle-started\nwalk 775 138\npress 0x8000 4\nwait 20\npress 0x8000 4\nwait 20\npress 0x8000 4\nwait 40\ncheckpoint after-attacks\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 71 save a2e47857d7434a3b state 77cd8d5494599ef7 ram 0000000000000000",
+  "battle-started frame 153 scene 71 save c405ad746af406ff state a4cefde8307bc071 ram 0000000000000000",
+  "after-attacks frame 284 scene 71 save 6f565b33c0439b32 state 91f85c9f67d1fa19 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 71 (SEA_BF00)",
+    "scene id 19 to 32839",
+    "object id 0 to 3",
+    "music id 7 to 11",
+    "actor 0 (the hero): at (928, 96), facing 128, animation 2,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (310, 80), facing 0, animation 128,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (270, 170), facing 0, animation 128,0, presence 0, control 2, command 0",
+    "actor 5 (layout record 2): at (670, 180), facing 0, animation 134,0, presence 0, control 2, command 0",
+    "actor 6 (layout record 3): at (695, 90), facing 0, animation 134,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (740, 140), facing 0, animation 134,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "battle-started",
+   "changes": [
+    "frame 153, scene 71 (SEA_BF00)",
+    "story word 24: f2f20000 to 8c8c0000 (set 0x312, 0x313, 0x31a, 0x31b; cleared 0x311, 0x314, 0x315, 0x316, 0x319, 0x31c, 0x31d, 0x31e)",
+    "2 other saved-game bytes changed, the first at offset 12500",
+    "scene word 17: 03a00060 to 031e0072",
+    "scene word 21: 00028000 to 00027700",
+    "scene word 46: 00000000 to 00000002",
+    "scene word 47: 00000037 to 00000098",
+    "scene word 50: 00000000 to 5018ff7f",
+    "scene word 58: 00000000 to 4010ff7f",
+    "scene word 59: 00000000 to 000000ff",
+    "scene word 60: 00000000 to 08000000",
+    "scene word 66: 436a0000 to 246a0000",
+    "scene word 71: 36000000 to 3c000000",
+    "scene word 76: 1f008000 to 24008000",
+    "scene word 77: 3c28fffe to 3c28ff7f",
+    "scene word 81: 2d180000 to 3d180000",
+    "scene word 82: 3c28fffe to 3c28ff7f",
+    "scene word 86: 52000000 to 3c000000",
+    "scene word 87: 501efffe to 501eff7f",
+    "actor 0 (the hero): moved (928, 96) to (799, 114); control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): animation 128,0 to 128,2; command 0 to 141",
+    "actor 4 (layout record 1): animation 128,0 to 128,2; command 0 to 141",
+    "actor 5 (layout record 2): moved (670, 180) to (668, 180); animation 134,0 to 138,0; presence 0 to 254; command 0 to 141",
+    "actor 6 (layout record 3): moved (695, 90) to (693, 90); animation 134,0 to 138,0; presence 0 to 254; command 0 to 141",
+    "actor 7 (layout record 4): animation 134,0 to 138,0; presence 0 to 254; command 0 to 141"
+   ]
+  },
+  {
+   "checkpoint": "after-attacks",
+   "changes": [
+    "frame 284, scene 71 (SEA_BF00)",
+    "1 other saved-game byte changed, the first at offset 12628",
+    "scene word 9: 00000008 to 000000ff",
+    "scene word 10: 00000100 to 00031efb",
+    "scene word 11: 00000100 to 00000000",
+    "scene word 12: 00000100 to 00007243",
+    "scene word 17: 031e0072 to 032d0072",
+    "scene word 20: 00000000 to 0000f031",
+    "scene word 21: 00027700 to 00022000",
+    "scene word 40: 00008000 to 00360045",
+    "scene word 41: 00000000 to 00000360",
+    "scene word 47: 00000098 to 0000011b",
+    "scene word 66: 246a0000 to 1b6a0000",
+    "scene word 71: 3c000000 to 55000000",
+    "scene word 76: 24008000 to 3b008000",
+    "scene word 77: 3c28ff7f to 3c280006",
+    "scene word 80: 00000800 to 00004800",
+    "scene word 81: 3d180000 to 2d180000",
+    "scene word 82: 3c28ff7f to 3c280002",
+    "scene word 85: 00008861 to 0000f861",
+    "scene word 86: 3c000000 to 45000000",
+    "scene word 87: 501eff7f to 501e0001",
+    "scene word 90: 00000800 to 00007800",
+    "actor 0 (the hero): moved (799, 114) to (814, 114); animation 2,0 to 1,0",
+    "actor 3 (layout record 0): animation 128,2 to 128,3; command 141 to 0",
+    "actor 4 (layout record 1): animation 128,2 to 128,3; command 141 to 0",
+    "actor 5 (layout record 2): moved (668, 180) to (719, 166); direction 0 to 23; animation 138,0 to 131,2; presence 254 to 0; command 141 to 139",
+    "actor 6 (layout record 3): moved (693, 90) to (703, 114); direction 0 to 192; animation 138,0 to 163,2; presence 254 to 0; command 141 to 134",
+    "actor 7 (layout record 4): moved (740, 140) to (768, 118); direction 0 to 64; animation 138,0 to 3,2; presence 254 to 0; command 141 to 136",
+    "battle record 0: monster -1, side 128, hp 47/50",
+    "battle record 3: monster 2, side 64, hp 50/50",
+    "battle record 4: monster 2, side 64, hp 50/50",
+    "battle record 5: monster 61, side 64, hp 86/98"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (300, 96): 3 waypoints",
+  "walk to (775, 138): 1 waypoints"
+ ],
+ "end": "steps 13 of 13 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction_end": 100,
+  "instruction": 306,
+  "song": 3,
+  "scene": 2,
+  "monster": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 cef651be 83fb04cd 114436fb f3766e44 504a668a 84146a98 e4091c36 c132e485 1198e835 c6b5f92e 47edd01a d3af2227 d2d6a048 d3af2227 d2d6a048 65860715 a5596755 d03b2692 a5596755 d03b2692 5fb79bfe a0d73075 d64a7b18 4872b160 1a119f2c 760ec920 81470f09 e1b7b741 53bbd14c 569a51fd 077fa5eb f67bb0b9 0d54b693 b2f7d8c8 f4d56f33 2936eb25 aae271cf 9f18a47b 44c2918e aa1b5019 f1b0c9bf 9f23b7b0 35b9a485 4c0e57d0 2f21d5cb 2c470473 c7bab08a ba24645c eaafcf56 ec6db609 9d09bfc1 956e3c73 9840f54f 18801cff 11174565 16fc7ceb 4bb20158 1be445af 64e12da5 c6a9a0cb 1d905189 c41b4022 3fdb1f25 6dfc919d a9870136 1123ca41 39f6e606 2ad86553 a03ab974 99472e40 e4a39996 9cdf93fe 8af67a2c 98546b0e 383febca 1e3620dc cbc8efc9 cdc6ece2 46f49aae aec40579 891172fd c88b0cd9 433d6225 54943fbe 5033663a 072b5e3c cc2518da 2917e398 d59ae45f 9a5eb80d c71b18d2 414757f1 4193d493 23082010 c2a90b36 1868ec16 a612763c d7f8a309 e50f3ffb 7be57b62 7b9dfb1c 0cfd8d6f 593fdc8a 4f8e83ed d09c0f51 7e456061 bec7f6f1 c9790343 c2ab15cd b664b847 99d7aa7b 53cf8847 409ca39d e1e59288 f5cdca94 650500ab a558b77a 4ff81476 e85fdd45 c0d25c37 07a441ac a4d9b354 d5994cca 63df8b3f 3a6d4620 464ee2bb 19b39ad1 a6cebad3 3b383eb2 024f8db9 4961ec5d dad1106a 88de4ab7 800864d0 8a112396 8602f0f1 980b7b7f 8417004e b1266908 dd2c7c99 6eebea26 64f4f395 ff72599f 5e1acef7 9f6dbd30 8d1562e4 66da6593 76bf0bbd e4b25090 1864bd96 72601d53 5012ed3b e68a337e 1251c70c 1104d6d0 0008a913 226246ea 9dc1ab5f f09dfdab a7954142 327ae5ab 97f5a9fc 7acce007 fddd3a68 90484a4c f08fa9c2 f9736b7c 3ad4bb38 c47c5a2a edc04a49 b219fe20 efd91a94 25664ea0 b8726857 e084591d e904864d 40507c9d c277ab80 b498a869 37633ba3 a0f6537f 8dd824a7 1feb245a 04a4860f 97db8866 d08b21cb 492988c3 75003893 dd53e260 f1916866 8e6a388d 31849d86 700c1a00 e94ef1cb 9c2dab9b aae4483b f9c71a9e 95664ff1 a4394fb8 5be24c53 b8c7c668 955a7adf bb631c19 746ed22d 84f64cc6 e653168c dc2c4609 1a1ae563 391b5d92 cb6d51a3 fd80c3b6 08bb4b9a 8cbea195 519f49ff b3812fe1 1c30900c dfc4139b 75ee9eb4 76443d86 84499df2 960b1869 d1deb73f 7f4ca92b d6129d95 4e3fa606 89259740 4fe7ab0d a95645f2 506e3d56 4c1607c6",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "74e2bbd390872d6d4c9403bc2104adab"
+  },
+  {
+   "frames": 97,
+   "sha256": "ddb2990c23caeaaa3c6747faf0d65597"
+  },
+  {
+   "frames": 131,
+   "sha256": "2d4e23895c90317d02025e24b8471200"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

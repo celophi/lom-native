@@ -1,0 +1,60 @@
+name: GOSUB.BIN
+compressed_sha1: 5f7729f9ef7ebae83432d4e2db31a1234d567e9f
+sha1: 74bfb2cee4bed3ed4d88532f5d21200ad9f833ac
+options:
+  base_path: ../../../
+  basename: GOSUB.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/GOSUB.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/gosub.elf
+
+  asm_path: asm/jp/overlays/gosub
+  src_path: src/overlays/gosub
+  build_path: build/jp/overlays/gosub
+
+  ld_script_path: linker/jp/overlays/gosub/gosub.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/gosub/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/gosub/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/shared_symbol_addrs.txt
+    - config/jp/symbols/gosub_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: gosub
+    type: code
+    start: 0x1
+    vram: 0x80140000
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, gosub]
+      - [0x55, .rodata, gosub_selection]
+      - [0x69, rodatabin, gosub_groups]
+      - [0x81, c, gosub]
+      - [0xC19, c, gosub_elements]
+      - [0x16E1, c, gosub_lists]
+      - [0x229D, c, gosub_selection]
+      - [0x3225, c, gosub_runtime]
+      - [0x3B31, c, gosub_render]
+      - [0x5491, c, gosub_dialogs]
+      - [0x6589, c, gosub_helpers]
+      - [0x7025, databin, gosub_data]
+      - [0x2B711, .bss, gosub]
+  - [0x348A5]

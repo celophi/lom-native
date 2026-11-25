@@ -1,0 +1,321 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "shp-shp-cpt0-story-40b",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SHP_CPT0's story 0x40b needs",
+    "source": "built from the conditions on the path to the write in scene 505 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1194": 8,
+     "0x11e8": 3,
+     "0x11ec": 3,
+     "0x1198": 3
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-cpt0-story-40b",
+    "description": "In SHP_CPT0 (scene 505), entering should write story variable 0x40b",
+    "plan": "# shp-shp-cpt0-story-40b: In SHP_CPT0 (scene 505), entering should write story variable 0x40b\nlimit 20000\nenter 505 0 16714751 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 505 save f3eb25e15b252a2c state adaef52775f92495 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "game state 1 at vblank 2027",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 188,
+     "instruction_end": 81,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "05f2b09ccd85ba7ac9bafae704fc85f5"
+     },
+     {
+      "frames": 524,
+      "sha256": "79c94225eb51790e40e71a0b65607411"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-rdr0-story-1390",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SHP_RDR0's story 0x1390 needs",
+    "source": "built from the conditions on the path to the write in scene 504 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 8,
+     "0x13d0": 8,
+     "0x1174": 9,
+     "0x1170": 8,
+     "0x49e": 1,
+     "0x1390": 2
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-rdr0-story-1390",
+    "description": "In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x1390",
+    "plan": "# shp-shp-rdr0-story-1390: In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x1390\nlimit 20000\nenter 504 0 16714751 0\ncheckpoint entered\ntalk 112 200 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 504 save e2ddf3a8bc730b63 state 9762b809c78e12d6 ram 0000000000000000",
+     "done frame 1551 scene 504 save 6f52d9378bb3e261 state c230d4fc01f23397 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (92, 200): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 313,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36dc2c3a1e36e8d1263b980301e2c2a2"
+     },
+     {
+      "frames": 1322,
+      "sha256": "28c9f6234dddd840a1dcabf329630ca7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-rdr0-story-13b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SHP_RDR0's story 0x13b0 needs",
+    "source": "built from the conditions on the path to the write in scene 504 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 1
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-rdr0-story-13b0",
+    "description": "In SHP_RDR0 (scene 504), entering should write story variable 0x13b0",
+    "plan": "# shp-shp-rdr0-story-13b0: In SHP_RDR0 (scene 504), entering should write story variable 0x13b0\nlimit 20000\nenter 504 0 16714751 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 504 save 5ccd3517be2df9ea state 9762b809c78e12d6 ram 0000000000000000",
+     "done frame 262 scene 504 save a2e87f27178c03f6 state 681a0e36fecd3fcb ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 124,
+     "instruction_end": 35,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "7b517a477a7523df428ed2a7fd84d5d7"
+     },
+     {
+      "frames": 33,
+      "sha256": "3674d5611af2427a95f4ca8e1d8de5d2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-rdr0-story-4a7",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-rdr0-story-4a7",
+    "description": "In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4a7",
+    "plan": "# shp-shp-rdr0-story-4a7: In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4a7\nlimit 20000\nenter 504 0 16714751 0\ncheckpoint entered\ntalk 112 200 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 504 save 84cab496bc020ff8 state 9762b809c78e12d6 ram 0000000000000000",
+     "done frame 1506 scene 504 save af719f40e59f49bc state 6f5d3a19b2f95849 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (92, 200): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 294,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ae488665e976a6cffc9c1c935ae4709a"
+     },
+     {
+      "frames": 1277,
+      "sha256": "d78b54168155b87d4714c24b8a0d58d9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-rdr0-story-4a8",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "shp-shp-rdr0-story-4a8",
+    "description": "In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4a8",
+    "plan": "# shp-shp-rdr0-story-4a8: In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4a8\nlimit 20000\nenter 504 0 16714751 0\ncheckpoint entered\ntalk 112 200 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 504 save 84cab496bc020ff8 state 9762b809c78e12d6 ram 0000000000000000",
+     "done frame 1506 scene 504 save af719f40e59f49bc state 6f5d3a19b2f95849 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (92, 200): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 294,
+     "instruction_end": 50,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ae488665e976a6cffc9c1c935ae4709a"
+     },
+     {
+      "frames": 1277,
+      "sha256": "d78b54168155b87d4714c24b8a0d58d9"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "shp-shp-rdr0-story-4b7",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SHP_RDR0's story 0x4b7 needs",
+    "source": "built from the conditions on the path to the write in scene 504 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1168": 8,
+     "0x13d0": 8,
+     "0x1174": 9,
+     "0x1170": 8,
+     "0x49e": 1,
+     "0x1390": 2
+    }
+   },
+   "baseline": {
+    "route": "shp-shp-rdr0-story-4b7",
+    "description": "In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4b7",
+    "plan": "# shp-shp-rdr0-story-4b7: In SHP_RDR0 (scene 504), talking to layout record 2 should write story variable 0x4b7\nlimit 20000\nenter 504 0 16714751 0\ncheckpoint entered\ntalk 112 200 0 1 0 2\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 504 save e2ddf3a8bc730b63 state 9762b809c78e12d6 ram 0000000000000000",
+     "done frame 1551 scene 504 save 6f52d9378bb3e261 state c230d4fc01f23397 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (92, 200): 7 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 313,
+     "instruction_end": 54,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "36dc2c3a1e36e8d1263b980301e2c2a2"
+     },
+     {
+      "frames": 1322,
+      "sha256": "28c9f6234dddd840a1dcabf329630ca7"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

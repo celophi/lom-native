@@ -1,0 +1,546 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "snw-snw-b000-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b000-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B000 (scene 256) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b000-battle-0: Walking into battle zone 0 of SNW_B000 (scene 256) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33024 1 16718335 0\ncheckpoint entered\nwalk 232 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 256 save 076dbe26626f4f70 state baaf1e047c33337a ram 0000000000000000",
+     "fought frame 1019 scene 256 save 0df9d722effde5c5 state dc2e8083de7148a8 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (232, 176): 5 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 357,
+     "instruction_end": 115,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "5b21eb2e519aeaf41f0715013c7c94f0"
+     },
+     {
+      "frames": 759,
+      "sha256": "a9d43a71bd9309abb6ec8510bcc807a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b000-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b000-battle-1",
+    "description": "Walking into battle zone 1 of SNW_B000 (scene 256) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b000-battle-1: Walking into battle zone 1 of SNW_B000 (scene 256) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33024 1 16718335 0\ncheckpoint entered\nwalk 609 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 256 save 076dbe26626f4f70 state baaf1e047c33337a ram 0000000000000000",
+     "fought frame 1264 scene 256 save 343133ca7879aef8 state 0448a0b9e854a9f4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (609, 176): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 950 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 372,
+     "instruction_end": 117,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "5b21eb2e519aeaf41f0715013c7c94f0"
+     },
+     {
+      "frames": 1004,
+      "sha256": "78ef29e65618491e24fa85dbdb84eaf0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b010-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b010-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B010 (scene 257) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b010-battle-0: Walking into battle zone 0 of SNW_B010 (scene 257) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33025 2 16718335 0\ncheckpoint entered\nwalk 336 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 257 save 1c36aed780bcfdb6 state 5076f0568115e5e5 ram 0000000000000000",
+     "fought frame 911 scene 257 save 9833fbf3660e5957 state 968543d02a8c2e86 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 92): 4 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 530 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 288,
+     "instruction_end": 95,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "b2757320ca5e51865602a827e76436f4"
+     },
+     {
+      "frames": 651,
+      "sha256": "5a08b71f84b11c841888f8388efb897a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b020-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b020-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B020 (scene 258) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b020-battle-0: Walking into battle zone 0 of SNW_B020 (scene 258) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33026 1 16718335 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 258 save 874cf4011174ace6 state f4a765eead8f2106 ram 0000000000000000",
+     "fought frame 1531 scene 258 save f666124dde07e4e0 state 6ca96e33c6278740 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 98): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 359,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "2c0f2a0e4c71e9dcbf940e9bfd035d86"
+     },
+     {
+      "frames": 1271,
+      "sha256": "4c28ef6a51085426405f28db6b12af0a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b020-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b020-battle-1",
+    "description": "Walking into battle zone 1 of SNW_B020 (scene 258) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b020-battle-1: Walking into battle zone 1 of SNW_B020 (scene 258) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33026 1 16718335 0\ncheckpoint entered\nwalk 704 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 258 save 874cf4011174ace6 state f4a765eead8f2106 ram 0000000000000000",
+     "fought frame 1531 scene 258 save f666124dde07e4e0 state 6ca96e33c6278740 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (704, 98): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 359,
+     "instruction_end": 111,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "2c0f2a0e4c71e9dcbf940e9bfd035d86"
+     },
+     {
+      "frames": 1271,
+      "sha256": "4c28ef6a51085426405f28db6b12af0a"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b030-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b030-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B030 (scene 259) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b030-battle-0: Walking into battle zone 0 of SNW_B030 (scene 259) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33027 1 16718335 0\ncheckpoint entered\nwalk 320 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 259 save bdd79099ceb84377 state d69ef9978b6a15b0 ram 0000000000000000",
+     "fought frame 1565 scene 259 save 60dee0bea7ff71c3 state 5ded7421b7077ac3 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (320, 74): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1190 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 383,
+     "instruction_end": 114,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "4a5a2eca4e5cbd65c2e16c2e08c800e2"
+     },
+     {
+      "frames": 1305,
+      "sha256": "84fcfd67fc834f019b3e737040b70a82"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b030-battle-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b030-battle-1",
+    "description": "Walking into battle zone 1 of SNW_B030 (scene 259) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b030-battle-1: Walking into battle zone 1 of SNW_B030 (scene 259) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33027 1 16718335 0\ncheckpoint entered\nwalk 640 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 259 save bdd79099ceb84377 state d69ef9978b6a15b0 ram 0000000000000000",
+     "fought frame 2403 scene 259 save 60dee0bea7ff71c3 state 5a1823d1fecd86dc ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (640, 74): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1910 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 356,
+     "instruction_end": 111,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "4a5a2eca4e5cbd65c2e16c2e08c800e2"
+     },
+     {
+      "frames": 2143,
+      "sha256": "f54617a443289a146eed3421ba7f72a8"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b040-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b040-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B040 (scene 260) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b040-battle-0: Walking into battle zone 0 of SNW_B040 (scene 260) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33028 2 16718335 0\ncheckpoint entered\nwalk 380 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 260 save 84942c64678bd66b state e60d4fe74a54c251 ram 0000000000000000",
+     "fought frame 879 scene 260 save 85f216596c9c9962 state 7938823ccf7c9930 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (380, 120): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 470 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 99,
+     "instruction": 260,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "dc540fe97425b4c579dde0fdc73cacbf"
+     },
+     {
+      "frames": 619,
+      "sha256": "60f9969a177b5c0eaf397f46cccee8a2"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b050-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b050-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B050 (scene 261) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b050-battle-0: Walking into battle zone 0 of SNW_B050 (scene 261) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33029 1 16718335 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 261 save e75b4b25b9a0665d state defe40e7312f3d31 ram 0000000000000000",
+     "fought frame 1481 scene 261 save 4f810e3508ebe0fb state 0a366d798ed440dd ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 118): 2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1130 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 396,
+     "instruction_end": 117,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "184979dabf5c36fd487500c22eb11229"
+     },
+     {
+      "frames": 1221,
+      "sha256": "92385371774440571b83e07da889b146"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b060-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b060-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B060 (scene 262) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b060-battle-0: Walking into battle zone 0 of SNW_B060 (scene 262) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33030 0 16718335 0\ncheckpoint entered\nwalk 384 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 262 save 95b6eff07497bc5f state 130f90497348c738 ram 0000000000000000",
+     "fought frame 1957 scene 262 save b23581e65b4799f1 state 3cb3cca4530c679a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (384, 260): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 710 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 120,
+     "instruction": 383,
+     "song": 3,
+     "scene": 2,
+     "monster": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "2dac50655032df58c73ae522c815bd89"
+     },
+     {
+      "frames": 1697,
+      "sha256": "5ee62d6c4b09835cfb6c00caec2ec57c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b070-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b070-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B070 (scene 263) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b070-battle-0: Walking into battle zone 0 of SNW_B070 (scene 263) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33031 2 16718335 0\ncheckpoint entered\nwalk 336 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 263 save bbe8667eb2f90dd4 state 6c11ce980abb5467 ram 0000000000000000",
+     "fought frame 1761 scene 263 save f39ba79ae4368eea state 46afa237fe93286e ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (336, 66): 7 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 1370 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 355,
+     "instruction_end": 115,
+     "monster": 2,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "403bc7820625d929968749009edf7ac8"
+     },
+     {
+      "frames": 1501,
+      "sha256": "397d9b9c88759b11960493e4ffbc0141"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-b080-battle-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "snw-snw-b080-battle-0",
+    "description": "Walking into battle zone 0 of SNW_B080 (scene 264) should start a battle that a strong hero wins",
+    "plan": "# snw-snw-b080-battle-0: Walking into battle zone 0 of SNW_B080 (scene 264) should start a battle that a strong hero wins\nlimit 20000\nexperience 9999999\nenter 33032 1 16718335 0\ncheckpoint entered\nwalk 296 -1\nfight 900\ncheckpoint fought\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 264 save 2ca3b55d447e7448 state 4c535c00989993aa ram 0000000000000000",
+     "fought frame 1258 scene 264 save 8acd62cc3d7513bb state 11a86ad791bfa2e6 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (296, 136): 1 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 890 frames"
+    ],
+    "end": "steps 6 of 6 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 344,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 2,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "cbbf33f82ef356634aa90666e4f9935b"
+     },
+     {
+      "frames": 998,
+      "sha256": "656210934e1c665a53ba8847e3b36321"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

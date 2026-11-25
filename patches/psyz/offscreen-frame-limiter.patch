@@ -1,0 +1,19 @@
+Pace frames with the frame limiter when the window is offscreen, since
+headless runs have no display to sync with.
+
+--- a/psyz/src/platform/sdl3_common.h
++++ b/psyz/src/platform/sdl3_common.h
+@@ -491,6 +491,13 @@
+         INFOF("vsync forced OFF, internal frame limiter disabled");
+         return;
+     }
++    const char* video_driver = SDL_GetCurrentVideoDriver();
++    if (video_driver && SDL_strcmp(video_driver, "offscreen") == 0) {
++        PlatformBackend_SetDriverVsync(false);
++        use_driver_vsync = false;
++        INFOF("offscreen video, use frame limiter");
++        return;
++    }
+ 
+     SDL_DisplayID display_id = SDL_GetDisplayForWindow(sdl3_window);
+     if (!display_id) {

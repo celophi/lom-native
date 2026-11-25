@@ -1,0 +1,1111 @@
+#include "internal/cload_internal.h"
+#include "overlays/field/field_text.h"
+#include "main/display.h"
+#include <libetc.h>
+#include "main/controller.h"
+#include "main/cdrom.h"
+#include "overlays/field/field_fade.h"
+#include "overlays/field/field_input.h"
+#include "overlays/field/field_menu_window.h"
+#include "lom_native_card.h"
+#include "lom_native_overlay_entry.h"
+#include "lom_native_time.h"
+#include "lom_native_frames.h"
+#include "lom_native_draw_labels.h"
+#include "lom_native_graphics.h"
+#include "lom_native_gpu_packets.h"
+
+#if defined(VERSION_JP)
+#define CLOAD_CARD_SLOT0_LABEL_X 32
+#define CLOAD_CARD_SLOT1_LABEL_X 176
+#else
+#define CLOAD_CARD_SLOT0_LABEL_X 24
+#define CLOAD_CARD_SLOT1_LABEL_X 168
+#endif
+
+#if defined(VERSION_JP)
+#define CLOAD_ENTRY_MARKER_X 0xCC
+#else
+#define CLOAD_ENTRY_MARKER_X 0xC2
+#endif
+
+#define CLOAD_ENTRY_PLUS_RIGHT_X 248
+
+#define CLOAD_TITLE_X 80
+#define CLOAD_TITLE_Y 12
+#define CLOAD_TITLE_WIDTH 160
+
+#define CLOAD_CARD_LABEL_Y 44
+
+#define CLOAD_DETAILS_Y 160
+
+#define CLOAD_SCROLL_ARROW_UP_Y CLOAD_LIST_Y
+#define CLOAD_SCROLL_ARROW_DOWN_Y (CLOAD_LIST_Y + CLOAD_LIST_HEIGHT - 12)
+
+s32 cload_main_unchecked(void)
+{
+    RECT rect;
+
+    g_card_entry_state = CARD_MENU_ENTRY_STATE_CHECKING_CARD;
+    g_card_slot = 0;
+    card_reset_entry_ranks();
+    cload_load_icon_resources();
+    cload_init_display();
+    g_cload_result = CLOAD_RESULT_LOADED;
+    cload_init_card_events();
+    g_card_menu_icon_phase = 0;
+    lom_gpu_set_rect(&rect, OVERLAY_INIT_CLEAR_VRAM_X, OVERLAY_INIT_CLEAR_VRAM_Y, OVERLAY_INIT_CLEAR_VRAM_W, OVERLAY_INIT_CLEAR_VRAM_H);
+    lom_graphics_fill(&rect, 0, 0, 0);
+    reset_glyph_cache();
+    g_card_menu_write_in_progress = 0;
+    g_card_menu_progress_active = 0;
+    g_card_menu_selection_status = CARD_MENU_SELECTION_NONE;
+    g_card_menu_io_busy = 0;
+    g_card_menu_frame_parity = 0;
+    g_card_menu_exit_requested = 0;
+    field_reset_input_repeat();
+    cload_build_ui_elements();
+    cload_run_menu_loop();
+    return g_cload_result;
+}
+
+s32 cload_main(void)
+{
+    lom_overlay_require(18, "CLOAD");
+
+    return cload_main_unchecked();
+}
+
+/**
+ * @brief Run the double-buffered CLOAD menu loop until it exits.
+ */
+void cload_run_menu_loop(void)
+{
+    RECT rect;
+    FieldRenderHalf* frame;
+    OT_TYPE* ordering_table;
+    s32 buffer_index;
+    s32 dpad_input;
+
+    lom_graphics_wait(0);
+    lom_time_wait_menu(0);
+    lom_gpu_set_rect(&rect, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + VRAM_BACK_DISP_Y);
+    lom_graphics_fill(&rect, 0, 0, 0);
+    frame = &g_cload_render_buffers[0];
+    buffer_index = 0;
+    lom_graphics_clear_list(&frame->ordering_table[FIELD_FADE_OT_INDEX], CLOAD_OT_SIZE);
+    lom_graphics_clear_list(&g_cload_render_buffers[1].ordering_table[FIELD_FADE_OT_INDEX], CLOAD_OT_SIZE);
+    lom_graphics_set_display(&frame->disp_env);
+    update_controllers();
+    lom_graphics_show(1);
+
+    while (1)
+    {
+        ordering_table = &frame->ordering_table[FIELD_FADE_OT_INDEX];
+        lom_graphics_clear_list(ordering_table, CLOAD_OT_SIZE);
+        frame->primitive_cursor = g_cload_primitive_buffers[buffer_index];
+        field_update_input_repeat();
+        dpad_input = g_pad_input & PAD_BTN_DPAD;
+
+        if (dpad_input != 0)
+        {
+            g_pad_input = dpad_input;
+        }
+
+        field_update_and_render_fade(frame);
+
+        if (card_menu_update_frame(frame) != 0)
+        {
+            break;
+        }
+
+        lom_native_draw_label_part("CLOAD", 0, g_cload_primitive_buffers[buffer_index], frame->primitive_cursor);
+        lom_graphics_wait(0);
+        set_controller_vsync_interval(FRAME_VSYNC_INTERVAL);
+        lom_time_wait_menu(FRAME_VSYNC_INTERVAL);
+        lom_graphics_fill(&frame->display_rect, 0, 0, 0);
+        buffer_index = 0;
+
+        if (frame == &g_cload_render_buffers[0])
+        {
+            frame = &g_cload_render_buffers[1];
+            buffer_index = 1;
+        }
+        else
+        {
+            frame = &g_cload_render_buffers[0];
+        }
+
+        lom_graphics_set_display(&frame->disp_env);
+        lom_graphics_set_drawing(&frame->draw_env);
+        lom_native_gname_DrawOTag(ordering_table + CLOAD_OT_SIZE - 1);
+        update_controllers();
+        cdrom_process_state();
+    }
+
+    reset_controller_vsync_state();
+    lom_time_wait_menu(0);
+}
+
+/**
+ * @brief Initialize the CLOAD display and draw buffers.
+ */
+void cload_init_display(void)
+{
+    s32 unused[2];
+
+    SetGeomScreen(SCREEN_PROJECTION_DISTANCE);
+    SetGeomOffset(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+    lom_gpu_set_rect(&g_cload_render_buffers[0].display_rect, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_gpu_set_rect(&g_cload_render_buffers[1].display_rect, 0, VRAM_BACK_DISP_Y, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_graphics_wait(0);
+    lom_time_wait_menu(0);
+    lom_graphics_default_display(&g_cload_render_buffers[0].disp_env, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_graphics_default_display(&g_cload_render_buffers[1].disp_env, 0, VRAM_BACK_DISP_Y, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_graphics_default_drawing(&g_cload_render_buffers[0].draw_env, 0, SCREEN_HEIGHT, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    lom_graphics_default_drawing(&g_cload_render_buffers[1].draw_env, 0, VRAM_BACK_DRAW_Y, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    g_cload_render_buffers[1].draw_env.dtd = 0;
+    g_cload_render_buffers[0].draw_env.dtd = 0;
+    field_reset_fade_state();
+    field_set_fade_target(FADE_NEUTRAL, FADE_NEUTRAL, FADE_NEUTRAL, SCREEN_FADE_FRAMES);
+}
+
+#include "../../common/card_menu/card_menu_update_frame.inc.c"
+
+/**
+ * @brief Allocate and lay out the five fixed windows of the load screen.
+ */
+void cload_build_ui_elements(void)
+{
+    CardMenuElement* element;
+    s32 unused[2];
+
+    g_card_menu_scroll_frames = 0;
+    g_card_menu_scroll_target_y = 0;
+    g_card_menu_scroll_y = 0;
+    g_card_menu_selected_row = 0;
+    g_card_menu_selection_status = CARD_MENU_SELECTION_NONE;
+    cload_clear_elements();
+    g_card_menu_element_pool[CARD_MENU_ELEMENT_MODAL].attr.bits.state = CARD_MENU_ELEMENT_OPENING;
+
+    element = cload_alloc_element();
+    element->draw = cload_draw_entry_list;
+    element->attr.bits.transition_step = 1;
+    element->attr.bits.x = CARD_MENU_EXCHANGE_LIST_X;
+    element->attr.bits.y = CLOAD_LIST_Y;
+    element->size.bits.flag = 0;
+    CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_EXCHANGE_LIST_WIDTH);
+    element->size.bits.width_high = CARD_MENU_EXCHANGE_LIST_WIDTH >> 8;
+    CLOAD_SET_ELEMENT_HEIGHT(element, CLOAD_LIST_HEIGHT);
+
+    element = cload_alloc_element();
+    element->draw = cload_draw_header_label;
+    element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
+    element->attr.bits.transition_step = 1;
+    element->attr.bits.x = CLOAD_TITLE_X;
+    element->attr.bits.y = CLOAD_TITLE_Y;
+    element->size.bits.flag = 0;
+    CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CLOAD_TITLE_WIDTH);
+    element->size.bits.width_high = CLOAD_TITLE_WIDTH >> 8;
+    CLOAD_SET_ELEMENT_HEIGHT(element, CLOAD_WINDOW_HEIGHT(FIELD_TEXT_LINE_SPACING));
+
+    element = cload_alloc_element();
+    element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
+    element->attr.bits.transition_step = 1;
+    element->attr.bits.x = CLOAD_CARD_SLOT0_LABEL_X;
+    element->draw = cload_draw_card_slot0_label;
+    element->attr.bits.y = CLOAD_CARD_LABEL_Y;
+    element->size.bits.flag = 0;
+    CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
+    element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
+    CLOAD_SET_ELEMENT_HEIGHT(element, CLOAD_WINDOW_HEIGHT(CARD_MENU_CARD_LABEL_HEIGHT));
+
+    element = cload_alloc_element();
+    element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
+    element->attr.bits.transition_step = 1;
+    element->attr.bits.x = CLOAD_CARD_SLOT1_LABEL_X;
+    element->draw = cload_draw_card_slot1_label;
+    element->attr.bits.y = CLOAD_CARD_LABEL_Y;
+    element->size.bits.flag = 0;
+    CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
+    element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
+    CLOAD_SET_ELEMENT_HEIGHT(element, CLOAD_WINDOW_HEIGHT(CARD_MENU_CARD_LABEL_HEIGHT));
+
+    element = cload_alloc_element();
+    element->draw = cload_draw_selected_entry_details;
+    element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
+    element->attr.bits.transition_step = 1;
+    element->attr.bits.x = CARD_MENU_DETAILS_X;
+    element->attr.bits.y = CLOAD_DETAILS_Y;
+    element->size.bits.flag = 0;
+    CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_DETAILS_WIDTH);
+    element->size.bits.width_high = CARD_MENU_DETAILS_WIDTH >> 8;
+    CLOAD_SET_ELEMENT_HEIGHT(element, CLOAD_WINDOW_HEIGHT(CARD_MENU_DETAILS_HEIGHT));
+
+    g_card_menu_element_pool[CARD_MENU_ELEMENT_MODAL].attr.bits.state = CARD_MENU_ELEMENT_FREE;
+}
+
+#include "../../common/card_menu/card_menu_update_state.inc.c"
+
+/**
+ * @brief Advance the active load sequence and react to its phase result.
+ */
+void card_menu_update_card_sequence(void)
+{
+    s32 phase;
+
+    if (g_card_entry_state >= CARD_MENU_ENTRY_COUNT_LIMIT)
+    {
+        if (g_card_step == NULL)
+        {
+            g_card_step = g_card_steps_initial_scan;
+        }
+    }
+    while ((phase = cload_advance_load_sequence()) == CARD_MENU_SEQUENCE_RUN_AGAIN);
+
+    if (phase == CARD_MENU_SEQUENCE_FINISHED)
+    {
+        g_card_step = g_card_steps_card_info;
+    }
+
+    if (phase == CARD_MENU_SEQUENCE_NO_CARD)
+    {
+        g_card_step = g_card_steps_rescan;
+    }
+
+    if (phase == CARD_MENU_SEQUENCE_UNFORMATTED)
+    {
+        g_card_entry_state = CARD_MENU_ENTRY_STATE_UNFORMATTED;
+        g_card_step = g_card_steps_card_info;
+    }
+}
+
+/**
+ * @brief Handle CLOAD menu navigation, confirm, and cancel input.
+ */
+void card_menu_handle_input(void)
+{
+    s32 entry_count;
+    s32 status;
+    s32 move_count;
+    s32 sfx_id;
+    CardMenuElement* prompt;
+
+    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state == CARD_MENU_ELEMENT_FREE)
+    {
+        g_card_menu_exit_requested = 1;
+        return;
+    }
+
+    if (g_card_menu_exit_requested != 0)
+    {
+        return;
+    }
+
+    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state >= CARD_MENU_ELEMENT_CLOSING)
+    {
+        return;
+    }
+
+    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MODAL].attr.bits.state != CARD_MENU_ELEMENT_FREE)
+    {
+        return;
+    }
+
+    entry_count = g_card_entry_state;
+
+    if (entry_count == CARD_MENU_ENTRY_STATE_CHECKING_CARD)
+    {
+        return;
+    }
+
+    if (g_card_menu_entry_scan_active != 0)
+    {
+        return;
+    }
+
+    if (g_card_menu_io_busy != 0)
+    {
+        return;
+    }
+
+    if (*g_card_step >= CARD_MENU_STEP_SCAN_ENTRIES && *g_card_step <= CARD_MENU_STEP_SCAN_DONE)
+    {
+        return;
+    }
+
+    status = g_pad_input;
+
+    if (status & PAD_BTN_CIRCLE)
+    {
+        g_card_menu_exit_requested = 1;
+        g_cload_result = CLOAD_RESULT_CANCELLED;
+        field_play_sound(SFX_ERROR, AKAO_PAN_CENTER);
+        return;
+    }
+
+    if (status & CARD_MENU_CARD_SWITCH_BUTTON_MASK)
+    {
+        field_play_sound(SFX_CURSOR, AKAO_PAN_CENTER);
+        g_card_menu_scroll_frames = 0;
+        g_card_menu_scroll_target_y = 0;
+        g_card_menu_scroll_y = 0;
+        g_card_menu_selected_row = 0;
+        g_card_step = NULL;
+        g_card_entry_state = CARD_MENU_ENTRY_STATE_CHECKING_CARD;
+        g_card_menu_selection_status = CARD_MENU_SELECTION_NONE;
+        g_card_slot ^= 1;
+        card_reset_entry_ranks();
+        return;
+    }
+
+    if (entry_count >= CARD_MENU_ENTRY_COUNT_LIMIT)
+    {
+        return;
+    }
+
+    move_count = 1;
+
+    if (status & PAD_BTN_R1)
+    {
+        g_pad_input = PAD_BTN_DOWN;
+        move_count = CARD_MENU_PAGE_MOVE_ROWS;
+    }
+
+    if (g_pad_input & PAD_BTN_L1)
+    {
+        g_pad_input = PAD_BTN_UP;
+        move_count = CARD_MENU_PAGE_MOVE_ROWS;
+    }
+
+    for (; move_count != 0; move_count--)
+    {
+        if (g_pad_input & PAD_BTN_UP)
+        {
+            g_card_menu_selected_row--;
+
+            if (g_card_menu_selected_row < 0)
+            {
+                g_card_menu_selected_row = g_card_entry_state - 1;
+            }
+        }
+
+        if (g_pad_input & PAD_BTN_DOWN)
+        {
+            g_card_menu_selected_row++;
+
+            if (g_card_menu_selected_row >= g_card_entry_state)
+            {
+                g_card_menu_selected_row = 0;
+            }
+        }
+    }
+
+    if (g_pad_input & (PAD_BTN_UP | PAD_BTN_DOWN))
+    {
+        cload_commit_selected_entry();
+        field_play_sound(SFX_CURSOR, AKAO_PAN_CENTER);
+        cload_scroll_to_selection();
+        return;
+    }
+
+    if (g_pad_input & PAD_CONFIRM_BUTTONS)
+    {
+        if (strncmp(g_lom_save_filename_prefix, g_card_entries[g_card_slot][g_card_menu_selected_row].name, CARD_SAVE_FILENAME_PREFIX_LENGTH) != 0)
+        {
+            sfx_id = SFX_ERROR;
+        }
+        else
+        {
+            if ((g_cload_selected_file.saved_game.compatibility_tag == g_save_compatibility_tag) ||
+                (g_cload_selected_file.saved_game.compatibility_tag == SAVE_TAG_ANY))
+            {
+                prompt = cload_alloc_element();
+                prompt->draw = cload_draw_load_prompt;
+                prompt->attr.bits.transition_step = 1;
+                prompt->attr.bits.x = CARD_MENU_MESSAGE_X;
+                prompt->attr.bits.y = CLOAD_MESSAGE_Y;
+                prompt->size.bits.width_high = CARD_MENU_MESSAGE_WIDTH >> 8;
+                prompt->size.bits.height = CLOAD_WINDOW_HEIGHT(CARD_MENU_MESSAGE_HEIGHT);
+                CARD_MENU_SET_ELEMENT_WIDTH_LOW(prompt, CARD_MENU_MESSAGE_WIDTH);
+                cload_enable_choice_toggle();
+                cload_restart_load_sequence();
+                sfx_id = SFX_CONFIRM;
+            }
+            else
+            {
+                sfx_id = SFX_ERROR;
+            }
+        }
+
+        field_play_sound(sfx_id, AKAO_PAN_CENTER);
+    }
+}
+
+/**
+ * @brief Put every live UI element into its closing state.
+ */
+void cload_close_all_elements(void)
+{
+    CardMenuElement* element;
+    s32 i;
+
+    element = g_card_menu_element_pool;
+
+    for (i = 0; i < CARD_MENU_ELEMENT_COUNT; i++, element++)
+    {
+        if (element->attr.bits.state != CARD_MENU_ELEMENT_FREE)
+        {
+            element->attr.bits.state = CARD_MENU_ELEMENT_CLOSING;
+            element->attr.bits.transition_step = CARD_MENU_ELEMENT_TRANSITION_STEPS;
+        }
+    }
+}
+
+/**
+ * @brief Move the list scroll target to keep the selected row visible.
+ */
+void cload_scroll_to_selection(void)
+{
+    s32 row_y;
+    s32 relative_y;
+
+    row_y = g_card_menu_selected_row * CARD_MENU_ENTRY_ROW_HEIGHT;
+    relative_y = row_y - g_card_menu_scroll_y;
+
+    if (relative_y > CLOAD_LIST_HEIGHT - CARD_MENU_ENTRY_ROW_HEIGHT)
+    {
+        g_card_menu_scroll_target_y = row_y - CLOAD_LIST_LAST_ROW_Y;
+        g_card_menu_scroll_frames = LIST_SCROLL_FRAMES;
+    }
+
+    if (relative_y < 0)
+    {
+        g_card_menu_scroll_target_y = g_card_menu_selected_row * CARD_MENU_ENTRY_ROW_HEIGHT;
+        g_card_menu_scroll_frames = LIST_SCROLL_FRAMES;
+    }
+}
+
+#include "../../common/card_menu/card_menu_update_elements.inc.c"
+
+/**
+ * @brief Draw the visible save-entry list and selection cursor.
+ * @param ot Ordering-table head.
+ * @param prim Primitive-buffer cursor.
+ * @param x_offset Horizontal transition offset.
+ * @param y_offset Vertical transition offset.
+ * @return Advanced primitive-buffer cursor.
+ */
+void* cload_draw_entry_list(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    s32 entry_state = g_card_entry_state;
+
+    switch (entry_state)
+    {
+    case CARD_MENU_ENTRY_STATE_NO_GAME_DATA:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_no_game_save_data, CARD_MENU_TEXT_NO_GAME_SAVE_DATA), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_UNFORMATTED:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_no_game_save_data, CARD_MENU_TEXT_NO_GAME_SAVE_DATA), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_CARD_FULL:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_not_enough_blocks, CARD_MENU_TEXT_NOT_ENOUGH_BLOCKS), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_NO_CARD:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_no_card, CARD_MENU_TEXT_NO_CARD), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_ACCESS_FAILED:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_card_access_failed, CARD_MENU_TEXT_CARD_ACCESS_FAILED), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_NO_SAVE_DATA:
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_no_save_data, CARD_MENU_TEXT_NO_SAVE_DATA), FIELD_TEXT_COLOR_MENU,
+                               -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        break;
+    case CARD_MENU_ENTRY_STATE_BLANK:
+        break;
+    case CARD_MENU_ENTRY_STATE_CHECKING_CARD:
+    {
+        s32 message_x;
+        u16* text_table;
+
+        message_x = -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X;
+        text_table = &g_card_menu_text_table;
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_CHECKING_CARD), FIELD_TEXT_COLOR_MENU, message_x, -y_offset,
+                               FIELD_TEXT_ALIGN_CENTER);
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_DO_NOT_REMOVE_CARD), FIELD_TEXT_COLOR_MENU, message_x,
+                               CARD_MENU_LINE_HEIGHT - y_offset, FIELD_TEXT_ALIGN_CENTER);
+        prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_CARD_OR_CONTROLLER), FIELD_TEXT_COLOR_MENU, message_x,
+                               CARD_MENU_LINE_HEIGHT * 2 - y_offset, FIELD_TEXT_ALIGN_CENTER);
+    }
+
+    break;
+    default:
+    {
+        s32 row_y;
+        s32 entry_index;
+
+        if (g_card_menu_entry_scan_active != 0)
+        {
+            s32 message_x;
+            u16* text_table;
+
+            message_x = -x_offset + CARD_MENU_EXCHANGE_LIST_CENTER_X;
+            text_table = &g_card_menu_text_table;
+            prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_CHECKING_CARD), FIELD_TEXT_COLOR_MENU, message_x, -y_offset,
+                                   FIELD_TEXT_ALIGN_CENTER);
+            prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_DO_NOT_REMOVE_CARD), FIELD_TEXT_COLOR_MENU, message_x,
+                                   CARD_MENU_LINE_HEIGHT - y_offset, FIELD_TEXT_ALIGN_CENTER);
+            prim = field_draw_text(prim, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_CARD_OR_CONTROLLER), FIELD_TEXT_COLOR_MENU, message_x,
+                                   CARD_MENU_LINE_HEIGHT * 2 - y_offset, FIELD_TEXT_ALIGN_CENTER);
+            break;
+        }
+
+        entry_index = 0;
+
+        if (entry_state > 0)
+        {
+            s32 list_x;
+            u16 marker_offset;
+            Vec2s value_pos;
+            u16* text_table;
+
+            list_x = -x_offset;
+            text_table = &g_card_menu_text_table;
+
+            do
+            {
+                row_y = ((entry_index * CARD_MENU_ENTRY_ROW_HEIGHT) - y_offset) - g_card_menu_scroll_y;
+
+                if (row_y > -CARD_MENU_ENTRY_ROW_HEIGHT && row_y < CLOAD_LIST_HEIGHT)
+                {
+                    if (g_card_entry_ranks[entry_index] >= 0)
+                    {
+                        value_pos.x = list_x + CARD_MENU_ENTRY_VALUE_X;
+                        value_pos.y = row_y;
+                        prim = field_draw_text(
+                            field_draw_number(ot, prim, g_card_entry_suffix_values[entry_index], FIELD_TEXT_COLOR_MENU, &value_pos, FIELD_TEXT_ALIGN_LEFT), ot,
+                            CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_number_label), FIELD_TEXT_COLOR_MENU, list_x + CARD_MENU_ENTRY_NUMBER_LABEL_X,
+                            row_y, FIELD_TEXT_ALIGN_LEFT);
+                        if ((g_card_rank_count - 1) == g_card_entry_ranks[entry_index])
+                        {
+                            marker_offset = text_table[CARD_MENU_TEXT_NEWEST];
+                            prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, marker_offset), FIELD_TEXT_COLOR_MENU,
+                                                   list_x + CLOAD_ENTRY_MARKER_X, row_y, FIELD_TEXT_ALIGN_LEFT);
+                        }
+                        else if (g_card_entry_ranks[entry_index] < 2)
+                        {
+                            marker_offset = text_table[CARD_MENU_TEXT_OLDEST];
+                            prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, marker_offset), FIELD_TEXT_COLOR_MENU,
+                                                   list_x + CLOAD_ENTRY_MARKER_X, row_y, FIELD_TEXT_ALIGN_LEFT);
+                        }
+
+                        if (*skip_hex_digits(&g_card_entries[g_card_slot][entry_index].name[CARD_SAVE_FILENAME_PREFIX_LENGTH]) == '+')
+                        {
+                            prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_plus_marker), FIELD_TEXT_COLOR_MENU,
+                                                   CLOAD_ENTRY_PLUS_RIGHT_X - x_offset, row_y, FIELD_TEXT_ALIGN_RIGHT);
+                        }
+                    }
+
+                    if (strncmp(g_lom_save_filename_prefix, g_card_entries[g_card_slot][entry_index].name, CARD_SAVE_FILENAME_PREFIX_LENGTH) == 0)
+                    {
+                        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_mana_label), FIELD_TEXT_COLOR_MENU, list_x,
+                                               row_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+                    else if (strncmp(g_lom_pocketstation_filename_prefix, g_card_entries[g_card_slot][entry_index].name, CARD_SAVE_FILENAME_PREFIX_LENGTH) == 0)
+                    {
+                        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_ring_ring_land_label), FIELD_TEXT_COLOR_MENU,
+                                               list_x, row_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+                    else if (strncmp(g_new_save_entry_prefix, g_card_entries[g_card_slot][entry_index].name, CARD_MENU_NEW_SAVE_NAME_LENGTH) == 0)
+                    {
+                        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_new_save_label), FIELD_TEXT_COLOR_MENU, list_x,
+                                               row_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+                    else
+                    {
+                        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_BY_OFFSET(text_table, g_card_menu_text_other_game_label), FIELD_TEXT_COLOR_MENU, list_x,
+                                               row_y, FIELD_TEXT_ALIGN_LEFT);
+                    }
+                }
+
+                entry_index++;
+            } while (entry_index < g_card_entry_state);
+        }
+
+        row_y = ((g_card_menu_selected_row * CARD_MENU_ENTRY_ROW_HEIGHT) - y_offset) - g_card_menu_scroll_y;
+
+        if (g_card_menu_entry_scan_active == 0)
+        {
+            TILE* tile = prim;
+
+            SET_BGR0_PACKED(tile, GPU_COLOR_SELECTED_ROW);
+            lom_gpu_init_tile(tile);
+            lom_gpu_set_semi_trans(tile, 1);
+            tile->y0 = row_y - 1;
+            tile->w = CARD_MENU_EXCHANGE_LIST_WIDTH;
+            tile->x0 = 0;
+            tile->h = CARD_MENU_ENTRY_ROW_HEIGHT;
+            lom_gpu_link(ot, tile);
+            prim = tile + 1;
+        }
+    }
+
+    break;
+    }
+
+    return prim;
+}
+
+#include "../../common/save_file/skip_hex_digits.inc.c"
+
+/**
+ * @brief Draw the fixed CLOAD header label.
+ * @param ot Ordering-table head.
+ * @param prim Primitive-buffer cursor.
+ * @param x_offset Horizontal transition offset.
+ * @param y_offset Vertical transition offset.
+ * @return Advanced primitive-buffer cursor.
+ */
+void* cload_draw_header_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    RECT unused;
+
+    return field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_cload_text_load, CARD_MENU_TEXT_LOAD_TITLE), FIELD_TEXT_COLOR_MENU, -x_offset + CLOAD_TITLE_WIDTH / 2,
+                           -y_offset, FIELD_TEXT_ALIGN_CENTER);
+}
+
+/**
+ * @brief Draw the first memory-card slot label.
+ * @param ot Ordering-table head.
+ * @param prim Primitive-buffer cursor.
+ * @param x_offset Horizontal transition offset.
+ * @param y_offset Vertical transition offset.
+ * @return Advanced primitive-buffer cursor.
+ */
+void* cload_draw_card_slot0_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    s32 color;
+    u8* text;
+    RECT unused;
+
+    color = FIELD_TEXT_COLOR_MENU;
+    text = CARD_MENU_TEXT_AT(g_card_menu_text_card_slot0_label, CARD_MENU_TEXT_CARD_SLOT0_LABEL);
+
+    if (g_card_slot != 0)
+    {
+        color = FIELD_TEXT_COLOR_MENU_DIM;
+    }
+
+    return field_draw_text(prim, ot, text, color, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+}
+
+/**
+ * @brief Draw the second memory-card slot label.
+ * @param ot Ordering-table head.
+ * @param prim Primitive-buffer cursor.
+ * @param x_offset Horizontal transition offset.
+ * @param y_offset Vertical transition offset.
+ * @return Advanced primitive-buffer cursor.
+ */
+void* cload_draw_card_slot1_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    s32 color;
+    u8* text;
+    RECT unused;
+
+    color = FIELD_TEXT_COLOR_MENU;
+    text = CARD_MENU_TEXT_AT(g_card_menu_text_card_slot1_label, CARD_MENU_TEXT_CARD_SLOT1_LABEL);
+
+    if (g_card_slot == 0)
+    {
+        color = FIELD_TEXT_COLOR_MENU_DIM;
+    }
+
+    return field_draw_text(prim, ot, text, color, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+}
+
+/**
+ * @brief Draw metadata for the selected save entry.
+ * @param ot Ordering-table head.
+ * @param prim Primitive-buffer cursor.
+ * @param x_offset Horizontal transition offset.
+ * @param y_offset Vertical transition offset.
+ * @return Advanced primitive-buffer cursor.
+ * @note Draws party icons, play time, player name and location for compatible
+ *       Legend of Mana saves. Other games use their memory-card title.
+ *       The JP layout places the time and name columns farther left.
+ */
+void* cload_draw_selected_entry_details(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
+{
+    void* result;
+    Vec2s pos;
+    u8 name[256];
+    s32 party_icon[FIELD_PARTY_SIZE];
+
+    result = prim;
+
+    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NONE)
+    {
+        return result;
+    }
+
+    if (g_card_menu_entry_scan_active != 0)
+    {
+        return result;
+    }
+
+    if (g_card_menu_selection_status == CARD_MENU_SELECTION_EMPTY_CARD)
+    {
+        return result;
+    }
+
+    if (g_card_entry_state >= CARD_MENU_ENTRY_COUNT_LIMIT)
+    {
+        return result;
+    }
+
+    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NEW_SAVE)
+    {
+        s32 x = -x_offset;
+        u16* text_table;
+
+        result = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_cload_text_new_save_prompt, CARD_MENU_TEXT_NEW_SAVE_TITLE), FIELD_TEXT_COLOR_MENU, x, -y_offset,
+                                 FIELD_TEXT_ALIGN_LEFT);
+        text_table = CARD_MENU_TEXT_TABLE(g_cload_text_new_save_prompt, CARD_MENU_TEXT_NEW_SAVE_TITLE);
+        return field_draw_text(result, ot, CARD_MENU_TEXT(text_table, CARD_MENU_TEXT_USES_TWO_BLOCKS), FIELD_TEXT_COLOR_MENU, x,
+                               FIELD_TEXT_LINE_SPACING - y_offset, FIELD_TEXT_ALIGN_LEFT);
+    }
+
+    if (strncmp(g_lom_save_filename_prefix, g_card_entries[g_card_slot][g_card_menu_selected_row].name, CARD_SAVE_FILENAME_PREFIX_LENGTH) == 0)
+    {
+        SavedGameLayout* save = &g_cload_selected_file.saved_game;
+
+        if (save->compatibility_tag == SAVE_TAG_ANY || save->compatibility_tag == g_save_compatibility_tag)
+        {
+            s32 icon_count;
+            s32 i;
+            s32 j;
+            s32 base_width;
+            s32 grow_width;
+            s32 window_end;
+            s32 window_start;
+            s32 icon_x;
+            s32 hours;
+            SavedGameLayout* summary;
+            s32 x;
+            s32 y;
+            s32 time;
+
+            icon_x = 0;
+            party_icon[0] = save->spawn.bits.party_icon_0;
+            party_icon[1] = save->location.bits.party_icon_1;
+            party_icon[2] = save->location.bits.party_icon_2;
+            g_card_menu_icon_palette = save->icon_palette;
+
+            icon_count = 0;
+
+            for (i = 0; i < FIELD_PARTY_SIZE; i++)
+            {
+                if (party_icon[i] != SAVE_NO_ICON)
+                {
+                    icon_count++;
+                }
+            }
+
+            switch (icon_count)
+            {
+            case 2:
+                base_width = CARD_MENU_ICON_SQUEEZED_WIDTH(2);
+                grow_width = CARD_MENU_ICON_GROW_WIDTH(2);
+                g_card_menu_icon_phase %= CARD_MENU_ICON_PHASE_CYCLE(2);
+                break;
+            case 3:
+                base_width = CARD_MENU_ICON_SQUEEZED_WIDTH(3);
+                grow_width = CARD_MENU_ICON_GROW_WIDTH(3);
+                g_card_menu_icon_phase %= CARD_MENU_ICON_PHASE_CYCLE(3);
+                break;
+            default:
+                base_width = CARD_MENU_ICON_SQUEEZED_WIDTH(3);
+                grow_width = CARD_MENU_ICON_GROW_WIDTH(3);
+                g_card_menu_icon_phase = CARD_MENU_ICON_GROW_WIDTH(3) - 1;
+                break;
+            }
+
+            i = 0;
+
+            for (j = 0; j < FIELD_PARTY_SIZE; j++)
+            {
+                window_start = i * grow_width;
+                window_end = window_start + grow_width;
+
+                if (party_icon[j] != SAVE_NO_ICON)
+                {
+                    s32 width = base_width;
+                    s32 next_start;
+                    s32 next_end;
+
+                    if (g_card_menu_icon_phase >= window_start && g_card_menu_icon_phase < window_end)
+                    {
+                        width += g_card_menu_icon_phase - window_start;
+                    }
+                    else
+                    {
+                        next_start = window_end % (grow_width * icon_count);
+
+                        if (g_card_menu_icon_phase >= next_start)
+                        {
+                            next_end = next_start + grow_width;
+
+                            if (g_card_menu_icon_phase < next_end)
+                            {
+                                width += next_end - g_card_menu_icon_phase;
+                            }
+                        }
+                    }
+
+                    result = cload_draw_icon_highlight(result, ot, icon_x - x_offset, -y_offset, width, party_icon[j], i, j);
+                    icon_x += width;
+                    i++;
+                }
+            }
+
+            summary = &g_cload_selected_file.saved_game;
+            x = -x_offset;
+            y = -y_offset;
+            time = summary->play_time;
+            pos.x = x + CARD_MENU_DETAILS_HOURS_RIGHT_X;
+            pos.y = y;
+            hours = time / SAVED_PLAY_TIME_TICKS_PER_HOUR;
+            result = field_draw_number(ot, result, hours, FIELD_TEXT_COLOR_MENU, &pos, FIELD_TEXT_ALIGN_RIGHT);
+            result = field_draw_text(result, ot, FIELD_UI_TEXT_AT(g_field_ui_text_time_separator, FIELD_UI_TEXT_TIME_SEPARATOR), FIELD_TEXT_COLOR_MENU,
+                                     x + CARD_MENU_DETAILS_TIME_SEPARATOR_X, y, FIELD_TEXT_ALIGN_LEFT);
+            time = (time / SAVED_PLAY_TIME_TICKS_PER_MINUTE) - (hours * SAVED_PLAY_TIME_MINUTES_PER_HOUR);
+
+            if (time < 10)
+            {
+                pos.x = x + CARD_MENU_DETAILS_MINUTES_TENS_RIGHT_X;
+                pos.y = y;
+                result = field_draw_number(ot, result, 0, FIELD_TEXT_COLOR_MENU, &pos, FIELD_TEXT_ALIGN_RIGHT);
+            }
+
+            pos.x = x + CARD_MENU_DETAILS_MINUTES_RIGHT_X;
+            pos.y = y;
+            result = field_draw_number(ot, result, time, FIELD_TEXT_COLOR_MENU, &pos, FIELD_TEXT_ALIGN_RIGHT);
+            result = field_draw_text(result, ot, summary->summary_name, FIELD_TEXT_COLOR_MENU, x + CARD_MENU_DETAILS_TEXT_X, y + FIELD_TEXT_LINE_SPACING,
+                                     FIELD_TEXT_ALIGN_LEFT);
+            result = field_draw_text(result, ot, CARD_MENU_TEXT(g_card_menu_location_names, summary->location.bits.current_land), FIELD_TEXT_COLOR_MENU,
+                                     x + CARD_MENU_DETAILS_TEXT_X, y + FIELD_TEXT_LINE_SPACING * 2, FIELD_TEXT_ALIGN_LEFT);
+        }
+        else
+        {
+            result = field_draw_text(result, ot, CARD_MENU_TEXT_AT(g_cload_text_version_error, CARD_MENU_TEXT_WRONG_VERSION), FIELD_TEXT_COLOR_MENU, -x_offset,
+                                     -y_offset, FIELD_TEXT_ALIGN_LEFT);
+        }
+    }
+    else
+    {
+        s32 j;
+
+        terminate_multibyte_text(g_cload_selected_file.header.title);
+
+        if (g_cload_selected_file.header.title[1][0] != 0 && g_cload_selected_file.header.title[1][0] < SJIS_LEAD_MIN)
+        {
+            return result;
+        }
+
+        for (j = 0; j < CARD_FILE_TITLE_LINE_BYTES; j++)
+        {
+            name[j] = g_cload_selected_file.header.title[0][j];
+        }
+
+        name[j] = 0;
+        result = draw_cached_text(result, ot, name, -x_offset, -y_offset, FIELD_TEXT_COLOR_MENU, FIELD_TEXT_ALIGN_LEFT);
+
+        for (j = 0; j < CARD_FILE_TITLE_LINE_BYTES; j++)
+        {
+            name[j] = g_cload_selected_file.header.title[1][j];
+        }
+
+        name[j] = 0;
+        result = draw_cached_text(result, ot, name, -x_offset, -y_offset + FIELD_TEXT_LINE_SPACING, FIELD_TEXT_COLOR_MENU, FIELD_TEXT_ALIGN_LEFT);
+    }
+
+    return result;
+}
+
+#include "../../common/save_file/terminate_multibyte_text.inc.c"
+
+/**
+ * @brief Mark all eight UI elements as inactive.
+ */
+void cload_clear_elements(void)
+{
+    CardMenuElement* p;
+    s32 i;
+
+    p = g_card_menu_element_pool;
+
+    for (i = 0; i < CARD_MENU_ELEMENT_COUNT; i++)
+    {
+        p->attr.bits.state = CARD_MENU_ELEMENT_FREE;
+        p++;
+    }
+}
+
+/**
+ * @brief Activate and return the first free UI element.
+ * @return First free element, or the pool head if all slots are busy.
+ */
+CardMenuElement* cload_alloc_element(void)
+{
+    CardMenuElement* p;
+    s32 i;
+
+    p = g_card_menu_element_pool;
+
+    for (i = 0; i < CARD_MENU_ELEMENT_COUNT; i++, p++)
+    {
+        if (p->attr.bits.state == CARD_MENU_ELEMENT_FREE)
+        {
+            p->size.bits.flag = 1;
+            p->attr.bits.state = CARD_MENU_ELEMENT_OPENING;
+            return p;
+        }
+    }
+
+    return g_card_menu_element_pool;
+}
+
+/**
+ * @brief Advance and draw the eight pool elements for one frame.
+ *
+ * Links a draw-environment packet for each live element into the ordering
+ * table, then animates it by state: an opening window grows, an open window
+ * holds, a closing window shrinks, and a closed window counts down to free.
+ *
+ * @param frame Render buffer being built; primitive_cursor is read on entry and written back on exit.
+ */
+void card_menu_update_and_draw_elements(FieldRenderHalf* frame)
+{
+    void* prim;
+    OT_TYPE* ot;
+    CardMenuElement* element;
+    s32 i;
+    DRAWENV draw_env;
+    s32 scaled_width;
+    s32 scaled_height;
+    s32 opening_x;
+    s32 closing_x;
+
+    prim = frame->primitive_cursor;
+    ot = &frame->ordering_table[FIELD_FADE_OT_INDEX];
+
+    if ((g_card_entry_state < CARD_MENU_ENTRY_COUNT_LIMIT) && (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state == CARD_MENU_ELEMENT_OPEN))
+    {
+        if ((g_card_entry_state * CARD_MENU_ENTRY_ROW_HEIGHT) > (g_card_menu_scroll_y + CLOAD_LIST_HEIGHT))
+        {
+            prim = cload_emit_scroll_arrow(prim, ot, CARD_MENU_EXCHANGE_SCROLL_ARROW_X, CLOAD_SCROLL_ARROW_DOWN_Y, FIELD_MENU_ARROW_DOWN);
+        }
+
+        if (g_card_menu_scroll_y != 0)
+        {
+            prim = cload_emit_scroll_arrow(prim, ot, CARD_MENU_EXCHANGE_SCROLL_ARROW_X, CLOAD_SCROLL_ARROW_UP_Y, FIELD_MENU_ARROW_UP);
+        }
+    }
+
+    if (frame->display_rect.y != 0)
+    {
+        lom_graphics_default_drawing(&draw_env, 0, SCREEN_HEIGHT, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    }
+    else
+    {
+        lom_graphics_default_drawing(&draw_env, 0, VRAM_BACK_DRAW_Y, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    }
+
+    element = g_card_menu_element_pool;
+
+    for (i = 0; i < CARD_MENU_ELEMENT_COUNT; i++, element++)
+    {
+        if (element->attr.bits.state != CARD_MENU_ELEMENT_FREE)
+        {
+            lom_gpu_init_drawing_packet(prim, &draw_env);
+            lom_gpu_link(ot, prim);
+            prim = (DR_ENV*)prim + 1;
+
+            switch (element->attr.bits.state)
+            {
+            case CARD_MENU_ELEMENT_OPENING:
+                g_pad_input = 0;
+                scaled_width = (card_menu_element_width(element) * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
+                scaled_height = (element->size.bits.height * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
+                prim = element->draw(ot, prim, (card_menu_element_width(element) - scaled_width) / 2, (element->size.bits.height - scaled_height) / 2);
+                opening_x = element->attr.bits.x;
+                prim = cload_emit_window_frame(prim, ot, opening_x + (card_menu_element_width(element) - scaled_width) / 2,
+                                               element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
+                                               frame->display_rect.y, element->size.bits.flag);
+                element->attr.bits.transition_step++;
+
+                if (element->attr.bits.transition_step == CARD_MENU_ELEMENT_TRANSITION_STEPS)
+                {
+                    field_reset_input_repeat();
+                    element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
+                }
+
+                break;
+
+            case CARD_MENU_ELEMENT_OPEN:
+                prim = element->draw(ot, prim, 0, 0);
+                prim = cload_emit_window_frame(prim, ot, element->attr.bits.x, element->attr.bits.y, card_menu_element_width(element),
+                                               element->size.bits.height, frame->display_rect.y, element->size.bits.flag);
+                if (element->attr.bits.transition_step != 0)
+                {
+                    element->attr.bits.transition_step--;
+                }
+
+                break;
+
+            case CARD_MENU_ELEMENT_CLOSING:
+                g_pad_input = 0;
+                scaled_width = (card_menu_element_width(element) * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
+                scaled_height = (element->size.bits.height * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
+                prim = element->draw(ot, prim, (card_menu_element_width(element) - scaled_width) / 2, (element->size.bits.height - scaled_height) / 2);
+                closing_x = element->attr.bits.x;
+                prim = cload_emit_window_frame(prim, ot, closing_x + (card_menu_element_width(element) - scaled_width) / 2,
+                                               element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
+                                               frame->display_rect.y, element->size.bits.flag);
+                element->attr.bits.transition_step--;
+
+                if (element->attr.bits.transition_step == 0)
+                {
+                    element->attr.bits.transition_step = CARD_MENU_ELEMENT_CLOSED_FRAMES;
+                    element->attr.bits.state = CARD_MENU_ELEMENT_CLOSED;
+                }
+
+                break;
+
+            case CARD_MENU_ELEMENT_CLOSED:
+                g_pad_input = 0;
+                element->attr.bits.transition_step--;
+
+                if (element->attr.bits.transition_step == 0)
+                {
+                    element->attr.bits.state = CARD_MENU_ELEMENT_FREE;
+                }
+
+                break;
+            }
+        }
+    }
+
+    prim = cload_draw_backdrop(prim, ot);
+    frame->primitive_cursor = prim;
+}
+
+#include "../../common/encoded_text/encoded_text_append.inc.c"
+#include "../../common/encoded_text/encoded_text_byte_length.inc.c"
+#include "../../common/encoded_text/encoded_text_copy.inc.c"

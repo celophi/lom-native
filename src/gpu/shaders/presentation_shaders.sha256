@@ -1,0 +1,6 @@
+0d21a714ed9658dd16bd9f3c4f306cce4c0f02932a1a138661c40dccf0027a0b  src/gpu/shaders/xbr.vert.glsl
+fe7bbd8a9b8b875431164460c09cee969fa864f7e8234e274ec940b88118187a  src/gpu/shaders/xbr.frag.glsl
+f8eb12a19ed034f4881b9b15d04f51f9dbfb0dc845231b0000f9c5279785f663  src/gpu/shaders/xbr.vert.hlsl
+7906aba130fba9b866a4a866f5309fb68176db93873afc0ff43f0a3d54b8c03e  src/gpu/shaders/xbr.frag.hlsl
+978c452bd8adab062e1991869ae248557737708b7f8502888738d5c891a63a58  src/gpu/shaders/xbr.vert.metal
+11e054946e0c6d848bac145cd0c065b06faa9cd22ad62c768ee7e5ed63ec818f  src/gpu/shaders/xbr.frag.metal

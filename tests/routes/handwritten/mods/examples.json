@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "id": "mods-examples",
+  "description": "The example mods that come with lom-native should all run in the real game through a fight, with none of them stopping",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "examples",
+  "steps": [
+    {
+      "experience": 9999999,
+      "note": "strong enough to win quickly"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

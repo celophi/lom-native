@@ -1,0 +1,39 @@
+{
+  "format": 1,
+  "id": "wmap-esl-special-return",
+  "description": "Leaving Domina for the world map with land 24 (Lucemia) the current land should start the world map's special return, where the vehicle flies the party from land 24 home",
+  "start": {
+    "save": "saves/esl-current.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 36,
+        "from": 37,
+        "spawn": 2
+      },
+      "note": "Domina (HTW_ALL0), the way in the world map routes use"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "HTW_ALL0's exit to the world map; the map starts the party on the current land's cell"
+    },
+    {
+      "checkpoint": "world-map"
+    },
+    {
+      "land": {
+        "index": 0
+      },
+      "note": "home: the special return (wmap_run_special_return), set pending because the party starts on land 24, flies the party there itself"
+    },
+    {
+      "checkpoint": "home"
+    }
+  ]
+}

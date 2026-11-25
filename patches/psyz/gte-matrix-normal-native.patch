@@ -1,0 +1,102 @@
+MatrixNormal as the game's SDK does it, including its overflow check, which
+stops the game.
+--- a/psyz/src/psyz/libgte.c
++++ b/psyz/src/psyz/libgte.c
+@@ -1,4 +1,11 @@
+ #include <assert.h>
++#include <stdint.h>
++#include <limits.h>
++#include <stddef.h>
++#include <libgte.h>
++#include <psyz/gte.h>
++#include <stdio.h>
++#include <stdlib.h>
+ #include <string.h>
+ #ifdef _MSC_VER
+ #include <intrin.h>
+@@ -3262,6 +3269,85 @@
+     (void)lom_inv_square_root32((unsigned int)value, mantissa, exponent);
+ }
+ 
++_Static_assert(sizeof(MATRIX) == 32, "native SDK MATRIX layout");
++_Static_assert(offsetof(MATRIX,t) == 20 && sizeof(((MATRIX*)0)->m[0][0]) == 2 && sizeof(((MATRIX*)0)->t[0]) == 4, "matrix coefficient/translation ABI");
++_Static_assert(sizeof(short) == 2 && sizeof(unsigned int) == 4, "PS1 units");
++static int32_t mn_signed(uint32_t x) { return x < 0x80000000u ? (int32_t)x : -1 - (int32_t)~x; }
++static uint32_t mn_asr(uint32_t x, unsigned n)
++{
++    n &= 31u;
++    if (!n) return x;
++    return (x >> n) | ((x & 0x80000000u) ? (~0u << (32u - n)) : 0u);
++}
++static uint32_t mn_normalize(uint32_t vector[3])
++{
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteDataWrite(9+i, vector[i]);
++    Psyz_GteCommand(0x00A00428u);
++    uint32_t mac[3];
++    for (unsigned i = 0; i < 3; ++i) mac[i] = Psyz_GteDataRead(25+i);
++    int64_t sum = (int64_t)mn_signed(mac[0]) + mn_signed(mac[1]);
++    if (sum < INT32_MIN || sum > INT32_MAX) return 0x8001CE2Cu;
++    sum += mn_signed(mac[2]);
++    if (sum < INT32_MIN || sum > INT32_MAX) return 0x8001CE30u;
++    uint32_t square = (uint32_t)sum;
++    Psyz_GteDataWrite(30, square);
++    unsigned even = Psyz_GteDataRead(31) & ~1u;
++    unsigned power = mn_asr(31u - even, 1);
++    uint32_t normalized = even >= 24 ? square << ((even-24)&31u)
++                                    : mn_asr(square, 24-even);
++    int index = mn_signed(normalized) - 64;
++    short factor = index == -64 ? SQRT[138] : s_rsqrt_table[index];
++    Psyz_GteDataWrite(8, (uint32_t)(int32_t)factor);
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteDataWrite(9+i, vector[i]);
++    Psyz_GteCommand(0x0190003Du);
++    for (unsigned i = 0; i < 3; ++i) vector[i] = mn_asr(Psyz_GteDataRead(25+i), power);
++    return 0;
++}
++static uint32_t lom_matrix_normal_kernel(const void* input, void* output)
++{
++    uint32_t row0[3], row1[3], row2[3], saved[3];
++    const unsigned char* src = input;
++    unsigned char* dst = output;
++    for (unsigned i = 0; i < 6; ++i)
++    {
++        int16_t component;
++        memcpy(&component, src+2*i, 2);
++        (i < 3 ? row0 : row1)[i%3] = (uint32_t)(int32_t)component;
++    }
++    for (unsigned i = 0; i < 3; ++i) saved[i] = Psyz_GteCtrlRead(2*i);
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteCtrlWrite(2*i, row0[i]);
++    Psyz_GteDataWrite(11, row1[2]);
++    Psyz_GteDataWrite(9, row1[0]);
++    Psyz_GteDataWrite(10, row1[1]);
++    Psyz_GteCommand(0x0178000Cu);
++    for (unsigned i = 0; i < 3; ++i) row2[i] = Psyz_GteDataRead(25+i);
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteCtrlWrite(2*i, row1[i]);
++    Psyz_GteCommand(0x0178000Cu);
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteDataWrite(i, row1[i]);
++    for (unsigned i = 0; i < 3; ++i) row0[i] = Psyz_GteDataRead(25+i);
++    for (unsigned i = 0; i < 3; ++i) Psyz_GteCtrlWrite(2*i, saved[i]);
++    uint32_t exception = mn_normalize(row0);
++    if (exception) return exception;
++    for (unsigned i = 0; i < 3; ++i) { uint16_t x = (uint16_t)row0[i]; memcpy(dst+2*i, &x, 2); }
++    for (unsigned i = 0; i < 3; ++i) row1[i] = Psyz_GteDataRead(i);
++    exception = mn_normalize(row1);
++    if (exception) return exception;
++    for (unsigned i = 0; i < 3; ++i) { uint16_t x = (uint16_t)row1[i]; memcpy(dst+6+2*i, &x, 2); }
++    exception = mn_normalize(row2);
++    if (exception) return exception;
++    for (unsigned i = 0; i < 3; ++i) { uint16_t x = (uint16_t)row2[i]; memcpy(dst+12+2*i, &x, 2); }
++    return 0;
++}
++
++void MatrixNormal(MATRIX* input, MATRIX* output)
++{
++    uint32_t exception_pc = lom_matrix_normal_kernel(input, output);
++    if (exception_pc != 0) {
++        fprintf(stderr, "[lom-native] MatrixNormal signed ADD overflow at 0x%08x\n",
++                (unsigned)exception_pc);
++        exit(3);
++    }
++}
+ 
+ static long vector_normal(short x, short y, short z, int out[3]) {
+     int sq = (int)((unsigned)(x * x) + (unsigned)(y * y) + (unsigned)(z * z));

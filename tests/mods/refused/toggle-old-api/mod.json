@@ -1,0 +1,10 @@
+{
+  "id": "toggle-old-api",
+  "name": "Toggle",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 2,
+  "in_game_toggle": true
+}

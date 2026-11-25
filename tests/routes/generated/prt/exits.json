@@ -1,0 +1,847 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "prt-prt-all0-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-0",
+    "description": "Walking onto exit 0 of PRT_ALL0 (scene 265) should lead to the world map",
+    "plan": "# prt-prt-all0-exit-0: Walking onto exit 0 of PRT_ALL0 (scene 265) should lead to the world map\nlimit 20000\nenter 265 0 16716287 1\ncheckpoint entered\nexit 0 32767\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 5e9557963c41f3c1 state 2658ded9812589a8 ram 0000000000000000",
+     "arrived frame 383 scene 32767 save 5e9557963c41f3c1 state a992c5ac30820145 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (103, 63): 8 waypoints",
+     "game state 1 at vblank 1091"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 2,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a02d538b50886099927efb9d8aa15bce"
+     },
+     {
+      "frames": 153,
+      "sha256": "a5402795d2a50467345539b7312c5935"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-1",
+    "description": "Walking onto exit 1 of PRT_ALL0 (scene 265) should lead to scene 268",
+    "plan": "# prt-prt-all0-exit-1: Walking onto exit 1 of PRT_ALL0 (scene 265) should lead to scene 268\nlimit 20000\nenter 265 0 16716287 1\ncheckpoint entered\nexit 1 268\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 5e9557963c41f3c1 state 2658ded9812589a8 ram 0000000000000000",
+     "arrived frame 291 scene 268 save 30ae228398814c62 state 20984f6e3a2e765a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (123, 122): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 216,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a02d538b50886099927efb9d8aa15bce"
+     },
+     {
+      "frames": 62,
+      "sha256": "bafa95f5a436c57a35519ce9c4a06d8b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-2",
+    "description": "Walking onto exit 2 of PRT_ALL0 (scene 265) should lead to scene 270",
+    "plan": "# prt-prt-all0-exit-2: Walking onto exit 2 of PRT_ALL0 (scene 265) should lead to scene 270\nlimit 20000\nenter 265 0 16716287 1\ncheckpoint entered\nexit 2 270\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 5e9557963c41f3c1 state 2658ded9812589a8 ram 0000000000000000",
+     "arrived frame 459 scene 270 save 69009ada21a45df3 state 971ac270ad6168bf ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (137, 195): 9 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 184,
+     "instruction_end": 37,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a02d538b50886099927efb9d8aa15bce"
+     },
+     {
+      "frames": 230,
+      "sha256": "b6e1cc9b83cf88028bb3f3ff70b8ca44"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-3",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-3",
+    "description": "Walking onto exit 3 of PRT_ALL0 (scene 265) should lead to scene 266",
+    "plan": "# prt-prt-all0-exit-3: Walking onto exit 3 of PRT_ALL0 (scene 265) should lead to scene 266\nlimit 20000\nenter 265 0 16716287 3\ncheckpoint entered\nexit 3 266\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 24dfa7d08e439fc7 state 2428f00c76eb002a ram 0000000000000000",
+     "arrived frame 289 scene 266 save ae6e551ff1fbfacf state 03ce3e0e59e17719 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (269, 100): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 205,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e0334dbb186972be6c15dde139a21161"
+     },
+     {
+      "frames": 60,
+      "sha256": "5743aa8c262227726246d99c1a041f86"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-4",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-4",
+    "description": "Walking onto exit 4 of PRT_ALL0 (scene 265) should lead to scene 267",
+    "plan": "# prt-prt-all0-exit-4: Walking onto exit 4 of PRT_ALL0 (scene 265) should lead to scene 267\nlimit 20000\nenter 265 0 16716287 3\ncheckpoint entered\nexit 4 267\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save 24dfa7d08e439fc7 state 2428f00c76eb002a ram 0000000000000000",
+     "arrived frame 299 scene 267 save b37dd8f7c12ae116 state 3cdbc38fd3be12ab ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (269, 149): 5 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 186,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "e0334dbb186972be6c15dde139a21161"
+     },
+     {
+      "frames": 70,
+      "sha256": "f2c596db32ee5ce314c7d9dfebced246"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-5",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-5",
+    "description": "Walking onto exit 5 of PRT_ALL0 (scene 265) should lead to scene 268",
+    "plan": "# prt-prt-all0-exit-5: Walking onto exit 5 of PRT_ALL0 (scene 265) should lead to scene 268\nlimit 20000\nenter 265 0 16716287 5\ncheckpoint entered\nexit 5 268\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save fcfa23d981c9b48d state e903e753d0e10561 ram 0000000000000000",
+     "arrived frame 292 scene 268 save 9c111726510fac6b state 8bae62c9cc7218d4 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (68, 167): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 216,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "177590a8c0d0fdf2e00dae588465fd2a"
+     },
+     {
+      "frames": 63,
+      "sha256": "a1dbaed200dcd01975d185330ba76451"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-all0-exit-6",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-all0-exit-6",
+    "description": "Walking onto exit 6 of PRT_ALL0 (scene 265) should lead to one of scene 269, scene 555",
+    "plan": "# prt-prt-all0-exit-6: Walking onto exit 6 of PRT_ALL0 (scene 265) should lead to one of scene 269, scene 555\nlimit 20000\nenter 265 0 16716287 5\ncheckpoint entered\nexit 6 -1\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 265 save fcfa23d981c9b48d state e903e753d0e10561 ram 0000000000000000",
+     "arrived frame 307 scene 269 save 43e469d4d52ff24c state 6af0579a01aa677b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (68, 242): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 204,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "177590a8c0d0fdf2e00dae588465fd2a"
+     },
+     {
+      "frames": 78,
+      "sha256": "10c648bc76cb363db97fb5a414bf0be6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-entr-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-entr-exit-0",
+    "description": "Walking onto exit 0 of PRT_ENTR (scene 270) should lead to scene 265",
+    "plan": "# prt-prt-entr-exit-0: Walking onto exit 0 of PRT_ENTR (scene 270) should lead to scene 265\nlimit 20000\nenter 270 0 16716287 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 270 save 31b2f24c66ed50cc state d91815a25e05bc87 ram 0000000000000000",
+     "arrived frame 294 scene 265 save 4822468f0f067a0c state c1c7effb8456d141 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (104, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 187,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67936050dfa3ec8e9dea47b1d9df4c17"
+     },
+     {
+      "frames": 65,
+      "sha256": "16a7617dd45db4ba6cd5b9e3b262369f"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-entr-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-entr-exit-1",
+    "description": "Walking onto exit 1 of PRT_ENTR (scene 270) should lead to scene 271",
+    "plan": "# prt-prt-entr-exit-1: Walking onto exit 1 of PRT_ENTR (scene 270) should lead to scene 271\nlimit 20000\nenter 270 0 16716287 0\ncheckpoint entered\nexit 1 271\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 270 save 31b2f24c66ed50cc state d91815a25e05bc87 ram 0000000000000000",
+     "arrived frame 360 scene 271 save 28c90d2526ec1c47 state 62117cb8c55c4933 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (276, 184): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction_end": 37,
+     "instruction": 161,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "67936050dfa3ec8e9dea47b1d9df4c17"
+     },
+     {
+      "frames": 131,
+      "sha256": "9b1ca92544f24fae0356875736d01ef1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-ilt1-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-ilt1-exit-0",
+    "description": "Walking onto exit 0 of PRT_ILT1 (scene 555) should lead to scene 265",
+    "plan": "# prt-prt-ilt1-exit-0: Walking onto exit 0 of PRT_ILT1 (scene 555) should lead to scene 265\nlimit 20000\nenter 555 0 1572863 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 555 save d290d3f7a6094c4e state df6e82ecb00d0fe8 ram 0000000000000000",
+     "arrived frame 295 scene 265 save 9fb738e286664ed6 state aff293830dee962a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 209,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3e262eb03384094bbdd4e5bf670046da"
+     },
+     {
+      "frames": 66,
+      "sha256": "7d12096ae736705cd67bfc3cdd453e01"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-inlt-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-inlt-exit-0",
+    "description": "Walking onto exit 0 of PRT_INLT (scene 269) should lead to scene 265",
+    "plan": "# prt-prt-inlt-exit-0: Walking onto exit 0 of PRT_INLT (scene 269) should lead to scene 265\nlimit 20000\nenter 269 0 16716287 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 269 save 8ad350b0ddc73f73 state a5b3b282fdc906a3 ram 0000000000000000",
+     "arrived frame 295 scene 265 save eceff5f16350fc4e state e3eab6ad654abf37 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (280, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 191,
+     "instruction_end": 41,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "49f32ce79e253ea93c2fa27eb9129ef7"
+     },
+     {
+      "frames": 66,
+      "sha256": "74c374378963d5042dd78e7246f945f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lbby-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lbby-exit-0",
+    "description": "Walking onto exit 0 of PRT_LBBY (scene 271) should lead to scene 270",
+    "plan": "# prt-prt-lbby-exit-0: Walking onto exit 0 of PRT_LBBY (scene 271) should lead to scene 270\nlimit 20000\nenter 271 0 16716287 2\ncheckpoint entered\nexit 0 270\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 271 save f3ff0fdfef0a876b state ac026c9897c412bf ram 0000000000000000",
+     "arrived frame 374 scene 270 save 33aa24ba48236001 state 915f365ec9a8dcd1 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (220, 11): 3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 167,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b1a3b61448c60bfb092a73bac88411b"
+     },
+     {
+      "frames": 145,
+      "sha256": "00e888495128e8058fa9b2d3928e1ea6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lbby-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lbby-exit-1",
+    "description": "Walking onto exit 1 of PRT_LBBY (scene 271) should lead to scene 272",
+    "plan": "# prt-prt-lbby-exit-1: Walking onto exit 1 of PRT_LBBY (scene 271) should lead to scene 272\nlimit 20000\nenter 271 0 16716287 2\ncheckpoint entered\nexit 1 272\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 271 save f3ff0fdfef0a876b state ac026c9897c412bf ram 0000000000000000",
+     "arrived frame 645 scene 272 save 58d8e77d89aee0f2 state 07faddd1ff8977ed ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (43, 333): 4 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b1a3b61448c60bfb092a73bac88411b"
+     },
+     {
+      "frames": 416,
+      "sha256": "c0311840f042086c882cf03aa2023711"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lbby-exit-2",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lbby-exit-2",
+    "description": "Walking onto exit 2 of PRT_LBBY (scene 271) should lead to scene 267",
+    "plan": "# prt-prt-lbby-exit-2: Walking onto exit 2 of PRT_LBBY (scene 271) should lead to scene 267\nlimit 20000\nenter 271 0 16716287 2\ncheckpoint entered\nexit 2 267\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 271 save f3ff0fdfef0a876b state ac026c9897c412bf ram 0000000000000000",
+     "arrived frame 296 scene 267 save f6babed908d7e1d0 state 2d199f38238a679a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (359, 86): 2 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 169,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0b1a3b61448c60bfb092a73bac88411b"
+     },
+     {
+      "frames": 67,
+      "sha256": "f0be0685acf4e8bb43b3a97268246be6"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-lung-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-lung-exit-0",
+    "description": "Walking onto exit 0 of PRT_LUNG (scene 272) should lead to scene 271",
+    "plan": "# prt-prt-lung-exit-0: Walking onto exit 0 of PRT_LUNG (scene 272) should lead to scene 271\nlimit 20000\nenter 272 0 16716287 0\ncheckpoint entered\nexit 0 271\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 272 save aad83b90ea4c5e42 state 4567a96cfc755a99 ram 0000000000000000",
+     "arrived frame 294 scene 271 save 9a0c732dab2babb2 state 8310ecdbc6133584 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (88, 48): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 176,
+     "instruction_end": 48,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "d7c5cb2cb12ce901b0a032f1cfe794f2"
+     },
+     {
+      "frames": 65,
+      "sha256": "188238233774aa8987eee60bf1cb13c1"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-port-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-port-exit-0",
+    "description": "Walking onto exit 0 of PRT_PORT (scene 267) should lead to scene 265",
+    "plan": "# prt-prt-port-exit-0: Walking onto exit 0 of PRT_PORT (scene 267) should lead to scene 265\nlimit 20000\nenter 267 0 16716287 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 267 save 8563b3b623dd1cb5 state 4fb8797fdcc2814b ram 0000000000000000",
+     "arrived frame 297 scene 265 save 28434ece0416f034 state 7525cea3c5b3c12f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (203, 10): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 179,
+     "instruction_end": 40,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0757538e33f8fd24349ecd66cc04c01"
+     },
+     {
+      "frames": 68,
+      "sha256": "3ef2ae159f0f20ab8a488033a5ebe702"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-port-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-port-exit-1",
+    "description": "Walking onto exit 1 of PRT_PORT (scene 267) should lead to scene 271",
+    "plan": "# prt-prt-port-exit-1: Walking onto exit 1 of PRT_PORT (scene 267) should lead to scene 271\nlimit 20000\nenter 267 0 16716287 0\ncheckpoint entered\nexit 1 271\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 267 save 8563b3b623dd1cb5 state 4fb8797fdcc2814b ram 0000000000000000",
+     "arrived frame 682 scene 271 save 2a47b235f7e50cab state eebc4eb2ab5d7dc5 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (603, 350): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 153,
+     "instruction_end": 38,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "c0757538e33f8fd24349ecd66cc04c01"
+     },
+     {
+      "frames": 453,
+      "sha256": "837ff20eb2b149ae3a564f775daa20ca"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-rest-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-rest-exit-0",
+    "description": "Walking onto exit 0 of PRT_REST (scene 266) should lead to scene 265",
+    "plan": "# prt-prt-rest-exit-0: Walking onto exit 0 of PRT_REST (scene 266) should lead to scene 265\nlimit 20000\nenter 266 0 16716287 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 266 save 004f19b5803efd28 state 40072db62307bc90 ram 0000000000000000",
+     "arrived frame 291 scene 265 save 73c5433dbac3cf35 state f79c2de507ac979f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (584, 160): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 214,
+     "instruction_end": 46,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "491140a4288803d7cccde126d8e75edd"
+     },
+     {
+      "frames": 62,
+      "sha256": "dcfebd81aa9c73ca702576bf2526f1e3"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-exit-0",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-shop-exit-0",
+    "description": "Walking onto exit 0 of PRT_SHOP (scene 268) should lead to scene 265",
+    "plan": "# prt-prt-shop-exit-0: Walking onto exit 0 of PRT_SHOP (scene 268) should lead to scene 265\nlimit 20000\nenter 268 0 1577471 0\ncheckpoint entered\nexit 0 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save a5d4009d3ffbb661 state 4f5626d00f11946d ram 0000000000000000",
+     "arrived frame 294 scene 265 save f950094711d9a81c state fb24eaa938499860 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (424, 8): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "b6b75a00995a300c17e422dbad302c4d"
+     },
+     {
+      "frames": 65,
+      "sha256": "cce49df2c3eaf0e7c0111c6441f0664b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "prt-prt-shop-exit-1",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "prt-prt-shop-exit-1",
+    "description": "Walking onto exit 1 of PRT_SHOP (scene 268) should lead to scene 265",
+    "plan": "# prt-prt-shop-exit-1: Walking onto exit 1 of PRT_SHOP (scene 268) should lead to scene 265\nlimit 20000\nenter 268 0 1577471 1\ncheckpoint entered\nexit 1 265\ncheckpoint arrived\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 268 save fc1518c82e3baaa4 state 3d8b5930cb7c8a90 ram 0000000000000000",
+     "arrived frame 291 scene 265 save e4d39a36eedf2680 state f0ecdc9b5a83ba74 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (8, 304): 1 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 223,
+     "instruction_end": 52,
+     "song": 3,
+     "scene": 3,
+     "exit": 1
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "4c80cc40fb079dea13adcf67edb22762"
+     },
+     {
+      "frames": 62,
+      "sha256": "28b2b7a4d41f963b7b6b9a76bb78f59e"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

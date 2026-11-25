@@ -1,0 +1,72 @@
+{
+ "route": "mgc-mgc-bs01-setup",
+ "description": "Coming into MGC_BS01 (scene 799) with a golem in the party should run layout record 0's set-up script, which loads the golem's saved group (menu op 0x5e)",
+ "plan": "# mgc-mgc-bs01-setup: Coming into MGC_BS01 (scene 799) with a golem in the party should run layout record 0's set-up script, which loads the golem's saved group (menu op 0x5e)\nlimit 20000\nenter 33567 0 16712485 0\ncheckpoint entered\nwatch 3000\ncheckpoint done\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 799 save 82b44c1a3a5788a2 state 43e933af8357c11f ram 0000000000000000",
+  "done frame 89 scene 799 save 3cd895aea9aa420a state b33bdd3d8ad0e6e5 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 799 (MGC_BS01)",
+    "sound bank id 65535 to 37",
+    "scene id 19 to 33567",
+    "music id 7 to 3",
+    "story word 0: 00000000 to 00000045 (set 0x0, 0x2, 0x6)",
+    "story word 24: f4f40000 to f2f20000 (set 0x311, 0x319; cleared 0x312, 0x31a)",
+    "story word 120: 0000ff45 to 0000ffff (set 0xf01, 0xf03, 0xf04, 0xf05, 0xf07)",
+    "character 2: 2 bytes changed",
+    "2 other saved-game bytes changed, the first at offset 10708",
+    "actor 0 (the hero): at (480, 264), facing 128, animation 2,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (272, 256), facing 0, animation 130,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (-1024, 0), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 5 (layout record 2): at (-1024, 0), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 6 (layout record 3): at (-1024, 0), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (107, 323), facing 0, animation 130,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "done",
+   "changes": [
+    "frame 89, scene 799 (MGC_BS01)",
+    "story word 24: f2f20000 to 4e4e0000 (set 0x312, 0x313, 0x31a, 0x31b; cleared 0x314, 0x315, 0x317, 0x31c, 0x31d, 0x31f)",
+    "scene word 47: 00000037 to 00000058",
+    "scene word 69: 806a0000 to 806a0082",
+    "scene word 72: 806a0000 to 806a0082",
+    "scene word 73: 00008000 to 00008082",
+    "actor 0 (the hero): control 2 to 0; command 129 to 0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "watched until the player got control, 31 frames"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 133,
+  "instruction_end": 43,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 a5b4152c 89d03001 5843b4f4 805315bb 5ae62fd3 821dccdf 70bb0962 7a50da2c 9f13157c a938a1eb 185a87f7 76fa6cbf 4eabf497 5679bfd8 8a859ab7 6ea7d3f5 f0e7e89b 74f28029 86474e7c 76fa6cbf 4eabf497 296e1675 e51ff58b e1c22632 07c1fc31 c973b796 3d2185d7 ba61aa1c 4eabf497 5679bfd8 987720b7 3a148b0c f0e7e89b 74f28029 86474e7c ceeb95da aad369a8 80e9f3d9 62dd820a 82fdec38 501ae4ff a40f708c a0462bd6 8badd11e 39649a73 1e2a6b9a 2172f86d 9cc96b5d e6ddff64 17c2902c 7b72113a 8219db6a 2788c9ff 14650fb0 b8c54bb2 ec06a1ac 2ca8609a cc4817af d8cd9bb5 edb57dd1 0f79655b c8836f2f 315575c8 ba767bdf 4c407f38 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2 6f233f08 9a94c0d2",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "98b1344014e5c0686b08b4f5ecc81c23"
+  },
+  {
+   "frames": 33,
+   "sha256": "d049e5b31dac31c37a985f864e53d121"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

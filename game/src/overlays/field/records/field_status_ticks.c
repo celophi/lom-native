@@ -1,0 +1,477 @@
+#include "common.h"
+
+#include "../internal/field_calls.h"
+#include "../internal/field_records.h"
+#include "../internal/field_script.h"
+#include "main/audio/game_audio.h"
+#include "lom_native_switches.h"
+
+#define FIELD_VAR_DEBUG_FULL_INTENSITY 0xFFD
+
+#define FULL_INTENSITY_RECORD_COUNT 2
+#define STATUS_INTENSITY_FULL 0xFF
+
+#define SLOW_TICK_FRAME_MASK 0xF
+
+#define STATUS_ID_EMPTY 0
+#define STATUS_ID_EXTRA_REGEN 1
+#define STATUS_ID_FAST_REGEN 2
+#define STATUS_ID_CLEAR_EFFECTS 5
+#define STATUS_ID_FULL_INTENSITY 6
+#define STATUS_ID_IMMUNITY_BASE 0x60
+#define STATUS_ID_IMMUNITY_END 0x6C
+#define STATUS_ID_STAT_BOOST_BASE 0x70
+#define STATUS_ID_STAT_BOOST_END 0x80
+
+#define STATUS_EFFECT_ALL 0xFF
+#define STATUS_STAT_BOOST_SCALE 10
+
+#define STATUS_PARTNER_EVENT_THRESHOLD 3
+#define STATUS_PARTNER_EVENT 0xC
+#define STATUS_PARTNER_EVENT_MODE 6
+#define STATUS_PARTNER_PAIR_MAX FIELD_STATUS_SLOT_COUNT
+#define DIAG_TOO_MANY_PARTNER_PAIRS 0x6F
+#define PARTNER_LIST_END 0xFF
+
+#define STATUS_FLAG_NO_REGEN 0x1
+#define STATUS_FLAG_FAST_REGEN 0x8
+
+#define STATUS_EFFECTS_DRAIN_PARTY 0x190
+#define STATUS_EFFECTS_DRAIN_MONSTER 0x191
+#define STATUS_EFFECTS_NO_REGEN 0x391
+
+#define DRAIN_SHIFT 5
+#define DRAIN_SHIFT_BOSS 8
+
+#define REGEN_STAT 4
+#define REGEN_STAT_RANGE 100
+#define REGEN_MULTIPLIER_FAST 8
+#define REGEN_MULTIPLIER_IDLE 4
+#define REGEN_MULTIPLIER_REST 2
+#define REGEN_ANIMATION_IDLE_END 2
+#define REGEN_ANIMATION_REST 0x31
+
+extern u16 g_field_equipment_status_flags[];
+
+static void field_rebuild_partner_slots(void);
+static void field_apply_status_slots(FieldStatusRecord* record);
+static void field_tick_status_timers(FieldStatusRecord* record);
+static void field_drain_status_hp(FieldStatusRecord* record);
+static void field_recover_status_stats(FieldStatusRecord* record);
+static void field_regenerate_status_hp(FieldStatusRecord* record);
+
+/**
+ * @brief Count one more standing record on the side of a revived actor.
+ *
+ * Adds one to FIELD_VAR_ALLY_COUNT for a party-side record, else to
+ * FIELD_VAR_ENEMY_COUNT; nothing happens outside a running battle.
+ *
+ * @param key Object key of the revived actor.
+ */
+void field_count_revived_record(s32 key)
+{
+    s32 count;
+
+    if (g_field_battle != NULL && g_field_battle->state.flags >= 0)
+    {
+        if (field_find_status_record(key)->meta.packed & FIELD_STATUS_META_ALLY)
+        {
+            count = field_get_script_var(0, FIELD_VAR_ALLY_COUNT);
+            field_set_script_var(0, FIELD_VAR_ALLY_COUNT, count + 1);
+        }
+        else
+        {
+            count = field_get_script_var(0, FIELD_VAR_ENEMY_COUNT);
+            field_set_script_var(0, FIELD_VAR_ENEMY_COUNT, count + 1);
+        }
+    }
+}
+
+/**
+ * @brief Rebuild a party record's status flags from its character's equipment.
+ * @param record Status record whose id selects the character; its status_flags are rebuilt.
+ */
+void field_rebuild_equipment_status_flags(FieldStatusRecord* record)
+{
+    s32 i;
+    FieldItemRecord* item;
+
+    record->status_flags = 0;
+
+    for (i = 0; i < FIELD_EQUIPMENT_SLOT_COUNT; i++)
+    {
+        item = &g_field_game_state->characters[record->meta.bytes.id].equipment[i];
+
+        if (item->name[0] != 0)
+        {
+            record->status_flags |= g_field_equipment_status_flags[item->effect_index];
+        }
+    }
+}
+
+/**
+ * @brief Per-frame update of the battle status records.
+ *
+ * Rebuilds the partner status slots, then applies the slots, the regeneration
+ * and the status timers of every active record; every sixteenth frame it also
+ * drains HP and moves the stats back toward their base values.
+ */
+void field_tick_battle_status(void)
+{
+    s32 i;
+
+    if (g_field_battle != NULL && g_field_battle->state.flags >= 0)
+    {
+        field_rebuild_partner_slots();
+
+        for (i = 0; i < FIELD_BATTLE_RECORD_COUNT; i++)
+        {
+            if (g_field_battle->records[i].meta.bits.active)
+            {
+                if (field_get_script_var(0, FIELD_VAR_DEBUG_FULL_INTENSITY) != 0 && g_field_battle->records[i].meta.bytes.id < FULL_INTENSITY_RECORD_COUNT)
+                {
+                    g_field_battle->records[i].state->technique_gauge = STATUS_INTENSITY_FULL;
+                }
+
+                if (i < FIELD_PARTY_SIZE)
+                {
+                    field_apply_status_slots(&g_field_battle->records[i]);
+                    field_regenerate_status_hp(&g_field_battle->records[i]);
+                }
+
+                field_tick_status_timers(&g_field_battle->records[i]);
+            }
+        }
+
+        if ((g_field_runtime->frame_count & SLOW_TICK_FRAME_MASK) == 0)
+        {
+            for (i = 0; i < FIELD_BATTLE_RECORD_COUNT; i++)
+            {
+                if (g_field_battle->records[i].meta.bits.active)
+                {
+                    field_drain_status_hp(&g_field_battle->records[i]);
+                    field_recover_status_stats(&g_field_battle->records[i]);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * @brief Give each partner pair's members the other's partner status.
+ *
+ * Clears the status slots of the party records, then for pair n of the
+ * partner list stores each member's companion_ability in slot n of the other member.
+ * Party members 1 and 2 that now have a partner run STATUS_PARTNER_EVENT.
+ */
+static void field_rebuild_partner_slots(void)
+{
+    s32 i;
+    s32 j;
+    u8* pair;
+
+    for (i = 0; i < FIELD_PARTY_SIZE; i++)
+    {
+        for (j = 0; j < FIELD_STATUS_SLOT_COUNT; j++)
+        {
+            g_field_battle->records[i].status_slots[j] = STATUS_ID_EMPTY;
+        }
+    }
+
+    i = 0;
+    pair = field_pair_indicators_get_list();
+
+    while (pair[0] != PARTNER_LIST_END)
+    {
+        g_field_battle->records[pair[0]].status_slots[i] = g_field_battle->records[pair[1]].companion_ability;
+        g_field_battle->records[pair[1]].status_slots[i] = g_field_battle->records[pair[0]].companion_ability;
+        pair += 2;
+        i++;
+    }
+
+    if (field_count_status_slots(&g_field_battle->records[1], STATUS_ID_EMPTY) < STATUS_PARTNER_EVENT_THRESHOLD)
+    {
+        field_run_actor_event(1, STATUS_PARTNER_EVENT, STATUS_PARTNER_EVENT_MODE);
+    }
+
+    if (field_count_status_slots(&g_field_battle->records[2], STATUS_ID_EMPTY) < STATUS_PARTNER_EVENT_THRESHOLD)
+    {
+        field_run_actor_event(2, STATUS_PARTNER_EVENT, STATUS_PARTNER_EVENT_MODE);
+    }
+
+    if (i > STATUS_PARTNER_PAIR_MAX)
+    {
+        record_game_diagnostic(DIAG_ERROR, DIAG_TOO_MANY_PARTNER_PAIRS, i, 0);
+    }
+}
+
+/**
+ * @brief Count the status slots of a record that hold a given status.
+ * @param record Status record to scan.
+ * @param status Status id to count.
+ * @return Number of the FIELD_STATUS_SLOT_COUNT slots equal to @p status.
+ */
+u32 field_count_status_slots(FieldStatusRecord* record, s32 status)
+{
+    u32 count;
+    u32 i;
+
+    i = 0;
+    count = 0;
+
+    for (; i < FIELD_STATUS_SLOT_COUNT; i++)
+    {
+        if (record->status_slots[i] == status)
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+/**
+ * @brief Apply the per-frame effects of a party record's status slots.
+ * @param record Status record whose slots are applied.
+ */
+static void field_apply_status_slots(FieldStatusRecord* record)
+{
+    s32 status;
+
+    if (field_count_status_slots(record, STATUS_ID_CLEAR_EFFECTS) != 0)
+    {
+        field_clear_status_effect(record, STATUS_EFFECT_ALL);
+    }
+
+    for (status = STATUS_ID_IMMUNITY_BASE; status < STATUS_ID_IMMUNITY_END; status++)
+    {
+        if (field_count_status_slots(record, status) != 0)
+        {
+            field_clear_status_effect(record, status - STATUS_ID_IMMUNITY_BASE);
+        }
+    }
+
+    if (field_count_status_slots(record, STATUS_ID_FULL_INTENSITY) != 0)
+    {
+        if (record->meta.bytes.id == 0)
+        {
+            record->state->technique_gauge = STATUS_INTENSITY_FULL;
+        }
+    }
+
+    for (status = STATUS_ID_STAT_BOOST_BASE; status < STATUS_ID_STAT_BOOST_END; status++)
+    {
+        if (field_count_status_slots(record, status) != 0)
+        {
+            field_scale_status_stat(record, status - STATUS_ID_STAT_BOOST_BASE, STATUS_STAT_BOOST_SCALE, 0);
+        }
+    }
+}
+
+/**
+ * @brief Count down a record's status timers and clear the effects that run out.
+ * @param record Status record whose timers are ticked.
+ */
+static void field_tick_status_timers(FieldStatusRecord* record)
+{
+    s32 i;
+    s16 remaining;
+
+    for (i = 0; i < FIELD_STATUS_TIMER_COUNT; i++)
+    {
+        if ((s16)record->status_timers[i] != 0)
+        {
+            remaining = record->status_timers[i] - 1;
+            record->status_timers[i] = remaining;
+
+            if (remaining <= 0)
+            {
+                field_clear_status_effect(record, i);
+            }
+        }
+    }
+}
+
+/**
+ * @brief Store drained HP, keeping at least 1.
+ * @param state Status state to update.
+ * @param hp HP after the drain; values below 1 store 1.
+ */
+static inline void field_store_drained_hp(FieldObjectState* state, s32 hp)
+{
+    if (hp > 0)
+    {
+        state->current_hp.word = hp;
+        return;
+    }
+
+    state->current_hp.word = 1;
+}
+
+/**
+ * @brief Drain a record's HP while a draining status effect is active.
+ *
+ * The drain is max_hp >> DRAIN_SHIFT (>> DRAIN_SHIFT_BOSS for boss monsters),
+ * at least 1; HP never drops below 1.
+ *
+ * @param record Status record to update.
+ */
+static void field_drain_status_hp(FieldStatusRecord* record)
+{
+    FieldObjectState* state;
+    s32 hp;
+    u32 drain;
+    s32 cost;
+
+    state = record->state;
+    hp = state->current_hp.word;
+
+    if (record->meta.bytes.id < FIELD_PARTY_SIZE)
+    {
+        if (state->flags & STATUS_EFFECTS_DRAIN_PARTY)
+        {
+            cost = 1;
+            drain = state->maximum_hp >> DRAIN_SHIFT;
+
+            if (drain != 0)
+            {
+                cost = drain;
+            }
+
+            hp -= cost;
+            field_store_drained_hp(state, hp);
+        }
+    }
+    else if (state->flags & STATUS_EFFECTS_DRAIN_MONSTER)
+    {
+        if (record->template->flags & FIELD_TEMPLATE_BOSS)
+        {
+            cost = 1;
+            drain = state->maximum_hp >> DRAIN_SHIFT_BOSS;
+
+            if (drain != 0)
+            {
+                cost = drain;
+            }
+        }
+        else
+        {
+            cost = 1;
+            drain = state->maximum_hp >> DRAIN_SHIFT;
+
+            if (drain != 0)
+            {
+                cost = drain;
+            }
+        }
+
+        hp -= cost;
+        field_store_drained_hp(record->state, hp);
+    }
+}
+
+/**
+ * @brief Move each stat one point toward its base value.
+ * @param record Status record whose stats are updated.
+ */
+static void field_recover_status_stats(FieldStatusRecord* record)
+{
+    s32 i;
+    u8 current;
+    u8 target;
+
+    for (i = 0; i < FIELD_STATUS_STAT_COUNT; i++)
+    {
+        current = record->stats[i];
+        target = record->base_stats[i];
+
+        if (target < current)
+        {
+            record->stats[i] = current - 1;
+        }
+        else if (current < target)
+        {
+            record->stats[i] = current + 1;
+        }
+    }
+}
+
+/**
+ * @brief Regenerate one HP point when the record's regeneration interval has passed.
+ *
+ * The interval shrinks with the multiplier (fast regeneration, standing or
+ * walking, or resting) and grows with stat REGEN_STAT; party members also heal
+ * one more point per STATUS_ID_EXTRA_REGEN slot.
+ *
+ * @param record Status record to regenerate.
+ * @note Native: with the No natural healing switch on, party members don't
+ *       regenerate; everyone else still does.
+ */
+static void field_regenerate_status_hp(FieldStatusRecord* record)
+{
+    u16 flags;
+    s32 multiplier;
+    s32 interval;
+    s32 animation;
+
+    if (record->meta.bytes.id < FIELD_PARTY_SIZE && lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING))
+    {
+        return;
+    }
+
+    flags = record->status_flags;
+
+    if (flags & STATUS_FLAG_NO_REGEN)
+    {
+        return;
+    }
+
+    if (record->state->flags & STATUS_EFFECTS_NO_REGEN)
+    {
+        return;
+    }
+
+    if ((flags & STATUS_FLAG_FAST_REGEN) || field_count_status_slots(record, STATUS_ID_FAST_REGEN) != 0)
+    {
+        multiplier = REGEN_MULTIPLIER_FAST;
+    }
+    else
+    {
+        animation = field_get_actor_animation(record->meta.bytes.id);
+
+        if (animation < 0)
+        {
+            return;
+        }
+
+        if (animation < REGEN_ANIMATION_IDLE_END)
+        {
+            multiplier = REGEN_MULTIPLIER_IDLE;
+        }
+        else if (animation != REGEN_ANIMATION_REST)
+        {
+            return;
+        }
+        else
+        {
+            multiplier = REGEN_MULTIPLIER_REST;
+        }
+    }
+
+    interval = (REGEN_STAT_RANGE - field_get_status_stat(record, REGEN_STAT)) * multiplier / 16;
+
+    if (interval <= 0)
+    {
+        interval = 1;
+    }
+
+    if ((u32)g_field_runtime->frame_count % (u32)interval == 0)
+    {
+        field_heal_status(record->state, 1);
+
+        if (record->meta.bytes.id < FIELD_PARTY_SIZE)
+        {
+            field_heal_status(record->state, field_count_status_slots(record, STATUS_ID_EXTRA_REGEN));
+        }
+    }
+}

@@ -1,0 +1,31 @@
+DrawPrim, natively. psyz_cwb pushed a primitive's words straight into the GPU
+queue with Draw_PushPrim, which skips DispatchPackets, so a textured polygon
+never set its texture page. On a 64-bit host it also lost every second word:
+the queue holds one GP0 word per u_long, and a primitive's words are 32-bit.
+WMAP draws its loading picture this way, and the title's first frame too. Now
+it widens the words where u_long is wider and dispatches them, on any host.
+
+--- a/psyz/src/psyz/libgpu.c
++++ b/psyz/src/psyz/libgpu.c
+@@ -312,14 +312,14 @@
+     return 0;
+ }
+ static int psyz_cwb(u32* data, s32 n) {
++    u_long words[256];
++    s32 count = n < (s32)LEN(words) ? n : (s32)LEN(words);
+     gpu_busy = 1;
+-    if (Psyz_GpuQueueTap) {
+-        for (s32 i = 0; i < n; i++) {
+-            Psyz_GpuQueueTap(data[i]);
+-        }
+-    }
+-    if (n > 0) {
+-        Draw_PushPrim((u_long*)data, n);
++    for (s32 i = 0; i < count; i++) {
++        words[i] = data[i];
++    }
++    if (count > 0) {
++        DispatchPackets(words, count);
+     }
+     return 0;
+ }

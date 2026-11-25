@@ -1,0 +1,174 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "snw-snw-e000-story-13b0",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SNW_E000's story 0x13b0 needs",
+    "source": "built from the conditions on the path to the write in scene 245 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 9
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e000-story-13b0",
+    "description": "In SNW_E000 (scene 245), entering should write story variable 0x13b0",
+    "plan": "# snw-snw-e000-story-13b0: In SNW_E000 (scene 245), entering should write story variable 0x13b0\nlimit 20000\nenter 245 0 16718335 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 245 save 0a51d3f72159ae83 state 8324455d0c0f4be3 ram 0000000000000000",
+     "done frame 889 scene 245 save 67eadbad9e9f5ede state 706c5b018f2af46b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 658 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ff9571814308a7239dfb39cd32f35656"
+     },
+     {
+      "frames": 660,
+      "sha256": "e89e972ba7bd621598df934760a9d88b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e000-story-13cc",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SNW_E000's story 0x13cc needs",
+    "source": "built from the conditions on the path to the write in scene 245 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x13b0": 9
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e000-story-13cc",
+    "description": "In SNW_E000 (scene 245), entering should write story variable 0x13cc",
+    "plan": "# snw-snw-e000-story-13cc: In SNW_E000 (scene 245), entering should write story variable 0x13cc\nlimit 20000\nenter 245 0 16718335 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 245 save 0a51d3f72159ae83 state 8324455d0c0f4be3 ram 0000000000000000",
+     "done frame 889 scene 245 save 67eadbad9e9f5ede state 706c5b018f2af46b ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 658 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 182,
+     "instruction_end": 74,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "ff9571814308a7239dfb39cd32f35656"
+     },
+     {
+      "frames": 660,
+      "sha256": "e89e972ba7bd621598df934760a9d88b"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "snw-snw-e000-story-687",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state SNW_E000's story 0x687 needs",
+    "source": "built from the conditions on the path to the write in scene 245 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x119c": 1
+    }
+   },
+   "baseline": {
+    "route": "snw-snw-e000-story-687",
+    "description": "In SNW_E000 (scene 245), entering should write story variable 0x687",
+    "plan": "# snw-snw-e000-story-687: In SNW_E000 (scene 245), entering should write story variable 0x687\nlimit 20000\nenter 245 0 16718335 1\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 245 save e315caaa60784b4d state 70343be49735a447 ram 0000000000000000",
+     "done frame 529 scene 245 save d2e0f16048d8ca87 state e336722cc627a474 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 298 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 158,
+     "instruction_end": 47,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a1349d61d82cdb6ddb11c452c3082d36"
+     },
+     {
+      "frames": 300,
+      "sha256": "8109aa1c2b1be3cdbc9f618577f328ab"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

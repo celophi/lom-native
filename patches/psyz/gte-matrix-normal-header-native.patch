@@ -1,0 +1,12 @@
+Declare MatrixNormal the way the game calls it.
+--- a/psyz/include/libgte.h
++++ b/psyz/include/libgte.h
+@@ -716,6 +716,8 @@
+ long SquareRoot12(long a);
+ 
+ void InvSquareRoot(long value, long* mantissa, long* exponent);
++
++void MatrixNormal(MATRIX* input, MATRIX* output);
+ 
+ 
+ /**

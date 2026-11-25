@@ -1,0 +1,142 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "mon-mon-sh01-shop-4",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MON_SH01's shop 0x4 needs (land 4 placed at distance 22)",
+    "source": "built from the conditions on the path to the write in scene 57 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "4": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 12
+     }
+    },
+    "current_land": 4
+   },
+   "baseline": {
+    "route": "mon-mon-sh01-shop-4",
+    "description": "In MON_SH01 (scene 57), talking to layout record 1 should open shop list 4",
+    "plan": "# mon-mon-sh01-shop-4: In MON_SH01 (scene 57), talking to layout record 1 should open shop list 4\nlimit 20000\nenter 57 0 16722431 0\ncheckpoint entered\ntalk 142 175 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 57 save 946c27d4a84768d7 state 3ded6f59cdb38b96 ram 0000000000000000",
+     "done frame 1364 scene 57 save d0276bc0fb2c8257 state 4c724cc000fab20f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (162, 175): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 148,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "a9a2eb9e565780f1020c4e88bca21b6f"
+     },
+     {
+      "frames": 1135,
+      "sha256": "23be9987aba8c5a965867d15d36bcd76"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mon-mon-sh01-shop-5",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state MON_SH01's shop 0x5 needs (land 4 placed at distance 27)",
+    "source": "built from the conditions on the path to the write in scene 57 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {},
+    "lands": {
+     "0": {
+      "flags": 15,
+      "x": 0,
+      "z": 0
+     },
+     "4": {
+      "flags": 15,
+      "x": 5,
+      "z": 5,
+      "extra": 17
+     }
+    },
+    "current_land": 4
+   },
+   "baseline": {
+    "route": "mon-mon-sh01-shop-5",
+    "description": "In MON_SH01 (scene 57), talking to layout record 1 should open shop list 5",
+    "plan": "# mon-mon-sh01-shop-5: In MON_SH01 (scene 57), talking to layout record 1 should open shop list 5\nlimit 20000\nenter 57 0 16722431 0\ncheckpoint entered\ntalk 142 175 0 0 0 1\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 57 save 8689bd150a4f25bc state 70e5e172ab14f8cb ram 0000000000000000",
+     "done frame 1364 scene 57 save bb0746e0f7fe6f3c state e1d8de42a3ff9086 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "walk to (162, 175): -3 waypoints"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 150,
+     "instruction_end": 39,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "3071b1b8acd4f9524d7ca225c1610bbe"
+     },
+     {
+      "frames": 1135,
+      "sha256": "903446655d11ec212e37ad6168713046"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

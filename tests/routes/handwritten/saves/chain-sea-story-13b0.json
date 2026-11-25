@@ -1,0 +1,13 @@
+{
+  "format": 1,
+  "description": "The game's state at the end of sea/story/story-13b0.json, at home",
+  "source": "written by the game during tests/routes/generated/sea/story.json#sea-sea-evt0-story-13b0 (LOM_ROUTE_SAVED_GAME_DUMP)",
+  "scene": {
+    "scene": 19,
+    "object": 0,
+    "music": 7,
+    "sound_bank": 65535,
+    "secondary_music": 255
+  },
+  "saved_game": "saves/chain-sea-story-13b0.bin"
+}

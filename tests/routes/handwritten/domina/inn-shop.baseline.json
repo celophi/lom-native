@@ -1,0 +1,63 @@
+{
+ "route": "domina-inn-shop",
+ "description": "Talking to the shopkeeper in the inn's shop room should open the shop, and backing out should return to the room",
+ "plan": "# domina-inn-shop: Talking to the shopkeeper in the inn's shop room should open the shop, and backing out should return to the room\nlimit 20000\nenter 41 0 16712959 0\ncheckpoint entered\ntalk 80 114 0 0 0 1\ncheckpoint talked\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 56 scene 41 save 40ca9ea61feb1137 state 58ed1fcbe54b5bb2 ram 0000000000000000",
+  "talked frame 614 scene 41 save fb47e40ff84139f7 state 0ec244073897b40e ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 56, scene 41 (HTW_INN3)",
+    "scene id 19 to 41",
+    "music id 7 to 4",
+    "actor 0 (the hero): at (129, 214), facing 32, animation 129,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (80, 114), facing 0, animation 0,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "talked",
+   "changes": [
+    "frame 614, scene 41 (HTW_INN3)",
+    "story word 24: f2f20000 to 0c0c0000 (set 0x312, 0x313, 0x31a, 0x31b; cleared 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "1 other saved-game byte changed, the first at offset 12520",
+    "scene word 17: 008100d6 to 004f0071",
+    "scene word 47: 00000037 to 00000118",
+    "scene word 65: 67000000 to 59000000",
+    "actor 0 (the hero): moved (129, 214) to (79, 114); direction 32 to 64; animation 129,0 to 0,0; control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): moved (80, 114) to (127, 98); direction 0 to 192; animation 0,0 to 9,1; command 0 to 136"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (80, 134): 1 waypoints"
+ ],
+ "end": "steps 4 of 4 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 152,
+  "instruction_end": 34,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 b691f2a0 4c683f32 23805971 86f4a928 d0f59249 14d4c5d8 27a5564b 3d6852ad 97a045cb 814ed909 c5e53519 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a48bc7fe fda9b5f0 3d7fb092 9c2c49a4 9d9ca065 392ae4b8 74d11ecb 4abf1bc3 a8d2fff2 c2c679ce 8475d7b9 4664a462 9d9ca065 392ae4b8 d5182e48 7974dfe9 6df92fda 3ea4a8ff 73e16b7b 849407ec b82ce954 855fe4f9 7d9478c4 de6d8a0b b9212287 e31f2937 28e75410 dcb815da 4c683f32 8f79929e 477f48ab 71dc5db4 14650fb0 70204f04 c2867ea9 a67f46d9 6e160280 609a9797 18be3a21 67cecfe8 5fa09b43 f0f01eea c22f9fb3 4b3b8364 d932ca6a 4d310737 ffb241b2 cc867d74 ce196372 04197099 2fb9f57e ecdbfaa4 86cbd64b d777e12d 5e7fed50 873dc6d8 8bc6f3cd 8f3144e4 80c93ccf 17569e7b b464af57 3a7fbf1a b464af57 eaa7b83c fbf9a0ca f152c3f0 c8247d48 e2ca894f 9bf71490 7e5da8fc a87197d0 9e5436ff 775e9f58 05ef397c 191bec9b 6223e49d 5fca98ce 290bbba6 7712c1af da686c5c 5e5d1755 45f8acd0 d9539607 02639b19 0d32071c 1dcdc27c b042c67c f4ce0368 3425d568 f99ebcbf 7672be32 bd8617bd bd0c253a 2f8fe986 654022e8 58c622c9 846bb4df 3476168e 62afed09 ce9eae5f 5bfddffa 6dfd8186 ab018d24 89eca1a1 f6e1c89b c2e7df10 756a12e5 f5b3a468 9a40dc49 5bb11ae3 bc0976e7 a88db05a f2a07dfb d96e8f9e 8128e5e2 6b1c4184 a14e394d 54a5884e 16a69f77 153af851 a0a8ef64 be980202 05c4e0c7 003c7ad0 e9d9eba3 0ac24e17 6b52e1ba 3324865e e627e49f 155ace56 b8a3a304 986c5653 d81bbac3 91edb224 d973ed8d e143a2eb 8f145453 a9839944 a162aab2 9769977c cd160c2c f4c23a0e 0d627ba8 084c9259 0ed2fcf6 084c9259 69400f02 d0975b28 36338942 9fce0f23 b37aa851 cbd08999 b37aa851 d8b5646a 0e61251c d8b5646a 4bb629bc 97e059e2 0ac5b36f 003d33bf aaf41170 aa6e81cb 4485f2a4 37bebf5d a6bebe6b ea960420 a9c503db e9a3fa80 a9c503db 9423db03 5444e45e fcf2099e e5fd1a6b 0095e1d4 bbc70025 0095e1d4 bbc70025 3a9cf6ba 32e56377 3a9cf6ba 32e56377 e51dd73d dd6543fa cff9a737 5243a61c fb1a86b3 fd9d869f fb1a86b3 fcf4b2d8 d4f86d21 6be47140 16e94524 ef8f7265 f378f2d3 ef8f7265 ad9137d6 17a066cd ad9137d6 d7b34eb7 1d0bc42b 9f0d05dc 6925c183 285b2e57 717264f5 3139f3e6 49ef075d a20c3082 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd fffbc37b 24763d54 fffbc37b 24763d54 fffbc37b 24763d54 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 c4a97c2f 4df774a2 c4a97c2f 4df774a2 c4a97c2f 4df774a2 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd fffbc37b 24763d54 fffbc37b 24763d54 fffbc37b 24763d54 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 c4a97c2f 4df774a2 c4a97c2f 4df774a2 c4a97c2f 4df774a2 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd fffbc37b 24763d54 fffbc37b 24763d54 fffbc37b 24763d54 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 c4a97c2f 4df774a2 c4a97c2f 4df774a2 c4a97c2f 4df774a2 49ef075d a20c3082 49ef075d a20c3082 49ef075d a20c3082 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 2036dc5b 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd fffbc37b 24763d54 fffbc37b 24763d54 fffbc37b 24763d54 14f562a4 f4ea4afd 14f562a4 f4ea4afd 14f562a4 f4ea4afd 9253230d cc23e073 9253230d cc23e073 9253230d cc23e073 39682ab1 92e27ee3 39682ab1 92e27ee3 39682ab1 92e27ee3 53f6c1de 5824cae3 53f6c1de 5824cae3 53f6c1de 5824cae3 b0df50f4 2036dc5b b0df50f4 2036dc5b b0df50f4 fc6aea2d dd65feec 9aadb6af 2b87c9f2 e39a87c7 361c1faf b86b67d1 aac145c6 17a066cd ad9137d6 17a066cd ad9137d6 17a066cd f378f2d3 ef8f7265 f378f2d3 ef8f7265 f378f2d3 ef8f7265 003c7ad0 b832f15e 003c7ad0 b832f15e 003c7ad0 b832f15e 646c160a f8edb439 646c160a f8edb439 646c160a c26c7dab a98fe41d d0f63160 55e09586 58720d34 841af204 1f5e94ed b1bf352d 1477aa26 2b0ae359 765a8416 3fff7169 8aa517df 3afd8f48 935d4b4c 23b08e87 7d2112fd a91f4c72 025ed560 367abb02 f558c3c1 a82ff546 4430d1f7 b1afaab3 bfa95f50 7ca92ac9 e293698f 7ca92ac9 e293698f 7ca92ac9 1c78eccc b5c67fb0 2fdb978b 2d969669 799f1060 f298ec43 4e8256b7 7b36f0d2 eb92b31b",
+ "stretches": [
+  {
+   "frames": 57,
+   "sha256": "740941dc58d45db46ffc8e3628bc2cc3"
+  },
+  {
+   "frames": 558,
+   "sha256": "cf6933f227c2de84d3e1379da2087d68"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

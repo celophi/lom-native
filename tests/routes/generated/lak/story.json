@@ -1,0 +1,62 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "lak-lak-e070-story-4c9",
+   "save": {
+    "format": 1,
+    "description": "New game, saved at the bedroom desk, with the story state LAK_E070's story 0x4c9 needs",
+    "source": "built from the conditions on the path to the write in scene 324 (lom_routes.py generate-story)",
+    "scene": {
+     "scene": 19,
+     "object": 0,
+     "music": 7,
+     "sound_bank": 65535,
+     "secondary_music": 255,
+     "track": 4294705152
+    },
+    "variables": {
+     "0x1124": 4
+    }
+   },
+   "baseline": {
+    "route": "lak-lak-e070-story-4c9",
+    "description": "In LAK_E070 (scene 324), entering should write story variable 0x4c9",
+    "plan": "# lak-lak-e070-story-4c9: In LAK_E070 (scene 324), entering should write story variable 0x4c9\nlimit 20000\nenter 324 0 16718847 0\ncheckpoint entered\nwatch 6000\ncheckpoint done\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 324 save 5c7f83496c8dcca4 state 7c3e1633865b082c ram 0000000000000000",
+     "done frame 807 scene 324 save a78026ba1bf18e3e state eabe362542d07c78 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 576 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 270,
+     "instruction_end": 105,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "0a83476e475e2f7ce87470816fa57440"
+     },
+     {
+      "frames": 578,
+      "sha256": "56a557907ea5ce411508758535dbe693"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

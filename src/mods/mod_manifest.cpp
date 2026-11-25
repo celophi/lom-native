@@ -1,0 +1,844 @@
+#include "mod_manifest.h"
+#include "lom/launcher/common/json.h"
+#include "lom/launcher/common/sha256.h"
+#include "lom_native_switches.h"
+
+#include <algorithm>
+#include <cstdint>
+#include <fstream>
+#include <sstream>
+#include <system_error>
+
+namespace lom::mods
+{
+
+namespace
+{
+
+using ::lom::launcher::Json;
+using ::lom::launcher::Sha256;
+
+constexpr std::size_t max_id_length = 64;
+
+constexpr std::uintmax_t max_manifest_bytes = 64 * 1024;
+
+constexpr char script_extension[] = ".lua";
+
+/**
+ * @brief Read a whole file.
+ * @param path The file.
+ * @param text Set to its bytes.
+ * @return True when it could be read.
+ */
+bool read_file(const std::filesystem::path& path, std::string& text)
+{
+    std::ifstream input(path, std::ios::binary);
+
+    if (!input)
+    {
+        return false;
+    }
+
+    std::ostringstream bytes;
+    bytes << input.rdbuf();
+    text = bytes.str();
+    return true;
+}
+
+/**
+ * @brief Find a text field in mod.json.
+ * @param manifest mod.json's object.
+ * @param key The field.
+ * @return The text, or NULL when it's missing or isn't text.
+ */
+const std::string* text_field(const Json& manifest, const char* key)
+{
+    const Json* value = manifest.find(key);
+    return value && value->type() == Json::Type::String ? &value->as_string() : nullptr;
+}
+
+/**
+ * @brief Name a version of the game the way a player knows it.
+ * @param serial Its disc's serial.
+ * @return Like "the US Legend of Mana (SLUS-01013)".
+ */
+std::string game_name(const std::string& serial)
+{
+    const char* region = serial == us_game_serial ? "US " : serial == jp_game_serial ? "Japanese " : "";
+    return std::string("the ") + region + "Legend of Mana (" + serial + ")";
+}
+
+/**
+ * @brief Read which games mod.json says the mod is for, and check the one it
+ *        would run on is one of them.
+ * @param manifest mod.json's object.
+ * @param game The serial of the game it would run on.
+ * @param mod Its games are set.
+ * @param error Set to why the mod is refused when it isn't for this game.
+ * @return True when it's for this game.
+ */
+bool read_games(const Json& manifest, const std::string& game, ModManifest& mod, std::string& error)
+{
+    const Json* field = manifest.find("game");
+
+    if (field && field->type() == Json::Type::String)
+    {
+        mod.games.push_back(field->as_string());
+    }
+    else if (field && field->type() == Json::Type::Array)
+    {
+        for (const Json& item : field->as_array())
+        {
+            if (item.type() != Json::Type::String)
+            {
+                mod.games.clear();
+                break;
+            }
+
+            mod.games.push_back(item.as_string());
+        }
+    }
+
+    if (mod.games.empty())
+    {
+        error = std::string("its mod.json doesn't say which game it's for (\"game\": \"") + game + "\", or a list of serials)";
+        return false;
+    }
+
+    if (std::find(mod.games.begin(), mod.games.end(), game) == mod.games.end())
+    {
+        std::string games;
+
+        for (const std::string& serial : mod.games)
+        {
+            games += (games.empty() ? "" : " or ") + serial;
+        }
+
+        error = "it's for " + games + ", and this is " + game_name(game);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read a field mod.json has to have, as text that isn't empty.
+ * @param manifest mod.json's object.
+ * @param key The field.
+ * @param value Set to the text.
+ * @param error Set to why the mod is refused when it's missing.
+ * @return True when it's there.
+ */
+bool required_text(const Json& manifest, const char* key, std::string& value, std::string& error)
+{
+    const std::string* text = text_field(manifest, key);
+
+    if (!text || text->empty())
+    {
+        error = std::string("its mod.json has no \"") + key + "\"";
+        return false;
+    }
+
+    value = *text;
+    return true;
+}
+
+/**
+ * @brief Read a field mod.json may leave out, as text.
+ * @param manifest mod.json's object.
+ * @param key The field.
+ * @param value Set to the text, or left empty when it's missing.
+ * @param error Set to why the mod is refused when it's there but isn't text.
+ * @return True unless it's there and isn't text.
+ */
+bool optional_text(const Json& manifest, const char* key, std::string& value, std::string& error)
+{
+    const Json* field = manifest.find(key);
+
+    if (!field)
+    {
+        return true;
+    }
+
+    if (field->type() != Json::Type::String)
+    {
+        error = std::string("its mod.json's \"") + key + "\" has to be text";
+        return false;
+    }
+
+    value = field->as_string();
+    return true;
+}
+
+/**
+ * @brief Check a script's path stays inside the mod's folder: relative, with
+ *        forward slashes, no ".." and no drive.
+ * @param path The path as mod.json gives it.
+ * @return True when it does.
+ */
+bool inside_mod(const std::string& path)
+{
+    if (path.empty() || path.front() == '/' || path.find('\\') != std::string::npos || path.find(':') != std::string::npos)
+    {
+        return false;
+    }
+
+    std::size_t start = 0;
+
+    while (start <= path.size())
+    {
+        const std::size_t end = std::min(path.find('/', start), path.size());
+
+        if (path.compare(start, end - start, "..") == 0 && end - start == 2)
+        {
+            return false;
+        }
+
+        start = end + 1;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read and check the switches a mod sets.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets the switches.
+ * @param error Set to why the mod is refused when one is wrong.
+ * @return True when they're all switches this build has, set to true or false.
+ */
+bool read_switches(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    const Json* switches = manifest.find("switches");
+
+    if (!switches)
+    {
+        return true;
+    }
+
+    if (switches->type() != Json::Type::Object)
+    {
+        error = "its mod.json's \"switches\" has to be an object of switch names and true or false";
+        return false;
+    }
+
+    for (const auto& [name, value] : switches->as_object())
+    {
+        if (lom_native_switch_find(name.c_str()) < 0)
+        {
+            error = "it sets a switch this lom-native doesn't have: " + name;
+            return false;
+        }
+
+        if (value.type() != Json::Type::Bool)
+        {
+            error = "its switch " + name + " has to be true or false";
+            return false;
+        }
+
+        mod.switches.emplace_back(name, value.as_bool(false));
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read and check the scripts a mod runs.
+ * @param manifest mod.json's object.
+ * @param folder The mod's folder.
+ * @param mod The manifest, which gets the scripts.
+ * @param error Set to why the mod is refused when one is wrong.
+ * @return True when each is a .lua file inside the mod's folder.
+ */
+bool read_scripts(const Json& manifest, const std::filesystem::path& folder, ModManifest& mod, std::string& error)
+{
+    const Json* scripts = manifest.find("scripts");
+
+    if (!scripts)
+    {
+        return true;
+    }
+
+    if (scripts->type() != Json::Type::Array)
+    {
+        error = "its mod.json's \"scripts\" has to be a list of .lua files";
+        return false;
+    }
+
+    for (const Json& script : scripts->as_array())
+    {
+        if (script.type() != Json::Type::String || !inside_mod(script.as_string()))
+        {
+            error = "a script it lists isn't a path inside its folder";
+            return false;
+        }
+
+        const std::string& path = script.as_string();
+        std::error_code ignored;
+
+        if (path.size() <= sizeof(script_extension) - 1 || path.compare(path.size() - (sizeof(script_extension) - 1), std::string::npos, script_extension) != 0)
+        {
+            error = "its script " + path + " isn't a .lua file";
+            return false;
+        }
+
+        if (!std::filesystem::is_regular_file(folder / path, ignored))
+        {
+            error = "its script " + path + " is missing";
+            return false;
+        }
+
+        mod.scripts.push_back(path);
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read one comparison of a version range.
+ * @param text The comparison, like ">=1.2.0".
+ * @param op Set to the operator: ">=", ">", "<=", "<" or "=".
+ * @param version Set to the version.
+ * @return True when it's one.
+ */
+bool parse_comparison(const std::string& text, std::string& op, ModVersion& version)
+{
+    std::size_t length = 0;
+
+    for (const char* candidate : {">=", "<=", ">", "<", "="})
+    {
+        if (text.rfind(candidate, 0) == 0)
+        {
+            length = std::string(candidate).size();
+            break;
+        }
+    }
+
+    op = length ? text.substr(0, length) : "=";
+    const std::optional<ModVersion> parsed = parse_version(text.substr(length));
+
+    if (!parsed)
+    {
+        return false;
+    }
+
+    version = *parsed;
+    return true;
+}
+
+/**
+ * @brief Compare two versions.
+ * @param a One.
+ * @param b The other.
+ * @return Less than 0, 0 or more than 0 as a is older, the same or newer.
+ */
+int compare_versions(const ModVersion& a, const ModVersion& b)
+{
+    if (a.major != b.major)
+    {
+        return a.major < b.major ? -1 : 1;
+    }
+
+    if (a.minor != b.minor)
+    {
+        return a.minor < b.minor ? -1 : 1;
+    }
+
+    return a.patch == b.patch ? 0 : a.patch < b.patch ? -1 : 1;
+}
+
+/**
+ * @brief Split text at its spaces.
+ * @param text The text.
+ * @return Its words.
+ */
+std::vector<std::string> words(const std::string& text)
+{
+    std::vector<std::string> out;
+    std::istringstream in(text);
+    std::string word;
+
+    while (in >> word)
+    {
+        out.push_back(word);
+    }
+
+    return out;
+}
+
+/**
+ * @brief Read one of mod.json's relations to other mods: an object of mod ids
+ *        and version ranges.
+ * @param manifest mod.json's object.
+ * @param key The field: "requires", "optional" or "incompatible".
+ * @param relations Set to what it says.
+ * @param error Set to why the mod is refused when it's wrong.
+ * @return True unless it's there and wrong.
+ */
+bool read_relation(const Json& manifest, const char* key, std::vector<ModRelation>& relations, std::string& error)
+{
+    const Json* field = manifest.find(key);
+
+    if (!field)
+    {
+        return true;
+    }
+
+    if (field->type() != Json::Type::Object)
+    {
+        error = std::string("its mod.json's \"") + key + "\" has to be an object of mod ids and versions, like {\"author.mod\": \">=1.0.0\"}";
+        return false;
+    }
+
+    for (const auto& [id, range] : field->as_object())
+    {
+        if (!valid_mod_id(id))
+        {
+            error = std::string("its mod.json's \"") + key + "\" names " + id + ", which isn't a mod id";
+            return false;
+        }
+
+        if (range.type() != Json::Type::String || !valid_range(range.as_string()))
+        {
+            error = std::string("its mod.json's \"") + key + "\" gives " + id + " a version that isn't \"*\" or a range like \">=1.0.0 <2.0.0\"";
+            return false;
+        }
+
+        relations.push_back({id, range.as_string()});
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read mod.json's relations to other mods, which need mod API 2.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets them.
+ * @param error Set to why the mod is refused when one is wrong.
+ * @return True when they're all right.
+ */
+bool read_relations(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    if (!read_relation(manifest, "requires", mod.needs, error) || !read_relation(manifest, "optional", mod.works_with, error) ||
+        !read_relation(manifest, "incompatible", mod.incompatible, error))
+    {
+        return false;
+    }
+
+    if (const Json* after = manifest.find("load_after"))
+    {
+        if (after->type() != Json::Type::Array)
+        {
+            error = "its mod.json's \"load_after\" has to be a list of mod ids";
+            return false;
+        }
+
+        for (const Json& id : after->as_array())
+        {
+            if (id.type() != Json::Type::String || !valid_mod_id(id.as_string()))
+            {
+                error = "its mod.json's \"load_after\" has something that isn't a mod id";
+                return false;
+            }
+
+            mod.load_after.push_back(id.as_string());
+        }
+    }
+
+    const bool has_relations = !mod.needs.empty() || !mod.works_with.empty() || !mod.incompatible.empty() || !mod.load_after.empty();
+
+    if (has_relations && mod.api < relations_api)
+    {
+        error = "its mod.json says how it goes with other mods, which needs \"api\": " + std::to_string(relations_api);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read whether the mod asks to be turned on and off in F1's Mods page,
+ *        which needs mod API 3.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets it.
+ * @param error Set to why the mod is refused when it's wrong.
+ * @return True when it's right or left out.
+ */
+bool read_toggle(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    const Json* field = manifest.find("in_game_toggle");
+
+    if (!field)
+    {
+        return true;
+    }
+
+    if (field->type() != Json::Type::Bool)
+    {
+        error = "its mod.json's \"in_game_toggle\" has to be true or false";
+        return false;
+    }
+
+    mod.in_game_toggle = field->as_bool(false);
+
+    if (mod.in_game_toggle && mod.api < toggle_api)
+    {
+        error = "its mod.json asks for a switch in F1, which needs \"api\": " + std::to_string(toggle_api);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * @brief Write a version as text.
+ * @param version The version.
+ * @return Like "1.2.0".
+ */
+std::string version_text(const ModVersion& version)
+{
+    return std::to_string(version.major) + "." + std::to_string(version.minor) + "." + std::to_string(version.patch);
+}
+
+/**
+ * @brief Name a mod and the versions a relation takes, for a message.
+ * @param relation The relation.
+ * @return Like "chris.core 1.x" or "chris.core (>=1.2.0)".
+ */
+std::string relation_text(const ModRelation& relation)
+{
+    return relation.range == "*" ? relation.id : relation.id + " (" + relation.range + ")";
+}
+
+}
+
+std::optional<ModVersion> parse_version(const std::string& text)
+{
+    ModVersion version;
+    int* parts[] = {&version.major, &version.minor, &version.patch};
+    std::size_t at = 0;
+
+    for (int i = 0; i < 3; ++i)
+    {
+        const std::size_t start = at;
+
+        while (at < text.size() && text[at] >= '0' && text[at] <= '9' && at - start < 9)
+        {
+            *parts[i] = *parts[i] * 10 + (text[at] - '0');
+            ++at;
+        }
+
+        if (at == start || (i < 2 && (at >= text.size() || text[at] != '.')))
+        {
+            return std::nullopt;
+        }
+
+        at += i < 2 ? 1 : 0;
+    }
+
+    return at == text.size() ? std::optional<ModVersion>(version) : std::nullopt;
+}
+
+bool valid_range(const std::string& range)
+{
+    if (range == "*")
+    {
+        return true;
+    }
+
+    const std::vector<std::string> parts = words(range);
+    std::string op;
+    ModVersion version;
+    return !parts.empty() && std::all_of(parts.begin(), parts.end(), [&](const std::string& part) { return parse_comparison(part, op, version); });
+}
+
+bool in_range(const ModVersion& version, const std::string& range)
+{
+    if (range == "*")
+    {
+        return true;
+    }
+
+    for (const std::string& part : words(range))
+    {
+        std::string op;
+        ModVersion bound;
+
+        if (!parse_comparison(part, op, bound))
+        {
+            return false;
+        }
+
+        const int order = compare_versions(version, bound);
+        const bool holds = op == ">=" ? order >= 0 : op == ">" ? order > 0 : op == "<=" ? order <= 0 : op == "<" ? order < 0 : order == 0;
+
+        if (!holds)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+std::vector<ModStanding> check_relations(const std::vector<const ModManifest*>& mods)
+{
+    std::vector<ModStanding> standings(mods.size());
+    auto find = [&](const std::string& id) -> int
+    {
+        for (std::size_t i = 0; i < mods.size(); ++i)
+        {
+            if (mods[i]->id == id)
+            {
+                return static_cast<int>(i);
+            }
+        }
+
+        return -1;
+    };
+
+    for (bool changed = true; changed;)
+    {
+        changed = false;
+
+        for (std::size_t i = 0; i < mods.size(); ++i)
+        {
+            if (!standings[i].unmet.empty())
+            {
+                continue;
+            }
+
+            for (const ModRelation& need : mods[i]->needs)
+            {
+                const int other = find(need.id);
+
+                if (other < 0)
+                {
+                    standings[i].unmet = "it needs " + relation_text(need) + ", which isn't on";
+                }
+                else if (!standings[other].unmet.empty())
+                {
+                    standings[i].unmet = "it needs " + need.id + ", which can't run";
+                }
+                else if (!in_range(mods[other]->parsed_version, need.range))
+                {
+                    standings[i].unmet = "it needs " + relation_text(need) + ", and " + need.id + " is " + mods[other]->version;
+                }
+
+                if (!standings[i].unmet.empty())
+                {
+                    changed = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    for (std::size_t i = 0; i < mods.size(); ++i)
+    {
+        for (const ModRelation& bad : mods[i]->incompatible)
+        {
+            const int other = find(bad.id);
+
+            if (other >= 0 && other != static_cast<int>(i) && in_range(mods[other]->parsed_version, bad.range))
+            {
+                for (const auto& [a, b] : {std::pair<std::size_t, std::size_t>{i, static_cast<std::size_t>(other)}, {static_cast<std::size_t>(other), i}})
+                {
+                    std::vector<std::string>& clashes = standings[a].clashes;
+
+                    if (std::find(clashes.begin(), clashes.end(), mods[b]->id) == clashes.end())
+                    {
+                        clashes.push_back(mods[b]->id);
+                    }
+                }
+            }
+        }
+
+        auto should_follow = [&](const std::string& id)
+        {
+            const int other = find(id);
+
+            if (other > static_cast<int>(i))
+            {
+                standings[i].warnings.push_back("it should be below " + id + " in the list");
+            }
+        };
+
+        for (const ModRelation& need : mods[i]->needs)
+        {
+            should_follow(need.id);
+        }
+
+        for (const ModRelation& with : mods[i]->works_with)
+        {
+            should_follow(with.id);
+            const int other = find(with.id);
+
+            if (other >= 0 && !in_range(mods[other]->parsed_version, with.range))
+            {
+                standings[i].warnings.push_back("it works with " + relation_text(with) + ", and " + with.id + " is " + mods[other]->version +
+                                                ", so they may not work together");
+            }
+        }
+
+        for (const std::string& id : mods[i]->load_after)
+        {
+            should_follow(id);
+        }
+    }
+
+    return standings;
+}
+
+std::vector<std::string> manifest_surface()
+{
+    return {"mod.json id",       "mod.json name",         "mod.json version",    "mod.json author",        "mod.json description",
+            "mod.json game",     "mod.json api",          "mod.json switches",   "mod.json scripts",       "mod.json requires",
+            "mod.json optional", "mod.json incompatible", "mod.json load_after", "mod.json in_game_toggle"};
+}
+
+bool valid_mod_id(const std::string& id)
+{
+    auto letter_or_digit = [](char c) { return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9'); };
+
+    if (id.empty() || id.size() > max_id_length || !letter_or_digit(id.front()) || !letter_or_digit(id.back()) || id.find("..") != std::string::npos)
+    {
+        return false;
+    }
+
+    return std::all_of(id.begin(), id.end(), [&](char c) { return letter_or_digit(c) || c == '-' || c == '.'; });
+}
+
+std::optional<ModManifest> read_manifest(const std::filesystem::path& folder, const std::string& game, std::string& error)
+{
+    const std::filesystem::path path = folder / manifest_name;
+    std::error_code failed;
+    const std::uintmax_t size = std::filesystem::file_size(path, failed);
+
+    if (failed)
+    {
+        error = "it has no mod.json";
+        return std::nullopt;
+    }
+
+    std::string text;
+
+    if (size > max_manifest_bytes || !read_file(path, text))
+    {
+        error = size > max_manifest_bytes ? "its mod.json is too big" : "its mod.json can't be read";
+        return std::nullopt;
+    }
+
+    std::string parse_error;
+    const std::optional<Json> json = Json::parse(text, &parse_error);
+
+    if (!json || json->type() != Json::Type::Object)
+    {
+        error = "its mod.json isn't a JSON object" + (parse_error.empty() ? std::string() : ": " + parse_error);
+        return std::nullopt;
+    }
+
+    ModManifest mod;
+
+    if (!required_text(*json, "id", mod.id, error))
+    {
+        return std::nullopt;
+    }
+
+    if (!valid_mod_id(mod.id))
+    {
+        error = "its id \"" + mod.id + "\" has to be lowercase letters, digits, dashes and dots, like author.mod-name";
+        return std::nullopt;
+    }
+
+    if (mod.id != folder.filename().string())
+    {
+        error = "its folder is named " + folder.filename().string() + ", but its mod.json says its id is " + mod.id;
+        return std::nullopt;
+    }
+
+    if (!required_text(*json, "name", mod.name, error) || !required_text(*json, "version", mod.version, error) ||
+        !optional_text(*json, "author", mod.author, error) || !optional_text(*json, "description", mod.description, error))
+    {
+        return std::nullopt;
+    }
+
+    const std::optional<ModVersion> version = parse_version(mod.version);
+
+    if (!version)
+    {
+        error = "its version \"" + mod.version + "\" has to be three numbers, like 1.0.0";
+        return std::nullopt;
+    }
+
+    mod.parsed_version = *version;
+
+    if (!read_games(*json, game, mod, error))
+    {
+        return std::nullopt;
+    }
+
+    const Json* api = json->find("api");
+
+    if (!api || api->type() != Json::Type::Integer || api->as_int(0) < 1)
+    {
+        error = "its mod.json doesn't say which mod API it's for (\"api\": 1)";
+        return std::nullopt;
+    }
+
+    if (api->as_int(0) > mod_api)
+    {
+        error = "it needs mod API " + std::to_string(api->as_int(0)) + ", and this lom-native has " + std::to_string(mod_api) + ". It needs a newer lom-native";
+        return std::nullopt;
+    }
+
+    mod.api = static_cast<int>(api->as_int(0));
+
+    if (!read_switches(*json, mod, error) || !read_scripts(*json, folder, mod, error) || !read_relations(*json, mod, error) || !read_toggle(*json, mod, error))
+    {
+        return std::nullopt;
+    }
+
+    return mod;
+}
+
+std::string mod_digest(const std::filesystem::path& folder)
+{
+    std::error_code failed;
+    std::vector<std::filesystem::path> files;
+
+    for (auto entry = std::filesystem::recursive_directory_iterator(folder, failed); !failed && entry != std::filesystem::recursive_directory_iterator();
+         entry.increment(failed))
+    {
+        if (entry->is_regular_file(failed))
+        {
+            files.push_back(std::filesystem::relative(entry->path(), folder, failed));
+        }
+    }
+
+    if (failed)
+    {
+        return {};
+    }
+
+    std::sort(files.begin(), files.end(), [](const auto& a, const auto& b) { return a.generic_string() < b.generic_string(); });
+    Sha256 digest;
+
+    for (const std::filesystem::path& file : files)
+    {
+        std::string bytes;
+
+        if (!read_file(folder / file, bytes))
+        {
+            return {};
+        }
+
+        const std::string header = file.generic_string() + '\0' + std::to_string(bytes.size()) + '\0';
+        digest.update(header.data(), header.size());
+        digest.update(bytes.data(), bytes.size());
+    }
+
+    return digest.hex_digest();
+}
+
+}

@@ -1,0 +1,12 @@
+{
+  "id": "hp-watch",
+  "name": "HP watch",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod: with No natural healing on, the party's hit points never go up in a scene unless their maximum does, and the fight has to have hurt someone.",
+  "game": "SLUS-01013",
+  "api": 1,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

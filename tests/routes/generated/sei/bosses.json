@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "sei-sei-bss0-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-bss0-boss",
+    "description": "Entering SEI_BSS0 (scene 693) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# sei-sei-bss0-boss: Entering SEI_BSS0 (scene 693) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33461 0 16723739 0\ncheckpoint entered\nwalk 499 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 693 save aa5ff3c7506d2f4a state 87ed43a14088af30 ram 0000000000000000",
+     "fought frame 6566 scene 693 save 15c2784519eb3f89 state 10aaac9b666b7f5a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (499, 24): -2 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 5150 frames",
+     "game state 1 at vblank 17021",
+     "watched until the game left the field for state 1; the route ends here"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 630,
+     "instruction_end": 281,
+     "song": 4,
+     "scene": 4,
+     "monster": 1
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "8a26175e6f93b0aff793387ae9292122"
+     },
+     {
+      "frames": 6306,
+      "sha256": "cf04156354b2013c5d83cf3ad2126a3e"
+     },
+     {
+      "frames": 1780,
+      "sha256": "e30bba37237628ad4cb1d941192cc36d"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc2-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc2-boss",
+    "description": "Entering SEI_SNC2 (scene 686) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# sei-sei-snc2-boss: Entering SEI_SNC2 (scene 686) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33454 0 16719359 0\ncheckpoint entered\nwalk 235 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 686 save 2fda02eda081c61a state 21039f1a68a79d1e ram 0000000000000000",
+     "fought frame 2491 scene 686 save d695922e60f1716b state edc679ee8c1370f7 ram 0000000000000000",
+     "after frame 2523 scene 686 save d695922e60f1716b state 6c555c75680d9f15 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (235, 134): -3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 650 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 358,
+     "instruction_end": 107,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "144c8e5877d9eb5c52901d12c282c8bc"
+     },
+     {
+      "frames": 2231,
+      "sha256": "12f5210199950647710efd2abbce5676"
+     },
+     {
+      "frames": 32,
+      "sha256": "f92f11dd8c8030d72f3c5bdc50e641e4"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sei-sei-snc6-boss",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "sei-sei-snc6-boss",
+    "description": "Entering SEI_SNC6 (scene 690) should start its battle, which a strong hero wins, then play what follows",
+    "plan": "# sei-sei-snc6-boss: Entering SEI_SNC6 (scene 690) should start its battle, which a strong hero wins, then play what follows\nlimit 60000\nexperience 9999999\nenter 33458 0 16719359 1\ncheckpoint entered\nwalk 186 -1\nfight 4000 1\ncheckpoint fought\nwatch 6000\ncheckpoint after\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 260 scene 690 save f77a3fa7fb784707 state 39f8408daf6f30fd ram 0000000000000000",
+     "fought frame 924 scene 690 save 079a727c236dd60e state b6b619888f24c5ae ram 0000000000000000",
+     "after frame 956 scene 690 save 079a727c236dd60e state cc24babec374542a ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "hero at level 99 with 999 hp",
+     "walk to (186, 452): 3 waypoints",
+     "a battle is on; fighting it",
+     "the battle ended after 590 frames",
+     "watched until the player got control, 30 frames"
+    ],
+    "end": "steps 8 of 8 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 327,
+     "instruction_end": 105,
+     "song": 3,
+     "monster": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 261,
+      "sha256": "dbe962921c20f79b73450d173c94c195"
+     },
+     {
+      "frames": 664,
+      "sha256": "4595b1c9ea2b7aba3b855afbec31693b"
+     },
+     {
+      "frames": 32,
+      "sha256": "d3a24e3c7012251880849ca8fa74e10c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "about": "Baselines of generated routes, recorded on 1.x. A run replays each baseline's plan from its save. Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.",
+ "routes": [
+  {
+   "id": "cv1-cv1-b041-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-b041-entry",
+    "description": "Entering CV1_B041 (scene 98) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# cv1-cv1-b041-entry: Entering CV1_B041 (scene 98) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 98 3 16717567 1\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 98 save 9d050249eb3eb504 state 6b0499d8b25e3651 ram 0000000000000000",
+     "watched frame 275 scene 98 save c29e7ee80312e5aa state fd0ce31ff76a690f ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 44 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 141,
+     "instruction_end": 44,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "92223b3ef6fcf685470829bc4eb2c839"
+     },
+     {
+      "frames": 46,
+      "sha256": "98d199c65cd2c1bd882789af55790bd0"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-b042-direct",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-b042-direct",
+    "description": "Entering CV1_B042 (scene 615) directly should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# cv1-cv1-b042-direct: Entering CV1_B042 (scene 615) directly should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 615 0 16711422 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 615 save d0c0162a54652c5d state dfaec573e0a02854 ram 0000000000000000",
+     "watched frame 262 scene 615 save 4d3e26e7f62af2db state dbb66b44b4278a48 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 131,
+     "instruction_end": 47,
+     "song": 2,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "6af8ad46556afc674b4bc18c2983daa2"
+     },
+     {
+      "frames": 33,
+      "sha256": "7d656b7405ac7367bd8a314e3f9ffd9c"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  },
+  {
+   "id": "cv1-cv1-bs00-entry",
+   "save": "../../handwritten/saves/home-bedroom-new-game.json",
+   "baseline": {
+    "route": "cv1-cv1-bs00-entry",
+    "description": "Entering CV1_BS00 (scene 89) should load it and play its opening, until the player gets control or it stops changing",
+    "plan": "# cv1-cv1-bs00-entry: Entering CV1_BS00 (scene 89) should load it and play its opening, until the player gets control or it stops changing\nlimit 60000\nenter 32857 0 16720394 0\ncheckpoint entered\nwatch 6000\ncheckpoint watched\n",
+    "format": 3,
+    "checkpoints": [
+     "entered frame 229 scene 89 save 35beef17c8511b19 state 562cbfb53f8a5bf6 ram 0000000000000000",
+     "watched frame 262 scene 89 save 23434417e41929e1 state bab4126708387c85 ram 0000000000000000"
+    ],
+    "notes": [
+     "game state 8 at vblank 0",
+     "game state 2 at vblank 40",
+     "game state 7 at vblank 121",
+     "watched until the player got control, 31 frames"
+    ],
+    "end": "steps 4 of 4 failed 0 cover_dropped 0",
+    "coverage": {
+     "instruction": 139,
+     "instruction_end": 53,
+     "song": 3,
+     "scene": 2
+    },
+    "stretches": [
+     {
+      "frames": 230,
+      "sha256": "41a3b0471ab8e87e0f4e9cc6ae597787"
+     },
+     {
+      "frames": 33,
+      "sha256": "22e9e3d66686c4d44e132a7264a859f5"
+     },
+     {
+      "frames": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+     }
+    ]
+   }
+  }
+ ]
+}

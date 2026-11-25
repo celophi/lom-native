@@ -1,0 +1,49 @@
+name: WSEL.BIN
+compressed_sha1: b2c5d4b71c6aa59c12e2af9f012b640a99c8e26e
+sha1: e7f60491b2c95aef95cc0e23da30e5a0ed30e2a1
+options:
+  base_path: ../../../
+  basename: WSEL.BIN
+  platform: psx
+  compiler: PSYQ
+  generate_asm_macros_files: False
+  target_path: build/jp/decompressed/WSEL.BIN
+  asset_path: assets/jp
+  elf_path: build/jp/overlays/wsel.elf
+
+  asm_path: asm/jp/overlays/wsel
+  src_path: src/overlays/wsel
+  build_path: build/jp/overlays/wsel
+
+  ld_script_path: linker/jp/overlays/wsel/wsel.ld
+  ld_dependencies: True
+  undefined_funcs_auto_path: linker/jp/overlays/wsel/undefined_funcs_auto.txt
+  undefined_syms_auto_path: linker/jp/overlays/wsel/undefined_syms_auto.txt
+
+  symbol_addrs_path:
+    - config/jp/symbols/wsel_symbol_addrs.txt
+
+  find_file_boundaries: False
+  make_full_disasm_for_code: True
+  use_legacy_include_asm: False
+  o_as_suffix: True
+  subalign: 2
+
+  section_order: [".rodata", ".text", ".data", ".sdata", ".sbss", ".bss"]
+
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+
+segments:
+  - name: wsel
+    type: code
+    start: 0x1
+    vram: 0x8004FDD8
+    align: 4
+    subsegments:
+      - [auto, c, overlay_header]
+      - [0x1, .rodata, overlay_header]
+      - [0x5, .rodata, wsel]
+      - [0x1D, c, wsel]
+      - [0x28F1, databin, wsel_data]
+  - [0x7ABCD]

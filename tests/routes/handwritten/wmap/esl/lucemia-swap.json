@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "id": "wmap-esl-lucemia-swap",
+  "description": "Leaving Domina for the world map with land 24 (Lucemia) active and current should swap it for land 33, leaving the party off the grid (g_wmap_cells[15][15]); the route watches the map",
+  "start": {
+    "save": "saves/esl-active.json"
+  },
+  "steps": [
+    {
+      "enter": {
+        "scene": 36,
+        "from": 37,
+        "spawn": 2
+      },
+      "note": "Domina (HTW_ALL0), the way in the world map routes use"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "HTW_ALL0's exit to the world map; the map starts the party on the current land's cell, which the swap has emptied"
+    },
+    {
+      "checkpoint": "world-map"
+    },
+    {
+      "watch": 600,
+      "note": "the map with the party off the grid"
+    },
+    {
+      "checkpoint": "watched"
+    }
+  ]
+}
