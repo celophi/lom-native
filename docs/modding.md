@@ -6,7 +6,7 @@ You can change how the game plays with mods. It's early days, so there isn't a l
 
 The launcher's Mods button opens the Mods window. It lists every mod in your mods folder, with a checkbox to turn each one on or off, and buttons to move them up and down, add a mod, remove one, and open the mods folder. Mods load when the game starts, so a change counts from the next time you press Play.
 
-A few mods come with lom-native: Always run, Quick fights, No natural healing, Skip movies, Skip or win battles and Japanese balance. They're turned off to start with. You can turn them on and off, but not remove them.
+A few mods come with lom-native: Always run, Quick fights, No natural healing, Skip movies, Skip or win battles, Japanese balance and Quick room changes. They're turned off to start with. You can turn them on and off, but not remove them.
 
 Order matters. When two mods set the same thing, the one lower in the list wins, and the Mods window says which mod overrides which.
 
@@ -88,6 +88,7 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 | `continue_from_entrance` | Continue takes you back to the first screen since you came in from the world map or loaded your save, with everything since then undone and the party's hit points full. |
 | `continue_without_healing` | Continue tries the screen again with the hit points the party came into it with, not full ones. |
 | `japanese_balance` | The North American version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the North American version. |
+| `quick_room_changes` | Walking onto an exit to the next screen doesn't fade through black: the last picture of the old room dissolves straight into the new one. With widescreen off it's a quick fade instead. Cutscenes, conversations and the world map keep their own fades. |
 
 A mod that only sets switches doesn't need any scripts. The ones that come with lom-native are like that. A mod, or one of its choices, can set more than one: in Skip or win battles, winning regular fights instantly turns on `win_regular_battles` and `skip_battle_results`, so those fights don't stop for a results window.
 

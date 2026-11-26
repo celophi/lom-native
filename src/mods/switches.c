@@ -22,6 +22,7 @@ static const SwitchInfo s_switches[LOM_SWITCH_COUNT] = {
     [LOM_SWITCH_NO_REGULAR_BATTLES] = {"no_regular_battles", 9},
     [LOM_SWITCH_WIN_REGULAR_BATTLES] = {"win_regular_battles", 10},
     [LOM_SWITCH_WIN_BOSS_BATTLES] = {"win_boss_battles", 11},
+    [LOM_SWITCH_QUICK_ROOM_CHANGES] = {"quick_room_changes", 12},
 };
 
 static unsigned char s_setting[LOM_SWITCH_COUNT];

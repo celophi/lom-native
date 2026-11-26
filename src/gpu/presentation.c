@@ -1,4 +1,5 @@
 #include "presentation.h"
+#include "crossfade.h"
 #include <SDL3/SDL.h>
 
 static const int resolution_count = 3;
@@ -248,8 +249,20 @@ static bool lom_present_soft(LomPresentation* state, SDL_GPUDevice* device, SDL_
     return true;
 }
 
-void lom_present_blit(LomPresentation* state, SDL_GPUDevice* device, SDL_GPUCommandBuffer* cmd, SDL_GPUBlitRegion source, SDL_GPUTexture* target,
-                      SDL_Rect fitted, float aspect, unsigned source_scale)
+/**
+ * @brief Put the game's picture on the window in the chosen presentation
+ *        mode, for lom_present_blit.
+ * @param state The presentation state.
+ * @param device The GPU device.
+ * @param cmd The frame's command buffer.
+ * @param source The game's picture.
+ * @param target The window's texture.
+ * @param fitted Where the picture goes on it.
+ * @param aspect The picture's aspect ratio.
+ * @param source_scale The internal resolution's scale, or 0.
+ */
+static void present_picture(LomPresentation* state, SDL_GPUDevice* device, SDL_GPUCommandBuffer* cmd, SDL_GPUBlitRegion source, SDL_GPUTexture* target,
+                            SDL_Rect fitted, float aspect, unsigned source_scale)
 {
     int mode = state->mode;
 
@@ -332,9 +345,17 @@ void lom_present_blit(LomPresentation* state, SDL_GPUDevice* device, SDL_GPUComm
     SDL_BlitGPUTexture(cmd, &blit);
 }
 
+void lom_present_blit(LomPresentation* state, SDL_GPUDevice* device, SDL_GPUCommandBuffer* cmd, SDL_GPUBlitRegion source, SDL_GPUTexture* target,
+                      SDL_Rect fitted, float aspect, unsigned source_scale)
+{
+    lom_crossfade_capture(device, cmd, source, fitted);
+    present_picture(state, device, cmd, source, target, fitted, aspect, source_scale);
+}
+
 void lom_present_release(LomPresentation* state, SDL_GPUDevice* device)
 {
     lom_xbr_release(&state->xbr, device);
+    lom_crossfade_shutdown(device);
 
     if (state->stage)
     {

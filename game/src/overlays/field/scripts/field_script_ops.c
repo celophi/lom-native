@@ -1,4 +1,5 @@
 #include "common.h"
+#include "lom_native_quick_rooms.h"
 #include "lom_native_sound.h"
 #include "lom_native_switches.h"
 
@@ -3073,10 +3074,14 @@ void field_script_op_8a(s32 actor_id, s32 resource_index, s32 target_id, s32 unu
  * @param green Green component (10 bits).
  * @param blue Blue component (10 bits).
  * @param timer Fade timer.
+ * @note Native: a script choosing its own fade means its scene change isn't an
+ *       ordinary room change, for the quick_room_changes switch.
  */
 void field_script_op_8b(s32 red, s32 green, s32 blue, s32 timer)
 {
     FieldRuntimeContext* runtime;
+
+    lom_quick_rooms_not_a_room_change();
 
     runtime = g_field_runtime;
     runtime->fade_timer = timer;

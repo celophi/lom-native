@@ -1,4 +1,5 @@
 #include "common.h"
+#include "lom_native_quick_rooms.h"
 #include <libgpu.h>
 #include <memory.h>
 #include "lom_native_graphics.h"
@@ -123,6 +124,9 @@ static void field_upload_actor_texture(u8* tim, s32 owner);
  * @param player Leading player, whose position is probed.
  * @note The interaction starts once per contact; the latch clears when the
  *       player leaves the marker or a scene request is pending.
+ * @note Native: the marker's script starting is noted for the
+ *       quick_room_changes switch (lom_quick_rooms_walked_in), since exits are
+ *       markers.
  */
 void field_check_marker_contact(FieldActor* player)
 {
@@ -146,6 +150,7 @@ void field_check_marker_contact(FieldActor* player)
                 if (g_field_scene_contact_latched == 0)
                 {
                     field_start_interaction(0, label | FIELD_INTERACTION_SCRIPT);
+                    lom_quick_rooms_walked_in();
                 }
 
                 g_field_scene_contact_latched = 1;

@@ -1,10 +1,12 @@
 #include "remaster_internal.h"
 
+#include <stdint.h>
 #include <string.h>
 
 enum
 {
     MAX_BITS = 15,
+    FAST_BITS = 10,
     LITERAL_CODES = 288,
     DISTANCE_CODES = 30
 };
@@ -13,7 +15,8 @@ typedef struct
 {
     const unsigned char* in;
     size_t in_size, in_pos;
-    unsigned bit_buffer, bit_count;
+    uint64_t bit_buffer;
+    unsigned bit_count;
     unsigned char* out;
     size_t out_size, out_pos;
     int failed;
@@ -23,7 +26,22 @@ typedef struct
 {
     unsigned short counts[MAX_BITS + 1];
     unsigned short symbols[LITERAL_CODES];
+    unsigned short fast[1 << FAST_BITS];
 } Huffman;
+
+/**
+ * @brief Fill the bit buffer from the stream, a byte at a time, as far as it
+ *        holds whole bytes.
+ * @param s The inflater.
+ */
+static void refill(Inflater* s)
+{
+    while (s->bit_count <= 56 && s->in_pos < s->in_size)
+    {
+        s->bit_buffer |= (uint64_t)s->in[s->in_pos++] << s->bit_count;
+        s->bit_count += 8;
+    }
+}
 
 /**
  * @brief Read bits from the stream, lowest first.
@@ -33,26 +51,45 @@ typedef struct
  */
 static unsigned bits(Inflater* s, unsigned need)
 {
-    while (s->bit_count < need)
+    if (s->bit_count < need)
     {
-        if (s->in_pos >= s->in_size)
+        refill(s);
+
+        if (s->bit_count < need)
         {
             s->failed = 1;
             return 0;
         }
-
-        s->bit_buffer |= (unsigned)s->in[s->in_pos++] << s->bit_count;
-        s->bit_count += 8;
     }
 
-    unsigned value = s->bit_buffer & ((1u << need) - 1u);
+    unsigned value = (unsigned)(s->bit_buffer & ((1u << need) - 1u));
     s->bit_buffer >>= need;
     s->bit_count -= need;
     return value;
 }
 
 /**
- * @brief Build a canonical Huffman code from each symbol's code length.
+ * @brief Reverse the order of a code's bits, since deflate sends Huffman
+ *        codes highest bit first inside a stream read lowest bit first.
+ * @param code The code.
+ * @param length How many bits it has.
+ * @return The code with its bits reversed.
+ */
+static unsigned reverse(unsigned code, int length)
+{
+    unsigned reversed = 0;
+
+    for (int i = 0; i < length; ++i)
+    {
+        reversed = (reversed << 1) | ((code >> i) & 1u);
+    }
+
+    return reversed;
+}
+
+/**
+ * @brief Build a canonical Huffman code from each symbol's code length, with
+ *        a table that decodes the codes of up to FAST_BITS bits in one look.
  * @param h Set to the code.
  * @param lengths Each symbol's code length, 0 for a symbol that isn't used.
  * @param count How many symbols.
@@ -84,11 +121,34 @@ static int build(Huffman* h, const unsigned char* lengths, int count)
         }
     }
 
+    memset(h->fast, 0, sizeof(h->fast));
+    unsigned code = 0;
+    int index = 0;
+
+    for (int len = 1; len <= MAX_BITS; ++len)
+    {
+        for (int n = 0; n < h->counts[len]; ++n, ++code)
+        {
+            const unsigned short symbol = h->symbols[index++];
+
+            if (len <= FAST_BITS)
+            {
+                for (unsigned slot = reverse(code, len); slot < (1u << FAST_BITS); slot += 1u << len)
+                {
+                    h->fast[slot] = (unsigned short)(symbol << 4 | (unsigned)len);
+                }
+            }
+        }
+
+        code <<= 1;
+    }
+
     return 0;
 }
 
 /**
- * @brief Read one symbol of a Huffman code.
+ * @brief Read one symbol of a Huffman code: from the table when its code is
+ *        short, otherwise a bit at a time.
  * @param s The inflater.
  * @param h The code.
  * @return The symbol, or -1 when the stream runs out or has a code that isn't
@@ -96,6 +156,20 @@ static int build(Huffman* h, const unsigned char* lengths, int count)
  */
 static int decode(Inflater* s, const Huffman* h)
 {
+    if (s->bit_count < FAST_BITS)
+    {
+        refill(s);
+    }
+
+    const unsigned entry = h->fast[s->bit_buffer & ((1u << FAST_BITS) - 1u)];
+
+    if (entry && (entry & 15u) <= s->bit_count)
+    {
+        s->bit_buffer >>= entry & 15u;
+        s->bit_count -= entry & 15u;
+        return (int)(entry >> 4);
+    }
+
     int code = 0, first = 0, index = 0;
 
     for (int len = 1; len <= MAX_BITS; ++len)
@@ -151,6 +225,8 @@ static int put(Inflater* s, unsigned char byte)
 
 /**
  * @brief Inflate a compressed block's literals and copies, up to its end code.
+ *        A copy that overlaps itself is done in chunks that double, since what
+ *        it has written already repeats the pattern.
  * @param s The inflater.
  * @param literals The literal and length code.
  * @param distances The distance code.
@@ -204,11 +280,19 @@ static int codes(Inflater* s, const Huffman* literals, const Huffman* distances)
             return -1;
         }
 
-        for (size_t i = 0; i < length; ++i)
+        unsigned char* to = s->out + s->out_pos;
+        const unsigned char* from = to - distance;
+
+        for (size_t left = length; left;)
         {
-            s->out[s->out_pos] = s->out[s->out_pos - distance];
-            s->out_pos++;
+            size_t chunk = (size_t)(to - from);
+            chunk = chunk < left ? chunk : left;
+            memcpy(to, from, chunk);
+            to += chunk;
+            left -= chunk;
         }
+
+        s->out_pos += length;
     }
 }
 
@@ -327,12 +411,14 @@ static int dynamic_block(Inflater* s)
 }
 
 /**
- * @brief Copy a block that isn't compressed, from the next whole byte.
+ * @brief Copy a block that isn't compressed, from the next whole byte. The
+ *        whole bytes the bit buffer read ahead are given back first.
  * @param s The inflater.
  * @return 0, or -1 when the block is bad or doesn't fit.
  */
 static int stored_block(Inflater* s)
 {
+    s->in_pos -= (s->bit_count / 8);
     s->bit_buffer = 0;
     s->bit_count = 0;
 

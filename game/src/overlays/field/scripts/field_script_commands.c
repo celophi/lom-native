@@ -1,4 +1,5 @@
 #include "common.h"
+#include "lom_native_quick_rooms.h"
 
 #include "../internal/field_actor_runtime.h"
 #include "../internal/field_actor_tables.h"
@@ -378,10 +379,13 @@ void field_command_end_interaction(void)
  * @brief Command 4: start a fade to a color.
  * @param command Command number (unused).
  * @param params Target color and fade length.
+ * @note Native: the fade back in after a quick room change is shortened
+ *       (lom_quick_rooms_entry_fade).
  */
 void field_command_set_fade(s32 command, FieldFadeParams* params)
 {
-    ((void (*)(s32, s32, s32, s32))field_set_fade_target)(params->red, params->green, params->blue, params->duration);
+    ((void (*)(s32, s32, s32, s32))field_set_fade_target)(params->red, params->green, params->blue,
+                                                          lom_quick_rooms_entry_fade(params->red, params->green, params->blue, params->duration));
 }
 
 /**

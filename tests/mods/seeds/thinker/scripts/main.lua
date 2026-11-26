@@ -1,6 +1,6 @@
 local function think()
     local n = 0
-    for i = 1, 4000000 do
+    for i = 1, 10000000 do
         n = n + i
     end
     return n

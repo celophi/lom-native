@@ -1,0 +1,16 @@
+{
+  "id": "quick-room-changes",
+  "name": "Quick room changes",
+  "version": "1.0.0",
+  "author": "celophi",
+  "description": "Walking from one screen to the next dissolves straight into the new room instead of fading through black. Cutscenes keep their own fades.",
+  "game": [
+    "SLUS-01013",
+    "SLPS-02170"
+  ],
+  "api": 3,
+  "in_game_toggle": true,
+  "switches": {
+    "quick_room_changes": true
+  }
+}

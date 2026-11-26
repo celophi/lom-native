@@ -518,6 +518,8 @@ static int examples()
         CHECK(load("skip-battles", game) == 1 && lom_native_switch(LOM_SWITCH_WIN_REGULAR_BATTLES) && lom_native_switch(LOM_SWITCH_WIN_BOSS_BATTLES));
         CHECK(lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS) && !lom_native_switch(LOM_SWITCH_NO_REGULAR_BATTLES));
         lom_native_mods_stop();
+        CHECK(load("quick-room-changes", game) == 1 && lom_native_switch(LOM_SWITCH_QUICK_ROOM_CHANGES) && lom_native_mod_toggles_count() == 1);
+        lom_native_mods_stop();
     }
 
     CHECK(load("japanese-balance") == 1 && lom_native_switch(LOM_SWITCH_JAPANESE_BALANCE));
