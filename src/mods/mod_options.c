@@ -20,6 +20,7 @@ typedef struct
 typedef struct
 {
     char mod[ID_BYTES];
+    char mod_name[NAME_BYTES];
     char id[ID_BYTES];
     char name[NAME_BYTES];
     char description[DESCRIPTION_BYTES];
@@ -114,7 +115,7 @@ void lom_native_mod_options_reset(void)
     s_listener = NULL;
 }
 
-int lom_native_mod_options_add(const char* mod, const char* id, const char* name, const char* description, int default_choice)
+int lom_native_mod_options_add(const char* mod, const char* mod_name, const char* id, const char* name, const char* description, int default_choice)
 {
     if (s_count >= MAX_OPTIONS)
     {
@@ -123,6 +124,7 @@ int lom_native_mod_options_add(const char* mod, const char* id, const char* name
 
     Option* option = &s_options[s_count];
     copy_text(option->mod, sizeof(option->mod), mod);
+    copy_text(option->mod_name, sizeof(option->mod_name), mod_name);
     copy_text(option->id, sizeof(option->id), id);
     copy_text(option->name, sizeof(option->name), name);
     copy_text(option->description, sizeof(option->description), description);
@@ -168,6 +170,12 @@ const char* lom_native_mod_options_mod(int index)
 {
     const Option* option = option_at(index);
     return option ? option->mod : NULL;
+}
+
+const char* lom_native_mod_options_mod_name(int index)
+{
+    const Option* option = option_at(index);
+    return option ? option->mod_name : NULL;
 }
 
 const char* lom_native_mod_options_id(int index)

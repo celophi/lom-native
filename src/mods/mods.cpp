@@ -345,8 +345,8 @@ int lom_native_mods_start(const char* game_serial)
     {
         for (const ModOption& option : mod.manifest.options)
         {
-            const int index = lom_native_mod_options_add(mod.manifest.id.c_str(), option.id.c_str(), option.name.c_str(), option.description.c_str(),
-                                                         static_cast<int>(option.default_choice));
+            const int index = lom_native_mod_options_add(mod.manifest.id.c_str(), mod.manifest.name.c_str(), option.id.c_str(), option.name.c_str(),
+                                                         option.description.c_str(), static_cast<int>(option.default_choice));
 
             for (const ModChoice& choice : option.choices)
             {

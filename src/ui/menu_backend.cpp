@@ -155,6 +155,7 @@ ModOptionView GameBackend::mod_option(int index) const
     auto text = [](const char* value) { return std::string(value ? value : ""); };
     ModOptionView view;
     view.mod = text(lom_native_mod_options_mod(index));
+    view.mod_name = text(lom_native_mod_options_mod_name(index));
     view.name = text(lom_native_mod_options_name(index));
     view.description = text(lom_native_mod_options_description(index));
     view.chosen = lom_native_mod_options_chosen(index);

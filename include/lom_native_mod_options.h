@@ -16,13 +16,14 @@ extern "C"
      * @brief Add a loaded mod's option, then its choices with
      *        lom_native_mod_options_add_choice.
      * @param mod The mod's id.
+     * @param mod_name The mod's name, for F1.
      * @param id The option's id.
      * @param name Its name, for F1.
      * @param description What it does, or empty.
      * @param default_choice The choice it starts on, unless the player prefers another.
      * @return Its index, or -1 when there are too many.
      */
-    int lom_native_mod_options_add(const char* mod, const char* id, const char* name, const char* description, int default_choice);
+    int lom_native_mod_options_add(const char* mod, const char* mod_name, const char* id, const char* name, const char* description, int default_choice);
 
     /**
      * @brief Add a choice to an option; it's put on this one when the player prefers it.
@@ -53,6 +54,13 @@ extern "C"
      * @return Its mod's id, or NULL when the index is out of range.
      */
     const char* lom_native_mod_options_mod(int index);
+
+    /**
+     * @brief The name of the mod an option belongs to, for F1.
+     * @param index The option, from 0.
+     * @return Its mod's name, or NULL when the index is out of range.
+     */
+    const char* lom_native_mod_options_mod_name(int index);
 
     /**
      * @brief An option's id, as mod.json gives it.

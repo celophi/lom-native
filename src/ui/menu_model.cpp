@@ -334,7 +334,7 @@ void MenuModel::add_control_rows(std::vector<MenuRow>& rows) const
     rows.push_back({MenuRow::Kind::Action, format_number(restore_bindings_label, player_ + 1), restore_bindings_help});
 }
 
-void MenuModel::add_mod_option_row(std::vector<MenuRow>& rows, int index, bool dimmed) const
+void MenuModel::add_mod_option_row(std::vector<MenuRow>& rows, int index, bool under_switch) const
 {
     const ModOptionView option = backend_.mod_option(index);
     std::string help = option.description;
@@ -344,9 +344,9 @@ void MenuModel::add_mod_option_row(std::vector<MenuRow>& rows, int index, bool d
         help += (help.empty() ? "" : " ") + option.choice_description;
     }
 
-    MenuRow row{MenuRow::Kind::Choice, option.name, help, option.choice};
+    MenuRow row{MenuRow::Kind::Choice, under_switch ? option.name : option.mod_name + ": " + option.name, help, option.choice};
     row.mod_option = index;
-    row.dimmed = dimmed;
+    row.child = under_switch;
     rows.push_back(row);
 }
 
@@ -370,7 +370,11 @@ void MenuModel::add_mod_rows(std::vector<MenuRow>& rows) const
         {
             if (!placed[j] && backend_.mod_option(j).mod == id)
             {
-                add_mod_option_row(rows, j, !row.on);
+                if (row.on)
+                {
+                    add_mod_option_row(rows, j, true);
+                }
+
                 placed[j] = true;
             }
         }

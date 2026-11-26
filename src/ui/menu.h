@@ -144,6 +144,7 @@ class Menu
     void draw_categories();
     void draw_rows();
     float draw_row(const MenuRow& row, int index, float y, float left, float right, bool focused);
+    void draw_child_guide(const MenuRow& row, float y, float height, float left, float row_left, bool more);
     void draw_value(const MenuRow& row, int index, ImVec2 center_right, bool focused);
     float draw_bindings(const std::vector<MenuRow>& rows, float y, float left, float right);
     void draw_footer();

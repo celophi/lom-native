@@ -33,6 +33,7 @@ class FakeGame : public MenuBackend
     struct Option
     {
         std::string mod;
+        std::string mod_name;
         std::string name;
         std::string description;
         std::vector<std::pair<std::string, std::string>> choices;
@@ -186,6 +187,7 @@ class FakeGame : public MenuBackend
     {
         const Option& option = options[index];
         return {option.mod,
+                option.mod_name,
                 option.name,
                 option.description,
                 option.choices[option.chosen].first,
@@ -629,10 +631,11 @@ static void mods_page_switches_each_mod_that_asked()
 }
 
 /**
- * @brief Check each mod's options show under its switch, saying the choice
- *        they're on and what the option and the choice do, dimmed while the
- *        mod is off, that left and right step through the choices, wrapping,
- *        and that a mod without a switch still gets its options, after the rest.
+ * @brief Check each mod's options show under its switch, as part of it, while
+ *        it's turned on, saying the choice they're on and what the option and
+ *        the choice do, that left and right step through the choices,
+ *        wrapping, and that a mod without a switch still gets its options,
+ *        after the rest, named after it.
  */
 static void mods_page_shows_each_mods_options_under_it()
 {
@@ -640,21 +643,25 @@ static void mods_page_shows_each_mods_options_under_it()
     game.mods = {{"Always run", ""}, {"No natural healing", ""}};
     game.mod_ids = {"always-run", "no-natural-healing"};
     game.mods_on = {true, false};
-    game.options = {{"other-mod", "Speed", "", {{"Slow", ""}, {"Fast", ""}}, 0},
+    game.options = {{"other-mod", "Other mod", "Speed", "", {{"Slow", ""}, {"Fast", ""}}, 0},
                     {"no-natural-healing",
+                     "No natural healing",
                      "After a game over",
                      "What Continue does.",
                      {{"Back to the entrance", "Everything since then is undone."}, {"No Continue", ""}, {"Retry without healing", ""}},
                      0}};
     MenuModel menu(game);
-    menu.point(MenuCategory::Mods, 2);
-    const std::vector<MenuRow> rows = menu.rows();
+    menu.point(MenuCategory::Mods, 1);
 
-    CHECK(rows.size() == 4);
-    CHECK(rows[1].label == "No natural healing" && rows[1].mod_toggle == 1);
-    CHECK(rows[2].label == "After a game over" && rows[2].mod_option == 1 && rows[2].value == "Back to the entrance" && rows[2].dimmed);
+    CHECK(menu.rows().size() == 3 && menu.rows()[1].label == "No natural healing" && menu.rows()[2].label == "Other mod: Speed");
+    press(menu, MenuInput::Select);
+    const std::vector<MenuRow> rows = menu.rows();
+    CHECK(game.mods_on[1] && rows.size() == 4);
+    CHECK(rows[2].label == "After a game over" && rows[2].mod_option == 1 && rows[2].value == "Back to the entrance" && rows[2].child);
     CHECK(rows[2].description == "What Continue does. Everything since then is undone.");
-    CHECK(rows[3].label == "Speed" && rows[3].mod_option == 0 && !rows[3].dimmed);
+    CHECK(!rows[0].child && !rows[1].child);
+    CHECK(rows[3].label == "Other mod: Speed" && rows[3].mod_option == 0 && !rows[3].child);
+    press(menu, MenuInput::Down);
     press(menu, MenuInput::Right);
     CHECK(game.options[1].chosen == 1 && menu.rows()[2].value == "No Continue" && menu.rows()[2].description == "What Continue does.");
     press(menu, MenuInput::Left);

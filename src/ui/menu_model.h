@@ -12,6 +12,7 @@ namespace lom::settings
 struct ModOptionView
 {
     std::string mod;
+    std::string mod_name;
     std::string name;
     std::string description;
     std::string choice;
@@ -376,6 +377,7 @@ struct MenuRow
     bool on = false;
     int mod_toggle = -1;
     int mod_option = -1;
+    bool child = false;
     int percent = 0;
     bool dimmed = false;
     bool listening_key = false;
@@ -535,21 +537,22 @@ class MenuModel
 
     /**
      * @brief Add the Mods rows: a switch for each mod that's on and asked for
-     *        one, each with its options under it, then the options of mods
-     *        without a switch, or a line saying how to get one there when
-     *        there's nothing.
+     *        one, each with its options under it while it's turned on, then the
+     *        options of mods without a switch, or a line saying how to get one
+     *        there when there's nothing.
      * @param rows Where they go.
      */
     void add_mod_rows(std::vector<MenuRow>& rows) const;
 
     /**
      * @brief Add the row for one of the mods' options: its name, the choice
-     *        it's on, and what both do.
+     *        it's on, and what both do. Under its mod's switch it's drawn as
+     *        part of it; otherwise its name starts with the mod's.
      * @param rows Where it goes.
      * @param index The option.
-     * @param dimmed True when its mod is turned off in F1.
+     * @param under_switch True when it goes right under its mod's switch.
      */
-    void add_mod_option_row(std::vector<MenuRow>& rows, int index, bool dimmed) const;
+    void add_mod_option_row(std::vector<MenuRow>& rows, int index, bool under_switch) const;
 
     /**
      * @brief Change one of the Display rows' settings.
