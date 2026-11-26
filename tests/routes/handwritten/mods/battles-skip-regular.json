@@ -1,0 +1,40 @@
+{
+  "format": 1,
+  "id": "mods-battles-skip-regular",
+  "description": "With no_regular_battles on, walking into RUI_B000's monsters should start no fight",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "no-fights",
+  "steps": [
+    {
+      "switch": {
+        "name": "no_regular_battles",
+        "on": true
+      }
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "wait": 600,
+      "note": "no-fight-watch stops, failing the route, if a fight starts"
+    },
+    {
+      "checkpoint": "after"
+    }
+  ]
+}

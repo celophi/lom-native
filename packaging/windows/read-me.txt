@@ -1,8 +1,8 @@
 Legend of Mana Native for Windows
 
 It runs on 64-bit Windows 10 or 11, with a graphics card that supports
-Direct3D 12. You also need your own copy of Legend of Mana, the US version
-(SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an
+Direct3D 12. You also need your own copy of Legend of Mana, the North American
+version (SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an
 extracted folder. No game data is included.
 
 

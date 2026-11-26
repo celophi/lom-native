@@ -1,12 +1,12 @@
-# lom-native
+# Legend of Mana Native
 
-This is a native source port of Legend of Mana, built from [lom-decomp](https://github.com/celophi/lom-decomp).
+This is a native source port of Legend of Mana, built from the PSX decompilation project [lom-decomp](https://github.com/celophi/lom-decomp).
 
 It builds and runs on Linux, macOS and Windows, and you can get into the game and play. It isn't done, though. It hasn't been played all the way through yet, and there are still bugs, so expect things to break. The state of everything is just experimental at the moment.
 
 ## Setup
 
-You need your own copy of Legend of Mana, the US version (SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an already extracted folder. The launcher works out which one you have and runs the matching game. If you have both, set up both, and pick which one to play under Game files. The Japanese one plays as it did in Japan, so Circle confirms and Cross cancels, and its text is always the disc's own Japanese: the Remaster's text options don't apply to it. You also need a graphics card the game can draw with: one with Vulkan on Linux, one with Direct3D 12 on Windows, or any Apple Silicon Mac.
+You need your own copy of Legend of Mana, the North American version (SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an already extracted folder. The launcher works out which one you have and runs the matching game. If you have both, set up both, and pick which one to play under Game files. The Japanese one plays as it did in Japan, so Circle confirms and Cross cancels, and its text is always the disc's own Japanese: the Remaster's text options don't apply to it. You also need a graphics card the game can draw with: one with Vulkan on Linux, one with Direct3D 12 on Windows, or any Apple Silicon Mac.
 
 Grab the latest from the [releases page](https://github.com/celophi/lom-native/releases):
 
@@ -34,7 +34,7 @@ If you also own the Legend of Mana Remaster on Steam, the game can use parts of 
 
 - The Remaster's repainted backgrounds, and in widescreen its wider ones
 - Its repainted faces in conversations and its encyclopedia pictures
-- The game's own text in German, French, Spanish, Japanese, Korean or Chinese, or its revised English. US disc only; without the Remaster it's the PS1's English.
+- The game's own text in German, French, Spanish, Japanese, Korean or Chinese, or its revised English. North American disc only; without the Remaster it's the PS1's English.
 - Its soundtrack or its arranged soundtrack, instead of the PS1's
 - Its recordings of the sound effects
 
@@ -48,8 +48,8 @@ The launcher's Mods button lists your mods, and you turn each one on or off ther
 - Quick fights, which skips the results window after a fight
 - No natural healing, for a harder game
 - Skip movies
-- Skip battles, for following just the story
-- Japanese balance, which plays the US version with the Japanese version's harder combat and items
+- Skip or win battles, which skips regular fights or wins them as soon as they start, and wins boss fights too if you like, for following just the story
+- Japanese balance, which plays the North American version with the Japanese version's harder combat and items
 
 At this time, I'm still building out a modding framework, so these are a proof of concept initially.
 

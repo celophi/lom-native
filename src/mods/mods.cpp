@@ -1,5 +1,6 @@
 #include "lom_native_mods.h"
 #include "lom_native_env.h"
+#include "lom_native_mod_options.h"
 #include "lom_native_mod_toggles.h"
 #include "lom_native_notices.h"
 #include "lom_native_portable.h"
@@ -42,11 +43,14 @@ struct LoadedMod
     std::unique_ptr<ModScripts> scripts;
 
     int toggle = -1;
+
+    std::vector<int> options;
 };
 
 std::vector<LoadedMod> s_loaded;
 
 std::vector<std::string> s_refused;
+
 
 std::string s_cards_name;
 
@@ -228,7 +232,17 @@ void apply_switches()
             continue;
         }
 
-        for (const auto& [name, on] : mod.manifest.switches)
+        std::vector<std::pair<std::string, bool>> switches = mod.manifest.switches;
+
+        for (std::size_t i = 0; i < mod.manifest.options.size(); ++i)
+        {
+            const int chosen = mod.options[i] < 0 ? -1 : lom_native_mod_options_chosen(mod.options[i]);
+            const ModOption& option = mod.manifest.options[i];
+            const ModChoice& choice = option.choices[chosen < 0 ? option.default_choice : static_cast<std::size_t>(chosen)];
+            switches.insert(switches.end(), choice.switches.begin(), choice.switches.end());
+        }
+
+        for (const auto& [name, on] : switches)
         {
             lom_native_switch_set_by_mod(static_cast<LomSwitch>(lom_native_switch_find(name.c_str())), on, mod.manifest.id.c_str());
         }
@@ -327,6 +341,23 @@ int lom_native_mods_start(const char* game_serial)
         }
     }
 
+    for (LoadedMod& mod : s_loaded)
+    {
+        for (const ModOption& option : mod.manifest.options)
+        {
+            const int index = lom_native_mod_options_add(mod.manifest.id.c_str(), mod.manifest.name.c_str(), option.id.c_str(), option.name.c_str(),
+                                                         option.description.c_str(), static_cast<int>(option.default_choice));
+
+            for (const ModChoice& choice : option.choices)
+            {
+                lom_native_mod_options_add_choice(index, choice.id.c_str(), choice.name.c_str(), choice.description.c_str());
+            }
+
+            mod.options.push_back(index);
+        }
+    }
+
+    lom_native_mod_options_set_listener(apply_switches);
     lom_native_mod_toggles_set_listener(apply_switches);
     apply_switches();
 
@@ -359,6 +390,7 @@ void lom_native_mods_stop(void)
 {
     lom_native_switch_clear_mods();
     lom_native_mod_toggles_reset();
+    lom_native_mod_options_reset();
     s_loaded.clear();
     s_refused.clear();
     s_cards_name.clear();

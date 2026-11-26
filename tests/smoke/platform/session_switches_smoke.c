@@ -174,7 +174,9 @@ static void check_manifest(const char* folder)
     text[size] = 0;
     CHECK_DETAIL(strstr(text, "\n  \"mods\": [],\n  \"refused_mods\": [],\n"
                               "  \"switches\": {\"always_run\": true, \"skip_battle_results\": false, \"no_natural_healing\": false, \"skip_movies\": false, "
-                              "\"skip_battles\": false, \"japanese_balance\": false},\n  \"remaster\": \"") != NULL,
+                              "\"skip_battles\": false, \"japanese_balance\": false, \"no_continue\": false, \"continue_from_entrance\": false, "
+                              "\"continue_without_healing\": false, \"no_regular_battles\": false, \"win_regular_battles\": false, \"win_boss_battles\": false},\n"
+                              "  \"remaster\": \"") != NULL,
                  text);
 }
 

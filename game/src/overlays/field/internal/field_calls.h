@@ -319,6 +319,7 @@ void field_update_defeated(struct FieldActor* actor);
 s32 field_collect_action_targets(s32 source_index, struct FieldActionSlot* action, s32 group_mode, s32 effect_radius, s32* output);
 
 s32 field_build_group_monster_records(s32 group);
+s32 field_group_has_boss(s32 group);
 void field_init_monster_record(s32 actor_id, struct FieldStatusRecord* record, struct FieldObjectState* state);
 
 void field_set_battle_group(s32 mode, void* actor_data);
@@ -390,6 +391,7 @@ void field_start_timed_panel(s32 index);
 void field_clear_actor_texts(void);
 s32 field_actor_text_pending(void);
 void field_save_retry_snapshot(void);
+void field_mark_entrance(void);
 void field_update_battle_results_input(void);
 void field_close_battle_results(void);
 void field_open_battle_results(void);

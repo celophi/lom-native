@@ -209,7 +209,7 @@ LOM_SPEC(ManageGameFilesSpecification, "Game files should list both versions, th
 LOM_SPEC(ManageGameFilesSpecification, "Picking the other version in Game files should switch to it without closing, keeping both") {
     given_both_editions_are_set_up("us");
     open_launcher();
-    EXPECT_EQ(text_of("installedEdition"), "US version (NTSC-U) installed");
+    EXPECT_EQ(text_of("installedEdition"), "North American version (NTSC-U) installed");
 
     in_the_game_files_window([](QDialog* dialog) {
         auto* jp = dialog->findChild<QRadioButton*>(GameFilesDialog::radio_name(QStringLiteral("jp")));
@@ -235,7 +235,7 @@ LOM_SPEC(ManageGameFilesSpecification, "Setting up a version should ask for its 
     });
     press(ReadyPage::game_files_name);
     EXPECT_EQ(heading(), "Welcome");
-    EXPECT_EQ(text_of(WelcomePage::body_name), "Choose the disc image or extracted folder of the US version (NTSC-U).");
+    EXPECT_EQ(text_of(WelcomePage::body_name), "Choose the disc image or extracted folder of the North American version (NTSC-U).");
 
     press("browseImageButton");
 

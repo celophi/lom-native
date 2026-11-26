@@ -48,6 +48,8 @@ class GameBackend final : public MenuBackend
 
     int mod_toggle_count() const override;
 
+    std::string mod_toggle_id(int index) const override;
+
     std::string mod_toggle_name(int index) const override;
 
     std::string mod_toggle_description(int index) const override;
@@ -55,6 +57,12 @@ class GameBackend final : public MenuBackend
     bool mod_toggle_on(int index) const override;
 
     void set_mod_toggle(int index, bool value) override;
+
+    int mod_option_count() const override;
+
+    ModOptionView mod_option(int index) const override;
+
+    void choose_mod_option(int index, int choice) override;
 
     void set_text_language(int value) override;
 

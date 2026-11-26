@@ -1,4 +1,5 @@
 #include "common.h"
+#include "lom_native_switches.h"
 #include <rand.h>
 #include "lom_native_sound.h"
 #include "lom_native_text.h"
@@ -687,7 +688,12 @@ static inline s32 field_pack_map_position(VECTOR* position)
     return ((position->vx << 8) & 0xFFFF0000) | ((position->vz >> 8) & 0xFFFF);
 }
 
-/** @brief Refresh the party map positions and start the first newly entered trigger region. */
+/**
+ * @brief Refresh the party map positions and start the first newly entered trigger region.
+ * @note Native: with the no_regular_battles switch on, a region's battle doesn't
+ *       start unless a boss is in it (field_group_has_boss); the region still
+ *       counts as entered, so it doesn't try again until the scene does.
+ */
 static void field_update_triggers(void)
 {
     VECTOR positions[FIELD_PARTY_SIZE];
@@ -739,6 +745,11 @@ static void field_update_triggers(void)
                     if (g_field_runtime->trigger_table->regions[index].command & FIELD_TRIGGER_SCRIPT)
                     {
                         field_start_interaction(0, g_field_runtime->trigger_table->regions[index].command);
+                        return;
+                    }
+
+                    if (lom_native_switch(LOM_SWITCH_NO_REGULAR_BATTLES) && !field_group_has_boss(g_field_runtime->trigger_table->regions[index].command))
+                    {
                         return;
                     }
 

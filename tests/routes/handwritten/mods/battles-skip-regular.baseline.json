@@ -1,0 +1,82 @@
+{
+ "route": "mods-battles-skip-regular",
+ "description": "With no_regular_battles on, walking into RUI_B000's monsters should start no fight",
+ "plan": "# mods-battles-skip-regular: With no_regular_battles on, walking into RUI_B000's monsters should start no fight\nlimit 20000\nswitch no_regular_battles 1\nenter 33188 1 16719103 1\ncheckpoint entered\nwalk 752 -1\nwait 600\ncheckpoint after\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 229 scene 420 save 24197bcde44ec911 state 5927641cf84baa20 ram 0000000000000000",
+  "after frame 1246 scene 420 save f4851a2c0353158b state a8c48ed1b34aea37 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 229, scene 420 (RUI_B000)",
+    "spawn 0 to 1",
+    "scene id 19 to 33188",
+    "object id 0 to 1",
+    "music id 7 to 28",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "actor 0 (the hero): at (912, 120), facing 128, animation 2,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (768, 144), facing 0, animation 178,0, presence 0, control 2, command 141",
+    "actor 4 (layout record 1): at (736, 112), facing 0, animation 178,0, presence 0, control 2, command 141",
+    "actor 5 (layout record 2): at (336, 128), facing 0, animation 178,0, presence 0, control 2, command 141",
+    "actor 6 (layout record 3): at (433, 184), facing 0, animation 134,0, presence 0, control 2, command 0",
+    "actor 7 (layout record 4): at (230, 195), facing 0, animation 134,0, presence 0, control 2, command 0"
+   ]
+  },
+  {
+   "checkpoint": "after",
+   "changes": [
+    "frame 1246, scene 420 (RUI_B000)",
+    "story word 24: f2f20000 to 8b8b0000 (set 0x310, 0x313, 0x318, 0x31b; cleared 0x314, 0x315, 0x316, 0x31c, 0x31d, 0x31e)",
+    "scene word 17: 03900078 to 02f0005b",
+    "scene word 21: 00028000 to 0002702a",
+    "scene word 46: 00000000 to 00000001",
+    "scene word 47: 000000e4 to 000004dd",
+    "scene word 66: 366a0000 to 086a0000",
+    "scene word 71: 1f000000 to 26000000",
+    "scene word 76: 2d008000 to 2f008000",
+    "scene word 81: 52180000 to 5f180000",
+    "scene word 86: 24000000 to 57000000",
+    "actor 0 (the hero): moved (912, 120) to (752, 92); direction 128 to 192; animation 2,0 to 4,0; control 2 to 0; command 129 to 0",
+    "actor 3 (layout record 0): command 141 to 0",
+    "actor 4 (layout record 1): command 141 to 0",
+    "actor 5 (layout record 2): command 141 to 0",
+    "actor 6 (layout record 3): command 0 to 141",
+    "actor 7 (layout record 4): command 0 to 141"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (752, 120): 1 waypoints"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction": 141,
+  "instruction_end": 50,
+  "song": 3,
+  "scene": 2
+ },
+ "pictures": "607efce6 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 840c0f71 ce6ff8bb 7fffd764 220e674f 39c89f1a d8988c1a 48b7a0d0 eb3b3ebb de16c02a c4564b16 e4f88186 6fabb54e ec2b511a 25f596f4 f03e307e 3242a2c3 b4e34bdc ec0e3a4e 14650fb0 79592376 c17b5880 7d13d0ce 20d17a93 1fd63f42 4cdf2708 ad298001 68e178c9 6800f821 1ea861a7 1220ee76 acc097b4 b54401d9 acc097b4 b54401d9 acc097b4 b54401d9 ae909155 ec711b05 ae909155 ec711b05 ae909155 ec711b05 acc097b4 b54401d9 acc097b4 b54401d9 acc097b4 b54401d9 fcb4db63 53eab118 fcb4db63 53eab118 fcb4db63 53eab118 b672621c 1e254de9 e9d26614 8f6a9e65 bea638b8 bb80c20f 72f9974f e4c58443 f55df8e4 531b9239 c243516a 0d2ffc3c a30c0fc3 62423133 0c9fa137 d1897cfb edb96b13 b14dcee3 7ba3591e 83918c82 13fdbb09 673541d8 aaf65b39 b3cfa6de 99c573d5 38ae515c 2d045305 fa33f735 f3d3e21d c1912145 be376507 7cc6ff89 41dcf642 689fa804 ae5c67cb 4c4092dd 2a6631a6 6f876de8 625431a0 2bac1b6e 7d5aefb7 205a5a7c 253c4c80 c2d8cc13 ebf2cac2 475a6e95 17a02682 64746648 d1dfe1cf 81422cbd 6287b63e 1b238e40 7cc4e9a8 fb74ac74 79617b57 63675450 79617b57 6d15b634 b8ce4fad 6d15b634 bdd9a19e af26d632 f4025e6f af26d632 f4025e6f 6822e4d3 832b413e 274b8d1c 832b413e cc917ad2 263c50f9 cc917ad2 588234af 34d067b5 4f205ce9 34d067b5 4f205ce9 100ba009 7a2b58be 9fa315c3 7a2b58be 5f39ed10 103e7ea6 5f39ed10 bdd9a19e af26d632 f4025e6f af26d632 f4025e6f 6822e4d3 5cb98eef e573661d 5cb98eef 58702759 13ea81ff 58702759 4105e98c 371ec9b8 8c7f134e 371ec9b8 8c7f134e 2e2aa8ea 7a2b58be 9fa315c3 7a2b58be 5f39ed10 103e7ea6 5f39ed10 31ecf1ee 97880b5f 4453e09b 97880b5f 4453e09b 950b1451 832b413e 274b8d1c 832b413e cc917ad2 263c50f9 cc917ad2 4105e98c 371ec9b8 8c7f134e 371ec9b8 8c7f134e 2e2aa8ea 7d95dc77 bda42731 7d95dc77 6d15b634 b8ce4fad 6d15b634 bdd9a19e af26d632 f4025e6f af26d632 f4025e6f 6822e4d3 832b413e 274b8d1c 832b413e cc917ad2 263c50f9 cc917ad2 588234af 34d067b5 4f205ce9 34d067b5 4f205ce9 76c4c45d 61c3faa2 1574dbd8 61c3faa2 f9c964a7 9379a46d f9c964a7 52e5ea82 e2a0a006 da937f29 e2a0a006 da937f29 fe062ab8 3a7b937a 8c6cd722 3a7b937a 4f838dd8 c234ed6c 4f838dd8 75942c52 371ec9b8 8c7f134e 371ec9b8 8c7f134e 2e2aa8ea 7a2b58be 9fa315c3 7a2b58be 5f39ed10 103e7ea6 5f39ed10 31ecf1ee 97880b5f 4453e09b 97880b5f 4453e09b 950b1451 832b413e 274b8d1c 832b413e cc917ad2 263c50f9 cc917ad2 4105e98c 371ec9b8 8c7f134e 371ec9b8 8c7f134e 2e2aa8ea 7d95dc77 bda42731 7d95dc77 6d15b634 b8ce4fad 6d15b634 bdd9a19e af26d632 f4025e6f af26d632 f4025e6f 6822e4d3 832b413e 274b8d1c 832b413e cc917ad2 263c50f9 cc917ad2 588234af 34d067b5 4f205ce9 34d067b5 4f205ce9 100ba009 7a2b58be 9fa315c3 7a2b58be 5f39ed10 103e7ea6 5f39ed10 bdd9a19e af26d632 f4025e6f af26d632 f4025e6f 6822e4d3 5cb98eef e573661d 5cb98eef 58702759 13ea81ff 58702759 0f3dd751 9292f1f8 1d4fc139 7d267790 63ddb045 58affed7 0a44f433 afa8212d 384dd9b2 a03c1b25 25363d1e e78062a2 a4e0bc22 9d4616cf 5cfd8501 72952c8b de655b33 c34dfe92 e1591acd 99a62242 f53b233e 17bac86f 5b00ac2a b99257c1 82c770ae 395225b7 412d59d1 b20e6ad9 f2c7ea03 b945bc38 4746e570 3cfd166c 8006afef 04cf69e5 e91f1ef7 96d52b59 01b8669e cd070270 84c491a3 4abf44a9 7630dc97 9ea840a0 34d00756 f3f6362e f0684b2f c33a7146 67fad39b f23e85ca ce6ee491 ed7d53f6 46776324 7b307ccf 4c44c718 f1c460e9 17f85d8c f3f6362e 21bbc2a5 c33a7146 be45adc0 72aaef2a 44f8dfc1 63def192 bfcd5c21 b15ed953 395a5945 094e258b 9b5c5f8b a46586f2 bb4eaa44 2ca38982 acec5e29 5e039ec7 44f8dfc1 63def192 bfcd5c21 b15ed953 395a5945 094e258b 17f85d8c f3f6362e 21bbc2a5 c33a7146 be45adc0 72aaef2a ce6ee491 ed7d53f6 46776324 7b307ccf 4c44c718 f1c460e9 17f85d8c f3f6362e 21bbc2a5 c33a7146 be45adc0 72aaef2a 44f8dfc1 63def192 bfcd5c21 b15ed953 395a5945 094e258b 9b5c5f8b a46586f2 bb4eaa44 2ca38982 acec5e29 5e039ec7 44f8dfc1 63def192 bfcd5c21 b15ed953 395a5945 094e258b 17f85d8c f3f6362e 21bbc2a5 c33a7146 be45adc0 72aaef2a ce6ee491 ed7d53f6 a8ae2653 a6bb2167 a6974576 8c1040a2 af0105e3 dc259db9 4139c573 928b98c3 26644fd8 928b98c3 d517dfd0 afd54a53 9b844c52 afd54a53 9b844c52 f278ed5c f031e025 aebb3a3a f031e025 ae4ee494 047a5517 ae4ee494 b7c86bf5 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 34a24ecf 14ae9ef1 3a4d730f 16d3eff4 3a4d730f 16d3eff4 3a4d730f 16d3eff4 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc ec858c3f 2ac48a82 ec858c3f 2ac48a82 ec858c3f 2ac48a82 cc8be67a 14fc11fc cc8be67a 14fc11fc cc8be67a 14fc11fc",
+ "stretches": [
+  {
+   "frames": 230,
+   "sha256": "cb04b95a1346a89defd2ae2b985ab8e5"
+  },
+  {
+   "frames": 1017,
+   "sha256": "0cd06c1c5ec4056f4ae5ca6d612c10a4"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

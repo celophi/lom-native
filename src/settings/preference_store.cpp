@@ -25,6 +25,8 @@ constexpr int volume_value_count = AudioLevel::maximum_volume + 1;
 
 constexpr char file_heading[] = "# Legend of Mana native preferences\n";
 
+constexpr char mod_option_prefix[] = "mod_option:";
+
 constexpr char filter_key[] = "filter=";
 
 constexpr char resolution_key[] = "resolution=";
@@ -148,6 +150,43 @@ bool parse_number(const std::string& line, const std::string& name, int limit, i
 }
 
 /**
+ * @brief Read a player's choice for a mod's option from a line like
+ *        "mod_option:no-natural-healing:game_over=entrance".
+ * @param line The line.
+ * @param options Gets the choice, keyed "mod:option", when the line is one.
+ */
+void read_mod_option(const std::string& line, std::map<std::string, std::string>& options)
+{
+    const std::string prefix = mod_option_prefix;
+
+    if (line.compare(0, prefix.size(), prefix) != 0)
+    {
+        return;
+    }
+
+    const std::size_t equals = line.find('=', prefix.size());
+    const std::size_t colon = line.find(':', prefix.size());
+
+    if (equals == std::string::npos || colon == std::string::npos || colon > equals || colon == prefix.size() || colon + 1 == equals ||
+        equals + 1 == line.size())
+    {
+        return;
+    }
+
+    std::string choice = line.substr(equals + 1);
+
+    while (!choice.empty() && (choice.back() == '\r' || choice.back() == ' '))
+    {
+        choice.pop_back();
+    }
+
+    if (!choice.empty())
+    {
+        options[line.substr(prefix.size(), equals - prefix.size())] = choice;
+    }
+}
+
+/**
  * @brief Encode a complete preference snapshot in the existing text format.
  * @param preferences Snapshot to encode.
  * @return Serialized settings and per-player mappings.
@@ -160,6 +199,11 @@ std::string serialize(const Preferences& preferences)
     for (const Field& field : fields)
     {
         output << field.key << field.get(preferences) << '\n';
+    }
+
+    for (const auto& [key, choice] : preferences.mod_options)
+    {
+        output << mod_option_prefix << key << '=' << choice << '\n';
     }
 
     for (int port = 0; port < player_count; ++port)
@@ -197,6 +241,8 @@ Preferences PreferenceStore::load(std::string path, const Preferences& defaults)
                 field.set(persisted_, value);
             }
         }
+
+        read_mod_option(line, persisted_.mod_options);
 
         for (int port = 0; port < player_count; ++port)
         {

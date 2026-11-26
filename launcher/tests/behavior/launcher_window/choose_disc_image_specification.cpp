@@ -97,7 +97,7 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should show Ready 
     press("browseImageButton");
 
     EXPECT_EQ(heading(), "Ready to play");
-    EXPECT_EQ(text_of("installedEdition"), "US version (NTSC-U) installed");
+    EXPECT_EQ(text_of("installedEdition"), "North American version (NTSC-U) installed");
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should remember the extracted game files as the active game") {

@@ -132,6 +132,17 @@ int main(int argc, char** argv)
     }
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
+    auto chosen = next;
+    chosen.mod_options["no-natural-healing:game_over"] = "retry";
+    chosen.mod_options["author.mod:speed"] = "fast";
+    CHECK(store.save(chosen, PreferenceStore::SaveReason::Changed));
+    CHECK(reload.load(path, defaults) == chosen);
+    const std::string odd_options = "mod_option:no-colon=x\nmod_option::speed=x\nmod_option:mod:=x\nmod_option:mod:speed=\nmod_option:mod:speed=slow\r\n";
+    CHECK(SDL_SaveFile(path.c_str(), odd_options.data(), odd_options.size()));
+    const auto odd = reload.load(path, defaults).mod_options;
+    CHECK(odd.size() == 1 && odd.at("mod:speed") == "slow");
+    CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
+
     CHECK(defaults.hd_backgrounds && defaults.hd_ui && defaults.soundtrack == 0);
     auto remaster = next;
     remaster.hd_backgrounds = false;

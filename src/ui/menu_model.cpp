@@ -334,9 +334,27 @@ void MenuModel::add_control_rows(std::vector<MenuRow>& rows) const
     rows.push_back({MenuRow::Kind::Action, format_number(restore_bindings_label, player_ + 1), restore_bindings_help});
 }
 
+void MenuModel::add_mod_option_row(std::vector<MenuRow>& rows, int index, bool under_switch) const
+{
+    const ModOptionView option = backend_.mod_option(index);
+    std::string help = option.description;
+
+    if (!option.choice_description.empty())
+    {
+        help += (help.empty() ? "" : " ") + option.choice_description;
+    }
+
+    MenuRow row{MenuRow::Kind::Choice, under_switch ? option.name : option.mod_name + ": " + option.name, help, option.choice};
+    row.mod_option = index;
+    row.child = under_switch;
+    rows.push_back(row);
+}
+
 void MenuModel::add_mod_rows(std::vector<MenuRow>& rows) const
 {
     const int count = backend_.mod_toggle_count();
+    const int option_count = backend_.mod_option_count();
+    std::vector<bool> placed(static_cast<std::size_t>(option_count), false);
 
     for (int i = 0; i < count; ++i)
     {
@@ -346,9 +364,31 @@ void MenuModel::add_mod_rows(std::vector<MenuRow>& rows) const
         row.mod_toggle = i;
         row.on = backend_.mod_toggle_on(i);
         rows.push_back(row);
+        const std::string id = backend_.mod_toggle_id(i);
+
+        for (int j = 0; j < option_count; ++j)
+        {
+            if (!placed[j] && backend_.mod_option(j).mod == id)
+            {
+                if (row.on)
+                {
+                    add_mod_option_row(rows, j, true);
+                }
+
+                placed[j] = true;
+            }
+        }
     }
 
-    if (count == 0)
+    for (int j = 0; j < option_count; ++j)
+    {
+        if (!placed[j])
+        {
+            add_mod_option_row(rows, j, false);
+        }
+    }
+
+    if (count == 0 && option_count == 0)
     {
         MenuRow empty{MenuRow::Kind::Action, mods_empty_label, mods_empty_help};
         empty.dimmed = true;
@@ -779,6 +819,11 @@ void MenuModel::change(const MenuRow& row, int step)
         if (row.mod_toggle >= 0)
         {
             backend_.set_mod_toggle(row.mod_toggle, !backend_.mod_toggle_on(row.mod_toggle));
+        }
+        else if (row.mod_option >= 0)
+        {
+            const ModOptionView option = backend_.mod_option(row.mod_option);
+            backend_.choose_mod_option(row.mod_option, wrap(option.chosen, step, option.choices));
         }
 
         break;

@@ -50,9 +50,13 @@ Player 2 is for the game's own two-player mode. Recruit a companion in the game,
 
 The Mods page lists the mods you turned on in the launcher that can be switched off and on while you play, like the ones that come with lom-native. Turning one off there lasts until you close the game. Which mods load at all is up to the launcher's Mods window.
 
-Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the US version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
+Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the North American version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
 
-Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down.
+Some mods also have options, shown under them on the Mods page. Left and right change them, and they're kept for next time.
+
+Skip or win battles has two. Regular fights, the ones that start when you walk into monsters, can be fought, skipped or won as soon as they start. Boss fights can be fought or won as soon as they start; they can't be skipped, since the story needs them won. Skipped fights give no experience or drops, so you may find a boss harder.
+
+Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down. Its option, After a game over, says what Continue does. Back to the entrance, the default, takes you back to where you came in from the world map with everything since then undone. No Continue sends you to the title screen. Retry without healing tries the screen again with the hit points you came into it with.
 
 [modding.md](modding.md) has the rest about mods.
 
@@ -68,7 +72,7 @@ With it, the settings have these:
 
 - **HD backgrounds** (Display), on by default. The Remaster's repainted backgrounds, from the next room you enter. Set Internal resolution to 4x to see all of their detail.
 - **HD pictures** (Display), on by default. The Remaster's repainted faces in conversations, and its encyclopedia pictures.
-- **Text** (Display). The game's text, or the Remaster's revised English or its German, French, Spanish, Japanese, Korean or Chinese. Only with the US disc; the Japanese one keeps its own text, since it's stored differently.
+- **Text** (Display). The game's text, or the Remaster's revised English or its German, French, Spanish, Japanese, Korean or Chinese. Only with the North American disc; the Japanese one keeps its own text, since it's stored differently.
 - **Soundtrack** (Audio). The PS1's, the Remaster's, or the Remaster's arranged one. It changes from the next song.
 - **Effects** (Audio). The PS1's sound effects, or the Remaster's recordings of them.
 

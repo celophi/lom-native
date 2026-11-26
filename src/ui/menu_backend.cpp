@@ -1,6 +1,7 @@
 #include "menu_backend.h"
 
 #include "../settings/service.h"
+#include "lom_native_mod_options.h"
 #include "lom_native_mod_toggles.h"
 #include "lom_native_controls.h"
 #include "lom_native_display.h"
@@ -116,6 +117,12 @@ int GameBackend::mod_toggle_count() const
     return lom_native_mod_toggles_count();
 }
 
+std::string GameBackend::mod_toggle_id(int index) const
+{
+    const char* id = lom_native_mod_toggles_id(index);
+    return id ? id : "";
+}
+
 std::string GameBackend::mod_toggle_name(int index) const
 {
     const char* name = lom_native_mod_toggles_name(index);
@@ -136,6 +143,31 @@ bool GameBackend::mod_toggle_on(int index) const
 void GameBackend::set_mod_toggle(int index, bool value)
 {
     lom_native_mod_toggles_set(index, value);
+}
+
+int GameBackend::mod_option_count() const
+{
+    return lom_native_mod_options_count();
+}
+
+ModOptionView GameBackend::mod_option(int index) const
+{
+    auto text = [](const char* value) { return std::string(value ? value : ""); };
+    ModOptionView view;
+    view.mod = text(lom_native_mod_options_mod(index));
+    view.mod_name = text(lom_native_mod_options_mod_name(index));
+    view.name = text(lom_native_mod_options_name(index));
+    view.description = text(lom_native_mod_options_description(index));
+    view.chosen = lom_native_mod_options_chosen(index);
+    view.choices = lom_native_mod_options_choice_count(index);
+    view.choice = text(lom_native_mod_options_choice_name(index, view.chosen));
+    view.choice_description = text(lom_native_mod_options_choice_description(index, view.chosen));
+    return view;
+}
+
+void GameBackend::choose_mod_option(int index, int choice)
+{
+    lom_native_mod_options_choose(index, choice);
 }
 
 void GameBackend::set_text_language(int value)

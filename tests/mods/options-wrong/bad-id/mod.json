@@ -1,0 +1,24 @@
+{
+  "id": "bad-id",
+  "name": "bad-id",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "game": "SLUS-01013",
+  "api": 4,
+  "options": [
+    {
+      "id": "Speed",
+      "name": "X",
+      "choices": [
+        {
+          "id": "a",
+          "name": "A"
+        },
+        {
+          "id": "b",
+          "name": "B"
+        }
+      ]
+    }
+  ]
+}

@@ -29,7 +29,7 @@ LOM_SPEC(UseExtractedFolderSpecification, "Using an extracted folder should show
     press("useFolderButton");
 
     EXPECT_EQ(heading(), "Ready to play");
-    EXPECT_EQ(text_of("installedEdition"), "US version (NTSC-U) installed");
+    EXPECT_EQ(text_of("installedEdition"), "North American version (NTSC-U) installed");
 }
 
 LOM_SPEC(UseExtractedFolderSpecification, "Using an extracted folder should use it in place without copying it") {

@@ -1,0 +1,114 @@
+{
+  "format": 1,
+  "id": "mods-game-over-no-continue",
+  "description": "With the no_continue switch on, the game over screen should only offer the title screen",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "switch": {
+        "name": "no_continue",
+        "on": true
+      }
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "hit_points": 1
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "wait": 900,
+      "note": "the monsters finish the hero off and the game over screen comes up"
+    },
+    {
+      "checkpoint": "game-over"
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "wait": 300
+    },
+    {
+      "checkpoint": "after"
+    }
+  ]
+}

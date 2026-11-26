@@ -140,7 +140,7 @@
   "record_sessions": "Enregistrer les parties pour les rapports de bug",
   "record_sessions_note": "Permet de rejouer un bug exactement comme il s'est produit. Cela prend environ 16 Mo par heure de jeu, et 50 Mo au plus sont conservés.",
   "game_discs_label": "Disques du jeu (au moins un est nécessaire)",
-  "game_discs_note": "Installez la version américaine, la version japonaise ou les deux, puis choisissez celle à laquelle vous voulez jouer.",
+  "game_discs_note": "Installez la version nord-américaine, la version japonaise ou les deux, puis choisissez celle à laquelle vous voulez jouer.",
   "play_edition": "Jouer à la %1",
   "set_up": "Installer...",
   "set_up_again": "Réinstaller...",
