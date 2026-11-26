@@ -46,17 +46,13 @@ Player 2 is for the game's own two-player mode. Recruit a companion in the game,
 
 **Pause when unfocused** is off by default. With it on, the game and its sound pause when you switch to another window, and carry on when you come back.
 
-**Skip the results window** is off by default. With it on, a fight goes straight back to the field instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away. You still get everything, it's only the window that's skipped.
-
-**No natural healing** is off by default. In the original game your hit points come back over time, and most fights fill them up again when they end. With it on, they only come back from items, techniques, pets and leaving a dungeon, so a long dungeon wears you down.
-
-A mod can turn either of those last two on. When one does, its row says which mod, and you can't change it there. Turn the mod off in the launcher's Mods window, or on F1's Mods page if the mod has a switch there, and the row is yours again.
-
 ## Mods
 
 The Mods page lists the mods you turned on in the launcher that can be switched off and on while you play, like the ones that come with lom-native. Turning one off there lasts until you close the game. Which mods load at all is up to the launcher's Mods window.
 
 Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the US version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
+
+Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down.
 
 [modding.md](modding.md) has the rest about mods.
 

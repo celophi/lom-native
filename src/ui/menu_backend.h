@@ -28,12 +28,6 @@ class GameBackend final : public MenuBackend
 
     void set_pause_unfocused(bool value) override;
 
-    bool switch_on(int id) const override;
-
-    void set_switch(int id, bool value) override;
-
-    std::string switch_mod(int id) const override;
-
     bool remaster_found() const override;
 
     bool hd_backgrounds_available() const override;

@@ -7,16 +7,15 @@ typedef struct
 {
     const char* name;
     int record_number;
-    int player_setting;
 } SwitchInfo;
 
 static const SwitchInfo s_switches[LOM_SWITCH_COUNT] = {
-    [LOM_SWITCH_ALWAYS_RUN] = {"always_run", 0, 0},
-    [LOM_SWITCH_SKIP_BATTLE_RESULTS] = {"skip_battle_results", 1, 1},
-    [LOM_SWITCH_NO_NATURAL_HEALING] = {"no_natural_healing", 2, 1},
-    [LOM_SWITCH_SKIP_MOVIES] = {"skip_movies", 3, 0},
-    [LOM_SWITCH_SKIP_BATTLES] = {"skip_battles", 4, 0},
-    [LOM_SWITCH_JAPANESE_BALANCE] = {"japanese_balance", 5, 0},
+    [LOM_SWITCH_ALWAYS_RUN] = {"always_run", 0},
+    [LOM_SWITCH_SKIP_BATTLE_RESULTS] = {"skip_battle_results", 1},
+    [LOM_SWITCH_NO_NATURAL_HEALING] = {"no_natural_healing", 2},
+    [LOM_SWITCH_SKIP_MOVIES] = {"skip_movies", 3},
+    [LOM_SWITCH_SKIP_BATTLES] = {"skip_battles", 4},
+    [LOM_SWITCH_JAPANESE_BALANCE] = {"japanese_balance", 5},
 };
 
 static unsigned char s_setting[LOM_SWITCH_COUNT];
@@ -138,11 +137,6 @@ int lom_native_switch_find(const char* name)
     }
 
     return -1;
-}
-
-int lom_native_switch_player_setting(LomSwitch id)
-{
-    return known(id) ? s_switches[id].player_setting : 0;
 }
 
 int lom_native_switch_record_number(LomSwitch id)

@@ -4,6 +4,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
+#include <fstream>
+#include <iterator>
+#include <string>
 #include "../../support/lom_check.h"
 
 static constexpr char injected_rename_error[] = "injected preference rename failure";
@@ -31,7 +34,6 @@ static constexpr auto main_malformed_key_padding = 127;
 static constexpr char resolution_field_text[] = "resolution=2\n";
 
 static constexpr char bad_widescreen_text[] = "widescreen=2\nwidescreen=yes\nwidescreen=-1\nwidescreen=1x\n";
-static constexpr char bad_switch_text[] = "skip_battle_results=2\nskip_battle_results=on\nskip_battle_results=-1\nskip_battle_results=1x\n";
 static constexpr char bad_remaster_text[] =
     "hd_backgrounds=2\nhd_backgrounds=off\nhd_pictures=2\nhd_pictures=no\ntext=9\ntext=-1\nsoundtrack=3\nsoundtrack=-1\nsoundtrack=1x\n";
 static constexpr char bad_category_text[] = "music_volume=101\nmusic_volume=-5\nmusic_mute=2\nsfx_volume=50x\nsfx_mute=yes\n";
@@ -118,21 +120,16 @@ int main(int argc, char** argv)
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
     CHECK(!reload.load(path, defaults).display.widescreen);
 
-    CHECK(!defaults.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] && !next.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS]);
-    auto skipping = next;
-    skipping.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] = true;
-    CHECK(store.save(skipping, PreferenceStore::SaveReason::Changed));
-    CHECK(reload.load(path, defaults).switches[LOM_SWITCH_SKIP_BATTLE_RESULTS]);
-    CHECK(reload.load(path, defaults) == skipping);
-    CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
-    CHECK(!reload.load(path, defaults).switches[LOM_SWITCH_SKIP_BATTLE_RESULTS]);
-
-    auto running = next;
-    running.switches[LOM_SWITCH_ALWAYS_RUN] = true;
-    CHECK(store.save(running, PreferenceStore::SaveReason::Changed));
-    CHECK(!reload.load(path, defaults).switches[LOM_SWITCH_ALWAYS_RUN]);
-    const std::string old_always_run = "always_run=1\n";
-    CHECK(SDL_SaveFile(path.c_str(), old_always_run.data(), old_always_run.size()) && !reload.load(path, defaults).switches[LOM_SWITCH_ALWAYS_RUN]);
+    const std::string old_switches = "skip_battle_results=1\nno_natural_healing=1\nalways_run=1\n";
+    CHECK(SDL_SaveFile(path.c_str(), old_switches.data(), old_switches.size()) && reload.load(path, defaults) == defaults);
+    auto pausing = next;
+    pausing.pause_unfocused = !next.pause_unfocused;
+    CHECK(store.save(pausing, PreferenceStore::SaveReason::Changed));
+    {
+        std::ifstream saved(path);
+        const std::string text((std::istreambuf_iterator<char>(saved)), std::istreambuf_iterator<char>());
+        CHECK(text.find("skip_battle_results") == std::string::npos && text.find("no_natural_healing") == std::string::npos);
+    }
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
     CHECK(defaults.hd_backgrounds && defaults.hd_ui && defaults.soundtrack == 0);
@@ -160,7 +157,7 @@ int main(int argc, char** argv)
 
     const std::string partial = player_one_up_key_prefix + std::to_string(SDL_SCANCODE_B) + player_two_up_key_prefix + std::to_string(SDL_SCANCODE_B) +
                                 player_one_right_key_prefix + std::to_string(SDL_SCANCODE_F7) + invalid_master_valid_mute_text +
-                                std::string(main_malformed_key_padding, 'x') + resolution_field_text + bad_widescreen_text + bad_switch_text +
+                                std::string(main_malformed_key_padding, 'x') + resolution_field_text + bad_widescreen_text +
                                 bad_remaster_text + bad_category_text;
     CHECK(SDL_SaveFile(path.c_str(), partial.data(), partial.size()));
     auto loaded = reload.load(path, defaults);
@@ -170,7 +167,6 @@ int main(int argc, char** argv)
     CHECK(loaded.audio.master.volume == main_full_volume && loaded.audio.master.muted);
     CHECK(loaded.display.resolution == 0);
     CHECK(!loaded.display.widescreen);
-    CHECK(!loaded.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS]);
     CHECK(loaded.hd_backgrounds && loaded.hd_ui && loaded.text_language == 0 && loaded.soundtrack == 0);
     CHECK(loaded.audio.categories == defaults.audio.categories);
     std::puts(success_message);

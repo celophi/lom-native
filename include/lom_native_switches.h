@@ -22,35 +22,37 @@ extern "C"
      *        at the place the switch changes a rule.
      * @param id The switch.
      * @return 1 when it's on: the value a recording or replay holds, else the
-     *         value a mod sets, else the player's setting. 0 for an unknown id.
+     *         value a mod sets, else the switch's own setting. 0 for an unknown id.
      */
     int lom_native_switch(LomSwitch id);
 
     /**
      * @brief What a switch should be, before any recording or replay holds it:
-     *        the value a mod sets, else the player's setting.
+     *        the value a mod sets, else the switch's own setting.
      * @param id The switch.
      * @return 1 when on, 0 when off or unknown.
      */
     int lom_native_switch_wanted(LomSwitch id);
 
     /**
-     * @brief Read the player's own setting for a switch.
+     * @brief Read a switch's own setting, the value it has when no mod sets it.
+     *        Players only change switches through mods, so this stays off unless
+     *        a test or route sets it.
      * @param id The switch.
-     * @return 1 when the player has it on, 0 when off or unknown.
+     * @return 1 when it's on, 0 when off or unknown.
      */
     int lom_native_switch_setting(LomSwitch id);
 
     /**
-     * @brief Change the player's own setting for a switch. A mod that sets the
-     *        switch still wins until it's turned off.
+     * @brief Change a switch's own setting. A mod that sets the switch still
+     *        wins until it's turned off.
      * @param id The switch; an unknown one is ignored.
      * @param on Nonzero for on.
      */
     void lom_native_switch_set_setting(LomSwitch id, int on);
 
     /**
-     * @brief Have a mod set a switch, over the player's setting. A later call
+     * @brief Have a mod set a switch, over its own setting. A later call
      *        for the same switch replaces an earlier one, so the later mod wins.
      * @param id The switch; an unknown one is ignored.
      * @param on Nonzero for on.
@@ -66,7 +68,7 @@ extern "C"
     const char* lom_native_switch_mod(LomSwitch id);
 
     /**
-     * @brief Forget every switch mods have set, giving each back to the player's
+     * @brief Forget every switch mods have set, giving each back to its own
      *        setting.
      */
     void lom_native_switch_clear_mods(void);
@@ -83,7 +85,7 @@ extern "C"
     void lom_native_switch_release(void);
 
     /**
-     * @brief The name a switch goes by in files: preferences, mod.json and logs.
+     * @brief The name a switch goes by in files: mod.json, routes and logs.
      * @param id The switch.
      * @return The name, like "always_run", or NULL for an unknown id.
      */
@@ -95,14 +97,6 @@ extern "C"
      * @return The switch, or -1 when there's no switch by that name.
      */
     int lom_native_switch_find(const char* name);
-
-    /**
-     * @brief Check whether the player can set a switch themselves: it's in the
-     *        F1 menu and saved in the preferences. The rest only mods set.
-     * @param id The switch.
-     * @return 1 when the player can, 0 when only a mod can or the id is unknown.
-     */
-    int lom_native_switch_player_setting(LomSwitch id);
 
     /**
      * @brief The number a recording stores for a switch. It never changes, so
