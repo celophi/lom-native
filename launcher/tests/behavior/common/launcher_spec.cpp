@@ -81,7 +81,8 @@ void replace_all(std::string& text, const std::string& placeholder, const std::s
 LauncherSpec::LauncherSpec()
     : edition(DiscFixture::create(TestHarness::instance().scratch_directory() / "edition")), profile(edition.directory.parent_path() / "profile"),
       owned_file_dialogs_(std::make_unique<NiceMock<MockFileDialogs>>()), owned_process_runner_(std::make_unique<NiceMock<MockProcessRunner>>()),
-      owned_update_feed_(std::make_unique<NiceMock<MockUpdateFeed>>()), owned_desktop_(std::make_unique<NiceMock<MockDesktop>>()) {
+      owned_update_feed_(std::make_unique<NiceMock<MockUpdateFeed>>()), owned_desktop_(std::make_unique<NiceMock<MockDesktop>>()),
+      owned_installer_(std::make_unique<NiceMock<MockUpdateInstaller>>()) {
     config_directory = profile / "config";
     data_directory = profile / "data";
     program_directory = profile / "program";
@@ -162,6 +163,40 @@ LauncherSpec::LauncherSpec()
         opened_pages.push_back(url);
     });
 
+    installer_mock = owned_installer_.get();
+    ON_CALL(*installer_mock, package_name(_)).WillByDefault([this](const QString& version) {
+        return can_update_itself ? QStringLiteral("lom-native-%1-linux-x86_64.AppImage").arg(version) : QString();
+    });
+    ON_CALL(*installer_mock, install(_, _, _))
+        .WillByDefault([this](const UpdateInstaller::Request& request, std::function<void(const UpdateInstaller::Progress&)> progress,
+                              std::function<void(const UpdateInstaller::Outcome&)> done) {
+            installs.push_back(request);
+            progress({1, 2, false});
+
+            if (install_finishes) {
+                progress({0, 0, true});
+                done(install_outcome);
+            } else {
+                unfinished_install = std::move(done);
+            }
+        });
+    ON_CALL(*installer_mock, cancel()).WillByDefault([this]() {
+        install_cancels++;
+
+        if (unfinished_install) {
+            auto done = std::move(unfinished_install);
+            unfinished_install = nullptr;
+            done({false, true, QString()});
+        }
+    });
+    ON_CALL(*installer_mock, restart()).WillByDefault([this]() {
+        restarts++;
+        return restart_starts;
+    });
+    ON_CALL(*installer_mock, clean_up()).WillByDefault([this]() {
+        clean_ups++;
+    });
+
     ON_CALL(clock_mock, now_unix_seconds()).WillByDefault([this]() {
         return now;
     });
@@ -230,6 +265,10 @@ LauncherWindow& LauncherSpec::open_launcher() {
     }
 
     services.desktop = std::move(owned_desktop_);
+
+    if (installer_configured) {
+        services.installer = std::move(owned_installer_);
+    }
     services.issue_repository = QStringLiteral("example/lom");
     services.clock = &clock_mock;
     services.random = &random_mock;

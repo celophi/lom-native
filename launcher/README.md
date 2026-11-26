@@ -5,7 +5,7 @@ The launcher is how you get from your own Legend of Mana disc to playing. You po
 ## How it's laid out
 
 - `core/` is a C++17 library with the rules for which discs and files are accepted. It has no GUI, network or process code, so another frontend could use it. The headers are in `include/lom/launcher/` and the code in `src/`, both split the same way: `disc/` reads, checks and installs the game files, `saves/` handles memory cards and saves, and `common/` has the rest.
-- `app/` is the window itself, `lom-launcher`, in Qt 6 Widgets. `window/` has the main window and what it runs on, `pages/` the pages it shows, and `dialogs/` the Settings, Game files, Mods and memory card dialogs. `services/` is everything that talks to the outside world: files, processes, the desktop, update checks and release notes. Most services are an interface plus the real thing, so the tests can swap in their own.
+- `app/` is the window itself, `lom-launcher`, in Qt 6 Widgets. `window/` has the main window and what it runs on, `pages/` the pages it shows, and `dialogs/` the Settings, Game files, Mods and memory card dialogs. `services/` is everything that talks to the outside world: files, processes, the desktop, update checks, installing updates and release notes. Most services are an interface plus the real thing, so the tests can swap in their own.
 - `cli/` is `lom-disc-tool`, the core on the command line. I use it to make the reference data and to check discs without the window. It has `identify`, `manifest`, `project-iso`, `verify-folder`, `check-folder`, `install` and `card`.
 - `data/` is what the launcher ships with: `supported-discs.json`, the manifests, and the mods that come with lom-native, in `mods/`.
 - `tests/` has a test for what the launcher does on each thing you can click (`behavior/`), unit tests (`unit/`), tests of the real process runner against a stand-in game (`providers/`), and the made-up discs and cards they share (`support/`).
@@ -32,7 +32,7 @@ The window needs Qt 6.5 or newer (Widgets and Network). Without Qt you still get
 There are three build options:
 
 - `LOM_APP_VERSION` is the version the launcher shows and compares when it checks for updates. Leave it empty and it works it out from git: `2.3.1` on the `v2.3.1` tag, or `2.3.1+3.gc76f211` three commits after it. Release builds set it exactly.
-- `LOM_UPDATE_REPOSITORY` is the GitHub repository it checks for releases and their notes, `celophi/lom-native` by default. Empty turns off the update check and What's new. The Flatpak does that, since it has no network access.
+- `LOM_UPDATE_REPOSITORY` is the GitHub repository it checks for releases, their notes and the files it updates itself from, `celophi/lom-native` by default. Empty turns off the update check, installing updates and What's new. The Flatpak does that, since it has no network access.
 - `LOM_LAUNCHER_TEST_IMAGE` is your own US disc image (CUE or BIN), for the `launcher-real-image` test. Empty by default.
 
 When I'm working on it, two environment variables help. `LOM_GAME_EXECUTABLE` starts a different game executable instead of the one next to the launcher (`lom`, or `lom-jp` for the Japanese version). `LOM_LAUNCHER_DATA` reads `supported-discs.json` from another folder instead of the `launcher-data` next to it.

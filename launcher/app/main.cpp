@@ -2,6 +2,7 @@
 #include "window/launcher_window.h"
 #include "window/launcher_services.h"
 #include "window/single_instance.h"
+#include "services/update_installer.h"
 
 #include <QApplication>
 #include <QDateTime>
@@ -9,6 +10,7 @@
 #include <QMutex>
 #include <QRect>
 #include <QTextStream>
+#include <QThread>
 #include <QTimer>
 
 #include <functional>
@@ -21,6 +23,8 @@ using namespace lom::launcher;
 
 constexpr char display_name[] = "Legend of Mana Native";
 constexpr qint64 max_log_bytes = 1024 * 1024;
+constexpr int after_update_wait_ms = 15000;
+constexpr int after_update_retry_ms = 250;
 
 QFile* log_file = nullptr;
 QMutex log_mutex;
@@ -75,8 +79,16 @@ int main(int argc, char** argv) {
 
     const AppPaths paths = AppPaths::standard();
     SingleInstance instance(paths.data_directory(), nullptr);
+    bool acquired = instance.acquire();
 
-    if (!instance.acquire()) {
+    if (!acquired && QApplication::arguments().contains(QString::fromLatin1(UpdateInstaller::after_update_argument))) {
+        for (int waited = 0; !acquired && waited < after_update_wait_ms; waited += after_update_retry_ms) {
+            QThread::msleep(after_update_retry_ms);
+            acquired = instance.acquire();
+        }
+    }
+
+    if (!acquired) {
         return 0;
     }
 

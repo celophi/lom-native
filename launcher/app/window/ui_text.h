@@ -341,6 +341,18 @@ LOM_UI_TEXT(could_not_check, "Could not check for updates: %1");
 LOM_UI_TEXT(updates_not_configured, "Update checks are not configured in this build.");
 LOM_UI_TEXT(no_update_title, "Check for updates");
 LOM_UI_TEXT(update_banner, "Version %1 is available.");
+LOM_UI_TEXT(update_install_body, "Legend of Mana Native %1 is available. You have %2.\nDownload and install it now?");
+LOM_UI_TEXT(install_update, "Download and install");
+LOM_UI_TEXT(update_downloading, "Downloading Legend of Mana Native %1...");
+LOM_UI_TEXT(update_installing, "Installing Legend of Mana Native %1...");
+LOM_UI_TEXT(update_close_game, "Close the game before installing the update.");
+LOM_UI_TEXT(update_installed_title, "Update installed");
+LOM_UI_TEXT(update_installed_body, "Legend of Mana Native %1 is installed. Restart the launcher now to use it?");
+LOM_UI_TEXT(restart_now, "Restart now");
+LOM_UI_TEXT(later, "Later");
+LOM_UI_TEXT(update_failed_title, "Update not installed");
+LOM_UI_TEXT(update_failed_body, "The update couldn't be installed: %1\n\nYou can still get it from the download page.");
+LOM_UI_TEXT(update_restart_failed, "The update is installed, but the launcher couldn't start it. Open the launcher again to use version %1.");
 
 LOM_UI_TEXT(whats_new, "What's new");
 LOM_UI_TEXT(whats_new_current, "You have version %1.");

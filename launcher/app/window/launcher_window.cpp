@@ -265,6 +265,10 @@ LauncherWindow::~LauncherWindow() {
 void LauncherWindow::start() {
     std::string error;
 
+    if (services_.installer) {
+        services_.installer->clean_up();
+    }
+
     if (settings_.load(paths_.settings_file(), &error) == LauncherSettings::LoadStatus::Corrupt) {
         set_banner(QStringLiteral("%1: %2").arg(QString(ui_text::settings_corrupt), QString::fromStdString(error)));
     }

@@ -38,6 +38,7 @@ add_library(lom_launcher_app_lib STATIC
     services/qt_process_runner.cpp
     services/release_history.cpp
     services/system_desktop.cpp
+    services/system_update_installer.cpp
     services/update_checker.cpp)
 target_include_directories(lom_launcher_app_lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(lom_launcher_app_lib PUBLIC lom_launcher_core Qt6::Widgets Qt6::Network)

@@ -30,6 +30,7 @@ add_executable(lom-launcher-unit-tests
     unit/semantic_version_test.cpp
     unit/sha1_test.cpp
     unit/sha256_test.cpp
+    unit/update_package_test.cpp
     unit/zip_writer_test.cpp)
 target_link_libraries(lom-launcher-unit-tests PRIVATE lom_launcher_test_support GTest::gtest_main)
 target_compile_options(lom-launcher-unit-tests PRIVATE ${LOM_LAUNCHER_WARNINGS})
@@ -88,7 +89,7 @@ if(TARGET lom-launcher)
     target_compile_options(lom-launcher-specs PRIVATE ${LOM_LAUNCHER_WARNINGS})
 
     add_executable(lom-launcher-fake-game providers/fake_game.cpp)
-    add_executable(lom-launcher-provider-checks providers/process_runner_contract.cpp)
+    add_executable(lom-launcher-provider-checks providers/process_runner_contract.cpp providers/update_installer_contract.cpp)
     target_link_libraries(lom-launcher-provider-checks PRIVATE lom_launcher_app_lib GTest::gtest)
     target_compile_options(lom-launcher-provider-checks PRIVATE ${LOM_LAUNCHER_WARNINGS})
     target_compile_definitions(lom-launcher-provider-checks PRIVATE LOM_FAKE_GAME="$<TARGET_FILE:lom-launcher-fake-game>")
