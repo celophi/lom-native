@@ -162,14 +162,6 @@ std::string serialize(const Preferences& preferences)
         output << field.key << field.get(preferences) << '\n';
     }
 
-    for (int id = 0; id < LOM_SWITCH_COUNT; ++id)
-    {
-        if (lom_native_switch_player_setting(static_cast<LomSwitch>(id)))
-        {
-            output << lom_native_switch_name(static_cast<LomSwitch>(id)) << '=' << int{preferences.switches[id]} << '\n';
-        }
-    }
-
     for (int port = 0; port < player_count; ++port)
     {
         for (int button = 0; button < button_count; ++button)
@@ -203,15 +195,6 @@ Preferences PreferenceStore::load(std::string path, const Preferences& defaults)
             if (number(field.key, field.limit, value))
             {
                 field.set(persisted_, value);
-            }
-        }
-
-        for (int id = 0; id < LOM_SWITCH_COUNT; ++id)
-        {
-            if (lom_native_switch_player_setting(static_cast<LomSwitch>(id)) &&
-                number(std::string(lom_native_switch_name(static_cast<LomSwitch>(id))) + '=', boolean_value_count, value))
-            {
-                persisted_.switches[id] = value != 0;
             }
         }
 

@@ -1,6 +1,5 @@
 #include "../../../src/ui/menu_model.h"
 #include "../../../include/lom_native_audio_categories.h"
-#include "../../../include/lom_native_switches.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -22,8 +21,6 @@ class FakeGame : public MenuBackend
     AudioLevel category_levels[LOM_AUDIO_CATEGORY_COUNT];
     bool pause = false;
 
-    bool switches[LOM_SWITCH_COUNT] = {};
-    std::string switch_mods[LOM_SWITCH_COUNT];
     bool remaster = false;
     bool hd_drawn = true;
     bool hd = true;
@@ -88,21 +85,6 @@ class FakeGame : public MenuBackend
     void set_pause_unfocused(bool value) override
     {
         pause = value;
-    }
-
-    bool switch_on(int id) const override
-    {
-        return switches[id];
-    }
-
-    void set_switch(int id, bool value) override
-    {
-        switches[id] = value;
-    }
-
-    std::string switch_mod(int id) const override
-    {
-        return switch_mods[id];
     }
 
     bool remaster_found() const override
@@ -573,54 +555,15 @@ static void general_toggles_pausing_when_unfocused()
 }
 
 /**
- * @brief Check General has a row after pausing for each switch the player can
- *        set, and none for a switch only mods set, like Always run, and that a
- *        switch turns on and off without touching pausing or the other switches.
+ * @brief Check General has only the pausing row. The rules switches change,
+ *        like Skip the results window, belong to mods and the Mods page.
  */
-static void general_has_the_players_switches()
+static void general_has_only_pausing()
 {
     FakeGame game;
     MenuModel menu(game);
-    menu.point(MenuCategory::General, 1);
-    std::size_t player_switches = 0;
-
-    for (int id = 0; id < LOM_SWITCH_COUNT; ++id)
-    {
-        player_switches += lom_native_switch_player_setting(static_cast<LomSwitch>(id)) != 0;
-    }
-
-    CHECK(menu.rows().size() == 1 + player_switches);
-
-    for (const MenuRow& row : menu.rows())
-    {
-        CHECK(row.switch_id != LOM_SWITCH_ALWAYS_RUN);
-    }
-
-    CHECK(menu.rows()[1].label == "Skip the results window" && menu.rows()[1].switch_id == LOM_SWITCH_SKIP_BATTLE_RESULTS && !menu.rows()[1].on);
-    CHECK(menu.rows()[2].label == "No natural healing" && menu.rows()[2].switch_id == LOM_SWITCH_NO_NATURAL_HEALING);
-    press(menu, MenuInput::Select);
-    CHECK(game.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] && menu.rows()[1].on && !game.pause && !menu.rows()[0].on);
-    CHECK(!game.switches[LOM_SWITCH_NO_NATURAL_HEALING]);
-    press(menu, MenuInput::Right);
-    CHECK(!game.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] && !game.pause);
-}
-
-/**
- * @brief Check a switch a mod sets is dimmed, names the mod, and doesn't change
- *        when pressed.
- */
-static void switch_a_mod_sets_is_locked()
-{
-    FakeGame game;
-    game.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] = true;
-    game.switch_mods[LOM_SWITCH_SKIP_BATTLE_RESULTS] = "quick-fights";
-    MenuModel menu(game);
-    menu.point(MenuCategory::General, 1);
-    const MenuRow row = menu.rows()[1];
-    CHECK(row.on && row.dimmed && row.description.find("quick-fights") != std::string::npos);
-    CHECK(!menu.rows()[2].dimmed);
-    press(menu, MenuInput::Select);
-    CHECK(game.switches[LOM_SWITCH_SKIP_BATTLE_RESULTS] && menu.rows()[1].on);
+    menu.point(MenuCategory::General, 0);
+    CHECK(menu.rows().size() == 1 && menu.rows()[0].label == "Pause when unfocused");
 }
 
 /**
@@ -803,8 +746,7 @@ int main()
     music_and_sound_effects_have_their_own_volume_and_mute();
     controls_switch_player_and_walk_the_binding_grid();
     general_toggles_pausing_when_unfocused();
-    general_has_the_players_switches();
-    switch_a_mod_sets_is_locked();
+    general_has_only_pausing();
     mods_page_switches_each_mod_that_asked();
     remaster_rows_show_only_when_it_is_found();
     clicking_a_volume_bar_sets_its_level();

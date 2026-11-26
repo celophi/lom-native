@@ -74,27 +74,6 @@ class MenuBackend
     virtual void set_pause_unfocused(bool value) = 0;
 
     /**
-     * @brief Check whether a switch is on, counting a mod that sets it.
-     * @param id The switch, a LomSwitch.
-     * @return True when it is.
-     */
-    virtual bool switch_on(int id) const = 0;
-
-    /**
-     * @brief Change the player's own setting for a switch.
-     * @param id The switch, a LomSwitch.
-     * @param value True for on.
-     */
-    virtual void set_switch(int id, bool value) = 0;
-
-    /**
-     * @brief Find which mod sets a switch, which the player can't change then.
-     * @param id The switch, a LomSwitch.
-     * @return The mod's id, or empty when no mod sets it.
-     */
-    virtual std::string switch_mod(int id) const = 0;
-
-    /**
      * @brief Check whether the player has the Remaster where the game can use
      *        it.
      * @return True when they do.
@@ -356,7 +335,6 @@ struct MenuRow
     std::string value;
     std::string pad_value;
     bool on = false;
-    int switch_id = -1;
     int mod_toggle = -1;
     int percent = 0;
     bool dimmed = false;
@@ -521,14 +499,6 @@ class MenuModel
      * @param rows Where they go.
      */
     void add_mod_rows(std::vector<MenuRow>& rows) const;
-
-    /**
-     * @brief Add a row for each switch the player can set; switches only mods
-     *        set, like Always run, have none. One a mod sets is dimmed, says
-     *        which mod, and can't be changed here.
-     * @param rows Where they go.
-     */
-    void add_switch_rows(std::vector<MenuRow>& rows) const;
 
     /**
      * @brief Change one of the Display rows' settings.

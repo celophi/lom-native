@@ -5,7 +5,6 @@
 #include "lom_native_display.h"
 #include "lom_native_host_audio.h"
 #include "lom_native_widescreen.h"
-#include "lom_native_switches.h"
 #include "lom_native_remaster.h"
 #include <utility>
 
@@ -59,14 +58,6 @@ void SettingsService::enable(const char* path)
     lom_native_display_set(display.filter, display.resolution, display.fullscreen);
     lom_native_widescreen_set_enabled(display.widescreen);
 
-    for (int id = 0; id < LOM_SWITCH_COUNT; ++id)
-    {
-        if (lom_native_switch_player_setting(static_cast<LomSwitch>(id)))
-        {
-            lom_native_switch_set_setting(static_cast<LomSwitch>(id), values_.switches[id]);
-        }
-    }
-
     lom_native_remaster_set_hd_backgrounds(values_.hd_backgrounds);
     lom_native_remaster_set_hd_ui(values_.hd_ui);
     lom_native_remaster_set_text(values_.text_language);
@@ -77,14 +68,6 @@ void SettingsService::enable(const char* path)
 Preferences SettingsService::persistence_snapshot()
 {
     values_.display.widescreen = lom_native_widescreen_enabled();
-
-    for (int id = 0; id < LOM_SWITCH_COUNT; ++id)
-    {
-        if (lom_native_switch_player_setting(static_cast<LomSwitch>(id)))
-        {
-            values_.switches[id] = lom_native_switch_setting(static_cast<LomSwitch>(id)) != 0;
-        }
-    }
 
     values_.hd_backgrounds = lom_native_remaster_hd_backgrounds() != 0;
     values_.hd_ui = lom_native_remaster_hd_ui() != 0;

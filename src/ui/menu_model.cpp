@@ -1,7 +1,6 @@
 #include "menu_model.h"
 #include "menu_text.h"
 #include "lom_native_audio_categories.h"
-#include "lom_native_switches.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -129,11 +128,6 @@ LOM_MENU_TEXT(pause_unfocused_help, "Pause gameplay and audio when you switch to
 LOM_MENU_TEXT(mod_toggle_note, "Turned off here, it's back on the next time you play. The launcher's Mods window decides which mods load.");
 LOM_MENU_TEXT(mods_empty_label, "No mods to turn on and off here");
 LOM_MENU_TEXT(mods_empty_help, "Mods that can be turned on and off while you play show here, once they're on in the launcher's Mods window.");
-LOM_MENU_TEXT(skip_battle_results_label, "Skip the results window");
-LOM_MENU_TEXT(skip_battle_results_help, "After a fight, skip the items and party summary. It still opens when someone learns an ability or technique.");
-LOM_MENU_TEXT(no_natural_healing_label, "No natural healing");
-LOM_MENU_TEXT(no_natural_healing_help, "Hit points only come back from items, techniques, pets and leaving a dungeon, not after fights or over time.");
-LOM_MENU_TEXT(switch_set_by_mod_format, "Set by the mod %s. Turn the mod off in the launcher to change it here.");
 LOM_MENU_TEXT(player_value_format, "Player %d");
 LOM_MENU_TEXT(player_pad_format, "Player %d: %s.");
 LOM_MENU_TEXT(hint_choose, "Choose");
@@ -152,18 +146,6 @@ LOM_MENU_TEXT(hint_change, "Change");
 LOM_MENU_TEXT(hint_rebind, "Rebind");
 LOM_MENU_TEXT(hint_select, "Select");
 LOM_MENU_TEXT(hint_back, "Back");
-
-struct SwitchText
-{
-    LomSwitch id;
-    const MenuText& label;
-    const MenuText& help;
-};
-
-const SwitchText switch_texts[] = {
-    {LOM_SWITCH_SKIP_BATTLE_RESULTS, skip_battle_results_label, skip_battle_results_help},
-    {LOM_SWITCH_NO_NATURAL_HEALING, no_natural_healing_label, no_natural_healing_help},
-};
 
 /**
  * @brief Fill a translated text's one %s.
@@ -332,25 +314,6 @@ void MenuModel::add_audio_rows(std::vector<MenuRow>& rows) const
     rows.push_back({MenuRow::Kind::Action, restore_audio_label, restore_audio_help});
 }
 
-void MenuModel::add_switch_rows(std::vector<MenuRow>& rows) const
-{
-    for (const SwitchText& text : switch_texts)
-    {
-        MenuRow row{MenuRow::Kind::Switch, text.label, text.help};
-        row.switch_id = text.id;
-        row.on = backend_.switch_on(text.id);
-        const std::string mod = backend_.switch_mod(text.id);
-
-        if (!mod.empty())
-        {
-            row.description += " " + format_text(switch_set_by_mod_format, mod);
-            row.dimmed = true;
-        }
-
-        rows.push_back(row);
-    }
-}
-
 void MenuModel::add_control_rows(std::vector<MenuRow>& rows) const
 {
     const std::string pad = backend_.gamepad_name(player_);
@@ -416,7 +379,6 @@ std::vector<MenuRow> MenuModel::rows() const
         MenuRow pause{MenuRow::Kind::Switch, pause_unfocused_label, pause_unfocused_help};
         pause.on = backend_.pause_unfocused();
         rows.push_back(pause);
-        add_switch_rows(rows);
         break;
     }
 
@@ -810,15 +772,7 @@ void MenuModel::change(const MenuRow& row, int step)
         break;
 
     case MenuCategory::General:
-        if (row.switch_id < 0)
-        {
-            backend_.set_pause_unfocused(!backend_.pause_unfocused());
-        }
-        else if (backend_.switch_mod(row.switch_id).empty())
-        {
-            backend_.set_switch(row.switch_id, !backend_.switch_on(row.switch_id));
-        }
-
+        backend_.set_pause_unfocused(!backend_.pause_unfocused());
         break;
 
     case MenuCategory::Mods:

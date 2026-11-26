@@ -68,7 +68,7 @@ A version is three numbers, like `1.2.0`. Other mods can ask for a version of yo
 
 ### Switches
 
-A switch changes one rule of the game. A mod sets it with `true` or `false`, and that beats the player's own setting in F1 while the mod is on.
+A switch changes one rule of the game. A mod sets it with `true` or `false`, and it stays that way while the mod is on. Switches aren't settings, so the only way to change one is with a mod.
 
 | Switch | What it does |
 |---|---|

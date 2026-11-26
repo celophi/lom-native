@@ -1,7 +1,6 @@
 #include "menu_backend.h"
 
 #include "../settings/service.h"
-#include "lom_native_switches.h"
 #include "lom_native_mod_toggles.h"
 #include "lom_native_controls.h"
 #include "lom_native_display.h"
@@ -65,22 +64,6 @@ bool GameBackend::pause_unfocused() const
 void GameBackend::set_pause_unfocused(bool value)
 {
     menu_runtime().set_pause_unfocused(value);
-}
-
-bool GameBackend::switch_on(int id) const
-{
-    return lom_native_switch_wanted(static_cast<LomSwitch>(id)) != 0;
-}
-
-void GameBackend::set_switch(int id, bool value)
-{
-    lom_native_switch_set_setting(static_cast<LomSwitch>(id), value);
-}
-
-std::string GameBackend::switch_mod(int id) const
-{
-    const char* mod = lom_native_switch_mod(static_cast<LomSwitch>(id));
-    return mod ? mod : "";
 }
 
 bool GameBackend::remaster_found() const
