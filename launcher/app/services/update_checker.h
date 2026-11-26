@@ -1,6 +1,7 @@
 #ifndef LOM_LAUNCHER_UPDATE_CHECKER_H
 #define LOM_LAUNCHER_UPDATE_CHECKER_H
 
+#include <QMap>
 #include <QObject>
 #include <QString>
 #include <QUrl>
@@ -20,6 +21,7 @@ class UpdateChecker : public QObject {
         QString latest_version;
         QString release_notes;
         QUrl release_page;
+        QMap<QString, QUrl> assets;
         QString error;
     };
 

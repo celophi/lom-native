@@ -13,6 +13,9 @@ constexpr char key_body[] = "body";
 constexpr char key_html_url[] = "html_url";
 constexpr char key_draft[] = "draft";
 constexpr char key_prerelease[] = "prerelease";
+constexpr char key_assets[] = "assets";
+constexpr char key_asset_name[] = "name";
+constexpr char key_asset_url[] = "browser_download_url";
 
 }
 
@@ -80,6 +83,18 @@ UpdateChecker::Result UpdateChecker::interpret(const QByteArray& body, const QSt
 
         if (url.scheme() == QLatin1String("https")) {
             result.release_page = url;
+        }
+    }
+
+    if (const Json* assets = document->find(key_assets); assets != nullptr && assets->type() == Json::Type::Array) {
+        for (const Json& asset : assets->as_array()) {
+            const Json* name = asset.find(key_asset_name);
+            const Json* link = asset.find(key_asset_url);
+            const QUrl url = link == nullptr ? QUrl() : QUrl(QString::fromStdString(link->as_string()));
+
+            if (name != nullptr && !name->as_string().empty() && url.scheme() == QLatin1String("https")) {
+                result.assets.insert(QString::fromStdString(name->as_string()), url);
+            }
         }
     }
 

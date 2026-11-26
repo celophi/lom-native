@@ -93,6 +93,7 @@ add_library(lom_launcher_core STATIC
     core/src/mods/mod_library.cpp
     core/src/common/sha1.cpp
     core/src/common/text_case.cpp
+    core/src/common/update_package.cpp
     core/src/common/zip_writer.cpp)
 target_compile_features(lom_launcher_core PUBLIC cxx_std_17)
 target_include_directories(lom_launcher_core

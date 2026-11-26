@@ -4,6 +4,7 @@
 #include "services/native_file_dialogs.h"
 #include "services/qt_process_runner.h"
 #include "services/system_desktop.h"
+#include "services/system_update_installer.h"
 
 namespace lom::launcher {
 
@@ -16,6 +17,7 @@ LauncherServices LauncherServices::system(const QString& update_repository) {
 
     if (!update_repository.isEmpty()) {
         services.updates = std::make_unique<GitHubUpdateFeed>(update_repository, nullptr);
+        services.installer = std::make_unique<SystemUpdateInstaller>(nullptr);
     }
 
     return services;
