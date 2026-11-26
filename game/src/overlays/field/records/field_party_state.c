@@ -1,5 +1,4 @@
 #include "common.h"
-void lom_trace_revive(int path, int key, int a, int b);
 #include <rand.h>
 
 #include "../internal/field_calls.h"
@@ -433,7 +432,6 @@ void field_heal_status(FieldObjectState* state, s32 amount)
  */
 void field_revive_status_record(FieldStatusRecord* record)
 {
-    lom_trace_revive(4, record->meta.bytes.id, 0, 0);
     field_revive_actor(record->meta.bytes.id);
 }
 

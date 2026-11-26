@@ -1150,7 +1150,6 @@ s32 field_schedule_actor_revive(s32 key, s32 animation, s32 effect, s32 sound, s
  * @param sound Sound effect to play, or -1 for none.
  * @return 0 on success, or -1 when no actor has @p key.
  */
-void lom_trace_revive(int path, int key, int a, int b);
 s32 field_revive_actor(s32 key, s32 animation, s32 effect, s32 sound)
 {
     FieldActor* actor;
@@ -1203,7 +1202,6 @@ s32 field_revive_actor(s32 key, s32 animation, s32 effect, s32 sound)
     g_field_object_states[actor->object_index].contact.bits.no_hit_test = 0;
     hp_state = &g_field_object_states[actor->object_index];
     hp_state->hp_display.word = (hp_state->hp_display.word & FIELD_HP_FLAGS_MASK) | (hp_state->maximum_hp & FIELD_HP_VALUE_MASK);
-    lom_trace_revive(5, actor->object_index, (int)hp_state->current_hp.word, (int)(hp_state->maximum_hp & FIELD_HP_VALUE_MASK));
     hp_state->current_hp.word = hp_state->maximum_hp & FIELD_HP_VALUE_MASK;
     g_field_object_states[actor->object_index].tint_timer = FIELD_REVIVE_TINT_FRAMES;
     g_field_object_states[actor->object_index].movement.bits.invulnerable = 1;

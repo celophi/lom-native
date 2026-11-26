@@ -195,6 +195,7 @@ struct FieldActorTemplateTable;
 void field_battle_scan_actor_objects(void);
 void field_battle_start(s32 group);
 void field_battle_suspend(void);
+void field_get_up_without_healing(struct FieldObjectState* state);
 void field_battle_end(void);
 struct FieldActorTemplate* field_find_actor_template(struct FieldActorTemplateTable* table, s32 id);
 

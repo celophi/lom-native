@@ -1,7 +1,6 @@
 #include "main/audio/game_audio.h"
 #include "main/audio/akao_cmd.h"
 #include "common.h"
-void lom_trace_revive(int path, int key, int a, int b);
 #include "../internal/field_calls.h"
 #include "../internal/field_actor.h"
 #include "../internal/field_records.h"
@@ -150,6 +149,27 @@ void field_skip_battle(void)
 }
 
 /**
+ * @brief Give a fallen party member who's getting back up the hit points No
+ *        natural healing allows: 1, or a quarter of their maximum with the
+ *        get_up_with_quarter_hp switch, instead of the full HP the game gives.
+ * @param state Their status state.
+ * @note Native: for the No natural healing switch (field_battle_suspend, and the
+ *       defeat timer in field_update_actor_command).
+ */
+void field_get_up_without_healing(FieldObjectState* state)
+{
+    u32 hp = 1;
+
+    if (lom_native_switch(LOM_SWITCH_GET_UP_WITH_QUARTER_HP) && state->maximum_hp / 4 > 1)
+    {
+        hp = state->maximum_hp / 4;
+    }
+
+    state->current_hp.word = hp;
+    state->hp_display.word = (state->hp_display.word & FIELD_HP_FLAGS_MASK) | (hp & FIELD_HP_VALUE_MASK);
+}
+
+/**
  * @brief Suspend the battle, run the suspend event for the active group and refill the party's HP.
  * @note Native: with the No natural healing switch on, the party's HP isn't
  *       refilled. The refill is also what gets a fallen party member back up,
@@ -178,16 +198,10 @@ void field_battle_suspend(void)
         for (i = 0; i < FIELD_PARTY_SIZE; i++)
         {
             state = field_find_object_state(i);
-            if (state != FIELD_STATUS_STATE_NONE) lom_trace_revive(6, i, (int)state->current_hp.word, (int)state->maximum_hp);
 
             if (state != FIELD_STATUS_STATE_NONE && state->current_hp.word == 0)
             {
-                state->current_hp.word = 1;
-
-                if (lom_native_switch(LOM_SWITCH_GET_UP_WITH_QUARTER_HP) && state->maximum_hp / 4 > 1)
-                {
-                    state->current_hp.word = state->maximum_hp / 4;
-                }
+                field_get_up_without_healing(state);
             }
         }
 
