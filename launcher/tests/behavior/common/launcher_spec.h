@@ -9,8 +9,10 @@
 #include "mocks/mock_process_runner.h"
 #include "mocks/mock_random_source.h"
 #include "mocks/mock_update_feed.h"
+#include "mocks/mock_update_installer.h"
 #include "services/process_runner.h"
 #include "services/update_feed.h"
+#include "services/update_installer.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -60,6 +62,11 @@ class LauncherSpec : public ::testing::Test {
     bool update_feed_configured = true;
     UpdateFeed::Response update_response;
     UpdateFeed::Response releases_response;
+    bool installer_configured = true;
+    bool can_update_itself = false;
+    bool install_finishes = true;
+    UpdateInstaller::Outcome install_outcome{true, false, QString()};
+    bool restart_starts = true;
     bool game_fails_to_start = false;
     QString game_start_failure;
     std::int64_t now = default_now;
@@ -68,6 +75,7 @@ class LauncherSpec : public ::testing::Test {
     ::testing::NiceMock<MockProcessRunner>* process_runner_mock = nullptr;
     ::testing::NiceMock<MockUpdateFeed>* update_feed_mock = nullptr;
     ::testing::NiceMock<MockDesktop>* desktop_mock = nullptr;
+    ::testing::NiceMock<MockUpdateInstaller>* installer_mock = nullptr;
     ::testing::NiceMock<MockClock> clock_mock;
     ::testing::NiceMock<MockRandomSource> random_mock;
 
@@ -76,6 +84,11 @@ class LauncherSpec : public ::testing::Test {
     std::vector<QUrl> opened_pages;
     int update_requests = 0;
     int release_list_requests = 0;
+    std::vector<UpdateInstaller::Request> installs;
+    std::function<void(const UpdateInstaller::Outcome&)> unfinished_install;
+    int install_cancels = 0;
+    int restarts = 0;
+    int clean_ups = 0;
     std::vector<QString> messages;
 
     /**
@@ -231,6 +244,7 @@ class LauncherSpec : public ::testing::Test {
     std::unique_ptr<::testing::NiceMock<MockProcessRunner>> owned_process_runner_;
     std::unique_ptr<::testing::NiceMock<MockUpdateFeed>> owned_update_feed_;
     std::unique_ptr<::testing::NiceMock<MockDesktop>> owned_desktop_;
+    std::unique_ptr<::testing::NiceMock<MockUpdateInstaller>> owned_installer_;
     bool game_running_ = false;
     std::atomic<std::uint32_t> random_counter_{0};
     std::deque<std::function<void(QWidget*)>> dialog_answers_;

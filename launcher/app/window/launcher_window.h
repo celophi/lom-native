@@ -296,6 +296,26 @@ class LauncherWindow : public QMainWindow {
     void show_update_result(const UpdateChecker::Result& result);
 
     /**
+     * @brief Download and install a release, showing how it's going, then offer to restart.
+     * @param result The update check that found it.
+     * @param package The release file this copy of the launcher updates from.
+     */
+    void install_update(const UpdateChecker::Result& result, const QString& package);
+
+    /**
+     * @brief Offer to restart into a newly installed version.
+     * @param version Its version.
+     */
+    void offer_restart(const QString& version);
+
+    /**
+     * @brief Say an update couldn't be installed, offering the download page.
+     * @param error Why.
+     * @param page The release page, or invalid.
+     */
+    void show_update_failed(const QString& error, const QUrl& page);
+
+    /**
      * @brief Show every recent release's notes, from the Help menu.
      */
     void show_whats_new();

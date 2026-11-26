@@ -7,6 +7,7 @@
 #include "lom/launcher/common/random_source.h"
 #include "services/process_runner.h"
 #include "services/update_feed.h"
+#include "services/update_installer.h"
 
 #include <QString>
 
@@ -17,6 +18,7 @@ struct LauncherServices {
     std::unique_ptr<FileDialogs> dialogs;
     std::unique_ptr<ProcessRunner> processes;
     std::unique_ptr<UpdateFeed> updates;
+    std::unique_ptr<UpdateInstaller> installer;
     std::unique_ptr<Desktop> desktop;
     QString issue_repository;
     const Clock* clock = &Clock::system();
@@ -24,7 +26,7 @@ struct LauncherServices {
 
     /**
      * @brief Build the production services.
-     * @param update_repository GitHub "owner/name" for update checks; empty disables them.
+     * @param update_repository GitHub "owner/name" for update checks and installs; empty disables them.
      */
     static LauncherServices system(const QString& update_repository);
 };
