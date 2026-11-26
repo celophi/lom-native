@@ -17,10 +17,6 @@ local function check()
     end
 end
 
-lom.on("scene_enter", function()
-    last = {}
-end)
-
 lom.on("frame", check)
 
 lom.on("battle_end", function()

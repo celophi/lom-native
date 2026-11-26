@@ -74,7 +74,7 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 |---|---|
 | `always_run` | You run without holding the run button, and holding it makes you walk. |
 | `skip_battle_results` | Fights go straight back to the field, skipping the results window, except when someone learns an ability or technique. |
-| `no_natural_healing` | Hit points don't come back after fights or over time, only from items, techniques, pets and leaving a dungeon. |
+| `no_natural_healing` | Hit points don't come back after fights, over time or on the next screen, only from items, techniques, pets and leaving a dungeon. |
 | `skip_movies` | Every movie is skipped, the full-screen ones and the ones that play inside a scene. The game carries on as if it had played. |
 | `skip_battles` | Every fight is won as soon as it starts, bosses too. The monsters are defeated the way the game's own scripts defeat them, so drops and story events still happen. |
 | `japanese_balance` | The US version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the US version. |

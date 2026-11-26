@@ -52,7 +52,7 @@ The Mods page lists the mods you turned on in the launcher that can be switched 
 
 Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the US version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
 
-Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time and after fights, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down.
+Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down.
 
 [modding.md](modding.md) has the rest about mods.
 

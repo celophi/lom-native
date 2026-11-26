@@ -1,5 +1,6 @@
 #include "common.h"
 #include "lom_native_sound.h"
+#include "lom_native_switches.h"
 
 #include "../internal/field_actor_key_ops.h"
 #include "../internal/field_actor_runtime.h"
@@ -48,6 +49,9 @@ s32 field_set_actor_animation();
 #define FIELD_TALK_NO_PORTRAIT 0xFE
 #define FIELD_TALK_SPEAKER_PORTRAIT 0xFF
 #define FIELD_TALK_LAYOUT_NO_PORTRAIT 7
+
+#define FIELD_SCRIPT_FIELD_WORD 2
+#define FIELD_OBJECT_CURRENT_HP_WORD 1
 
 enum
 {
@@ -709,9 +713,43 @@ void field_script_op_0b(void)
 }
 
 /**
+ * @brief Check whether a script's record write would heal a party member that
+ *        the No natural healing switch says shouldn't heal.
+ * @param base_selector The record kind the write goes to.
+ * @param target_index The record's index.
+ * @param field Which bits it writes.
+ * @param base The record.
+ * @param value What it writes.
+ * @return 1 when the write should be skipped, otherwise 0.
+ * @note Native: every scene's scripts set the party's hit points to their
+ *       maximum as the party comes in, so on the PS1 each new screen heals them
+ *       fully. With the switch on, a write that would raise a party member's hit
+ *       points is skipped. One who's down, at 0, still gets them back, as before.
+ */
+static s32 field_script_blocks_party_heal(s32 base_selector, s32 target_index, FieldScriptFieldSpec field, void* base, s32 value)
+{
+    FieldObjectState* state;
+
+    if (base_selector != FIELD_SCRIPT_RECORD_OBJECT || base == NULL || target_index < 0 || target_index >= FIELD_PARTY_COUNT)
+    {
+        return 0;
+    }
+
+    if (field.bits.width != FIELD_SCRIPT_FIELD_WORD || field.bits.index != FIELD_OBJECT_CURRENT_HP_WORD || field.bits.shift != 0)
+    {
+        return 0;
+    }
+
+    state = base;
+    return lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING) && state->current_hp.word != 0 && (u32)value > state->current_hp.word;
+}
+
+/**
  * @brief Opcodes 0x0C and 0x0D: read (0x0C) or write (0x0D) a bitfield in a selected game record.
  * @note Operands: descriptor, base selector (0 to 7), record index, field spec, then the
  *       destination variable (0x0C) or the value to write (0x0D).
+ * @note Native: a write that would heal a party member is skipped while the No
+ *       natural healing switch is on (field_script_blocks_party_heal).
  */
 void field_script_record_bits(void)
 {
@@ -770,6 +808,12 @@ void field_script_record_bits(void)
     }
 
     FIELD_SCRIPT_ACTIVE_RECORD()->pc = field_script_read_operand(operand_type, FIELD_SCRIPT_ACTIVE_RECORD()->pc, &value);
+
+    if (field_script_blocks_party_heal(base_selector, target_index, field, base, value))
+    {
+        return;
+    }
+
     field_write_bits(field.bits.width, base, field.bits.index, field.bits.shift, field.bits.bit_count, value);
 }
 

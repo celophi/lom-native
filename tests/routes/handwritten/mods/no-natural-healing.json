@@ -1,7 +1,7 @@
 {
   "format": 1,
   "id": "mods-no-natural-healing",
-  "description": "With No natural healing on, the hero shouldn't regenerate during the fight or get refilled after it, and the damage taken should still be there afterwards",
+  "description": "With No natural healing on, the hero shouldn't regenerate during the fight or get refilled after it, and the damage taken should still be there afterwards, and on the next screen",
   "start": {
     "save": "../saves/home-bedroom-new-game.json"
   },
@@ -39,6 +39,15 @@
     },
     {
       "checkpoint": "after"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "on to RUI_E010, whose scripts set the party's hit points to their maximum as it comes in"
+    },
+    {
+      "checkpoint": "next-screen"
     }
   ]
 }
