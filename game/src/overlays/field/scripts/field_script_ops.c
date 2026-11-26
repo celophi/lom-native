@@ -1,4 +1,5 @@
 #include "common.h"
+void lom_trace_revive(int path, int key, int a, int b);
 #include "lom_native_quick_rooms.h"
 #include "lom_native_sound.h"
 #include "lom_native_switches.h"
@@ -3110,6 +3111,7 @@ void field_script_op_8c(s32 actor_id, s32 animation, s32 effect, s32 sound)
         actor = actor_id;
     }
 
+    lom_trace_revive(2, actor, 0, 0);
     field_revive_actor(actor, FIELD_SCRIPT_OPTIONAL(animation), FIELD_SCRIPT_OPTIONAL(effect), FIELD_SCRIPT_OPTIONAL(sound));
 }
 

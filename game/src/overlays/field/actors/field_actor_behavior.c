@@ -1,4 +1,5 @@
 #include "common.h"
+void lom_trace_revive(int path, int key, int a, int b);
 #include <abs.h>
 #include <inline_c.h>
 #include <libetc.h>
@@ -1665,6 +1666,7 @@ void field_update_actor_command(FieldActor* actor)
                 }
             }
 
+            lom_trace_revive(3, actor->object_index, 0, 0);
             g_field_player_records[actor->object_index].revive_time = g_field_player_records[actor->object_index].revive_delay = 0;
             field_revive_actor(actor->object_index, g_field_player_records[actor->object_index].revive_animation,
                                g_field_player_records[actor->object_index].revive_effect, g_field_player_records[actor->object_index].revive_sound);

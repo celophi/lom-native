@@ -253,7 +253,7 @@ class Planner:
         elif "experience" in step:
             self.lines.append(f"experience {step['experience']}" + (f" {step['character']}" if step.get("character") else ""))
         elif "hit_points" in step:
-            self.lines.append(f"hit_points {step['hit_points']}")
+            self.lines.append(f"hit_points {step['hit_points']}" + (f" {step['character']}" if step.get("character") else ""))
         elif "watch" in step:
             self.lines.append(f"watch {step['watch']}")
         elif "place" in step:

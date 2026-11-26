@@ -78,7 +78,7 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 |---|---|
 | `always_run` | You run without holding the run button, and holding it makes you walk. |
 | `skip_battle_results` | Fights go straight back to the field, skipping the results window, except when someone learns an ability or technique. |
-| `no_natural_healing` | Hit points don't come back after fights, over time or on the next screen, only from items, techniques, pets and leaving a dungeon. |
+| `no_natural_healing` | Hit points don't come back after fights, over time or on the next screen, only from items, techniques, pets and leaving a dungeon. Someone who fell in a fight gets back up with 1 HP. |
 | `skip_movies` | Every movie is skipped, the full-screen ones and the ones that play inside a scene. The game carries on as if it had played. |
 | `skip_battles` | Every fight is won as soon as it starts, bosses too. The monsters are defeated the way the game's own scripts defeat them, so drops and story events still happen. |
 | `win_regular_battles` | Like `skip_battles`, but only for fights without a boss in them. |
@@ -89,6 +89,7 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 | `continue_without_healing` | Continue tries the screen again with the hit points the party came into it with, not full ones. |
 | `japanese_balance` | The North American version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the North American version. |
 | `quick_room_changes` | Walking onto an exit to the next screen doesn't fade through black: the last picture of the old room dissolves straight into the new one. With widescreen off it's a quick fade instead. Cutscenes, conversations and the world map keep their own fades. |
+| `get_up_with_quarter_hp` | With `no_natural_healing`, someone who fell in a fight gets back up with a quarter of their hit points instead of 1. |
 
 A mod that only sets switches doesn't need any scripts. The ones that come with lom-native are like that. A mod, or one of its choices, can set more than one: in Skip or win battles, winning regular fights instantly turns on `win_regular_battles` and `skip_battle_results`, so those fights don't stop for a results window.
 
@@ -233,7 +234,7 @@ A mod can give the player settings to choose in the Mods page of the game's menu
 
 An option needs an `id`, a `name` and two or more `choices`, each with its own `id` and `name`. Ids are lowercase letters, digits and underscores, starting with a letter. `description`, on the option or a choice, is the help line F1 shows for it. `default` is the id of the choice it starts on, the first one if you leave it out. If the player turns your mod off in F1, its options stop counting too.
 
-No natural healing, which comes with lom-native, has one: what Continue does after a game over.
+No natural healing, which comes with lom-native, has two: what Continue does after a game over, and how much a party member who fell in a fight gets back up with.
 
 ### Working with other mods
 

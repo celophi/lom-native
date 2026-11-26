@@ -176,7 +176,7 @@ static void check_manifest(const char* folder)
                               "  \"switches\": {\"always_run\": true, \"skip_battle_results\": false, \"no_natural_healing\": false, \"skip_movies\": false, "
                               "\"skip_battles\": false, \"japanese_balance\": false, \"no_continue\": false, \"continue_from_entrance\": false, "
                               "\"continue_without_healing\": false, \"no_regular_battles\": false, \"win_regular_battles\": false, \"win_boss_battles\": "
-                              "false, \"quick_room_changes\": false},\n"
+                              "false, \"quick_room_changes\": false, \"get_up_with_quarter_hp\": false},\n"
                               "  \"remaster\": \"") != NULL,
                  text);
 }

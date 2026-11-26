@@ -1,4 +1,5 @@
 #include "common.h"
+void lom_trace_revive(int path, int key, int a, int b);
 #include "lom_native_quick_rooms.h"
 
 #include "../internal/field_actor_runtime.h"
@@ -876,6 +877,7 @@ void field_command_spawn_monster(s32 command, FieldSpawnParams* params)
 
             field_copy_words(NULL, record, sizeof(FieldStatusRecord));
             field_init_monster_record(actor, record, field_find_object_state(actor));
+            lom_trace_revive(1, actor, 0, 0);
             field_revive_actor(actor, animation, effect, sound);
         }
     }
