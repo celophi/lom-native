@@ -809,6 +809,23 @@
   "end saves 52 3050d152d9c9e5a2",
   "end graphics 23515 8f7a095091605688"
  ],
+ "mods-japanese-balance": [
+  "checkpoint entered files 21 8471d30a17dc7acb",
+  "checkpoint entered sound 36 9ef6011b038208c4",
+  "checkpoint entered input 844 3c6281cde56f42a3",
+  "checkpoint entered saves 52 3050d152d9c9e5a2",
+  "checkpoint entered graphics 6047 a4d729367bce9a85",
+  "checkpoint fought files 23 aa7bb57c6f48e155",
+  "checkpoint fought sound 64 a1df5dc07143335d",
+  "checkpoint fought input 1912 993451f965a993c3",
+  "checkpoint fought saves 52 3050d152d9c9e5a2",
+  "checkpoint fought graphics 21044 1416fdc140729014",
+  "end files 23 aa7bb57c6f48e155",
+  "end sound 64 a1df5dc07143335d",
+  "end input 1912 993451f965a993c3",
+  "end saves 52 3050d152d9c9e5a2",
+  "end graphics 21069 424c4938d4f70d2d"
+ ],
  "mods-no-natural-healing": [
   "checkpoint entered files 21 8471d30a17dc7acb",
   "checkpoint entered sound 36 9ef6011b038208c4",
@@ -825,11 +842,16 @@
   "checkpoint after input 2756 35cd2d76dbbc5f63",
   "checkpoint after saves 52 3050d152d9c9e5a2",
   "checkpoint after graphics 32034 5c5a00320762d409",
-  "end files 23 aa7bb57c6f48e155",
-  "end sound 84 dab842dfe1a6e1f7",
-  "end input 2756 35cd2d76dbbc5f63",
+  "checkpoint next-screen files 29 4f1bf43459f2b969",
+  "checkpoint next-screen sound 162 5c606406ba92c7e9",
+  "checkpoint next-screen input 5356 814ce91a29d1c7e3",
+  "checkpoint next-screen saves 52 3050d152d9c9e5a2",
+  "checkpoint next-screen graphics 96338 2af2be4917a5287c",
+  "end files 29 4f1bf43459f2b969",
+  "end sound 162 5c606406ba92c7e9",
+  "end input 5356 814ce91a29d1c7e3",
   "end saves 52 3050d152d9c9e5a2",
-  "end graphics 32058 1e15208a325c3cd8"
+  "end graphics 96373 7e1a973a037d8453"
  ],
  "mods-results-skipped": [
   "checkpoint entered files 21 8471d30a17dc7acb",

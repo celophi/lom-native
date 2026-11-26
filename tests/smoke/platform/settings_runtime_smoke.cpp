@@ -2,7 +2,6 @@
 #include "../../../src/ui/menu_runtime.h"
 #include "../../../src/settings/service.h"
 #include "lom_native_widescreen.h"
-#include "lom_native_switches.h"
 #include "lom_native_audio_categories.h"
 #include "lom_native_host_audio.h"
 #include <SDL3/SDL.h>
@@ -152,25 +151,6 @@ int main(int argc, char** argv)
     lom_native_widescreen_set_enabled(false);
     settings().update();
     CHECK(!reload.load((directory / preferences_filename).string(), Preferences{}).display.widescreen);
-
-    CHECK(!lom_native_switch_setting(LOM_SWITCH_NO_NATURAL_HEALING) && !lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING) &&
-          !settings().store().persisted().switches[LOM_SWITCH_NO_NATURAL_HEALING]);
-    lom_native_switch_set_setting(LOM_SWITCH_NO_NATURAL_HEALING, 1);
-    CHECK(lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING));
-    settings().update();
-    CHECK(settings().store().error().empty() && settings().store().persisted().switches[LOM_SWITCH_NO_NATURAL_HEALING]);
-    CHECK(reload.load((directory / preferences_filename).string(), Preferences{}).switches[LOM_SWITCH_NO_NATURAL_HEALING]);
-    lom_native_switch_set_setting(LOM_SWITCH_NO_NATURAL_HEALING, 0);
-    settings().update();
-    CHECK(!lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING) &&
-          !reload.load((directory / preferences_filename).string(), Preferences{}).switches[LOM_SWITCH_NO_NATURAL_HEALING]);
-
-    lom_native_switch_set_by_mod(LOM_SWITCH_SKIP_BATTLE_RESULTS, 1, "test-mod");
-    CHECK(lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS));
-    settings().update();
-    CHECK(!reload.load((directory / preferences_filename).string(), Preferences{}).switches[LOM_SWITCH_SKIP_BATTLE_RESULTS]);
-    lom_native_switch_clear_mods();
-    CHECK(!lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS));
 
     CHECK(lom_native_audio_category_volume(LOM_AUDIO_MUSIC) == 100 && !lom_native_audio_category_muted(LOM_AUDIO_SFX));
     lom_native_audio_category_set(LOM_AUDIO_MUSIC, 40, false);

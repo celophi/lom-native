@@ -84,7 +84,6 @@ jobs:
 
   build-and-test-macos:
     name: Build and test (macOS)
-    if: github.event_name == 'push'
     runs-on: macos-latest
     timeout-minutes: 90
 
@@ -100,7 +99,6 @@ jobs:
 
   build-and-test-windows:
     name: Build and test (Windows)
-    if: github.event_name == 'push'
     runs-on: windows-latest
     timeout-minutes: 120
     defaults:
