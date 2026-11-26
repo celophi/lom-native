@@ -163,6 +163,7 @@ enum
     FIGHT_ARG_ROTATE = 2,
     FIGHT_ARG_FOR = 3,
     ANSWER_ARG_OPTION = 0,
+    HIT_POINTS_ARG_VALUE = 0,
     WATCH_ARG_FRAMES = 0,
     LAND_ARG_LAND = 0,
     LAND_ARG_SCENE = 1,
@@ -331,6 +332,7 @@ typedef enum
     STEP_WIDESCREEN,
     STEP_ALWAYS_RUN,
     STEP_SWITCH,
+    STEP_HIT_POINTS,
 } StepKind;
 
 typedef struct

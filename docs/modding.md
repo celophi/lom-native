@@ -6,7 +6,7 @@ You can change how the game plays with mods. It's early days, so there isn't a l
 
 The launcher's Mods button opens the Mods window. It lists every mod in your mods folder, with a checkbox to turn each one on or off, and buttons to move them up and down, add a mod, remove one, and open the mods folder. Mods load when the game starts, so a change counts from the next time you press Play.
 
-A few mods come with lom-native: Always run, Quick fights, No natural healing, Skip movies, Skip battles and Japanese balance. They're turned off to start with. You can turn them on and off, but not remove them.
+A few mods come with lom-native: Always run, Quick fights, No natural healing, Skip movies, Skip or win battles and Japanese balance. They're turned off to start with. You can turn them on and off, but not remove them.
 
 Order matters. When two mods set the same thing, the one lower in the list wins, and the Mods window says which mod overrides which.
 
@@ -58,6 +58,7 @@ author.hard-mode/
 | `switches` | | Switches it turns on or off. |
 | `scripts` | | The Lua files it runs, in order, each one a path inside the mod's folder. |
 | `in_game_toggle` | | `true` to give it a switch in the Mods page of the game's menu (F1). |
+| `options` | | Settings the player can choose in the Mods page of the game's menu (F1). See below. |
 | `requires`, `optional`, `incompatible`, `load_after` | | How it goes with other mods. See below. |
 
 ### Ids and versions
@@ -77,9 +78,15 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 | `no_natural_healing` | Hit points don't come back after fights, over time or on the next screen, only from items, techniques, pets and leaving a dungeon. |
 | `skip_movies` | Every movie is skipped, the full-screen ones and the ones that play inside a scene. The game carries on as if it had played. |
 | `skip_battles` | Every fight is won as soon as it starts, bosses too. The monsters are defeated the way the game's own scripts defeat them, so drops and story events still happen. |
+| `win_regular_battles` | Like `skip_battles`, but only for fights without a boss in them. |
+| `win_boss_battles` | Like `skip_battles`, but only for fights with a boss in them. |
+| `no_regular_battles` | Walking into monsters doesn't start a fight, unless a boss is with them. Fights the story starts still happen. |
+| `no_continue` | The game over screen has no Continue, only the title screen. |
+| `continue_from_entrance` | Continue takes you back to the first screen since you came in from the world map or loaded your save, with everything since then undone and the party's hit points full. |
+| `continue_without_healing` | Continue tries the screen again with the hit points the party came into it with, not full ones. |
 | `japanese_balance` | The US version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the US version. |
 
-A mod that only sets switches doesn't need any scripts. The ones that come with lom-native are like that. A mod can set more than one: Skip battles turns on `skip_battles` and `skip_battle_results`, so a story-only playthrough doesn't stop for a results window after every fight.
+A mod that only sets switches doesn't need any scripts. The ones that come with lom-native are like that. A mod, or one of its choices, can set more than one: in Skip or win battles, winning regular fights instantly turns on `win_regular_battles` and `skip_battle_results`, so those fights don't stop for a results window.
 
 ### Scripts
 
@@ -137,6 +144,29 @@ The calls that read or change the game (`money`, `add_money`, `spend_money`, `pa
 
 With `"in_game_toggle": true`, your mod gets a switch in the Mods page of the game's menu, named after it, with its description as the help line. It needs `"api": 3`. When the player turns it off there, your switches stop counting and your hooks stop being called, until they turn it back on. Your scripts keep their state in between, they just don't get called. The game records it, so a replay of a play session plays it back the same way.
 
+### Options in F1
+
+A mod can give the player settings to choose in the Mods page of the game's menu. Each option is a row there, under the mod's switch if it has one, showing the choice it's on. Left and right go through the choices. Each choice turns on its own switches, on top of the mod's, so you build an option out of switches. The player's choice is saved with their other settings and kept for next time. Options need `"api": 4`.
+
+```json
+"options": [
+  {
+    "id": "game_over",
+    "name": "After a game over",
+    "description": "What Continue does when the party falls.",
+    "default": "entrance",
+    "choices": [
+      { "id": "entrance", "name": "Back to the entrance", "switches": { "continue_from_entrance": true } },
+      { "id": "no_continue", "name": "No Continue", "switches": { "no_continue": true } }
+    ]
+  }
+]
+```
+
+An option needs an `id`, a `name` and two or more `choices`, each with its own `id` and `name`. Ids are lowercase letters, digits and underscores, starting with a letter. `description`, on the option or a choice, is the help line F1 shows for it. `default` is the id of the choice it starts on, the first one if you leave it out. If the player turns your mod off in F1, its options stop counting too.
+
+No natural healing, which comes with lom-native, has one: what Continue does after a game over.
+
 ### Working with other mods
 
 A mod can say how it goes with other mods. The game and the launcher both check this, and the order in the Mods window never changes because of it. The player decides the order, and gets told when something's off.
@@ -166,11 +196,12 @@ These four need `"api": 2`. A mod that uses them with `"api": 1` is refused, so 
 
 ### The mod API version
 
-`api` says which mod API your mod was made for. Each new version of the API only adds things, so a mod made for an older one keeps working. A mod that asks for a newer one than the lom-native it's on gets refused, with a note that it needs a newer lom-native. Right now there are three:
+`api` says which mod API your mod was made for. Each new version of the API only adds things, so a mod made for an older one keeps working. A mod that asks for a newer one than the lom-native it's on gets refused, with a note that it needs a newer lom-native. Right now there are four:
 
 - `1`: switches, scripts, the hooks and the lom calls above.
 - `2`: also `requires`, `optional`, `incompatible` and `load_after`.
 - `3`: also `in_game_toggle`.
+- `4`: also `options`.
 
 Use the lowest one that has everything your mod needs.
 

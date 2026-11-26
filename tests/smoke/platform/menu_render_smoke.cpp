@@ -1,5 +1,6 @@
 #include "lom_native_menu.h"
 #include "lom_native_mod_toggles.h"
+#include "lom_native_mod_options.h"
 #include "lom_native_host_audio.h"
 #include "presentation.h"
 
@@ -367,6 +368,9 @@ int main(int argc, char** argv)
     lom_native_mod_toggles_add("skip-movies", "Skip movies", "Skips every movie, the opening, the ending and the ones in the middle of the story.");
     lom_native_mod_toggles_add("always-run", "Always run", "Run without holding the run button, and hold it to walk.");
     lom_native_mod_toggles_set(1, 0);
+    const int option = lom_native_mod_options_add("always-run", "game_over", "After a game over", "What Continue does when the party falls.", 0);
+    lom_native_mod_options_add_choice(option, "entrance", "Back to the entrance", "Continue takes you back to where you came in from the world map.");
+    lom_native_mod_options_add_choice(option, "no_continue", "No Continue", "");
 
     const Step steps[] = {
         {"categories", {SDL_SCANCODE_F1}},
@@ -374,6 +378,7 @@ int main(int argc, char** argv)
         {"audio", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN, SDL_SCANCODE_LEFT}},
         {"controls", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN, SDL_SCANCODE_DOWN, SDL_SCANCODE_RIGHT}},
         {"mods", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN}},
+        {"mod-option", {SDL_SCANCODE_DOWN, SDL_SCANCODE_DOWN}},
         {"quit", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN}},
     };
 
@@ -488,6 +493,7 @@ int main(int argc, char** argv)
         {"display", {SDL_SCANCODE_F1, SDL_SCANCODE_RETURN}},
         {"controls", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN, SDL_SCANCODE_DOWN}},
         {"mods", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN}},
+        {"mod-option", {SDL_SCANCODE_DOWN, SDL_SCANCODE_DOWN}},
         {"quit", {SDL_SCANCODE_ESCAPE, SDL_SCANCODE_DOWN, SDL_SCANCODE_RETURN}},
     };
 

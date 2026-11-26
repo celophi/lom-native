@@ -48,7 +48,7 @@ The launcher's Mods button lists your mods, and you turn each one on or off ther
 - Quick fights, which skips the results window after a fight
 - No natural healing, for a harder game
 - Skip movies
-- Skip battles, for following just the story
+- Skip or win battles, which skips regular fights or wins them as soon as they start, and wins boss fights too if you like, for following just the story
 - Japanese balance, which plays the US version with the Japanese version's harder combat and items
 
 At this time, I'm still building out a modding framework, so these are a proof of concept initially.

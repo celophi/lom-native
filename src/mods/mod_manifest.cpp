@@ -201,28 +201,22 @@ bool inside_mod(const std::string& path)
 }
 
 /**
- * @brief Read and check the switches a mod sets.
- * @param manifest mod.json's object.
- * @param mod The manifest, which gets the switches.
+ * @brief Read and check an object of switch names and true or false.
+ * @param switches The object.
+ * @param where What it is, for the error, like "its mod.json's \"switches\"".
+ * @param out Gets the switches.
  * @param error Set to why the mod is refused when one is wrong.
  * @return True when they're all switches this build has, set to true or false.
  */
-bool read_switches(const Json& manifest, ModManifest& mod, std::string& error)
+bool read_switch_object(const Json& switches, const std::string& where, std::vector<std::pair<std::string, bool>>& out, std::string& error)
 {
-    const Json* switches = manifest.find("switches");
-
-    if (!switches)
+    if (switches.type() != Json::Type::Object)
     {
-        return true;
-    }
-
-    if (switches->type() != Json::Type::Object)
-    {
-        error = "its mod.json's \"switches\" has to be an object of switch names and true or false";
+        error = where + " has to be an object of switch names and true or false";
         return false;
     }
 
-    for (const auto& [name, value] : switches->as_object())
+    for (const auto& [name, value] : switches.as_object())
     {
         if (lom_native_switch_find(name.c_str()) < 0)
         {
@@ -236,7 +230,241 @@ bool read_switches(const Json& manifest, ModManifest& mod, std::string& error)
             return false;
         }
 
-        mod.switches.emplace_back(name, value.as_bool(false));
+        out.emplace_back(name, value.as_bool(false));
+    }
+
+    return true;
+}
+
+/**
+ * @brief Read and check the switches a mod sets.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets the switches.
+ * @param error Set to why the mod is refused when one is wrong.
+ * @return True when they're all switches this build has, set to true or false.
+ */
+bool read_switches(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    const Json* switches = manifest.find("switches");
+    return !switches || read_switch_object(*switches, "its mod.json's \"switches\"", mod.switches, error);
+}
+
+/**
+ * @brief Check an option's or a choice's id: lowercase letters, digits and
+ *        underscores, starting with a letter, at most 64 characters.
+ * @param id The id.
+ * @return True when it's valid.
+ */
+bool valid_option_id(const std::string& id)
+{
+    if (id.empty() || id.size() > max_id_length || id.front() < 'a' || id.front() > 'z')
+    {
+        return false;
+    }
+
+    return std::all_of(id.begin(), id.end(), [](char c) { return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '_'; });
+}
+
+/**
+ * @brief Read an optional description from an option or a choice.
+ * @param json Its object.
+ * @param where What it is, for the error.
+ * @param out Gets the description.
+ * @param error Set to why the mod is refused when it isn't text.
+ * @return True when it's text or left out.
+ */
+bool read_description(const Json& json, const std::string& where, std::string& out, std::string& error)
+{
+    const Json* description = json.find("description");
+
+    if (!description)
+    {
+        return true;
+    }
+
+    if (description->type() != Json::Type::String)
+    {
+        error = where + "'s description has to be text";
+        return false;
+    }
+
+    out = description->as_string();
+    return true;
+}
+
+/**
+ * @brief Read one of an option's choices.
+ * @param json The choice's object.
+ * @param where What it is, for the error, like "its option speed's choice 2".
+ * @param choice Gets it.
+ * @param error Set to why the mod is refused when it's wrong.
+ * @return True when it's right.
+ */
+bool read_choice(const Json& json, const std::string& where, ModChoice& choice, std::string& error)
+{
+    if (json.type() != Json::Type::Object)
+    {
+        error = where + " has to be an object with an id and a name";
+        return false;
+    }
+
+    const Json* id = json.find("id");
+    const Json* name = json.find("name");
+
+    if (!id || id->type() != Json::Type::String || !valid_option_id(id->as_string()))
+    {
+        error = where + " needs an id of lowercase letters, digits and underscores, starting with a letter";
+        return false;
+    }
+
+    if (!name || name->type() != Json::Type::String || name->as_string().empty())
+    {
+        error = where + " needs a name";
+        return false;
+    }
+
+    choice.id = id->as_string();
+    choice.name = name->as_string();
+
+    if (!read_description(json, where, choice.description, error))
+    {
+        return false;
+    }
+
+    const Json* switches = json.find("switches");
+    return !switches || read_switch_object(*switches, where + "'s \"switches\"", choice.switches, error);
+}
+
+/**
+ * @brief Read one option: an id, a name, two or more choices and which one
+ *        it starts on.
+ * @param json The option's object.
+ * @param option Gets it.
+ * @param error Set to why the mod is refused when it's wrong.
+ * @return True when it's right.
+ */
+bool read_option(const Json& json, ModOption& option, std::string& error)
+{
+    const Json* id = json.type() == Json::Type::Object ? json.find("id") : nullptr;
+
+    if (!id || id->type() != Json::Type::String || !valid_option_id(id->as_string()))
+    {
+        error = "each of its options needs an id of lowercase letters, digits and underscores, starting with a letter";
+        return false;
+    }
+
+    option.id = id->as_string();
+    const std::string where = "its option " + option.id;
+    const Json* name = json.find("name");
+    const Json* choices = json.find("choices");
+    const Json* initial = json.find("default");
+
+    if (!name || name->type() != Json::Type::String || name->as_string().empty())
+    {
+        error = where + " needs a name";
+        return false;
+    }
+
+    option.name = name->as_string();
+
+    if (!read_description(json, where, option.description, error))
+    {
+        return false;
+    }
+
+    if (!choices || choices->type() != Json::Type::Array || choices->as_array().size() < 2)
+    {
+        error = where + " needs a list of two or more choices";
+        return false;
+    }
+
+    for (const Json& entry : choices->as_array())
+    {
+        ModChoice choice;
+
+        if (!read_choice(entry, where + "'s choice " + std::to_string(option.choices.size() + 1), choice, error))
+        {
+            return false;
+        }
+
+        for (const ModChoice& earlier : option.choices)
+        {
+            if (earlier.id == choice.id)
+            {
+                error = where + " has two choices called " + choice.id;
+                return false;
+            }
+        }
+
+        option.choices.push_back(std::move(choice));
+    }
+
+    if (!initial)
+    {
+        return true;
+    }
+
+    for (std::size_t i = 0; i < option.choices.size(); ++i)
+    {
+        if (initial->type() == Json::Type::String && option.choices[i].id == initial->as_string())
+        {
+            option.default_choice = i;
+            return true;
+        }
+    }
+
+    error = where + "'s \"default\" has to be the id of one of its choices";
+    return false;
+}
+
+/**
+ * @brief Read the options a player can choose for the mod in F1's Mods page,
+ *        which need mod API 4.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets them.
+ * @param error Set to why the mod is refused when one is wrong.
+ * @return True when they're right or left out.
+ */
+bool read_options(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    const Json* options = manifest.find("options");
+
+    if (!options)
+    {
+        return true;
+    }
+
+    if (options->type() != Json::Type::Array)
+    {
+        error = "its mod.json's \"options\" has to be a list of options";
+        return false;
+    }
+
+    if (mod.api < options_api)
+    {
+        error = "its mod.json has options, which need \"api\": " + std::to_string(options_api);
+        return false;
+    }
+
+    for (const Json& entry : options->as_array())
+    {
+        ModOption option;
+
+        if (!read_option(entry, option, error))
+        {
+            return false;
+        }
+
+        for (const ModOption& earlier : mod.options)
+        {
+            if (earlier.id == option.id)
+            {
+                error = "it has two options called " + option.id;
+                return false;
+            }
+        }
+
+        mod.options.push_back(std::move(option));
     }
 
     return true;
@@ -694,7 +922,7 @@ std::vector<std::string> manifest_surface()
 {
     return {"mod.json id",       "mod.json name",         "mod.json version",    "mod.json author",        "mod.json description",
             "mod.json game",     "mod.json api",          "mod.json switches",   "mod.json scripts",       "mod.json requires",
-            "mod.json optional", "mod.json incompatible", "mod.json load_after", "mod.json in_game_toggle"};
+            "mod.json optional", "mod.json incompatible", "mod.json load_after", "mod.json in_game_toggle", "mod.json options"};
 }
 
 bool valid_mod_id(const std::string& id)
@@ -794,7 +1022,8 @@ std::optional<ModManifest> read_manifest(const std::filesystem::path& folder, co
 
     mod.api = static_cast<int>(api->as_int(0));
 
-    if (!read_switches(*json, mod, error) || !read_scripts(*json, folder, mod, error) || !read_relations(*json, mod, error) || !read_toggle(*json, mod, error))
+    if (!read_switches(*json, mod, error) || !read_scripts(*json, folder, mod, error) || !read_relations(*json, mod, error) || !read_toggle(*json, mod, error) ||
+        !read_options(*json, mod, error))
     {
         return std::nullopt;
     }

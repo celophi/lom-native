@@ -52,7 +52,11 @@ The Mods page lists the mods you turned on in the launcher that can be switched 
 
 Always run is one of those mods, not a setting. Turn on Always run in the launcher's Mods window. The original game walks unless you hold the run button (Circle or L1 on the US version, Cross or L1 on the Japanese one). With the mod on it's the other way round: you run, and holding the button makes you walk.
 
-Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down.
+Some mods also have options, shown under them on the Mods page. Left and right change them, and they're kept for next time.
+
+Skip or win battles has two. Regular fights, the ones that start when you walk into monsters, can be fought, skipped or won as soon as they start. Boss fights can be fought or won as soon as they start; they can't be skipped, since the story needs them won. Skipped fights give no experience or drops, so you may find a boss harder.
+
+Quick fights and No natural healing are mods too, not settings. Quick fights takes you straight back to the field after a fight instead of showing the items and the party summary. The window still opens when someone learns an ability or technique, since you can't see that anywhere else right away, and you still get everything. No natural healing stops your hit points coming back over time, after fights and when you go on to the next screen, so they only come back from items, techniques, pets and leaving a dungeon, and a long dungeon wears you down. Its option, After a game over, says what Continue does. Back to the entrance, the default, takes you back to where you came in from the world map with everything since then undone. No Continue sends you to the title screen. Retry without healing tries the screen again with the hit points you came into it with.
 
 [modding.md](modding.md) has the rest about mods.
 

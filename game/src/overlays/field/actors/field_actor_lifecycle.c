@@ -77,12 +77,37 @@ void field_battle_start(s32 group)
 }
 
 /**
- * @brief Native: with the skip_battles switch on, defeat every monster still
- *        standing in the battle, the way the game's own DEFEAT_ACTOR script
- *        command does (field_battle_defeat_record), so drops, the enemy count,
- *        the battle's end and a boss's death events all run as they would.
- *        A monster a script is holding (a boss's opening, say) waits until
- *        it's let go. The field runs this every frame.
+ * @brief Native: check whether the battle has a boss in it.
+ * @return 1 when one of its monsters is a boss, otherwise 0.
+ */
+static s32 field_battle_has_boss(void)
+{
+    s32 i;
+    FieldStatusRecord* record;
+
+    for (i = 0; i < FIELD_BATTLE_RECORD_COUNT; i++)
+    {
+        record = &g_field_battle->records[i];
+
+        if ((record->side & FIELD_RECORD_MONSTER_SIDE) && !(record->meta.packed & FIELD_STATUS_META_ALLY) && record->meta.bits.active &&
+            record->state != NULL && record->state != FIELD_STATUS_STATE_NONE && record->state->hp_display.bits.boss)
+        {
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Native: when a switch says to win this kind of battle at once
+ *        (skip_battles for any, win_boss_battles for one with a boss in it,
+ *        win_regular_battles for the rest), defeat every monster still
+ *        standing in it, the way the game's own DEFEAT_ACTOR script command
+ *        does (field_battle_defeat_record), so drops, the enemy count, the
+ *        battle's end and a boss's death events all run as they would. A
+ *        monster a script is holding (a boss's opening, say) waits until it's
+ *        let go. The field runs this every frame.
  */
 void field_skip_battle(void)
 {
@@ -90,7 +115,13 @@ void field_skip_battle(void)
     FieldStatusRecord* record;
     struct FieldActorRecord* actor;
 
-    if (!lom_native_switch(LOM_SWITCH_SKIP_BATTLES) || g_field_runtime == NULL || !g_field_runtime->state.bits.battle_active || g_field_battle == NULL)
+    if (g_field_runtime == NULL || !g_field_runtime->state.bits.battle_active || g_field_battle == NULL)
+    {
+        return;
+    }
+
+    if (!lom_native_switch(LOM_SWITCH_SKIP_BATTLES) &&
+        !lom_native_switch(field_battle_has_boss() ? LOM_SWITCH_WIN_BOSS_BATTLES : LOM_SWITCH_WIN_REGULAR_BATTLES))
     {
         return;
     }

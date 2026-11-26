@@ -1,0 +1,109 @@
+{
+  "format": 1,
+  "id": "mods-game-over-entrance",
+  "description": "With No natural healing on as it comes, Continue after a game over should go back to the first screen since FIELD started, with full hit points",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "game-over",
+  "steps": [
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "hit_points": 1
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "wait": 900,
+      "note": "the monsters finish the hero off and the game over screen comes up"
+    },
+    {
+      "checkpoint": "game-over"
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "wait": 300
+    },
+    {
+      "checkpoint": "after"
+    }
+  ]
+}

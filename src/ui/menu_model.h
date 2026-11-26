@@ -9,6 +9,17 @@
 
 namespace lom::settings
 {
+struct ModOptionView
+{
+    std::string mod;
+    std::string name;
+    std::string description;
+    std::string choice;
+    std::string choice_description;
+    int chosen = 0;
+    int choices = 0;
+};
+
 class MenuBackend
 {
   public:
@@ -143,6 +154,13 @@ class MenuBackend
     virtual int mod_toggle_count() const = 0;
 
     /**
+     * @brief A toggleable mod's id, to put its options under it.
+     * @param index Which one.
+     * @return The id.
+     */
+    virtual std::string mod_toggle_id(int index) const = 0;
+
+    /**
      * @brief A toggleable mod's name.
      * @param index Which one.
      * @return The name.
@@ -169,6 +187,27 @@ class MenuBackend
      * @param value True for on.
      */
     virtual void set_mod_toggle(int index, bool value) = 0;
+
+    /**
+     * @brief Count the options of the mods that loaded, for F1's Mods page.
+     * @return How many.
+     */
+    virtual int mod_option_count() const = 0;
+
+    /**
+     * @brief Read one of the mods' options, as F1 shows it.
+     * @param index Which one.
+     * @return It.
+     */
+    virtual ModOptionView mod_option(int index) const = 0;
+
+    /**
+     * @brief Put one of the mods' options on a choice. The player's choice is
+     *        saved with their preferences.
+     * @param index Which one.
+     * @param choice The choice, from 0.
+     */
+    virtual void choose_mod_option(int index, int choice) = 0;
 
     /**
      * @brief Read where the music comes from.
@@ -336,6 +375,7 @@ struct MenuRow
     std::string pad_value;
     bool on = false;
     int mod_toggle = -1;
+    int mod_option = -1;
     int percent = 0;
     bool dimmed = false;
     bool listening_key = false;
@@ -495,10 +535,21 @@ class MenuModel
 
     /**
      * @brief Add the Mods rows: a switch for each mod that's on and asked for
-     *        one, or a line saying how to get one there when none did.
+     *        one, each with its options under it, then the options of mods
+     *        without a switch, or a line saying how to get one there when
+     *        there's nothing.
      * @param rows Where they go.
      */
     void add_mod_rows(std::vector<MenuRow>& rows) const;
+
+    /**
+     * @brief Add the row for one of the mods' options: its name, the choice
+     *        it's on, and what both do.
+     * @param rows Where it goes.
+     * @param index The option.
+     * @param dimmed True when its mod is turned off in F1.
+     */
+    void add_mod_option_row(std::vector<MenuRow>& rows, int index, bool dimmed) const;
 
     /**
      * @brief Change one of the Display rows' settings.

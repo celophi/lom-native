@@ -1,4 +1,5 @@
 #include "../../../include/lom_native_mod_game.h"
+#include "../../../include/lom_native_mod_options.h"
 #include "../../../include/lom_native_mod_toggles.h"
 #include "../../../include/lom_native_mods.h"
 #include "../../../include/lom_native_notices.h"
@@ -60,7 +61,9 @@ static const std::set<std::string> s_api_1 = {"lom.api",
 
 static const std::set<std::string> s_api_2 = grown(s_api_1, {"mod.json requires", "mod.json optional", "mod.json incompatible", "mod.json load_after"});
 
-static const std::map<int, std::set<std::string>> s_api_versions = {{1, s_api_1}, {2, s_api_2}, {3, grown(s_api_2, {"mod.json in_game_toggle"})}};
+static const std::set<std::string> s_api_3 = grown(s_api_2, {"mod.json in_game_toggle"});
+
+static const std::map<int, std::set<std::string>> s_api_versions = {{1, s_api_1}, {2, s_api_2}, {3, s_api_3}, {4, grown(s_api_3, {"mod.json options"})}};
 
 static int s_money = 1000;
 
@@ -430,7 +433,8 @@ static int examples()
     {
         CHECK(load("skip-movies", game) == 1 && lom_native_switch(LOM_SWITCH_SKIP_MOVIES));
         lom_native_mods_stop();
-        CHECK(load("skip-battles", game) == 1 && lom_native_switch(LOM_SWITCH_SKIP_BATTLES) && lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS));
+        CHECK(load("skip-battles", game) == 1 && lom_native_switch(LOM_SWITCH_WIN_REGULAR_BATTLES) && lom_native_switch(LOM_SWITCH_WIN_BOSS_BATTLES));
+        CHECK(lom_native_switch(LOM_SWITCH_SKIP_BATTLE_RESULTS) && !lom_native_switch(LOM_SWITCH_NO_REGULAR_BATTLES));
         lom_native_mods_stop();
     }
 
@@ -556,6 +560,73 @@ static int toggles()
     return 0;
 }
 
+/**
+ * @brief Find whether some refused mod's reason has a piece of text in it.
+ * @param id The mod.
+ * @param text The text.
+ * @return True when it does.
+ */
+static bool refused_because(const char* id, const char* text)
+{
+    for (int i = 0; i < lom_native_mods_refused_count(); ++i)
+    {
+        const std::string reason = lom_native_mods_refused(i);
+
+        if (reason.rfind(std::string(id) + ": ", 0) == 0 && reason.find(text) != std::string::npos)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * @brief Check a mod's options: F1 can read each one and its choices, each
+ *        starts on its default or the player's preferred choice (given before
+ *        or after the mods start), the chosen choice's switches count only
+ *        while the mod is on, and mod.json's options are checked.
+ * @return 0. A failed check stops the test.
+ */
+static int options()
+{
+    lom_native_mod_options_prefer("picker", "mode", "second");
+    CHECK(load("options") == 1 && lom_native_mod_options_count() == 2);
+    CHECK(std::strcmp(lom_native_mod_options_mod(0), "picker") == 0 && std::strcmp(lom_native_mod_options_id(0), "speed") == 0);
+    CHECK(std::strcmp(lom_native_mod_options_name(0), "Speed") == 0 && std::strcmp(lom_native_mod_options_description(0), "How fast.") == 0);
+    CHECK(lom_native_mod_options_choice_count(0) == 2 && std::strcmp(lom_native_mod_options_choice_id(0, 0), "slow") == 0);
+    CHECK(std::strcmp(lom_native_mod_options_choice_name(0, 1), "Fast") == 0 && std::strcmp(lom_native_mod_options_choice_description(0, 1), "Runs.") == 0);
+    CHECK(lom_native_mod_options_chosen(0) == 1 && lom_native_mod_options_chosen(1) == 1);
+    CHECK(lom_native_switch(LOM_SWITCH_ALWAYS_RUN) && !lom_native_switch(LOM_SWITCH_SKIP_MOVIES));
+
+    lom_native_mod_options_choose(0, 0);
+    CHECK(!lom_native_switch(LOM_SWITCH_ALWAYS_RUN) && lom_native_switch(LOM_SWITCH_SKIP_MOVIES));
+    CHECK(std::strcmp(lom_native_switch_mod(LOM_SWITCH_SKIP_MOVIES), "picker") == 0);
+    lom_native_mod_toggles_set(0, 0);
+    CHECK(!lom_native_switch(LOM_SWITCH_SKIP_MOVIES));
+    lom_native_mod_toggles_set(0, 1);
+    CHECK(lom_native_switch(LOM_SWITCH_SKIP_MOVIES));
+
+    lom_native_mod_options_prefer("picker", "speed", "fast");
+    CHECK(lom_native_mod_options_chosen(0) == 1 && lom_native_switch(LOM_SWITCH_ALWAYS_RUN));
+    lom_native_mod_options_prefer("picker", "speed", "sideways");
+    lom_native_mod_options_choose(0, 5);
+    CHECK(lom_native_mod_options_chosen(0) == 1 && lom_native_mod_options_chosen(7) == -1 && lom_native_mod_options_name(7) == nullptr);
+
+    lom_native_mods_stop();
+    CHECK(lom_native_mod_options_count() == 0 && !lom_native_switch(LOM_SWITCH_ALWAYS_RUN));
+
+    CHECK(load("options-wrong") == 0);
+    CHECK(refused_because("old-api", "options, which need \"api\": 4"));
+    CHECK(refused_because("one-choice", "two or more choices"));
+    CHECK(refused_because("bad-default", "\"default\" has to be the id of one of its choices"));
+    CHECK(refused_because("same-choice", "two choices called a"));
+    CHECK(refused_because("bad-id", "lowercase letters, digits and underscores"));
+    CHECK(refused_because("unknown-switch", "a switch this lom-native doesn't have: fly"));
+    lom_native_mods_stop();
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
     CHECK(argc == 4);
@@ -565,6 +636,7 @@ int main(int argc, char** argv)
         {"switches", switches}, {"refused", refused},   {"scripts", scripts},     {"dice", dice},
         {"api", api},           {"examples", examples}, {"notices", notices},     {"surface", surface},
         {"cards", cards},       {"games", games},       {"relations", relations}, {"toggles", toggles},
+        {"options", options},
     };
     const auto found = cases.find(argv[1]);
 

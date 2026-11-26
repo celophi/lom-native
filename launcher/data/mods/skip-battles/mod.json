@@ -1,17 +1,67 @@
 {
   "id": "skip-battles",
-  "name": "Skip battles",
-  "version": "1.0.0",
+  "name": "Skip or win battles",
+  "version": "1.1.0",
   "author": "celophi",
-  "description": "Skips all fights and battles for a story only mode.",
+  "description": "Skip fights or win them as soon as they start. Choose which in the game's menu (F1).",
   "game": [
     "SLUS-01013",
     "SLPS-02170"
   ],
-  "api": 3,
+  "api": 4,
   "in_game_toggle": true,
-  "switches": {
-    "skip_battles": true,
-    "skip_battle_results": true
-  }
+  "options": [
+    {
+      "id": "regular",
+      "name": "Regular fights",
+      "description": "The fights that start when you walk into monsters.",
+      "default": "win",
+      "choices": [
+        {
+          "id": "fight",
+          "name": "Fight them",
+          "description": "They play as normal."
+        },
+        {
+          "id": "skip",
+          "name": "Skip them",
+          "description": "They don't start, so there's no experience or drops from them. Fights the story starts still happen.",
+          "switches": {
+            "no_regular_battles": true
+          }
+        },
+        {
+          "id": "win",
+          "name": "Win them instantly",
+          "description": "They're won as soon as they start, drops and experience included, with no results window.",
+          "switches": {
+            "win_regular_battles": true,
+            "skip_battle_results": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "name": "Boss fights",
+      "description": "Fights with a boss in them. They can't be skipped, since the story needs them won.",
+      "default": "win",
+      "choices": [
+        {
+          "id": "fight",
+          "name": "Fight them",
+          "description": "They play as normal."
+        },
+        {
+          "id": "win",
+          "name": "Win them instantly",
+          "description": "They're won as soon as they start, and the story goes on as if you'd beaten them, with no results window.",
+          "switches": {
+            "win_boss_battles": true,
+            "skip_battle_results": true
+          }
+        }
+      ]
+    }
+  ]
 }

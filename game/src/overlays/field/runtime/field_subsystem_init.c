@@ -30,6 +30,8 @@ extern s32 g_field_unused_scene_word;
  *
  * @param render_context Render context to install as the active one.
  * @see decomp.me (100%) https://decomp.me/scratch/fKHnZ
+ * @note Native: marks this as the entrance, for the continue_from_entrance
+ *       switch (field_mark_entrance).
  */
 void field_initialize_subsystems(FieldRenderHalf* render_context)
 {
@@ -50,6 +52,7 @@ void field_initialize_subsystems(FieldRenderHalf* render_context)
     g_field_interaction_active = 0;
     g_field_party_routes_stale = 0;
     field_rebuild_party_actions(0);
+    field_mark_entrance();
     field_clear_actor_slots();
     field_reset_draw_state();
     field_reset_actor_resources();

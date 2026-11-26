@@ -2,7 +2,8 @@
 
 const char* const route_step_names[] = {"enter",      "exit",  "walk",       "talk",       "press",      "wait",   "wait_scene", "wait_battle",
                                         "checkpoint", "watch", "experience", "guest",      "companion",  "answer", "fight",      "land",
-                                        "place",      "audio", "event",      "widescreen", "always_run", "switch"};
+                                        "place",      "audio", "event",      "widescreen", "always_run", "switch",
+                                        "hit_points"};
 
 /**
  * @brief Read a plan line that sets something for the whole run: its frame

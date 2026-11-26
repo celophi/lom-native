@@ -1,16 +1,50 @@
 {
   "id": "no-natural-healing",
   "name": "No natural healing",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "celophi",
   "description": "Hit points only come back from items, techniques, pets and leaving a dungeon.",
   "game": [
     "SLUS-01013",
     "SLPS-02170"
   ],
-  "api": 3,
+  "api": 4,
   "in_game_toggle": true,
   "switches": {
     "no_natural_healing": true
-  }
+  },
+  "options": [
+    {
+      "id": "game_over",
+      "name": "After a game over",
+      "description": "What Continue does when the party falls.",
+      "default": "entrance",
+      "choices": [
+        {
+          "id": "entrance",
+          "name": "Back to the entrance",
+          "description": "Continue takes you back to where you came in from the world map, with everything since then undone and your hit points full.",
+          "switches": {
+            "continue_from_entrance": true
+          }
+        },
+        {
+          "id": "no_continue",
+          "name": "No Continue",
+          "description": "There's no Continue. Go back to the title screen and load your last save.",
+          "switches": {
+            "no_continue": true
+          }
+        },
+        {
+          "id": "retry",
+          "name": "Retry without healing",
+          "description": "Continue tries the screen again with the hit points you came into it with.",
+          "switches": {
+            "continue_without_healing": true
+          }
+        }
+      ]
+    }
+  ]
 }

@@ -47,6 +47,7 @@ constexpr float meter_width = 154.0f;
 constexpr float meter_height = 9.0f;
 constexpr float meter_reach = 10.0f;
 constexpr float choice_width = 96.0f;
+constexpr float choice_text_gap = 10.0f;
 constexpr float arrow_size = 7.0f;
 constexpr float glyph_height = 25.0f;
 constexpr float quit_card_width = 538.0f;

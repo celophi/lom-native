@@ -28,7 +28,17 @@ class FakeGame : public MenuBackend
     int text = 0;
     bool text_shown = true;
     std::vector<std::pair<std::string, std::string>> mods;
+    std::vector<std::string> mod_ids;
     std::vector<bool> mods_on;
+    struct Option
+    {
+        std::string mod;
+        std::string name;
+        std::string description;
+        std::vector<std::pair<std::string, std::string>> choices;
+        int chosen = 0;
+    };
+    std::vector<Option> options;
     int music = 0;
     bool effects = false;
     int resumes = 0;
@@ -142,6 +152,11 @@ class FakeGame : public MenuBackend
         return static_cast<int>(mods.size());
     }
 
+    std::string mod_toggle_id(int index) const override
+    {
+        return index < static_cast<int>(mod_ids.size()) ? mod_ids[index] : std::string();
+    }
+
     std::string mod_toggle_name(int index) const override
     {
         return mods[index].first;
@@ -160,6 +175,28 @@ class FakeGame : public MenuBackend
     void set_mod_toggle(int index, bool value) override
     {
         mods_on[index] = value;
+    }
+
+    int mod_option_count() const override
+    {
+        return static_cast<int>(options.size());
+    }
+
+    ModOptionView mod_option(int index) const override
+    {
+        const Option& option = options[index];
+        return {option.mod,
+                option.name,
+                option.description,
+                option.choices[option.chosen].first,
+                option.choices[option.chosen].second,
+                option.chosen,
+                static_cast<int>(option.choices.size())};
+    }
+
+    void choose_mod_option(int index, int choice) override
+    {
+        options[index].chosen = choice;
     }
 
     int soundtrack() const override
@@ -592,6 +629,40 @@ static void mods_page_switches_each_mod_that_asked()
 }
 
 /**
+ * @brief Check each mod's options show under its switch, saying the choice
+ *        they're on and what the option and the choice do, dimmed while the
+ *        mod is off, that left and right step through the choices, wrapping,
+ *        and that a mod without a switch still gets its options, after the rest.
+ */
+static void mods_page_shows_each_mods_options_under_it()
+{
+    FakeGame game;
+    game.mods = {{"Always run", ""}, {"No natural healing", ""}};
+    game.mod_ids = {"always-run", "no-natural-healing"};
+    game.mods_on = {true, false};
+    game.options = {{"other-mod", "Speed", "", {{"Slow", ""}, {"Fast", ""}}, 0},
+                    {"no-natural-healing",
+                     "After a game over",
+                     "What Continue does.",
+                     {{"Back to the entrance", "Everything since then is undone."}, {"No Continue", ""}, {"Retry without healing", ""}},
+                     0}};
+    MenuModel menu(game);
+    menu.point(MenuCategory::Mods, 2);
+    const std::vector<MenuRow> rows = menu.rows();
+
+    CHECK(rows.size() == 4);
+    CHECK(rows[1].label == "No natural healing" && rows[1].mod_toggle == 1);
+    CHECK(rows[2].label == "After a game over" && rows[2].mod_option == 1 && rows[2].value == "Back to the entrance" && rows[2].dimmed);
+    CHECK(rows[2].description == "What Continue does. Everything since then is undone.");
+    CHECK(rows[3].label == "Speed" && rows[3].mod_option == 0 && !rows[3].dimmed);
+    press(menu, MenuInput::Right);
+    CHECK(game.options[1].chosen == 1 && menu.rows()[2].value == "No Continue" && menu.rows()[2].description == "What Continue does.");
+    press(menu, MenuInput::Left);
+    press(menu, MenuInput::Left);
+    CHECK(game.options[1].chosen == 2 && game.options[0].chosen == 0);
+}
+
+/**
  * @brief Check the Remaster's rows show only when the Remaster is found, and
  *        step through their choices. Text shows only when the game can show
  *        the Remaster's text (the Japanese one can't).
@@ -748,6 +819,7 @@ int main()
     general_toggles_pausing_when_unfocused();
     general_has_only_pausing();
     mods_page_switches_each_mod_that_asked();
+    mods_page_shows_each_mods_options_under_it();
     remaster_rows_show_only_when_it_is_found();
     clicking_a_volume_bar_sets_its_level();
     quitting_asks_first_and_defaults_to_keep_playing();

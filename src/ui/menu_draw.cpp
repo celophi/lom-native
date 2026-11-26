@@ -182,12 +182,12 @@ void Menu::draw_value(const MenuRow& row, int index, ImVec2 right_middle, bool f
     {
     case MenuRow::Kind::Choice:
     {
-        const float width = px(choice_width);
+        const ImVec2 size = text_size(body_font_, value_size, row.value);
+        const float width = std::max(px(choice_width), size.x + px(choice_text_gap) * 2);
         const float right_arrow = right_middle.x - arrow;
         const float left_arrow = right_arrow - arrow * 2 - width;
         draw_arrow(list_, ImVec2(right_arrow, right_middle.y), arrow, true, arrow_color);
         draw_arrow(list_, ImVec2(left_arrow, right_middle.y), arrow, false, arrow_color);
-        const ImVec2 size = text_size(body_font_, value_size, row.value);
         text(body_font_, value_size, ImVec2((left_arrow + right_arrow) * 0.5f - size.x * 0.5f, right_middle.y - size.y * 0.5f), ink, row.value);
         break;
     }
