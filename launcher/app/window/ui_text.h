@@ -255,7 +255,7 @@ LOM_UI_TEXT(record_sessions, "Record play sessions for bug reports");
 LOM_UI_TEXT(record_sessions_note, "Lets a bug be replayed exactly as it happened. It takes about 16 MB an hour of play, and no more than 50 MB "
                                   "is kept.");
 LOM_UI_TEXT(game_discs_label, "Game discs (at least one is required)");
-LOM_UI_TEXT(game_discs_note, "Set up the US version, the Japanese version, or both, then choose which one you want to play.");
+LOM_UI_TEXT(game_discs_note, "Set up the North American version, the Japanese version, or both, then choose which one you want to play.");
 LOM_UI_TEXT(play_edition, "Play the %1");
 LOM_UI_TEXT(set_up, "Set up...");
 LOM_UI_TEXT(set_up_again, "Set up again...");

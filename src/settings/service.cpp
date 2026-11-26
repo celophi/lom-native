@@ -4,6 +4,7 @@
 #include <SDL3/SDL_stdinc.h>
 #include "lom_native_display.h"
 #include "lom_native_host_audio.h"
+#include "lom_native_mod_options.h"
 #include "lom_native_widescreen.h"
 #include "lom_native_remaster.h"
 #include <utility>
@@ -58,6 +59,12 @@ void SettingsService::enable(const char* path)
     lom_native_display_set(display.filter, display.resolution, display.fullscreen);
     lom_native_widescreen_set_enabled(display.widescreen);
 
+    for (const auto& [key, choice] : values_.mod_options)
+    {
+        const std::size_t colon = key.find(':');
+        lom_native_mod_options_prefer(key.substr(0, colon).c_str(), key.substr(colon + 1).c_str(), choice.c_str());
+    }
+
     lom_native_remaster_set_hd_backgrounds(values_.hd_backgrounds);
     lom_native_remaster_set_hd_ui(values_.hd_ui);
     lom_native_remaster_set_text(values_.text_language);
@@ -68,6 +75,12 @@ void SettingsService::enable(const char* path)
 Preferences SettingsService::persistence_snapshot()
 {
     values_.display.widescreen = lom_native_widescreen_enabled();
+
+    for (int i = 0; i < lom_native_mod_options_count(); ++i)
+    {
+        const std::string key = std::string(lom_native_mod_options_mod(i)) + ':' + lom_native_mod_options_id(i);
+        values_.mod_options[key] = lom_native_mod_options_choice_id(i, lom_native_mod_options_chosen(i));
+    }
 
     values_.hd_backgrounds = lom_native_remaster_hd_backgrounds() != 0;
     values_.hd_ui = lom_native_remaster_hd_ui() != 0;

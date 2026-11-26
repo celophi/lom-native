@@ -10,11 +10,13 @@
 namespace lom::mods
 {
 
-constexpr int mod_api = 3;
+constexpr int mod_api = 4;
 
 constexpr int relations_api = 2;
 
 constexpr int toggle_api = 3;
+
+constexpr int options_api = 4;
 
 constexpr char manifest_name[] = "mod.json";
 
@@ -36,6 +38,30 @@ struct ModRelation
     std::string id;
 
     std::string range;
+};
+
+struct ModChoice
+{
+    std::string id;
+
+    std::string name;
+
+    std::string description;
+
+    std::vector<std::pair<std::string, bool>> switches;
+};
+
+struct ModOption
+{
+    std::string id;
+
+    std::string name;
+
+    std::string description;
+
+    std::vector<ModChoice> choices;
+
+    std::size_t default_choice = 0;
 };
 
 struct ModManifest
@@ -69,6 +95,8 @@ struct ModManifest
     std::vector<std::string> load_after;
 
     bool in_game_toggle = false;
+
+    std::vector<ModOption> options;
 };
 
 struct ModStanding

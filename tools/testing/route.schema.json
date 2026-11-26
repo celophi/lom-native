@@ -477,6 +477,23 @@
           }
         },
         {
+          "description": "Set the hero's hit points, from 1 to their maximum, for routes that need the party to fall.",
+          "type": "object",
+          "required": [
+            "hit_points"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "note": {
+              "$ref": "#/$defs/note"
+            },
+            "hit_points": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
           "description": "Have a guest join the party the way the game's own join command does, before entering a scene that expects them.",
           "type": "object",
           "required": [

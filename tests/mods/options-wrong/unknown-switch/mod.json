@@ -1,0 +1,27 @@
+{
+  "id": "unknown-switch",
+  "name": "unknown-switch",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "game": "SLUS-01013",
+  "api": 4,
+  "options": [
+    {
+      "id": "x",
+      "name": "X",
+      "choices": [
+        {
+          "id": "a",
+          "name": "A",
+          "switches": {
+            "fly": true
+          }
+        },
+        {
+          "id": "b",
+          "name": "B"
+        }
+      ]
+    }
+  ]
+}

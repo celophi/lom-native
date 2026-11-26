@@ -16,6 +16,12 @@ static const SwitchInfo s_switches[LOM_SWITCH_COUNT] = {
     [LOM_SWITCH_SKIP_MOVIES] = {"skip_movies", 3},
     [LOM_SWITCH_SKIP_BATTLES] = {"skip_battles", 4},
     [LOM_SWITCH_JAPANESE_BALANCE] = {"japanese_balance", 5},
+    [LOM_SWITCH_NO_CONTINUE] = {"no_continue", 6},
+    [LOM_SWITCH_CONTINUE_FROM_ENTRANCE] = {"continue_from_entrance", 7},
+    [LOM_SWITCH_CONTINUE_WITHOUT_HEALING] = {"continue_without_healing", 8},
+    [LOM_SWITCH_NO_REGULAR_BATTLES] = {"no_regular_battles", 9},
+    [LOM_SWITCH_WIN_REGULAR_BATTLES] = {"win_regular_battles", 10},
+    [LOM_SWITCH_WIN_BOSS_BATTLES] = {"win_boss_battles", 11},
 };
 
 static unsigned char s_setting[LOM_SWITCH_COUNT];

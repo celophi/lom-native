@@ -601,6 +601,60 @@ void field_raise_companion_intensity(s32 amount)
 }
 
 /**
+ * @brief Check whether a monster group has a boss in it, before its battle starts.
+ * @param group The trigger group.
+ * @return 1 when one of its monsters' templates is a boss's, otherwise 0.
+ * @note Native: for the no_regular_battles switch, which leaves fights with a
+ *       boss in them alone. It reads the templates the way field_battle_setup
+ *       will, without a diagnostic for one that's missing.
+ */
+s32 field_group_has_boss(s32 group)
+{
+    s32 i;
+    u32 j;
+    FieldBattleResource* resource;
+    FieldActorTemplateTable* templates;
+    FieldActorTemplate* template;
+    FieldObjectState* state;
+
+    resource = field_find_resource(FIELD_RESOURCE_BATTLE);
+
+    if (resource == NULL)
+    {
+        return 0;
+    }
+
+    templates = (FieldActorTemplateTable*)((u8*)resource + resource->templates_offset);
+
+    for (i = FIELD_PARTY_SIZE; i < g_field_runtime->state.actor_count; i++)
+    {
+        if (g_field_runtime->actors[i].flags.bits.trigger_group != group)
+        {
+            continue;
+        }
+
+        state = field_find_object_state(g_field_runtime->actors[i].id);
+
+        if (state == NULL || state == FIELD_STATUS_STATE_NONE)
+        {
+            continue;
+        }
+
+        for (j = 0; j < templates->count; j++)
+        {
+            template = (FieldActorTemplate*)((u8*)templates + templates->offsets[j]);
+
+            if (template->id == (state->group.bytes.template_index & 0xFF) && (template->flags >> 7))
+            {
+                return 1;
+            }
+        }
+    }
+
+    return 0;
+}
+
+/**
  * @brief Build the battle records of the party and a monster group and publish their counts.
  *
  * FIELD_VAR_ALLY_COUNT and FIELD_VAR_ENEMY_COUNT receive the record counts

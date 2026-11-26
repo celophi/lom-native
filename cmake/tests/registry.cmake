@@ -111,7 +111,7 @@ foreach(case IN ITEMS record replay v4 old)
 endforeach()
 lom_add_test(NAME session-switches-unknown TIER 0 NO_HEADLESS EXPECT_EXIT 2 LABELS platform session
     COMMAND lom-session-switches-smoke unknown)
-foreach(case IN ITEMS switches refused scripts dice api examples notices surface cards games relations toggles)
+foreach(case IN ITEMS switches refused scripts dice api examples notices surface cards games relations toggles options)
     lom_add_test(NAME mods-${case} TIER 0 NO_HEADLESS LABELS platform mods
         COMMAND lom-mods-smoke ${case} "${CMAKE_CURRENT_SOURCE_DIR}/tests/mods" "${CMAKE_CURRENT_SOURCE_DIR}/launcher/data/mods")
 endforeach()

@@ -1,0 +1,24 @@
+{
+  "id": "old-api",
+  "name": "old-api",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "game": "SLUS-01013",
+  "api": 3,
+  "options": [
+    {
+      "id": "x",
+      "name": "X",
+      "choices": [
+        {
+          "id": "a",
+          "name": "A"
+        },
+        {
+          "id": "b",
+          "name": "B"
+        }
+      ]
+    }
+  ]
+}

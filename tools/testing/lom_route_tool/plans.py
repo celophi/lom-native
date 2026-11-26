@@ -252,6 +252,8 @@ class Planner:
             self.fight(step)
         elif "experience" in step:
             self.lines.append(f"experience {step['experience']}" + (f" {step['character']}" if step.get("character") else ""))
+        elif "hit_points" in step:
+            self.lines.append(f"hit_points {step['hit_points']}")
         elif "watch" in step:
             self.lines.append(f"watch {step['watch']}")
         elif "place" in step:

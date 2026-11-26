@@ -1,0 +1,39 @@
+{
+  "format": 1,
+  "id": "mods-battles-win-regular",
+  "description": "With win_regular_battles on, a fight in RUI_B000 should be won as soon as it starts",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "switch": {
+        "name": "win_regular_battles",
+        "on": true
+      }
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "fight": 900,
+      "note": "the battle ends by itself; the baseline notes how many frames"
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

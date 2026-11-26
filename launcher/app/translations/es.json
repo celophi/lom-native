@@ -140,7 +140,7 @@
   "record_sessions": "Grabar las partidas para los informes de error",
   "record_sessions_note": "Permite reproducir un error tal y como ocurrió. Ocupa unos 16 MB por hora de juego, y se guardan 50 MB como máximo.",
   "game_discs_label": "Discos del juego (se necesita al menos uno)",
-  "game_discs_note": "Prepara la versión de EE. UU., la japonesa o las dos, y elige cuál quieres jugar.",
+  "game_discs_note": "Prepara la versión norteamericana, la japonesa o las dos, y elige cuál quieres jugar.",
   "play_edition": "Jugar la %1",
   "set_up": "Preparar...",
   "set_up_again": "Volver a preparar...",

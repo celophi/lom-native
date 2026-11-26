@@ -1,0 +1,10 @@
+{
+  "id": "no-fight-watch",
+  "name": "No fight watch",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod: no fight may start.",
+  "game": "SLUS-01013",
+  "api": 1,
+  "scripts": ["scripts/main.lua"]
+}

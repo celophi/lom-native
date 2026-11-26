@@ -1,0 +1,42 @@
+{
+  "format": 1,
+  "id": "mods-battles-skip-keeps-boss",
+  "description": "With no_regular_battles on, CV1_BS00's boss fight should still start and play out as normal",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "switch": {
+        "name": "no_regular_battles",
+        "on": true
+      }
+    },
+    {
+      "experience": 9999999
+    },
+    {
+      "enter": {
+        "scene": 89
+      },
+      "note": "CV1_BS00"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 320,
+        "z": -1
+      }
+    },
+    {
+      "fight": 4000,
+      "confirm_text": true,
+      "note": "the baseline notes how long the battle took"
+    },
+    {
+      "checkpoint": "fought"
+    }
+  ]
+}

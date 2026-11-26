@@ -90,7 +90,7 @@ DiscFixture DiscFixture::create(const std::filesystem::path& root) {
     us["region"] = "NTSC-U";
     us["serial"] = "SLUS-01013";
     us["executable"] = executable;
-    us["display_name"] = "US version (NTSC-U)";
+    us["display_name"] = "North American version (NTSC-U)";
     us["card_prefix"] = "BASLUS-01013";
     us["runtime"] = "lom";
     us["raw"]["sha1"] = fixture.raw_sha1;

@@ -1,0 +1,50 @@
+{
+  "id": "picker",
+  "name": "Picker",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "game": "SLUS-01013",
+  "description": "A test mod.",
+  "api": 4,
+  "in_game_toggle": true,
+  "options": [
+    {
+      "id": "speed",
+      "name": "Speed",
+      "description": "How fast.",
+      "default": "fast",
+      "choices": [
+        {
+          "id": "slow",
+          "name": "Slow",
+          "description": "Watches every movie.",
+          "switches": {
+            "skip_movies": true
+          }
+        },
+        {
+          "id": "fast",
+          "name": "Fast",
+          "description": "Runs.",
+          "switches": {
+            "always_run": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "mode",
+      "name": "Mode",
+      "choices": [
+        {
+          "id": "first",
+          "name": "First"
+        },
+        {
+          "id": "second",
+          "name": "Second"
+        }
+      ]
+    }
+  ]
+}

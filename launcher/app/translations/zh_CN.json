@@ -140,7 +140,7 @@
   "record_sessions": "为问题报告录制游戏过程",
   "record_sessions_note": "可以让问题按发生时的样子完整重现。每小时游戏大约占用 16 MB，最多保留 50 MB。",
   "game_discs_label": "游戏光盘（至少需要一个）",
-  "game_discs_note": "设置美版、日版或两者，然后选择要玩哪个版本。",
+  "game_discs_note": "设置北美版、日版或两者，然后选择要玩哪个版本。",
   "play_edition": "玩%1",
   "set_up": "设置...",
   "set_up_again": "重新设置...",

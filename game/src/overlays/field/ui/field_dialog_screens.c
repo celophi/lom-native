@@ -27,6 +27,7 @@
 #include "main/game_state.h"
 #include "overlays/field/field_input.h"
 #include "overlays/field/field_numeric_sprites.h"
+#include "overlays/field/field_player_records.h"
 #include "overlays/field/field_portrait.h"
 #include "overlays/field/field_scene_transition.h"
 #include "overlays/field/field_sound.h"
@@ -38,6 +39,8 @@
 extern void* lom_native_return_choices(OT_TYPE* ot, void* cursor, s32 x, s32 y);
 
 #define FIELD_TIMED_PANEL_RESOURCE_BASE 0x1060
+
+#define FIELD_RETURN_TO_TITLE 1
 #define FIELD_TIMED_PANEL_VRAM_X 320
 #define FIELD_TIMED_PANEL_TEXELS_PER_WORD 4
 #define FIELD_TIMED_PANEL_FRAMES 150
@@ -983,18 +986,56 @@ static POLY_FT4* field_draw_animated_icon(OT_TYPE* ordering_table, POLY_FT4* pri
 static void* field_draw_animated_small_icon(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y);
 static void* field_draw_animated_marker(OT_TYPE* ordering_table, POLY_FT4* prim, s32 x, s32 y);
 
+static u8 s_field_entrance_snapshot[SAVED_GAME_DATA_SIZE];
+
+static s32 s_field_entrance_pending;
+
+static u32 s_field_entry_hp[FIELD_PARTY_COUNT];
+
+/**
+ * @brief Have the next scene's retry snapshot also be the entrance's, the one
+ *        Continue goes back to with the continue_from_entrance switch.
+ * @note Native: FIELD calls it each time it starts, after the world map, the
+ *       title screen or loading a save.
+ */
+void field_mark_entrance(void)
+{
+    s_field_entrance_pending = 1;
+}
+
 /**
  * @brief Save the game state before a battle so that it can be retried.
+ * @note Native: also keeps the party's hit points as they come in, for the
+ *       continue_without_healing switch, and the first scene's state after
+ *       FIELD starts, for continue_from_entrance (field_mark_entrance).
  */
 void field_save_retry_snapshot(void)
 {
+    s32 i;
+
     bcopy((u8*)g_saved_game_ctx, g_field_retry_snapshot, SAVED_GAME_DATA_SIZE);
+
+    if (s_field_entrance_pending)
+    {
+        bcopy((u8*)g_saved_game_ctx, s_field_entrance_snapshot, SAVED_GAME_DATA_SIZE);
+        s_field_entrance_pending = 0;
+    }
+
+    for (i = 0; i < FIELD_PARTY_COUNT; i++)
+    {
+        s_field_entry_hp[i] = g_field_object_states[i].current_hp.word;
+    }
 }
 
 /**
  * @brief Run the return-to-title prompt: take its choice, then quit or retry the battle.
  * @note Retrying restores g_field_retry_snapshot, refills the party's HP and
  *       technique gauges and restarts the scene.
+ * @note Native: the switches change what Continue does. With no_continue
+ *       there's only the title screen to choose. With continue_from_entrance
+ *       it restores the first scene since FIELD started instead, with
+ *       everything since then undone. With continue_without_healing the party
+ *       gets back the hit points they came into the scene with, not all of them.
  */
 void field_handle_return_to_title_prompt(void)
 {
@@ -1003,6 +1044,9 @@ void field_handle_return_to_title_prompt(void)
     u32 hp_mask, status_mask;
     s16 full_gauge;
     FieldPlayerRecord* player;
+    s32 from_entrance;
+    s32 without_healing;
+    u32 hp;
 
     ControllerPortState* controller_ports = lom_input_ports();
 
@@ -1017,7 +1061,8 @@ void field_handle_return_to_title_prompt(void)
                 return;
             }
 
-            bcopy(g_field_retry_snapshot, (u8*)g_saved_game_ctx, SAVED_GAME_DATA_SIZE);
+            from_entrance = lom_native_switch(LOM_SWITCH_CONTINUE_FROM_ENTRANCE);
+            bcopy(from_entrance ? s_field_entrance_snapshot : g_field_retry_snapshot, (u8*)g_saved_game_ctx, SAVED_GAME_DATA_SIZE);
 
             if (g_saved_game_ctx->retry_count != -1)
             {
@@ -1029,8 +1074,26 @@ void field_handle_return_to_title_prompt(void)
             controller_ports[1].actuator_control.fields.large_motor_command = 0;
             controller_ports[0].actuator_control.fields.large_motor_command = 0;
             field_rebuild_party_actions(0);
-            field_set_scene_parameters(g_field_pending_scene_id, g_field_pending_object_id, g_field_pending_spawn_id, g_field_pending_music_id,
-                                       g_field_pending_sound_bank_id, g_field_pending_secondary_music_id);
+
+            if (from_entrance)
+            {
+                for (actor_index = 0; actor_index < FIELD_PARTY_COUNT; actor_index++)
+                {
+                    g_field_player_records[actor_index].resource_id = 0;
+                    g_field_player_records[actor_index].portrait_index = FIELD_PORTRAIT_NONE;
+                }
+
+                g_current_land = g_saved_game_ctx->location.bits.current_land;
+                field_set_scene_parameters(g_saved_game_ctx->scene_id, g_saved_game_ctx->object_id, g_saved_game_ctx->spawn.bits.id,
+                                           g_saved_game_ctx->music_id, g_saved_game_ctx->sound_bank_id, g_saved_game_ctx->secondary_music_id);
+            }
+            else
+            {
+                field_set_scene_parameters(g_field_pending_scene_id, g_field_pending_object_id, g_field_pending_spawn_id, g_field_pending_music_id,
+                                           g_field_pending_sound_bank_id, g_field_pending_secondary_music_id);
+            }
+
+            without_healing = !from_entrance && lom_native_switch(LOM_SWITCH_CONTINUE_WITHOUT_HEALING);
             actor_index = 0;
             hp_mask = 0xFFFFFF;
             status_mask = 0xFF000000;
@@ -1040,8 +1103,15 @@ void field_handle_return_to_title_prompt(void)
             {
                 actor = &g_field_object_states[actor_index];
                 player = &g_field_player_records[actor_index];
-                actor->hp_display.word = (actor->hp_display.word & status_mask) | (actor->maximum_hp & hp_mask);
-                actor->current_hp.word = actor->maximum_hp & hp_mask;
+                hp = actor->maximum_hp & hp_mask;
+
+                if (without_healing && s_field_entry_hp[actor_index] != 0 && s_field_entry_hp[actor_index] < hp)
+                {
+                    hp = s_field_entry_hp[actor_index];
+                }
+
+                actor->hp_display.word = (actor->hp_display.word & status_mask) | hp;
+                actor->current_hp.word = hp;
 
                 if (player->head.bytes.flags & FIELD_PLAYER_ACTIVE)
                 {
@@ -1060,7 +1130,11 @@ void field_handle_return_to_title_prompt(void)
             return;
         }
 
-        if (g_pad_input & (PAD_BTN_DPAD | PAD_BTN_SELECT))
+        if (lom_native_switch(LOM_SWITCH_NO_CONTINUE))
+        {
+            g_field_return_to_title_choice = FIELD_RETURN_TO_TITLE;
+        }
+        else if (g_pad_input & (PAD_BTN_DPAD | PAD_BTN_SELECT))
         {
             field_play_sound(SFX_CURSOR, AKAO_PAN_CENTER);
             g_field_return_to_title_choice ^= 1;
@@ -1305,7 +1379,7 @@ void field_setup_return_to_title_prompt(void)
 
     g_field_return_to_title_prompt_delay = 0x3C;
     g_field_return_to_title_prompt_state = 3;
-    g_field_return_to_title_choice = 0;
+    g_field_return_to_title_choice = lom_native_switch(LOM_SWITCH_NO_CONTINUE) ? FIELD_RETURN_TO_TITLE : 0;
     field_upload_player_icons();
 
     for (i = 2; i >= 0; i--)

@@ -50,7 +50,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should show Ready to p
     open_launcher();
 
     EXPECT_EQ(heading(), "Ready to play");
-    EXPECT_EQ(text_of("installedEdition"), "US version (NTSC-U) installed");
+    EXPECT_EQ(text_of("installedEdition"), "North American version (NTSC-U) installed");
 }
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should explain that the game files are not available when the extracted folder is missing") {

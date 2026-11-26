@@ -182,13 +182,14 @@ void Menu::draw_value(const MenuRow& row, int index, ImVec2 right_middle, bool f
     {
     case MenuRow::Kind::Choice:
     {
-        const float width = px(choice_width);
+        const ImVec2 size = text_size(body_font_, value_size, row.value);
+        const float width = std::max(px(choice_width), size.x + px(choice_text_gap) * 2);
         const float right_arrow = right_middle.x - arrow;
         const float left_arrow = right_arrow - arrow * 2 - width;
         draw_arrow(list_, ImVec2(right_arrow, right_middle.y), arrow, true, arrow_color);
         draw_arrow(list_, ImVec2(left_arrow, right_middle.y), arrow, false, arrow_color);
-        const ImVec2 size = text_size(body_font_, value_size, row.value);
-        text(body_font_, value_size, ImVec2((left_arrow + right_arrow) * 0.5f - size.x * 0.5f, right_middle.y - size.y * 0.5f), ink, row.value);
+        text(body_font_, value_size, ImVec2((left_arrow + right_arrow) * 0.5f - size.x * 0.5f, right_middle.y - size.y * 0.5f), row.dimmed ? ink_dim : ink,
+             row.value);
         break;
     }
 
@@ -237,6 +238,27 @@ void Menu::draw_value(const MenuRow& row, int index, ImVec2 right_middle, bool f
 }
 
 /**
+ * @brief Draw the line that ties an option to the mod's switch above it: down
+ *        from the row above, and across to the option's label.
+ * @param row The option's row.
+ * @param y Its top.
+ * @param height Its height.
+ * @param left The page's left edge.
+ * @param row_left The option row's left edge, indented.
+ * @param more True when the next row is another option of the same mod, so
+ *        the line carries on down.
+ */
+void Menu::draw_child_guide(const MenuRow& row, float y, float height, float left, float row_left, bool more)
+{
+    const float line = std::max(text_size(body_font_, label_size, row.label).y, px(switch_height));
+    const float middle = y + px(row_pad_y) + line * 0.5f;
+    const float x = left + px(child_indent) * 0.5f;
+    const float width = std::max(1.0f, px(guide_width));
+    list_->AddLine(ImVec2(x, y - px(row_gap)), ImVec2(x, more ? y + height : middle), guide, width);
+    list_->AddLine(ImVec2(x, middle), ImVec2(row_left, middle), guide, width);
+}
+
+/**
  * @brief Draw one row: its label, its value and, when it's focused, its
  *        description.
  * @param row The row.
@@ -264,7 +286,7 @@ float Menu::draw_row(const MenuRow& row, int index, float y, float left, float r
     }
 
     const float middle = y + px(row_pad_y) + line * 0.5f;
-    text(body_font_, label_size, ImVec2(left + px(row_pad_x), middle - label.y * 0.5f), ink, row.label);
+    text(body_font_, label_size, ImVec2(left + px(row_pad_x), middle - label.y * 0.5f), row.dimmed ? ink_dim : ink, row.label);
     draw_value(row, index, ImVec2(right - px(row_pad_x), middle), focused);
 
     if (description.y > 0)
@@ -385,7 +407,15 @@ void Menu::draw_rows()
             continue;
         }
 
-        y += draw_row(rows[i], i, y, left, right, focused(i)) + px(row_gap);
+        const float row_left = rows[i].child ? left + px(child_indent) : left;
+        const float height = draw_row(rows[i], i, y, row_left, right, focused(i));
+
+        if (rows[i].child)
+        {
+            draw_child_guide(rows[i], y, height, left, row_left, i + 1 < static_cast<int>(rows.size()) && rows[i + 1].child);
+        }
+
+        y += height + px(row_gap);
     }
 
     std::string message = model_.message();

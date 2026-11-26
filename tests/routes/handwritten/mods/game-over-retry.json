@@ -1,0 +1,121 @@
+{
+  "format": 1,
+  "id": "mods-game-over-retry",
+  "description": "With continue_without_healing on, Continue should try the screen again with the hit points the hero came into it with",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "steps": [
+    {
+      "switch": {
+        "name": "no_natural_healing",
+        "on": true
+      }
+    },
+    {
+      "switch": {
+        "name": "continue_without_healing",
+        "on": true
+      }
+    },
+    {
+      "hit_points": 20,
+      "note": "hurt before coming into the ruins"
+    },
+    {
+      "enter": {
+        "scene": 420
+      },
+      "note": "RUI_B000"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "x": 752,
+        "z": -1
+      },
+      "note": "into battle zone 0"
+    },
+    {
+      "wait": 900,
+      "note": "the monsters finish the hero off and the game over screen comes up"
+    },
+    {
+      "checkpoint": "game-over"
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "press": {
+        "buttons": [
+          "cross"
+        ],
+        "frames": 2
+      }
+    },
+    {
+      "wait": 60
+    },
+    {
+      "wait": 300
+    },
+    {
+      "checkpoint": "after"
+    }
+  ]
+}

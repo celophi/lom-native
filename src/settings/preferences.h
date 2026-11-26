@@ -5,6 +5,9 @@
 #include "audio_settings.h"
 #include "display_settings.h"
 
+#include <map>
+#include <string>
+
 namespace lom::settings
 {
 
@@ -28,11 +31,13 @@ struct Preferences
 
     bool remaster_effects = false;
 
+    std::map<std::string, std::string> mod_options;
+
     bool operator==(const Preferences& other) const
     {
         return display == other.display && audio == other.audio && controls == other.controls && pause_unfocused == other.pause_unfocused &&
                hd_backgrounds == other.hd_backgrounds && hd_ui == other.hd_ui && text_language == other.text_language &&
-               soundtrack == other.soundtrack && remaster_effects == other.remaster_effects;
+               soundtrack == other.soundtrack && remaster_effects == other.remaster_effects && mod_options == other.mod_options;
     }
 };
 

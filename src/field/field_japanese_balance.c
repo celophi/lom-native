@@ -111,7 +111,7 @@ void lom_japanese_balance_scene(int scene, unsigned char* scene_file, unsigned i
 
     if (records > actors || actors > size || fnv1a(scene_file + records, actors - records) != entry->records_hash)
     {
-        fprintf(stderr, "[lom-native] Japanese balance: scene %d isn't the one on the US disc, so it keeps its own numbers\n", scene);
+        fprintf(stderr, "[lom-native] Japanese balance: scene %d isn't the one on the North American disc, so it keeps its own numbers\n", scene);
         return;
     }
 

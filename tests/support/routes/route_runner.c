@@ -463,6 +463,25 @@ static void add_experience(unsigned frame)
 }
 
 /**
+ * @brief Set the hero's hit points, from 1 to their maximum, for routes that
+ *        need the party to fall.
+ * @param frame Current FIELD frame.
+ */
+static void set_hit_points(unsigned frame)
+{
+    FieldObjectState* hero = &g_field_object_states[0];
+    unsigned hp = (unsigned)g_run.steps[g_run.step].args[HIT_POINTS_ARG_VALUE];
+    char note[64];
+
+    hp = hp < 1 ? 1 : hp > hero->maximum_hp ? hero->maximum_hp : hp;
+    hero->current_hp.word = hp;
+    hero->hp_display.bits.value = hp;
+    snprintf(note, sizeof(note), "hero at %u of %u hp", hp, (unsigned)hero->maximum_hp);
+    route_record_note(note);
+    next_step(frame);
+}
+
+/**
  * @brief Have a guest join the party.
  * @param frame Current FIELD frame.
  */
@@ -619,6 +638,9 @@ void start_step(unsigned frame, int z)
     case STEP_EXPERIENCE:
         add_experience(frame);
         break;
+    case STEP_HIT_POINTS:
+        set_hit_points(frame);
+        break;
     case STEP_GUEST:
         add_guest(frame);
         break;
@@ -748,8 +770,8 @@ static void start_frame(unsigned frame, int scene, int z)
 {
     StepKind kind = g_run.steps[g_run.step].kind;
 
-    if (kind == STEP_ENTER || kind == STEP_EXIT || kind == STEP_WALK || kind == STEP_TALK || kind == STEP_EXPERIENCE || kind == STEP_GUEST ||
-        kind == STEP_COMPANION)
+    if (kind == STEP_ENTER || kind == STEP_EXIT || kind == STEP_WALK || kind == STEP_TALK || kind == STEP_EXPERIENCE || kind == STEP_HIT_POINTS ||
+        kind == STEP_GUEST || kind == STEP_COMPANION)
     {
         g_run.controllable = 0;
         s_wait_control_scene = scene;
