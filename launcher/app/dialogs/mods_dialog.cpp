@@ -227,6 +227,10 @@ void ModsDialog::save_seed() {
         return;
     }
 
+    if (seed == library_.seed()) {
+        return;
+    }
+
     std::string error;
     ModLibrary::resolve_conflicts(entries_);
 
@@ -409,6 +413,11 @@ void ModsDialog::remove_mod() {
     if (save()) {
         reload(std::string());
     }
+}
+
+void ModsDialog::done(int result) {
+    save_seed();
+    QDialog::done(result);
 }
 
 int ModsDialog::selected_row() const {

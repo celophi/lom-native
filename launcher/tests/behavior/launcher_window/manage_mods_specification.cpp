@@ -118,6 +118,14 @@ LOM_SPEC(ManageModsSpecification, "A seed typed while a mod that asks for one is
     });
 
     EXPECT_EQ(enabled_list(), "shuffler\n");
+
+    in_the_mods_window([](QDialog* dialog, QListWidget*) {
+        auto* seed = dialog->findChild<QLineEdit*>("modSeed");
+        ASSERT_NE(seed, nullptr);
+        seed->setText("12345");
+    });
+
+    EXPECT_EQ(enabled_list(), "shuffler\nseed=12345\n");
 }
 
 LOM_SPEC(ManageModsSpecification, "Moving a mod up should change the order the game loads them in") {

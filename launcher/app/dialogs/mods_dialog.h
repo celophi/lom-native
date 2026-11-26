@@ -44,6 +44,13 @@ class ModsDialog : public QDialog {
      */
     ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& desktop, QWidget* parent);
 
+    /**
+     * @brief Close the window, first saving a seed that was typed but not yet
+     *        saved, since closing doesn't always finish editing the Seed box.
+     * @param result How it was closed.
+     */
+    void done(int result) override;
+
   private:
     /**
      * @brief Read the mods folder again and show it, keeping a mod selected.
@@ -74,8 +81,8 @@ class ModsDialog : public QDialog {
 
     /**
      * @brief Save the seed typed in the Seed row, or none when it's empty, so
-     *        new games get their own. One that isn't a seed isn't saved, and
-     *        the status says why.
+     *        new games get their own, unless it's the one mods.ini already
+     *        has. One that isn't a seed isn't saved, and the status says why.
      */
     void save_seed();
 
