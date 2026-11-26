@@ -60,11 +60,11 @@ const std::string* text_field(const Json& manifest, const char* key)
 /**
  * @brief Name a version of the game the way a player knows it.
  * @param serial Its disc's serial.
- * @return Like "the US Legend of Mana (SLUS-01013)".
+ * @return Like "the North American Legend of Mana (SLUS-01013)".
  */
 std::string game_name(const std::string& serial)
 {
-    const char* region = serial == us_game_serial ? "US " : serial == jp_game_serial ? "Japanese " : "";
+    const char* region = serial == us_game_serial ? "North American " : serial == jp_game_serial ? "Japanese " : "";
     return std::string("the ") + region + "Legend of Mana (" + serial + ")";
 }
 

@@ -1,9 +1,9 @@
 Legend of Mana Native for Mac
 
 It runs on Apple Silicon Macs (M1 and newer) with macOS 13 or newer. You also
-need your own copy of Legend of Mana, the US version (SLUS-01013) or the
-Japanese one (SLPS-02170), as a disc image or an extracted folder. No game
-data is included.
+need your own copy of Legend of Mana, the North American version (SLUS-01013)
+or the Japanese one (SLPS-02170), as a disc image or an extracted folder. No
+game data is included.
 
 
 Installing it

@@ -51,7 +51,7 @@ author.hard-mode/
 | `id` | needed | The mod's id. It has to match the folder's name. |
 | `name` | needed | The name the Mods window shows. |
 | `version` | needed | Three numbers, like `1.0.0`. |
-| `game` | needed | The disc it's for: `"SLUS-01013"` (the US version), `"SLPS-02170"` (the Japanese one), or a list of both. |
+| `game` | needed | The disc it's for: `"SLUS-01013"` (the North American version), `"SLPS-02170"` (the Japanese one), or a list of both. |
 | `api` | needed | The mod API it was made for. See below. |
 | `author` | | Who made it. |
 | `description` | | A sentence or two about it, for the Mods window. |
@@ -84,7 +84,7 @@ A switch changes one rule of the game. A mod sets it with `true` or `false`, and
 | `no_continue` | The game over screen has no Continue, only the title screen. |
 | `continue_from_entrance` | Continue takes you back to the first screen since you came in from the world map or loaded your save, with everything since then undone and the party's hit points full. |
 | `continue_without_healing` | Continue tries the screen again with the hit points the party came into it with, not full ones. |
-| `japanese_balance` | The US version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the US version. |
+| `japanese_balance` | The North American version plays with the Japanese version's combat and item numbers: monsters level up faster, have the Japanese stats and drops, stats count for more in attack and defense, weaknesses count for less, techniques hit harder, pets' armor protects them, and forging and tempering use the Japanese numbers and costs. It only works on the North American version. |
 
 A mod that only sets switches doesn't need any scripts. The ones that come with lom-native are like that. A mod, or one of its choices, can set more than one: in Skip or win battles, winning regular fights instantly turns on `win_regular_battles` and `skip_battle_results`, so those fights don't stop for a results window.
 

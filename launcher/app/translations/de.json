@@ -140,7 +140,7 @@
   "record_sessions": "Spielsitzungen für Fehlerberichte aufzeichnen",
   "record_sessions_note": "Damit lässt sich ein Fehler genau so nachspielen, wie er passiert ist. Das braucht etwa 16 MB pro Spielstunde, und es werden höchstens 50 MB behalten.",
   "game_discs_label": "Spiel-Discs (mindestens eine ist nötig)",
-  "game_discs_note": "Richte die US-Version, die japanische Version oder beide ein, und wähle dann, welche du spielen willst.",
+  "game_discs_note": "Richte die nordamerikanische Version, die japanische Version oder beide ein, und wähle dann, welche du spielen willst.",
   "play_edition": "%1 spielen",
   "set_up": "Einrichten...",
   "set_up_again": "Neu einrichten...",

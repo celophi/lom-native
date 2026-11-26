@@ -472,7 +472,7 @@ static int games()
 {
     CHECK(load("games") == 2 && index_of("both-games") == 0 && index_of("us-only") == 1);
     CHECK(lom_native_mods_refused_count() == 1);
-    CHECK_DETAIL(std::strstr(lom_native_mods_refused(0), "jp-only: it's for SLPS-02170, and this is the US Legend of Mana (SLUS-01013)") != nullptr,
+    CHECK_DETAIL(std::strstr(lom_native_mods_refused(0), "jp-only: it's for SLPS-02170, and this is the North American Legend of Mana (SLUS-01013)") != nullptr,
                  lom_native_mods_refused(0));
     lom_native_mods_stop();
 

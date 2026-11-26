@@ -7,7 +7,7 @@
       "region": "NTSC-U",
       "serial": "SLUS-01013",
       "executable": "SLUS_010.13",
-      "display_name": "US version (NTSC-U)",
+      "display_name": "North American version (NTSC-U)",
       "card_prefix": "BASLUS-01013",
       "runtime": "lom",
       "raw": {
