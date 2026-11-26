@@ -6,6 +6,7 @@
 #include <memory.h>
 #include <rand.h>
 #include "lom_native_input.h"
+#include "lom_native_switches.h"
 
 #include "../internal/field_ability_progression.h"
 #include "../internal/field_actor_behavior.h"
@@ -1463,6 +1464,9 @@ void field_update_actor_movement_animation(FieldActor* actor, s32 delta_x, s32 d
 /**
  * @brief Run one frame of an actor's current command (FIELD_ACTOR_COMMAND_*).
  * @param actor Actor whose command is advanced.
+ * @note Native: with the No natural healing switch on, a party member the
+ *       defeat timer gets back up has 1 HP, or a quarter
+ *       (field_get_up_without_healing), not full.
  */
 void field_update_actor_command(FieldActor* actor)
 {
@@ -1668,6 +1672,12 @@ void field_update_actor_command(FieldActor* actor)
             g_field_player_records[actor->object_index].revive_time = g_field_player_records[actor->object_index].revive_delay = 0;
             field_revive_actor(actor->object_index, g_field_player_records[actor->object_index].revive_animation,
                                g_field_player_records[actor->object_index].revive_effect, g_field_player_records[actor->object_index].revive_sound);
+
+            if (lom_native_switch(LOM_SWITCH_NO_NATURAL_HEALING))
+            {
+                field_get_up_without_healing(&g_field_object_states[actor->object_index]);
+            }
+
             return;
         }
 

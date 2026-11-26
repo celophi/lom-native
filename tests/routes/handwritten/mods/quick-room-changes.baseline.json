@@ -1,0 +1,87 @@
+{
+ "route": "mods-quick-room-changes",
+ "description": "With Quick room changes on, walking off WD1_BF02 by exit 0 should still lead to scene 127",
+ "plan": "# mods-quick-room-changes: With Quick room changes on, walking off WD1_BF02 by exit 0 should still lead to scene 127\nlimit 20000\nenter 32907 1 16718847 0\ncheckpoint entered\nexit 0 127\ncheckpoint arrived\nwait 30\ncheckpoint settled\n",
+ "format": 3,
+ "checkpoints": [
+  "entered frame 229 scene 139 save 3137b4e59284e5a5 state bd4ff8bbfc06be55 ram 0000000000000000",
+  "arrived frame 277 scene 127 save 81756d6a2ed8a781 state c4cac569b474ef25 ram 0000000000000000",
+  "settled frame 309 scene 127 save 81756d6a2ed8a781 state 15a4360f9e1d1bf6 ram 0000000000000000"
+ ],
+ "changes": [
+  {
+   "checkpoint": "entered",
+   "changes": [
+    "frame 229, scene 139 (WD1_BF02)",
+    "scene id 19 to 32907",
+    "object id 0 to 1",
+    "music id 7 to 27",
+    "story word 24: 00000000 to f2f20000 (set 0x311, 0x314, 0x315, 0x316, 0x317, 0x319, 0x31c, 0x31d, 0x31e, 0x31f)",
+    "story word 32: 00000000 to 00010000 (set 0x410)",
+    "story word 33: 00000000 to 08000000 (set 0x43b)",
+    "story word 43: 00000000 to 00006400 (set 0x56a, 0x56d, 0x56e)",
+    "actor 0 (the hero): at (31, 236), facing 0, animation 130,0, presence 0, control 2, command 129",
+    "actor 3 (layout record 0): at (245, 190), facing 0, animation 0,0, presence 0, control 2, command 0",
+    "actor 4 (layout record 1): at (460, 180), facing 128, animation 0,0, presence 0, control 2, command 141"
+   ]
+  },
+  {
+   "checkpoint": "arrived",
+   "changes": [
+    "frame 277, scene 127 (WD1_FRK0)",
+    "spawn 0 to 1",
+    "scene id 32907 to 127",
+    "object id 1 to 0",
+    "story word 24: f2f20000 to d2d20000 (cleared 0x315, 0x31d)",
+    "scene word 17: 001f00ec to 01e000d4",
+    "scene word 21: 00000000 to 0000c000",
+    "scene word 47: 000000e4 to 00000113",
+    "scene word 66: 366a0000 to 1c6a0000",
+    "actor 0 (the hero): moved (31, 236) to (480, 212); direction 0 to 128; animation 130,0 to 2,0",
+    "actor 3 (layout record 0): gone",
+    "actor 4 (layout record 1): gone"
+   ]
+  },
+  {
+   "checkpoint": "settled",
+   "changes": [
+    "frame 309, scene 127 (WD1_FRK0)",
+    "scene word 47: 00000113 to 00000133",
+    "actor 0 (the hero): control 2 to 0; command 129 to 0"
+   ]
+  }
+ ],
+ "notes": [
+  "game state 8 at vblank 0",
+  "game state 2 at vblank 40",
+  "game state 7 at vblank 121",
+  "walk to (8, 240): 1 waypoints"
+ ],
+ "end": "steps 6 of 6 failed 0 cover_dropped 0",
+ "coverage": {
+  "instruction_end": 57,
+  "instruction": 171,
+  "scene": 3,
+  "song": 3,
+  "exit": 1
+ },
+ "pictures": "607efce6 3414da49 78856917 7c7d8166 fdfd9e8d 3a4e0eae 090ac8d6 e9e7a527 d07b9f90 1846bc44 61be4ff7 8a54fad0 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec ee6576bf f5d6b05c 98b8e3e7 76f0fd85 947fe94b 9b05699f c0b6b185 a2fc11d1 ee6576bf f5d6b05c 98b8e3e7 76f0fd85 b05c41d0 5364481a ac7f4786 18fcbaec 46c09194 b6aa0ad4 1ae6aad2 607f9703 6d1b0b66 11e11577 201a4f88 15c0e29a 46c09194 b6aa0ad4 1ae6aad2 607f9703 f84a6af0 f2b1ec54 8df3620f 92d00e6d 0c1f49ba 6f44b3f4 bc0290b0 df5e3e87 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 491f61a4 dff8f394 6961a783 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a 3f2ab9db 254960c6 332bbd80 44910031 75ff9130 1d0ea656 22743d69 8ed1629a 97686196 9eea908a de4637ea 9f8b79a9 75ff9130 1d0ea656 22743d69 8ed1629a dff8f394 6961a783 105c163e 212258e6 e28e3ca4 05752cb7 c36efea3 491f61a4 ca20fcfa c53bce2b ff0715a6 3f794547 e28e3ca4 05752cb7 c36efea3 6b738406 f6954a03 f7911d99 304ae78e 73ae3e76 e6f09114 8c3adc16 110b76b9 6b738406 af9f22dc a682fd8c adf73567 550d4332 2ecb7bb7 17f7f356 7cb7ec0f 484580a1 62232129 cc8df9f6 eff935e8 65af86ba 65255c8d a1a92cd1 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf 22016543 5caf5abe f831abf0 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 52b66a66 84916772 01347d53 03170cd5 d30b07a4 0afae476 874c5ddf a5b1bf72 52b66a66 84916772 7d7d8e0a 4c484312 3eb6a3b5 57aec40d 874c5ddf a5b1bf72 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 1092726d 5b39ced1 cdffc792 1435504f c5a8585f ac33cf23 3e7bc757 8d7f9fbf 71d7c561 5b39ced1 cdffc792 1435504f c5a8585f e97894f4 be30a339 33b21dd5 840c0f71 ce6ff8bb 7fffd764 220e674f 39c89f1a d8988c1a 48b7a0d0 eb3b3ebb de16c02a c4564b16 e4f88186 6fabb54e ec2b511a 25f596f4 f03e307e 3242a2c3 b4e34bdc ec0e3a4e 14650fb0 08bf831a b9d91390 5647f7a2 7b7be33c 459ad709 0ab7ed47 1a0bc0b5 79f30fae 95e82099 c125a460 80819b02 7cda789f 8c89ff29 941ad26a 5fb1b1f4 941ad26a 5fb1b1f4 941ad26a b8a9e139 eca19810 175eb7af eca19810 175eb7af eca19810 f1bd1f00 a8895e95 c1699a4c 481b2257 c1699a4c 481b2257 63c17dc1 12ad790f 045f20b4 12ad790f e902d237 55338b36 c0e4fc59 6aa3aee8 cafadb12 d5559cbe fb2fe501 2b50178f 1c5f6f05 eb3780f4 d9e73ad7 5fc0ad82 accdc0fd 14650fb0 0a9860bd 1466c5da 6dcf0e75 d8c92345 a035b77f b3e3e0d6 c6c59fe6 42c8d640 df248916 42c8d640 df248916 30ef1797 3b4babb3 56979113 9aadd97d 56979113 9aadd97d 56979113 514704ff fe3cc5f9 bed6b7bd fe3cc5f9 a79a9c5d 9266e94a b781eccb adb1afde 1642d27d 49756469 b1741f57 49756469 38cbf0ee 8c9c69c3 b7e64d4d 05915f91",
+ "stretches": [
+  {
+   "frames": 230,
+   "sha256": "7af8ecd23b6be73f4cc15026201f2f06"
+  },
+  {
+   "frames": 48,
+   "sha256": "8f8950012db984566314766e1a434d7b"
+  },
+  {
+   "frames": 32,
+   "sha256": "1d65c0a0c28ecd8e4d0a32c61ceda59c"
+  },
+  {
+   "frames": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb924"
+  }
+ ]
+}

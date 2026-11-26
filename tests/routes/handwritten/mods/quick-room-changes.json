@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "id": "mods-quick-room-changes",
+  "description": "With Quick room changes on, walking off WD1_BF02 by exit 0 should still lead to scene 127",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "quick-room-changes",
+  "steps": [
+    {
+      "enter": {
+        "scene": 139
+      },
+      "note": "WD1_BF02"
+    },
+    {
+      "checkpoint": "entered"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "to scene 127, a quick room change"
+    },
+    {
+      "checkpoint": "arrived"
+    },
+    {
+      "wait": 30,
+      "note": "the new room's fade in has finished"
+    },
+    {
+      "checkpoint": "settled"
+    }
+  ]
+}

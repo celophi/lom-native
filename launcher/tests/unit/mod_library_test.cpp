@@ -192,6 +192,47 @@ TEST(ModLibrary, saves_the_enabled_mods_in_order) {
     EXPECT_EQ(ids(library.scan()), (std::vector<std::string>{"two", "one"}));
 }
 
+TEST(ModLibrary, keeps_the_seed_for_new_games_beside_the_enabled_mods) {
+    const std::filesystem::path folder = scratch();
+    ASSERT_TRUE(AtomicFile::write(folder / "shuffler" / "mod.json",
+                                  "{\"id\": \"shuffler\", \"name\": \"Shuffler\", \"version\": \"1.0.0\", \"game\": \"SLUS-01013\", \"api\": 5, "
+                                  "\"seed\": true, \"scripts\": [\"scripts/main.lua\"]}\n",
+                                  nullptr));
+    ASSERT_TRUE(AtomicFile::write(folder / "shuffler" / "scripts" / "main.lua", "return 1\n", nullptr));
+    write_mod(folder, "plain", "plain");
+    ModLibrary library(folder);
+    std::vector<ModEntry> entries = library.scan();
+    std::string error;
+
+    EXPECT_FALSE(library.seed());
+    EXPECT_FALSE(ModLibrary::wants_seed(entries));
+    for (ModEntry& entry : entries) {
+        entry.enabled = entry.id == "shuffler";
+    }
+    EXPECT_TRUE(ModLibrary::wants_seed(entries));
+    EXPECT_TRUE(find(entries, "shuffler")->refused.empty()) << find(entries, "shuffler")->refused;
+
+    ASSERT_TRUE(library.save(entries, 4294967295u, error)) << error;
+    EXPECT_EQ(AtomicFile::read(folder / "mods.ini", nullptr), std::optional<std::string>("shuffler\nseed=4294967295\n"));
+    EXPECT_EQ(library.seed(), std::optional<std::uint32_t>(4294967295u));
+    EXPECT_EQ(ids(library.scan()), (std::vector<std::string>{"shuffler", "plain"}));
+    EXPECT_TRUE(library.scan()[0].enabled);
+
+    entries[1].enabled = true;
+    ASSERT_TRUE(library.save(entries, error)) << error;
+    EXPECT_EQ(library.seed(), std::optional<std::uint32_t>(4294967295u));
+
+    ASSERT_TRUE(library.save(entries, std::nullopt, error)) << error;
+    EXPECT_FALSE(library.seed());
+    EXPECT_EQ(AtomicFile::read(folder / "mods.ini", nullptr)->find("seed="), std::string::npos);
+
+    EXPECT_EQ(ModLibrary::parse_seed("0"), std::optional<std::uint32_t>(0u));
+    EXPECT_FALSE(ModLibrary::parse_seed("4294967296"));
+    EXPECT_FALSE(ModLibrary::parse_seed("-1"));
+    EXPECT_FALSE(ModLibrary::parse_seed(""));
+    EXPECT_FALSE(ModLibrary::parse_seed("12a"));
+}
+
 TEST(ModLibrary, adds_a_mod_from_any_folder_under_its_id) {
     const std::filesystem::path folder = scratch();
     const std::filesystem::path downloads = scratch();

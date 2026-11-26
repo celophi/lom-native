@@ -1,0 +1,12 @@
+{
+  "id": "wrong",
+  "name": "Wrong",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 5,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

@@ -40,6 +40,9 @@ class FakeGame : public MenuBackend
         int chosen = 0;
     };
     std::vector<Option> options;
+
+    std::string seed;
+
     int music = 0;
     bool effects = false;
     int resumes = 0;
@@ -199,6 +202,12 @@ class FakeGame : public MenuBackend
     void choose_mod_option(int index, int choice) override
     {
         options[index].chosen = choice;
+    }
+
+    bool game_seed(std::string& text) const override
+    {
+        text = seed;
+        return !seed.empty();
     }
 
     int soundtrack() const override
@@ -670,6 +679,28 @@ static void mods_page_shows_each_mods_options_under_it()
 }
 
 /**
+ * @brief Check the Mods page shows the seed of the game being played when a
+ *        mod asks for one, after the mods' rows and in place of the note that
+ *        there are none, and that selecting it changes nothing.
+ */
+static void mods_page_shows_the_seed()
+{
+    FakeGame game;
+    game.seed = "4294967295";
+    MenuModel menu(game);
+    menu.point(MenuCategory::Mods, 0);
+    CHECK(menu.rows().size() == 1 && menu.rows()[0].label == "Seed: 4294967295" && !menu.rows()[0].dimmed);
+    CHECK(menu.rows()[0].description.find("launcher's Mods window") != std::string::npos);
+    press(menu, MenuInput::Select);
+    CHECK(menu.rows().size() == 1 && game.seed == "4294967295");
+
+    game.mods = {{"Skip movies", ""}};
+    game.mods_on = {true};
+    menu.point(MenuCategory::Mods, 0);
+    CHECK(menu.rows().size() == 2 && menu.rows()[0].label == "Skip movies" && menu.rows()[1].label == "Seed: 4294967295");
+}
+
+/**
  * @brief Check the Remaster's rows show only when the Remaster is found, and
  *        step through their choices. Text shows only when the game can show
  *        the Remaster's text (the Japanese one can't).
@@ -827,6 +858,7 @@ int main()
     general_has_only_pausing();
     mods_page_switches_each_mod_that_asked();
     mods_page_shows_each_mods_options_under_it();
+    mods_page_shows_the_seed();
     remaster_rows_show_only_when_it_is_found();
     clicking_a_volume_bar_sets_its_level();
     quitting_asks_first_and_defaults_to_keep_playing();

@@ -52,7 +52,9 @@ target_sources(psyz PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/src/remaster/remaster_settings.c")
 
 if(PSYZ_RENDERER STREQUAL "sdl3_gpu")
-    add_library(lom_native_presentation STATIC src/gpu/presentation.c src/gpu/xbr.c)
+    add_library(lom_native_presentation STATIC src/gpu/presentation.c src/gpu/xbr.c src/gpu/crossfade.c)
+    target_include_directories(lom_native_presentation PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+    target_link_libraries(lom_native_presentation PUBLIC lom_switches)
     target_link_libraries(lom_native_presentation PUBLIC SDL3-static)
     target_link_libraries(psyz PRIVATE lom_native_presentation)
     set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/src/gpu/widescreen.c" TARGET_DIRECTORY psyz

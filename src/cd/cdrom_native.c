@@ -7,11 +7,14 @@
 #include "lom_native_ps1_memory.h"
 #include "lom_native_unit_decode.h"
 #include "lom_native_env.h"
+#include "lom_native_mod_disc.h"
+#include "lom_native_mods.h"
 
 #define u_long LomPsyzULong
 #include <libcd.h>
 #undef u_long
 
+#include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -69,6 +72,8 @@ static unsigned g_callback_reset_epoch;
 static int g_callback_pumping;
 
 static uint64_t g_callback_next_ticket;
+
+static LomNativeCdReplacement g_replacement;
 
 /**
  * @brief Drop every queued callback read, closing their files, and start a new
@@ -679,6 +684,7 @@ s32 lom_native_cd_stream(s32 resource_index, u8* destination)
 
     decompressed_size = (s32)(destination_cursor - destination_start);
     g_last_error = LOM_NATIVE_CD_ERROR_NONE;
+    lom_native_mods_file_load(find_resource_relative_path(resource_index), destination_start, decompressed_size);
     lom_native_unit_streamed(resource_index, destination_start, decompressed_size);
     return decompressed_size;
 }
@@ -727,6 +733,7 @@ static u8* load_decompressed(u16 resource_index, size_t* size)
         return NULL;
     }
 
+    lom_native_mods_file_load(find_resource_relative_path(resource_index), decoded, (int)*size);
     return decoded;
 }
 
@@ -903,6 +910,48 @@ s32 cdrom_queue_command(u8 command, s32 resource_index, void* dst_buffer, CdComm
     return read_resource_file(resource_index, dst_buffer);
 }
 
+/**
+ * @brief Hand a streamed file to the replacement hook alone: the stream ran
+ *        the mods' hooks before decoding the file's tables.
+ * @param resource_index The resource.
+ * @param destination Where it was streamed to.
+ * @param result The stream's result, its size when it worked.
+ * @return Its size after any change.
+ */
+static s32 replace_only(s32 resource_index, void* destination, s32 result)
+{
+    if (result <= 0 || !g_replacement || !destination)
+    {
+        return result;
+    }
+
+    uintptr_t address = (uintptr_t)destination;
+    int in_ram = address >= STREAM_RAM_START && address < STREAM_RAM_END;
+    size_t room = in_ram ? (size_t)(STREAM_RAM_END - address) : lom_unit_host_bytes_left(destination);
+    return g_replacement((u16)resource_index, (unsigned char*)destination, result, room);
+}
+
+/**
+ * @brief Hand a file the game read to the mods' file_load hooks, then to the
+ *        replacement hook, which can change it in place, like putting in the
+ *        Remaster's text. The mods go first, so they see the disc's own layout.
+ * @param resource_index The resource.
+ * @param destination Where it was read to.
+ * @param result The read's result, its size when it worked.
+ * @return Its size after any change, or @p result when it failed or nothing's
+ *        hooked.
+ */
+static s32 replace(s32 resource_index, void* destination, s32 result)
+{
+    if (result <= 0 || !destination)
+    {
+        return result;
+    }
+
+    lom_native_mods_file_load(find_resource_relative_path(resource_index), (unsigned char*)destination, result);
+    return replace_only(resource_index, destination, result);
+}
+
 u32 cdrom_process_state(void)
 {
     if (!g_callback_count || g_callback_pumping)
@@ -969,7 +1018,13 @@ u32 cdrom_process_state(void)
     {
         if (fclose(read->file) && !failed)
         {
+            failed = 1;
             g_last_error = LOM_NATIVE_CD_ERROR_IO;
+        }
+
+        if (!failed && !read->callback && read->destination)
+        {
+            replace(read->resource, read->destination, read->size);
         }
 
         memset(read, 0, sizeof(*read));
@@ -1016,33 +1071,9 @@ void lom_native_cd_set_hooks(const LomNativeCdHooks* hooks)
     g_hooks = hooks;
 }
 
-static LomNativeCdReplacement g_replacement;
-
 void lom_native_cd_set_replacement(LomNativeCdReplacement replacement)
 {
     g_replacement = replacement;
-}
-
-/**
- * @brief Hand a file the game read to the replacement hook, which can change it
- *        in place, like putting in the Remaster's text.
- * @param resource_index The resource.
- * @param destination Where it was read to.
- * @param result The read's result, its size when it worked.
- * @return Its size after any change, or @p result when it failed or nothing's
- *        hooked.
- */
-static s32 replace(s32 resource_index, void* destination, s32 result)
-{
-    if (result <= 0 || !g_replacement || !destination)
-    {
-        return result;
-    }
-
-    uintptr_t address = (uintptr_t)destination;
-    int in_ram = address >= STREAM_RAM_START && address < STREAM_RAM_END;
-    size_t room = in_ram ? (size_t)(STREAM_RAM_END - address) : lom_unit_host_bytes_left(destination);
-    return g_replacement((u16)resource_index, (unsigned char*)destination, result, room);
 }
 
 s32 cdrom_queue_read(s32 resource_index, void* dst_buffer)
@@ -1088,7 +1119,7 @@ s32 cdrom_stream(s32 resource_index, u8* destination)
 
     s32 result = lom_native_cd_stream(resource_index, destination);
 
-    result = replace(resource_index, destination, result);
+    result = replace_only(resource_index, destination, result);
     lom_native_boundary_event(LOM_BOUNDARY_FILES, LOM_BOUNDARY_FILE_STREAM, (u16)resource_index, (unsigned)result);
 
     if (hooks && hooks->after)
@@ -1168,4 +1199,190 @@ s32 cdrom_get_error_status(void)
 
 void cdrom_defer_data_ready(void)
 {
+}
+
+/**
+ * @brief Check a path on the disc a mod gave: letters, digits, _, -, . and
+ *        forward slashes between parts, and no part that's empty, "." or "..",
+ *        so nothing outside the disc can be named.
+ * @param path The path.
+ * @param empty_allowed Whether "" (the disc's root) is allowed.
+ * @return 1 when it's allowed.
+ */
+static int mod_path_allowed(const char* path, int empty_allowed)
+{
+    const char* part = path;
+
+    if (!path[0])
+    {
+        return empty_allowed;
+    }
+
+    if (path[0] == '/' || strlen(path) > 255)
+    {
+        return 0;
+    }
+
+    for (const char* c = path;; ++c)
+    {
+        if (*c == '/' || *c == 0)
+        {
+            size_t length = (size_t)(c - part);
+
+            if (length == 0 || (length == 1 && part[0] == '.') || (length == 2 && part[0] == '.' && part[1] == '.'))
+            {
+                return 0;
+            }
+
+            if (*c == 0)
+            {
+                return 1;
+            }
+
+            part = c + 1;
+        }
+        else if (!((*c >= 'a' && *c <= 'z') || (*c >= 'A' && *c <= 'Z') || (*c >= '0' && *c <= '9') || *c == '_' || *c == '-' || *c == '.'))
+        {
+            return 0;
+        }
+    }
+}
+
+unsigned char* lom_native_mod_disc_read(const char* path, size_t* size)
+{
+    char full[LOM_NATIVE_CD_PATH_MAX];
+
+    if (!path || !size || !mod_path_allowed(path, 0))
+    {
+        return NULL;
+    }
+
+    int written = snprintf(full, sizeof(full), "%s/%s", g_disc_root, path);
+    struct stat st;
+
+    if (written < 0 || (size_t)written >= sizeof(full) || stat(full, &st) != 0 || !S_ISREG(st.st_mode) || st.st_size > 0x7FFFFFFF)
+    {
+        return NULL;
+    }
+
+    FILE* file = fopen(full, "rb");
+
+    if (!file)
+    {
+        return NULL;
+    }
+
+    unsigned char* data = malloc(st.st_size ? (size_t)st.st_size : 1);
+    size_t got = data ? fread(data, 1, (size_t)st.st_size, file) : 0;
+    fclose(file);
+
+    if (!data || got != (size_t)st.st_size)
+    {
+        free(data);
+        return NULL;
+    }
+
+    *size = got;
+    return data;
+}
+
+/**
+ * @brief List one folder on the disc for lom_native_mod_disc_list, and the
+ *        folders under it.
+ * @param full The folder on this computer.
+ * @param relative Its path on the disc, "" for the root.
+ * @param found Called with each file's path on the disc.
+ * @param context Passed to @p found.
+ * @param depth How deep it is; the disc's folders go only a few deep.
+ */
+static void list_mod_folder(const char* full, const char* relative, void (*found)(const char* path, void* context), void* context, int depth)
+{
+    DIR* dir = depth < 16 ? opendir(full) : NULL;
+    struct dirent* entry;
+
+    if (!dir)
+    {
+        return;
+    }
+
+    while ((entry = readdir(dir)))
+    {
+        char child_full[LOM_NATIVE_CD_PATH_MAX];
+        char child_relative[LOM_NATIVE_CD_PATH_MAX];
+        struct stat st;
+
+        if (!mod_path_allowed(entry->d_name, 0))
+        {
+            continue;
+        }
+
+        int a = snprintf(child_full, sizeof(child_full), "%s/%s", full, entry->d_name);
+        int b = snprintf(child_relative, sizeof(child_relative), relative[0] ? "%s/%s" : "%s%s", relative, entry->d_name);
+
+        if (a < 0 || b < 0 || (size_t)a >= sizeof(child_full) || (size_t)b >= sizeof(child_relative) || stat(child_full, &st) != 0)
+        {
+            continue;
+        }
+
+        if (S_ISDIR(st.st_mode))
+        {
+            list_mod_folder(child_full, child_relative, found, context, depth + 1);
+        }
+        else if (S_ISREG(st.st_mode))
+        {
+            found(child_relative, context);
+        }
+    }
+
+    closedir(dir);
+}
+
+int lom_native_mod_disc_list(const char* folder, void (*found)(const char* path, void* context), void* context)
+{
+    char full[LOM_NATIVE_CD_PATH_MAX];
+    struct stat st;
+
+    if (!folder || !found || !mod_path_allowed(folder, 1))
+    {
+        return -1;
+    }
+
+    int written = folder[0] ? snprintf(full, sizeof(full), "%s/%s", g_disc_root, folder) : snprintf(full, sizeof(full), "%s", g_disc_root);
+
+    if (written < 0 || (size_t)written >= sizeof(full) || stat(full, &st) != 0 || !S_ISDIR(st.st_mode))
+    {
+        return -1;
+    }
+
+    list_mod_folder(full, folder, found, context, 0);
+    return 0;
+}
+
+unsigned char* lom_native_mod_disc_unpack(const unsigned char* data, size_t size, size_t* unpacked_size)
+{
+    size_t length;
+
+    if (!data || !unpacked_size || size < 2 || decompressed_length(data, size, &length))
+    {
+        return NULL;
+    }
+
+    u8* unpacked = malloc(length + 1);
+
+    if (!unpacked)
+    {
+        return NULL;
+    }
+
+    u8* source = (u8*)data + 1;
+    u8* output = unpacked;
+
+    if (cdrom_decompress_data(&source, &output, (u8*)data + size, unpacked + length + 1) || (size_t)(output - unpacked) != length)
+    {
+        free(unpacked);
+        return NULL;
+    }
+
+    *unpacked_size = length;
+    return unpacked;
 }

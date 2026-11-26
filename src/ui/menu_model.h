@@ -211,6 +211,13 @@ class MenuBackend
     virtual void choose_mod_option(int index, int choice) = 0;
 
     /**
+     * @brief Read the seed of the game being played, when a mod asks for one.
+     * @param seed Set to it, as text.
+     * @return True when there's one to show.
+     */
+    virtual bool game_seed(std::string& seed) const = 0;
+
+    /**
      * @brief Read where the music comes from.
      * @return LOM_REMASTER_MUSIC_*.
      */

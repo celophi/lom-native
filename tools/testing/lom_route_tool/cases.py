@@ -79,11 +79,14 @@ def mods_cards_folder(mods: str | None) -> str | None:
     with scripts change gameplay, and get "mods-" and the start of the SHA-256 of their sorted ids, one per line. A mod the
     set's folder doesn't have is one of the examples that come with lom-native, as in the game.
 
+    A line with "=" in it, like "seed=", is a setting, not a mod, since an id can't hold "=".
+
     Returns None when no enabled mod in the set has scripts, so the saves stay in the card root."""
     if not mods:
         return None
     folder = MODS_ROOT / mods
-    ids = [line.strip() for line in (folder / MODS_LIST).read_text().splitlines() if line.strip() and not line.strip().startswith("#")]
+    lines = [line.strip() for line in (folder / MODS_LIST).read_text().splitlines()]
+    ids = [line for line in lines if line and not line.startswith("#") and "=" not in line]
     manifests = {mod_id: (folder / mod_id if (folder / mod_id).is_dir() else BUNDLED_MODS_ROOT / mod_id) / "mod.json" for mod_id in ids}
     scripted = sorted({mod_id for mod_id, manifest in manifests.items() if json.loads(manifest.read_text()).get("scripts")})
     if not scripted:

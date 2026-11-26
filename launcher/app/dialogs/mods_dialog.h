@@ -9,6 +9,7 @@
 #include <vector>
 
 class QLabel;
+class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
 class QPushButton;
@@ -30,6 +31,8 @@ class ModsDialog : public QDialog {
     static constexpr char up_name[] = "moveModUpButton";
     static constexpr char down_name[] = "moveModDownButton";
     static constexpr char open_folder_name[] = "openModsFolderButton";
+    static constexpr char seed_name[] = "modSeed";
+    static constexpr char seed_row_name[] = "modSeedRow";
 
     /**
      * @brief Show the mods in a folder, to turn on and off, order, add and
@@ -40,6 +43,13 @@ class ModsDialog : public QDialog {
      * @param parent The launcher's window.
      */
     ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& desktop, QWidget* parent);
+
+    /**
+     * @brief Close the window, first saving a seed that was typed but not yet
+     *        saved, since closing doesn't always finish editing the Seed box.
+     * @param result How it was closed.
+     */
+    void done(int result) override;
 
   private:
     /**
@@ -68,6 +78,18 @@ class ModsDialog : public QDialog {
      * @return True when it was saved; otherwise the status says why.
      */
     bool save();
+
+    /**
+     * @brief Save the seed typed in the Seed row, or none when it's empty, so
+     *        new games get their own, unless it's the one mods.ini already
+     *        has. One that isn't a seed isn't saved, and the status says why.
+     */
+    void save_seed();
+
+    /**
+     * @brief Show the Seed row only while a mod that's on asks for a seed.
+     */
+    void show_seed();
 
     /**
      * @brief Turn a mod on or off when its checkbox changes.
@@ -106,6 +128,8 @@ class ModsDialog : public QDialog {
     QLabel* empty_ = nullptr;
     QLabel* details_ = nullptr;
     QLabel* status_ = nullptr;
+    QWidget* seed_row_ = nullptr;
+    QLineEdit* seed_ = nullptr;
     QPushButton* remove_ = nullptr;
     QPushButton* up_ = nullptr;
     QPushButton* down_ = nullptr;

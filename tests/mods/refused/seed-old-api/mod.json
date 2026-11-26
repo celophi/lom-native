@@ -1,0 +1,13 @@
+{
+  "id": "seed-old-api",
+  "name": "Seed old api",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod.",
+  "game": "SLUS-01013",
+  "api": 4,
+  "seed": true,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

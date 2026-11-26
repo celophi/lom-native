@@ -9,6 +9,7 @@
 #include "lom_native_gpu_packets.h"
 #include "lom_native_mods.h"
 #include "lom_native_japanese_balance.h"
+#include "lom_native_quick_rooms.h"
 
 #include "../internal/field_effect_types.h"
 #include "../internal/field_actor_palette.h"
@@ -754,6 +755,7 @@ void field_update_scene(void)
         field_reset_item_menu();
         field_upload_transition_tiles();
         field_save_retry_snapshot();
+        lom_quick_rooms_scene_loaded();
         lom_native_mods_hook(LOM_MOD_HOOK_SCENE_ENTER, scene_id);
     }
 }

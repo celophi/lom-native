@@ -1,7 +1,7 @@
 {
   "id": "no-natural-healing",
   "name": "No natural healing",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "celophi",
   "description": "Hit points only come back from items, techniques, pets and leaving a dungeon.",
   "game": [
@@ -42,6 +42,27 @@
           "description": "Continue tries the screen again with the hit points you came into it with.",
           "switches": {
             "continue_without_healing": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "get_up",
+      "name": "Fallen allies",
+      "description": "How a party member who fell in a fight gets back up afterwards.",
+      "default": "one_hp",
+      "choices": [
+        {
+          "id": "one_hp",
+          "name": "Get up with 1 HP",
+          "description": "They get back up with 1 hit point, and only items, techniques and pets heal them."
+        },
+        {
+          "id": "quarter",
+          "name": "Get up with a quarter",
+          "description": "They get back up with a quarter of their hit points.",
+          "switches": {
+            "get_up_with_quarter_hp": true
           }
         }
       ]

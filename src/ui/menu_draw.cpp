@@ -1,5 +1,6 @@
 #include "menu.h"
 
+#include "../gpu/crossfade.h"
 #include "../settings/service.h"
 #include "imgui_impl_sdl3.h"
 #include "imgui_impl_sdlgpu3.h"
@@ -702,11 +703,16 @@ std::vector<std::string> Menu::visible_notices(Uint64 now)
 
 /**
  * @brief Draw notices in a card at the bottom left, over the game, while the
- *        menu is closed. They take no input.
+ *        menu is closed. They take no input. With none, there's no card.
  * @param lines Each notice's sentence.
  */
 void Menu::draw_notices(const std::vector<std::string>& lines)
 {
+    if (lines.empty())
+    {
+        return;
+    }
+
     const float width = std::min(layout_.size.x - px(notice_margin) * 2, px(notice_width));
     const float wrap = width - px(notice_padding) * 2;
     float height = px(notice_padding) * 2 - px(notice_line_gap);
@@ -740,12 +746,15 @@ void Menu::draw(SDL_GPUCommandBuffer* cmd, SDL_GPUTexture* target, Uint32 width,
 
     const bool open = runtime.open();
     std::vector<std::string> notices;
+    SDL_Rect kept_place = {};
+    float kept_alpha = 0.0f;
+    SDL_GPUTexture* kept = lom_crossfade_overlay(&kept_place, &kept_alpha);
 
     if (!open)
     {
         notices = visible_notices(SDL_GetTicks());
 
-        if (notices.empty())
+        if (notices.empty() && !kept)
         {
             return;
         }
@@ -795,6 +804,14 @@ void Menu::draw(SDL_GPUCommandBuffer* cmd, SDL_GPUTexture* target, Uint32 width,
     layout_.rows_left = layout_.categories_right + px(column_gap);
 
     list_ = ImGui::GetBackgroundDrawList();
+
+    if (kept)
+    {
+        const ImVec2 corner(kept_place.x / density, kept_place.y / density);
+        const ImVec2 far(corner.x + kept_place.w / density, corner.y + kept_place.h / density);
+        list_->AddImage(ImTextureRef(static_cast<ImTextureID>(reinterpret_cast<intptr_t>(kept))), corner, far, ImVec2(0, 0), ImVec2(1, 1),
+                        IM_COL32(255, 255, 255, static_cast<int>(kept_alpha * 255.0f)));
+    }
 
     if (!open)
     {

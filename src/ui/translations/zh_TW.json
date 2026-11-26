@@ -43,6 +43,8 @@
   "mod_toggle_note": "在這裡關閉後，下次遊玩時會重新開啟。載入哪些模組由啟動器的「模組」視窗決定。",
   "mods_empty_label": "這裡沒有可開關的模組",
   "mods_empty_help": "可以在遊玩時開關的模組，在啟動器的「模組」視窗中開啟後會顯示在這裡。",
+  "seed_label": "種子：%s",
+  "seed_help": "目前遊戲的種子，供使用種子的模組使用。要用同一個種子開始新遊戲，請在啟動器的「模組」視窗中輸入。",
   "mod_refused_notice": "模組 %s 未載入：%s。",
   "mod_stopped_notice": "模組 %s 已停止，遊戲會在沒有它的情況下繼續：%s。",
   "player_value_format": "玩家 %d",

@@ -314,6 +314,13 @@ LOM_UI_TEXT(mod_replace_body, "A mod with the same id is already installed. Repl
 LOM_UI_TEXT(mod_add_failed, "That mod couldn't be added: %1.");
 LOM_UI_TEXT(mod_remove_failed, "That mod couldn't be removed: %1.");
 LOM_UI_TEXT(mod_save_failed, "Which mods are on couldn't be saved: %1");
+LOM_UI_TEXT(mod_seed, "Seed:");
+LOM_UI_TEXT(mod_seed_placeholder, "A new one for each new game");
+LOM_UI_TEXT(mod_seed_help,
+            "A mod that's on uses a seed. A new game starts with this one, or a new one if it's empty, so you can play a seed someone gave you. A game keeps "
+            "its seed in "
+            "its saves, so changing it here doesn't change a game you've started. The game's menu (F1) shows the seed you're playing, under Mods.");
+LOM_UI_TEXT(mod_seed_invalid, "A seed is a whole number from 0 to 4294967295.");
 LOM_UI_TEXT(games_root_note, "Setting up from a disc image copies its files into this folder. Changing it doesn't move a game that's already set up, and an "
                              "extracted folder is used where it is.");
 LOM_UI_TEXT(verified_ok, "All game files match the supported game.");

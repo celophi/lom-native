@@ -3,6 +3,7 @@
 #include "../internal/field_calls.h"
 #include "../internal/field_records.h"
 #include "common/saved_game.h"
+#include "lom_native_mods.h"
 
 void field_award_land_artifact_unchecked(s32 land_index)
 {
@@ -13,11 +14,18 @@ void field_award_land_artifact_unchecked(s32 land_index)
     game->lands[land_index].artifact_order = game->control.fields.artifact_count;
 }
 
+/**
+ * @brief Give a land's artifact outright, whether or not it's unlocked.
+ * @param index Land index; ignored when out of range.
+ * @note Native: first the mods' artifact_award hook can swap the land for
+ *       another. Only field_reset_default_lands, the artifacts a game starts
+ *       with, gives artifacts this way.
+ */
 void field_award_land_artifact(s32 index)
 {
     if ((u32)index < FIELD_LAND_COUNT)
     {
-        field_award_land_artifact_unchecked(index);
+        field_award_land_artifact_unchecked(lom_native_mods_artifact_award(index, FIELD_LAND_COUNT));
     }
 }
 

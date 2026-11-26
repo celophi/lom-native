@@ -719,6 +719,40 @@ bool read_toggle(const Json& manifest, ModManifest& mod, std::string& error)
 }
 
 /**
+ * @brief Read whether mod.json asks for a seed, "seed": true, which needs mod
+ *        API 5.
+ * @param manifest mod.json's object.
+ * @param mod The manifest, which gets it.
+ * @param error Set to why the mod is refused when it's wrong.
+ * @return True when it's right or left out.
+ */
+bool read_seed(const Json& manifest, ModManifest& mod, std::string& error)
+{
+    const Json* field = manifest.find("seed");
+
+    if (!field)
+    {
+        return true;
+    }
+
+    if (field->type() != Json::Type::Bool)
+    {
+        error = "its mod.json's \"seed\" has to be true or false";
+        return false;
+    }
+
+    mod.seed = field->as_bool(false);
+
+    if (mod.seed && mod.api < seed_api)
+    {
+        error = "its mod.json asks for a seed, which needs \"api\": " + std::to_string(seed_api);
+        return false;
+    }
+
+    return true;
+}
+
+/**
  * @brief Write a version as text.
  * @param version The version.
  * @return Like "1.2.0".
@@ -920,9 +954,9 @@ std::vector<ModStanding> check_relations(const std::vector<const ModManifest*>& 
 
 std::vector<std::string> manifest_surface()
 {
-    return {"mod.json id",       "mod.json name",         "mod.json version",    "mod.json author",        "mod.json description",
-            "mod.json game",     "mod.json api",          "mod.json switches",   "mod.json scripts",       "mod.json requires",
-            "mod.json optional", "mod.json incompatible", "mod.json load_after", "mod.json in_game_toggle", "mod.json options"};
+    return {"mod.json id",         "mod.json name",           "mod.json version", "mod.json author",   "mod.json description", "mod.json game",
+            "mod.json api",        "mod.json switches",       "mod.json scripts", "mod.json requires", "mod.json optional",    "mod.json incompatible",
+            "mod.json load_after", "mod.json in_game_toggle", "mod.json options", "mod.json seed"};
 }
 
 bool valid_mod_id(const std::string& id)
@@ -1022,8 +1056,8 @@ std::optional<ModManifest> read_manifest(const std::filesystem::path& folder, co
 
     mod.api = static_cast<int>(api->as_int(0));
 
-    if (!read_switches(*json, mod, error) || !read_scripts(*json, folder, mod, error) || !read_relations(*json, mod, error) || !read_toggle(*json, mod, error) ||
-        !read_options(*json, mod, error))
+    if (!read_switches(*json, mod, error) || !read_scripts(*json, folder, mod, error) || !read_relations(*json, mod, error) ||
+        !read_toggle(*json, mod, error) || !read_options(*json, mod, error) || !read_seed(*json, mod, error))
     {
         return std::nullopt;
     }

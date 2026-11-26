@@ -20,6 +20,8 @@
 #define PATH_SIZE 4096
 #define PAGE_SIZE 1024
 #define MAX_PAGES 32
+#define IMAGE_CACHE_SLOTS 8
+#define IMAGE_CACHE_BYTES ((size_t)256 * 1024 * 1024)
 
 #define COMMAND_SPRITE 0x14
 #define COMMAND_QUAD 0x18
@@ -190,17 +192,129 @@ static void premultiply(unsigned char* pixels, size_t bytes)
 }
 
 static unsigned char* s_images_data;
+static int s_images_owned;
 static const unsigned char* s_page_pixels[MAX_PAGES];
 static int s_page_count;
+static unsigned char* s_page_scratch;
+
+typedef struct
+{
+    char name[64];
+    unsigned char* data;
+    size_t size;
+    unsigned long long used;
+} CachedImages;
+
+static CachedImages s_image_cache[IMAGE_CACHE_SLOTS];
+static unsigned long long s_image_clock;
 
 /**
- * @brief Forget the room's background pages.
+ * @brief Forget the room's background pages. Unpacked images the cache keeps
+ *        stay in it for the next time the room is entered.
  */
 static void drop_pages(void)
 {
-    free(s_images_data);
+    if (s_images_owned)
+    {
+        free(s_images_data);
+    }
+
     s_images_data = NULL;
+    s_images_owned = 0;
     s_page_count = 0;
+}
+
+/**
+ * @brief Make room in the image cache for more bytes, letting go of the
+ *        least recently used rooms first.
+ * @param bytes How many bytes are coming.
+ * @return A free slot, or -1 when they'd never fit.
+ */
+static int make_cache_room(size_t bytes)
+{
+    if (bytes > IMAGE_CACHE_BYTES)
+    {
+        return -1;
+    }
+
+    for (;;)
+    {
+        size_t held = 0;
+        int free_slot = -1, oldest = -1;
+
+        for (int i = 0; i < IMAGE_CACHE_SLOTS; ++i)
+        {
+            if (!s_image_cache[i].data)
+            {
+                free_slot = free_slot < 0 ? i : free_slot;
+                continue;
+            }
+
+            held += s_image_cache[i].size;
+
+            if (oldest < 0 || s_image_cache[i].used < s_image_cache[oldest].used)
+            {
+                oldest = i;
+            }
+        }
+
+        if (free_slot >= 0 && held + bytes <= IMAGE_CACHE_BYTES)
+        {
+            return free_slot;
+        }
+
+        free(s_image_cache[oldest].data);
+        memset(&s_image_cache[oldest], 0, sizeof(s_image_cache[oldest]));
+    }
+}
+
+/**
+ * @brief Open a room's unpacked background images, from the cache when the
+ *        room was entered recently, so going back and forth between rooms
+ *        doesn't unpack tens of megabytes each time.
+ * @param file The images' file in hdmapimg.
+ * @param images Set to the opened PSB.
+ * @param owned Set to 1 when the caller has to free the bytes, 0 when the
+ *        cache keeps them.
+ * @return The bytes, or NULL when they can't be opened.
+ */
+static unsigned char* open_images(const char* file, LomPsb* images, int* owned)
+{
+    for (int i = 0; i < IMAGE_CACHE_SLOTS; ++i)
+    {
+        if (s_image_cache[i].data && strcmp(s_image_cache[i].name, file) == 0)
+        {
+            if (lom_psb_open(images, s_image_cache[i].data, s_image_cache[i].size) != 0)
+            {
+                return NULL;
+            }
+
+            s_image_cache[i].used = ++s_image_clock;
+            *owned = 0;
+            return s_image_cache[i].data;
+        }
+    }
+
+    unsigned char* data = open_psb("hdmapimg", file, images);
+    *owned = 1;
+
+    if (!data || strlen(file) >= sizeof(s_image_cache[0].name))
+    {
+        return data;
+    }
+
+    const int slot = make_cache_room(images->size);
+
+    if (slot >= 0)
+    {
+        snprintf(s_image_cache[slot].name, sizeof(s_image_cache[slot].name), "%s", file);
+        s_image_cache[slot].data = data;
+        s_image_cache[slot].size = images->size;
+        s_image_cache[slot].used = ++s_image_clock;
+        *owned = 0;
+    }
+
+    return data;
 }
 
 /**
@@ -288,7 +402,8 @@ static int load_pages(const char* name, const LomPsb* map)
     char file[64];
     LomPsb images;
     snprintf(file, sizeof(file), "%s_pack.psb.m", name);
-    unsigned char* data = pages && pages <= MAX_PAGES ? open_psb("hdmapimg", file, &images) : NULL;
+    int owned = 0;
+    unsigned char* data = pages && pages <= MAX_PAGES ? open_images(file, &images, &owned) : NULL;
 
     if (!data)
     {
@@ -316,11 +431,16 @@ static int load_pages(const char* name, const LomPsb* map)
 
     if (result || lom_hd_textures_set((int)pages, PAGE_SIZE))
     {
-        free(data);
+        if (owned)
+        {
+            free(data);
+        }
+
         return -1;
     }
 
     s_images_data = data;
+    s_images_owned = owned;
     s_page_count = (int)pages;
     return 0;
 }
@@ -368,10 +488,23 @@ void lom_remaster_map_ready(const unsigned short* lookup)
         return;
     }
 
+    const size_t bytes = (size_t)PAGE_SIZE * PAGE_SIZE * 4;
+
+    if (!s_page_scratch)
+    {
+        s_page_scratch = malloc(bytes);
+    }
+
+    if (!s_page_scratch)
+    {
+        drop_pages();
+        return;
+    }
+
     for (int page = 0; page < s_page_count; ++page)
     {
-        unsigned char* pixels = (unsigned char*)s_page_pixels[page];
-        const size_t bytes = (size_t)PAGE_SIZE * PAGE_SIZE * 4;
+        unsigned char* pixels = s_page_scratch;
+        memcpy(pixels, s_page_pixels[page], bytes);
 
         if (lookup)
         {
