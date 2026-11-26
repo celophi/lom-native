@@ -1,5 +1,7 @@
+#include "../../../include/lom_native_mod_disc.h"
 #include "../../../include/lom_native_mod_game.h"
 #include "../../../include/lom_native_mod_options.h"
+#include "../../../include/lom_native_mod_seed.h"
 #include "../../../include/lom_native_mod_toggles.h"
 #include "../../../include/lom_native_mods.h"
 #include "../../../include/lom_native_notices.h"
@@ -63,7 +65,19 @@ static const std::set<std::string> s_api_2 = grown(s_api_1, {"mod.json requires"
 
 static const std::set<std::string> s_api_3 = grown(s_api_2, {"mod.json in_game_toggle"});
 
-static const std::map<int, std::set<std::string>> s_api_versions = {{1, s_api_1}, {2, s_api_2}, {3, s_api_3}, {4, grown(s_api_3, {"mod.json options"})}};
+static const std::set<std::string> s_api_4 = grown(s_api_3, {"mod.json options"});
+
+static const std::set<std::string> s_api_5 = grown(s_api_4, {"lom.game", "lom.seed", "lom.disc_file", "lom.disc_files", "lom.unpack", "lom.bytes", "lom.random",
+                                                             "hook game_start", "hook file_load", "hook artifact_award", "mod.json seed"});
+
+static const std::map<int, std::set<std::string>> s_api_versions = {{1, s_api_1}, {2, s_api_2}, {3, s_api_3}, {4, s_api_4}, {5, s_api_5}};
+
+static const std::map<std::string, std::string> s_disc = {
+    {"ANA/INFO_BON/C.IMG", "CCCC"},
+    {"ANA/MAPINFO/A.IMG", "ABCDEFGH"},
+    {"ANA/MAPINFO/B.IMG", "BBBB"},
+    {"BIN/PACKED.BIN", "packed:unpacked"},
+};
 
 static int s_money = 1000;
 
@@ -154,6 +168,73 @@ extern "C"
         s_hp[slot] = s_hp[slot] + amount > s_maximum_hp[slot] ? s_maximum_hp[slot] : s_hp[slot] + amount;
         return 1;
     }
+
+    /**
+     * @brief The test's disc: a file from s_disc.
+     * @param path Its path.
+     * @param size Set to its size.
+     * @return A copy, to free, or NULL.
+     */
+    unsigned char* lom_native_mod_disc_read(const char* path, size_t* size)
+    {
+        const auto found = s_disc.find(path);
+
+        if (found == s_disc.end())
+        {
+            return nullptr;
+        }
+
+        unsigned char* data = static_cast<unsigned char*>(std::malloc(found->second.size() + 1));
+        std::memcpy(data, found->second.data(), found->second.size());
+        *size = found->second.size();
+        return data;
+    }
+
+    /**
+     * @brief The test's disc: list s_disc's files under a folder.
+     * @param folder The folder, or "" for all.
+     * @param found Called with each path.
+     * @param context Passed on.
+     * @return 0, or -1 when no file is under it.
+     */
+    int lom_native_mod_disc_list(const char* folder, void (*found)(const char* path, void* context), void* context)
+    {
+        const std::string prefix = *folder ? std::string(folder) + "/" : std::string();
+        int count = 0;
+
+        for (auto file = s_disc.rbegin(); file != s_disc.rend(); ++file)
+        {
+            if (file->first.compare(0, prefix.size(), prefix) == 0)
+            {
+                found(file->first.c_str(), context);
+                ++count;
+            }
+        }
+
+        return count ? 0 : -1;
+    }
+
+    /**
+     * @brief The test's disc: "packed:" and the unpacked bytes.
+     * @param data The packed file.
+     * @param size Its size.
+     * @param unpacked_size Set to the unpacked size.
+     * @return The unpacked bytes, to free, or NULL.
+     */
+    unsigned char* lom_native_mod_disc_unpack(const unsigned char* data, size_t size, size_t* unpacked_size)
+    {
+        const std::string text(reinterpret_cast<const char*>(data), size);
+
+        if (text.compare(0, 7, "packed:") != 0)
+        {
+            return nullptr;
+        }
+
+        *unpacked_size = size - 7;
+        unsigned char* unpacked = static_cast<unsigned char*>(std::malloc(*unpacked_size + 1));
+        std::memcpy(unpacked, data + 7, *unpacked_size);
+        return unpacked;
+    }
 }
 
 /**
@@ -236,6 +317,7 @@ static int refused()
         {"bad-version", "has to be three numbers"},
         {"author.dotted", "says its id is author.other"},
         {"toggle-old-api", "needs \"api\": 3"},
+        {"seed-old-api", "asks for a seed, which needs \"api\": 5"},
     };
 
     CHECK(load("refused") == 1 && index_of("fine") == 0);
@@ -627,16 +709,134 @@ static int options()
     return 0;
 }
 
+/**
+ * @brief Check the mod API 5 calls that don't need a game: lom.game, reading
+ *        the disc (only the disc), unpacking, byte buffers and seeded random
+ *        numbers, whose sequence is PCG32's and doesn't touch the game's own
+ *        random numbers. The test mod's script checks each one as it starts.
+ * @return 0. A failed check stops the test.
+ */
+static int api5()
+{
+    lom_native_srand(11);
+    const int first = lom_native_rand();
+    lom_native_srand(11);
+    CHECK(load("api5") == 1);
+    CHECK(lom_native_mods_running(0));
+    CHECK(lom_native_rand() == first);
+    CHECK(!lom_native_mod_seed_wanted());
+    lom_native_mods_stop();
+    return 0;
+}
+
+/**
+ * @brief Check seeds: mods.ini's seed starts a new game, a save's seed comes
+ *        back with its game, a game keeps its seed, a game without one gets
+ *        the fallback when mods.ini has none, only mods that ask get it, and
+ *        game_start gets a bigger budget than other hooks.
+ * @return 0. A failed check stops the test.
+ */
+static int seeds()
+{
+    std::uint32_t seed = 0;
+    CHECK(load("seeds") == 3 && lom_native_mods_refused_count() == 0);
+    CHECK(lom_native_mod_seed_wanted() && lom_native_mods_seed_setting(&seed) && seed == 4000123456u);
+    CHECK(!lom_native_mod_seed_current(&seed));
+    CHECK(!lom_native_mods_save_seed(7, &seed));
+
+    lom_native_mods_game_start(7, 99);
+    CHECK(lom_native_mod_seed_current(&seed) && seed == 4000123456u);
+    CHECK(lom_native_mods_save_seed(7, &seed) && seed == 4000123456u);
+    lom_native_mods_hook(LOM_MOD_HOOK_SCENE_ENTER, 123456);
+    CHECK(lom_native_mods_running(index_of("shuffler")) && lom_native_mods_running(index_of("plain")));
+    CHECK(lom_native_mods_running(index_of("thinker")));
+
+    lom_native_mods_save_loaded(8, 555);
+    lom_native_mods_game_start(8, 99);
+    CHECK(lom_native_mod_seed_current(&seed) && seed == 555);
+    lom_native_mods_hook(LOM_MOD_HOOK_SCENE_ENTER, 555);
+    CHECK(lom_native_mods_running(index_of("shuffler")));
+
+    lom_native_mods_game_start(7, 1);
+    CHECK(lom_native_mod_seed_current(&seed) && seed == 4000123456u);
+    CHECK(!lom_native_mods_save_seed(10, &seed));
+
+    lom_native_mods_hook(LOM_MOD_HOOK_FRAME, 0);
+    CHECK(!lom_native_mods_running(index_of("thinker")) && lom_native_mods_running(index_of("shuffler")));
+    lom_native_mods_stop();
+
+    CHECK(load("seeds-random") == 1 && !lom_native_mods_seed_setting(&seed));
+    lom_native_mods_game_start(9, 777);
+    CHECK(lom_native_mod_seed_current(&seed) && seed == 777);
+    lom_native_mods_hook(LOM_MOD_HOOK_SCENE_ENTER, 777);
+    CHECK(lom_native_mods_running(0));
+    lom_native_mods_stop();
+
+    CHECK(load("api5") == 1 && !lom_native_mod_seed_wanted());
+    lom_native_mods_game_start(7, 99);
+    CHECK(!lom_native_mod_seed_current(&seed) && !lom_native_mods_save_seed(7, &seed));
+    lom_native_mods_stop();
+    return 0;
+}
+
+/**
+ * @brief Check file_load: mods change a file in order, each seeing the one
+ *        before's change; a file no mod changes is left alone; and a mod that
+ *        changes a file's length stops, leaving the file as it was.
+ * @return 0. A failed check stops the test.
+ */
+static int files()
+{
+    CHECK(load("files") == 3);
+    unsigned char a[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    CHECK(lom_native_mods_file_load("ANA/MAPINFO/A.IMG", a, 8) == 1);
+    CHECK(std::memcmp(a,
+                      "AZ\xEF\xBE"
+                      "EFGH",
+                      8) == 0);
+    CHECK(lom_native_mods_running(index_of("second")));
+
+    unsigned char c[] = {'C', 'C'};
+    CHECK(lom_native_mods_file_load("ANA/INFO_BON/C.IMG", c, 2) == 0 && c[0] == 'C');
+
+    unsigned char b[] = {'B', 'B', 'B', 'B'};
+    CHECK(lom_native_mods_file_load("ANA/MAPINFO/B.IMG", b, 4) == 0 && std::memcmp(b, "BBBB", 4) == 0);
+    CHECK(!lom_native_mods_running(index_of("liar")) && lom_native_mods_running(index_of("changer")));
+    lom_native_mods_stop();
+
+    CHECK(lom_native_mods_file_load("ANA/MAPINFO/A.IMG", a, 8) == 0);
+    return 0;
+}
+
+/**
+ * @brief Check artifact_award: a mod swaps a land for another, a later mod
+ *        gets the swapped one, and one that answers with a land that doesn't
+ *        exist stops, leaving the game's own.
+ * @return 0. A failed check stops the test.
+ */
+static int artifacts()
+{
+    CHECK(load("artifacts") == 2);
+    CHECK(lom_native_mods_artifact_award(3, 64) == 9);
+    CHECK(lom_native_mods_artifact_award(4, 64) == 4);
+    CHECK(lom_native_mods_running(index_of("wrong")));
+    CHECK(lom_native_mods_artifact_award(5, 64) == 5);
+    CHECK(!lom_native_mods_running(index_of("wrong")) && lom_native_mods_running(index_of("swapper")));
+    CHECK(lom_native_mods_artifact_award(3, 64) == 9);
+    lom_native_mods_stop();
+    return 0;
+}
+
 int main(int argc, char** argv)
 {
     CHECK(argc == 4);
     s_mods_root = argv[2];
     s_examples_root = argv[3];
     const std::map<std::string, int (*)()> cases = {
-        {"switches", switches}, {"refused", refused},   {"scripts", scripts},     {"dice", dice},
-        {"api", api},           {"examples", examples}, {"notices", notices},     {"surface", surface},
-        {"cards", cards},       {"games", games},       {"relations", relations}, {"toggles", toggles},
-        {"options", options},
+        {"switches", switches},   {"refused", refused},     {"scripts", scripts}, {"dice", dice},   {"api", api},
+        {"examples", examples},   {"notices", notices},     {"surface", surface}, {"cards", cards}, {"games", games},
+        {"relations", relations}, {"toggles", toggles},     {"options", options}, {"api5", api5},   {"seeds", seeds},
+        {"files", files},         {"artifacts", artifacts},
     };
     const auto found = cases.find(argv[1]);
 

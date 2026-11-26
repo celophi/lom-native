@@ -1,0 +1,13 @@
+{
+  "id": "proof",
+  "name": "Randomizer proof",
+  "version": "1.0.0",
+  "author": "lom-native tests",
+  "description": "A test mod: checks game_start, file_load and the seed in the real game, and swaps land 1's artifact for land 2's.",
+  "game": "SLUS-01013",
+  "api": 5,
+  "seed": true,
+  "scripts": [
+    "scripts/main.lua"
+  ]
+}

@@ -2,6 +2,7 @@
 
 #include "../settings/service.h"
 #include "lom_native_mod_options.h"
+#include "lom_native_mod_seed.h"
 #include "lom_native_mod_toggles.h"
 #include "lom_native_controls.h"
 #include "lom_native_display.h"
@@ -168,6 +169,19 @@ ModOptionView GameBackend::mod_option(int index) const
 void GameBackend::choose_mod_option(int index, int choice)
 {
     lom_native_mod_options_choose(index, choice);
+}
+
+bool GameBackend::game_seed(std::string& seed) const
+{
+    uint32_t value = 0;
+
+    if (!lom_native_mod_seed_wanted() || !lom_native_mod_seed_current(&value))
+    {
+        return false;
+    }
+
+    seed = std::to_string(value);
+    return true;
 }
 
 void GameBackend::set_text_language(int value)

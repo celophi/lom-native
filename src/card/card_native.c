@@ -1,5 +1,6 @@
 #include "lom_native_card.h"
 #include "card_slot.h"
+#include "common/saved_game.h"
 #include "lom_native_boundary.h"
 #include "lom_native_fs.h"
 #include "lom_native_portable.h"
@@ -41,6 +42,14 @@ static struct
 static LomNativeCardEntry listing[BLOCK_COUNT];
 
 static unsigned listing_count, listing_cursor;
+
+static const unsigned char seed_marker[8] = {'L', 'O', 'M', 'S', 'E', 'E', 'D', '1'};
+
+#define SEED_RECORD_BYTES 20
+
+_Static_assert(sizeof(((SaveFile*)0)->unused) >= SEED_RECORD_BYTES, "a save file's unused tail holds the seed record");
+
+static unsigned char seeded_save[SAVE_FILE_BYTES];
 
 /**
  * @brief Report a card result to the open events of its group: each one is
@@ -627,8 +636,122 @@ int lom_native_card_close(int handle)
 }
 
 /**
+ * @brief Check whether a card file's bytes are one of the game's saves: the
+ *        whole file, with the save magic after its checksum.
+ * @param data The bytes.
+ * @param size How many.
+ * @return 1 when they are.
+ */
+static int is_save_file(const unsigned char* data, int size)
+{
+    const unsigned char* magic = data + offsetof(SaveFile, magic);
+    return size == SAVE_FILE_BYTES && (uint32_t)(magic[0] | magic[1] << 8 | magic[2] << 16 | (uint32_t)magic[3] << 24) == SAVE_FILE_MAGIC;
+}
+
+/**
+ * @brief Read a save's game id, the same in every save of one playthrough.
+ * @param data The save file.
+ * @return Its game id.
+ */
+static unsigned save_game_id(const unsigned char* data)
+{
+    const unsigned char* id = data + offsetof(SaveFile, saved_game) + offsetof(SavedGameLayout, identity);
+    return (unsigned)(id[0] | id[1] << 8);
+}
+
+/**
+ * @brief Work out a seed record's check: FNV-1a of its first 16 bytes.
+ * @param record The record.
+ * @return The check.
+ */
+static uint32_t seed_record_check(const unsigned char* record)
+{
+    uint32_t check = 2166136261u;
+
+    for (int i = 0; i < 16; ++i)
+    {
+        check = (check ^ record[i]) * 16777619u;
+    }
+
+    return check;
+}
+
+/**
+ * @brief Put a mod's seed in a save that's being written, in the save file's
+ *        tail, which the game never reads (SaveFile.unused): a marker, the
+ *        game id, the seed and a check. The game's own bytes, and its
+ *        checksum, are untouched.
+ * @param data The save the game wants written.
+ * @param size Its size.
+ * @return The bytes to write: a copy with the seed, or @p data when the mods
+ *         keep no seed for this game.
+ */
+static void* with_seed(void* data, int size)
+{
+    uint32_t seed;
+
+    if (!is_save_file(data, size) || !lom_native_mods_save_seed(save_game_id(data), &seed))
+    {
+        return data;
+    }
+
+    memcpy(seeded_save, data, SAVE_FILE_BYTES);
+    unsigned char* record = seeded_save + offsetof(SaveFile, unused);
+    const unsigned game_id = save_game_id(data);
+    memcpy(record, seed_marker, sizeof(seed_marker));
+    record[8] = (unsigned char)game_id;
+    record[9] = (unsigned char)(game_id >> 8);
+    record[10] = record[11] = 0;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        record[12 + i] = (unsigned char)(seed >> (8 * i));
+    }
+
+    const uint32_t check = seed_record_check(record);
+
+    for (int i = 0; i < 4; ++i)
+    {
+        record[16 + i] = (unsigned char)(check >> (8 * i));
+    }
+
+    return seeded_save;
+}
+
+/**
+ * @brief Give the mods the seed a save keeps, when one was read whole, which
+ *        the game does only to load it.
+ * @param data The bytes read.
+ * @param size How many.
+ */
+static void note_seed(const unsigned char* data, int size)
+{
+    if (!is_save_file(data, size))
+    {
+        return;
+    }
+
+    const unsigned char* record = data + offsetof(SaveFile, unused);
+    const unsigned game_id = save_game_id(data);
+    uint32_t seed = 0, check = 0;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        seed |= (uint32_t)record[12 + i] << (8 * i);
+        check |= (uint32_t)record[16 + i] << (8 * i);
+    }
+
+    if (memcmp(record, seed_marker, sizeof(seed_marker)) == 0 && (unsigned)(record[8] | record[9] << 8) == game_id && check == seed_record_check(record))
+    {
+        lom_native_mods_save_loaded(game_id, seed);
+    }
+}
+
+/**
  * @brief Read or write a card file from where the last transfer ended, and
- *        signal the software events with the result.
+ *        signal the software events with the result. A whole save written
+ *        gets the mods' seed in its unused tail (with_seed), and a whole save
+ *        read gives the mods its seed back (note_seed).
  * @param handle The file's handle.
  * @param data The bytes.
  * @param size How many; the file has to have that many left.
@@ -654,10 +777,11 @@ static int transfer(int handle, void* data, int size, int writing)
     }
 
     int done = 0;
+    void* bytes = writing && pos == 0 ? with_seed(data, size) : data;
 
     while (done < size)
     {
-        ssize_t n = writing ? write(fd, (char*)data + done, (size_t)(size - done)) : read(fd, (char*)data + done, (size_t)(size - done));
+        ssize_t n = writing ? write(fd, (char*)bytes + done, (size_t)(size - done)) : read(fd, (char*)data + done, (size_t)(size - done));
 
         if (n < 0 && errno == EINTR)
         {
@@ -677,6 +801,11 @@ static int transfer(int handle, void* data, int size, int writing)
     {
         signal_event(0, 0x8000);
         return -1;
+    }
+
+    if (!writing && pos == 0)
+    {
+        note_seed(data, size);
     }
 
     signal_event(0, 4);

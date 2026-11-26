@@ -9,6 +9,7 @@
 #include <vector>
 
 class QLabel;
+class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
 class QPushButton;
@@ -30,6 +31,8 @@ class ModsDialog : public QDialog {
     static constexpr char up_name[] = "moveModUpButton";
     static constexpr char down_name[] = "moveModDownButton";
     static constexpr char open_folder_name[] = "openModsFolderButton";
+    static constexpr char seed_name[] = "modSeed";
+    static constexpr char seed_row_name[] = "modSeedRow";
 
     /**
      * @brief Show the mods in a folder, to turn on and off, order, add and
@@ -70,6 +73,18 @@ class ModsDialog : public QDialog {
     bool save();
 
     /**
+     * @brief Save the seed typed in the Seed row, or none when it's empty, so
+     *        new games get their own. One that isn't a seed isn't saved, and
+     *        the status says why.
+     */
+    void save_seed();
+
+    /**
+     * @brief Show the Seed row only while a mod that's on asks for a seed.
+     */
+    void show_seed();
+
+    /**
      * @brief Turn a mod on or off when its checkbox changes.
      * @param item The mod's row.
      */
@@ -106,6 +121,8 @@ class ModsDialog : public QDialog {
     QLabel* empty_ = nullptr;
     QLabel* details_ = nullptr;
     QLabel* status_ = nullptr;
+    QWidget* seed_row_ = nullptr;
+    QLineEdit* seed_ = nullptr;
     QPushButton* remove_ = nullptr;
     QPushButton* up_ = nullptr;
     QPushButton* down_ = nullptr;

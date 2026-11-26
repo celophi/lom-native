@@ -6,6 +6,7 @@
 
 #include "main/cd_resources.h"
 #include "main/game_state.h"
+#include "common/saved_game.h"
 
 #include "lom_native_game.h"
 #include "lom_native_game_loop.h"
@@ -15,6 +16,7 @@
 #include "lom_native_wmap.h"
 #include "lom_native_wsel.h"
 #include "lom_native_gpu.h"
+#include "lom_native_mods.h"
 #include "overlays/gname/internal/overlay_header.h"
 #include "overlays/title/internal/overlay_header.h"
 #include "overlays/wsel/internal/overlay_header.h"
@@ -28,6 +30,10 @@ static LomNativeWselEntry s_wsel_entry;
 static LomNativeTitleEntry s_title_entry;
 
 static LomNativeGnameEntry s_gname_entry;
+
+static int s_game_started;
+
+static unsigned s_started_game_id;
 
 /**
  * @brief Name an overlay the port runs, by its file and the ID at its start.
@@ -282,9 +288,43 @@ int lom_overlay_run_gname(void* render, unsigned char* initial, unsigned char* a
     return result;
 }
 
+/**
+ * @brief Tell the mods a game has started, when FIELD is entered from
+ *        anywhere but FIELD or the world map (a new game, a load from the
+ *        title, world select), or with another game in memory than the last
+ *        one started (a save from another playthrough loaded in FIELD).
+ *        Coming back from the world map isn't a new start.
+ */
+static void start_game_for_mods(void)
+{
+    const unsigned game_id = g_saved_game.layout.identity.ids.game_id;
+    const int returning = g_previous_game_state == GAME_STATE_FIELD || g_previous_game_state == GAME_STATE_WORLD_MAP;
+
+    if (s_game_started && returning && s_started_game_id == game_id)
+    {
+        return;
+    }
+
+    uint32_t fallback = 2166136261u;
+    const u8* name = g_saved_game.layout.characters[0].name;
+
+    fallback = (fallback ^ (game_id & 0xFFu)) * 16777619u;
+    fallback = (fallback ^ (game_id >> 8)) * 16777619u;
+
+    for (size_t i = 0; i < sizeof(g_saved_game.layout.characters[0].name); ++i)
+    {
+        fallback = (fallback ^ name[i]) * 16777619u;
+    }
+
+    s_game_started = 1;
+    s_started_game_id = game_id;
+    lom_native_mods_game_start(game_id, fallback);
+}
+
 int lom_overlay_run_field(int (*enter)(void))
 {
     int32_t next_state = 0;
+    start_game_for_mods();
     LomNativeGameStatus status = lom_native_field_run_entry(enter, &next_state);
 
     if (status != LOM_NATIVE_GAME_RUNNING)

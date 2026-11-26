@@ -6,6 +6,7 @@
 #include "../internal/field_records.h"
 #include "main/audio/game_audio.h"
 #include "main/main.h"
+#include "lom_native_mods.h"
 
 #define FIELD_ARTIFACTS_IN_HAND_LIMIT 3
 
@@ -54,6 +55,8 @@ static s32 field_is_item_key_used(FieldItemKey* key);
  * @param awarded Output list of lands whose artifacts were awarded, terminated with FIELD_LAND_LIST_END.
  * @return Number of artifacts awarded.
  * @note JP indexes the distance item table without clamping the distance.
+ * @note Native: first the mods' artifact_award hook can swap either land for
+ *       another, so the list the event shows names the artifact given.
  */
 s32 field_award_land_artifacts(s32 first_land, s32 second_land, s32* awarded)
 {
@@ -65,6 +68,16 @@ s32 field_award_land_artifacts(s32 first_land, s32 second_land, s32* awarded)
     u32 table_index;
 #endif
     u32 flags;
+
+    if (first_land >= 0 && first_land < FIELD_LAND_COUNT)
+    {
+        first_land = lom_native_mods_artifact_award(first_land, FIELD_LAND_COUNT);
+    }
+
+    if (second_land >= 0 && second_land < FIELD_LAND_COUNT)
+    {
+        second_land = lom_native_mods_artifact_award(second_land, FIELD_LAND_COUNT);
+    }
 
     cursor = awarded;
     artifacts_in_hand = 0;
@@ -156,9 +169,16 @@ static s32 field_try_award_land_artifact(s32 land_index)
 /**
  * @brief Unlock a land's artifact so that it can be awarded.
  * @param land_index Land index; ignored when >= FIELD_LAND_COUNT.
+ * @note Native: first the mods' artifact_award hook can swap the land for
+ *       another, the same way it does when the artifact is given.
  */
 void field_unlock_land_artifact(s32 land_index)
 {
+    if (land_index >= 0 && land_index < FIELD_LAND_COUNT)
+    {
+        land_index = lom_native_mods_artifact_award(land_index, FIELD_LAND_COUNT);
+    }
+
     if (land_index < FIELD_LAND_COUNT)
     {
         g_field_game_state->lands[land_index].flags |= FIELD_LAND_ARTIFACT_UNLOCKED;

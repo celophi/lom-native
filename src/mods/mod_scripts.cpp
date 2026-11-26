@@ -1,6 +1,9 @@
 #include "mod_scripts.h"
 #include "mod_manifest.h"
+#include "lom_native_mod_disc.h"
 #include "lom_native_mod_game.h"
+#include "lom_native_mod_seed.h"
+#include "lom_native_mods.h"
 #include "lom_native_notices.h"
 #include "lom_native_random.h"
 #include "lom_native_switches.h"
@@ -12,6 +15,8 @@ extern "C"
 #include "lualib.h"
 }
 
+#include <algorithm>
+#include <cstddef>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -31,6 +36,8 @@ constexpr int instructions_per_check = 1000;
 
 constexpr long checks_per_call = 10000;
 
+constexpr long checks_per_game_start = 1000000;
+
 constexpr int random_bits = 15;
 
 constexpr int random_mask = (1 << random_bits) - 1;
@@ -41,7 +48,17 @@ constexpr char hooks_key[] = "lom-native hooks";
 
 constexpr char modules_key[] = "lom-native modules";
 
-constexpr const char* hook_names[LOM_MOD_HOOK_COUNT] = {"scene_enter", "battle_start", "battle_end", "frame"};
+constexpr const char* hook_names[LOM_MOD_HOOK_COUNT] = {"scene_enter", "battle_start", "battle_end", "frame", "game_start", "file_load", "artifact_award"};
+
+constexpr char bytes_type[] = "lom.bytes";
+
+constexpr char random_type[] = "lom.random";
+
+constexpr std::uint64_t pcg_multiplier = 6364136223846793005ULL;
+
+constexpr std::uint64_t pcg_stream = 0x6C6F6D2D6E617469ULL;
+
+constexpr std::size_t max_disc_path = 255;
 
 constexpr const char* removed_globals[] = {"dofile", "loadfile", "load"};
 
@@ -128,6 +145,208 @@ lua_Integer game_random_bits()
     return (high << random_bits) | low;
 }
 
+struct Bytes
+{
+    std::size_t size;
+
+    unsigned char data[1];
+};
+
+struct Generator
+{
+    std::uint64_t state;
+
+    std::uint64_t increment;
+};
+
+/**
+ * @brief Draw PCG32's next number.
+ * @param generator The generator.
+ * @return 32 random bits.
+ */
+std::uint32_t next(Generator& generator)
+{
+    const std::uint64_t old = generator.state;
+    generator.state = old * pcg_multiplier + generator.increment;
+    const std::uint32_t shifted = static_cast<std::uint32_t>(((old >> 18u) ^ old) >> 27u);
+    const std::uint32_t rotation = static_cast<std::uint32_t>(old >> 59u);
+    return (shifted >> rotation) | (shifted << ((32u - rotation) & 31u));
+}
+
+/**
+ * @brief Seed a generator the way PCG32's pcg32_srandom does, on lom-native's
+ *        own stream.
+ * @param generator The generator.
+ * @param seed The seed.
+ */
+void seed_generator(Generator& generator, std::uint64_t seed)
+{
+    generator.state = 0;
+    generator.increment = (pcg_stream << 1u) | 1u;
+    next(generator);
+    generator.state += seed;
+    next(generator);
+}
+
+/**
+ * @brief Draw a whole number from 0 to span - 1, every one as likely.
+ * @param generator The generator.
+ * @param span How many numbers, from 1 to 2^32.
+ * @return The number.
+ */
+std::uint64_t below(Generator& generator, std::uint64_t span)
+{
+    if (span == (std::uint64_t{1} << 32))
+    {
+        return next(generator);
+    }
+
+    const std::uint32_t bound = static_cast<std::uint32_t>(span);
+    const std::uint32_t threshold = static_cast<std::uint32_t>(-bound) % bound;
+
+    for (;;)
+    {
+        const std::uint32_t drawn = next(generator);
+
+        if (drawn >= threshold)
+        {
+            return drawn % bound;
+        }
+    }
+}
+
+/**
+ * @brief Check a path on the disc a script gave: letters, digits, _, -, . and
+ *        forward slashes between parts, and no part that's empty, "." or "..".
+ * @param path The path.
+ * @param empty_allowed Whether "" (the whole disc) is allowed.
+ * @return True when it's allowed.
+ */
+bool disc_path_allowed(const char* path, bool empty_allowed)
+{
+    const std::size_t length = std::strlen(path);
+
+    if (length == 0)
+    {
+        return empty_allowed;
+    }
+
+    if (length > max_disc_path || path[0] == '/' || path[length - 1] == '/')
+    {
+        return false;
+    }
+
+    const char* part = path;
+
+    for (const char* c = path;; ++c)
+    {
+        if (*c == '/' || *c == 0)
+        {
+            const std::size_t part_length = static_cast<std::size_t>(c - part);
+
+            if (part_length == 0 || (part_length == 1 && part[0] == '.') || (part_length == 2 && part[0] == '.' && part[1] == '.'))
+            {
+                return false;
+            }
+
+            if (*c == 0)
+            {
+                return true;
+            }
+
+            part = c + 1;
+        }
+        else if (!((*c >= 'a' && *c <= 'z') || (*c >= 'A' && *c <= 'Z') || (*c >= '0' && *c <= '9') || *c == '_' || *c == '-' || *c == '.'))
+        {
+            return false;
+        }
+    }
+}
+
+/**
+ * @brief Collect a disc listing's paths, for lom_native_mod_disc_list.
+ * @param path A file's path.
+ * @param context The std::vector<std::string> to add it to.
+ */
+void collect_path(const char* path, void* context)
+{
+    static_cast<std::vector<std::string>*>(context)->push_back(path);
+}
+
+/**
+ * @brief Push bytes held in C memory as a Lua string, under lua_pcall, so
+ *        running out of the mod's memory can't skip freeing them.
+ * @param state The state, with a light userdata to the bytes and their size.
+ * @return 1: the string.
+ */
+int push_block(lua_State* state)
+{
+    const unsigned char* data = static_cast<const unsigned char*>(lua_touserdata(state, 1));
+    const lua_Integer size = lua_tointeger(state, 2);
+    lua_pushlstring(state, reinterpret_cast<const char*>(data), static_cast<std::size_t>(size));
+    return 1;
+}
+
+/**
+ * @brief Push a listing's paths as a Lua list, under lua_pcall, so running out
+ *        of the mod's memory can't skip the vector's destructor.
+ * @param state The state, with a light userdata to the std::vector<std::string>.
+ * @return 1: the list.
+ */
+int push_paths(lua_State* state)
+{
+    const std::vector<std::string>* paths = static_cast<const std::vector<std::string>*>(lua_touserdata(state, 1));
+    lua_createtable(state, static_cast<int>(paths->size()), 0);
+
+    for (std::size_t i = 0; i < paths->size(); ++i)
+    {
+        lua_pushlstring(state, (*paths)[i].data(), (*paths)[i].size());
+        lua_rawseti(state, -2, static_cast<lua_Integer>(i) + 1);
+    }
+
+    return 1;
+}
+
+/**
+ * @brief Push C memory as a Lua string and free it, raising the push's error
+ *        afterwards if it failed.
+ * @param state The state.
+ * @param data The bytes, from malloc.
+ * @param size How many.
+ */
+void push_and_free(lua_State* state, unsigned char* data, std::size_t size)
+{
+    lua_pushcfunction(state, push_block);
+    lua_pushlightuserdata(state, data);
+    lua_pushinteger(state, static_cast<lua_Integer>(size));
+    const int status = lua_pcall(state, 2, 1, 0);
+    std::free(data);
+
+    if (status != LUA_OK)
+    {
+        lua_error(state);
+    }
+}
+
+/**
+ * @brief Run a file_load hook with the file as a string: pushes the path and
+ *        the bytes inside the protected call, so running out of memory stops
+ *        the mod instead of the game.
+ * @param state The state: the hook function, a light userdata to the path,
+ *        one to the bytes, and their size.
+ * @return 1: what the hook returned.
+ */
+int call_file_hook(lua_State* state)
+{
+    const char* path = static_cast<const char*>(lua_touserdata(state, 2));
+    const char* data = static_cast<const char*>(lua_touserdata(state, 3));
+    const lua_Integer size = lua_tointeger(state, 4);
+    lua_settop(state, 1);
+    lua_pushstring(state, path);
+    lua_pushlstring(state, data, static_cast<std::size_t>(size));
+    lua_call(state, 2, 1);
+    return 1;
+}
 }
 
 struct ScriptApi
@@ -474,6 +693,347 @@ struct ScriptApi
         lua_setfield(state, -3, name);
         return 1;
     }
+
+    /**
+     * @brief lom.game(): the running game's disc serial.
+     * @param state The state.
+     * @return 1: "SLUS-01013" or "SLPS-02170".
+     */
+    static int game(lua_State* state)
+    {
+        lua_pushstring(state, owner(state)->game_.c_str());
+        return 1;
+    }
+
+    /**
+     * @brief lom.seed(): the seed of the game being played, for a mod whose
+     *        mod.json asks for one.
+     * @param state The state.
+     * @return 1: the seed, or nil before a game starts or for a mod that
+     *         doesn't ask for one.
+     */
+    static int seed(lua_State* state)
+    {
+        std::uint32_t seed = 0;
+
+        if (owner(state)->seeded_ && lom_native_mod_seed_current(&seed))
+        {
+            lua_pushinteger(state, static_cast<lua_Integer>(seed));
+        }
+        else
+        {
+            lua_pushnil(state);
+        }
+
+        return 1;
+    }
+
+    /**
+     * @brief lom.disc_file(path): a file from the player's disc, as it is on
+     *        the disc.
+     * @param state The state.
+     * @return 1: its bytes as a string, or nil when there's no such file.
+     */
+    static int disc_file(lua_State* state)
+    {
+        const char* path = luaL_checkstring(state, 1);
+
+        if (!disc_path_allowed(path, false))
+        {
+            return luaL_error(state, "lom.disc_file needs a path on the disc like \"ANA/MAPINFO/BON_1F00.IMG\", not %s", path);
+        }
+
+        std::size_t size = 0;
+        unsigned char* data = lom_native_mod_disc_read(path, &size);
+
+        if (!data)
+        {
+            lua_pushnil(state);
+            return 1;
+        }
+
+        push_and_free(state, data, size);
+        return 1;
+    }
+
+    /**
+     * @brief lom.disc_files(folder): the paths of the files in a folder on the
+     *        disc and the folders under it, sorted.
+     * @param state The state.
+     * @return 1: the list, or nil when there's no such folder.
+     */
+    static int disc_files(lua_State* state)
+    {
+        const char* folder = luaL_optstring(state, 1, "");
+
+        if (!disc_path_allowed(folder, true))
+        {
+            return luaL_error(state, "lom.disc_files needs a folder on the disc like \"ANA/MAPINFO\", not %s", folder);
+        }
+
+        int status;
+        {
+            std::vector<std::string> paths;
+
+            if (lom_native_mod_disc_list(folder, collect_path, &paths) != 0)
+            {
+                lua_pushnil(state);
+                return 1;
+            }
+
+            std::sort(paths.begin(), paths.end());
+            lua_pushcfunction(state, push_paths);
+            lua_pushlightuserdata(state, &paths);
+            status = lua_pcall(state, 1, 1, 0);
+        }
+
+        if (status != LUA_OK)
+        {
+            return lua_error(state);
+        }
+
+        return 1;
+    }
+
+    /**
+     * @brief lom.unpack(bytes): unpack a file the game keeps compressed on the
+     *        disc, like the overlays in BIN, the way the game does.
+     * @param state The state.
+     * @return 1: the unpacked bytes as a string.
+     */
+    static int unpack(lua_State* state)
+    {
+        std::size_t size = 0;
+        const char* packed = luaL_checklstring(state, 1, &size);
+        std::size_t unpacked_size = 0;
+        unsigned char* unpacked = lom_native_mod_disc_unpack(reinterpret_cast<const unsigned char*>(packed), size, &unpacked_size);
+
+        if (!unpacked)
+        {
+            return luaL_error(state, "lom.unpack got bytes that aren't a compressed file from the disc");
+        }
+
+        push_and_free(state, unpacked, unpacked_size);
+        return 1;
+    }
+
+    /**
+     * @brief lom.bytes(text): a buffer of bytes that can be changed in place,
+     *        holding a copy of the text.
+     * @param state The state.
+     * @return 1: the buffer.
+     */
+    static int bytes(lua_State* state)
+    {
+        std::size_t size = 0;
+        const char* text = luaL_checklstring(state, 1, &size);
+        Bytes* buffer = static_cast<Bytes*>(lua_newuserdatauv(state, offsetof(Bytes, data) + (size ? size : 1), 0));
+        buffer->size = size;
+        std::memcpy(buffer->data, text, size);
+        luaL_setmetatable(state, bytes_type);
+        return 1;
+    }
+
+    /**
+     * @brief A lom.bytes method to read or write a number: buffer:u16(offset)
+     *        reads, buffer:u16(offset, value) writes. Little-endian, like the
+     *        PS1; offsets from 0. Its width and whether it's signed are the
+     *        closure's upvalues.
+     * @param state The state.
+     * @return 1 when reading: the number; 0 when writing.
+     */
+    static int bytes_number(lua_State* state)
+    {
+        Bytes* buffer = static_cast<Bytes*>(luaL_checkudata(state, 1, bytes_type));
+        const int width = static_cast<int>(lua_tointeger(state, lua_upvalueindex(1)));
+        const bool is_signed = lua_toboolean(state, lua_upvalueindex(2));
+        const lua_Integer offset = luaL_checkinteger(state, 2);
+
+        if (offset < 0 || static_cast<lua_Unsigned>(offset) + static_cast<lua_Unsigned>(width) > buffer->size)
+        {
+            return luaL_error(state, "offset %d is outside the %d bytes (offsets start at 0)", static_cast<int>(offset), static_cast<int>(buffer->size));
+        }
+
+        unsigned char* at = buffer->data + offset;
+
+        if (lua_gettop(state) < 3)
+        {
+            std::uint32_t number = 0;
+
+            for (int i = width - 1; i >= 0; --i)
+            {
+                number = (number << 8) | at[i];
+            }
+
+            lua_Integer result = number;
+
+            if (is_signed && (number >> (width * 8 - 1)) & 1u)
+            {
+                result -= lua_Integer{1} << (width * 8);
+            }
+
+            lua_pushinteger(state, result);
+            return 1;
+        }
+
+        const lua_Integer value = luaL_checkinteger(state, 3);
+        const lua_Integer lowest = -(lua_Integer{1} << (width * 8 - 1));
+        const lua_Integer highest = (lua_Integer{1} << (width * 8)) - 1;
+
+        if (value < lowest || value > highest)
+        {
+            return luaL_error(state, "%d doesn't fit in %d byte%s", static_cast<int>(value), width, width == 1 ? "" : "s");
+        }
+
+        std::uint32_t number = static_cast<std::uint32_t>(value);
+
+        for (int i = 0; i < width; ++i)
+        {
+            at[i] = static_cast<unsigned char>(number & 0xFFu);
+            number >>= 8;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @brief buffer:string(): the buffer's bytes as a string.
+     * @param state The state.
+     * @return 1: the string.
+     */
+    static int bytes_string(lua_State* state)
+    {
+        const Bytes* buffer = static_cast<const Bytes*>(luaL_checkudata(state, 1, bytes_type));
+        lua_pushlstring(state, reinterpret_cast<const char*>(buffer->data), buffer->size);
+        return 1;
+    }
+
+    /**
+     * @brief #buffer: how many bytes it has.
+     * @param state The state.
+     * @return 1: the length.
+     */
+    static int bytes_length(lua_State* state)
+    {
+        const Bytes* buffer = static_cast<const Bytes*>(luaL_checkudata(state, 1, bytes_type));
+        lua_pushinteger(state, static_cast<lua_Integer>(buffer->size));
+        return 1;
+    }
+
+    /**
+     * @brief lom.random(seed): a random number generator of its own, PCG32
+     *        seeded with the number, separate from the game's.
+     * @param state The state.
+     * @return 1: the generator.
+     */
+    static int random_generator(lua_State* state)
+    {
+        const lua_Integer seed = luaL_checkinteger(state, 1);
+        Generator* generator = static_cast<Generator*>(lua_newuserdatauv(state, sizeof(Generator), 0));
+        seed_generator(*generator, static_cast<std::uint64_t>(seed));
+        luaL_setmetatable(state, random_type);
+        return 1;
+    }
+
+    /**
+     * @brief Draw a whole number from low to high for a generator method,
+     *        raising an error when the range is empty or wider than 2^32.
+     * @param state The state.
+     * @param generator The generator.
+     * @param low The lowest.
+     * @param high The highest.
+     * @return The number.
+     */
+    static lua_Integer draw(lua_State* state, Generator& generator, lua_Integer low, lua_Integer high)
+    {
+        if (low > high)
+        {
+            luaL_error(state, "the range %d to %d is empty", static_cast<int>(low), static_cast<int>(high));
+        }
+
+        const std::uint64_t span = static_cast<std::uint64_t>(high) - static_cast<std::uint64_t>(low) + 1u;
+
+        if (span == 0 || span > (std::uint64_t{1} << 32))
+        {
+            luaL_error(state, "a range can hold at most 2^32 numbers");
+        }
+
+        return static_cast<lua_Integer>(static_cast<std::uint64_t>(low) + below(generator, span));
+    }
+
+    /**
+     * @brief generator:int(n) for 1 to n, or generator:int(m, n) for m to n.
+     * @param state The state.
+     * @return 1: the number.
+     */
+    static int random_int(lua_State* state)
+    {
+        Generator* generator = static_cast<Generator*>(luaL_checkudata(state, 1, random_type));
+        const bool both = lua_gettop(state) >= 3;
+        const lua_Integer low = both ? luaL_checkinteger(state, 2) : 1;
+        const lua_Integer high = luaL_checkinteger(state, both ? 3 : 2);
+        lua_pushinteger(state, draw(state, *generator, low, high));
+        return 1;
+    }
+
+    /**
+     * @brief generator:float(): a number from 0 up to 1, not including 1.
+     * @param state The state.
+     * @return 1: the number.
+     */
+    static int random_float(lua_State* state)
+    {
+        Generator* generator = static_cast<Generator*>(luaL_checkudata(state, 1, random_type));
+        const std::uint64_t high = next(*generator) >> 5u;
+        const std::uint64_t low = next(*generator) >> 6u;
+        lua_pushnumber(state, static_cast<lua_Number>(high * 67108864u + low) / 9007199254740992.0);
+        return 1;
+    }
+
+    /**
+     * @brief generator:shuffle(list): shuffle a list in place, Fisher-Yates
+     *        from the end.
+     * @param state The state.
+     * @return 1: the list.
+     */
+    static int random_shuffle(lua_State* state)
+    {
+        Generator* generator = static_cast<Generator*>(luaL_checkudata(state, 1, random_type));
+        luaL_checktype(state, 2, LUA_TTABLE);
+        const lua_Integer count = static_cast<lua_Integer>(lua_rawlen(state, 2));
+
+        for (lua_Integer i = count; i > 1; --i)
+        {
+            const lua_Integer j = draw(state, *generator, 1, i);
+            lua_rawgeti(state, 2, i);
+            lua_rawgeti(state, 2, j);
+            lua_rawseti(state, 2, i);
+            lua_rawseti(state, 2, j);
+        }
+
+        lua_settop(state, 2);
+        return 1;
+    }
+
+    /**
+     * @brief generator:pick(list): one of a list's items, every one as likely.
+     * @param state The state.
+     * @return 1: the item.
+     */
+    static int random_pick(lua_State* state)
+    {
+        Generator* generator = static_cast<Generator*>(luaL_checkudata(state, 1, random_type));
+        luaL_checktype(state, 2, LUA_TTABLE);
+        const lua_Integer count = static_cast<lua_Integer>(lua_rawlen(state, 2));
+
+        if (count == 0)
+        {
+            return luaL_error(state, "generator:pick got an empty list");
+        }
+
+        lua_rawgeti(state, 2, draw(state, *generator, 1, count));
+        return 1;
+    }
 };
 
 namespace
@@ -489,9 +1049,36 @@ const luaL_Reg api_functions[] = {
     {"party", ScriptApi::party},
     {"heal", ScriptApi::heal},
     {"scene", ScriptApi::scene},
+    {"game", ScriptApi::game},
+    {"seed", ScriptApi::seed},
+    {"disc_file", ScriptApi::disc_file},
+    {"disc_files", ScriptApi::disc_files},
+    {"unpack", ScriptApi::unpack},
+    {"bytes", ScriptApi::bytes},
+    {"random", ScriptApi::random_generator},
     {nullptr, nullptr},
 };
 
+const luaL_Reg random_methods[] = {
+    {"int", ScriptApi::random_int},
+    {"float", ScriptApi::random_float},
+    {"shuffle", ScriptApi::random_shuffle},
+    {"pick", ScriptApi::random_pick},
+    {nullptr, nullptr},
+};
+
+struct BytesNumber
+{
+    const char* name;
+
+    int width;
+
+    bool is_signed;
+};
+
+const BytesNumber bytes_numbers[] = {
+    {"u8", 1, false}, {"u16", 2, false}, {"u32", 4, false}, {"s8", 1, true}, {"s16", 2, true}, {"s32", 4, true},
+};
 }
 
 std::vector<std::string> ModScripts::api_surface()
@@ -601,6 +1188,29 @@ bool ModScripts::open_sandbox()
     lua_newtable(state_);
     lua_setfield(state_, LUA_REGISTRYINDEX, modules_key);
 
+    luaL_newmetatable(state_, bytes_type);
+    lua_newtable(state_);
+
+    for (const BytesNumber& number : bytes_numbers)
+    {
+        lua_pushinteger(state_, number.width);
+        lua_pushboolean(state_, number.is_signed);
+        lua_pushcclosure(state_, ScriptApi::bytes_number, 2);
+        lua_setfield(state_, -2, number.name);
+    }
+
+    lua_pushcfunction(state_, ScriptApi::bytes_string);
+    lua_setfield(state_, -2, "string");
+    lua_setfield(state_, -2, "__index");
+    lua_pushcfunction(state_, ScriptApi::bytes_length);
+    lua_setfield(state_, -2, "__len");
+    lua_pop(state_, 1);
+
+    luaL_newmetatable(state_, random_type);
+    luaL_newlib(state_, random_methods);
+    lua_setfield(state_, -2, "__index");
+    lua_pop(state_, 1);
+
     luaL_newlib(state_, api_functions);
     lua_pushinteger(state_, mod_api);
     lua_setfield(state_, -2, "api");
@@ -609,12 +1219,12 @@ bool ModScripts::open_sandbox()
     return true;
 }
 
-bool ModScripts::call(int arguments, int results, std::string& error)
+bool ModScripts::call(int arguments, int results, std::string& error, long budget)
 {
     const int base = lua_gettop(state_) - arguments;
     lua_pushcfunction(state_, ScriptApi::traceback);
     lua_insert(state_, base);
-    budget_ = checks_per_call;
+    budget_ = budget;
     const int status = lua_pcall(state_, arguments, results, base);
     lua_remove(state_, base);
 
@@ -657,7 +1267,7 @@ bool ModScripts::run_script(const std::string& path, std::string& error)
         return false;
     }
 
-    return call(0, 0, error);
+    return call(0, 0, error, checks_per_call);
 }
 
 void ModScripts::stop(const std::string& error)
@@ -668,9 +1278,11 @@ void ModScripts::stop(const std::string& error)
 }
 
 std::unique_ptr<ModScripts> ModScripts::start(const std::string& mod_id, const std::filesystem::path& folder, const std::vector<std::string>& scripts,
-                                              std::string& error)
+                                              const std::string& game, bool seeded, std::string& error)
 {
     std::unique_ptr<ModScripts> host(new ModScripts(mod_id, folder));
+    host->game_ = game;
+    host->seeded_ = seeded;
     host->state_ = lua_newstate(allocate, host.get());
 
     if (!host->state_)
@@ -698,9 +1310,47 @@ std::unique_ptr<ModScripts> ModScripts::start(const std::string& mod_id, const s
     return host;
 }
 
+void ModScripts::each(LomModHook hook, bool game_state, long budget, int results, const std::function<int()>& push,
+                      const std::function<bool(std::string&)>& take)
+{
+    if (stopped_)
+    {
+        return;
+    }
+
+    in_hook_ = game_state;
+    lua_getfield(state_, LUA_REGISTRYINDEX, hooks_key);
+    lua_rawgeti(state_, -1, hook + 1);
+    const lua_Integer count = static_cast<lua_Integer>(lua_rawlen(state_, -1));
+
+    for (lua_Integer i = 1; i <= count && !stopped_; ++i)
+    {
+        lua_rawgeti(state_, -1, i);
+        const int arguments = push();
+        std::string error;
+
+        if (!call(arguments, results, error, budget))
+        {
+            stop(std::string(hook_names[hook]) + ": " + error);
+            break;
+        }
+
+        const bool kept = take(error);
+        lua_pop(state_, results);
+
+        if (!kept)
+        {
+            stop(std::string(hook_names[hook]) + ": " + error);
+        }
+    }
+
+    lua_pop(state_, 2);
+    in_hook_ = false;
+}
+
 void ModScripts::hook(LomModHook hook, int argument)
 {
-    if (stopped_ || hook < 0 || hook >= LOM_MOD_HOOK_COUNT)
+    if (hook < 0 || hook > LOM_MOD_HOOK_FRAME)
     {
         return;
     }
@@ -710,32 +1360,143 @@ void ModScripts::hook(LomModHook hook, int argument)
         scene_ = argument;
     }
 
-    in_hook_ = true;
-    lua_getfield(state_, LUA_REGISTRYINDEX, hooks_key);
-    lua_rawgeti(state_, -1, hook + 1);
-    const lua_Integer count = static_cast<lua_Integer>(lua_rawlen(state_, -1));
-
-    for (lua_Integer i = 1; i <= count && !stopped_; ++i)
-    {
-        lua_rawgeti(state_, -1, i);
-        int arguments = 0;
-
-        if (hook == LOM_MOD_HOOK_SCENE_ENTER)
+    each(
+        hook, true, checks_per_call, 0,
+        [&]()
         {
+            if (hook != LOM_MOD_HOOK_SCENE_ENTER)
+            {
+                return 0;
+            }
+
             lua_pushinteger(state_, argument);
-            arguments = 1;
-        }
+            return 1;
+        },
+        [](std::string&) { return true; });
+}
 
-        std::string error;
-
-        if (!call(arguments, 0, error))
+void ModScripts::game_start(const std::uint32_t* seed)
+{
+    each(
+        LOM_MOD_HOOK_GAME_START, false, checks_per_game_start, 0,
+        [&]()
         {
-            stop(std::string(hook_names[hook]) + ": " + error);
-        }
+            if (seed && seeded_)
+            {
+                lua_pushinteger(state_, static_cast<lua_Integer>(*seed));
+            }
+            else
+            {
+                lua_pushnil(state_);
+            }
+
+            return 1;
+        },
+        [](std::string&) { return true; });
+}
+
+bool ModScripts::file_load(const char* path, unsigned char* data, int size)
+{
+    bool changed = false;
+
+    each(
+        LOM_MOD_HOOK_FILE_LOAD, false, checks_per_call, 1,
+        [&]()
+        {
+            lua_pushcfunction(state_, call_file_hook);
+            lua_insert(state_, -2);
+            lua_pushlightuserdata(state_, const_cast<char*>(path));
+            lua_pushlightuserdata(state_, data);
+            lua_pushinteger(state_, size);
+            return 4;
+        },
+        [&](std::string& error)
+        {
+            std::size_t length = 0;
+            const unsigned char* bytes = nullptr;
+
+            if (lua_isnil(state_, -1))
+            {
+                return true;
+            }
+
+            if (lua_type(state_, -1) == LUA_TSTRING)
+            {
+                bytes = reinterpret_cast<const unsigned char*>(lua_tolstring(state_, -1, &length));
+            }
+            else if (const Bytes* buffer = static_cast<const Bytes*>(luaL_testudata(state_, -1, bytes_type)))
+            {
+                bytes = buffer->data;
+                length = buffer->size;
+            }
+            else
+            {
+                error = std::string("it returned a ") + luaL_typename(state_, -1) + " for " + path + ", not bytes or nil";
+                return false;
+            }
+
+            if (length != static_cast<std::size_t>(size))
+            {
+                error =
+                    "it returned " + std::to_string(length) + " bytes for " + path + ", which has " + std::to_string(size) + "; a file has to keep its length";
+                return false;
+            }
+
+            if (std::memcmp(data, bytes, length) != 0)
+            {
+                std::memcpy(data, bytes, length);
+                changed = true;
+            }
+
+            return true;
+        });
+
+    return changed;
+}
+
+int ModScripts::value(LomModHook hook, int value, int lowest, int highest)
+{
+    each(
+        hook, true, checks_per_call, 1,
+        [&]()
+        {
+            lua_pushinteger(state_, value);
+            return 1;
+        },
+        [&](std::string& error)
+        {
+            if (lua_isnil(state_, -1))
+            {
+                return true;
+            }
+
+            if (!lua_isinteger(state_, -1) || lua_tointeger(state_, -1) < lowest || lua_tointeger(state_, -1) > highest)
+            {
+                const std::string given = lua_isinteger(state_, -1) ? std::to_string(lua_tointeger(state_, -1)) : std::string("a ") + luaL_typename(state_, -1);
+                error = "it returned " + given + ", and the answer has to be a whole number from " + std::to_string(lowest) + " to " + std::to_string(highest) +
+                        ", or nil";
+                return false;
+            }
+
+            value = static_cast<int>(lua_tointeger(state_, -1));
+            return true;
+        });
+
+    return value;
+}
+
+bool ModScripts::wants(LomModHook hook) const
+{
+    if (stopped_ || hook < 0 || hook >= LOM_MOD_HOOK_COUNT)
+    {
+        return false;
     }
 
+    lua_getfield(state_, LUA_REGISTRYINDEX, hooks_key);
+    lua_rawgeti(state_, -1, hook + 1);
+    const bool any = lua_rawlen(state_, -1) > 0;
     lua_pop(state_, 2);
-    in_hook_ = false;
+    return any;
 }
 
 bool ModScripts::stopped() const

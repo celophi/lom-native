@@ -3,6 +3,7 @@
 
 #include "mod_manifest.h"
 
+#include <cstdint>
 #include <filesystem>
 #include <optional>
 #include <string>
@@ -82,12 +83,45 @@ class ModLibrary {
     static std::vector<std::pair<std::string, std::string>> clashing(const std::vector<ModEntry>& entries);
 
     /**
-     * @brief Write mods.ini: the enabled mods' ids, in the entries' order.
+     * @brief Write mods.ini: the enabled mods' ids, in the entries' order,
+     *        keeping the seed it sets.
      * @param entries The mods, in order.
      * @param error Set to why it couldn't be written.
      * @return True when it was written.
      */
     bool save(const std::vector<ModEntry>& entries, std::string& error) const;
+
+    /**
+     * @brief Write mods.ini: the enabled mods' ids, in the entries' order,
+     *        and the seed for new games, as a "seed=" line.
+     * @param entries The mods, in order.
+     * @param seed The seed new games start with, or nothing for a new one
+     *        for each new game.
+     * @param error Set to why it couldn't be written.
+     * @return True when it was written.
+     */
+    bool save(const std::vector<ModEntry>& entries, std::optional<std::uint32_t> seed, std::string& error) const;
+
+    /**
+     * @brief Read the seed mods.ini sets for new games, for the mods that ask
+     *        for one.
+     * @return The seed, or nothing when new games get their own.
+     */
+    std::optional<std::uint32_t> seed() const;
+
+    /**
+     * @brief Read a seed someone typed: a whole number from 0 to 4294967295.
+     * @param text The text, without spaces.
+     * @return The seed, or nothing when it isn't one.
+     */
+    static std::optional<std::uint32_t> parse_seed(const std::string& text);
+
+    /**
+     * @brief Check whether a mod that's on and would load asks for a seed.
+     * @param entries The mods.
+     * @return True when one does.
+     */
+    static bool wants_seed(const std::vector<ModEntry>& entries);
 
     /**
      * @brief Read the id a mod's mod.json gives, before it's installed.

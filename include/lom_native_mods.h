@@ -1,6 +1,8 @@
 #ifndef LOM_NATIVE_MODS_H
 #define LOM_NATIVE_MODS_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -12,6 +14,9 @@ extern "C"
         LOM_MOD_HOOK_BATTLE_START,
         LOM_MOD_HOOK_BATTLE_END,
         LOM_MOD_HOOK_FRAME,
+        LOM_MOD_HOOK_GAME_START,
+        LOM_MOD_HOOK_FILE_LOAD,
+        LOM_MOD_HOOK_ARTIFACT_AWARD,
         LOM_MOD_HOOK_COUNT
     } LomModHook;
 
@@ -41,11 +46,75 @@ extern "C"
      * @brief Run the mods' scripts for a hook, in mod order, skipping a mod
      *        the player turned off in F1. Does nothing when no mod has a
      *        script, so the game can raise hooks freely.
-     * @param hook The hook.
+     * @param hook The hook: LOM_MOD_HOOK_SCENE_ENTER, _BATTLE_START,
+     *        _BATTLE_END or _FRAME. The others have calls of their own below.
      * @param argument What the hook passes, like the scene for
      *        LOM_MOD_HOOK_SCENE_ENTER; 0 for hooks that pass nothing.
      */
     void lom_native_mods_hook(LomModHook hook, int argument);
+
+    /**
+     * @brief Start a game for the mods: work out its seed, then run the mods'
+     *        game_start hooks, which is where a mod works out what it'll change
+     *        before FIELD loads anything. FIELD's entry calls it when a game
+     *        has just started or been loaded. When a mod asks for a seed, the
+     *        seed is the one this game already has (from its save, or an
+     *        earlier start), else the launcher's seed from mods.ini, else
+     *        @p fallback_seed; it's kept for the game from then on, and
+     *        lom_native_mod_seed_current gives it.
+     * @param game_id The game's id (SaveIdentity's game_id), the same in
+     *        every save of one playthrough.
+     * @param fallback_seed The seed for a game that has none and no seed is
+     *        set, made from the game itself so it's the same every time.
+     */
+    void lom_native_mods_game_start(unsigned game_id, uint32_t fallback_seed);
+
+    /**
+     * @brief Let the mods change a file the game read, after it's unpacked and
+     *        before the game uses it, through their file_load hooks, in mod
+     *        order. A file keeps its length. Does nothing, quickly, when no mod
+     *        has a file_load hook.
+     * @param path The file's path on the disc, like "ANA/MAPINFO/BON_1F00.IMG".
+     * @param data Its bytes, changed in place.
+     * @param size How many.
+     * @return 1 when a mod changed it, otherwise 0.
+     */
+    int lom_native_mods_file_load(const char* path, unsigned char* data, int size);
+
+    /**
+     * @brief Ask the mods which land's artifact to give or unlock in place of
+     *        one the game means to, through their artifact_award hooks, in mod
+     *        order, each getting the one before's answer.
+     * @param land The land the game means.
+     * @param land_count How many lands there are; an answer outside 0 to
+     *        land_count - 1 stops that mod.
+     * @return The land to use.
+     */
+    int lom_native_mods_artifact_award(int land, int land_count);
+
+    /**
+     * @brief Read the seed mods.ini sets for new games ("seed=" line), which
+     *        the launcher writes.
+     * @param seed Set to it.
+     * @return 1 when it sets one, 0 when new games get their own.
+     */
+    int lom_native_mods_seed_setting(uint32_t* seed);
+
+    /**
+     * @brief Note the seed a save that was just loaded keeps, so the game it
+     *        belongs to gets it back.
+     * @param game_id The save's game id.
+     * @param seed Its seed.
+     */
+    void lom_native_mods_save_loaded(unsigned game_id, uint32_t seed);
+
+    /**
+     * @brief Find the seed to keep in a save that's being written.
+     * @param game_id The save's game id.
+     * @param seed Set to its seed.
+     * @return 1 when the game has one and a mod asks for seeds, otherwise 0.
+     */
+    int lom_native_mods_save_seed(unsigned game_id, uint32_t* seed);
 
     /**
      * @brief Count the mods that are loaded.

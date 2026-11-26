@@ -71,7 +71,10 @@ extern "C"
 
     /** @brief Run @p enter, the game's steps that load and run FIELD or the
      *         world map, inside the port's guard for it: it stops them cleanly
-     *         when the player quits or a read fails. Returns what @p enter did. */
+     *         when the player quits or a read fails. First, when a game has
+     *         just started or been loaded, it tells the mods
+     *         (lom_native_mods_game_start), before FIELD loads anything.
+     *         Returns what @p enter did. */
     int lom_overlay_run_field(int (*enter)(void));
 
     /**

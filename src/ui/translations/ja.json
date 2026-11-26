@@ -43,6 +43,8 @@
   "mod_toggle_note": "ここでオフにしても、次に遊ぶときにはオンに戻ります。読み込むMODはランチャーのMODウィンドウで決まります。",
   "mods_empty_label": "ここでオン・オフできるMODはありません",
   "mods_empty_help": "プレイ中にオン・オフできるMODは、ランチャーのMODウィンドウでオンにするとここに表示されます。",
+  "seed_label": "シード: %s",
+  "seed_help": "プレイ中のゲームのシードです。シードを使うMODのためのものです。同じシードで新しいゲームを始めるには、ランチャーのMODウィンドウで入力します。",
   "mod_refused_notice": "MOD「%s」は読み込まれませんでした: %s。",
   "mod_stopped_notice": "MOD「%s」が停止しました。ゲームはこのMODなしで続きます: %s。",
   "player_value_format": "プレイヤー%d",

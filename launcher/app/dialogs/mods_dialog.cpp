@@ -8,9 +8,11 @@
 #include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QRegularExpressionValidator>
 #include <QSignalBlocker>
 #include <QVBoxLayout>
 
@@ -24,6 +26,7 @@ namespace {
 constexpr int dialog_width = 520;
 constexpr int list_height = 220;
 constexpr int id_role = Qt::UserRole;
+constexpr int seed_digits = 10;
 
 /**
  * @brief Join names for a sentence, with commas.
@@ -108,6 +111,31 @@ ModsDialog::ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& deskto
     status_->setVisible(false);
     layout->addWidget(status_);
 
+    seed_row_ = new QWidget(this);
+    seed_row_->setObjectName(seed_row_name);
+    auto* seed_layout = new QVBoxLayout(seed_row_);
+    seed_layout->setContentsMargins(0, 0, 0, 0);
+    auto* seed_line = new QHBoxLayout();
+    auto* seed_label = new QLabel(ui_text::mod_seed, seed_row_);
+    seed_ = new QLineEdit(seed_row_);
+    seed_->setObjectName(seed_name);
+    seed_->setPlaceholderText(ui_text::mod_seed_placeholder);
+    seed_->setMaxLength(seed_digits);
+    seed_->setValidator(new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[0-9]{0,10}")), seed_));
+    seed_label->setBuddy(seed_);
+    seed_line->addWidget(seed_label);
+    seed_line->addWidget(seed_, 1);
+    seed_layout->addLayout(seed_line);
+    auto* seed_help = new QLabel(ui_text::mod_seed_help, seed_row_);
+    seed_help->setWordWrap(true);
+    Theme::set_role(seed_help, Theme::muted_label);
+    seed_layout->addWidget(seed_help);
+    layout->addWidget(seed_row_);
+
+    if (const std::optional<std::uint32_t> seed = library_.seed()) {
+        seed_->setText(QString::number(*seed));
+    }
+
     auto* actions = new QHBoxLayout();
     auto* add = new QPushButton(ui_text::mod_add, this);
     add->setObjectName(add_name);
@@ -142,6 +170,7 @@ ModsDialog::ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& deskto
         std::filesystem::create_directories(library_.folder(), ignored);
         desktop_.open_folder(AppPaths::to_text(library_.folder()));
     });
+    connect(seed_, &QLineEdit::editingFinished, this, &ModsDialog::save_seed);
     connect(buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     reload(std::string());
@@ -181,6 +210,33 @@ void ModsDialog::fill_list(int select_row) {
     empty_->setVisible(entries_.empty());
     list_->setCurrentRow(select_row);
     show_details();
+    show_seed();
+}
+
+void ModsDialog::show_seed() {
+    seed_row_->setVisible(ModLibrary::wants_seed(entries_));
+}
+
+void ModsDialog::save_seed() {
+    const std::string text = seed_->text().trimmed().toStdString();
+    const std::optional<std::uint32_t> seed = ModLibrary::parse_seed(text);
+
+    if (!text.empty() && !seed) {
+        status_->setText(ui_text::mod_seed_invalid);
+        status_->setVisible(true);
+        return;
+    }
+
+    std::string error;
+    ModLibrary::resolve_conflicts(entries_);
+
+    if (!library_.save(entries_, seed, error)) {
+        status_->setText(QString(ui_text::mod_save_failed).arg(QString::fromStdString(error)));
+        status_->setVisible(true);
+        return;
+    }
+
+    status_->setVisible(false);
 }
 
 void ModsDialog::show_details() {

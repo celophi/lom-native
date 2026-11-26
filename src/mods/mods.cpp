@@ -1,6 +1,7 @@
 #include "lom_native_mods.h"
 #include "lom_native_env.h"
 #include "lom_native_mod_options.h"
+#include "lom_native_mod_seed.h"
 #include "lom_native_mod_toggles.h"
 #include "lom_native_notices.h"
 #include "lom_native_portable.h"
@@ -11,7 +12,9 @@
 
 #include <algorithm>
 #include <cstdio>
+#include <cstdlib>
 #include <fstream>
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
@@ -31,6 +34,8 @@ constexpr char cards_prefix[] = "mods-";
 constexpr std::size_t cards_hash_digits = 12;
 
 constexpr std::size_t path_room = 4096;
+
+constexpr char seed_key[] = "seed=";
 
 struct LoadedMod
 {
@@ -55,6 +60,16 @@ std::vector<std::string> s_refused;
 std::string s_cards_name;
 
 int s_scripted_count;
+
+std::string s_game;
+
+bool s_seeded;
+
+bool s_has_seed_setting;
+
+std::uint32_t s_seed_setting;
+
+std::map<unsigned, std::uint32_t> s_game_seeds;
 
 /**
  * @brief Find the mods folder: LOM_MODS_DIR, else the user data folder's mods.
@@ -105,8 +120,35 @@ std::filesystem::path find_mod(const std::filesystem::path& folder, const std::s
 }
 
 /**
- * @brief Read the ids mods.ini enables, in order: one per line, ignoring blank
- *        lines, lines starting with #, surrounding spaces and repeats.
+ * @brief Read a seed from mods.ini's seed= line: a whole number from 0 to
+ *        4294967295.
+ * @param text What follows "seed=".
+ * @param seed Set to it.
+ * @return True when it's one.
+ */
+bool parse_seed(const std::string& text, std::uint32_t& seed)
+{
+    if (text.empty() || text.size() > 10 || text.find_first_not_of("0123456789") != std::string::npos)
+    {
+        return false;
+    }
+
+    const unsigned long long value = std::strtoull(text.c_str(), nullptr, 10);
+
+    if (value > 0xFFFFFFFFull)
+    {
+        return false;
+    }
+
+    seed = static_cast<std::uint32_t>(value);
+    return true;
+}
+
+/**
+ * @brief Read mods.ini: the ids it enables, in order, one per line, ignoring
+ *        blank lines, lines starting with #, surrounding spaces and repeats;
+ *        and a "seed=" line, the seed the launcher sets for new games, kept in
+ *        s_seed_setting. A line with "=" is a setting, never an id.
  * @param folder The mods folder.
  * @return The ids; empty when there's no mods.ini.
  */
@@ -126,6 +168,23 @@ std::vector<std::string> enabled_ids(const std::filesystem::path& folder)
         }
 
         const std::string id = line.substr(first, line.find_last_not_of(" \t\r") - first + 1);
+
+        if (id.find('=') != std::string::npos)
+        {
+            if (id.compare(0, sizeof(seed_key) - 1, seed_key) == 0)
+            {
+                std::uint32_t seed = 0;
+                s_has_seed_setting = parse_seed(id.substr(sizeof(seed_key) - 1), seed);
+                s_seed_setting = seed;
+
+                if (!s_has_seed_setting)
+                {
+                    std::fprintf(stderr, "[lom-native] mods: mods.ini's %s isn't a seed from 0 to 4294967295, so new games get their own.\n", id.c_str());
+                }
+            }
+
+            continue;
+        }
 
         if (std::find(ids.begin(), ids.end(), id) == ids.end())
         {
@@ -284,6 +343,17 @@ std::string cards_name()
 }
 
 /**
+ * @brief Check a loaded mod's scripts should hear hooks: it has scripts, and
+ *        the player hasn't turned it off in F1.
+ * @param mod The mod.
+ * @return True when they should.
+ */
+bool listening(const LoadedMod& mod)
+{
+    return mod.scripts && (mod.toggle < 0 || lom_native_mod_toggles_on(mod.toggle));
+}
+
+/**
  * @brief Find a loaded mod by index.
  * @param index The index.
  * @return The mod, or NULL when it's out of range.
@@ -302,6 +372,7 @@ using namespace ::lom::mods;
 int lom_native_mods_start(const char* game_serial)
 {
     lom_native_mods_stop();
+    s_game = game_serial ? game_serial : us_game_serial;
     const std::filesystem::path folder = mods_folder();
 
     if (folder.empty())
@@ -320,7 +391,7 @@ int lom_native_mods_start(const char* game_serial)
             continue;
         }
 
-        std::optional<ModManifest> manifest = read_manifest(mod, game_serial ? game_serial : us_game_serial, error);
+        std::optional<ModManifest> manifest = read_manifest(mod, s_game, error);
 
         if (!manifest)
         {
@@ -366,7 +437,7 @@ int lom_native_mods_start(const char* game_serial)
         if (!mod.manifest.scripts.empty())
         {
             std::string error;
-            mod.scripts = ModScripts::start(mod.manifest.id, mod.folder, mod.manifest.scripts, error);
+            mod.scripts = ModScripts::start(mod.manifest.id, mod.folder, mod.manifest.scripts, s_game, mod.manifest.seed, error);
 
             if (!mod.scripts)
             {
@@ -383,6 +454,8 @@ int lom_native_mods_start(const char* game_serial)
     }
 
     s_cards_name = cards_name();
+    s_seeded = std::any_of(s_loaded.begin(), s_loaded.end(), [](const LoadedMod& mod) { return mod.manifest.seed; });
+    lom_native_mod_seed_set_wanted(s_seeded);
     return static_cast<int>(s_loaded.size());
 }
 
@@ -395,6 +468,11 @@ void lom_native_mods_stop(void)
     s_refused.clear();
     s_cards_name.clear();
     s_scripted_count = 0;
+    s_seeded = false;
+    s_has_seed_setting = false;
+    s_seed_setting = 0;
+    s_game_seeds.clear();
+    lom_native_mod_seed_reset();
 }
 
 void lom_native_mods_hook(LomModHook hook, int argument)
@@ -406,11 +484,107 @@ void lom_native_mods_hook(LomModHook hook, int argument)
 
     for (LoadedMod& mod : s_loaded)
     {
-        if (mod.scripts && (mod.toggle < 0 || lom_native_mod_toggles_on(mod.toggle)))
+        if (listening(mod))
         {
             mod.scripts->hook(hook, argument);
         }
     }
+}
+
+void lom_native_mods_game_start(unsigned game_id, uint32_t fallback_seed)
+{
+    std::uint32_t seed = 0;
+    bool has_seed = false;
+
+    if (s_seeded)
+    {
+        const auto known = s_game_seeds.find(game_id);
+        seed = known != s_game_seeds.end() ? known->second : s_has_seed_setting ? s_seed_setting : fallback_seed;
+        has_seed = true;
+        s_game_seeds[game_id] = seed;
+        lom_native_mod_seed_set_current(seed);
+        std::fprintf(stderr, "[lom-native] mods: game %u starts with seed %u.\n", game_id, seed);
+    }
+
+    if (s_scripted_count == 0)
+    {
+        return;
+    }
+
+    for (LoadedMod& mod : s_loaded)
+    {
+        if (listening(mod))
+        {
+            mod.scripts->game_start(has_seed ? &seed : nullptr);
+        }
+    }
+}
+
+int lom_native_mods_file_load(const char* path, unsigned char* data, int size)
+{
+    if (s_scripted_count == 0 || !path || !data || size <= 0)
+    {
+        return 0;
+    }
+
+    int changed = 0;
+
+    for (LoadedMod& mod : s_loaded)
+    {
+        if (listening(mod) && mod.scripts->wants(LOM_MOD_HOOK_FILE_LOAD) && mod.scripts->file_load(path, data, size))
+        {
+            changed = 1;
+        }
+    }
+
+    return changed;
+}
+
+int lom_native_mods_artifact_award(int land, int land_count)
+{
+    if (s_scripted_count == 0)
+    {
+        return land;
+    }
+
+    for (LoadedMod& mod : s_loaded)
+    {
+        if (listening(mod) && mod.scripts->wants(LOM_MOD_HOOK_ARTIFACT_AWARD))
+        {
+            land = mod.scripts->value(LOM_MOD_HOOK_ARTIFACT_AWARD, land, 0, land_count - 1);
+        }
+    }
+
+    return land;
+}
+
+int lom_native_mods_seed_setting(uint32_t* seed)
+{
+    if (!s_has_seed_setting)
+    {
+        return 0;
+    }
+
+    *seed = s_seed_setting;
+    return 1;
+}
+
+void lom_native_mods_save_loaded(unsigned game_id, uint32_t seed)
+{
+    s_game_seeds[game_id] = seed;
+}
+
+int lom_native_mods_save_seed(unsigned game_id, uint32_t* seed)
+{
+    const auto known = s_game_seeds.find(game_id);
+
+    if (!s_seeded || known == s_game_seeds.end())
+    {
+        return 0;
+    }
+
+    *seed = known->second;
+    return 1;
 }
 
 int lom_native_mods_count(void)

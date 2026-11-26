@@ -43,6 +43,8 @@
   "mod_toggle_note": "Si lo desactivas aquí, vuelve a estar activo la próxima vez que juegues. La ventana Mods del lanzador decide qué mods se cargan.",
   "mods_empty_label": "No hay mods para activar y desactivar aquí",
   "mods_empty_help": "Los mods que se pueden activar y desactivar mientras juegas aparecen aquí cuando están activos en la ventana Mods del lanzador.",
+  "seed_label": "Semilla: %s",
+  "seed_help": "La semilla de la partida que juegas, para los mods que usan una. Escríbela en la ventana Mods del lanzador para empezar una partida nueva con la misma.",
   "mod_refused_notice": "El mod %s no se cargó: %s.",
   "mod_stopped_notice": "El mod %s se detuvo y el juego sigue sin él: %s.",
   "player_value_format": "Jugador %d",

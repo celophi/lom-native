@@ -43,6 +43,8 @@
   "mod_toggle_note": "在这里关闭后，下次游玩时会重新开启。加载哪些模组由启动器的“模组”窗口决定。",
   "mods_empty_label": "这里没有可开关的模组",
   "mods_empty_help": "可以在游玩时开关的模组，在启动器的“模组”窗口中开启后会显示在这里。",
+  "seed_label": "种子：%s",
+  "seed_help": "当前游戏的种子，供使用种子的模组使用。要用同一个种子开始新游戏，请在启动器的“模组”窗口中输入。",
   "mod_refused_notice": "模组 %s 未加载：%s。",
   "mod_stopped_notice": "模组 %s 已停止，游戏会在没有它的情况下继续：%s。",
   "player_value_format": "玩家 %d",
