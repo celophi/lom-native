@@ -43,6 +43,8 @@
   "mod_toggle_note": "Désactivé ici, il est de nouveau actif la prochaine fois que vous jouez. La fenêtre Mods du lanceur décide quels mods sont chargés.",
   "mods_empty_label": "Aucun mod à activer ou désactiver ici",
   "mods_empty_help": "Les mods qu'on peut activer et désactiver en jouant apparaissent ici une fois activés dans la fenêtre Mods du lanceur.",
+  "seed_label": "Graine : %s",
+  "seed_help": "La graine de la partie en cours, pour les mods qui en utilisent une. Tape-la dans la fenêtre Mods du lanceur pour commencer une nouvelle partie avec la même.",
   "mod_refused_notice": "Le mod %s n'a pas été chargé : %s.",
   "mod_stopped_notice": "Le mod %s s'est arrêté, le jeu continue sans lui : %s.",
   "player_value_format": "Joueur %d",

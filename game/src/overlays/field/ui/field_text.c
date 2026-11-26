@@ -1,4 +1,5 @@
 #include "common.h"
+#include "lom_native_quick_rooms.h"
 #include <libgpu.h>
 #include <libgte.h>
 #include "lom_native_input.h"
@@ -3875,6 +3876,8 @@ static void field_text_queue_uploads(FieldTextState* state, u8** cursor)
  * @param text Text pointer.
  * @param text_options Text options; bit 0 enables automatic close.
  * @note JP does not set last_was_break (and has no glyph cursor to clear).
+ * @note Native: a text window means a scene change is more than a room change,
+ *       for the quick_room_changes switch.
  */
 void field_text_set_string(s32 window_index, u8* text, s32 text_options)
 {
@@ -3883,6 +3886,8 @@ void field_text_set_string(s32 window_index, u8* text, s32 text_options)
     FieldWorkspace* text_system = FIELD_WORKSPACE;
     FieldTextState* state = &text_system->windows[slot];
     FieldTextConfig* config;
+
+    lom_quick_rooms_not_a_room_change();
 
     if ((state->flags.word & FIELD_TEXT_REOPEN_MASK) != 0)
     {

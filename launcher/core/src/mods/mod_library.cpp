@@ -4,6 +4,7 @@
 #include "mod_manifest.h"
 
 #include <algorithm>
+#include <cstdlib>
 #include <map>
 #include <sstream>
 #include <system_error>
@@ -14,35 +15,48 @@ namespace {
 
 constexpr char list_comment = '#';
 constexpr char whitespace[] = " \t\r";
+constexpr char seed_key[] = "seed=";
+
+/**
+ * @brief Read mods.ini's lines the way the game does: each without the
+ *        spaces around it, leaving out blank lines and lines starting with #.
+ * @param path mods.ini.
+ * @return The lines; empty when there's no mods.ini.
+ */
+std::vector<std::string> list_lines(const std::filesystem::path& path) {
+    std::vector<std::string> lines;
+    const std::optional<std::string> text = AtomicFile::read(path, nullptr);
+
+    if (!text) {
+        return lines;
+    }
+
+    std::istringstream input(*text);
+    std::string line;
+
+    while (std::getline(input, line)) {
+        const std::size_t first = line.find_first_not_of(whitespace);
+
+        if (first != std::string::npos && line[first] != list_comment) {
+            lines.push_back(line.substr(first, line.find_last_not_of(whitespace) - first + 1));
+        }
+    }
+
+    return lines;
+}
 
 /**
  * @brief Read the ids mods.ini enables, the way the game reads them: one per
- *        line, ignoring blank lines, lines starting with #, surrounding spaces
- *        and repeats.
+ *        line, ignoring blank lines, lines starting with #, surrounding spaces,
+ *        repeats, and settings like "seed=", since an id can't hold "=".
  * @param path mods.ini.
  * @return The ids in order; empty when there's no mods.ini.
  */
 std::vector<std::string> read_enabled(const std::filesystem::path& path) {
     std::vector<std::string> ids;
-    const std::optional<std::string> text = AtomicFile::read(path, nullptr);
 
-    if (!text) {
-        return ids;
-    }
-
-    std::istringstream lines(*text);
-    std::string line;
-
-    while (std::getline(lines, line)) {
-        const std::size_t first = line.find_first_not_of(whitespace);
-
-        if (first == std::string::npos || line[first] == list_comment) {
-            continue;
-        }
-
-        const std::string id = line.substr(first, line.find_last_not_of(whitespace) - first + 1);
-
-        if (std::find(ids.begin(), ids.end(), id) == ids.end()) {
+    for (const std::string& id : list_lines(path)) {
+        if (id.find('=') == std::string::npos && std::find(ids.begin(), ids.end(), id) == ids.end()) {
             ids.push_back(id);
         }
     }
@@ -235,6 +249,10 @@ std::vector<std::pair<std::string, std::string>> ModLibrary::clashing(const std:
 }
 
 bool ModLibrary::save(const std::vector<ModEntry>& entries, std::string& error) const {
+    return save(entries, seed(), error);
+}
+
+bool ModLibrary::save(const std::vector<ModEntry>& entries, std::optional<std::uint32_t> seed, std::string& error) const {
     std::string text;
 
     for (const ModEntry& entry : entries) {
@@ -243,7 +261,43 @@ bool ModLibrary::save(const std::vector<ModEntry>& entries, std::string& error) 
         }
     }
 
+    if (seed) {
+        text += seed_key + std::to_string(*seed) + "\n";
+    }
+
     return AtomicFile::write(folder_ / enabled_list_name, text, &error);
+}
+
+std::optional<std::uint32_t> ModLibrary::seed() const {
+    std::optional<std::uint32_t> seed;
+
+    for (const std::string& line : list_lines(folder_ / enabled_list_name)) {
+        if (line.compare(0, sizeof(seed_key) - 1, seed_key) == 0) {
+            seed = parse_seed(line.substr(sizeof(seed_key) - 1));
+        }
+    }
+
+    return seed;
+}
+
+std::optional<std::uint32_t> ModLibrary::parse_seed(const std::string& text) {
+    if (text.empty() || text.size() > 10 || text.find_first_not_of("0123456789") != std::string::npos) {
+        return std::nullopt;
+    }
+
+    const unsigned long long value = std::strtoull(text.c_str(), nullptr, 10);
+
+    if (value > 0xFFFFFFFFull) {
+        return std::nullopt;
+    }
+
+    return static_cast<std::uint32_t>(value);
+}
+
+bool ModLibrary::wants_seed(const std::vector<ModEntry>& entries) {
+    return std::any_of(entries.begin(), entries.end(), [](const ModEntry& entry) {
+        return entry.enabled && entry.refused.empty() && entry.manifest && entry.manifest->seed;
+    });
 }
 
 std::optional<std::string> ModLibrary::source_id(const std::filesystem::path& source, std::string& error) {

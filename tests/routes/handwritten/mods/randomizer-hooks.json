@@ -1,0 +1,33 @@
+{
+  "format": 1,
+  "id": "mods-randomizer-hooks",
+  "description": "A randomizer's hooks should work in the real game, and artifact_award should swap the artifact going outside unlocks for land 2's",
+  "start": {
+    "save": "../saves/home-bedroom-new-game.json"
+  },
+  "mods": "randomizer",
+  "steps": [
+    {
+      "checkpoint": "loaded",
+      "note": "the save has loaded through Continue"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "the bedroom door, to the main room (scene 18)"
+    },
+    {
+      "checkpoint": "main-room"
+    },
+    {
+      "walk_to": {
+        "exit": 0
+      },
+      "note": "the front door, to outside (scene 16), which unlocks an artifact"
+    },
+    {
+      "checkpoint": "outside"
+    }
+  ]
+}

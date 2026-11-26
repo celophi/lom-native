@@ -43,6 +43,8 @@
   "mod_toggle_note": "Hier ausgeschaltet, ist er beim nächsten Spielen wieder an. Welche Mods geladen werden, entscheidet das Mods-Fenster des Launchers.",
   "mods_empty_label": "Keine Mods zum Ein- und Ausschalten",
   "mods_empty_help": "Mods, die sich beim Spielen ein- und ausschalten lassen, erscheinen hier, sobald sie im Mods-Fenster des Launchers an sind.",
+  "seed_label": "Seed: %s",
+  "seed_help": "Der Seed des Spiels, das du spielst, für die Mods, die einen benutzen. Gib ihn im Mods-Fenster des Launchers ein, um ein neues Spiel mit demselben zu beginnen.",
   "mod_refused_notice": "Der Mod %s wurde nicht geladen: %s.",
   "mod_stopped_notice": "Der Mod %s wurde gestoppt, das Spiel läuft ohne ihn weiter: %s.",
   "player_value_format": "Spieler %d",

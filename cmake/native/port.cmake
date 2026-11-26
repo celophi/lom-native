@@ -36,6 +36,7 @@ set(LOM_NATIVE_PORT_SOURCES
     src/core/unit_decode.c
     src/field/field_gameplay.c
     src/field/field_japanese_balance.c
+    src/field/field_quick_rooms.c
     src/field/field_map_decode.c
     src/field/field_music_stream_native.c
     src/field/field_native.c

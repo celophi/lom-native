@@ -477,7 +477,7 @@
           }
         },
         {
-          "description": "Set the hero's hit points, from 1 to their maximum, for routes that need the party to fall.",
+          "description": "Set the hero's hit points, or another party member's, from 1 to their maximum, for routes that need the party to fall.",
           "type": "object",
           "required": [
             "hit_points"
@@ -490,6 +490,12 @@
             "hit_points": {
               "type": "integer",
               "minimum": 1
+            },
+            "character": {
+              "description": "The party slot to set instead of the hero (0): 1 for the second party member, 2 for a pet or golem.",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
             }
           }
         },

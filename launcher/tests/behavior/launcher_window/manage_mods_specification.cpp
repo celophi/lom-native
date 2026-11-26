@@ -7,6 +7,7 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QLineEdit>
 #include <QListWidget>
 #include <QPushButton>
 #include <QTimer>
@@ -83,6 +84,48 @@ LOM_SPEC(ManageModsSpecification, "Mods should list the mods folder and turning 
     });
 
     EXPECT_EQ(enabled_list(), "second\n");
+}
+
+LOM_SPEC(ManageModsSpecification, "A seed typed while a mod that asks for one is on should be saved for new games") {
+    ASSERT_TRUE(AtomicFile::write(mods / "shuffler" / "mod.json",
+                                  "{\"id\": \"shuffler\", \"name\": \"Shuffler\", \"version\": \"1.0.0\", \"game\": \"SLUS-01013\", \"api\": 5, "
+                                  "\"seed\": true, \"scripts\": [\"scripts/main.lua\"]}\n",
+                                  nullptr));
+    ASSERT_TRUE(AtomicFile::write(mods / "shuffler" / "scripts" / "main.lua", "return 1\n", nullptr));
+    open_launcher();
+
+    in_the_mods_window([](QDialog* dialog, QListWidget* list) {
+        auto* row = dialog->findChild<QWidget*>("modSeedRow");
+        auto* seed = dialog->findChild<QLineEdit*>("modSeed");
+        ASSERT_NE(row, nullptr);
+        ASSERT_NE(seed, nullptr);
+        EXPECT_TRUE(row->isHidden());
+
+        list->item(0)->setCheckState(Qt::Checked);
+        EXPECT_FALSE(row->isHidden());
+        seed->setText("4294967295");
+        emit seed->editingFinished();
+    });
+
+    EXPECT_EQ(enabled_list(), "shuffler\nseed=4294967295\n");
+
+    in_the_mods_window([](QDialog* dialog, QListWidget*) {
+        auto* seed = dialog->findChild<QLineEdit*>("modSeed");
+        ASSERT_NE(seed, nullptr);
+        EXPECT_EQ(seed->text(), "4294967295");
+        seed->clear();
+        emit seed->editingFinished();
+    });
+
+    EXPECT_EQ(enabled_list(), "shuffler\n");
+
+    in_the_mods_window([](QDialog* dialog, QListWidget*) {
+        auto* seed = dialog->findChild<QLineEdit*>("modSeed");
+        ASSERT_NE(seed, nullptr);
+        seed->setText("12345");
+    });
+
+    EXPECT_EQ(enabled_list(), "shuffler\nseed=12345\n");
 }
 
 LOM_SPEC(ManageModsSpecification, "Moving a mod up should change the order the game loads them in") {

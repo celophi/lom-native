@@ -50,6 +50,7 @@ The launcher's Mods button lists your mods, and you turn each one on or off ther
 - Skip movies
 - Skip or win battles, which skips regular fights or wins them as soon as they start, and wins boss fights too if you like, for following just the story
 - Japanese balance, which plays the North American version with the Japanese version's harder combat and items
+- Quick room changes, so walking to the next screen dissolves straight into it instead of fading through black
 
 At this time, I'm still building out a modding framework, so these are a proof of concept initially.
 

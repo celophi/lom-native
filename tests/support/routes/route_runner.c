@@ -463,20 +463,27 @@ static void add_experience(unsigned frame)
 }
 
 /**
- * @brief Set the hero's hit points, from 1 to their maximum, for routes that
- *        need the party to fall.
+ * @brief Set the hero's hit points, or another party member's, from 1 to
+ *        their maximum, for routes that need the party to fall.
  * @param frame Current FIELD frame.
  */
 static void set_hit_points(unsigned frame)
 {
-    FieldObjectState* hero = &g_field_object_states[0];
+    const int index = g_run.steps[g_run.step].args[HIT_POINTS_ARG_CHARACTER];
+    FieldObjectState* hero = &g_field_object_states[index];
     unsigned hp = (unsigned)g_run.steps[g_run.step].args[HIT_POINTS_ARG_VALUE];
     char note[64];
+
+    if (index < 0 || index > 2 || hero->maximum_hp == 0)
+    {
+        fail(frame, "there's no party member in that slot");
+        return;
+    }
 
     hp = hp < 1 ? 1 : hp > hero->maximum_hp ? hero->maximum_hp : hp;
     hero->current_hp.word = hp;
     hero->hp_display.bits.value = hp;
-    snprintf(note, sizeof(note), "hero at %u of %u hp", hp, (unsigned)hero->maximum_hp);
+    snprintf(note, sizeof(note), "%s at %u of %u hp", index ? "party member" : "hero", hp, (unsigned)hero->maximum_hp);
     route_record_note(note);
     next_step(frame);
 }

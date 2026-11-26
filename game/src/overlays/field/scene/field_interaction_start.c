@@ -1,5 +1,6 @@
 #include "common.h"
 #include "lom_native_switches.h"
+#include "lom_native_quick_rooms.h"
 #include <rand.h>
 #include "lom_native_sound.h"
 #include "lom_native_text.h"
@@ -626,7 +627,14 @@ static void field_leave_scene(void)
     }
 }
 
-/** @brief Advance the scene transition: start the fade on the first frame, then count it down. */
+/**
+ * @brief Advance the scene transition: start the fade on the first frame, then count it down.
+ * @note Native: an ordinary room change's fade, and the countdown that ends
+ *       it, are shortened when the quick_room_changes switch is on
+ *       (lom_quick_rooms_exit_fade, lom_quick_rooms_exit_countdown). When the
+ *       old room's picture is kept over the screen, the scene is left at once
+ *       (lom_quick_rooms_leave_now), so the next one loads on the next frame.
+ */
 static void field_update_scene_transition(void)
 {
     FieldRuntimeContext* context;
@@ -651,6 +659,11 @@ static void field_update_scene_transition(void)
             if ((scene_id != FIELD_SCENE_TITLE) && (scene_id != FIELD_SCENE_WORLD_MAP))
             {
                 field_seek_scene_resource(scene_id & FIELD_SCENE_ID_MASK);
+                g_field_runtime->fade_timer = lom_quick_rooms_exit_fade(g_field_runtime->fade_timer);
+            }
+            else
+            {
+                lom_quick_rooms_not_a_room_change();
             }
 
             ((void (*)(s32, s32, s32, s32))field_set_fade_target)(g_field_runtime->fade_color.bits.red, g_field_runtime->fade_color.bits.green,
@@ -663,6 +676,14 @@ static void field_update_scene_transition(void)
             }
 
             g_field_runtime->fade_timer++;
+            g_field_runtime->fade_timer = lom_quick_rooms_exit_countdown(g_field_runtime->fade_timer);
+
+            if (lom_quick_rooms_leave_now())
+            {
+                g_field_runtime->transition.bits.finished = 1;
+                field_leave_scene();
+            }
+
             return;
         }
 
@@ -693,6 +714,8 @@ static inline s32 field_pack_map_position(VECTOR* position)
  * @note Native: with the no_regular_battles switch on, a region's battle doesn't
  *       start unless a boss is in it (field_group_has_boss); the region still
  *       counts as entered, so it doesn't try again until the scene does.
+ * @note Native: a region's script starting is noted for the
+ *       quick_room_changes switch (lom_quick_rooms_walked_in).
  */
 static void field_update_triggers(void)
 {
@@ -745,6 +768,7 @@ static void field_update_triggers(void)
                     if (g_field_runtime->trigger_table->regions[index].command & FIELD_TRIGGER_SCRIPT)
                     {
                         field_start_interaction(0, g_field_runtime->trigger_table->regions[index].command);
+                        lom_quick_rooms_walked_in();
                         return;
                     }
 
@@ -867,6 +891,8 @@ void field_update_actor_record(s32 actor_id)
  * @param actor_id Actor that is talked to.
  * @param script Script id; FIELD_INTERACTION_SCRIPT runs it as the field script, otherwise it is a talk message.
  * @return -1 when the interaction starts, or 0 when it cannot start.
+ * @note Native: first tells the quick_room_changes switch a new interaction is
+ *       starting, so an earlier walk into a region no longer counts.
  */
 s32 field_start_interaction(s32 actor_id, s32 script)
 {
@@ -881,6 +907,7 @@ s32 field_start_interaction(s32 actor_id, s32 script)
     s32 other_id;
     FieldActorRecord* actor;
 
+    lom_quick_rooms_not_a_room_change();
     script_id = script;
 
     if (script_id == FIELD_NO_SCRIPT)

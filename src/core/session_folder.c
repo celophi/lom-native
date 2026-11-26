@@ -6,6 +6,7 @@
 #include "lom_native_card.h"
 #include "lom_native_cd.h"
 #include "lom_native_fs.h"
+#include "lom_native_mod_seed.h"
 #include "lom_native_mods.h"
 #include "lom_native_remaster.h"
 #include "lom_native_switches.h"
@@ -283,8 +284,10 @@ static void put_json_text(FILE* file, const char* text)
 
 /**
  * @brief Write the mods and switches a session starts with: each loaded mod's
- *        id, version and SHA-256, each refused mod and why, and every switch's
- *        value, so a bug report says exactly what was on.
+ *        id, version and SHA-256, each refused mod and why, the seed the
+ *        launcher set for new games when a mod asks for one (the seed each
+ *        game starts with is in the log), and every switch's value, so a bug
+ *        report says exactly what was on.
  * @param file The manifest, inside its top-level object.
  */
 static void put_mods(FILE* file)
@@ -311,7 +314,20 @@ static void put_mods(FILE* file)
         fputc('"', file);
     }
 
-    fputs("],\n  \"switches\": {", file);
+    uint32_t seed = 0;
+
+    if (!lom_native_mod_seed_wanted())
+    {
+        fputs("],\n  \"seed\": null,\n  \"switches\": {", file);
+    }
+    else if (lom_native_mods_seed_setting(&seed))
+    {
+        fprintf(file, "],\n  \"seed\": %u,\n  \"switches\": {", (unsigned)seed);
+    }
+    else
+    {
+        fputs("],\n  \"seed\": \"each new game\",\n  \"switches\": {", file);
+    }
 
     for (int i = 0; i < LOM_SWITCH_COUNT; ++i)
     {

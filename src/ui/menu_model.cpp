@@ -128,6 +128,9 @@ LOM_MENU_TEXT(pause_unfocused_help, "Pause gameplay and audio when you switch to
 LOM_MENU_TEXT(mod_toggle_note, "Turned off here, it's back on the next time you play. The launcher's Mods window decides which mods load.");
 LOM_MENU_TEXT(mods_empty_label, "No mods to turn on and off here");
 LOM_MENU_TEXT(mods_empty_help, "Mods that can be turned on and off while you play show here, once they're on in the launcher's Mods window.");
+LOM_MENU_TEXT(seed_label, "Seed: %s");
+LOM_MENU_TEXT(seed_help,
+              "The seed of the game you're playing, for the mods that use one. Type it in the launcher's Mods window to start a new game with the same one.");
 LOM_MENU_TEXT(player_value_format, "Player %d");
 LOM_MENU_TEXT(player_pad_format, "Player %d: %s.");
 LOM_MENU_TEXT(hint_choose, "Choose");
@@ -388,7 +391,14 @@ void MenuModel::add_mod_rows(std::vector<MenuRow>& rows) const
         }
     }
 
-    if (count == 0 && option_count == 0)
+    std::string seed;
+
+    if (backend_.game_seed(seed))
+    {
+        rows.push_back({MenuRow::Kind::Action, format_text(seed_label, seed), seed_help});
+    }
+
+    if (count == 0 && option_count == 0 && seed.empty())
     {
         MenuRow empty{MenuRow::Kind::Action, mods_empty_label, mods_empty_help};
         empty.dimmed = true;

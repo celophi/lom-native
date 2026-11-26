@@ -79,7 +79,9 @@ class Menu
     bool handle_event(const SDL_Event& event);
 
     /**
-     * @brief Draw the open menu over the current frame.
+     * @brief Draw the open menu over the current frame, or the notices when
+     *        it's closed, with a quick room change's kept picture
+     *        (lom_crossfade_overlay) under them.
      * @param cmd Command buffer recording the frame.
      * @param target Swapchain or offscreen texture to draw into.
      * @param width Target width in pixels.

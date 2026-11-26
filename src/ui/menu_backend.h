@@ -64,6 +64,8 @@ class GameBackend final : public MenuBackend
 
     void choose_mod_option(int index, int choice) override;
 
+    bool game_seed(std::string& seed) const override;
+
     void set_text_language(int value) override;
 
     int soundtrack() const override;
