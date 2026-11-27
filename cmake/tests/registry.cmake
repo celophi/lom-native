@@ -101,6 +101,7 @@ lom_add_test(NAME native-stubs-jp TIER 0 NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/native_stubs_check.py" "${LOM_NATIVE_STUBS_jp}")
 lom_add_test(NAME crash-report TIER 0 NO_HEADLESS LABELS platform COMMAND lom-crash-report-smoke)
 lom_add_test(NAME remaster-files TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-smoke)
+lom_add_test(NAME remaster-screens TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-screens-smoke)
 foreach(case IN ITEMS size newest count)
     lom_add_test(NAME session-prune-${case} TIER 0 NO_HEADLESS LABELS platform session
         COMMAND lom-session-prune-smoke ${case})

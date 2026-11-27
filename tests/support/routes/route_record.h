@@ -45,9 +45,11 @@ void route_record_frame(unsigned frame, int scene, int hero_x, int hero_z);
 void route_record_checkpoint(const char* name, unsigned frame, int scene);
 
 /**
- * @brief With LOM_ROUTE_CAPTURE_EVERY set, save the picture on screen as
- *        screen-<vblank>.ppm every that many vblanks, for screens of their
- *        own (the ring menu, the encyclopedia), where FIELD's frames stop.
+ * @brief For screens of their own (the world map, the ring menu, the
+ *        encyclopedia), where FIELD's frames stop: write the fingerprint of
+ *        what was drawn since the last vblank, if anything was, and with
+ *        LOM_ROUTE_CAPTURE_EVERY set, save the picture on screen as
+ *        screen-<vblank>.ppm every that many vblanks.
  * @param vblank The run's vblank count.
  */
 void route_record_screen(unsigned vblank);

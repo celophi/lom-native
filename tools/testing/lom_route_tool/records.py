@@ -19,16 +19,18 @@ SAVE_INPUT_FIELDS = ("encyclopedia_bits", "logic_block_count", "logic_blocks", "
 
 def read_record(folder: Path) -> dict:
     """A run record as a baseline-shaped dict, with every frame line (format 1)."""
-    record = {"format": 1, "frames": [], "checkpoints": [], "states": [], "notes": [], "end": None, "coverage": {}}
+    record = {"format": 1, "frames": [], "screens": [], "checkpoints": [], "states": [], "notes": [], "end": None, "coverage": {}}
     frames_file = folder / "frames.txt"
     if not frames_file.exists():
         return record
     for line in frames_file.read_text().splitlines():
         kind, _, rest = line.partition(" ")
-        if (kind == "frame" and not rest.split(" ", 1)[0].isdigit()) or kind not in ("frame", "checkpoint", "state", "note", "end"):
+        if (kind in ("frame", "screen") and not rest.split(" ", 1)[0].isdigit()) or kind not in ("frame", "screen", "checkpoint", "state", "note", "end"):
             record.setdefault("damaged", line)
         elif kind == "frame":
             record["frames"].append(rest)
+        elif kind == "screen":
+            record["screens"].append(rest)
         elif kind == "checkpoint":
             record["checkpoints"].append(rest)
         elif kind == "state":
@@ -68,6 +70,29 @@ def compact_frames(frames: list[str], checkpoints: list[str]) -> dict:
             break
     pictures = " ".join(frame_fields(line).get("picture", "-")[:PICTURE_DIGITS] for line in frames)
     return {"pictures": pictures, "stretches": stretches}
+
+
+def compact_screens(screens: list[str]) -> str:
+    """A run's screen lines, the vblanks something was drawn while FIELD wasn't (the world map, menus of their own), as
+    each one's picture prefix, with a run of the same one written once as prefix*count."""
+    prefixes = [frame_fields(line).get("picture", "-")[:PICTURE_DIGITS] for line in screens]
+    out: list[str] = []
+    for prefix in prefixes:
+        if out and out[-1].split("*")[0] == prefix:
+            word, _, count = out[-1].partition("*")
+            out[-1] = f"{word}*{int(count or 1) + 1}"
+        else:
+            out.append(prefix)
+    return " ".join(out)
+
+
+def expand_screens(compact: str) -> list[str]:
+    """compact_screens() undone: each screen's picture prefix."""
+    out: list[str] = []
+    for word in compact.split():
+        prefix, _, count = word.partition("*")
+        out += [prefix] * int(count or 1)
+    return out
 
 
 def as_compact(record: dict) -> dict:
@@ -274,9 +299,12 @@ def as_baseline(route_id: str, description: str, plan_text: str, run: dict) -> d
     """A run as a format 3 baseline: the fingerprints and the change lists, without the raw state."""
     compact = as_compact({"route": route_id, "description": description, "plan": plan_text,
                           **{key: value for key, value in run.items() if key not in ("states", "changes")}})
-    return {"route": compact["route"], "description": compact["description"], "plan": compact["plan"], "format": BASELINE_FORMAT,
-            "checkpoints": compact["checkpoints"], "changes": run["changes"], "notes": compact["notes"], "end": compact["end"],
-            "coverage": compact["coverage"], "pictures": compact["pictures"], "stretches": compact["stretches"]}
+    baseline = {"route": compact["route"], "description": compact["description"], "plan": compact["plan"], "format": BASELINE_FORMAT,
+                "checkpoints": compact["checkpoints"], "changes": run["changes"], "notes": compact["notes"], "end": compact["end"],
+                "coverage": compact["coverage"], "pictures": compact["pictures"], "stretches": compact["stretches"]}
+    if run.get("screens"):
+        baseline["screens"] = compact_screens(run["screens"])
+    return baseline
 
 
 def compare(baseline: dict, run: dict) -> list[str]:
@@ -327,6 +355,15 @@ def compare_compact(baseline: dict, run: dict) -> list[str]:
         if first is not None:
             differences.append(f"frame {first}: the picture differs (baseline {want[first]}, this run {got[first]}); "
                                f"{sum(a != b for a, b in zip(want, got))} frames' pictures differ")
+    if "screens" in baseline:
+        want, got = expand_screens(baseline["screens"]), expand_screens(compact_screens(run.get("screens", [])))
+        first = next((i for i, (a, b) in enumerate(zip(want, got)) if a != b), None)
+        if first is not None:
+            vblank = run["screens"][first].split(" ", 1)[0]
+            differences.append(f"screen {first} (vblank {vblank}): the picture differs (baseline {want[first]}, this run {got[first]}); "
+                               f"{sum(a != b for a, b in zip(want, got))} screens' pictures differ")
+        if len(want) != len(got):
+            differences.append(f"the run has {len(got)} screens outside FIELD, the baseline {len(want)}")
     want_frames, got_frames = sum(stretch["frames"] for stretch in baseline["stretches"]), len(run["frames"])
     if want_frames != got_frames:
         differences.append(f"the run has {got_frames} frames, the baseline {want_frames}")

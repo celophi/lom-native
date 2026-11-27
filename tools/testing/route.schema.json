@@ -45,6 +45,10 @@
       "type": "integer",
       "minimum": 1
     },
+    "widescreen": {
+      "description": "Start with Widescreen on, before the game's first frame, for screens a widescreen step can't come before (the world select and the world map it goes on to).",
+      "type": "boolean"
+    },
     "card_other_game": {
       "description": "Also put another game's save on the card, after the starting save; the Continue screen steps onto it (drawing its details) and back before loading.",
       "type": "boolean"

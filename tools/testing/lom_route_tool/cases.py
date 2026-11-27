@@ -29,7 +29,7 @@ GENERATED_FOLDER = "generated"
 SET_FORMAT = 1
 SET_ABOUT = ("Baselines of generated routes. A run replays each baseline's plan from its save. "
              "Made with lom_routes.py freeze from a generator's output; see tools/testing/lom_routes.py.")
-SET_DETAIL = ("pictures", "changes")
+SET_DETAIL = ("pictures", "screens", "changes")
 OTHER_GAME_SAVE_NAME = "BASLUS-00000TEST"
 RUN_TIMEOUT_SECONDS = 600
 

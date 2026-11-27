@@ -30,6 +30,7 @@ lom_native_runtime_test(lom-session-prune-smoke tests/smoke/platform/session_pru
 lom_native_runtime_test(lom-session-switches-smoke tests/smoke/platform/session_switches_smoke.c)
 lom_native_runtime_test(lom-song-render tests/support/tools/song_render.c)
 lom_native_runtime_test(lom-remaster-files-smoke tests/smoke/platform/remaster_files_smoke.c)
+lom_native_runtime_test(lom-remaster-screens-smoke tests/smoke/platform/remaster_screens_smoke.c)
 lom_native_runtime_test(lom-crash-report-smoke tests/smoke/platform/crash_report_smoke.c)
 lom_native_runtime_test(lom-field-cd-wait-smoke tests/smoke/field/field_cd_wait_smoke.c)
 target_compile_definitions(lom-field-cd-wait-smoke PRIVATE lom_native_field_fail=__wrap_lom_native_field_fail)

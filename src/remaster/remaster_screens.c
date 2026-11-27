@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 
 #define WSEL_FILE "map_select.psb.m"
 
@@ -84,9 +85,20 @@ static int scale(int value, int from, int to)
 }
 
 /**
- * @brief Make the placements that draw the Remaster's art for one sprite of
- *        one of WSEL's pictures: every part of the art the sprite covers, in
- *        the table's order.
+ * @brief Make a part that covers a rectangle on the screen.
+ * @param part The part, whose xy is set.
+ * @param x0 The rectangle's left.
+ * @param y0 Its top.
+ * @param x1 Its right.
+ * @param y1 Its bottom.
+ */
+static void set_rect_xy(LomRemasterPart* part, int x0, int y0, int x1, int y1)
+{
+    const int xy[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
+    memcpy(part->xy, xy, sizeof(xy));
+}
+
+/**
  * @note s_wsel_art says where each repainted picture goes, as x, y, width and
  *       height on the PS1's picture and on the Remaster's, found by lining the
  *       two up. The wall is the PS1's at 4.5 times, with more of the room at
@@ -96,17 +108,12 @@ static int scale(int value, int from, int to)
  *       the darkening and the cell shading, which the Remaster has no art for.
  *       The wall is painted wider than the PS1's, so in a wide frame its
  *       strips at the picture's sides reach on into the frame's sides.
- * @param picture Which picture.
- * @param x Where the picture's top left is on the screen.
- * @param y The same, down.
- * @param rect The sprite: x, y, width and height on the screen.
- * @return The first placement, or -1 when there's nothing to draw.
  */
-static int wsel_place(int picture, int x, int y, const int rect[4])
+int lom_remaster_wsel_parts(int picture, int x, int y, const int rect[4], int margin, LomRemasterPart parts[], int max)
 {
-    int first = -1, last = -1;
+    int count = 0;
 
-    for (int i = 0; i < WSEL_ART_COUNT; ++i)
+    for (int i = 0; i < WSEL_ART_COUNT && count < max; ++i)
     {
         const WselArt* art = &s_wsel_art[i];
 
@@ -126,16 +133,46 @@ static int wsel_place(int picture, int x, int y, const int rect[4])
             continue;
         }
 
-        const int margin = art->wide ? lom_native_widescreen_margin() : 0;
-        const int wide_x0 = x0 == art->ps1[0] ? x0 - margin : x0;
-        const int wide_x1 = x1 == art->ps1[0] + art->ps1[2] ? x1 + margin : x1;
+        const int reach = art->wide ? margin : 0;
+        const int wide_x0 = x0 == art->ps1[0] ? x0 - reach : x0;
+        const int wide_x1 = x1 == art->ps1[0] + art->ps1[2] ? x1 + reach : x1;
         const int u0 = art->hd[0] + scale(wide_x0 - art->ps1[0], art->ps1[2], art->hd[2]);
         const int v0 = art->hd[1] + scale(y0 - art->ps1[1], art->ps1[3], art->hd[3]);
         const int u1 = art->hd[0] + scale(wide_x1 - art->ps1[0], art->ps1[2], art->hd[2]);
         const int v1 = art->hd[1] + scale(y1 - art->ps1[1], art->ps1[3], art->hd[3]);
-        const int part[4] = {u0, v0, u1 - u0, v1 - v0};
-        const int xy[8] = {x + wide_x0, y + y0, x + wide_x1, y + y0, x + wide_x0, y + y1, x + wide_x1, y + y1};
-        const int placed = lom_remaster_picture_place(WSEL_FILE, art->label, part, xy, -1, last);
+        LomRemasterPart* part = &parts[count++];
+        memset(part, 0, sizeof(*part));
+        snprintf(part->file, sizeof(part->file), "%s", WSEL_FILE);
+        snprintf(part->label, sizeof(part->label), "%s", art->label);
+        part->area[0] = u0;
+        part->area[1] = v0;
+        part->area[2] = u1 - u0;
+        part->area[3] = v1 - v0;
+        set_rect_xy(part, x + wide_x0, y + y0, x + wide_x1, y + y1);
+    }
+
+    return count;
+}
+
+/**
+ * @brief Make the placements that draw the Remaster's art for one sprite of
+ *        one of WSEL's pictures: every part of the art the sprite covers, in
+ *        order, chained into one command.
+ * @param picture Which picture.
+ * @param x Where the picture's top left is on the screen.
+ * @param y The same, down.
+ * @param rect The sprite: x, y, width and height on the screen.
+ * @return The first placement, or -1 when there's nothing to draw.
+ */
+static int wsel_place(int picture, int x, int y, const int rect[4])
+{
+    LomRemasterPart parts[WSEL_ART_COUNT];
+    const int count = lom_remaster_wsel_parts(picture, x, y, rect, lom_native_widescreen_margin(), parts, WSEL_ART_COUNT);
+    int first = -1, last = -1;
+
+    for (int i = 0; i < count; ++i)
+    {
+        const int placed = lom_remaster_picture_place(parts[i].file, parts[i].label, parts[i].area, parts[i].xy, -1, last);
 
         if (placed < 0)
         {
@@ -240,6 +277,7 @@ void lom_remaster_wsel_zoom(void* code)
 #define DAY_NAME_SCALE_NUM 9
 #define DAY_NAME_SCALE_DEN 2
 #define DAY_NAME_DROP 4
+#define DAY_NAME_ROW 32
 #define HIDUKE_W 512
 #define HIDUKE_H 1024
 #define PANEL_FILE "mana_panel.psb.m"
@@ -296,38 +334,62 @@ static void read_sprite(const uint32_t* words, int rect[4], int* u, int* v)
 }
 
 /**
- * @brief Turn a sprite into a draw of part of one of the Remaster's
- *        pictures, over the same rectangle.
- * @param words The sprite's words from its code word.
- * @param file The picture's file.
- * @param rect The sprite's screen rectangle.
- * @param part The part of the picture.
+ * @note The day names are one 96 by 192 picture, a 32-pixel row a day, and
+ *       the Remaster's are the same at 4.5 times, at the left of a wider
+ *       picture, in each language, but each name sits 4 pixels higher in its
+ *       row than the PS1's, so it's drawn that much lower to stay on the glow
+ *       behind it.
  */
-static void replace_sprite(uint32_t* words, const char* file, const int rect[4], const int part[4])
+int lom_remaster_day_name_part(int language, int u, int v, const int rect[4], LomRemasterPart* part)
 {
-    const int xy[8] = {rect[0], rect[1], rect[0] + rect[2], rect[1], rect[0], rect[1] + rect[3], rect[0] + rect[2], rect[1] + rect[3]};
-    const int placement = lom_remaster_picture_place(file, NULL, part, xy, -1, -1);
-
-    if (placement >= 0)
+    if (language <= LOM_REMASTER_TEXT_PS1 || language >= LOM_REMASTER_TEXT_COUNT || v < 0 || v / DAY_NAME_ROW >= DAYS)
     {
-        lom_remaster_picture_command(words, SPRITE_WORDS, placement);
+        return -1;
     }
+
+    memset(part, 0, sizeof(*part));
+    snprintf(part->file, sizeof(part->file), "system/image/%s.psb.m", s_day_name_files[language]);
+    part->area[0] = scale(u, DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM);
+    part->area[1] = scale(v, DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM);
+    part->area[2] = scale(rect[2], DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM);
+    part->area[3] = scale(rect[3], DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM);
+    set_rect_xy(part, rect[0], rect[1] + DAY_NAME_DROP, rect[0] + rect[2], rect[1] + DAY_NAME_DROP + rect[3]);
+    return part->area[0] + part->area[2] <= HIDUKE_W && part->area[1] + part->area[3] <= HIDUKE_H ? 0 : -1;
+}
+
+/**
+ * @note The PS1 keeps the six days' spirits in their shells as 48 by 56
+ *       cells, two to a row, with the empty shell on the fourth row; each of
+ *       the Remaster's spirits and its shell is one such cell at about 5.4
+ *       times.
+ */
+int lom_remaster_kameo_part(int shell, int u, int v, const int rect[4], LomRemasterPart* part)
+{
+    const int column = u / CELL_W, row = v / CELL_H, day = row * 2 + column;
+    const char* label = shell ? (row == SHELL_ROW && column == 0 ? "none_k" : NULL) : row < SHELL_ROW && day < DAYS ? s_day_spirits[day] : NULL;
+
+    if (!label)
+    {
+        return -1;
+    }
+
+    memset(part, 0, sizeof(*part));
+    snprintf(part->file, sizeof(part->file), "%s", KAMEO_FILE);
+    snprintf(part->label, sizeof(part->label), "%s", label);
+    part->area[0] = scale(u - column * CELL_W, CELL_W, KAMEO_W);
+    part->area[1] = scale(v - row * CELL_H, CELL_H, KAMEO_H);
+    part->area[2] = scale(rect[2], CELL_W, KAMEO_W);
+    part->area[3] = scale(rect[3], CELL_H, KAMEO_H);
+    set_rect_xy(part, rect[0], rect[1], rect[0] + rect[2], rect[1] + rect[3]);
+    return part->area[0] + part->area[2] <= KAMEO_W && part->area[1] + part->area[3] <= KAMEO_H ? 0 : -1;
 }
 
 /**
  * @brief Draw the Remaster's art for a part of the world map's status corner.
  * @param code The sprite's code word.
  * @param part LOM_REMASTER_WMAP_*.
- * @note The PS1 keeps the six days' spirits in their shells as 48 by 56
- *       cells, two to a row, with the empty shell on the fourth row; each of
- *       the Remaster's spirits and its shell is one such cell at about 5.4
- *       times. The day names are one 96 by 192 picture, a 32-pixel row a day,
- *       and the Remaster's are the same at 4.5 times, at the left of a wider
- *       picture, in each language, but each name sits 4 pixels higher in its
- *       row than the PS1's, so it's drawn that much lower to stay on the glow
- *       behind it. The
- *       PS1 draws the spirit, then its shell around it, through the hole in
- *       the shell. The Remaster's shell is solid inside, with the spirit on
+ * @note The PS1 draws the spirit, then its shell around it, through the hole
+ *       in the shell. The Remaster's shell is solid inside, with the spirit on
  *       top, so the spirits are drawn after the shell, by the shell's command
  *       (s_status_last is this frame's last placement in it), each in its own
  *       color and blending for its fade.
@@ -341,27 +403,25 @@ void lom_remaster_wmap_status(void* code, int part)
 
     uint32_t* words = code;
     int rect[4], u, v;
+    LomRemasterPart art;
     read_sprite(words, rect, &u, &v);
 
     if (part == LOM_REMASTER_WMAP_DAY_NAME)
     {
-        char file[64];
-        snprintf(file, sizeof(file), "system/image/%s.psb.m", s_day_name_files[names_language()]);
-        const int area[4] = {scale(u, DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM), scale(v, DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM),
-                             scale(rect[2], DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM), scale(rect[3], DAY_NAME_SCALE_DEN, DAY_NAME_SCALE_NUM)};
-        const int lowered[4] = {rect[0], rect[1] + DAY_NAME_DROP, rect[2], rect[3]};
-
-        if (area[0] + area[2] <= HIDUKE_W && area[1] + area[3] <= HIDUKE_H)
+        if (lom_remaster_day_name_part(names_language(), u, v, rect, &art) == 0)
         {
-            replace_sprite(words, file, lowered, area);
+            const int placement = lom_remaster_picture_place(art.file, NULL, art.area, art.xy, -1, -1);
+
+            if (placement >= 0)
+            {
+                lom_remaster_picture_command(words, SPRITE_WORDS, placement);
+            }
         }
 
         return;
     }
 
-    const int column = u / CELL_W, row = v / CELL_H, day = row * 2 + column;
     const int shell = part == LOM_REMASTER_WMAP_SHELL;
-    const char* label = shell ? (row == SHELL_ROW && column == 0 ? "none_k" : NULL) : row < SHELL_ROW && day < DAYS ? s_day_spirits[day] : NULL;
     int w = 0, h = 0;
 
     if (shell)
@@ -369,24 +429,14 @@ void lom_remaster_wmap_status(void* code, int part)
         s_status_last = -1;
     }
 
-    if (!label || !lom_remaster_picture_ready(KAMEO_FILE, label, &w, &h) || w != KAMEO_W || h != KAMEO_H)
+    if (lom_remaster_kameo_part(shell, u, v, rect, &art) != 0 || !lom_remaster_picture_ready(art.file, art.label, &w, &h) || w != KAMEO_W || h != KAMEO_H)
     {
         return;
     }
-
-    const int area[4] = {scale(u - column * CELL_W, CELL_W, KAMEO_W), scale(v - row * CELL_H, CELL_H, KAMEO_H), scale(rect[2], CELL_W, KAMEO_W),
-                         scale(rect[3], CELL_H, KAMEO_H)};
-
-    if (area[0] + area[2] > KAMEO_W || area[1] + area[3] > KAMEO_H)
-    {
-        return;
-    }
-
-    const int xy[8] = {rect[0], rect[1], rect[0] + rect[2], rect[1], rect[0], rect[1] + rect[3], rect[0] + rect[2], rect[1] + rect[3]};
 
     if (shell)
     {
-        const int placement = lom_remaster_picture_place(KAMEO_FILE, label, area, xy, -1, -1);
+        const int placement = lom_remaster_picture_place(art.file, art.label, art.area, art.xy, -1, -1);
 
         if (placement >= 0)
         {
@@ -403,7 +453,7 @@ void lom_remaster_wmap_status(void* code, int part)
     }
 
     const unsigned flags = words[0] >> 24;
-    const int placement = lom_remaster_picture_place(KAMEO_FILE, label, area, xy, -1, s_status_last);
+    const int placement = lom_remaster_picture_place(art.file, art.label, art.area, art.xy, -1, s_status_last);
 
     if (placement >= 0)
     {
@@ -414,44 +464,63 @@ void lom_remaster_wmap_status(void* code, int part)
 }
 
 /**
- * @brief Draw the Remaster's banner for a land's name on the world map.
+ * @note A land's name glows green once it's cleared and yellow before, as the
+ *       Remaster's two banners do; an artifact's name has its own.
+ */
+int lom_remaster_land_name_file(int language, int selection, int clut_row, char* file, size_t size)
+{
+    if (selection < 0 || selection >= 2 * LANDS || language <= LOM_REMASTER_TEXT_PS1 || language >= LOM_REMASTER_TEXT_COUNT)
+    {
+        return -1;
+    }
+
+    const char* kind = selection >= LANDS ? "artifactname" : (clut_row & ~1) == LAND_CLEARED_CLUT_ROW ? "landname" : "landname_c";
+    snprintf(file, size, "system/image/land_name/%s/map_%s_%04d.psb.m", s_land_name_folders[language], kind, selection % LANDS + 1);
+    return 0;
+}
+
+void lom_remaster_land_name_xy(const int text[4], int w, int h, int xy[8])
+{
+    const int center_x2 = 2 * text[0] + text[2], center_y2 = 2 * text[1] + text[3];
+    const int width = w * LABEL_SCALE_NUM / LABEL_SCALE_DEN, height = h * LABEL_SCALE_NUM / LABEL_SCALE_DEN;
+    const int x0 = (center_x2 - width) / 2, y0 = (center_y2 - height) / 2, x1 = (center_x2 + width + 1) / 2, y1 = (center_y2 + height + 1) / 2;
+    const int points[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
+    memcpy(xy, points, sizeof(points));
+}
+
+/**
+ * @brief Draw the Remaster's banner for a land's name on the world map,
+ *        centered on where the PS1's name has anything drawn.
  * @param code The sprite's code word.
  * @param selection The land, or 64 plus it for its artifact's name.
  * @param tpage The name's texture page.
- * @note A land's name glows green once it's cleared and yellow before, as the
- *       Remaster's two banners do; an artifact's name has its own. The banner
- *       is centered on the PS1's name, at the Remaster's 4.5 times. The PS1
- *       adds its name to what's under it, which would wash out the banner's
- *       colors, so the banner is drawn over it instead.
+ * @note The PS1 adds its name to what's under it, which would wash out the
+ *       banner's colors, so the banner is drawn over it instead.
  */
 void lom_remaster_wmap_label(void* code, int selection, int tpage)
 {
-    if (!code || selection < 0 || selection >= 2 * LANDS || !enabled())
+    if (!code || !enabled())
     {
         return;
     }
 
     uint32_t* words = code;
     int rect[4], u, v;
-    read_sprite(words, rect, &u, &v);
-
-    const int land = selection % LANDS, clut_row = (int)((words[2] >> 22) & 0x1FF);
-    const char* kind = selection >= LANDS ? "artifactname" : (clut_row & ~1) == LAND_CLEARED_CLUT_ROW ? "landname" : "landname_c";
     char file[96];
     int w = 0, h = 0;
-    snprintf(file, sizeof(file), "system/image/land_name/%s/map_%s_%04d.psb.m", s_land_name_folders[names_language()], kind, land + 1);
+    read_sprite(words, rect, &u, &v);
 
-    if (!lom_remaster_picture_ready(file, NULL, &w, &h))
+    if (lom_remaster_land_name_file(names_language(), selection, (int)((words[2] >> 22) & 0x1FF), file, sizeof(file)) != 0 ||
+        !lom_remaster_picture_ready(file, NULL, &w, &h))
     {
         return;
     }
 
     int bounds[4] = {0, 0, rect[2], rect[3]};
     lom_remaster_vram_bounds((tpage & 0xF) * 64, (tpage >> 4 & 1) * 256, u, v, rect[2], rect[3], bounds);
-    const int center_x2 = 2 * (rect[0] + bounds[0]) + bounds[2], center_y2 = 2 * (rect[1] + bounds[1]) + bounds[3];
-    const int half_w2 = w * LABEL_SCALE_NUM / LABEL_SCALE_DEN, half_h2 = h * LABEL_SCALE_NUM / LABEL_SCALE_DEN;
-    const int x0 = (center_x2 - half_w2) / 2, y0 = (center_y2 - half_h2) / 2, x1 = (center_x2 + half_w2 + 1) / 2, y1 = (center_y2 + half_h2 + 1) / 2;
-    const int xy[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
+    const int text[4] = {rect[0] + bounds[0], rect[1] + bounds[1], bounds[2], bounds[3]};
+    int xy[8];
+    lom_remaster_land_name_xy(text, w, h, xy);
     const int placement = lom_remaster_picture_place(file, NULL, NULL, xy, -1, -1);
 
     if (placement >= 0)
@@ -516,10 +585,6 @@ static const int s_orb_area[4] = {2, 2, 13, 12};
 static const int s_spirit_area[4] = {2, 2, 20, 20};
 
 /**
- * @brief Draw the Remaster's art for a world map spirit or its strength.
- * @param code The sprite's code word.
- * @param spirit Which spirit, in the game's order.
- * @param kind LOM_REMASTER_WMAP_SPIRIT_*.
  * @note The PS1 animates each spirit in its own row of 24 by 24 frames; the
  *       Remaster has its own frames, not always as many, so the PS1's are
  *       spread across them. A spirit's strength in a place is one of 16
@@ -529,25 +594,18 @@ static const int s_spirit_area[4] = {2, 2, 20, 20};
  *       its empty orb is darkened the same way (s_orb_fill and s_orb_shade,
  *       -1 for the orbs the game doesn't use). s_orb_art is where the
  *       Remaster's orb is in its picture; s_orb_area and s_spirit_area are
- *       where the PS1's orb and spirit are in their sprites. The PS1 marks
- *       these sprites semi-transparent as they fade, but their texels aren't,
- *       so they stay solid and only darken, never past the art as it's
- *       painted. The Remaster names Salamander's two fuller orbs without the
- *       m.
+ *       where the PS1's orb and spirit are in their sprites. The Remaster
+ *       names Salamander's two fuller orbs without the m.
  */
-void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
+int lom_remaster_spirit_part(int spirit, int kind, int u, int v, const int rect[4], LomRemasterPart* part, int* shade)
 {
-    if (!code || spirit < 0 || spirit >= SPIRITS || !enabled())
+    if (spirit < 0 || spirit >= SPIRITS)
     {
-        return;
+        return -1;
     }
 
-    uint32_t* words = code;
-    int rect[4], u, v;
-    char label[32];
-    const char* file;
-    int shade = 0x80;
-    read_sprite(words, rect, &u, &v);
+    memset(part, 0, sizeof(*part));
+    *shade = 0x80;
 
     if (kind == LOM_REMASTER_WMAP_SPIRIT_ICON)
     {
@@ -555,11 +613,11 @@ void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
 
         if (rect[2] != SPIRIT_FRAME || rect[3] != SPIRIT_FRAME || v / SPIRIT_FRAME != spirit || frame >= s_spirit_ps1_frames[spirit])
         {
-            return;
+            return -1;
         }
 
-        file = SPIRIT_FILE;
-        snprintf(label, sizeof(label), "%s%d", s_spirit_names[spirit], frame * s_spirit_hd_frames[spirit] / s_spirit_ps1_frames[spirit] + 1);
+        snprintf(part->file, sizeof(part->file), "%s", SPIRIT_FILE);
+        snprintf(part->label, sizeof(part->label), "%s%d", s_spirit_names[spirit], frame * s_spirit_hd_frames[spirit] / s_spirit_ps1_frames[spirit] + 1);
     }
     else
     {
@@ -567,27 +625,56 @@ void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
 
         if (rect[2] != ORB || rect[3] != ORB || u < ORB_U || sprite < 0 || sprite >= ORB_SPRITES || s_orb_fill[sprite] < 0)
         {
-            return;
+            return -1;
         }
 
         const int fill = s_orb_fill[sprite];
-        file = METER_FILE;
-        shade = s_orb_shade[sprite];
+        snprintf(part->file, sizeof(part->file), "%s", METER_FILE);
+        memcpy(part->area, s_orb_art, sizeof(s_orb_art));
+        *shade = s_orb_shade[sprite];
 
         if (fill == 0)
         {
-            snprintf(label, sizeof(label), "zero");
+            snprintf(part->label, sizeof(part->label), "zero");
         }
         else
         {
-            snprintf(label, sizeof(label), "%s%d%s", s_spirit_names[spirit], fill, spirit == 4 && fill > 1 ? "" : "m");
+            snprintf(part->label, sizeof(part->label), "%s%d%s", s_spirit_names[spirit], fill, spirit == 4 && fill > 1 ? "" : "m");
         }
     }
 
     const int* area = kind == LOM_REMASTER_WMAP_SPIRIT_ICON ? s_spirit_area : s_orb_area;
-    const int x0 = rect[0] + area[0], y0 = rect[1] + area[1], x1 = x0 + area[2], y1 = y0 + area[3];
-    const int xy[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
-    const int placement = lom_remaster_picture_place(file, label, kind == LOM_REMASTER_WMAP_SPIRIT_ICON ? NULL : s_orb_art, xy, -1, -1);
+    set_rect_xy(part, rect[0] + area[0], rect[1] + area[1], rect[0] + area[0] + area[2], rect[1] + area[1] + area[3]);
+    return 0;
+}
+
+/**
+ * @brief Draw the Remaster's art for a world map spirit or its strength.
+ * @param code The sprite's code word.
+ * @param spirit Which spirit, in the game's order.
+ * @param kind LOM_REMASTER_WMAP_SPIRIT_*.
+ * @note The PS1 marks these sprites semi-transparent as they fade, but their
+ *       texels aren't, so they stay solid and only darken, never past the art
+ *       as it's painted.
+ */
+void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
+{
+    if (!code || !enabled())
+    {
+        return;
+    }
+
+    uint32_t* words = code;
+    int rect[4], u, v, shade;
+    LomRemasterPart art;
+    read_sprite(words, rect, &u, &v);
+
+    if (lom_remaster_spirit_part(spirit, kind, u, v, rect, &art, &shade) != 0)
+    {
+        return;
+    }
+
+    const int placement = lom_remaster_picture_place(art.file, art.label, art.area[2] ? art.area : NULL, art.xy, -1, -1);
 
     if (placement < 0)
     {

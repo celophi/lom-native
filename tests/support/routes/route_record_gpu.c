@@ -66,6 +66,8 @@ static const char GPU_DUMP_VARIABLE[] = "LOM_ROUTE_GPU_DUMP";
 
 static unsigned long long s_picture = ROUTE_FNV_OFFSET;
 
+static unsigned long long s_screen = ROUTE_FNV_OFFSET;
+
 static unsigned long long s_sound = ROUTE_FNV_OFFSET;
 
 static long s_dump_frame = -1;
@@ -104,6 +106,7 @@ static void mix_call(unsigned tag, int a, int b, int c, int d)
     int words[5] = {(int)tag, a, b, c, d};
 
     route_record_mix(&s_picture, words, sizeof(words));
+    route_record_mix(&s_screen, words, sizeof(words));
 
     if (s_dump)
     {
@@ -195,6 +198,13 @@ unsigned long long route_record_picture(void)
     return s_picture;
 }
 
+unsigned long long route_record_screen_picture(void)
+{
+    const unsigned long long screen = s_screen;
+    s_screen = ROUTE_FNV_OFFSET;
+    return screen == ROUTE_FNV_OFFSET ? 0 : screen;
+}
+
 unsigned long long route_record_sound(void)
 {
     return s_sound;
@@ -202,7 +212,7 @@ unsigned long long route_record_sound(void)
 
 void route_record_gpu_frame_start(void)
 {
-    s_picture = s_sound = ROUTE_FNV_OFFSET;
+    s_picture = s_sound = s_screen = ROUTE_FNV_OFFSET;
     s_readback_count = 0;
 }
 
@@ -363,6 +373,7 @@ int __wrap_Draw_PushPrim(RouteWord* packets, int max_len)
         unsigned word = i < known ? words[i] & read[i] : (unsigned)packets[i];
 
         route_record_mix(&s_picture, &word, sizeof(word));
+        route_record_mix(&s_screen, &word, sizeof(word));
     }
 
     if (s_dump)
@@ -420,6 +431,7 @@ void __wrap_Draw_LoadImage(RouteRect* rect, RouteWord* pixels)
     else
     {
         route_record_mix(&s_picture, pixels, bytes);
+        route_record_mix(&s_screen, pixels, bytes);
 
         if (s_dump)
         {

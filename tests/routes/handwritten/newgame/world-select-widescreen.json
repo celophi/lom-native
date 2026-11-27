@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "id": "new-game-world-select-widescreen",
+  "description": "The world select and the world map should draw wide, with the map reaching the screen's sides, when Widescreen is on from the start of a new game",
+  "widescreen": true,
+  "start": {
+    "save": "saves/new-game-world-select.json"
+  },
+  "steps": [
+    {
+      "place": {
+        "artifact": 0
+      },
+      "note": "the Mailbox: home"
+    },
+    {
+      "land": {
+        "index": 0
+      }
+    },
+    {
+      "checkpoint": "home"
+    },
+    {
+      "watch": 20000
+    },
+    {
+      "checkpoint": "done"
+    }
+  ]
+}
