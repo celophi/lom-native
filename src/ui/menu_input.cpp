@@ -222,6 +222,10 @@ void Menu::translate(const SDL_Event& event)
         move_stick(event.gaxis);
         break;
 
+    case SDL_EVENT_MOUSE_WHEEL:
+        scroll_wheel(event.wheel);
+        break;
+
     case SDL_EVENT_MOUSE_BUTTON_DOWN:
         if (event.button.button == SDL_BUTTON_LEFT)
         {
@@ -237,6 +241,17 @@ void Menu::translate(const SDL_Event& event)
     default:
         break;
     }
+}
+
+/**
+ * @brief Scroll the page's rows with the mouse wheel, a row a notch, without
+ *        moving the focus; the next frame keeps it within the page.
+ * @param event The wheel event: up scrolls back toward the top.
+ */
+void Menu::scroll_wheel(const SDL_MouseWheelEvent& event)
+{
+    const float notches = event.direction == SDL_MOUSEWHEEL_FLIPPED ? -event.y : event.y;
+    rows_scroll_ -= notches * px(wheel_rows * (row_pad_y * 2 + switch_height + row_gap));
 }
 
 /**

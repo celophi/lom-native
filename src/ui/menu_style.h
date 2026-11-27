@@ -49,6 +49,7 @@ constexpr float meter_reach = 10.0f;
 constexpr float choice_width = 96.0f;
 constexpr float choice_text_gap = 10.0f;
 constexpr float child_indent = 30.0f;
+constexpr float wheel_rows = 1.0f;
 constexpr float guide_width = 1.5f;
 constexpr float arrow_size = 7.0f;
 constexpr float glyph_height = 25.0f;

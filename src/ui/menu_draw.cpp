@@ -391,8 +391,8 @@ float Menu::draw_bindings(const std::vector<MenuRow>& rows, float y, float left,
 /**
  * @brief Draw the selected category's rows, or its message when it has none.
  *        A page taller than the space between the header and the footer
- *        scrolls to keep the focused row in view, from the top on each new
- *        page.
+ *        scrolls, from the top on each new page: to bring the focused row
+ *        into view when the focus moves, and with the mouse wheel.
  */
 void Menu::draw_rows()
 {
@@ -422,6 +422,7 @@ void Menu::draw_rows()
     if (scroll_category_ != static_cast<int>(category))
     {
         scroll_category_ = static_cast<int>(category);
+        scroll_focus_ = -1;
         rows_scroll_ = 0.0f;
     }
 
@@ -443,12 +444,15 @@ void Menu::draw_rows()
         }
 
         const float view = bottom - top;
+        const int focus = model_.in_rows() && !model_.confirming_quit() ? model_.row() : -1;
 
-        if (focus_top >= 0.0f)
+        if (focus_top >= 0.0f && focus != scroll_focus_)
         {
             rows_scroll_ = std::min(rows_scroll_, focus_top);
             rows_scroll_ = std::max(rows_scroll_, focus_bottom - view);
         }
+
+        scroll_focus_ = focus;
 
         rows_scroll_ = std::clamp(rows_scroll_, 0.0f, std::max(0.0f, total - px(row_gap) - view));
         y -= rows_scroll_;

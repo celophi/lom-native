@@ -118,6 +118,7 @@ class Menu
     void release_hold();
     void repeat_held();
     void click_at(float x, float y);
+    void scroll_wheel(const SDL_MouseWheelEvent& event);
     SDL_GamepadType pad_type() const;
     void draw_face_button(SDL_GamepadButton button, ImVec2 center, float radius);
     void draw_dpad(ImVec2 center, float size, bool vertical);
@@ -172,6 +173,7 @@ class Menu
     std::vector<Hit> hits_;
     float rows_scroll_ = 0.0f;
     int scroll_category_ = -1;
+    int scroll_focus_ = -1;
     Held held_;
     SDL_JoystickID last_pad_ = 0;
     MenuInput stick_x_ = MenuInput::Back;

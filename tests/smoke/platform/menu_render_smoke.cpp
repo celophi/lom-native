@@ -150,6 +150,16 @@ static void key(SDL_Scancode code)
     lom_native_menu_event(&event);
 }
 
+/** Turn the mouse wheel some notches, up for positive, as the game would pass it on. */
+static void wheel(float notches)
+{
+    SDL_Event event{};
+    event.type = SDL_EVENT_MOUSE_WHEEL;
+    event.wheel.y = notches;
+    event.wheel.direction = SDL_MOUSEWHEEL_NORMAL;
+    lom_native_menu_event(&event);
+}
+
 /** Press and let go of a gamepad button on one controller, as the game would pass it on. */
 static void pad_button(SDL_JoystickID pad, SDL_GamepadButton button)
 {
@@ -410,6 +420,31 @@ int main(int argc, char** argv)
         const std::vector<unsigned char> drawn = frame(device, texture, game, true, true);
         const std::size_t count = changed(pixels, drawn);
         std::printf("menu-render: %s changed %zu pixels\n", step.name, count);
+
+        if (linked && std::strcmp(step.name, "remaster-scrolled") == 0)
+        {
+            wheel(3.0f);
+            const std::vector<unsigned char> up = frame(device, texture, game, true, true);
+            CHECK(changed(drawn, up) > 0);
+
+            if (prefix)
+            {
+                save(std::string(prefix) + "-remaster-wheel.ppm", up, texture);
+            }
+
+            wheel(-3.0f);
+            CHECK(changed(drawn, frame(device, texture, game, true, true)) == 0);
+            wheel(-20.0f);
+            const std::vector<unsigned char> end = frame(device, texture, game, true, true);
+            CHECK(changed(drawn, end) > 0);
+            wheel(-5.0f);
+            CHECK(changed(end, frame(device, texture, game, true, true)) == 0);
+
+            if (prefix)
+            {
+                save(std::string(prefix) + "-remaster-wheel-end.ppm", end, texture);
+            }
+        }
 
         if (linked)
         {
