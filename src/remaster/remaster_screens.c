@@ -38,12 +38,13 @@ static const WselArt s_wsel_art[] = {
 #define QUAD_WORDS 9
 
 /**
- * @brief Check whether the Remaster's pictures are drawn.
- * @return Nonzero when the Remaster was found and HD pictures are on.
+ * @brief Check whether the Remaster's pictures are drawn on one of the screens.
+ * @param screen Its switch, LOM_REMASTER_SWITCH_*.
+ * @return Nonzero when the Remaster was found and the screen's switch is on.
  */
-static int enabled(void)
+static int enabled(int screen)
 {
-    return lom_native_remaster_found() && lom_native_remaster_hd_ui();
+    return lom_native_remaster_found() && lom_native_remaster_uses(screen);
 }
 
 /**
@@ -221,7 +222,7 @@ static int wsel_place(int picture, int x, int y, const int rect[4])
 
 void lom_remaster_wsel_loaded(void)
 {
-    if (enabled())
+    if (enabled(LOM_REMASTER_SWITCH_WORLD_SELECT))
     {
         for (int picture = WSEL_LAND_MAP; picture <= WSEL_CURSOR; ++picture)
         {
@@ -244,7 +245,7 @@ void lom_remaster_wsel_loaded(void)
  */
 void lom_remaster_wsel_picture(void* code, int stride, int count, int picture, int shadow, int x, int y)
 {
-    if (!code || count <= 0 || !enabled() || !wsel_art_ready(picture))
+    if (!code || count <= 0 || !enabled(LOM_REMASTER_SWITCH_WORLD_SELECT) || !wsel_art_ready(picture))
     {
         return;
     }
@@ -271,12 +272,12 @@ void lom_remaster_wsel_picture(void* code, int stride, int count, int picture, i
 
 int lom_remaster_wsel_wide(void)
 {
-    return enabled() && wsel_art_ready(WSEL_WORLD_MAP);
+    return enabled(LOM_REMASTER_SWITCH_WORLD_SELECT) && wsel_art_ready(WSEL_WORLD_MAP);
 }
 
 void lom_remaster_wsel_zoom(void* code)
 {
-    if (!code || !enabled() || !wsel_art_ready(WSEL_WORLD_MAP))
+    if (!code || !enabled(LOM_REMASTER_SWITCH_WORLD_SELECT) || !wsel_art_ready(WSEL_WORLD_MAP))
     {
         return;
     }
@@ -429,7 +430,7 @@ int lom_remaster_kameo_part(int shell, int u, int v, const int rect[4], LomRemas
  */
 void lom_remaster_wmap_status(void* code, int part)
 {
-    if (!code || !enabled())
+    if (!code || !enabled(LOM_REMASTER_SWITCH_WORLD_MAP))
     {
         return;
     }
@@ -532,7 +533,7 @@ void lom_remaster_land_name_xy(const int text[4], int w, int h, int xy[8])
  */
 void lom_remaster_wmap_label(void* code, int selection, int tpage)
 {
-    if (!code || !enabled())
+    if (!code || !enabled(LOM_REMASTER_SWITCH_WORLD_MAP))
     {
         return;
     }
@@ -571,7 +572,7 @@ void lom_remaster_wmap_label(void* code, int selection, int tpage)
  */
 void lom_remaster_wmap_panel(void* code, int stage)
 {
-    if (!code || !enabled())
+    if (!code || !enabled(LOM_REMASTER_SWITCH_WORLD_MAP))
     {
         return;
     }
@@ -692,7 +693,7 @@ int lom_remaster_spirit_part(int spirit, int kind, int u, int v, const int rect[
  */
 void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
 {
-    if (!code || !enabled())
+    if (!code || !enabled(LOM_REMASTER_SWITCH_WORLD_MAP))
     {
         return;
     }
@@ -780,7 +781,7 @@ int lom_remaster_title_parts(int language, const int rect[4], int margin, LomRem
  */
 static int title_art_ready(void)
 {
-    return enabled() && lom_remaster_picture_ready(TITLE_FILE, TITLE_BACKGROUND, NULL, NULL) &&
+    return enabled(LOM_REMASTER_SWITCH_TITLE) && lom_remaster_picture_ready(TITLE_FILE, TITLE_BACKGROUND, NULL, NULL) &&
            lom_remaster_picture_ready(TITLE_FILE, title_logo(names_language()), NULL, NULL);
 }
 
@@ -940,7 +941,7 @@ static int gname_art_ready(void)
 
 int lom_remaster_gname_begin(void)
 {
-    s_gname_layout = enabled() && lom_native_widescreen_enabled() && gname_art_ready();
+    s_gname_layout = enabled(LOM_REMASTER_SWITCH_NAME_ENTRY) && lom_native_widescreen_enabled() && gname_art_ready();
     return s_gname_layout;
 }
 

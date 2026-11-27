@@ -37,25 +37,72 @@ extern "C"
     /** @brief Its data folder (the one with hdmap/ in it), or "" if it wasn't found. */
     const char* lom_native_remaster_root(void);
 
+    enum
+    {
+        LOM_REMASTER_SWITCH_ALL,
+        LOM_REMASTER_SWITCH_BACKGROUNDS,
+        LOM_REMASTER_SWITCH_FACES,
+        LOM_REMASTER_SWITCH_ENCYCLOPEDIA,
+        LOM_REMASTER_SWITCH_TITLE,
+        LOM_REMASTER_SWITCH_NAME_ENTRY,
+        LOM_REMASTER_SWITCH_WORLD_SELECT,
+        LOM_REMASTER_SWITCH_WORLD_MAP,
+        LOM_REMASTER_SWITCH_MOVIES,
+        LOM_REMASTER_SWITCH_MUSIC,
+        LOM_REMASTER_SWITCH_ARRANGED,
+        LOM_REMASTER_SWITCH_EFFECTS,
+        LOM_REMASTER_SWITCH_TEXT,
+        LOM_REMASTER_SWITCH_COUNT
+    };
+
+    /**
+     * @brief Turn one of the Remaster's switches on or off. They're the ones
+     *        F1's Remaster page shows: one that turns all of it on or off,
+     *        then one for each part. All are on to start with, but Arranged,
+     *        which picks the arranged soundtrack over the original recordings
+     *        when Music is on. Each part takes effect from its next room,
+     *        screen, song, effect or scene.
+     * @param which LOM_REMASTER_SWITCH_*.
+     * @param on Nonzero for on.
+     */
+    void lom_native_remaster_set_switch(int which, int on);
+
+    /**
+     * @brief Read one of the Remaster's switches as it's set, whatever the
+     *        others are.
+     * @param which LOM_REMASTER_SWITCH_*.
+     * @return 1 when it's on.
+     */
+    int lom_native_remaster_switch(int which);
+
+    /**
+     * @brief Check whether a part of the Remaster is in use: it was found,
+     *        and the part's switch and the one that turns all of it on are on
+     *        (and Music, for Arranged).
+     * @param which LOM_REMASTER_SWITCH_*.
+     * @return 1 when it is.
+     */
+    int lom_native_remaster_uses(int which);
+
     /** @brief Nonzero when the renderer can draw the Remaster's backgrounds (src/gpu/hd_textures.h). */
     int lom_native_remaster_hd_supported(void);
 
-    /** @brief Draw rooms with the Remaster's backgrounds, from the next room on. */
+    /** @brief Set the Backgrounds switch: draw rooms with the Remaster's backgrounds, from the next room on. */
     void lom_native_remaster_set_hd_backgrounds(int enabled);
 
-    /** @brief Nonzero when rooms are drawn with the Remaster's backgrounds. */
+    /** @brief Nonzero when rooms are drawn with the Remaster's backgrounds (lom_native_remaster_uses). */
     int lom_native_remaster_hd_backgrounds(void);
 
-    /** @brief Where the music comes from (LOM_REMASTER_MUSIC_*), from the next song on. */
+    /** @brief Set the Music and Arranged switches from where the music comes from (LOM_REMASTER_MUSIC_*), from the next song on. */
     void lom_native_remaster_set_music(int source);
 
-    /** @brief Where the music comes from: LOM_REMASTER_MUSIC_*. */
+    /** @brief Where the music comes from, with the switches as they are: LOM_REMASTER_MUSIC_*. */
     int lom_native_remaster_music(void);
 
-    /** @brief Whether sound effects come from the Remaster's recordings, from the next effect on. */
+    /** @brief Set the Effects switch: sound effects from the Remaster's recordings, from the next effect on. */
     void lom_native_remaster_set_effects(int enabled);
 
-    /** @brief Nonzero when sound effects come from the Remaster's recordings. */
+    /** @brief Nonzero when sound effects come from the Remaster's recordings (lom_native_remaster_uses). */
     int lom_native_remaster_effects(void);
 
     /** @brief The game plays effect data (src/audio/sound_boundary.c). */
@@ -78,11 +125,21 @@ extern "C"
         LOM_REMASTER_TEXT_COUNT
     };
 
-    /** @brief Which text the scenes use (LOM_REMASTER_TEXT_*), from the next scene on. */
+    /**
+     * @brief Set the Text switch and its language from which text the scenes
+     *        use (LOM_REMASTER_TEXT_*), from the next scene on: the PS1's
+     *        turns the switch off and keeps the language.
+     */
     void lom_native_remaster_set_text(int language);
 
-    /** @brief Which text the player chose: LOM_REMASTER_TEXT_*. */
+    /** @brief Which text the scenes use, with the switches as they are: LOM_REMASTER_TEXT_*. */
     int lom_native_remaster_text(void);
+
+    /** @brief Choose the Remaster's language for when the Text switch is on: a LOM_REMASTER_TEXT_* other than the PS1's. */
+    void lom_native_remaster_set_text_language(int language);
+
+    /** @brief The Remaster's language the Text switch uses: English to start with. */
+    int lom_native_remaster_text_language(void);
 
     /**
      * @brief Say whether this game can show the Remaster's text. The Japanese
@@ -109,19 +166,19 @@ extern "C"
     /** @brief Nonzero when the renderer can draw the Remaster's UI pictures (src/gpu/hd_textures.h). */
     int lom_native_remaster_hd_ui_supported(void);
 
-    /** @brief Draw the Remaster's repainted pictures where the PS1's screens have them, from the next frame on. */
+    /**
+     * @brief Set the switches of every repainted picture at once: faces,
+     *        encyclopedia, title, name entry, world select and world map.
+     */
     void lom_native_remaster_set_hd_ui(int enabled);
-
-    /** @brief Nonzero when the Remaster's repainted pictures are drawn. */
-    int lom_native_remaster_hd_ui(void);
 
     /** @brief Nonzero when the renderer can show the Remaster's movies at its own resolution (src/gpu/hd_movie.h). */
     int lom_native_remaster_hd_movies_supported(void);
 
-    /** @brief Play the Remaster's HD movies in place of the PS1's, from the next movie on. */
+    /** @brief Set the Movies switch: play the Remaster's HD movies in place of the PS1's, from the next movie on. */
     void lom_native_remaster_set_hd_movies(int enabled);
 
-    /** @brief Nonzero when the Remaster's HD movies play in place of the PS1's. */
+    /** @brief Nonzero when the Remaster's HD movies play in place of the PS1's (lom_native_remaster_uses). */
     int lom_native_remaster_hd_movies(void);
 
     /**

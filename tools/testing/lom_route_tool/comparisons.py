@@ -302,7 +302,8 @@ REMASTER_USED_LOG = re.compile(r"\[lom-native\] The Remaster's ([a-z0-9_A]+(?:\.
 
 
 def compare_remaster(args: argparse.Namespace) -> int:
-    """Run each route without and with the Remaster (HD backgrounds and pictures, and the soundtrack --music picks) and
+    """Run each route without and with the Remaster (HD backgrounds and pictures, and the soundtrack --music picks, with the
+    PS1's text and sound effects) and
     check that the game plays the same: the scene, the hero and the save match frame by frame, and the checkpoints come at the
     same frames. The picture and sound change, and so can the game state hash: the Remaster's maps have bigger layers,
     and some script variables pick that up. Those are listed, not failed. A few of its rooms move walls to fit the new
@@ -315,7 +316,8 @@ def compare_remaster(args: argparse.Namespace) -> int:
         print("remaster: no routes found (folders aren't searched below their own level)", flush=True)
         return 1
     failures = 0
-    settings = {REMASTER_VARIABLE: str(args.remaster), "LOM_REMASTER_HD": "1", "LOM_REMASTER_MUSIC": str(args.music)}
+    settings = {REMASTER_VARIABLE: str(args.remaster), "LOM_REMASTER_HD": "1", "LOM_REMASTER_MUSIC": str(args.music), "LOM_REMASTER_TEXT": "0",
+                "LOM_REMASTER_EFFECTS": "0"}
     for name in names:
         sides = {}
         for side, on in (("off", False), ("on", True)):

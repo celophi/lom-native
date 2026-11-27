@@ -1,6 +1,7 @@
 #include "menu_model.h"
 #include "menu_text.h"
 #include "lom_native_audio_categories.h"
+#include "lom_native_remaster.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -51,8 +52,8 @@ const Filter filters[] = {
 constexpr const char* resolutions[] = {"1x", "2x", "4x"};
 
 const MenuText category_names[] = {{"category_resume", "Resume game"}, {"category_display", "Display"}, {"category_audio", "Audio"},
-                                   {"category_controls", "Controls"},  {"category_general", "General"}, {"category_mods", "Mods"},
-                                   {"category_quit", "Quit game"}};
+                                   {"category_controls", "Controls"},  {"category_general", "General"}, {"category_remaster", "Remaster"},
+                                   {"category_mods", "Mods"},          {"category_quit", "Quit game"}};
 
 LOM_MENU_TEXT(filter_label, "Scaling filter");
 LOM_MENU_TEXT(resolution_label, "Internal resolution");
@@ -62,29 +63,6 @@ LOM_MENU_TEXT(fullscreen_help, "Shortcut: F4.");
 LOM_MENU_TEXT(widescreen_label, "Widescreen");
 LOM_MENU_TEXT(widescreen_help, "Shows more of the world on each side in towns, dungeons, fights and on the world map. Places without the art for it "
                                "stay 4:3.");
-LOM_MENU_TEXT(hd_backgrounds_label, "HD backgrounds");
-LOM_MENU_TEXT(hd_backgrounds_help, "Draws towns and dungeons with the Remaster's repainted backgrounds, from your copy of it. Changes from the next room. "
-                                   "A few rooms also have the Remaster's small changes to where you can walk.");
-LOM_MENU_TEXT(hd_ui_label, "HD pictures");
-LOM_MENU_TEXT(hd_ui_help, "Draws the Remaster's repainted pictures, from your copy of it, where the PS1's screens show them: the title "
-                          "screen, the faces in conversations, the encyclopedia's pictures, the wall map you place your home on at the "
-                          "start, and the world map's Mana Tree panel, spirits and names. With Widescreen on, name entry is the "
-                          "Remaster's too.");
-LOM_MENU_TEXT(hd_movies_label, "HD movies");
-LOM_MENU_TEXT(hd_movies_help, "Plays the Remaster's high-definition movies, from your copy of it, in place of the PS1's: the opening, the endings and "
-                              "the staff roll. With Widescreen off they're letterboxed. Changes from the next movie.");
-LOM_MENU_TEXT(text_label, "Text");
-LOM_MENU_TEXT(text_help, "Which text the game uses: the PS1's, or the Remaster's revised English or one of its other languages, from your copy "
-                         "of it. Changes from the next room or menu.");
-const MenuText text_languages[] = {{"text_ps1", "PS1"},
-                                   {"text_english", "Remaster English"},
-                                   {"text_german", "Remaster German"},
-                                   {"text_french", "Remaster French"},
-                                   {"text_spanish", "Remaster Spanish"},
-                                   {"text_japanese", "Remaster Japanese"},
-                                   {"text_korean", "Remaster Korean"},
-                                   {"text_chinese_simplified", "Remaster Chinese (Simplified)"},
-                                   {"text_chinese_traditional", "Remaster Chinese (Traditional)"}};
 LOM_MENU_TEXT(restore_display_label, "Restore display defaults");
 LOM_MENU_TEXT(restore_display_help, "Sharp, 1x, 4:3, in a window.");
 LOM_MENU_TEXT(volume_label, "Volume");
@@ -99,13 +77,6 @@ LOM_MENU_TEXT(sfx_label, "Sound effects");
 LOM_MENU_TEXT(sfx_help, "The game's sound effects, under Volume. Movies only follow Volume, since their music and sound come mixed together.");
 LOM_MENU_TEXT(mute_sfx_label, "Mute sound effects");
 LOM_MENU_TEXT(mute_sfx_help, "Muting keeps the sound effects volume setting.");
-LOM_MENU_TEXT(soundtrack_label, "Soundtrack");
-LOM_MENU_TEXT(soundtrack_help, "Which recording of the music plays: the PS1's, or the Remaster's original or arranged soundtrack from your copy of it. "
-                               "Changes from the next song.");
-const MenuText soundtracks[] = {{"soundtrack_ps1", "PS1"}, {"soundtrack_remaster", "Remaster"}, {"soundtrack_arranged", "Remaster arranged"}};
-LOM_MENU_TEXT(effects_label, "Effects");
-LOM_MENU_TEXT(effects_help, "Which recordings of the sound effects play: the PS1's, or the Remaster's from your copy of it. Changes from the next effect.");
-const MenuText effect_sources[] = {{"effects_ps1", "PS1"}, {"effects_remaster", "Remaster"}};
 LOM_MENU_TEXT(restore_audio_label, "Restore audio defaults");
 LOM_MENU_TEXT(restore_audio_help, "Everything at full volume, not muted.");
 
@@ -131,6 +102,68 @@ LOM_MENU_TEXT(restore_bindings_help, "Puts this player's keys and gamepad bindin
 LOM_MENU_TEXT(no_gamepad, "no gamepad connected");
 LOM_MENU_TEXT(pause_unfocused_label, "Pause when unfocused");
 LOM_MENU_TEXT(pause_unfocused_help, "Pause gameplay and audio when you switch to another window. Resume when you return.");
+LOM_MENU_TEXT(remaster_label, "Use the Remaster");
+LOM_MENU_TEXT(remaster_help, "Turns all of the Remaster's art, music, sound and text on or off, from your copy of it. Each part has its own switch "
+                             "under it.");
+LOM_MENU_TEXT(remaster_missing_label, "No Remaster linked");
+LOM_MENU_TEXT(remaster_missing_help, "Own the Legend of Mana Remaster? Link it in the launcher's Game files window, and its art, music and text can be "
+                                     "turned on here.");
+LOM_MENU_TEXT(backgrounds_label, "Backgrounds");
+LOM_MENU_TEXT(hd_backgrounds_help, "Draws towns and dungeons with the Remaster's repainted backgrounds, from your copy of it. Changes from the next room. "
+                                   "A few rooms also have the Remaster's small changes to where you can walk.");
+LOM_MENU_TEXT(faces_label, "Faces");
+LOM_MENU_TEXT(faces_help, "The faces in conversations, repainted.");
+LOM_MENU_TEXT(encyclopedia_label, "Encyclopedia");
+LOM_MENU_TEXT(encyclopedia_help, "The encyclopedia's pictures, repainted.");
+LOM_MENU_TEXT(title_screen_label, "Title screen");
+LOM_MENU_TEXT(title_screen_help, "The title screen's background and logo, painted wide for Widescreen.");
+LOM_MENU_TEXT(name_entry_label, "Name entry");
+LOM_MENU_TEXT(name_entry_help, "Naming your hero, pets and golems on the Remaster's screen. Only with Widescreen on: it's painted for a wide screen, "
+                               "so in 4:3 it's the PS1's.");
+LOM_MENU_TEXT(wall_map_label, "Wall map");
+LOM_MENU_TEXT(wall_map_help, "The wall map you place your home on at the start, painted wide for Widescreen.");
+LOM_MENU_TEXT(world_map_label, "World map");
+LOM_MENU_TEXT(world_map_help, "The world map's Mana Tree panel, spirits, and day and land names. The lands stay the PS1's.");
+LOM_MENU_TEXT(movies_label, "Movies");
+LOM_MENU_TEXT(hd_movies_help, "Plays the Remaster's high-definition movies, from your copy of it, in place of the PS1's: the opening, the endings and "
+                              "the staff roll. With Widescreen off they're letterboxed. Changes from the next movie.");
+LOM_MENU_TEXT(remaster_music_label, "Music");
+LOM_MENU_TEXT(remaster_music_help, "The Remaster's recordings of the soundtrack in place of the PS1's music. Changes from the next song.");
+LOM_MENU_TEXT(recordings_label, "Recordings");
+LOM_MENU_TEXT(recordings_help, "The Remaster's original soundtrack, or its arranged one. Changes from the next song.");
+const MenuText recordings[] = {{"recordings_original", "Original"}, {"recordings_arranged", "Arranged"}};
+LOM_MENU_TEXT(remaster_effects_label, "Sound effects");
+LOM_MENU_TEXT(remaster_effects_help, "The Remaster's recordings of the sound effects. Changes from the next effect.");
+LOM_MENU_TEXT(remaster_text_label, "Text");
+LOM_MENU_TEXT(remaster_text_help, "The Remaster's revised text in place of the PS1's. Changes from the next room or menu.");
+LOM_MENU_TEXT(language_label, "Language");
+LOM_MENU_TEXT(language_help, "Which of the Remaster's languages the text is in. Changes from the next room or menu.");
+const MenuText languages[] = {{"language_english", "English"},
+                              {"language_german", "German"},
+                              {"language_french", "French"},
+                              {"language_spanish", "Spanish"},
+                              {"language_japanese", "Japanese"},
+                              {"language_korean", "Korean"},
+                              {"language_chinese_simplified", "Chinese (Simplified)"},
+                              {"language_chinese_traditional", "Chinese (Traditional)"}};
+LOM_MENU_TEXT(restore_remaster_label, "Restore Remaster defaults");
+LOM_MENU_TEXT(restore_remaster_help, "Everything on, with the original recordings and English text.");
+
+struct RemasterPart
+{
+    int which;
+    const MenuText& label;
+    const MenuText& help;
+};
+
+const RemasterPart remaster_parts[] = {
+    {LOM_REMASTER_SWITCH_BACKGROUNDS, backgrounds_label, hd_backgrounds_help}, {LOM_REMASTER_SWITCH_FACES, faces_label, faces_help},
+    {LOM_REMASTER_SWITCH_ENCYCLOPEDIA, encyclopedia_label, encyclopedia_help}, {LOM_REMASTER_SWITCH_TITLE, title_screen_label, title_screen_help},
+    {LOM_REMASTER_SWITCH_NAME_ENTRY, name_entry_label, name_entry_help},       {LOM_REMASTER_SWITCH_WORLD_SELECT, wall_map_label, wall_map_help},
+    {LOM_REMASTER_SWITCH_WORLD_MAP, world_map_label, world_map_help},          {LOM_REMASTER_SWITCH_MOVIES, movies_label, hd_movies_help},
+    {LOM_REMASTER_SWITCH_MUSIC, remaster_music_label, remaster_music_help},    {LOM_REMASTER_SWITCH_EFFECTS, remaster_effects_label, remaster_effects_help},
+    {LOM_REMASTER_SWITCH_TEXT, remaster_text_label, remaster_text_help},
+};
 LOM_MENU_TEXT(mod_toggle_note, "Turned off here, it's back on the next time you play. The launcher's Mods window decides which mods load.");
 LOM_MENU_TEXT(mods_empty_label, "No mods to turn on and off here");
 LOM_MENU_TEXT(mods_empty_help, "Mods that can be turned on and off while you play show here, once they're on in the launcher's Mods window.");
@@ -209,8 +242,8 @@ MenuModel::MenuModel(MenuBackend& backend) : backend_(backend)
 
 const std::vector<MenuCategory>& MenuModel::categories()
 {
-    static const std::vector<MenuCategory> all = {MenuCategory::Resume,  MenuCategory::Display, MenuCategory::Audio, MenuCategory::Controls,
-                                                  MenuCategory::General, MenuCategory::Mods,    MenuCategory::Quit};
+    static const std::vector<MenuCategory> all = {MenuCategory::Resume,  MenuCategory::Display,  MenuCategory::Audio, MenuCategory::Controls,
+                                                  MenuCategory::General, MenuCategory::Remaster, MenuCategory::Mods,  MenuCategory::Quit};
     return all;
 }
 
@@ -275,33 +308,6 @@ void MenuModel::add_display_rows(std::vector<MenuRow>& rows) const
     widescreen.on = display.widescreen;
     rows.push_back(widescreen);
 
-    if (backend_.remaster_found() && backend_.hd_backgrounds_available())
-    {
-        MenuRow hd{MenuRow::Kind::Switch, hd_backgrounds_label, hd_backgrounds_help};
-        hd.on = backend_.hd_backgrounds();
-        rows.push_back(hd);
-    }
-
-    if (backend_.remaster_found() && backend_.hd_ui_available())
-    {
-        MenuRow pictures{MenuRow::Kind::Switch, hd_ui_label, hd_ui_help};
-        pictures.on = backend_.hd_ui();
-        rows.push_back(pictures);
-    }
-
-    if (backend_.remaster_found() && backend_.hd_movies_available())
-    {
-        MenuRow movies{MenuRow::Kind::Switch, hd_movies_label, hd_movies_help};
-        movies.on = backend_.hd_movies();
-        rows.push_back(movies);
-    }
-
-    if (backend_.remaster_found() && backend_.text_available())
-    {
-        const int language = std::clamp(backend_.text_language(), 0, static_cast<int>(std::size(text_languages)) - 1);
-        rows.push_back({MenuRow::Kind::Choice, text_label, text_help, text_languages[language]});
-    }
-
     rows.push_back({MenuRow::Kind::Action, restore_display_label, restore_display_help});
 }
 
@@ -320,14 +326,59 @@ void MenuModel::add_audio_rows(std::vector<MenuRow>& rows) const
         rows.push_back(mute);
     }
 
-    if (backend_.remaster_found())
+    rows.push_back({MenuRow::Kind::Action, restore_audio_label, restore_audio_help});
+}
+
+void MenuModel::add_remaster_rows(std::vector<MenuRow>& rows) const
+{
+    if (!backend_.remaster_found())
     {
-        const int soundtrack = std::clamp(backend_.soundtrack(), 0, static_cast<int>(std::size(soundtracks)) - 1);
-        rows.push_back({MenuRow::Kind::Choice, soundtrack_label, soundtrack_help, soundtracks[soundtrack]});
-        rows.push_back({MenuRow::Kind::Choice, effects_label, effects_help, effect_sources[backend_.remaster_effects() ? 1 : 0]});
+        MenuRow missing{MenuRow::Kind::Action, remaster_missing_label, remaster_missing_help};
+        missing.dimmed = true;
+        rows.push_back(missing);
+        return;
     }
 
-    rows.push_back({MenuRow::Kind::Action, restore_audio_label, restore_audio_help});
+    MenuRow all{MenuRow::Kind::Switch, remaster_label, remaster_help};
+    all.remaster_switch = LOM_REMASTER_SWITCH_ALL;
+    all.on = backend_.remaster_switch(LOM_REMASTER_SWITCH_ALL);
+    rows.push_back(all);
+
+    if (all.on)
+    {
+        for (const RemasterPart& part : remaster_parts)
+        {
+            if (!backend_.remaster_switch_available(part.which))
+            {
+                continue;
+            }
+
+            MenuRow row{MenuRow::Kind::Switch, part.label, part.help};
+            row.remaster_switch = part.which;
+            row.on = backend_.remaster_switch(part.which);
+            row.child = true;
+            rows.push_back(row);
+
+            if (row.on && part.which == LOM_REMASTER_SWITCH_MUSIC)
+            {
+                MenuRow choice{MenuRow::Kind::Choice, recordings_label, recordings_help,
+                               recordings[backend_.remaster_switch(LOM_REMASTER_SWITCH_ARRANGED) ? 1 : 0]};
+                choice.remaster_switch = LOM_REMASTER_SWITCH_ARRANGED;
+                choice.child = true;
+                rows.push_back(choice);
+            }
+
+            if (row.on && part.which == LOM_REMASTER_SWITCH_TEXT)
+            {
+                const int language = std::clamp(backend_.text_language() - 1, 0, static_cast<int>(std::size(languages)) - 1);
+                MenuRow choice{MenuRow::Kind::Choice, language_label, language_help, languages[language]};
+                choice.child = true;
+                rows.push_back(choice);
+            }
+        }
+    }
+
+    rows.push_back({MenuRow::Kind::Action, restore_remaster_label, restore_remaster_help});
 }
 
 void MenuModel::add_control_rows(std::vector<MenuRow>& rows) const
@@ -444,6 +495,10 @@ std::vector<MenuRow> MenuModel::rows() const
         rows.push_back(pause);
         break;
     }
+
+    case MenuCategory::Remaster:
+        add_remaster_rows(rows);
+        break;
 
     case MenuCategory::Mods:
         add_mod_rows(rows);
@@ -733,32 +788,30 @@ void MenuModel::move_horizontal(int step)
     change(row, step);
 }
 
+void MenuModel::change_remaster(const MenuRow& row, int step)
+{
+    if (row.remaster_switch >= 0)
+    {
+        backend_.set_remaster_switch(row.remaster_switch, !backend_.remaster_switch(row.remaster_switch));
+    }
+    else if (row.label == language_label)
+    {
+        backend_.set_text_language(1 + wrap(backend_.text_language() - 1, step, static_cast<int>(std::size(languages))));
+    }
+}
+
+void MenuModel::restore_remaster()
+{
+    for (int which = 0; which < LOM_REMASTER_SWITCH_COUNT; ++which)
+    {
+        backend_.set_remaster_switch(which, which != LOM_REMASTER_SWITCH_ARRANGED);
+    }
+
+    backend_.set_text_language(LOM_REMASTER_TEXT_ENGLISH);
+}
+
 void MenuModel::change_display(const MenuRow& row, int step)
 {
-    if (row.label == hd_backgrounds_label)
-    {
-        backend_.set_hd_backgrounds(!backend_.hd_backgrounds());
-        return;
-    }
-
-    if (row.label == hd_ui_label)
-    {
-        backend_.set_hd_ui(!backend_.hd_ui());
-        return;
-    }
-
-    if (row.label == hd_movies_label)
-    {
-        backend_.set_hd_movies(!backend_.hd_movies());
-        return;
-    }
-
-    if (row.label == text_label)
-    {
-        backend_.set_text_language(wrap(backend_.text_language(), step, static_cast<int>(std::size(text_languages))));
-        return;
-    }
-
     DisplaySettings display = backend_.display();
 
     if (row.label == filter_label)
@@ -783,18 +836,6 @@ void MenuModel::change_display(const MenuRow& row, int step)
 
 void MenuModel::change_audio(const MenuRow& row, int step)
 {
-    if (row.label == soundtrack_label)
-    {
-        backend_.set_soundtrack(wrap(backend_.soundtrack(), step, static_cast<int>(std::size(soundtracks))));
-        return;
-    }
-
-    if (row.label == effects_label)
-    {
-        backend_.set_remaster_effects(!backend_.remaster_effects());
-        return;
-    }
-
     for (const AudioGroup& group : audio_groups)
     {
         if (row.label != static_cast<const char*>(group.volume_label) && row.label != static_cast<const char*>(group.mute_label))
@@ -842,6 +883,10 @@ void MenuModel::change(const MenuRow& row, int step)
 
     case MenuCategory::General:
         backend_.set_pause_unfocused(!backend_.pause_unfocused());
+        break;
+
+    case MenuCategory::Remaster:
+        change_remaster(row, step);
         break;
 
     case MenuCategory::Mods:
@@ -921,6 +966,10 @@ void MenuModel::select()
         else if (category() == MenuCategory::Controls)
         {
             backend_.restore_bindings(player_);
+        }
+        else if (category() == MenuCategory::Remaster && backend_.remaster_found())
+        {
+            restore_remaster();
         }
 
         break;

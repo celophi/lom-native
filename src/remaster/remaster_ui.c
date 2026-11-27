@@ -687,14 +687,14 @@ static int compare_picture(const void* key, const void* entry)
 }
 
 /**
- * @brief Find the Remaster's picture for an encyclopedia page, when HD pictures
- *        are on.
+ * @brief Find the Remaster's picture for an encyclopedia page, when its
+ *        Encyclopedia switch is on.
  * @param path The page's file on the disc.
  * @return Its entry, or NULL.
  */
 static const EncyclopediaPicture* encyclopedia_entry(const char* path)
 {
-    if (!lom_native_remaster_found() || !lom_native_remaster_hd_ui())
+    if (!lom_native_remaster_found() || !lom_native_remaster_uses(LOM_REMASTER_SWITCH_ENCYCLOPEDIA))
     {
         return NULL;
     }
@@ -1076,7 +1076,7 @@ int lom_gpu_prim_filter(const unsigned int* words, int available, unsigned int t
 {
     FacePrim prim;
 
-    if (!s_vram || !lom_native_remaster_hd_ui() || available < 4 || !read_face_prim(words, available, texpage, &prim))
+    if (!s_vram || !lom_native_remaster_uses(LOM_REMASTER_SWITCH_FACES) || available < 4 || !read_face_prim(words, available, texpage, &prim))
     {
         return 0;
     }

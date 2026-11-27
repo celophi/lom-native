@@ -30,27 +30,13 @@ class GameBackend final : public MenuBackend
 
     bool remaster_found() const override;
 
-    bool hd_backgrounds_available() const override;
+    bool remaster_switch_available(int which) const override;
 
-    bool hd_backgrounds() const override;
+    bool remaster_switch(int which) const override;
 
-    void set_hd_backgrounds(bool value) override;
-
-    bool hd_ui_available() const override;
-
-    bool hd_ui() const override;
-
-    void set_hd_ui(bool value) override;
-
-    bool hd_movies_available() const override;
-
-    bool hd_movies() const override;
-
-    void set_hd_movies(bool value) override;
+    void set_remaster_switch(int which, bool value) override;
 
     int text_language() const override;
-
-    bool text_available() const override;
 
     int mod_toggle_count() const override;
 
@@ -73,14 +59,6 @@ class GameBackend final : public MenuBackend
     bool game_seed(std::string& seed) const override;
 
     void set_text_language(int value) override;
-
-    int soundtrack() const override;
-
-    void set_soundtrack(int value) override;
-
-    bool remaster_effects() const override;
-
-    void set_remaster_effects(bool value) override;
 
     void resume() override;
 

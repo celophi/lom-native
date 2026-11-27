@@ -7,6 +7,7 @@
 #include "lom_native_mod_options.h"
 #include "lom_native_widescreen.h"
 #include "lom_native_remaster.h"
+#include <iterator>
 #include <utility>
 
 namespace lom::settings
@@ -16,6 +17,30 @@ namespace
 constexpr char application_directory[] = "lom-native";
 
 constexpr char preferences_filename[] = "preferences.ini";
+
+struct RemasterSwitch
+{
+    int which;
+    bool Preferences::* value;
+};
+
+constexpr RemasterSwitch remaster_switches[] = {
+    {LOM_REMASTER_SWITCH_ALL, &Preferences::remaster},
+    {LOM_REMASTER_SWITCH_BACKGROUNDS, &Preferences::hd_backgrounds},
+    {LOM_REMASTER_SWITCH_FACES, &Preferences::hd_faces},
+    {LOM_REMASTER_SWITCH_ENCYCLOPEDIA, &Preferences::hd_encyclopedia},
+    {LOM_REMASTER_SWITCH_TITLE, &Preferences::hd_title},
+    {LOM_REMASTER_SWITCH_NAME_ENTRY, &Preferences::hd_name_entry},
+    {LOM_REMASTER_SWITCH_WORLD_SELECT, &Preferences::hd_world_select},
+    {LOM_REMASTER_SWITCH_WORLD_MAP, &Preferences::hd_world_map},
+    {LOM_REMASTER_SWITCH_MOVIES, &Preferences::hd_movies},
+    {LOM_REMASTER_SWITCH_MUSIC, &Preferences::remaster_music},
+    {LOM_REMASTER_SWITCH_ARRANGED, &Preferences::arranged_music},
+    {LOM_REMASTER_SWITCH_EFFECTS, &Preferences::remaster_effects},
+    {LOM_REMASTER_SWITCH_TEXT, &Preferences::remaster_text},
+};
+
+static_assert(std::size(remaster_switches) == LOM_REMASTER_SWITCH_COUNT, "a preference for each of the Remaster's switches");
 }
 
 SettingsService& settings()
@@ -65,12 +90,12 @@ void SettingsService::enable(const char* path)
         lom_native_mod_options_prefer(key.substr(0, colon).c_str(), key.substr(colon + 1).c_str(), choice.c_str());
     }
 
-    lom_native_remaster_set_hd_backgrounds(values_.hd_backgrounds);
-    lom_native_remaster_set_hd_ui(values_.hd_ui);
-    lom_native_remaster_set_hd_movies(values_.hd_movies);
-    lom_native_remaster_set_text(values_.text_language);
-    lom_native_remaster_set_music(values_.soundtrack);
-    lom_native_remaster_set_effects(values_.remaster_effects);
+    for (const RemasterSwitch& entry : remaster_switches)
+    {
+        lom_native_remaster_set_switch(entry.which, values_.*entry.value);
+    }
+
+    lom_native_remaster_set_text_language(values_.text_language);
 }
 
 Preferences SettingsService::persistence_snapshot()
@@ -83,12 +108,12 @@ Preferences SettingsService::persistence_snapshot()
         values_.mod_options[key] = lom_native_mod_options_choice_id(i, lom_native_mod_options_chosen(i));
     }
 
-    values_.hd_backgrounds = lom_native_remaster_hd_backgrounds() != 0;
-    values_.hd_ui = lom_native_remaster_hd_ui() != 0;
-    values_.hd_movies = lom_native_remaster_hd_movies() != 0;
-    values_.text_language = lom_native_remaster_text();
-    values_.soundtrack = lom_native_remaster_music();
-    values_.remaster_effects = lom_native_remaster_effects() != 0;
+    for (const RemasterSwitch& entry : remaster_switches)
+    {
+        values_.*entry.value = lom_native_remaster_switch(entry.which) != 0;
+    }
+
+    values_.text_language = lom_native_remaster_text_language();
     Preferences snapshot = values_;
 
     if (lom_native_display_pending())

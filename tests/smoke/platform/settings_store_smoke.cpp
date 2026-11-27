@@ -35,7 +35,10 @@ static constexpr char resolution_field_text[] = "resolution=2\n";
 
 static constexpr char bad_widescreen_text[] = "widescreen=2\nwidescreen=yes\nwidescreen=-1\nwidescreen=1x\n";
 static constexpr char bad_remaster_text[] = "hd_backgrounds=2\nhd_backgrounds=off\nhd_pictures=2\nhd_pictures=no\nhd_movies=2\nhd_movies=off\ntext=9\ntext=-"
-                                            "1\nsoundtrack=3\nsoundtrack=-1\nsoundtrack=1x\n";
+                                            "1\nsoundtrack=3\nsoundtrack=-1\nsoundtrack=1x\nremaster=2\nhd_faces=x\nhd_world_map=-1\nremaster_music=on\n"
+                                            "arranged_music=2\ntext_language=0\ntext_language=9\nremaster_text=yes\n";
+static constexpr char old_remaster_choices[] = "hd_pictures=0\nsoundtrack=2\nremaster_effects=1\ntext=3\n";
+static constexpr char old_remaster_defaults[] = "hd_pictures=1\nsoundtrack=0\nremaster_effects=0\ntext=0\n";
 static constexpr char bad_category_text[] = "music_volume=101\nmusic_volume=-5\nmusic_mute=2\nsfx_volume=50x\nsfx_mute=yes\n";
 
 static constexpr char success_message[] = "settings-store: write/rename recovery, successful snapshots and partial-file validation pass";
@@ -143,17 +146,39 @@ int main(int argc, char** argv)
     CHECK(odd.size() == 1 && odd.at("mod:speed") == "slow");
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
-    CHECK(defaults.hd_backgrounds && defaults.hd_ui && defaults.hd_movies && defaults.soundtrack == 0);
+    CHECK(defaults.remaster && defaults.hd_backgrounds && defaults.hd_faces && defaults.hd_encyclopedia && defaults.hd_title && defaults.hd_name_entry &&
+          defaults.hd_world_select && defaults.hd_world_map && defaults.hd_movies && defaults.remaster_music && !defaults.arranged_music &&
+          defaults.remaster_effects && defaults.remaster_text && defaults.text_language == 1);
     auto remaster = next;
+    remaster.remaster = false;
     remaster.hd_backgrounds = false;
-    remaster.hd_ui = false;
+    remaster.hd_faces = false;
+    remaster.hd_encyclopedia = false;
+    remaster.hd_title = false;
+    remaster.hd_name_entry = false;
+    remaster.hd_world_select = false;
+    remaster.hd_world_map = false;
     remaster.hd_movies = false;
+    remaster.remaster_music = false;
+    remaster.arranged_music = true;
+    remaster.remaster_effects = false;
+    remaster.remaster_text = false;
     remaster.text_language = 3;
-    remaster.soundtrack = 2;
     CHECK(store.save(remaster, PreferenceStore::SaveReason::Changed));
     CHECK(reload.load(path, defaults) == remaster);
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
     CHECK(reload.load(path, defaults) == next);
+
+    const std::string old_choices = old_remaster_choices;
+    CHECK(SDL_SaveFile(path.c_str(), old_choices.data(), old_choices.size()));
+    const auto carried = reload.load(path, defaults);
+    CHECK(!carried.hd_faces && !carried.hd_encyclopedia && !carried.hd_title && !carried.hd_name_entry && !carried.hd_world_select && !carried.hd_world_map &&
+          carried.hd_backgrounds && carried.remaster_music && carried.arranged_music && carried.remaster_effects && carried.remaster_text &&
+          carried.text_language == 3);
+    const std::string old_defaults = old_remaster_defaults;
+    CHECK(SDL_SaveFile(path.c_str(), old_defaults.data(), old_defaults.size()));
+    CHECK(reload.load(path, defaults) == defaults);
+    CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
     for (const auto& level : defaults.audio.categories)
     {
@@ -179,7 +204,8 @@ int main(int argc, char** argv)
     CHECK(loaded.audio.master.volume == main_full_volume && loaded.audio.master.muted);
     CHECK(loaded.display.resolution == 0);
     CHECK(!loaded.display.widescreen);
-    CHECK(loaded.hd_backgrounds && loaded.hd_ui && loaded.hd_movies && loaded.text_language == 0 && loaded.soundtrack == 0);
+    CHECK(loaded.remaster && loaded.hd_backgrounds && loaded.hd_faces && loaded.hd_world_map && loaded.hd_movies && loaded.remaster_music &&
+          !loaded.arranged_music && loaded.remaster_text && loaded.text_language == 1);
     CHECK(loaded.audio.categories == defaults.audio.categories);
     std::puts(success_message);
 }

@@ -17,7 +17,11 @@ class PreferenceStore
 
     /** Read the preference file. Missing or bad values get the defaults, and
      * duplicate control bindings are fixed. An empty path means nothing is
-     * ever written. */
+     * ever written. Keys from before the Remaster had a switch for each part
+     * are read but no longer written: HD pictures turned off turns off every
+     * picture's switch, and a soundtrack, sound effects or text chosen from
+     * the Remaster turns its switch on. Their 0, the PS1's, was only the old
+     * default, so it leaves the new switch on. */
     Preferences load(std::string path, const Preferences& defaults);
 
     /** Save, by writing a temporary file and renaming it over the old one.

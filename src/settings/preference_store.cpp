@@ -37,16 +37,29 @@ constexpr char widescreen_key[] = "widescreen=";
 
 constexpr char pause_unfocused_key[] = "pause_unfocused=";
 
+constexpr char remaster_key[] = "remaster=";
 constexpr char hd_backgrounds_key[] = "hd_backgrounds=";
-constexpr char hd_ui_key[] = "hd_pictures=";
+constexpr char hd_faces_key[] = "hd_faces=";
+constexpr char hd_encyclopedia_key[] = "hd_encyclopedia=";
+constexpr char hd_title_key[] = "hd_title=";
+constexpr char hd_name_entry_key[] = "hd_name_entry=";
+constexpr char hd_world_select_key[] = "hd_world_select=";
+constexpr char hd_world_map_key[] = "hd_world_map=";
 constexpr char hd_movies_key[] = "hd_movies=";
-constexpr char text_key[] = "text=";
+constexpr char remaster_music_key[] = "remaster_music=";
+constexpr char arranged_music_key[] = "arranged_music=";
+constexpr char remaster_sound_effects_key[] = "remaster_sound_effects=";
+constexpr char remaster_text_key[] = "remaster_text=";
+constexpr char text_language_key[] = "text_language=";
 constexpr int text_value_count = 9;
 
-constexpr char soundtrack_key[] = "soundtrack=";
-constexpr char remaster_effects_key[] = "remaster_effects=";
+constexpr char old_hd_pictures_key[] = "hd_pictures=";
+constexpr char old_text_key[] = "text=";
+constexpr char old_soundtrack_key[] = "soundtrack=";
+constexpr char old_remaster_effects_key[] = "remaster_effects=";
 
 constexpr int soundtrack_value_count = 3;
+constexpr int arranged_soundtrack = 2;
 
 constexpr char master_volume_key[] = "master_volume=";
 
@@ -90,14 +103,29 @@ constexpr Field fields[] = {
      [](Preferences& p, int v) { p.display.widescreen = v != 0; }},
     {pause_unfocused_key, boolean_value_count, [](const Preferences& p) { return int{p.pause_unfocused}; },
      [](Preferences& p, int v) { p.pause_unfocused = v != 0; }},
+    {remaster_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster}; }, [](Preferences& p, int v) { p.remaster = v != 0; }},
     {hd_backgrounds_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_backgrounds}; },
      [](Preferences& p, int v) { p.hd_backgrounds = v != 0; }},
-    {hd_ui_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_ui}; }, [](Preferences& p, int v) { p.hd_ui = v != 0; }},
+    {hd_faces_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_faces}; }, [](Preferences& p, int v) { p.hd_faces = v != 0; }},
+    {hd_encyclopedia_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_encyclopedia}; },
+     [](Preferences& p, int v) { p.hd_encyclopedia = v != 0; }},
+    {hd_title_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_title}; }, [](Preferences& p, int v) { p.hd_title = v != 0; }},
+    {hd_name_entry_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_name_entry}; },
+     [](Preferences& p, int v) { p.hd_name_entry = v != 0; }},
+    {hd_world_select_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_world_select}; },
+     [](Preferences& p, int v) { p.hd_world_select = v != 0; }},
+    {hd_world_map_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_world_map}; }, [](Preferences& p, int v) { p.hd_world_map = v != 0; }},
     {hd_movies_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_movies}; }, [](Preferences& p, int v) { p.hd_movies = v != 0; }},
-    {text_key, text_value_count, [](const Preferences& p) { return p.text_language; }, [](Preferences& p, int v) { p.text_language = v; }},
-    {soundtrack_key, soundtrack_value_count, [](const Preferences& p) { return p.soundtrack; }, [](Preferences& p, int v) { p.soundtrack = v; }},
-    {remaster_effects_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_effects}; },
+    {remaster_music_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_music}; },
+     [](Preferences& p, int v) { p.remaster_music = v != 0; }},
+    {arranged_music_key, boolean_value_count, [](const Preferences& p) { return int{p.arranged_music}; },
+     [](Preferences& p, int v) { p.arranged_music = v != 0; }},
+    {remaster_sound_effects_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_effects}; },
      [](Preferences& p, int v) { p.remaster_effects = v != 0; }},
+    {remaster_text_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_text}; },
+     [](Preferences& p, int v) { p.remaster_text = v != 0; }},
+    {text_language_key, text_value_count, [](const Preferences& p) { return p.text_language; },
+     [](Preferences& p, int v) { p.text_language = v > 0 ? v : p.text_language; }},
     {master_volume_key, volume_value_count, [](const Preferences& p) { return p.audio.master.volume; },
      [](Preferences& p, int v) { p.audio.master.volume = v; }},
     {master_mute_key, boolean_value_count, [](const Preferences& p) { return int{p.audio.master.muted}; },
@@ -110,6 +138,30 @@ constexpr Field fields[] = {
      [](Preferences& p, int v) { p.audio.categories[LOM_AUDIO_SFX].volume = v; }},
     {sfx_mute_key, boolean_value_count, [](const Preferences& p) { return int{p.audio.categories[LOM_AUDIO_SFX].muted}; },
      [](Preferences& p, int v) { p.audio.categories[LOM_AUDIO_SFX].muted = v != 0; }},
+};
+
+constexpr Field old_fields[] = {
+    {old_hd_pictures_key, boolean_value_count, nullptr,
+     [](Preferences& p, int v) { p.hd_faces = p.hd_encyclopedia = p.hd_title = p.hd_name_entry = p.hd_world_select = p.hd_world_map = v != 0; }},
+    {old_soundtrack_key, soundtrack_value_count, nullptr,
+     [](Preferences& p, int v)
+     {
+         if (v > 0)
+         {
+             p.remaster_music = true;
+             p.arranged_music = v == arranged_soundtrack;
+         }
+     }},
+    {old_remaster_effects_key, boolean_value_count, nullptr, [](Preferences& p, int v) { p.remaster_effects = p.remaster_effects || v != 0; }},
+    {old_text_key, text_value_count, nullptr,
+     [](Preferences& p, int v)
+     {
+         if (v > 0)
+         {
+             p.remaster_text = true;
+             p.text_language = v;
+         }
+     }},
 };
 
 /**
@@ -237,6 +289,14 @@ Preferences PreferenceStore::load(std::string path, const Preferences& defaults)
         int value;
 
         for (const Field& field : fields)
+        {
+            if (number(field.key, field.limit, value))
+            {
+                field.set(persisted_, value);
+            }
+        }
+
+        for (const Field& field : old_fields)
         {
             if (number(field.key, field.limit, value))
             {

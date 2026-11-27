@@ -145,6 +145,7 @@ class Menu
     void draw_header();
     void draw_categories();
     void draw_rows();
+    float row_height(const MenuRow& row, float left, float right, bool focused) const;
     float draw_row(const MenuRow& row, int index, float y, float left, float right, bool focused);
     void draw_child_guide(const MenuRow& row, float y, float height, float left, float row_left, bool more);
     void draw_value(const MenuRow& row, int index, ImVec2 center_right, bool focused);
@@ -169,6 +170,8 @@ class Menu
     ImDrawList* list_ = nullptr;
     Layout layout_{};
     std::vector<Hit> hits_;
+    float rows_scroll_ = 0.0f;
+    int scroll_category_ = -1;
     Held held_;
     SDL_JoystickID last_pad_ = 0;
     MenuInput stick_x_ = MenuInput::Back;

@@ -1,5 +1,6 @@
 #include "../../../src/ui/menu_model.h"
 #include "../../../include/lom_native_audio_categories.h"
+#include "../../../include/lom_native_remaster.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -22,13 +23,9 @@ class FakeGame : public MenuBackend
     bool pause = false;
 
     bool remaster = false;
-    bool hd_drawn = true;
-    bool hd = true;
-    bool pictures = true;
-    bool movies_shown = true;
-    bool movies = true;
-    int text = 0;
-    bool text_shown = true;
+    bool switches[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, false, true, true};
+    bool shown[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, true, true, true};
+    int language = LOM_REMASTER_TEXT_ENGLISH;
     std::vector<std::pair<std::string, std::string>> mods;
     std::vector<std::string> mod_ids;
     std::vector<bool> mods_on;
@@ -47,8 +44,6 @@ class FakeGame : public MenuBackend
 
     std::string seed;
 
-    int music = 0;
-    bool effects = false;
     int resumes = 0;
     bool asking = false;
     int quits = 0;
@@ -110,64 +105,29 @@ class FakeGame : public MenuBackend
         return remaster;
     }
 
-    bool hd_backgrounds_available() const override
+    bool remaster_switch_available(int which) const override
     {
-        return hd_drawn;
+        return shown[which];
     }
 
-    bool hd_backgrounds() const override
+    bool remaster_switch(int which) const override
     {
-        return hd;
+        return switches[which];
     }
 
-    void set_hd_backgrounds(bool value) override
+    void set_remaster_switch(int which, bool value) override
     {
-        hd = value;
-    }
-
-    bool hd_ui_available() const override
-    {
-        return hd_drawn;
-    }
-
-    bool hd_ui() const override
-    {
-        return pictures;
-    }
-
-    void set_hd_ui(bool value) override
-    {
-        pictures = value;
-    }
-
-    bool hd_movies_available() const override
-    {
-        return movies_shown;
-    }
-
-    bool hd_movies() const override
-    {
-        return movies;
-    }
-
-    void set_hd_movies(bool value) override
-    {
-        movies = value;
+        switches[which] = value;
     }
 
     int text_language() const override
     {
-        return text;
+        return language;
     }
 
     void set_text_language(int value) override
     {
-        text = value;
-    }
-
-    bool text_available() const override
-    {
-        return text_shown;
+        language = value;
     }
 
     int mod_toggle_count() const override
@@ -227,26 +187,6 @@ class FakeGame : public MenuBackend
     {
         text = seed;
         return !seed.empty();
-    }
-
-    int soundtrack() const override
-    {
-        return music;
-    }
-
-    void set_soundtrack(int value) override
-    {
-        music = value;
-    }
-
-    bool remaster_effects() const override
-    {
-        return effects;
-    }
-
-    void set_remaster_effects(bool value) override
-    {
-        effects = value;
     }
 
     void resume() override
@@ -372,7 +312,8 @@ static void opens_on_display_in_the_categories()
     CHECK(!menu.in_rows());
     CHECK(has_hint(menu, MenuHint::Control::Select, "Open"));
     CHECK(has_hint(menu, MenuHint::Control::Back, "Resume"));
-    CHECK(MenuModel::categories().size() == 7);
+    CHECK(MenuModel::categories().size() == 8);
+    CHECK(std::string(MenuModel::category_name(MenuCategory::Remaster)) == "Remaster");
     CHECK(std::string(MenuModel::category_name(MenuCategory::Quit)) == "Quit game");
 }
 
@@ -720,11 +661,14 @@ static void mods_page_shows_the_seed()
 }
 
 /**
- * @brief Check the Remaster's rows show only when the Remaster is found, and
- *        step through their choices. Text shows only when the game can show
- *        the Remaster's text (the Japanese one can't).
+ * @brief Check the Remaster has a page of its own and nothing on Display or
+ *        Audio: a line saying how to link it when it isn't found, otherwise
+ *        the switch for all of it with each part's switch under it while it's
+ *        on, the recordings under Music and the language under Text while
+ *        they're on, parts the renderer or the game can't do left out, and a
+ *        row putting it all back on.
  */
-static void remaster_rows_show_only_when_it_is_found()
+static void remaster_page_switches_each_part_under_one()
 {
     FakeGame game;
     MenuModel menu(game);
@@ -732,68 +676,83 @@ static void remaster_rows_show_only_when_it_is_found()
     CHECK(menu.rows().size() == 5);
     menu.point(MenuCategory::Audio, 0);
     CHECK(menu.rows().size() == 7);
+    menu.point(MenuCategory::Remaster, 0);
+    CHECK(menu.rows().size() == 1 && menu.rows()[0].label == "No Remaster linked" && menu.rows()[0].dimmed);
+    game.language = LOM_REMASTER_TEXT_GERMAN;
+    press(menu, MenuInput::Select);
+    CHECK(game.language == LOM_REMASTER_TEXT_GERMAN);
+    game.language = LOM_REMASTER_TEXT_ENGLISH;
 
     game.remaster = true;
-    menu.point(MenuCategory::Display, 4);
-    CHECK(menu.rows().size() == 9 && menu.rows()[4].label == "HD backgrounds" && menu.rows()[4].on);
-    press(menu, MenuInput::Select);
-    CHECK(!game.hd && !menu.rows()[4].on && !game.display_settings.widescreen);
-    press(menu, MenuInput::Right);
-    CHECK(game.hd);
-    menu.point(MenuCategory::Display, 5);
-    CHECK(menu.rows()[5].label == "HD pictures" && menu.rows()[5].on);
-    press(menu, MenuInput::Select);
-    CHECK(!game.pictures && !menu.rows()[5].on && game.hd);
-    press(menu, MenuInput::Right);
-    CHECK(game.pictures);
-    menu.point(MenuCategory::Display, 6);
-    CHECK(menu.rows()[6].label == "HD movies" && menu.rows()[6].on);
-    press(menu, MenuInput::Select);
-    CHECK(!game.movies && !menu.rows()[6].on && game.pictures);
-    press(menu, MenuInput::Right);
-    CHECK(game.movies);
-    menu.point(MenuCategory::Display, 7);
-    CHECK(menu.rows()[7].label == "Text" && menu.rows()[7].value == "PS1");
-    press(menu, MenuInput::Right);
-    CHECK(game.text == 1 && menu.rows()[7].value == "Remaster English");
-    press(menu, MenuInput::Left);
-    press(menu, MenuInput::Left);
-    CHECK(game.text == 8 && menu.rows()[7].value == "Remaster Chinese (Traditional)");
-    press(menu, MenuInput::Right);
-    CHECK(game.text == 0);
-    CHECK(menu.rows()[8].label == "Restore display defaults");
-
-    menu.point(MenuCategory::Audio, 6);
-    CHECK(menu.rows().size() == 9 && menu.rows()[6].label == "Soundtrack" && menu.rows()[6].value == "PS1");
-    press(menu, MenuInput::Right);
-    CHECK(game.music == 1 && menu.rows()[6].value == "Remaster");
-    press(menu, MenuInput::Select);
-    CHECK(game.music == 2 && menu.rows()[6].value == "Remaster arranged");
-    press(menu, MenuInput::Right);
-    CHECK(game.music == 0);
-    press(menu, MenuInput::Left);
-    CHECK(game.music == 2);
-
-    menu.point(MenuCategory::Audio, 7);
-    CHECK(menu.rows()[7].label == "Effects" && menu.rows()[7].value == "PS1" && !game.effects);
-    press(menu, MenuInput::Right);
-    CHECK(game.effects && menu.rows()[7].value == "Remaster");
-    press(menu, MenuInput::Select);
-    CHECK(!game.effects && menu.rows()[7].value == "PS1");
-    CHECK(menu.rows()[8].label == "Restore audio defaults");
-
-    game.hd_drawn = false;
     menu.point(MenuCategory::Display, 0);
-    CHECK(menu.rows().size() == 7 && menu.rows()[4].label == "HD movies" && menu.rows()[5].label == "Text");
-    game.movies_shown = false;
-    menu.point(MenuCategory::Display, 0);
-    CHECK(menu.rows().size() == 6 && menu.rows()[4].label == "Text");
+    CHECK(menu.rows().size() == 5);
     menu.point(MenuCategory::Audio, 0);
-    CHECK(menu.rows().size() == 9);
+    CHECK(menu.rows().size() == 7);
 
-    game.text_shown = false;
-    menu.point(MenuCategory::Display, 0);
-    CHECK(menu.rows().size() == 5 && menu.rows()[4].label == "Restore display defaults");
+    const char* const parts[] = {"Use the Remaster", "Backgrounds",   "Faces",     "Encyclopedia", "Title screen",
+                                 "Name entry",       "Wall map",      "World map", "Movies",       "Music",
+                                 "Recordings",       "Sound effects", "Text",      "Language",     "Restore Remaster defaults"};
+    menu.point(MenuCategory::Remaster, 0);
+    std::vector<MenuRow> rows = menu.rows();
+    CHECK(rows.size() == std::size(parts));
+
+    for (std::size_t i = 0; i < rows.size() && i < std::size(parts); ++i)
+    {
+        CHECK(rows[i].label == parts[i]);
+        CHECK(rows[i].child == (i > 0 && i + 1 < rows.size()));
+        CHECK(rows[i].kind == (i + 1 == rows.size()                                                           ? MenuRow::Kind::Action
+                               : parts[i] == std::string("Recordings") || parts[i] == std::string("Language") ? MenuRow::Kind::Choice
+                                                                                                              : MenuRow::Kind::Switch));
+    }
+
+    CHECK(rows[0].on && rows[5].on && rows[10].value == "Original" && rows[13].value == "English");
+
+    menu.point(MenuCategory::Remaster, 5);
+    press(menu, MenuInput::Select);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_NAME_ENTRY] && !menu.rows()[5].on && menu.rows()[4].on);
+    press(menu, MenuInput::Right);
+    CHECK(game.switches[LOM_REMASTER_SWITCH_NAME_ENTRY]);
+
+    menu.point(MenuCategory::Remaster, 10);
+    press(menu, MenuInput::Right);
+    CHECK(game.switches[LOM_REMASTER_SWITCH_ARRANGED] && menu.rows()[10].value == "Arranged");
+    press(menu, MenuInput::Left);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_ARRANGED]);
+
+    menu.point(MenuCategory::Remaster, 13);
+    press(menu, MenuInput::Left);
+    CHECK(game.language == LOM_REMASTER_TEXT_CHINESE_TRADITIONAL && menu.rows()[13].value == "Chinese (Traditional)");
+    press(menu, MenuInput::Right);
+    CHECK(game.language == LOM_REMASTER_TEXT_ENGLISH);
+    press(menu, MenuInput::Right);
+    CHECK(game.language == LOM_REMASTER_TEXT_GERMAN && menu.rows()[13].value == "German");
+
+    menu.point(MenuCategory::Remaster, 9);
+    press(menu, MenuInput::Select);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_MUSIC] && menu.rows().size() == std::size(parts) - 1 && menu.rows()[10].label == "Sound effects");
+    menu.point(MenuCategory::Remaster, 11);
+    press(menu, MenuInput::Select);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_TEXT] && menu.rows().size() == std::size(parts) - 2 && menu.rows()[11].label == "Text");
+
+    menu.point(MenuCategory::Remaster, 0);
+    press(menu, MenuInput::Select);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_ALL] && game.switches[LOM_REMASTER_SWITCH_BACKGROUNDS]);
+    CHECK(menu.rows().size() == 2 && !menu.rows()[0].on && menu.rows()[1].label == "Restore Remaster defaults");
+    menu.point(MenuCategory::Remaster, 1);
+    press(menu, MenuInput::Select);
+
+    for (int which = 0; which < LOM_REMASTER_SWITCH_COUNT; ++which)
+    {
+        CHECK(game.switches[which] == (which != LOM_REMASTER_SWITCH_ARRANGED));
+    }
+
+    CHECK(game.language == LOM_REMASTER_TEXT_ENGLISH && menu.rows().size() == std::size(parts));
+
+    game.shown[LOM_REMASTER_SWITCH_FACES] = false;
+    game.shown[LOM_REMASTER_SWITCH_TEXT] = false;
+    menu.point(MenuCategory::Remaster, 0);
+    CHECK(menu.rows().size() == std::size(parts) - 3 && menu.rows()[2].label == "Encyclopedia" && menu.rows()[10].label == "Sound effects" &&
+          menu.rows()[11].label == "Restore Remaster defaults");
 }
 
 /**
@@ -887,7 +846,7 @@ int main()
     mods_page_switches_each_mod_that_asked();
     mods_page_shows_each_mods_options_under_it();
     mods_page_shows_the_seed();
-    remaster_rows_show_only_when_it_is_found();
+    remaster_page_switches_each_part_under_one();
     clicking_a_volume_bar_sets_its_level();
     quitting_asks_first_and_defaults_to_keep_playing();
     opening_again_starts_in_the_categories_where_it_left_off();
