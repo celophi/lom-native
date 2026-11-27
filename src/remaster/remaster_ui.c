@@ -20,8 +20,9 @@
 #define LAYER_SIZE 2048
 #define MARGIN 8
 #define MAX_IMAGES 256
-#define PLACEMENTS 256
+#define PLACEMENTS 1024
 #define PATH_SIZE 4096
+#define MAX_CHAIN 8
 
 typedef struct
 {
@@ -41,6 +42,12 @@ typedef struct
 {
     int layer;
     int uv[8];
+    int xy[8];
+    int has_xy;
+    int tpage;
+    int next;
+    int rgb;
+    int semi;
 } Placement;
 
 static Image s_images[MAX_IMAGES];
@@ -516,6 +523,11 @@ static void replace_sprites(void* code, int stride, int count, const Image* imag
     const unsigned index = s_next_placement++ % PLACEMENTS;
     Placement* placement = &s_placements[index];
     placement->layer = image->layer;
+    placement->has_xy = 0;
+    placement->tpage = -1;
+    placement->next = -1;
+    placement->rgb = -1;
+    placement->semi = -1;
 
     for (int i = 0; i < 8; ++i)
     {
@@ -549,21 +561,96 @@ static int draw_picture(const LomPsyzULong* words, int available, void* userdata
         return 0;
     }
 
-    const uint32_t index = (uint32_t)words[2];
-
-    if (index >= PLACEMENTS)
-    {
-        return 4;
-    }
-
-    const Placement* placement = &s_placements[index];
+    uint32_t index = (uint32_t)words[2];
     const uint32_t code = (uint32_t)words[0], top_left = (uint32_t)words[1], bottom_right = (uint32_t)words[3];
     const int x0 = (int16_t)(top_left & 0xFFFF), y0 = (int16_t)(top_left >> 16);
     const int x1 = (int16_t)(bottom_right & 0xFFFF), y1 = (int16_t)(bottom_right >> 16);
     const int points[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
     const unsigned flags = code >> 24;
-    lom_hd_images_draw(points, placement->uv, placement->layer, flags & 1 ? 0x808080 : code & 0xFFFFFF, flags & 2, -1);
+
+    for (int drawn = 0; index < PLACEMENTS && drawn < MAX_CHAIN; ++drawn)
+    {
+        const Placement* placement = &s_placements[index];
+        const unsigned rgb = placement->rgb >= 0 ? (unsigned)placement->rgb : flags & 1 ? 0x808080 : code & 0xFFFFFF;
+        const int semi = placement->semi >= 0 ? placement->semi : (int)(flags & 2);
+        lom_hd_images_draw(placement->has_xy ? placement->xy : points, placement->uv, placement->layer, rgb, semi, placement->tpage);
+        index = placement->next < 0 ? PLACEMENTS : (uint32_t)placement->next;
+    }
+
     return 4;
+}
+
+int lom_remaster_picture_ready(const char* file, const char* label, int* w, int* h)
+{
+    const Image* image = picture(file, label);
+
+    if (image && w && h)
+    {
+        *w = image->w;
+        *h = image->h;
+    }
+
+    return image != NULL;
+}
+
+int lom_remaster_picture_place(const char* file, const char* label, const int part[4], const int xy[8], int tpage, int after)
+{
+    const Image* image = picture(file, label);
+
+    if (!image)
+    {
+        return -1;
+    }
+
+    const int px = part ? part[0] : 0, py = part ? part[1] : 0;
+    const int pw = part ? part[2] : image->w, ph = part ? part[3] : image->h;
+
+    if (px < 0 || py < 0 || pw <= 0 || ph <= 0 || px + pw > image->w || py + ph > image->h)
+    {
+        return -1;
+    }
+
+    const unsigned index = s_next_placement++ % PLACEMENTS;
+    Placement* placement = &s_placements[index];
+    const int u0 = image->x + px, v0 = image->y + py, u1 = u0 + pw, v1 = v0 + ph;
+    const int uv[8] = {u0, v0, u1, v0, u0, v1, u1, v1};
+    memcpy(placement->uv, uv, sizeof(uv));
+    memcpy(placement->xy, xy, sizeof(placement->xy));
+    placement->layer = image->layer;
+    placement->has_xy = 1;
+    placement->tpage = tpage;
+    placement->next = -1;
+    placement->rgb = -1;
+    placement->semi = -1;
+
+    if (after >= 0 && after < PLACEMENTS)
+    {
+        s_placements[after].next = (int)index;
+    }
+
+    return (int)index;
+}
+
+void lom_remaster_picture_style(int placement, int rgb, int semi)
+{
+    if (placement >= 0 && placement < PLACEMENTS)
+    {
+        s_placements[placement].rgb = rgb < 0 ? -1 : rgb & 0xFFFFFF;
+        s_placements[placement].semi = semi < 0 ? -1 : semi != 0;
+    }
+}
+
+void lom_remaster_picture_command(void* code, int words, int placement)
+{
+    uint32_t* w = code;
+    const unsigned op = w[0] >> 24;
+    w[0] = (w[0] & 0xFFFFFF) | (uint32_t)(COMMAND_PICTURE | (op & 3)) << 24;
+    w[2] = placement >= 0 && placement < PLACEMENTS ? (uint32_t)placement : PICTURE_NONE;
+
+    for (int i = 4; i < words; ++i)
+    {
+        w[i] = 0;
+    }
 }
 
 void lom_remaster_ui_initialize(void)
@@ -748,6 +835,44 @@ void lom_gpu_image_loaded(int x, int y, int w, int h, const void* data)
             s_vram[((y + row) & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + ((x + column) & (VRAM_WIDTH - 1))] = source[(size_t)row * (size_t)w + (size_t)column];
         }
     }
+}
+
+int lom_remaster_vram_bounds(int page_x, int page_y, int u, int v, int w, int h, int bounds[4])
+{
+    int left = w, top = h, right = -1, bottom = -1;
+
+    if (!s_vram || w <= 0 || h <= 0)
+    {
+        return -1;
+    }
+
+    for (int row = 0; row < h; ++row)
+    {
+        for (int column = 0; column < w; ++column)
+        {
+            const int texel = u + column;
+            const uint16_t word = s_vram[((page_y + v + row) & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + ((page_x + texel / 4) & (VRAM_WIDTH - 1))];
+
+            if ((word >> ((texel & 3) * 4)) & 0xF)
+            {
+                left = column < left ? column : left;
+                right = column > right ? column : right;
+                top = row < top ? row : top;
+                bottom = row > bottom ? row : bottom;
+            }
+        }
+    }
+
+    if (right < 0)
+    {
+        return -1;
+    }
+
+    bounds[0] = left;
+    bounds[1] = top;
+    bounds[2] = right + 1 - left;
+    bounds[3] = bottom + 1 - top;
+    return 0;
 }
 
 /**

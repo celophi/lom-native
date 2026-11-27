@@ -20,7 +20,7 @@ Mods.
 
 **Fullscreen** is off by default. F4 does the same.
 
-**Widescreen** is off by default. With it on, towns, dungeons and fights show more of the world on each side, at 16:9. Places without the art for it, the world map, the menus and the movies stay 4:3, and during a fight nobody can walk into the extra space.
+**Widescreen** is off by default. With it on, towns, dungeons, fights and the world map show more of the world on each side, at 16:9. The world map keeps its corners where they were, the way the Remaster does. Places without the art for it, the menus and the movies stay 4:3, and during a fight nobody can walk into the extra space. The wall map you place your home on at the start is wide only with the Remaster's art (HD pictures, below).
 
 **Restore display defaults** puts these back: Sharp, 1x, 4:3, in a window.
 
@@ -71,7 +71,7 @@ If you also own the Legend of Mana Remaster on Steam, the game can use its art, 
 With it, the settings have these:
 
 - **HD backgrounds** (Display), on by default. The Remaster's repainted backgrounds, from the next room you enter. Set Internal resolution to 4x to see all of their detail.
-- **HD pictures** (Display), on by default. The Remaster's repainted faces in conversations, and its encyclopedia pictures.
+- **HD pictures** (Display), on by default. The Remaster's repainted faces in conversations, its encyclopedia pictures, the wall map you place your home on at the start, and the world map's Mana Tree panel, spirits, day and land names. The lands on the world map stay the PS1's.
 - **Text** (Display). The game's text, or the Remaster's revised English or its German, French, Spanish, Japanese, Korean or Chinese. Only with the North American disc; the Japanese one keeps its own text, since it's stored differently.
 - **Soundtrack** (Audio). The PS1's, the Remaster's, or the Remaster's arranged one. It changes from the next song.
 - **Effects** (Audio). The PS1's sound effects, or the Remaster's recordings of them.

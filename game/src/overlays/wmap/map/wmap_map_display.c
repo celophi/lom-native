@@ -1,6 +1,7 @@
 #include "common.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
 
 #include "../internal/wmap_frame_render.h"
 #include "../internal/wmap_land_transition.h"
@@ -1495,6 +1496,7 @@ void wmap_draw_spirit_icons(s32 selected_index)
         }
 
         lom_gpu_link(&g_wmap_current_frame->ordering_table[4], sprite);
+        lom_draw_wmap_spirit(WMAP_PACKET_CODE(sprite), i, LOM_DRAW_WMAP_SPIRIT_ICON);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -1598,6 +1600,7 @@ void wmap_draw_spirit_levels(void)
         }
 
         lom_gpu_link(&g_wmap_current_frame->ordering_table[1], secondary_sprite);
+        lom_draw_wmap_spirit(WMAP_PACKET_CODE(secondary_sprite), i, LOM_DRAW_WMAP_SPIRIT_LEVEL);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -1684,6 +1687,7 @@ void wmap_draw_spirit_grid(s32 spirit_index)
             }
 
             lom_gpu_link(&g_wmap_current_frame->ordering_table[1], sprite);
+            lom_draw_wmap_spirit(WMAP_PACKET_CODE(sprite), spirit_index, LOM_DRAW_WMAP_SPIRIT_LEVEL);
 
             if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
             {

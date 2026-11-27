@@ -103,6 +103,87 @@ extern "C"
      */
     void lom_draw_encyclopedia_picture(void* code, int stride, int count, int resource);
 
+    /**
+     * @brief WSEL, the world select, has loaded its pictures into video
+     *        memory, so a renderer can get its own ready too.
+     */
+    void lom_draw_wsel_loaded(void);
+
+    /**
+     * @brief Draw one of WSEL's pictures, which the game has built as sprites
+     *        and linked, so a renderer can draw it from other art.
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     * @param picture Which of WSEL's pictures it is (WSEL_SPRITE_*).
+     * @param shadow Nonzero for the cursor's drop shadow, drawn as a second
+     *        pass of the same picture.
+     * @param x Where the picture's top left is on the screen.
+     * @param y The same, down.
+     */
+    void lom_draw_wsel_picture(void* code, int stride, int count, int picture, int shadow, int x, int y);
+
+    /**
+     * @brief Draw WSEL's zoom, the map on the wall stretched over a textured
+     *        four-point packet the game built and linked.
+     * @param code The packet's code word.
+     */
+    void lom_draw_wsel_zoom(void* code);
+
+    enum
+    {
+        LOM_DRAW_WMAP_SHELL,
+        LOM_DRAW_WMAP_DAY_ICON,
+        LOM_DRAW_WMAP_DAY_NAME
+    };
+
+    /**
+     * @brief Draw a part of the world map's status corner, the day's spirit
+     *        in its shell and the day's name, which the game has built as a
+     *        sprite and linked.
+     * @param code The sprite's code word.
+     * @param part Which part (LOM_DRAW_WMAP_*). Which day it shows is in the
+     *        sprite's texture position.
+     */
+    void lom_draw_wmap_status(void* code, int part);
+
+    /**
+     * @brief Draw a land's name on the world map, which the game has built as
+     *        a sprite and linked.
+     * @param code The sprite's code word.
+     * @param selection The land, or 64 plus the land for the name of the
+     *        artifact that makes it.
+     * @param tpage The texture page the name is on.
+     */
+    void lom_draw_wmap_label(void* code, int selection, int tpage);
+
+    /**
+     * @brief Draw the world map's panel, the disc with the Mana Tree on it in
+     *        the corner, which the game has built as a textured four-point
+     *        packet and linked.
+     * @param code The packet's code word.
+     * @param stage How far the tree has grown, from 0, which picks the
+     *        panel's picture.
+     */
+    void lom_draw_wmap_panel(void* code, int stage);
+
+    enum
+    {
+        LOM_DRAW_WMAP_SPIRIT_ICON,
+        LOM_DRAW_WMAP_SPIRIT_LEVEL
+    };
+
+    /**
+     * @brief Draw one of the world map's spirits, or how strong it is in a
+     *        place, which the game has built as a sprite and linked.
+     * @param code The sprite's code word.
+     * @param spirit Which spirit, in the game's order: Wisp, Shade, Dryad,
+     *        Aura, Salamander, Gnome, Jinn, Undine.
+     * @param kind LOM_DRAW_WMAP_SPIRIT_*. Which frame or level it shows is in
+     *        the sprite's texture position.
+     */
+    void lom_draw_wmap_spirit(void* code, int spirit, int kind);
+
 #ifdef __cplusplus
 }
 #endif

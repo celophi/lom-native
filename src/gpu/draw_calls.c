@@ -53,3 +53,38 @@ void lom_draw_encyclopedia_picture(void* code, int stride, int count, int resour
 {
     lom_remaster_encyclopedia_picture(code, stride, count, lom_native_cd_resource_name(resource));
 }
+
+void lom_draw_wsel_loaded(void)
+{
+    lom_remaster_wsel_loaded();
+}
+
+void lom_draw_wsel_picture(void* code, int stride, int count, int picture, int shadow, int x, int y)
+{
+    lom_remaster_wsel_picture(code, stride, count, picture, shadow, x, y);
+}
+
+void lom_draw_wsel_zoom(void* code)
+{
+    lom_remaster_wsel_zoom(code);
+}
+
+void lom_draw_wmap_status(void* code, int part)
+{
+    lom_remaster_wmap_status(code, part);
+}
+
+void lom_draw_wmap_label(void* code, int selection, int tpage)
+{
+    lom_remaster_wmap_label(code, selection, tpage);
+}
+
+void lom_draw_wmap_panel(void* code, int stage)
+{
+    lom_remaster_wmap_panel(code, stage);
+}
+
+void lom_draw_wmap_spirit(void* code, int spirit, int kind)
+{
+    lom_remaster_wmap_spirit(code, spirit, kind);
+}

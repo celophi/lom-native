@@ -7,6 +7,7 @@
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_widescreen.h"
 
 #include "../internal/wmap_frame_render.h"
 #include "../internal/wmap_sequence_runtime.h"
@@ -33,6 +34,7 @@ void wmap_draw_exit_fade(void)
     quad->r0 = 8;
     lom_gpu_set_length(quad, 5);
     lom_gpu_set_code(quad, GPU_CODE_POLY_F4 | GPU_CODE_SEMI_TRANS);
+    lom_native_widescreen_stretch(WMAP_PACKET_CODE(quad), 4, 1);
     lom_gpu_link(&g_wmap_current_frame->ordering_table[1], quad);
 
     if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
@@ -233,6 +235,7 @@ void wmap_update_exit_panels(void)
     quad->y0 = 0;
     quad->x2 = 0;
     quad->x0 = 0;
+    lom_native_widescreen_stretch(WMAP_PACKET_CODE(quad), 4, 1);
     lom_gpu_link(&g_wmap_current_frame->ordering_table[1], quad);
 
     if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
@@ -302,6 +305,7 @@ void wmap_draw_entry_fade(void)
         g_wmap_entry_fade_level -= 8;
         lom_gpu_set_length(quad, 5);
         lom_gpu_set_code(quad, GPU_CODE_POLY_F4 | GPU_CODE_SEMI_TRANS);
+        lom_native_widescreen_stretch(WMAP_PACKET_CODE(quad), 4, 1);
         lom_gpu_link(&g_wmap_current_frame->ordering_table[1], quad);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
@@ -360,6 +364,7 @@ s32 wmap_run_overlay_fade(s32 initialize)
     lom_gpu_set_length(quad, 5);
     lom_gpu_set_code(quad, GPU_CODE_POLY_F4 | GPU_CODE_SEMI_TRANS);
     quad->r0 = quad->g0 = quad->b0 = intensity;
+    lom_native_widescreen_stretch(WMAP_PACKET_CODE(quad), 4, 1);
     lom_gpu_link(&g_wmap_current_frame->ordering_table[g_wmap_overlay_fade_depth], quad);
 
     if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)

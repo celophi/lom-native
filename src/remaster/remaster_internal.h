@@ -95,6 +95,72 @@ extern "C"
     void lom_remaster_ui_initialize(void);
 
     /**
+     * @brief Load one of the Remaster's pictures into the pictures' texture,
+     *        if it isn't there already (remaster_ui.c).
+     * @param file Its PSB file, under the Remaster's data folder.
+     * @param label Its part's label, or NULL for the whole picture.
+     * @param w Set to its width, if it can be drawn and this isn't NULL.
+     * @param h Set to its height, the same way.
+     * @return Nonzero when it can be drawn.
+     */
+    int lom_remaster_picture_ready(const char* file, const char* label, int* w, int* h);
+
+    /**
+     * @brief Get ready to draw part of one of the Remaster's pictures over
+     *        four points on the screen (remaster_ui.c).
+     * @param file Its PSB file.
+     * @param label Its part's label, or NULL.
+     * @param part The part of it, as x, y, width and height in its pixels, or
+     *        NULL for all of it.
+     * @param xy The points, x then y: top left, top right, bottom left, bottom
+     *        right.
+     * @param tpage The texture page word whose blend mode it uses, or -1 for
+     *        the current one.
+     * @param after A placement this one draws after, in the same command, or
+     *        -1 for none.
+     * @return The placement, for lom_remaster_picture_command, or -1 when it
+     *         can't be drawn.
+     */
+    int lom_remaster_picture_place(const char* file, const char* label, const int part[4], const int xy[8], int tpage, int after);
+
+    /**
+     * @brief Turn a primitive the game built into a draw of a placement and
+     *        what's chained after it, keeping its color and blending. The
+     *        primitive's words past the fourth become no-ops.
+     * @param code The primitive's code word.
+     * @param words How many words it has from its code word on.
+     * @param placement What lom_remaster_picture_place returned, or -1 to draw
+     *        nothing.
+     */
+    void lom_remaster_picture_command(void* code, int words, int placement);
+
+    /**
+     * @brief Draw a placement with its own color or blending, instead of the
+     *        primitive's it's drawn for (remaster_ui.c).
+     * @param placement What lom_remaster_picture_place returned.
+     * @param rgb The color, 0x808080 to draw it as it is, or -1 for the
+     *        primitive's.
+     * @param semi 1 to blend it the way the texture page says, 0 to draw it
+     *        over what's there, or -1 for the primitive's choice.
+     */
+    void lom_remaster_picture_style(int placement, int rgb, int semi);
+
+    /**
+     * @brief Find where a 4-bit picture in video memory has anything drawn,
+     *        from the copy kept of what the game uploaded (remaster_ui.c).
+     * @param page_x The texture page's left, in video memory's 16-bit words.
+     * @param page_y Its top.
+     * @param u The picture's left on the page, in texels.
+     * @param v Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @param bounds Set to the part with texels that aren't color 0, as x, y,
+     *        width and height from @p u and @p v.
+     * @return 0, or -1 when it's all color 0 or there's no copy.
+     */
+    int lom_remaster_vram_bounds(int page_x, int page_y, int u, int v, int w, int h, int bounds[4]);
+
+    /**
      * @brief Say whether the Remaster was found (remaster_settings.c).
      * @param root Its data folder, or NULL when it wasn't found.
      */

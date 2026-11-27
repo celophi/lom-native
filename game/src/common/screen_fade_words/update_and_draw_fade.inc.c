@@ -1,5 +1,6 @@
 #include "common/screen_fade_words.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_widescreen.h"
 
 /**
  * @brief Step the screen fade toward its target and queue the full-screen tint tile.
@@ -67,8 +68,8 @@ void update_and_draw_fade(ScreenFrame* frame)
 
         lom_gpu_init_tile(&primitive->tile);
         lom_gpu_set_semi_trans(&primitive->tile, 1);
-        SET_YX0(&primitive->tile, 0, 0);
-        lom_gpu_set_wh(&primitive->tile, SCREEN_WIDTH, SCREEN_HEIGHT);
+        SET_YX0(&primitive->tile, 0, -lom_native_widescreen_margin());
+        lom_gpu_set_wh(&primitive->tile, SCREEN_WIDTH + 2 * lom_native_widescreen_margin(), SCREEN_HEIGHT);
         lom_gpu_link(ot, &primitive->tile);
 
         draw_mode = BLEND_ADD_TPAGE;

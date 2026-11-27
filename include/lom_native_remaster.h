@@ -184,6 +184,57 @@ extern "C"
      *  @p width). 0 when the page draws the PS1's picture instead. */
     int lom_remaster_encyclopedia_cover(const char* path, int top, int spacing, int height, int rows, int width, unsigned char* cover);
 
+    /** @brief Load WSEL's pictures, when HD pictures are on, so its zoom doesn't wait for them (lom_draw_wsel_loaded). */
+    void lom_remaster_wsel_loaded(void);
+
+    /**
+     * @brief Draw the Remaster's art for one of WSEL's pictures over the
+     *        sprites the game built for it (lom_draw_wsel_picture).
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     * @param picture Which picture (WSEL_SPRITE_*).
+     * @param shadow Nonzero for the cursor's drop shadow.
+     * @param x Where its top left is on the screen.
+     * @param y The same, down.
+     */
+    void lom_remaster_wsel_picture(void* code, int stride, int count, int picture, int shadow, int x, int y);
+
+    /** @brief Draw the Remaster's map in place of WSEL's zoom quad (lom_draw_wsel_zoom). @param code The quad's code word. */
+    void lom_remaster_wsel_zoom(void* code);
+
+    /** @brief Nonzero when WSEL's wall is the Remaster's, which is painted wide enough for a wide frame. */
+    int lom_remaster_wsel_wide(void);
+
+    enum
+    {
+        LOM_REMASTER_WMAP_SHELL,
+        LOM_REMASTER_WMAP_DAY_ICON,
+        LOM_REMASTER_WMAP_DAY_NAME
+    };
+
+    enum
+    {
+        LOM_REMASTER_WMAP_SPIRIT_ICON,
+        LOM_REMASTER_WMAP_SPIRIT_LEVEL
+    };
+
+    /** @brief Draw the Remaster's art for a part of the world map's status corner (lom_draw_wmap_status). @param code The sprite's
+     *  code word. @param part LOM_REMASTER_WMAP_*. */
+    void lom_remaster_wmap_status(void* code, int part);
+
+    /** @brief Draw the Remaster's banner for a land's name on the world map (lom_draw_wmap_label). @param code The sprite's code
+     *  word. @param selection The land, or 64 plus it for its artifact's name. @param tpage The name's texture page. */
+    void lom_remaster_wmap_label(void* code, int selection, int tpage);
+
+    /** @brief Draw the Remaster's panel in place of the world map's (lom_draw_wmap_panel). @param code The quad's code word.
+     *  @param stage The tree's growth, from 0. */
+    void lom_remaster_wmap_panel(void* code, int stage);
+
+    /** @brief Draw the Remaster's art for a world map spirit or its strength (lom_draw_wmap_spirit). @param code The sprite's
+     *  code word. @param spirit Which spirit. @param kind LOM_REMASTER_WMAP_SPIRIT_*. */
+    void lom_remaster_wmap_spirit(void* code, int spirit, int kind);
+
 #ifdef __cplusplus
 }
 #endif

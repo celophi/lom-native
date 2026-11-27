@@ -60,13 +60,15 @@ LOM_MENU_TEXT(resolution_help, "Internal resolution improves polygon edges. Orig
 LOM_MENU_TEXT(fullscreen_label, "Fullscreen");
 LOM_MENU_TEXT(fullscreen_help, "Shortcut: F4.");
 LOM_MENU_TEXT(widescreen_label, "Widescreen");
-LOM_MENU_TEXT(widescreen_help, "Shows more of the world on each side in towns, dungeons and fights. Places without the art for it stay 4:3.");
+LOM_MENU_TEXT(widescreen_help, "Shows more of the world on each side in towns, dungeons, fights and on the world map. Places without the art for it "
+                               "stay 4:3.");
 LOM_MENU_TEXT(hd_backgrounds_label, "HD backgrounds");
 LOM_MENU_TEXT(hd_backgrounds_help, "Draws towns and dungeons with the Remaster's repainted backgrounds, from your copy of it. Changes from the next room. "
                                    "A few rooms also have the Remaster's small changes to where you can walk.");
 LOM_MENU_TEXT(hd_ui_label, "HD pictures");
 LOM_MENU_TEXT(hd_ui_help, "Draws the Remaster's repainted pictures, from your copy of it, where the PS1's screens show them: the faces in "
-                          "conversations and the encyclopedia's pictures.");
+                          "conversations, the encyclopedia's pictures, the wall map you place your home on at the start, and the world "
+                          "map's Mana Tree panel, spirits and names.");
 LOM_MENU_TEXT(text_label, "Text");
 LOM_MENU_TEXT(text_help, "Which text the game uses: the PS1's, or the Remaster's revised English or one of its other languages, from your copy "
                          "of it. Changes from the next room or menu.");
