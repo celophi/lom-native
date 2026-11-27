@@ -185,6 +185,45 @@ extern "C"
     int lom_remaster_wsel_parts(int picture, int x, int y, const int rect[4], int margin, LomRemasterPart parts[], int max);
 
     /**
+     * @brief Where the Remaster's art for one quad of the title's backdrop
+     *        comes from and goes (remaster_screens.c): its background, then its
+     *        logo.
+     * @param language The logo's language, a LOM_REMASTER_TEXT_* other than
+     *        LOM_REMASTER_TEXT_PS1.
+     * @param rect The quad: x, y, width and height on the screen.
+     * @param margin The wide frame's margin, or 0.
+     * @param parts Set to the parts, as lom_remaster_wsel_parts.
+     * @param max Room in @p parts.
+     * @return How many parts, 0 when the quad is off the backdrop.
+     */
+    int lom_remaster_title_parts(int language, const int rect[4], int margin, LomRemasterPart parts[], int max);
+
+    /**
+     * @brief Which of the Remaster's pictures draws one of name entry's
+     *        glyphs, and where (remaster_screens.c): the whole picture, over
+     *        the glyph's box moved to where the PS1's picture sits in it.
+     * @param glyph The glyph.
+     * @param rect The glyph's sprite: x, y, width and height on the screen.
+     * @param part Set to the file, the picture's label and the four points;
+     *        its area is unused.
+     * @return 1 when the Remaster has a picture for the glyph, otherwise 0.
+     */
+    int lom_remaster_gname_part(int glyph, const int rect[4], LomRemasterPart* part);
+
+    /**
+     * @brief Where name entry's cursor points at a button or a tab in the
+     *        Remaster's layout (remaster_screens.c): left of the button in the
+     *        painted column, or the tab moved onto the wood.
+     * @param position The cursor's position in name entry's table: 2 to 5 for
+     *        the buttons, 6 to 9 for the tabs.
+     * @param x The PS1's x, set to the Remaster layout's.
+     * @param y The same, down.
+     * @return 1 when the position is a button or a tab, otherwise 0, leaving
+     *         them as they are.
+     */
+    int lom_remaster_gname_cursor_at(int position, int* x, int* y);
+
+    /**
      * @brief Where the Remaster's art for the world map's day name comes from
      *        and goes (remaster_screens.c).
      * @param language The names' language, a LOM_REMASTER_TEXT_* other than

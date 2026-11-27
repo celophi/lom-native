@@ -2,6 +2,7 @@
 #include "common/saved_game.h"
 #include "lom_native_ps1_memory.h"
 #include "overlays/gname/gname.h"
+#include "lom_native_remaster.h"
 
 s32 lom_native_run_gname(intptr_t render_buffers, intptr_t initial_name, intptr_t active_name, s32 source_mode, s32 history_index, intptr_t custom_name,
                          s32 allow_empty_cancel)
@@ -36,5 +37,9 @@ s32 lom_native_run_gname(intptr_t render_buffers, intptr_t initial_name, intptr_
         }
     }
 
-    return gname_run((void*)render_buffers, (const u8*)initial_name, (u8*)active_name, source_mode, history_index, (const u8*)custom_name, allow_empty_cancel);
+    lom_remaster_gname_begin();
+    const s32 result =
+        gname_run((void*)render_buffers, (const u8*)initial_name, (u8*)active_name, source_mode, history_index, (const u8*)custom_name, allow_empty_cancel);
+    lom_remaster_gname_end();
+    return result;
 }

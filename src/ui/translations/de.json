@@ -9,7 +9,7 @@
   "hd_backgrounds_label": "HD-Hintergründe",
   "hd_backgrounds_help": "Zeichnet Städte und Dungeons mit den neu gemalten Hintergründen des Remasters, aus deiner Kopie. Wirkt ab dem nächsten Raum. In einigen Räumen gelten auch die kleinen Änderungen des Remasters daran, wo man laufen kann.",
   "hd_ui_label": "HD-Bilder",
-  "hd_ui_help": "Zeichnet die neu gemalten Bilder des Remasters, aus deiner Kopie, wo die Bildschirme der PS1 sie zeigen: die Gesichter in Gesprächen, die Bilder der Enzyklopädie, die Wandkarte, auf die du am Anfang dein Zuhause setzt, und auf der Weltkarte die Tafel mit dem Mana-Baum, die Geister und die Namen.",
+  "hd_ui_help": "Zeichnet die neu gemalten Bilder des Remasters, aus deiner Kopie, wo die Bildschirme der PS1 sie zeigen: den Titelbildschirm, die Gesichter in Gesprächen, die Bilder der Enzyklopädie, die Wandkarte, auf die du am Anfang dein Zuhause setzt, und auf der Weltkarte die Tafel mit dem Mana-Baum, die Geister und die Namen. Mit Breitbild ist auch die Namenseingabe die des Remasters.",
   "hd_movies_label": "HD-Filme",
   "hd_movies_help": "Spielt die hochauflösenden Filme des Remasters, aus deiner Kopie, statt der der PS1: den Vorspann, die Enden und den Abspann. Ohne Breitbild bekommen sie schwarze Balken. Gilt ab dem nächsten Film.",
   "text_label": "Text",

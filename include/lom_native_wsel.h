@@ -5,7 +5,9 @@
 #include <stdint.h>
 
 /**
- * @brief Run WSEL, the world selection screen.
+ * @brief Run WSEL, the world selection screen. It may draw wide; the next
+ *        screen's transition fades it wide and goes back to the original
+ *        view (screen_transition).
  * @param render_context Its two display buffers, back to back.
  * @return The game state to go to next.
  */

@@ -124,6 +124,53 @@ extern "C"
     void lom_draw_wsel_picture(void* code, int stride, int count, int picture, int shadow, int x, int y);
 
     /**
+     * @brief Draw the title's backdrop, which the game has built as quads and
+     *        linked, so a renderer can draw it from other art.
+     * @param code The first quad's code word.
+     * @param stride How far each next quad's is, in bytes.
+     * @param count How many quads.
+     */
+    void lom_draw_title_backdrop(void* code, int stride, int count);
+
+    /**
+     * @brief Draw name entry's fixed background sprites, which the game has
+     *        built and linked, so a renderer can draw them from other art.
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_draw_gname_background(void* code, int stride, int count);
+
+    /**
+     * @brief Draw one of name entry's glyphs, which the game has built and
+     *        linked, so a renderer can draw or place it otherwise.
+     * @param code The glyph's sprite's code word.
+     * @param sprites How many sprites: 2 when it has a shadow after it, else 1.
+     * @param stride How far the shadow's code word is, in bytes.
+     * @param glyph The glyph.
+     */
+    void lom_draw_gname_glyph(void* code, int sprites, int stride, int glyph);
+
+    /**
+     * @brief Where name entry's buttons and tabs are, for a layout that moves
+     *        them: nonzero when its buttons are a column between the tabs and
+     *        the letters, so they're stepped through up and down.
+     */
+    int lom_draw_gname_column(void);
+
+    /** @brief How far across name entry's tabs and the label above them are moved. */
+    int lom_draw_gname_tab_shift(void);
+
+    /**
+     * @brief Move name entry's cursor target for a button or tab to where the
+     *        layout has it.
+     * @param position The target's position in the screen's table.
+     * @param x Its x, moved.
+     * @param y Its y, moved.
+     */
+    void lom_draw_gname_cursor(int position, int* x, int* y);
+
+    /**
      * @brief Draw WSEL's zoom, the map on the wall stretched over a textured
      *        four-point packet the game built and linked.
      * @param code The packet's code word.

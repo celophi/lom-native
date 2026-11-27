@@ -66,9 +66,10 @@ LOM_MENU_TEXT(hd_backgrounds_label, "HD backgrounds");
 LOM_MENU_TEXT(hd_backgrounds_help, "Draws towns and dungeons with the Remaster's repainted backgrounds, from your copy of it. Changes from the next room. "
                                    "A few rooms also have the Remaster's small changes to where you can walk.");
 LOM_MENU_TEXT(hd_ui_label, "HD pictures");
-LOM_MENU_TEXT(hd_ui_help, "Draws the Remaster's repainted pictures, from your copy of it, where the PS1's screens show them: the faces in "
-                          "conversations, the encyclopedia's pictures, the wall map you place your home on at the start, and the world "
-                          "map's Mana Tree panel, spirits and names.");
+LOM_MENU_TEXT(hd_ui_help, "Draws the Remaster's repainted pictures, from your copy of it, where the PS1's screens show them: the title "
+                          "screen, the faces in conversations, the encyclopedia's pictures, the wall map you place your home on at the "
+                          "start, and the world map's Mana Tree panel, spirits and names. With Widescreen on, name entry is the "
+                          "Remaster's too.");
 LOM_MENU_TEXT(hd_movies_label, "HD movies");
 LOM_MENU_TEXT(hd_movies_help, "Plays the Remaster's high-definition movies, from your copy of it, in place of the PS1's: the opening, the endings and "
                               "the staff roll. With Widescreen off they're letterboxed. Changes from the next movie.");

@@ -11,9 +11,7 @@
 
 s32 lom_native_run_wsel(intptr_t render_context)
 {
-    const s32 next = wsel_main((void*)render_context);
-    lom_native_widescreen_reset();
-    return next;
+    return wsel_main((void*)render_context);
 }
 
 /**

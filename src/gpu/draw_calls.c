@@ -64,6 +64,36 @@ void lom_draw_wsel_picture(void* code, int stride, int count, int picture, int s
     lom_remaster_wsel_picture(code, stride, count, picture, shadow, x, y);
 }
 
+void lom_draw_title_backdrop(void* code, int stride, int count)
+{
+    lom_remaster_title_backdrop(code, stride, count);
+}
+
+void lom_draw_gname_background(void* code, int stride, int count)
+{
+    lom_remaster_gname_background(code, stride, count);
+}
+
+void lom_draw_gname_glyph(void* code, int sprites, int stride, int glyph)
+{
+    lom_remaster_gname_glyph(code, sprites, stride, glyph);
+}
+
+int lom_draw_gname_column(void)
+{
+    return lom_remaster_gname_layout();
+}
+
+int lom_draw_gname_tab_shift(void)
+{
+    return lom_remaster_gname_tab_shift();
+}
+
+void lom_draw_gname_cursor(int position, int* x, int* y)
+{
+    lom_remaster_gname_cursor(position, x, y);
+}
+
 void lom_draw_wsel_zoom(void* code)
 {
     lom_remaster_wsel_zoom(code);

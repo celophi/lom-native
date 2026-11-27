@@ -239,6 +239,89 @@ static void spirits_and_strengths_come_from_their_frames(void)
     CHECK(lom_remaster_spirit_part(8, LOM_REMASTER_WMAP_SPIRIT_ICON, 0, 0, icon, &part, &shade) != 0);
 }
 
+/**
+ * @brief Check the title's backdrop strips take the Remaster's background and
+ *        then its logo from the same place, the PS1's picture at 4.5 times,
+ *        that the outer strips reach into a wide frame's sides, that the logo
+ *        follows the language, and that a quad off the backdrop takes nothing.
+ */
+static void title_backdrop_comes_from_the_background_and_logo(void)
+{
+    LomRemasterPart parts[2];
+    const int first[4] = {0, 0, 64, 224};
+    const int last[4] = {256, 0, 64, 224};
+    const int below[4] = {0, 224, 64, 16};
+
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_ENGLISH, first, 0, parts, 2) == 2);
+    CHECK(!strcmp(parts[0].file, "system/image/title/title.psb.m") && !strcmp(parts[0].label, "background"));
+    CHECK(!strcmp(parts[1].file, parts[0].file) && !strcmp(parts[1].label, "logo-en"));
+    takes(&parts[0], 240, 36, 288, 1008);
+    takes(&parts[1], 240, 36, 288, 1008);
+    covers(&parts[0], 0, 0, 64, 224);
+    covers(&parts[1], 0, 0, 64, 224);
+
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_ENGLISH, first, WIDE_MARGIN, parts, 2) == 2);
+    takes(&parts[0], 2, 36, 526, 1008);
+    covers(&parts[0], -WIDE_MARGIN, 0, 64, 224);
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_ENGLISH, last, WIDE_MARGIN, parts, 2) == 2);
+    takes(&parts[1], 1392, 36, 527, 1008);
+    covers(&parts[1], 256, 0, 320 + WIDE_MARGIN, 224);
+
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_PS1, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-en"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_GERMAN, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-en"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_JAPANESE, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-ja"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_KOREAN, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-ko"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_CHINESE_SIMPLIFIED, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-cn"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_CHINESE_TRADITIONAL, first, 0, parts, 2) == 2 && !strcmp(parts[1].label, "logo-tw"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_ENGLISH, first, 0, parts, 1) == 1 && !strcmp(parts[0].label, "background"));
+    CHECK(lom_remaster_title_parts(LOM_REMASTER_TEXT_ENGLISH, below, 0, parts, 2) == 0);
+}
+
+/**
+ * @brief Check name entry's typewriter, paper and typing animation take the
+ *        Remaster's pictures, placed where the PS1's sits in each glyph's box,
+ *        that other glyphs keep the PS1's, and that the cursor's targets for
+ *        the buttons go left of the painted column and for the tabs onto the
+ *        wood, leaving the letters' alone.
+ */
+static void name_entry_takes_the_remasters_pictures_and_layout(void)
+{
+    LomRemasterPart part;
+    const int typewriter[4] = {232, 4, 64, 56};
+    const int paper[4] = {248, 4, 24, 40};
+    const int hand[4] = {280, 12, 24, 24};
+
+    CHECK(lom_remaster_gname_part(3, typewriter, &part) == 1);
+    CHECK(!strcmp(part.file, "name_input.psb.m") && !strcmp(part.label, "typewriter"));
+    covers(&part, 232, 4, 296, 60);
+    CHECK(lom_remaster_gname_part(2, typewriter, &part) == 1 && !strcmp(part.label, "typewriter_paper"));
+    covers(&part, 233, 4, 423, 37);
+    CHECK(lom_remaster_gname_part(14, paper, &part) == 1 && !strcmp(part.label, "typewriter_anim_paper1"));
+    covers(&part, 249, 7, 269, 41);
+    CHECK(lom_remaster_gname_part(17, paper, &part) == 1 && !strcmp(part.label, "typewriter_anim_paper4"));
+    covers(&part, 247, 8, 267, 42);
+    CHECK(lom_remaster_gname_part(25, hand, &part) == 1 && !strcmp(part.label, "typewriter_anim_hand2"));
+    covers(&part, 286, 16, 306, 39);
+    CHECK(lom_remaster_gname_part(20, hand, &part) == 0);
+    CHECK(lom_remaster_gname_part(31, hand, &part) == 0);
+
+    for (int button = 0; button < 4; ++button)
+    {
+        int x = 64 + 52 * button, y = 64;
+        CHECK(lom_remaster_gname_cursor_at(2 + button, &x, &y) == 1 && x == 41 && y == 103 + 16 * button);
+    }
+
+    int x = 8, y = 108;
+    CHECK(lom_remaster_gname_cursor_at(6, &x, &y) == 1 && x == -52 && y == 108);
+    x = 8;
+    y = 165;
+    CHECK(lom_remaster_gname_cursor_at(9, &x, &y) == 1 && x == -52 && y == 165);
+    x = 84;
+    y = 104;
+    CHECK(lom_remaster_gname_cursor_at(10, &x, &y) == 0 && x == 84 && y == 104);
+    CHECK(lom_remaster_gname_cursor_at(1, &x, &y) == 0 && x == 84 && y == 104);
+}
+
 int main(void)
 {
     wsel_pictures_come_from_where_they_were_lined_up();
@@ -246,6 +329,8 @@ int main(void)
     shell_and_spirits_come_from_their_cells();
     land_names_come_from_the_right_banner();
     spirits_and_strengths_come_from_their_frames();
-    puts("remaster-screens: WSEL and the world map take the Remaster's art from where it was lined up");
+    title_backdrop_comes_from_the_background_and_logo();
+    name_entry_takes_the_remasters_pictures_and_layout();
+    puts("remaster-screens: WSEL, the world map, the title and name entry take the Remaster's art from where it was lined up");
     return 0;
 }

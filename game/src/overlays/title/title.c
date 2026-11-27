@@ -18,6 +18,7 @@
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
 
 #define TITLE_MENU_ITEM_NEW_GAME 0
 #define TITLE_MENU_ITEM_CONTINUE 1
@@ -159,6 +160,7 @@ void render_menu(TitleMenuContext* context)
     {
         ot_head = current->screen.ot;
         lom_native_title_ClearOTagR(ot_head, FRAME_ORDERING_TABLE_LENGTH);
+        lom_native_title_begin_frame(1);
         current->screen.prim_cursor = current->screen.packets;
         rand();
         lom_time_wait(1);
@@ -234,6 +236,7 @@ s32 run_save_slot_menu(TitleMenuContext* ctx_base)
     {
         ot = current->screen.ot;
         lom_native_title_ClearOTagR(ot, FRAME_ORDERING_TABLE_LENGTH);
+        lom_native_title_begin_frame(0);
         current->screen.prim_cursor = current->screen.packets;
         lom_time_wait(1);
         update_and_draw_fade(&current->screen);
@@ -384,12 +387,14 @@ void start_title_music(void)
 /**
  * @brief Draw the title backdrop as a row of 16-bit texture strips.
  * @param ctx Active title display buffer.
+ * @note The port hands the strips to lom_draw_title_backdrop, for the Remaster's art.
  * @see decomp.me (100%) https://decomp.me/scratch/aKAFU
  */
 void render_title_backdrop(TitleMenuContext* ctx)
 {
     OT_TYPE* ot;
     POLY_FT4* prim;
+    POLY_FT4* first;
     s32 strip_index;
     s32 texture_x;
     s32 right_x;
@@ -397,6 +402,7 @@ void render_title_backdrop(TitleMenuContext* ctx)
     s32 page_x;
 
     prim = (POLY_FT4*)ctx->screen.prim_cursor;
+    first = prim;
     ot = ctx->screen.ot;
     strip_index = 0;
 
@@ -423,6 +429,7 @@ void render_title_backdrop(TitleMenuContext* ctx)
         prim++;
     }
 
+    lom_draw_title_backdrop((u8*)first + __builtin_offsetof(P_TAG, r0), sizeof(POLY_FT4), TITLE_BACKDROP_STRIPS);
     ctx->screen.prim_cursor = (u_long*)prim;
 }
 

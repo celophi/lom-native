@@ -9,7 +9,7 @@
   "hd_backgrounds_label": "Décors HD",
   "hd_backgrounds_help": "Affiche les villes et les donjons avec les décors repeints du Remaster, depuis votre copie. Prend effet à la salle suivante. Dans quelques salles, les petits changements du Remaster sur les zones où l'on peut marcher s'appliquent aussi.",
   "hd_ui_label": "Images HD",
-  "hd_ui_help": "Affiche les images repeintes du Remaster, depuis votre copie, là où les écrans de la PS1 les montrent : les visages dans les dialogues, les images de l'encyclopédie, la carte murale où vous placez votre maison au début, et sur la carte du monde le panneau de l'Arbre Mana, les esprits et les noms.",
+  "hd_ui_help": "Affiche les images repeintes du Remaster, depuis votre copie, là où les écrans de la PS1 les montrent : l'écran titre, les visages dans les dialogues, les images de l'encyclopédie, la carte murale où vous placez votre maison au début, et sur la carte du monde le panneau de l'Arbre Mana, les esprits et les noms. Avec l'écran large, la saisie du nom est aussi celle du Remaster.",
   "hd_movies_label": "Vidéos HD",
   "hd_movies_help": "Lit les vidéos haute définition du Remaster, depuis votre copie, à la place de celles de la PS1 : l'introduction, les fins et le générique. Sans l'écran large, elles ont des bandes noires. S'applique à partir de la vidéo suivante.",
   "text_label": "Texte",

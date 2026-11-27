@@ -11,6 +11,8 @@
  *
  * run_title takes a real pointer, but TITLE still passes pointers around
  * inside s32s. Using the low RAM mirror keeps those from getting cut off.
+ * The title menu may draw wide; the next screen's transition fades it wide
+ * and goes back to the original view (screen_transition).
  */
 s32 lom_native_run_title(intptr_t menu_context_address)
 {

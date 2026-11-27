@@ -6,6 +6,8 @@
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
+#include "lom_native_widescreen.h"
 
 #include "main/cdrom.h"
 #include "common.h"
@@ -525,6 +527,7 @@ s32 gname_run(RenderContext* render_buffers, const u8* initial_name, u8* active_
 /**
  * @brief Advance and render the full-screen fade overlay.
  * @param render_ctx Frame render context.
+ * @note In the port it covers a wide frame's sides too.
  * @see https://decomp.me/scratch/NvocJ (100%)
  */
 static void render_fade_overlay(RenderContext* render_ctx)
@@ -592,8 +595,8 @@ static void render_fade_overlay(RenderContext* render_ctx)
 
         lom_gpu_init_tile((TILE*)packet_cursor);
         lom_gpu_set_semi_trans((TILE*)packet_cursor, 1);
-        SET_YX0((TILE*)packet_cursor, 0, 0);
-        lom_gpu_set_wh((TILE*)packet_cursor, SCREEN_WIDTH, SCREEN_HEIGHT);
+        SET_YX0((TILE*)packet_cursor, 0, -lom_native_widescreen_margin());
+        lom_gpu_set_wh((TILE*)packet_cursor, SCREEN_WIDTH + 2 * lom_native_widescreen_margin(), SCREEN_HEIGHT);
         lom_gpu_link(ot_entry, (TILE*)packet_cursor);
         packet_cursor += sizeof(TILE);
 
@@ -769,6 +772,9 @@ static void reset_run_state(void)
  * @param mode Current navigation mode.
  * @param buttons Filtered directional and confirm buttons.
  * @return Updated navigation mode.
+ * @note In the port, when the buttons are a column between the tabs and the letters (lom_draw_gname_column), up and
+ *       down step through them and left and right go to the tabs and the letters, and the cursor's targets follow the
+ *       layout (lom_draw_gname_cursor).
  * @see decomp.me (100%) https://decomp.me/scratch/jAuWs
  */
 static s32 handle_navigation_input(s32 mode, s32 buttons)
@@ -869,18 +875,27 @@ static s32 handle_navigation_input(s32 mode, s32 buttons)
             {
                 if (buttons != 0)
                 {
-                    if (buttons & PAD_BTN_DOWN)
+                    const s32 column = lom_draw_gname_column();
+
+                    if (buttons & (column ? PAD_BTN_RIGHT : PAD_BTN_DOWN))
                     {
                         mode = GNAME_MODE_GRID;
                         buttons = 0;
                         continue;
                     }
 
-                    if (buttons & PAD_BTN_LEFT)
+                    if (column && (buttons & PAD_BTN_LEFT))
+                    {
+                        mode = GNAME_MODE_PANEL_BASE;
+                        buttons = 0;
+                        continue;
+                    }
+
+                    if (buttons & (column ? PAD_BTN_UP : PAD_BTN_LEFT))
                     {
                         mode = (mode == GNAME_MODE_ACTION_OK) ? GNAME_MODE_ACTION_DEFAULT : (mode - navigation_step);
                     }
-                    else if (buttons & PAD_BTN_RIGHT)
+                    else if (buttons & (column ? PAD_BTN_DOWN : PAD_BTN_RIGHT))
                     {
                         mode = (mode < GNAME_MODE_ACTION_DEFAULT) ? (mode + GNAME_NAVIGATION_STEP) : GNAME_MODE_ACTION_OK;
                     }
@@ -889,6 +904,7 @@ static s32 handle_navigation_input(s32 mode, s32 buttons)
                 field_play_sound(GNAME_SFX_MOVE, AKAO_SFX_DEFAULT_VOLUME);
                 g_cursor_x_target = g_tab_cursor_pos[mode + GNAME_CURSOR_POS_TABLE_OFFSET].x - GNAME_TAB_CURSOR_X_BIAS;
                 g_cursor_y_target = g_tab_cursor_pos[mode + GNAME_CURSOR_POS_TABLE_OFFSET].y;
+                lom_draw_gname_cursor(mode + GNAME_CURSOR_POS_TABLE_OFFSET, &g_cursor_x_target, &g_cursor_y_target);
                 g_cursor_lerp_steps = GNAME_CURSOR_LERP_STEPS;
                 repeat_dispatch = GNAME_REDISPATCH_DONE;
             }
@@ -921,7 +937,7 @@ static s32 handle_navigation_input(s32 mode, s32 buttons)
             {
                 if (buttons & PAD_BTN_RIGHT)
                 {
-                    mode = GNAME_MODE_GRID;
+                    mode = lom_draw_gname_column() ? GNAME_MODE_ACTION_OK : GNAME_MODE_GRID;
                     buttons = 0;
                     continue;
                 }
@@ -939,6 +955,7 @@ static s32 handle_navigation_input(s32 mode, s32 buttons)
             field_play_sound(GNAME_SFX_MOVE, AKAO_SFX_DEFAULT_VOLUME);
             g_cursor_x_target = g_tab_cursor_pos[mode + GNAME_CURSOR_POS_TABLE_OFFSET].x - GNAME_TAB_CURSOR_X_BIAS;
             g_cursor_y_target = g_tab_cursor_pos[mode + GNAME_CURSOR_POS_TABLE_OFFSET].y;
+            lom_draw_gname_cursor(mode + GNAME_CURSOR_POS_TABLE_OFFSET, &g_cursor_x_target, &g_cursor_y_target);
             g_cursor_lerp_steps = GNAME_CURSOR_LERP_STEPS;
             repeat_dispatch = GNAME_REDISPATCH_DONE;
             break;
@@ -1018,7 +1035,7 @@ static s32 handle_navigation_input(s32 mode, s32 buttons)
 
                     if ((buttons & PAD_BTN_LEFT) && ((g_char_cursor % NAME_GRID_COLUMNS) == 0))
                     {
-                        mode = GNAME_MODE_PANEL_BASE;
+                        mode = lom_draw_gname_column() ? GNAME_MODE_ACTION_OK : GNAME_MODE_PANEL_BASE;
                         buttons = 0;
                         continue;
                     }
@@ -1404,6 +1421,7 @@ static void* emit_panel_tab_sprite(void* packet_cursor, OT_TYPE* ot_entry)
 
 /**
  * @brief Emit the current character-panel label.
+ * @note The port moves it with the tabs (lom_draw_gname_tab_shift).
  * @param packet_cursor Next free primitive-buffer address.
  * @param ot_entry Ordering-table entry that receives the label.
  * @return Next free primitive-buffer address.
@@ -1416,12 +1434,12 @@ static void* emit_panel_label(void* packet_cursor, OT_TYPE* ot_entry)
     if (panel_index < CHAR_PANEL_KANJI)
     {
         packet_cursor = field_draw_text((SPRT*)(packet_cursor), ot_entry, GNAME_RECORD(PANEL_RECORD_TABLE, panel_index), GNAME_PANEL_SPRITE_COLOR,
-                                        GNAME_PANEL_LABEL_X, GNAME_PANEL_LABEL_Y, FIELD_TEXT_ALIGN_CENTER);
+                                        GNAME_PANEL_LABEL_X + lom_draw_gname_tab_shift(), GNAME_PANEL_LABEL_Y, FIELD_TEXT_ALIGN_CENTER);
     }
     else
     {
-        packet_cursor = field_draw_text((SPRT*)(packet_cursor), ot_entry, g_kanji_cat_name, GNAME_PANEL_SPRITE_COLOR, GNAME_PANEL_LABEL_X, GNAME_PANEL_LABEL_Y,
-                                        FIELD_TEXT_ALIGN_CENTER);
+        packet_cursor = field_draw_text((SPRT*)(packet_cursor), ot_entry, g_kanji_cat_name, GNAME_PANEL_SPRITE_COLOR,
+                                        GNAME_PANEL_LABEL_X + lom_draw_gname_tab_shift(), GNAME_PANEL_LABEL_Y, FIELD_TEXT_ALIGN_CENTER);
     }
 
     return packet_cursor;
@@ -1597,6 +1615,7 @@ static void* emit_draw_mode_prim(DR_TPAGE* packet, OT_TYPE* ot_entry)
  * @param activation_adjust Adjustment applied to the primary and secondary positions.
  * @param use_blue_overlay TRUE for a blue overlay; FALSE for a translucent black shadow.
  * @return Next free primitive-buffer address.
+ * @note The port hands the sprites to lom_draw_gname_glyph, for the Remaster's layout and art.
  * @see decomp.me (100%) https://decomp.me/scratch/Au2h5
  */
 static void* emit_glyph_sprt(void* packet_start, OT_TYPE* ot_entry, s32 glyph_id, s32 base_x, s32 base_y, s32 shadow_offset, s32 activation_adjust,
@@ -1636,12 +1655,14 @@ static void* emit_glyph_sprt(void* packet_start, OT_TYPE* ot_entry, s32 glyph_id
         packet_cursor++;
     }
 
+    lom_draw_gname_glyph((u8*)packet_start + __builtin_offsetof(P_TAG, r0), shadow_offset != 0 ? 2 : 1, sizeof(SPRT), glyph_id);
     return packet_cursor;
 }
 
 /**
  * @brief Emit the fixed background layout sprites.
  * @param render_ctx Render context whose ordering table and packet cursor are updated.
+ * @note The port hands the sprites to lom_draw_gname_background, for the Remaster's art.
  * @see decomp.me (100%) https://decomp.me/scratch/Q6WL2
  */
 static void render_layout_sprite_batch(RenderContext* render_ctx)
@@ -1650,6 +1671,7 @@ static void render_layout_sprite_batch(RenderContext* render_ctx)
     s32 sprite_count;
     u8* packet_cursor;
     SPRT* sprite_cursor;
+    SPRT* first_sprite;
     DR_TWIN* texture_window_packet;
     SPRT* sprite;
     DR_TPAGE* draw_mode_packet;
@@ -1677,6 +1699,7 @@ static void render_layout_sprite_batch(RenderContext* render_ctx)
     packet_cursor += sizeof(DR_TWIN);
 
     sprite_cursor = (SPRT*)packet_cursor;
+    first_sprite = sprite_cursor;
 
     while (sprite_count < GNAME_LAYOUT_SPRITE_COUNT)
     {
@@ -1708,6 +1731,7 @@ static void render_layout_sprite_batch(RenderContext* render_ctx)
     }
 
     packet_cursor = (u8*)sprite_cursor;
+    lom_draw_gname_background((u8*)first_sprite + __builtin_offsetof(P_TAG, r0), sizeof(SPRT), GNAME_LAYOUT_SPRITE_COUNT);
 
     lom_gpu_set_wh(&texture_window_rect, GNAME_FULL_TEX_WINDOW_SIZE, GNAME_FULL_TEX_WINDOW_SIZE);
     texture_window_rect.x = 0;

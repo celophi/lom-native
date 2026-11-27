@@ -251,6 +251,66 @@ extern "C"
     /** @brief Nonzero when WSEL's wall is the Remaster's, which is painted wide enough for a wide frame. */
     int lom_remaster_wsel_wide(void);
 
+    /**
+     * @brief Draw the Remaster's title background and logo over the quads the
+     *        game built for the title's backdrop (lom_draw_title_backdrop).
+     * @param code The first quad's code word.
+     * @param stride How far each next quad's is, in bytes.
+     * @param count How many quads.
+     */
+    void lom_remaster_title_backdrop(void* code, int stride, int count);
+
+    /** @brief Nonzero when the title's backdrop is the Remaster's, which is painted wide enough for a wide frame. */
+    int lom_remaster_title_wide(void);
+
+    /**
+     * @brief Start a name entry: it's laid out as the Remaster's when HD
+     *        pictures and Widescreen are on and its art can be drawn, since
+     *        the Remaster's is painted for a wide frame. Before the screen sets
+     *        up its cursor.
+     * @return Nonzero when it's the Remaster's.
+     */
+    int lom_remaster_gname_begin(void);
+
+    /** @brief End a name entry, back to the PS1's layout. */
+    void lom_remaster_gname_end(void);
+
+    /** @brief Nonzero while a name entry is laid out as the Remaster's. */
+    int lom_remaster_gname_layout(void);
+
+    /**
+     * @brief Draw the Remaster's background over name entry's fixed sprites
+     *        (lom_draw_gname_background).
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_remaster_gname_background(void* code, int stride, int count);
+
+    /**
+     * @brief Lay out one of name entry's glyphs as the Remaster does
+     *        (lom_draw_gname_glyph): drop a button the background has painted
+     *        in, or move the delete button's arrow onto its painted button,
+     *        move a tab onto the wood, or draw the Remaster's picture of it.
+     * @param code The glyph's sprite's code word.
+     * @param sprites How many sprites it is: 2 with its shadow, else 1.
+     * @param stride How far the shadow's code word is, in bytes.
+     * @param glyph The glyph.
+     */
+    void lom_remaster_gname_glyph(void* code, int sprites, int stride, int glyph);
+
+    /** @brief How far name entry's tabs move across in the Remaster's layout, 0 in the PS1's. */
+    int lom_remaster_gname_tab_shift(void);
+
+    /**
+     * @brief Move name entry's cursor target to a button or tab's place in the
+     *        Remaster's layout, when it's in use (lom_draw_gname_cursor).
+     * @param position The target's position in the screen's table.
+     * @param x Its x, moved.
+     * @param y Its y, moved.
+     */
+    void lom_remaster_gname_cursor(int position, int* x, int* y);
+
     enum
     {
         LOM_REMASTER_WMAP_SHELL,

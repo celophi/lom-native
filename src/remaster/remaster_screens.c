@@ -99,6 +99,83 @@ static void set_rect_xy(LomRemasterPart* part, int x0, int y0, int x1, int y1)
 }
 
 /**
+ * @brief Make the part of a repainted picture that one rectangle of the PS1's
+ *        covers, scaled from where the PS1's picture is to where the
+ *        Remaster's is. A picture painted wide reaches on into a wide frame's
+ *        sides from the PS1 picture's edges.
+ * @param file The Remaster's file.
+ * @param label The picture's label in it.
+ * @param ps1 Where the PS1's picture is: x, y, width and height.
+ * @param hd Where the same is on the Remaster's picture.
+ * @param wide Nonzero when the Remaster's picture is painted wide.
+ * @param x Where the PS1's picture's top left is on the screen.
+ * @param y The same, down.
+ * @param rect The rectangle: x, y, width and height on the screen.
+ * @param margin The wide frame's margin, or 0.
+ * @param part Set to the part.
+ * @return 1 when the rectangle covers some of the picture, otherwise 0.
+ */
+static int art_part(const char* file, const char* label, const int ps1[4], const int hd[4], int wide, int x, int y, const int rect[4], int margin,
+                    LomRemasterPart* part)
+{
+    const int left = rect[0] - x, top = rect[1] - y;
+    const int x0 = left > ps1[0] ? left : ps1[0];
+    const int y0 = top > ps1[1] ? top : ps1[1];
+    const int x1 = left + rect[2] < ps1[0] + ps1[2] ? left + rect[2] : ps1[0] + ps1[2];
+    const int y1 = top + rect[3] < ps1[1] + ps1[3] ? top + rect[3] : ps1[1] + ps1[3];
+
+    if (x0 >= x1 || y0 >= y1)
+    {
+        return 0;
+    }
+
+    const int reach = wide ? margin : 0;
+    const int wide_x0 = x0 == ps1[0] ? x0 - reach : x0;
+    const int wide_x1 = x1 == ps1[0] + ps1[2] ? x1 + reach : x1;
+    const int u0 = hd[0] + scale(wide_x0 - ps1[0], ps1[2], hd[2]);
+    const int v0 = hd[1] + scale(y0 - ps1[1], ps1[3], hd[3]);
+    const int u1 = hd[0] + scale(wide_x1 - ps1[0], ps1[2], hd[2]);
+    const int v1 = hd[1] + scale(y1 - ps1[1], ps1[3], hd[3]);
+    memset(part, 0, sizeof(*part));
+    snprintf(part->file, sizeof(part->file), "%s", file);
+    snprintf(part->label, sizeof(part->label), "%s", label);
+    part->area[0] = u0;
+    part->area[1] = v0;
+    part->area[2] = u1 - u0;
+    part->area[3] = v1 - v0;
+    set_rect_xy(part, x + wide_x0, y + y0, x + wide_x1, y + y1);
+    return 1;
+}
+
+/**
+ * @brief Make the placements that draw parts, in order, chained into one
+ *        command.
+ * @param parts The parts.
+ * @param count How many.
+ * @return The first placement, or -1 when there's nothing to draw or one of
+ *         them can't be.
+ */
+static int place_parts(const LomRemasterPart parts[], int count)
+{
+    int first = -1, last = -1;
+
+    for (int i = 0; i < count; ++i)
+    {
+        const int placed = lom_remaster_picture_place(parts[i].file, parts[i].label, parts[i].area, parts[i].xy, -1, last);
+
+        if (placed < 0)
+        {
+            return -1;
+        }
+
+        last = placed;
+        first = first < 0 ? placed : first;
+    }
+
+    return first;
+}
+
+/**
  * @note s_wsel_art says where each repainted picture goes, as x, y, width and
  *       height on the PS1's picture and on the Remaster's, found by lining the
  *       two up. The wall is the PS1's at 4.5 times, with more of the room at
@@ -117,38 +194,10 @@ int lom_remaster_wsel_parts(int picture, int x, int y, const int rect[4], int ma
     {
         const WselArt* art = &s_wsel_art[i];
 
-        if (art->picture != picture)
+        if (art->picture == picture && art_part(WSEL_FILE, art->label, art->ps1, art->hd, art->wide, x, y, rect, margin, &parts[count]))
         {
-            continue;
+            ++count;
         }
-
-        const int left = rect[0] - x, top = rect[1] - y;
-        const int x0 = left > art->ps1[0] ? left : art->ps1[0];
-        const int y0 = top > art->ps1[1] ? top : art->ps1[1];
-        const int x1 = left + rect[2] < art->ps1[0] + art->ps1[2] ? left + rect[2] : art->ps1[0] + art->ps1[2];
-        const int y1 = top + rect[3] < art->ps1[1] + art->ps1[3] ? top + rect[3] : art->ps1[1] + art->ps1[3];
-
-        if (x0 >= x1 || y0 >= y1)
-        {
-            continue;
-        }
-
-        const int reach = art->wide ? margin : 0;
-        const int wide_x0 = x0 == art->ps1[0] ? x0 - reach : x0;
-        const int wide_x1 = x1 == art->ps1[0] + art->ps1[2] ? x1 + reach : x1;
-        const int u0 = art->hd[0] + scale(wide_x0 - art->ps1[0], art->ps1[2], art->hd[2]);
-        const int v0 = art->hd[1] + scale(y0 - art->ps1[1], art->ps1[3], art->hd[3]);
-        const int u1 = art->hd[0] + scale(wide_x1 - art->ps1[0], art->ps1[2], art->hd[2]);
-        const int v1 = art->hd[1] + scale(y1 - art->ps1[1], art->ps1[3], art->hd[3]);
-        LomRemasterPart* part = &parts[count++];
-        memset(part, 0, sizeof(*part));
-        snprintf(part->file, sizeof(part->file), "%s", WSEL_FILE);
-        snprintf(part->label, sizeof(part->label), "%s", art->label);
-        part->area[0] = u0;
-        part->area[1] = v0;
-        part->area[2] = u1 - u0;
-        part->area[3] = v1 - v0;
-        set_rect_xy(part, x + wide_x0, y + y0, x + wide_x1, y + y1);
     }
 
     return count;
@@ -167,23 +216,7 @@ int lom_remaster_wsel_parts(int picture, int x, int y, const int rect[4], int ma
 static int wsel_place(int picture, int x, int y, const int rect[4])
 {
     LomRemasterPart parts[WSEL_ART_COUNT];
-    const int count = lom_remaster_wsel_parts(picture, x, y, rect, lom_native_widescreen_margin(), parts, WSEL_ART_COUNT);
-    int first = -1, last = -1;
-
-    for (int i = 0; i < count; ++i)
-    {
-        const int placed = lom_remaster_picture_place(parts[i].file, parts[i].label, parts[i].area, parts[i].xy, -1, last);
-
-        if (placed < 0)
-        {
-            return -1;
-        }
-
-        last = placed;
-        first = first < 0 ? placed : first;
-    }
-
-    return first;
+    return place_parts(parts, lom_remaster_wsel_parts(picture, x, y, rect, lom_native_widescreen_margin(), parts, WSEL_ART_COUNT));
 }
 
 void lom_remaster_wsel_loaded(void)
@@ -693,4 +726,334 @@ void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
 
     lom_remaster_picture_style(placement, (int)shaded, 0);
     lom_remaster_picture_command(words, SPRITE_WORDS, placement);
+}
+
+#define TITLE_FILE "system/image/title/title.psb.m"
+#define TITLE_BACKGROUND "background"
+#define TITLE_LAYERS 2
+
+static const int s_title_ps1[4] = {0, 0, 320, 224};
+static const int s_title_hd[4] = {240, 36, 1440, 1008};
+static const char* const s_title_logos[LOM_REMASTER_TEXT_COUNT] = {"logo-en", "logo-en", "logo-en", "logo-en", "logo-en",
+                                                                   "logo-ja", "logo-ko", "logo-cn", "logo-tw"};
+
+/**
+ * @brief The Remaster's logo for a language: its English one for the
+ *        European languages, which it has no logo of their own for.
+ * @param language A LOM_REMASTER_TEXT_* other than LOM_REMASTER_TEXT_PS1.
+ * @return The logo's label.
+ */
+static const char* title_logo(int language)
+{
+    return language > LOM_REMASTER_TEXT_PS1 && language < LOM_REMASTER_TEXT_COUNT ? s_title_logos[language] : s_title_logos[LOM_REMASTER_TEXT_ENGLISH];
+}
+
+/**
+ * @note The PS1's title backdrop is one picture with its logo painted in. The
+ *       Remaster's is a background, painted wide, with a logo in each
+ *       language drawn over it, each a whole frame, and both line up with the
+ *       PS1's picture at 4.5 times, as WSEL's wall does. Its logo sits higher
+ *       than the PS1's, above the menu and the copyright line, which the PS1
+ *       still draws: the Remaster only has pictures of its menu for its Asian
+ *       languages.
+ */
+int lom_remaster_title_parts(int language, const int rect[4], int margin, LomRemasterPart parts[], int max)
+{
+    const char* const labels[TITLE_LAYERS] = {TITLE_BACKGROUND, title_logo(language)};
+    int count = 0;
+
+    for (int i = 0; i < TITLE_LAYERS && count < max; ++i)
+    {
+        if (art_part(TITLE_FILE, labels[i], s_title_ps1, s_title_hd, 1, 0, 0, rect, margin, &parts[count]))
+        {
+            ++count;
+        }
+    }
+
+    return count;
+}
+
+/**
+ * @brief Load the Remaster's title art for the language in use.
+ * @return Nonzero when HD pictures are on and the background and the logo
+ *         can both be drawn.
+ */
+static int title_art_ready(void)
+{
+    return enabled() && lom_remaster_picture_ready(TITLE_FILE, TITLE_BACKGROUND, NULL, NULL) &&
+           lom_remaster_picture_ready(TITLE_FILE, title_logo(names_language()), NULL, NULL);
+}
+
+void lom_remaster_title_backdrop(void* code, int stride, int count)
+{
+    if (!code || count <= 0 || !title_art_ready())
+    {
+        return;
+    }
+
+    for (int i = 0; i < count; ++i)
+    {
+        uint32_t* words = (uint32_t*)((unsigned char*)code + (size_t)i * (size_t)stride);
+        const int x0 = (int16_t)(words[1] & 0xFFFF), y0 = (int16_t)(words[1] >> 16);
+        const int x3 = (int16_t)(words[7] & 0xFFFF), y3 = (int16_t)(words[7] >> 16);
+        const int rect[4] = {x0, y0, x3 - x0, y3 - y0};
+        LomRemasterPart parts[TITLE_LAYERS];
+        const int placement = place_parts(parts, lom_remaster_title_parts(names_language(), rect, lom_native_widescreen_margin(), parts, TITLE_LAYERS));
+
+        if (placement >= 0)
+        {
+            lom_remaster_picture_command(words, QUAD_WORDS, placement);
+        }
+    }
+}
+
+int lom_remaster_title_wide(void)
+{
+    return title_art_ready();
+}
+
+#define GNAME_FILE "name_input.psb.m"
+#define GNAME_TAB_SHIFT (-60)
+#define GNAME_BUTTONS 4
+#define GNAME_BUTTON_X 48
+#define GNAME_BUTTON_Y 100
+#define GNAME_BUTTON_STEP 16
+#define GNAME_BUTTON_W 34
+#define GNAME_BUTTON_H 8
+#define GNAME_CURSOR_LEFT 7
+#define GNAME_CURSOR_DROP 3
+#define GNAME_FIRST_BUTTON_POSITION 2
+#define GNAME_FIRST_TAB_POSITION 6
+#define GNAME_TABS 4
+#define GNAME_GLYPH_OK 30
+#define GNAME_GLYPH_DELETE 31
+#define GNAME_GLYPH_UNDO 33
+#define GNAME_GLYPH_FIRST_TAB 26
+#define GNAME_GLYPH_LAST_TAB 29
+#define GNAME_GLYPH_FIRST_ORNAMENT 36
+#define GNAME_GLYPH_LAST_ORNAMENT 38
+#define GNAME_ARROW_U 9
+#define GNAME_ARROW_V 4
+#define GNAME_ARROW_W 21
+#define GNAME_ARROW_H 9
+
+typedef struct
+{
+    int glyph;
+    const char* label;
+    int x, y, w, h;
+} GnameArt;
+
+static const GnameArt s_gname_art[] = {
+    {2, "typewriter_paper", 1, 0, 190, 33},       {3, "typewriter", 0, 0, 64, 56},
+    {14, "typewriter_anim_paper1", 1, 3, 20, 34}, {15, "typewriter_anim_paper2", 2, 3, 20, 34},
+    {16, "typewriter_anim_paper3", 1, 4, 20, 34}, {17, "typewriter_anim_paper4", -1, 4, 20, 34},
+    {24, "typewriter_anim_hand1", 5, 1, 20, 23},  {25, "typewriter_anim_hand2", 6, 4, 20, 23},
+};
+
+#define GNAME_ART_COUNT ((int)(sizeof(s_gname_art) / sizeof(s_gname_art[0])))
+
+static const char* const s_gname_backgrounds[LOM_REMASTER_TEXT_COUNT] = {"bg_en", "bg_en", "bg_de", "bg_fr", "bg_es", "bg_jp", "bg_kr", "bg_ch", "bg_tw"};
+
+static int s_gname_layout;
+
+/**
+ * @brief The Remaster's name entry background for a language, which has its
+ *        buttons painted in.
+ * @param language A LOM_REMASTER_TEXT_* other than LOM_REMASTER_TEXT_PS1.
+ * @return The background's label.
+ */
+static const char* gname_background(int language)
+{
+    return language > LOM_REMASTER_TEXT_PS1 && language < LOM_REMASTER_TEXT_COUNT ? s_gname_backgrounds[language]
+                                                                                  : s_gname_backgrounds[LOM_REMASTER_TEXT_ENGLISH];
+}
+
+/**
+ * @note The Remaster's name entry is painted for a wide frame: its panel is
+ *       wider than a 4:3 picture, with OK, delete (a keyboard on the
+ *       Remaster), AUTO and UNDO painted in a column at its left, where the
+ *       PS1 has them in a row above it. Its typewriter, the paper the name is
+ *       typed on and the typing animation's paper and hands are the PS1's
+ *       pictures repainted, at 4.5 times, each placed as the PS1's sits in its
+ *       glyph's box, which the repaint is cut tighter than.
+ */
+int lom_remaster_gname_part(int glyph, const int rect[4], LomRemasterPart* part)
+{
+    for (int i = 0; i < GNAME_ART_COUNT; ++i)
+    {
+        const GnameArt* art = &s_gname_art[i];
+
+        if (art->glyph == glyph)
+        {
+            memset(part, 0, sizeof(*part));
+            snprintf(part->file, sizeof(part->file), "%s", GNAME_FILE);
+            snprintf(part->label, sizeof(part->label), "%s", art->label);
+            set_rect_xy(part, rect[0] + art->x, rect[1] + art->y, rect[0] + art->x + art->w, rect[1] + art->y + art->h);
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+int lom_remaster_gname_cursor_at(int position, int* x, int* y)
+{
+    if (position >= GNAME_FIRST_BUTTON_POSITION && position < GNAME_FIRST_BUTTON_POSITION + GNAME_BUTTONS)
+    {
+        *x = GNAME_BUTTON_X - GNAME_CURSOR_LEFT;
+        *y = GNAME_BUTTON_Y + (position - GNAME_FIRST_BUTTON_POSITION) * GNAME_BUTTON_STEP + GNAME_CURSOR_DROP;
+        return 1;
+    }
+
+    if (position >= GNAME_FIRST_TAB_POSITION && position < GNAME_FIRST_TAB_POSITION + GNAME_TABS)
+    {
+        *x += GNAME_TAB_SHIFT;
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Load the Remaster's name entry art.
+ * @return Nonzero when its background, in the language in use, and every
+ *         picture that replaces one of the PS1's can be drawn.
+ */
+static int gname_art_ready(void)
+{
+    if (!lom_remaster_picture_ready(GNAME_FILE, gname_background(names_language()), NULL, NULL))
+    {
+        return 0;
+    }
+
+    for (int i = 0; i < GNAME_ART_COUNT; ++i)
+    {
+        if (!lom_remaster_picture_ready(GNAME_FILE, s_gname_art[i].label, NULL, NULL))
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int lom_remaster_gname_begin(void)
+{
+    s_gname_layout = enabled() && lom_native_widescreen_enabled() && gname_art_ready();
+    return s_gname_layout;
+}
+
+void lom_remaster_gname_end(void)
+{
+    s_gname_layout = 0;
+}
+
+int lom_remaster_gname_layout(void)
+{
+    return s_gname_layout;
+}
+
+void lom_remaster_gname_background(void* code, int stride, int count)
+{
+    if (!code || count <= 0 || !s_gname_layout)
+    {
+        return;
+    }
+
+    const int whole[4] = {s_title_ps1[0], s_title_ps1[1], s_title_ps1[2], s_title_ps1[3]};
+    LomRemasterPart part;
+    const int placement =
+        art_part(GNAME_FILE, gname_background(names_language()), s_title_ps1, s_title_hd, 1, 0, 0, whole, lom_native_widescreen_margin(), &part)
+            ? place_parts(&part, 1)
+            : -1;
+
+    for (int i = 0; i < count; ++i)
+    {
+        lom_remaster_picture_command((unsigned char*)code + (size_t)i * (size_t)stride, SPRITE_WORDS, i == 0 ? placement : -1);
+    }
+}
+
+/**
+ * @brief Move a sprite across.
+ * @param words The sprite's words from its code word.
+ * @param dx How far.
+ */
+static void shift_sprite(uint32_t* words, int dx)
+{
+    const int x = (int16_t)(words[1] & 0xFFFF) + dx;
+    words[1] = (words[1] & 0xFFFF0000u) | ((uint32_t)x & 0xFFFF);
+}
+
+/**
+ * @brief One of a glyph's sprites.
+ * @param code The first sprite's code word.
+ * @param stride How far each next sprite's is, in bytes.
+ * @param index Which.
+ * @return Its words from its code word.
+ */
+static uint32_t* glyph_sprite(void* code, int stride, int index)
+{
+    return (uint32_t*)((unsigned char*)code + (size_t)index * (size_t)stride);
+}
+
+void lom_remaster_gname_glyph(void* code, int sprites, int stride, int glyph)
+{
+    if (!code || sprites <= 0 || !s_gname_layout)
+    {
+        return;
+    }
+
+    uint32_t* words = code;
+
+    if (glyph >= GNAME_GLYPH_OK && glyph <= GNAME_GLYPH_UNDO)
+    {
+        for (int i = glyph == GNAME_GLYPH_DELETE ? 1 : 0; i < sprites; ++i)
+        {
+            lom_remaster_picture_command(glyph_sprite(code, stride, i), SPRITE_WORDS, -1);
+        }
+
+        if (glyph == GNAME_GLYPH_DELETE)
+        {
+            const int x = GNAME_BUTTON_X + (GNAME_BUTTON_W - GNAME_ARROW_W) / 2;
+            const int y = GNAME_BUTTON_Y + GNAME_BUTTON_STEP;
+            const unsigned u = (words[2] & 0xFF) + GNAME_ARROW_U, v = ((words[2] >> 8) & 0xFF) + GNAME_ARROW_V;
+            words[1] = ((uint32_t)y << 16) | ((uint32_t)x & 0xFFFF);
+            words[2] = (words[2] & 0xFFFF0000u) | (v & 0xFF) << 8 | (u & 0xFF);
+            words[3] = (uint32_t)GNAME_ARROW_H << 16 | GNAME_ARROW_W;
+        }
+
+        return;
+    }
+
+    if ((glyph >= GNAME_GLYPH_FIRST_TAB && glyph <= GNAME_GLYPH_LAST_TAB) || (glyph >= GNAME_GLYPH_FIRST_ORNAMENT && glyph <= GNAME_GLYPH_LAST_ORNAMENT))
+    {
+        for (int i = 0; i < sprites; ++i)
+        {
+            shift_sprite(glyph_sprite(code, stride, i), GNAME_TAB_SHIFT);
+        }
+
+        return;
+    }
+
+    const int rect[4] = {(int16_t)(words[1] & 0xFFFF), (int16_t)(words[1] >> 16), (int)(words[3] & 0xFFFF), (int)(words[3] >> 16)};
+    LomRemasterPart part;
+
+    if (lom_remaster_gname_part(glyph, rect, &part))
+    {
+        lom_remaster_picture_command(words, SPRITE_WORDS, lom_remaster_picture_place(part.file, part.label, NULL, part.xy, -1, -1));
+    }
+}
+
+int lom_remaster_gname_tab_shift(void)
+{
+    return s_gname_layout ? GNAME_TAB_SHIFT : 0;
+}
+
+void lom_remaster_gname_cursor(int position, int* x, int* y)
+{
+    if (s_gname_layout && x && y)
+    {
+        lom_remaster_gname_cursor_at(position, x, y);
+    }
 }

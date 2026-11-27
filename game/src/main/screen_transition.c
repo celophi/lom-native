@@ -10,6 +10,7 @@
 #include "lom_native_frames.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_widescreen.h"
 
 #define TRANSITION_OT_SIZE 4
 #define TRANSITION_PACKET_WORDS 64
@@ -36,6 +37,7 @@ _Static_assert(sizeof(TransitionFrame) == 0x188, "PS1 transition frame ABI");
 /**
  * @brief Fade out the screen while continuing controller and CD processing.
  * @param skip_fade Nonzero waits without fading or disabling the display.
+ * @note In the port a wide frame fades wide, and the view goes back to the original after, for the next screen.
  * @see decomp.me (100%) https://decomp.me/scratch/clAOi
  */
 void screen_transition(s32 skip_fade)
@@ -82,8 +84,8 @@ void screen_transition(s32 skip_fade)
             tile->b0 = TRANSITION_FADE_LEVEL;
             tile->g0 = TRANSITION_FADE_LEVEL;
             tile->r0 = TRANSITION_FADE_LEVEL;
-            lom_gpu_set_xy0(tile, 0, 0);
-            lom_gpu_set_wh(tile, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+            lom_gpu_set_xy0(tile, -lom_native_widescreen_margin(), 0);
+            lom_gpu_set_wh(tile, SCREEN_WIDTH + 2 * lom_native_widescreen_margin(), VRAM_DRAW_HEIGHT);
             lom_gpu_set_semi_trans(tile, 1);
             lom_gpu_link(&current->ot[0], tile);
 
@@ -111,4 +113,6 @@ void screen_transition(s32 skip_fade)
     {
         lom_graphics_show(0);
     }
+
+    lom_native_widescreen_reset();
 }
