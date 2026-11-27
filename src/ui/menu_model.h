@@ -129,6 +129,24 @@ class MenuBackend
     virtual void set_hd_ui(bool value) = 0;
 
     /**
+     * @brief Check whether the renderer can show the Remaster's movies.
+     * @return True when it can.
+     */
+    virtual bool hd_movies_available() const = 0;
+
+    /**
+     * @brief Check whether the Remaster's movies play in place of the PS1's.
+     * @return True when they do.
+     */
+    virtual bool hd_movies() const = 0;
+
+    /**
+     * @brief Turn the Remaster's movies on or off.
+     * @param value True for on.
+     */
+    virtual void set_hd_movies(bool value) = 0;
+
+    /**
      * @brief Read which text the scenes use.
      * @return LOM_REMASTER_TEXT_*.
      */

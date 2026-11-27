@@ -167,15 +167,7 @@ static int detect_movie_source_layout(FILE* source, LomMovieSourceLayout* layout
     return -1;
 }
 
-/**
- * @brief Make a temporary file, readable only by the player, for the video
- *        sectors.
- * @param path Set to its path.
- * @param path_size Bytes at @p path.
- * @param file_out Set to the open file.
- * @return 0, or -1.
- */
-static int create_temp_file(char* path, size_t path_size, FILE** file_out)
+int lom_movie_temp_file(char* path, size_t path_size, FILE** file_out)
 {
     int fd;
 #ifdef _WIN32
@@ -600,7 +592,7 @@ int lom_movie_prepare_file(const char* movie_path, LomPreparedMovie* prepared)
         return -1;
     }
 
-    if (create_temp_file(prepared->video_path, sizeof(prepared->video_path), &video_file) != 0)
+    if (lom_movie_temp_file(prepared->video_path, sizeof(prepared->video_path), &video_file) != 0)
     {
         fprintf(stderr, "[lom-native] Could not create temporary STR video stream.\n");
         fclose(source);

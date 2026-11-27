@@ -1,6 +1,10 @@
 #include "presentation.h"
 #include "crossfade.h"
+#include "hd_movie.h"
+#include "lom_native_widescreen.h"
 #include <SDL3/SDL.h>
+#include <stdlib.h>
+#include <string.h>
 
 static const int resolution_count = 3;
 
@@ -354,6 +358,7 @@ void lom_present_blit(LomPresentation* state, SDL_GPUDevice* device, SDL_GPUComm
 
 void lom_present_release(LomPresentation* state, SDL_GPUDevice* device)
 {
+    lom_hd_movie_release(device);
     lom_xbr_release(&state->xbr, device);
     lom_crossfade_shutdown(device);
 
@@ -379,4 +384,149 @@ void lom_present_release(LomPresentation* state, SDL_GPUDevice* device)
     state->applied_resolution = 0;
     state->resolution_pending = false;
     state->resolution_error[0] = '\0';
+}
+
+static struct
+{
+    unsigned width, height;
+    unsigned char* pixels;
+    int active;
+    int fresh;
+    SDL_GPUTexture* texture;
+    SDL_GPUTransferBuffer* transfer;
+    unsigned texture_width, texture_height;
+} s_movie;
+
+int lom_hd_movie_begin(unsigned width, unsigned height)
+{
+    lom_hd_movie_end();
+
+    if (width == 0 || height == 0 || !(s_movie.pixels = calloc((size_t)width * height, 4)))
+    {
+        return -1;
+    }
+
+    s_movie.width = width;
+    s_movie.height = height;
+    s_movie.active = 1;
+    s_movie.fresh = 1;
+    return 0;
+}
+
+void lom_hd_movie_frame(const void* rgba)
+{
+    if (s_movie.active && rgba)
+    {
+        memcpy(s_movie.pixels, rgba, (size_t)s_movie.width * s_movie.height * 4);
+        s_movie.fresh = 1;
+    }
+}
+
+void lom_hd_movie_end(void)
+{
+    free(s_movie.pixels);
+    s_movie.pixels = NULL;
+    s_movie.active = 0;
+    s_movie.fresh = 0;
+}
+
+/**
+ * @brief Make sure the movie's texture and its upload buffer fit its frames.
+ * @param device The GPU device.
+ * @return Nonzero when they're there.
+ */
+static int movie_texture(SDL_GPUDevice* device)
+{
+    if (s_movie.texture && s_movie.texture_width == s_movie.width && s_movie.texture_height == s_movie.height)
+    {
+        return 1;
+    }
+
+    if (s_movie.texture)
+    {
+        SDL_ReleaseGPUTexture(device, s_movie.texture);
+        SDL_ReleaseGPUTransferBuffer(device, s_movie.transfer);
+        s_movie.texture = NULL;
+        s_movie.transfer = NULL;
+    }
+
+    const SDL_GPUTextureCreateInfo texture = {.type = SDL_GPU_TEXTURETYPE_2D,
+                                              .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
+                                              .usage = SDL_GPU_TEXTUREUSAGE_SAMPLER,
+                                              .width = s_movie.width,
+                                              .height = s_movie.height,
+                                              .layer_count_or_depth = 1,
+                                              .num_levels = 1};
+    const SDL_GPUTransferBufferCreateInfo transfer = {.usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD, .size = s_movie.width * s_movie.height * 4};
+    s_movie.texture = SDL_CreateGPUTexture(device, &texture);
+    s_movie.transfer = s_movie.texture ? SDL_CreateGPUTransferBuffer(device, &transfer) : NULL;
+
+    if (!s_movie.transfer)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_RENDER, "HD movie texture creation failed (%ux%u): %s", s_movie.width, s_movie.height, SDL_GetError());
+
+        if (s_movie.texture)
+        {
+            SDL_ReleaseGPUTexture(device, s_movie.texture);
+            s_movie.texture = NULL;
+        }
+
+        return 0;
+    }
+
+    s_movie.texture_width = s_movie.width;
+    s_movie.texture_height = s_movie.height;
+    return 1;
+}
+
+int lom_hd_movie_present(SDL_GPUDevice* device, SDL_GPUCommandBuffer* cmd, SDL_GPUTexture* target, Uint32 width, Uint32 height)
+{
+    if (!s_movie.active || !movie_texture(device))
+    {
+        return 0;
+    }
+
+    if (s_movie.fresh)
+    {
+        void* mapped = SDL_MapGPUTransferBuffer(device, s_movie.transfer, true);
+
+        if (!mapped)
+        {
+            return 0;
+        }
+
+        memcpy(mapped, s_movie.pixels, (size_t)s_movie.width * s_movie.height * 4);
+        SDL_UnmapGPUTransferBuffer(device, s_movie.transfer);
+        SDL_GPUCopyPass* copy = SDL_BeginGPUCopyPass(cmd);
+        const SDL_GPUTextureTransferInfo source = {.transfer_buffer = s_movie.transfer};
+        const SDL_GPUTextureRegion destination = {.texture = s_movie.texture, .w = s_movie.width, .h = s_movie.height, .d = 1};
+        SDL_UploadToGPUTexture(copy, &source, &destination, true);
+        SDL_EndGPUCopyPass(copy);
+        s_movie.fresh = 0;
+    }
+
+    int rect[4];
+    lom_hd_movie_fit((int)width, (int)height, lom_native_widescreen_enabled(), rect);
+    const SDL_GPUBlitInfo blit = {
+        .source = {.texture = s_movie.texture, .w = s_movie.width, .h = s_movie.height},
+        .destination = {.texture = target, .x = (Uint32)rect[0], .y = (Uint32)rect[1], .w = (Uint32)rect[2], .h = (Uint32)rect[3]},
+        .load_op = SDL_GPU_LOADOP_CLEAR,
+        .clear_color = {0.0f, 0.0f, 0.0f, 1.0f},
+        .filter = SDL_GPU_FILTER_LINEAR,
+    };
+    SDL_BlitGPUTexture(cmd, &blit);
+    return 1;
+}
+
+void lom_hd_movie_release(SDL_GPUDevice* device)
+{
+    if (s_movie.texture)
+    {
+        SDL_ReleaseGPUTexture(device, s_movie.texture);
+        SDL_ReleaseGPUTransferBuffer(device, s_movie.transfer);
+    }
+
+    s_movie.texture = NULL;
+    s_movie.transfer = NULL;
+    s_movie.texture_width = s_movie.texture_height = 0;
 }

@@ -1,6 +1,8 @@
 #ifndef LOM_NATIVE_REMASTER_H
 #define LOM_NATIVE_REMASTER_H
 
+#include <stdio.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -112,6 +114,49 @@ extern "C"
 
     /** @brief Nonzero when the Remaster's repainted pictures are drawn. */
     int lom_native_remaster_hd_ui(void);
+
+    /** @brief Nonzero when the renderer can show the Remaster's movies at its own resolution (src/gpu/hd_movie.h). */
+    int lom_native_remaster_hd_movies_supported(void);
+
+    /** @brief Play the Remaster's HD movies in place of the PS1's, from the next movie on. */
+    void lom_native_remaster_set_hd_movies(int enabled);
+
+    /** @brief Nonzero when the Remaster's HD movies play in place of the PS1's. */
+    int lom_native_remaster_hd_movies(void);
+
+    /**
+     * @brief The Remaster's file for one of the movies the movie screen plays,
+     *        by the game's number for it (0 the opening, 1 the one after you
+     *        place your home, 2 the first ending, 3 the staff roll, 4 the last
+     *        ending), or NULL when it has none.
+     * @param movie The movie's number.
+     * @return Its file under the Remaster's data folder.
+     */
+    const char* lom_native_remaster_movie_file(unsigned movie);
+
+    /**
+     * @brief Where to play one of the movie screen's movies from instead of the
+     *        disc: the Remaster's file, when it was found, HD movies are on,
+     *        the renderer can show it and the file is there.
+     * @param movie The movie's number, as lom_native_remaster_movie_file.
+     * @param path Set to the file's path.
+     * @param size Room in @p path.
+     * @return Nonzero when the Remaster's movie plays.
+     */
+    int lom_native_remaster_movie_path(unsigned movie, char* path, unsigned long size);
+
+    /**
+     * @brief Write a Remaster movie's sound, when it isn't in the movie, as an
+     *        xWMA file ffmpeg reads. Only the one after you place your home has
+     *        this: its MP4's sound is silence, and the Remaster plays the
+     *        music from its own track (sound/music_0013.psb), which starts with
+     *        the picture.
+     * @param movie The movie's number, as lom_native_remaster_movie_file.
+     * @param file Where to write it: an empty file opened for writing.
+     * @return 1 when it wrote it, 0 when the movie's own sound plays, or -1
+     *         when the track can't be read or written.
+     */
+    int lom_native_remaster_movie_sound(unsigned movie, FILE* file);
 
     /**
      * @brief Remember which of the Remaster's tiles a background tile record

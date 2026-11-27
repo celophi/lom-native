@@ -107,7 +107,8 @@ tag, with PSY-Z pinned as its submodule.
 They also ship a few things this repository doesn't contain:
 
 - ffmpeg, from FFmpeg 9.0.2, LGPL-2.1-or-later. The game runs it as a separate
-  program to decode its movies. It's built from FFmpeg's unmodified release
+  program to decode its movies, and the Remaster's (H.264 and AAC in MP4,
+  and one WMA track) when you have it. It's built from FFmpeg's unmodified release
   with only the parts the game uses, and with no GPL or nonfree parts
   (`packaging/ffmpeg/build.sh`). Every release attaches the exact source
   tarball it was built from.

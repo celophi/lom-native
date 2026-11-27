@@ -34,6 +34,31 @@ typedef struct LomMovieCloseResult
  */
 FILE* lom_movie_decoder_open_sized(const char* path, unsigned int frame_limit, unsigned int width, unsigned int height, pid_t* child);
 
+#define LOM_MOVIE_HD_RATE 30
+#define LOM_MOVIE_HD_MAX_SIDE 4096
+
+/**
+ * @brief Start ffmpeg decoding one of the Remaster's movies, an MP4, to raw
+ *        RGBA frames of a size, at a steady 30 a second whatever the movie's
+ *        own rate, so each frame is two vertical blanks.
+ * @param path The movie.
+ * @param limit Stop after this many frames, or 0 for all of them.
+ * @param width The frames' width.
+ * @param height Their height.
+ * @param child Set to ffmpeg's process.
+ * @return The stream of frames, or NULL when ffmpeg can't be started.
+ */
+FILE* lom_movie_decoder_open_hd(const char* path, unsigned int limit, unsigned int width, unsigned int height, pid_t* child);
+
+/**
+ * @brief Start ffmpeg decoding a movie's sound to 16-bit stereo PCM.
+ * @param path The movie.
+ * @param rate The sample rate to give it at.
+ * @param child Set to ffmpeg's process.
+ * @return The stream of samples, or NULL when ffmpeg can't be started.
+ */
+FILE* lom_movie_decoder_open_audio(const char* path, unsigned int rate, pid_t* child);
+
 /**
  * @brief lom_movie_decoder_open_sized at the PS1's 320 by 240.
  * @param path The video.

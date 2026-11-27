@@ -69,6 +69,9 @@ LOM_MENU_TEXT(hd_ui_label, "HD pictures");
 LOM_MENU_TEXT(hd_ui_help, "Draws the Remaster's repainted pictures, from your copy of it, where the PS1's screens show them: the faces in "
                           "conversations, the encyclopedia's pictures, the wall map you place your home on at the start, and the world "
                           "map's Mana Tree panel, spirits and names.");
+LOM_MENU_TEXT(hd_movies_label, "HD movies");
+LOM_MENU_TEXT(hd_movies_help, "Plays the Remaster's high-definition movies, from your copy of it, in place of the PS1's: the opening, the endings and "
+                              "the staff roll. With Widescreen off they're letterboxed. Changes from the next movie.");
 LOM_MENU_TEXT(text_label, "Text");
 LOM_MENU_TEXT(text_help, "Which text the game uses: the PS1's, or the Remaster's revised English or one of its other languages, from your copy "
                          "of it. Changes from the next room or menu.");
@@ -283,6 +286,13 @@ void MenuModel::add_display_rows(std::vector<MenuRow>& rows) const
         MenuRow pictures{MenuRow::Kind::Switch, hd_ui_label, hd_ui_help};
         pictures.on = backend_.hd_ui();
         rows.push_back(pictures);
+    }
+
+    if (backend_.remaster_found() && backend_.hd_movies_available())
+    {
+        MenuRow movies{MenuRow::Kind::Switch, hd_movies_label, hd_movies_help};
+        movies.on = backend_.hd_movies();
+        rows.push_back(movies);
     }
 
     if (backend_.remaster_found() && backend_.text_available())
@@ -733,6 +743,12 @@ void MenuModel::change_display(const MenuRow& row, int step)
     if (row.label == hd_ui_label)
     {
         backend_.set_hd_ui(!backend_.hd_ui());
+        return;
+    }
+
+    if (row.label == hd_movies_label)
+    {
+        backend_.set_hd_movies(!backend_.hd_movies());
         return;
     }
 

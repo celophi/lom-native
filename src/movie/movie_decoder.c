@@ -64,6 +64,47 @@ FILE* lom_movie_decoder_open_sized(const char* path, unsigned int limit, unsigne
     return lom_movie_process_start(args, child);
 }
 
+FILE* lom_movie_decoder_open_hd(const char* path, unsigned int limit, unsigned int width, unsigned int height, pid_t* child)
+{
+    char frame_limit[16];
+    char filters[64];
+    char* args[] = {"ffmpeg", "-nostdin", "-loglevel", "error", "-i",       (char*)path, "-map", "0:v:0", "-an", "-vf",
+                    filters,  "-pix_fmt", "rgba",      "-f",    "rawvideo", NULL,        NULL,   NULL,    NULL};
+    const int output = 15;
+
+    if (width == 0 || height == 0 || width > LOM_MOVIE_HD_MAX_SIDE || height > LOM_MOVIE_HD_MAX_SIDE)
+    {
+        errno = EINVAL;
+        return NULL;
+    }
+
+    snprintf(filters, sizeof(filters), "fps=%u,scale=%u:%u:flags=bicubic", LOM_MOVIE_HD_RATE, width, height);
+
+    if (limit != 0)
+    {
+        snprintf(frame_limit, sizeof(frame_limit), "%u", limit);
+        args[output] = "-frames:v";
+        args[output + 1] = frame_limit;
+        args[output + 2] = "-";
+    }
+    else
+    {
+        args[output] = "-";
+    }
+
+    return lom_movie_process_start(args, child);
+}
+
+FILE* lom_movie_decoder_open_audio(const char* path, unsigned int rate, pid_t* child)
+{
+    char sample_rate[16];
+    char* args[] = {"ffmpeg", "-nostdin", "-loglevel", "error",     "-i", (char*)path, "-map", "0:a:0", "-vn",
+                    "-ac",    "2",        "-ar",       sample_rate, "-f", "s16le",     "-",    NULL};
+
+    snprintf(sample_rate, sizeof(sample_rate), "%u", rate);
+    return lom_movie_process_start(args, child);
+}
+
 FILE* lom_movie_decoder_open(const char* path, unsigned int limit, pid_t* child)
 {
     return lom_movie_decoder_open_sized(path, limit, 320, 240, child);

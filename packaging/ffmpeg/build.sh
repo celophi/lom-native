@@ -59,11 +59,12 @@ cd "$work/build"
     --enable-static \
     --disable-shared \
     --enable-protocol=file,pipe \
-    --enable-demuxer=str \
-    --enable-decoder=mdec \
-    --enable-encoder=rawvideo \
-    --enable-muxer=rawvideo \
-    --enable-filter=scale \
+    --enable-demuxer=str,mov,xwma \
+    --enable-decoder=mdec,h264,aac,wmav2 \
+    --enable-parser=h264,aac \
+    --enable-encoder=rawvideo,pcm_s16le \
+    --enable-muxer=rawvideo,pcm_s16le \
+    --enable-filter=scale,fps,format,null,aformat,anull,aresample \
     > configure.log 2>&1 || { tail -40 configure.log >&2; exit 1; }
 
 if ! grep -q '^#define FFMPEG_LICENSE "LGPL version 2.1 or later"$' config.h; then
@@ -83,8 +84,10 @@ configuration=$(sed -n 's/^#define FFMPEG_CONFIGURATION "\(.*\)"$/\1/p' config.h
 cat > "$out/FFMPEG-NOTICE.txt" <<EOF
 This package includes ffmpeg, from FFmpeg $version (https://ffmpeg.org).
 
-The game runs it to decode its movies. It's a separate program, not linked
-into the game.
+The game runs it to decode its movies, and the Legend of Mana Remaster's
+(MP4: H.264 video, AAC sound, and one WMA track) when you have the
+Remaster. It's a separate
+program, not linked into the game.
 
 FFmpeg is licensed under the GNU Lesser General Public License, version 2.1
 or later. The full text is in COPYING.LGPLv2.1, next to this file. This

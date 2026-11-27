@@ -31,6 +31,16 @@ typedef struct LomPreparedMovie
 int lom_movie_prepare_file(const char* path, LomPreparedMovie* prepared);
 
 /**
+ * @brief Make a temporary file, readable only by the player, for ffmpeg to
+ *        read: the video sectors of a disc movie, or a Remaster movie's sound.
+ * @param path Set to its path, to delete when done.
+ * @param path_size Bytes at @p path.
+ * @param file_out Set to the file, open for writing and reading.
+ * @return 0, or -1.
+ */
+int lom_movie_temp_file(char* path, size_t path_size, FILE** file_out);
+
+/**
  * @brief Close and delete what lom_movie_prepare_file made.
  * @param prepared It.
  */

@@ -39,6 +39,7 @@ constexpr char pause_unfocused_key[] = "pause_unfocused=";
 
 constexpr char hd_backgrounds_key[] = "hd_backgrounds=";
 constexpr char hd_ui_key[] = "hd_pictures=";
+constexpr char hd_movies_key[] = "hd_movies=";
 constexpr char text_key[] = "text=";
 constexpr int text_value_count = 9;
 
@@ -92,6 +93,7 @@ constexpr Field fields[] = {
     {hd_backgrounds_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_backgrounds}; },
      [](Preferences& p, int v) { p.hd_backgrounds = v != 0; }},
     {hd_ui_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_ui}; }, [](Preferences& p, int v) { p.hd_ui = v != 0; }},
+    {hd_movies_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_movies}; }, [](Preferences& p, int v) { p.hd_movies = v != 0; }},
     {text_key, text_value_count, [](const Preferences& p) { return p.text_language; }, [](Preferences& p, int v) { p.text_language = v; }},
     {soundtrack_key, soundtrack_value_count, [](const Preferences& p) { return p.soundtrack; }, [](Preferences& p, int v) { p.soundtrack = v; }},
     {remaster_effects_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_effects}; },

@@ -67,6 +67,7 @@ void SettingsService::enable(const char* path)
 
     lom_native_remaster_set_hd_backgrounds(values_.hd_backgrounds);
     lom_native_remaster_set_hd_ui(values_.hd_ui);
+    lom_native_remaster_set_hd_movies(values_.hd_movies);
     lom_native_remaster_set_text(values_.text_language);
     lom_native_remaster_set_music(values_.soundtrack);
     lom_native_remaster_set_effects(values_.remaster_effects);
@@ -84,6 +85,7 @@ Preferences SettingsService::persistence_snapshot()
 
     values_.hd_backgrounds = lom_native_remaster_hd_backgrounds() != 0;
     values_.hd_ui = lom_native_remaster_hd_ui() != 0;
+    values_.hd_movies = lom_native_remaster_hd_movies() != 0;
     values_.text_language = lom_native_remaster_text();
     values_.soundtrack = lom_native_remaster_music();
     values_.remaster_effects = lom_native_remaster_effects() != 0;

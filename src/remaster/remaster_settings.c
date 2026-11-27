@@ -1,5 +1,6 @@
 #include "lom_native_remaster.h"
 #include "../gpu/hd_textures.h"
+#include "../gpu/hd_movie.h"
 
 #include <stdio.h>
 
@@ -9,6 +10,7 @@ static int s_hd_backgrounds = 1;
 static int s_music;
 static int s_effects;
 static int s_hd_ui = 1;
+static int s_hd_movies = 1;
 static int s_text;
 
 static int s_text_supported = 1;
@@ -77,6 +79,21 @@ void lom_native_remaster_set_hd_ui(int enabled)
 int lom_native_remaster_hd_ui(void)
 {
     return s_hd_ui;
+}
+
+int lom_native_remaster_hd_movies_supported(void)
+{
+    return lom_hd_movie_begin && lom_hd_movie_frame && lom_hd_movie_end;
+}
+
+void lom_native_remaster_set_hd_movies(int enabled)
+{
+    s_hd_movies = enabled != 0;
+}
+
+int lom_native_remaster_hd_movies(void)
+{
+    return s_hd_movies;
 }
 
 void lom_native_remaster_set_text(int language)

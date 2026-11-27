@@ -34,8 +34,8 @@ static constexpr auto main_malformed_key_padding = 127;
 static constexpr char resolution_field_text[] = "resolution=2\n";
 
 static constexpr char bad_widescreen_text[] = "widescreen=2\nwidescreen=yes\nwidescreen=-1\nwidescreen=1x\n";
-static constexpr char bad_remaster_text[] =
-    "hd_backgrounds=2\nhd_backgrounds=off\nhd_pictures=2\nhd_pictures=no\ntext=9\ntext=-1\nsoundtrack=3\nsoundtrack=-1\nsoundtrack=1x\n";
+static constexpr char bad_remaster_text[] = "hd_backgrounds=2\nhd_backgrounds=off\nhd_pictures=2\nhd_pictures=no\nhd_movies=2\nhd_movies=off\ntext=9\ntext=-"
+                                            "1\nsoundtrack=3\nsoundtrack=-1\nsoundtrack=1x\n";
 static constexpr char bad_category_text[] = "music_volume=101\nmusic_volume=-5\nmusic_mute=2\nsfx_volume=50x\nsfx_mute=yes\n";
 
 static constexpr char success_message[] = "settings-store: write/rename recovery, successful snapshots and partial-file validation pass";
@@ -143,10 +143,11 @@ int main(int argc, char** argv)
     CHECK(odd.size() == 1 && odd.at("mod:speed") == "slow");
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
-    CHECK(defaults.hd_backgrounds && defaults.hd_ui && defaults.soundtrack == 0);
+    CHECK(defaults.hd_backgrounds && defaults.hd_ui && defaults.hd_movies && defaults.soundtrack == 0);
     auto remaster = next;
     remaster.hd_backgrounds = false;
     remaster.hd_ui = false;
+    remaster.hd_movies = false;
     remaster.text_language = 3;
     remaster.soundtrack = 2;
     CHECK(store.save(remaster, PreferenceStore::SaveReason::Changed));
@@ -168,8 +169,8 @@ int main(int argc, char** argv)
 
     const std::string partial = player_one_up_key_prefix + std::to_string(SDL_SCANCODE_B) + player_two_up_key_prefix + std::to_string(SDL_SCANCODE_B) +
                                 player_one_right_key_prefix + std::to_string(SDL_SCANCODE_F7) + invalid_master_valid_mute_text +
-                                std::string(main_malformed_key_padding, 'x') + resolution_field_text + bad_widescreen_text +
-                                bad_remaster_text + bad_category_text;
+                                std::string(main_malformed_key_padding, 'x') + resolution_field_text + bad_widescreen_text + bad_remaster_text +
+                                bad_category_text;
     CHECK(SDL_SaveFile(path.c_str(), partial.data(), partial.size()));
     auto loaded = reload.load(path, defaults);
     CHECK(loaded.controls.keys[0][ps1_up_bit] == SDL_SCANCODE_B);
@@ -178,7 +179,7 @@ int main(int argc, char** argv)
     CHECK(loaded.audio.master.volume == main_full_volume && loaded.audio.master.muted);
     CHECK(loaded.display.resolution == 0);
     CHECK(!loaded.display.widescreen);
-    CHECK(loaded.hd_backgrounds && loaded.hd_ui && loaded.text_language == 0 && loaded.soundtrack == 0);
+    CHECK(loaded.hd_backgrounds && loaded.hd_ui && loaded.hd_movies && loaded.text_language == 0 && loaded.soundtrack == 0);
     CHECK(loaded.audio.categories == defaults.audio.categories);
     std::puts(success_message);
 }

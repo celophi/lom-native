@@ -10,6 +10,8 @@
   "hd_backgrounds_help": "Dibuja los pueblos y las mazmorras con los fondos repintados del Remaster, desde tu copia. Se aplica desde la siguiente sala. En algunas salas también se aplican los pequeños cambios del Remaster en las zonas por las que puedes andar.",
   "hd_ui_label": "Imágenes HD",
   "hd_ui_help": "Dibuja las imágenes repintadas del Remaster, desde tu copia, donde las pantallas de PS1 las muestran: las caras de las conversaciones, las imágenes de la enciclopedia, el mapa de la pared donde colocas tu casa al empezar, y en el mapa del mundo el panel del Árbol de Maná, los espíritus y los nombres.",
+  "hd_movies_label": "Vídeos HD",
+  "hd_movies_help": "Reproduce los vídeos en alta definición del Remaster, desde tu copia, en lugar de los de PS1: la introducción, los finales y los créditos. Sin pantalla panorámica se muestran con franjas negras. Se aplica desde el siguiente vídeo.",
   "text_label": "Texto",
   "text_help": "El texto del juego: el de PS1, o el inglés revisado del Remaster o uno de sus otros idiomas, desde tu copia. Se aplica desde la siguiente sala o menú.",
   "restore_display_label": "Restablecer la pantalla",

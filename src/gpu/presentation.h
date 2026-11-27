@@ -108,6 +108,22 @@ extern "C"
      * @param device Borrowed GPU device owning these resources.
      */
     void lom_present_release(LomPresentation* state, SDL_GPUDevice* device);
+
+    /**
+     * @brief While a movie of the renderer's own plays (src/gpu/hd_movie.h),
+     *        draw its latest frame over the window in place of the game's
+     *        picture, uploading it first if it's new.
+     * @param device The GPU device.
+     * @param cmd The frame's command buffer, outside any pass.
+     * @param target The window's texture.
+     * @param width Its width.
+     * @param height Its height.
+     * @return Nonzero when the movie was drawn.
+     */
+    int lom_hd_movie_present(SDL_GPUDevice* device, SDL_GPUCommandBuffer* cmd, SDL_GPUTexture* target, Uint32 width, Uint32 height);
+
+    /** @brief Release the movie's texture before the device goes. @param device The GPU device. */
+    void lom_hd_movie_release(SDL_GPUDevice* device);
 #ifdef __cplusplus
 }
 #endif

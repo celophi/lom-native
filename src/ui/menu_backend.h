@@ -42,6 +42,12 @@ class GameBackend final : public MenuBackend
 
     void set_hd_ui(bool value) override;
 
+    bool hd_movies_available() const override;
+
+    bool hd_movies() const override;
+
+    void set_hd_movies(bool value) override;
+
     int text_language() const override;
 
     bool text_available() const override;

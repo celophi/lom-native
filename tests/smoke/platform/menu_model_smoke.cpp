@@ -25,11 +25,14 @@ class FakeGame : public MenuBackend
     bool hd_drawn = true;
     bool hd = true;
     bool pictures = true;
+    bool movies_shown = true;
+    bool movies = true;
     int text = 0;
     bool text_shown = true;
     std::vector<std::pair<std::string, std::string>> mods;
     std::vector<std::string> mod_ids;
     std::vector<bool> mods_on;
+
     struct Option
     {
         std::string mod;
@@ -39,6 +42,7 @@ class FakeGame : public MenuBackend
         std::vector<std::pair<std::string, std::string>> choices;
         int chosen = 0;
     };
+
     std::vector<Option> options;
 
     std::string seed;
@@ -134,6 +138,21 @@ class FakeGame : public MenuBackend
     void set_hd_ui(bool value) override
     {
         pictures = value;
+    }
+
+    bool hd_movies_available() const override
+    {
+        return movies_shown;
+    }
+
+    bool hd_movies() const override
+    {
+        return movies;
+    }
+
+    void set_hd_movies(bool value) override
+    {
+        movies = value;
     }
 
     int text_language() const override
@@ -716,7 +735,7 @@ static void remaster_rows_show_only_when_it_is_found()
 
     game.remaster = true;
     menu.point(MenuCategory::Display, 4);
-    CHECK(menu.rows().size() == 8 && menu.rows()[4].label == "HD backgrounds" && menu.rows()[4].on);
+    CHECK(menu.rows().size() == 9 && menu.rows()[4].label == "HD backgrounds" && menu.rows()[4].on);
     press(menu, MenuInput::Select);
     CHECK(!game.hd && !menu.rows()[4].on && !game.display_settings.widescreen);
     press(menu, MenuInput::Right);
@@ -728,15 +747,21 @@ static void remaster_rows_show_only_when_it_is_found()
     press(menu, MenuInput::Right);
     CHECK(game.pictures);
     menu.point(MenuCategory::Display, 6);
-    CHECK(menu.rows()[6].label == "Text" && menu.rows()[6].value == "PS1");
+    CHECK(menu.rows()[6].label == "HD movies" && menu.rows()[6].on);
+    press(menu, MenuInput::Select);
+    CHECK(!game.movies && !menu.rows()[6].on && game.pictures);
     press(menu, MenuInput::Right);
-    CHECK(game.text == 1 && menu.rows()[6].value == "Remaster English");
+    CHECK(game.movies);
+    menu.point(MenuCategory::Display, 7);
+    CHECK(menu.rows()[7].label == "Text" && menu.rows()[7].value == "PS1");
+    press(menu, MenuInput::Right);
+    CHECK(game.text == 1 && menu.rows()[7].value == "Remaster English");
     press(menu, MenuInput::Left);
     press(menu, MenuInput::Left);
-    CHECK(game.text == 8 && menu.rows()[6].value == "Remaster Chinese (Traditional)");
+    CHECK(game.text == 8 && menu.rows()[7].value == "Remaster Chinese (Traditional)");
     press(menu, MenuInput::Right);
     CHECK(game.text == 0);
-    CHECK(menu.rows()[7].label == "Restore display defaults");
+    CHECK(menu.rows()[8].label == "Restore display defaults");
 
     menu.point(MenuCategory::Audio, 6);
     CHECK(menu.rows().size() == 9 && menu.rows()[6].label == "Soundtrack" && menu.rows()[6].value == "PS1");
@@ -758,6 +783,9 @@ static void remaster_rows_show_only_when_it_is_found()
     CHECK(menu.rows()[8].label == "Restore audio defaults");
 
     game.hd_drawn = false;
+    menu.point(MenuCategory::Display, 0);
+    CHECK(menu.rows().size() == 7 && menu.rows()[4].label == "HD movies" && menu.rows()[5].label == "Text");
+    game.movies_shown = false;
     menu.point(MenuCategory::Display, 0);
     CHECK(menu.rows().size() == 6 && menu.rows()[4].label == "Text");
     menu.point(MenuCategory::Audio, 0);

@@ -381,15 +381,15 @@ int main(void)
     CHECK_COUNTED(fwrite(partial, 1, sizeof(partial), file) == sizeof(partial));
     rewind(file);
     calls = put_calls;
-    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk) < 0);
+    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk, sizeof(chunk), 0) < 0);
     request(INT_MAX);
     CHECK_COUNTED(put_calls == calls);
     CHECK_COUNTED(!lom_movie_audio_output_failed(output));
     fclose(file);
     file = tmpfile();
     CHECK_COUNTED(file);
-    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk) == 0);
-    CHECK_COUNTED(prebuffer_movie_audio(output, file, chunk) < 0);
+    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk, sizeof(chunk), 0) == 0);
+    CHECK_COUNTED(prebuffer_movie_audio(output, file, chunk, sizeof(chunk), 0) < 0);
     fclose(file);
     file = tmpfile();
     CHECK_COUNTED(file);
@@ -401,9 +401,9 @@ int main(void)
     }
 
     rewind(file);
-    CHECK_COUNTED(!prebuffer_movie_audio(output, file, chunk));
+    CHECK_COUNTED(!prebuffer_movie_audio(output, file, chunk, sizeof(chunk), 0));
     CHECK_COUNTED(put_calls == calls);
-    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk) == 0);
+    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk, sizeof(chunk), 0) == 0);
     fclose(file);
     CHECK_COUNTED(!lom_movie_audio_output_destroy(output));
     CHECK_COUNTED(!callback && !live_allocs && !lock_depth);
@@ -420,8 +420,27 @@ int main(void)
     CHECK_COUNTED(fwrite(partial, 1, sizeof(partial), file) == sizeof(partial));
     rewind(file);
     calls = put_calls;
-    CHECK_COUNTED(prebuffer_movie_audio(output, file, chunk) < 0);
+    CHECK_COUNTED(prebuffer_movie_audio(output, file, chunk, sizeof(chunk), 0) < 0);
     CHECK_COUNTED(put_calls == calls);
+    fclose(file);
+    CHECK_COUNTED(!lom_movie_audio_output_destroy(output));
+    CHECK_COUNTED(!callback && !live_allocs && !lock_depth);
+    output = create(4 * LOM_NATIVE_MOVIE_AUDIO_FRAMES_PER_VIDEO_FRAME);
+    CHECK_COUNTED(output);
+    file = tmpfile();
+    CHECK_COUNTED(file);
+    memset(chunk, 0, sizeof(chunk));
+
+    for (unsigned i = 0; i < 3; ++i)
+    {
+        CHECK_COUNTED(fwrite(chunk, 1, sizeof(chunk), file) == sizeof(chunk));
+    }
+
+    CHECK_COUNTED(fwrite(partial, 1, sizeof(partial), file) == sizeof(partial));
+    rewind(file);
+    CHECK_COUNTED(!prebuffer_movie_audio(output, file, chunk, sizeof(chunk), 1));
+    CHECK_COUNTED(!memcmp(chunk, partial, sizeof(partial)) && chunk[sizeof(partial)] == 0 && chunk[sizeof(chunk) - 1] == 0);
+    CHECK_COUNTED(queue_movie_audio_frame(output, file, chunk, sizeof(chunk), 1) == 0);
     fclose(file);
     CHECK_COUNTED(!lom_movie_audio_output_destroy(output));
     CHECK_COUNTED(!callback && !live_allocs && !lock_depth);

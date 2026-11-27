@@ -103,6 +103,21 @@ void GameBackend::set_hd_ui(bool value)
     lom_native_remaster_set_hd_ui(value);
 }
 
+bool GameBackend::hd_movies_available() const
+{
+    return lom_native_remaster_hd_movies_supported() != 0;
+}
+
+bool GameBackend::hd_movies() const
+{
+    return lom_native_remaster_hd_movies() != 0;
+}
+
+void GameBackend::set_hd_movies(bool value)
+{
+    lom_native_remaster_set_hd_movies(value);
+}
+
 int GameBackend::text_language() const
 {
     return lom_native_remaster_text();
