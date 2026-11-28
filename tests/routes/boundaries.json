@@ -1146,6 +1146,23 @@
   "end saves 52 3050d152d9c9e5a2",
   "end graphics 12706 6bbb78debe78cca5"
  ],
+ "new-game-world-select-widescreen": [
+  "checkpoint home files 42 03d3a77fef5abdb5",
+  "checkpoint home sound 46 22a63e9e0810feb3",
+  "checkpoint home input 6886 c558041a1d687c35",
+  "checkpoint home saves 52 3050d152d9c9e5a2",
+  "checkpoint home graphics 2273 49dcbb3033d6c53d",
+  "checkpoint done files 46 7e6a04a3bbb92402",
+  "checkpoint done sound 60 8209e0df2176c500",
+  "checkpoint done input 10598 f7a2e0dda2fe8635",
+  "checkpoint done saves 52 3050d152d9c9e5a2",
+  "checkpoint done graphics 13101 1e658b2e5c7cf636",
+  "end files 46 7e6a04a3bbb92402",
+  "end sound 60 8209e0df2176c500",
+  "end input 10598 f7a2e0dda2fe8635",
+  "end saves 52 3050d152d9c9e5a2",
+  "end graphics 13124 8ae06db679f5e093"
+ ],
  "sea-sea-bs00-event-29": [
   "checkpoint entered files 22 aadb10ef8db7cb6a",
   "checkpoint entered sound 37 10b5db075a8cd2b6",
