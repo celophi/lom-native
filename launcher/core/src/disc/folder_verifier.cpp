@@ -1,4 +1,5 @@
 #include "lom/launcher/disc/folder_verifier.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "disc/file_digest.h"
 #include "lom/launcher/disc/file_manifest.h"
@@ -94,27 +95,20 @@ bool is_ignored_metadata(const std::string& name) {
 Enumeration enumerate(const std::filesystem::path& root) {
     Enumeration result;
     std::error_code code;
-    const std::filesystem::path canonical_root = std::filesystem::weakly_canonical(root, code);
-    std::filesystem::recursive_directory_iterator iterator(root, std::filesystem::directory_options::none, code);
+    const std::filesystem::path canonical_root = files_provider().weakly_canonical(root, code);
+    const std::vector<FileEntry> entries = files_provider().list(root, true, code);
 
     if (code) {
         result.status = FolderVerifier::Result::Status::Unreadable;
-        result.error = "cannot read " + root.u8string() + ": " + code.message();
+        result.error = (entries.empty() ? "cannot read " : "cannot list ") + root.u8string() + ": " + code.message();
         return result;
     }
 
-    for (; iterator != std::filesystem::recursive_directory_iterator(); iterator.increment(code)) {
-        if (code) {
-            result.status = FolderVerifier::Result::Status::Unreadable;
-            result.error = "cannot list " + root.u8string() + ": " + code.message();
-            return result;
-        }
+    for (const FileEntry& entry : entries) {
+        const std::string actual = entry.path.lexically_relative(root).generic_u8string();
 
-        const std::filesystem::directory_entry& entry = *iterator;
-        const std::string actual = entry.path().lexically_relative(root).generic_u8string();
-
-        if (entry.is_symlink(code)) {
-            const std::filesystem::path target = std::filesystem::weakly_canonical(entry.path(), code);
+        if (entry.symlink) {
+            const std::filesystem::path target = files_provider().weakly_canonical(entry.path, code);
 
             if (code || !is_within(target, canonical_root)) {
                 result.unsafe.push_back(actual);
@@ -122,15 +116,15 @@ Enumeration enumerate(const std::filesystem::path& root) {
             }
         }
 
-        if (entry.is_directory(code)) {
+        if (entry.directory) {
             continue;
         }
 
-        if (is_ignored_metadata(entry.path().filename().u8string())) {
+        if (is_ignored_metadata(entry.path.filename().u8string())) {
             continue;
         }
 
-        if (!entry.is_regular_file(code)) {
+        if (!entry.regular) {
             result.unreadable.push_back(actual);
             continue;
         }
@@ -144,9 +138,9 @@ Enumeration enumerate(const std::filesystem::path& root) {
         FoundFile found;
         found.actual = actual;
         found.canonical = canonical_name(actual);
-        found.path = entry.path();
-        found.bytes = entry.file_size(code);
-        found.modified = entry.last_write_time(code);
+        found.path = entry.path;
+        found.bytes = entry.size;
+        found.modified = files_provider().last_write_time(entry.path, code);
 
         if (code) {
             result.unreadable.push_back(actual);
@@ -256,8 +250,8 @@ FolderVerifier::Result compare(const std::filesystem::path& root, const Enumerat
             }
 
             std::error_code code;
-            const std::uintmax_t bytes = std::filesystem::file_size(file.path, code);
-            const auto modified = std::filesystem::last_write_time(file.path, code);
+            const std::uintmax_t bytes = files_provider().file_size(file.path, code);
+            const auto modified = files_provider().last_write_time(file.path, code);
 
             if (code || bytes != file.bytes || modified != file.modified) {
                 result.status = Status::ChangedDuringCheck;
@@ -315,7 +309,7 @@ FolderVerifier::Result FolderVerifier::verify(const std::filesystem::path& root,
     Result result;
     std::error_code code;
 
-    if (!std::filesystem::is_directory(root, code)) {
+    if (!files_provider().is_directory(root, code)) {
         result.status = Result::Status::NotFound;
         result.error = "the folder is not available";
         return result;
@@ -381,7 +375,7 @@ FolderVerifier::Result FolderVerifier::check(const std::filesystem::path& root, 
                                              const Progress& progress) {
     std::error_code code;
 
-    if (!std::filesystem::is_directory(root, code)) {
+    if (!files_provider().is_directory(root, code)) {
         Result result;
         result.status = Result::Status::NotFound;
         result.error = "the folder is not available";

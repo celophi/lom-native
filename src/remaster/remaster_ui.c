@@ -1,6 +1,5 @@
 #include "lom_native_remaster.h"
 #include "remaster_internal.h"
-#include "../gpu/hd_textures.h"
 
 #define u_long LomPsyzULong
 #include <psyz/gpu.h>
@@ -77,7 +76,7 @@ static unsigned s_next_placement;
  */
 static int supported(void)
 {
-    return lom_hd_images_set && lom_hd_images_upload && lom_hd_images_draw;
+    return lom_native_remaster_hd_ui_supported();
 }
 
 /**
@@ -901,7 +900,7 @@ static const Image* picture(const char* file, const char* label)
 
     if (s_texture == 0)
     {
-        s_texture = lom_hd_images_set(LAYERS, LAYER_SIZE) == 0 ? 1 : -1;
+        s_texture = lom_remaster_pictures_set(LAYERS, LAYER_SIZE) == 0 ? 1 : -1;
 
         if (s_texture < 0)
         {
@@ -928,7 +927,7 @@ static const Image* picture(const char* file, const char* label)
         return NULL;
     }
 
-    const int uploaded = lom_hd_images_upload(layer, x, y, slot_w, slot_h, pixels);
+    const int uploaded = lom_remaster_pictures_upload(layer, x, y, slot_w, slot_h, pixels);
     free(pixels);
 
     if (uploaded != 0)
@@ -1011,7 +1010,7 @@ static int draw_picture(const LomPsyzULong* words, int available, void* userdata
         const Placement* placement = &s_placements[index];
         const unsigned rgb = placement->rgb >= 0 ? (unsigned)placement->rgb : flags & 1 ? 0x808080 : code & 0xFFFFFF;
         const int semi = placement->semi >= 0 ? placement->semi : (int)(flags & 2);
-        lom_hd_images_draw(placement->has_xy ? placement->xy : points, placement->uv, placement->layer, rgb, semi, placement->tpage);
+        lom_remaster_pictures_draw(placement->has_xy ? placement->xy : points, placement->uv, placement->layer, rgb, semi, placement->tpage);
         index = placement->next < 0 ? PLACEMENTS : (uint32_t)placement->next;
     }
 
@@ -1565,7 +1564,7 @@ int lom_gpu_prim_filter(const unsigned int* words, int available, unsigned int t
     }
 
     const unsigned flags = words[0] >> 24;
-    lom_hd_images_draw(prim.xy, prim.uv, image->layer, flags & 1 ? 0x808080 : words[0] & 0xFFFFFF, flags & 2, prim.page);
+    lom_remaster_pictures_draw(prim.xy, prim.uv, image->layer, flags & 1 ? 0x808080 : words[0] & 0xFFFFFF, flags & 2, prim.page);
     return prim.used;
 }
 

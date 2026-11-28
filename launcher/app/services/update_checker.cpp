@@ -2,7 +2,7 @@
 
 #include "lom/launcher/common/json.h"
 #include "lom/launcher/common/semantic_version.h"
-#include "services/update_feed.h"
+#include "services/update_feed_provider.h"
 
 namespace lom::launcher {
 
@@ -19,8 +19,8 @@ constexpr char key_asset_url[] = "browser_download_url";
 
 }
 
-UpdateChecker::UpdateChecker(UpdateFeed* feed, QString current_version, QObject* parent)
-    : QObject(parent), feed_(feed), current_version_(std::move(current_version)) {
+UpdateChecker::UpdateChecker(UpdateFeedProvider* feed, QString current_version, QString repository, QObject* parent)
+    : QObject(parent), feed_(feed), current_version_(std::move(current_version)), repository_(std::move(repository)) {
 }
 
 void UpdateChecker::check() {
@@ -36,7 +36,7 @@ void UpdateChecker::check() {
     }
 
     checking_ = true;
-    feed_->fetch_latest_release([this](const UpdateFeed::Response& response) {
+    feed_->fetch_latest_release([this](const UpdateFeedProvider::Response& response) {
         checking_ = false;
         Result result;
 
@@ -44,11 +44,15 @@ void UpdateChecker::check() {
             result = interpret(response.body, current_version_);
         } else {
             result.status = Result::Status::CouldNotCheck;
-            result.error = response.error;
+            result.error = feed_error(response, repository_);
         }
 
         emit checked(result);
     });
+}
+
+QString UpdateChecker::feed_error(const UpdateFeedProvider::Response& response, const QString& repository) {
+    return response.not_found ? QStringLiteral("GitHub couldn't find the releases of %1").arg(repository) : response.error;
 }
 
 UpdateChecker::Result UpdateChecker::interpret(const QByteArray& body, const QString& current_version) {

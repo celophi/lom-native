@@ -1,22 +1,21 @@
 #include "services/game_process.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "window/app_paths.h"
-#include "services/process_runner.h"
+#include "services/process_runner_provider.h"
 #include "window/ui_text.h"
-
-#include <QLockFile>
 
 #include <system_error>
 
 namespace lom::launcher {
 
-GameProcess::GameProcess(ProcessRunner& runner, QObject* parent) : QObject(parent), runner_(runner) {
-    connect(&runner_, &ProcessRunner::started, this, &GameProcess::started);
-    connect(&runner_, &ProcessRunner::failed, this, [this](const QString& message) {
+GameProcess::GameProcess(ProcessRunnerProvider& runner, FileLockProvider& locks, QObject* parent) : QObject(parent), runner_(runner), locks_(locks) {
+    connect(&runner_, &ProcessRunnerProvider::started, this, &GameProcess::started);
+    connect(&runner_, &ProcessRunnerProvider::failed, this, [this](const QString& message) {
         release_lock();
         emit failed(message);
     });
-    connect(&runner_, &ProcessRunner::finished, this, [this](int exit_code, bool crashed) {
+    connect(&runner_, &ProcessRunnerProvider::finished, this, [this](int exit_code, bool crashed) {
         release_lock();
         Ending ending = Ending::Quit;
 
@@ -42,24 +41,23 @@ bool GameProcess::start(const std::filesystem::path& executable, const std::file
 
     std::error_code code;
 
-    if (executable.empty() || !std::filesystem::is_regular_file(executable, code)) {
+    if (executable.empty() || !files_provider().is_regular_file(executable, code)) {
         *error = ui_text::runtime_missing;
         return false;
     }
 
-    lock_ = std::make_unique<QLockFile>(AppPaths::to_text(save_root / lock_file_name));
+    lock_ = locks_.try_lock(save_root / lock_file_name);
 
-    if (!lock_->tryLock(0)) {
-        lock_.reset();
+    if (!lock_) {
         *error = ui_text::save_locked;
         return false;
     }
 
-    std::filesystem::create_directories(log_file.parent_path(), code);
-    std::filesystem::create_directories(working_directory, code);
+    files_provider().create_directories(log_file.parent_path(), code);
+    files_provider().create_directories(working_directory, code);
     log_file_ = log_file;
 
-    ProcessRunner::Request request;
+    ProcessRunnerProvider::Request request;
     request.program = AppPaths::to_text(executable);
     request.arguments = {AppPaths::to_text(data_directory)};
     request.environment.insert(card_root_variable, AppPaths::to_text(save_root));
@@ -110,7 +108,6 @@ const std::filesystem::path& GameProcess::log_file() const {
 
 void GameProcess::release_lock() {
     if (lock_) {
-        lock_->unlock();
         lock_.reset();
     }
 }

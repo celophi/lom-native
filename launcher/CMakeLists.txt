@@ -84,10 +84,11 @@ add_library(lom_launcher_core STATIC
     core/src/saves/save_folder.cpp
     core/src/saves/save_importer.cpp
     core/src/common/atomic_file.cpp
-    core/src/common/clock.cpp
+    core/src/common/clock_provider.cpp
+    core/src/common/files_provider.cpp
     core/src/common/launcher_settings.cpp
     core/src/common/progress.cpp
-    core/src/common/random_source.cpp
+    core/src/common/random_provider.cpp
     core/src/common/remaster_install.cpp
     core/src/common/semantic_version.cpp
     core/src/mods/mod_library.cpp

@@ -3,6 +3,7 @@
 #include "main/cd_resources.h"
 
 #include "lom_native_cd.h"
+#include "disc_files_provider.h"
 #include "lom_native_boundary.h"
 #include "lom_native_ps1_memory.h"
 #include "lom_native_unit_decode.h"
@@ -270,14 +271,31 @@ static const char* find_resource_relative_path(int resource_index)
  */
 static s32 get_file_size(const char* path)
 {
-    struct stat st;
+    const LomDiscFilesProvider* disc = lom_disc_files_provider();
+    const long size = disc->size(disc->context, path);
+    return size < 0 || size > 0x7FFFFFFF ? -1 : (s32)size;
+}
 
-    if (stat(path, &st) != 0 || st.st_size < 0 || st.st_size > 0x7FFFFFFF)
+/**
+ * @brief Read a whole file from the disc, through its provider, and set the last error when it can't: not found when
+ *        it isn't there, an I/O error when it is but can't be read, or is empty or over 2 GB.
+ * @param path The file's whole path.
+ * @param size Set to its size.
+ * @return Its bytes, for the caller to free, or NULL.
+ */
+static u8* read_disc_file(const char* path, size_t* size)
+{
+    const LomDiscFilesProvider* disc = lom_disc_files_provider();
+    u8* data = disc->read(disc->context, path, size);
+
+    if (data == NULL || *size == 0 || *size > 0x7FFFFFFF)
     {
-        return -1;
+        free(data);
+        g_last_error = disc->exists(disc->context, path) ? LOM_NATIVE_CD_ERROR_IO : LOM_NATIVE_CD_ERROR_NOT_FOUND;
+        return NULL;
     }
 
-    return (s32)st.st_size;
+    return data;
 }
 
 /**
@@ -289,10 +307,7 @@ static s32 get_file_size(const char* path)
 static u8* load_resource_file(int resource_index, s32* size_out)
 {
     char path[LOM_NATIVE_CD_PATH_MAX];
-    FILE* file;
-    u8* data;
-    s32 size;
-    size_t bytes_read;
+    size_t size = 0;
 
     if (size_out == NULL)
     {
@@ -305,41 +320,14 @@ static u8* load_resource_file(int resource_index, s32* size_out)
         return NULL;
     }
 
-    size = get_file_size(path);
-
-    if (size <= 0)
-    {
-        g_last_error = (errno == ENOENT) ? LOM_NATIVE_CD_ERROR_NOT_FOUND : LOM_NATIVE_CD_ERROR_IO;
-        return NULL;
-    }
-
-    file = fopen(path, "rb");
-
-    if (file == NULL)
-    {
-        g_last_error = (errno == ENOENT) ? LOM_NATIVE_CD_ERROR_NOT_FOUND : LOM_NATIVE_CD_ERROR_IO;
-        return NULL;
-    }
-
-    data = (u8*)malloc((size_t)size);
+    u8* data = read_disc_file(path, &size);
 
     if (data == NULL)
     {
-        fclose(file);
-        g_last_error = LOM_NATIVE_CD_ERROR_IO;
         return NULL;
     }
 
-    bytes_read = fread(data, 1, (size_t)size, file);
-
-    if (fclose(file) != 0 || bytes_read != (size_t)size)
-    {
-        free(data);
-        g_last_error = LOM_NATIVE_CD_ERROR_IO;
-        return NULL;
-    }
-
-    *size_out = size;
+    *size_out = (s32)size;
     g_last_error = LOM_NATIVE_CD_ERROR_NONE;
     return data;
 }
@@ -354,9 +342,7 @@ static u8* load_resource_file(int resource_index, s32* size_out)
 static s32 read_resource_file(int resource_index, void* dst_buffer)
 {
     char path[LOM_NATIVE_CD_PATH_MAX];
-    FILE* file;
-    s32 size;
-    size_t bytes_read;
+    size_t size = 0;
 
     if (dst_buffer == NULL)
     {
@@ -369,38 +355,24 @@ static s32 read_resource_file(int resource_index, void* dst_buffer)
         return -1;
     }
 
-    size = get_file_size(path);
+    u8* data = read_disc_file(path, &size);
 
-    if (size < 0)
+    if (data == NULL)
     {
-        g_last_error = (errno == ENOENT) ? LOM_NATIVE_CD_ERROR_NOT_FOUND : LOM_NATIVE_CD_ERROR_IO;
         return -1;
     }
 
-    if (!destination_fits(dst_buffer, (size_t)size))
+    if (!destination_fits(dst_buffer, size))
     {
+        free(data);
         g_last_error = LOM_NATIVE_CD_ERROR_INVALID_DESTINATION;
         return -1;
     }
 
-    file = fopen(path, "rb");
-
-    if (file == NULL)
-    {
-        g_last_error = (errno == ENOENT) ? LOM_NATIVE_CD_ERROR_NOT_FOUND : LOM_NATIVE_CD_ERROR_IO;
-        return -1;
-    }
-
-    bytes_read = fread(dst_buffer, 1, (size_t)size, file);
-
-    if (fclose(file) != 0 || bytes_read != (size_t)size)
-    {
-        g_last_error = LOM_NATIVE_CD_ERROR_IO;
-        return -1;
-    }
-
+    memcpy(dst_buffer, data, size);
+    free(data);
     g_last_error = LOM_NATIVE_CD_ERROR_NONE;
-    return size;
+    return (s32)size;
 }
 
 int lom_native_cd_set_disc_root(const char* path)
@@ -886,7 +858,7 @@ s32 cdrom_queue_command(u8 command, s32 resource_index, void* dst_buffer, CdComm
 
     if (size < 0)
     {
-        g_last_error = (errno == ENOENT) ? LOM_NATIVE_CD_ERROR_NOT_FOUND : LOM_NATIVE_CD_ERROR_IO;
+        g_last_error = LOM_NATIVE_CD_ERROR_NOT_FOUND;
         return -2;
     }
 

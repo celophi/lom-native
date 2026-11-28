@@ -1,9 +1,9 @@
 #ifndef LOM_LAUNCHER_SAVE_IMPORTER_H
 #define LOM_LAUNCHER_SAVE_IMPORTER_H
 
-#include "lom/launcher/common/clock.h"
+#include "lom/launcher/common/clock_provider.h"
 #include "lom/launcher/saves/memory_card.h"
-#include "lom/launcher/common/random_source.h"
+#include "lom/launcher/common/random_provider.h"
 
 #include <filesystem>
 #include <set>
@@ -60,8 +60,8 @@ class SaveImporter {
      * @return The result; on failure the slot is restored to its previous contents.
      */
     static Result commit(const std::filesystem::path& root, int slot, const std::vector<MemoryCard::File>& files, const std::set<std::string>& replace,
-                         const ReleaseCatalog& catalog, const std::string& release_id, const Clock& clock = Clock::system(),
-                         RandomSource& random = RandomSource::system());
+                         const ReleaseCatalog& catalog, const std::string& release_id, const ClockProvider& clock = ClockProvider::system(),
+                         RandomProvider& random = RandomProvider::system());
 };
 
 }

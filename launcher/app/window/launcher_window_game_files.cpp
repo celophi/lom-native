@@ -1,4 +1,5 @@
 #include "window/launcher_window.h"
+#include "services/launcher_dialogs.h"
 
 #include "dialogs/game_files_dialog.h"
 #include "lom/launcher/common/remaster_install.h"
@@ -112,7 +113,7 @@ void LauncherWindow::open_game_files() {
     });
     connect(&dialog, &GameFilesDialog::choose_remaster, this, [this, &dialog]() {
         const QString start = AppPaths::to_text(remaster_folder());
-        const QString chosen = services_.dialogs->choose_remaster_folder(&dialog, start);
+        const QString chosen = LauncherDialogs(*services_.dialogs).choose_remaster_folder(&dialog, start);
 
         if (chosen.isEmpty()) {
             return;

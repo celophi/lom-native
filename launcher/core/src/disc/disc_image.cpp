@@ -1,4 +1,5 @@
 #include "lom/launcher/disc/disc_image.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/disc/cue_sheet.h"
 #include "lom/launcher/common/sha1.h"
@@ -49,7 +50,7 @@ DiscImage::Status DiscImage::open(const std::filesystem::path& selected) {
     error_.clear();
     std::error_code code;
 
-    if (!std::filesystem::exists(selected, code)) {
+    if (!files_provider().exists(selected, code)) {
         error_ = "the selected file does not exist";
         return Status::NotFound;
     }
@@ -89,7 +90,7 @@ DiscImage::Status DiscImage::open(const std::filesystem::path& selected) {
         return Status::UnsupportedLayout;
     }
 
-    if (!std::filesystem::exists(sheet.files().front(), code)) {
+    if (!files_provider().exists(sheet.files().front(), code)) {
         error_ = "the CUE refers to " + sheet.files().front().filename().u8string() + ", which is missing";
         return Status::MissingTrackFile;
     }
@@ -100,19 +101,17 @@ DiscImage::Status DiscImage::open(const std::filesystem::path& selected) {
 DiscImage::Status DiscImage::open_data(const std::filesystem::path& path, bool require_raw) {
     std::error_code code;
     data_file_ = path;
-    data_bytes_ = std::filesystem::file_size(path, code);
+    data_bytes_ = files_provider().file_size(path, code);
 
     if (code) {
         error_ = "cannot read " + path.filename().u8string();
         return Status::Unreadable;
     }
 
-    modified_ = std::filesystem::last_write_time(path, code);
-    stream_.close();
-    stream_.clear();
-    stream_.open(path, std::ios::binary);
+    modified_ = files_provider().last_write_time(path, code);
+    stream_ = files_provider().open_read(path, std::ios::binary);
 
-    if (!stream_) {
+    if (!*stream_) {
         error_ = "cannot open " + path.filename().u8string();
         return Status::Unreadable;
     }
@@ -120,10 +119,10 @@ DiscImage::Status DiscImage::open_data(const std::filesystem::path& path, bool r
     std::vector<std::uint8_t> sector(raw_sector_bytes);
 
     if (data_bytes_ % raw_sector_bytes == 0 && data_bytes_ >= std::uint64_t(volume_descriptor_lba + 1) * raw_sector_bytes) {
-        stream_.seekg(std::streamoff(volume_descriptor_lba) * raw_sector_bytes);
-        stream_.read(reinterpret_cast<char*>(sector.data()), raw_sector_bytes);
+        stream_->seekg(std::streamoff(volume_descriptor_lba) * raw_sector_bytes);
+        stream_->read(reinterpret_cast<char*>(sector.data()), raw_sector_bytes);
 
-        if (stream_ && has_sync(sector.data())) {
+        if (*stream_ && has_sync(sector.data())) {
             const std::uint8_t mode = sector[mode_offset];
             const std::size_t offset = mode == 1 ? mode1_data_offset : mode2_data_offset;
 
@@ -134,7 +133,7 @@ DiscImage::Status DiscImage::open_data(const std::filesystem::path& path, bool r
         }
     }
 
-    stream_.clear();
+    stream_->clear();
 
     if (require_raw) {
         error_ = "the track file does not contain raw 2352-byte data sectors";
@@ -142,16 +141,16 @@ DiscImage::Status DiscImage::open_data(const std::filesystem::path& path, bool r
     }
 
     if (data_bytes_ % user_sector_bytes == 0 && data_bytes_ >= std::uint64_t(volume_descriptor_lba + 1) * user_sector_bytes) {
-        stream_.seekg(std::streamoff(volume_descriptor_lba) * user_sector_bytes);
-        stream_.read(reinterpret_cast<char*>(sector.data()), user_sector_bytes);
+        stream_->seekg(std::streamoff(volume_descriptor_lba) * user_sector_bytes);
+        stream_->read(reinterpret_cast<char*>(sector.data()), user_sector_bytes);
 
-        if (stream_ && has_volume_identifier(sector.data())) {
+        if (*stream_ && has_volume_identifier(sector.data())) {
             representation_ = Representation::CookedSectors;
             return Status::Ok;
         }
     }
 
-    stream_.clear();
+    stream_->clear();
     error_ = "not a recognized CD image (no ISO9660 volume in raw or 2048-byte sectors)";
     return Status::UnsupportedFormat;
 }
@@ -174,7 +173,8 @@ const char* DiscImage::layout() const {
 }
 
 bool DiscImage::hash_identity(const Progress& progress, std::string& sha1) {
-    std::ifstream in(data_file_, std::ios::binary);
+    const auto in_file = files_provider().open_read(data_file_, std::ios::binary);
+    std::istream& in = *in_file;
 
     if (!in) {
         error_ = "cannot open " + data_file_.filename().u8string();
@@ -219,15 +219,15 @@ bool DiscImage::read_user_data(std::uint32_t lba, std::uint8_t* out, SectorKind*
     }
 
     if (representation_ == Representation::CookedSectors) {
-        stream_.seekg(std::streamoff(lba) * user_sector_bytes);
-        stream_.read(reinterpret_cast<char*>(out), user_sector_bytes);
+        stream_->seekg(std::streamoff(lba) * user_sector_bytes);
+        stream_->read(reinterpret_cast<char*>(out), user_sector_bytes);
 
         if (kind != nullptr) {
             *kind = SectorKind::Cooked;
         }
 
-        if (!stream_) {
-            stream_.clear();
+        if (!*stream_) {
+            stream_->clear();
             error_ = "cannot read sector " + std::to_string(lba);
             return false;
         }
@@ -236,11 +236,11 @@ bool DiscImage::read_user_data(std::uint32_t lba, std::uint8_t* out, SectorKind*
     }
 
     std::uint8_t sector[raw_sector_bytes];
-    stream_.seekg(std::streamoff(lba) * raw_sector_bytes);
-    stream_.read(reinterpret_cast<char*>(sector), raw_sector_bytes);
+    stream_->seekg(std::streamoff(lba) * raw_sector_bytes);
+    stream_->read(reinterpret_cast<char*>(sector), raw_sector_bytes);
 
-    if (!stream_ || !has_sync(sector)) {
-        stream_.clear();
+    if (!*stream_ || !has_sync(sector)) {
+        stream_->clear();
         error_ = "sector " + std::to_string(lba) + " is not a readable data sector";
         return false;
     }
@@ -271,13 +271,13 @@ bool DiscImage::read_user_data(std::uint32_t lba, std::uint8_t* out, SectorKind*
 
 bool DiscImage::unchanged_since_open() const {
     std::error_code code;
-    const std::uintmax_t size = std::filesystem::file_size(data_file_, code);
+    const std::uintmax_t size = files_provider().file_size(data_file_, code);
 
     if (code || size != data_bytes_) {
         return false;
     }
 
-    const auto modified = std::filesystem::last_write_time(data_file_, code);
+    const auto modified = files_provider().last_write_time(data_file_, code);
     return !code && modified == modified_;
 }
 

@@ -1,4 +1,5 @@
 #include "lom/launcher/mods/mod_library.h"
+#include "../support/disk.h"
 #include "lom/launcher/common/atomic_file.h"
 #include "../support/test_harness.h"
 
@@ -12,6 +13,7 @@
 namespace {
 
 using namespace lom::launcher;
+namespace disk = lom::launcher::test::disk;
 
 /**
  * @brief Make a scratch folder for one test.
@@ -92,7 +94,7 @@ TEST(ModLibrary, shows_why_the_game_would_refuse_a_mod) {
     write_mod(folder, "renamed", "real-id");
     ASSERT_TRUE(AtomicFile::write(folder / "newer" / "mod.json",
                                   "{\"id\": \"newer\", \"name\": \"Newer\", \"version\": \"2.0.0\", \"game\": \"SLUS-01013\", \"api\": 99}\n", nullptr));
-    std::filesystem::create_directories(folder / "empty");
+    disk::create_directories(folder / "empty");
 
     const std::vector<ModEntry> entries = ModLibrary(folder).scan();
     ASSERT_NE(find(entries, "renamed"), nullptr);
@@ -242,7 +244,7 @@ TEST(ModLibrary, adds_a_mod_from_any_folder_under_its_id) {
 
     EXPECT_EQ(library.add(downloads / "My Mod v1.2", false, error), std::optional<std::string>("my-mod")) << error;
     EXPECT_TRUE(library.installed("my-mod"));
-    EXPECT_TRUE(std::filesystem::exists(folder / "my-mod" / "scripts" / "main.lua"));
+    EXPECT_TRUE(disk::exists(folder / "my-mod" / "scripts" / "main.lua"));
     const std::vector<ModEntry> entries = library.scan();
     EXPECT_TRUE(find(entries, "my-mod")->refused.empty());
     EXPECT_FALSE(find(entries, "my-mod")->enabled);
@@ -256,7 +258,7 @@ TEST(ModLibrary, refuses_to_add_a_folder_without_a_usable_id) {
     const std::filesystem::path folder = scratch();
     const std::filesystem::path downloads = scratch();
     write_mod(downloads, "bad", "Not_Valid");
-    std::filesystem::create_directories(downloads / "nothing");
+    disk::create_directories(downloads / "nothing");
     ModLibrary library(folder);
     std::string error;
 
@@ -298,7 +300,7 @@ TEST(ModLibrary, lists_examples_that_can_be_turned_on_but_not_removed) {
 
     EXPECT_FALSE(library.remove("example", error));
     EXPECT_NE(error.find("can be turned off but not removed"), std::string::npos);
-    EXPECT_TRUE(std::filesystem::exists(examples / "example" / "mod.json"));
+    EXPECT_TRUE(disk::exists(examples / "example" / "mod.json"));
     EXPECT_TRUE(library.save(entries, error)) << error;
     EXPECT_EQ(AtomicFile::read(folder / "mods.ini", nullptr), std::optional<std::string>("example\n"));
 }

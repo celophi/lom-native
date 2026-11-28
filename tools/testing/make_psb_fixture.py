@@ -4,7 +4,7 @@ import struct
 import zlib
 from pathlib import Path
 
-OUTPUT = Path(__file__).resolve().parents[2] / 'tests/smoke/platform/remaster_fixture.h'
+OUTPUT = Path(__file__).resolve().parents[2] / 'tests/support/platform/remaster_fixture.h'
 
 
 def int_array(values):

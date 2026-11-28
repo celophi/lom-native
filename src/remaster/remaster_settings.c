@@ -1,5 +1,5 @@
 #include "lom_native_remaster.h"
-#include "../gpu/hd_textures.h"
+#include "../gpu/hd_renderer_provider.h"
 #include "../gpu/hd_movie.h"
 
 #include <stdio.h>
@@ -58,7 +58,8 @@ int lom_native_remaster_uses(int which)
 
 int lom_native_remaster_hd_supported(void)
 {
-    return lom_hd_textures_set && lom_hd_textures_upload && lom_hd_textures_draw && lom_hd_textures_release;
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    return renderer->texture_create && renderer->texture_upload && renderer->texture_release && renderer->quad;
 }
 
 void lom_native_remaster_set_hd_backgrounds(int enabled)
@@ -104,7 +105,8 @@ int lom_native_remaster_effects(void)
 
 int lom_native_remaster_hd_ui_supported(void)
 {
-    return lom_hd_images_set && lom_hd_images_upload && lom_hd_images_draw && lom_hd_images_release;
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    return renderer->texture_create && renderer->texture_upload && renderer->texture_mipmaps && renderer->texture_release && renderer->quad;
 }
 
 void lom_native_remaster_set_hd_ui(int enabled)

@@ -1,4 +1,5 @@
 #include "synthetic_disc.h"
+#include "disk.h"
 
 #include <algorithm>
 #include <fstream>
@@ -188,8 +189,9 @@ std::vector<std::uint8_t> SyntheticDisc::cooked() const {
 }
 
 void SyntheticDisc::write(const std::filesystem::path& path, const std::vector<std::uint8_t>& bytes) {
-    std::filesystem::create_directories(path.parent_path());
-    std::ofstream out(path, std::ios::binary | std::ios::trunc);
+    disk::create_directories(path.parent_path());
+    const auto out_file = disk::write(path, std::ios::binary | std::ios::trunc);
+    std::ostream& out = *out_file;
     out.write(reinterpret_cast<const char*>(bytes.data()), std::streamsize(bytes.size()));
 }
 

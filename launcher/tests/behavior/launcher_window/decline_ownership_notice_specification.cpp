@@ -13,7 +13,7 @@ struct DeclineOwnershipNoticeSpecification : LauncherSpec {
      * @brief Start from a profile that has never acknowledged the notice.
      */
     DeclineOwnershipNoticeSpecification() {
-        std::filesystem::remove(config_directory / "launcher.json");
+        disk::remove(config_directory / "launcher.json");
     }
 };
 
@@ -25,5 +25,5 @@ LOM_SPEC(DeclineOwnershipNoticeSpecification, "Quitting at the ownership notice 
     press("noticeQuitButton");
 
     EXPECT_FALSE(launcher().isVisible());
-    EXPECT_FALSE(std::filesystem::exists(config_directory / "launcher.json"));
+    EXPECT_FALSE(disk::exists(config_directory / "launcher.json"));
 }

@@ -1,8 +1,10 @@
 #include "disc/file_digest.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/sha256.h"
 
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <vector>
 
 namespace lom::launcher {
@@ -15,7 +17,8 @@ constexpr std::size_t chunk_bytes = 1u << 20;
 
 FileDigestStatus sha256_file(const std::filesystem::path& path, const Progress& progress, Progress::Stage stage, std::uint64_t& done, std::uint64_t total,
                              std::string& sha256) {
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = files_provider().open_read(path, std::ios::binary);
+    std::istream& in = *in_file;
 
     if (!in) {
         return FileDigestStatus::Unreadable;

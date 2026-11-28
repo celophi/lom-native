@@ -1,4 +1,5 @@
 #include "remaster_internal.h"
+#include "remaster_files_provider.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,26 +25,14 @@ static uint64_t le(const unsigned char* p, unsigned n)
 
 unsigned char* lom_remaster_load(const char* path, size_t* size)
 {
-    FILE* file = fopen(path, "rb");
+    const LomRemasterFilesProvider* files = lom_remaster_files_provider();
+    size_t length = 0;
+    unsigned char* data = files->read(files->context, path, &length);
 
-    if (!file)
+    if (!data)
     {
         return NULL;
     }
-
-    fseek(file, 0, SEEK_END);
-    long length = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    unsigned char* data = length > 0 ? malloc((size_t)length) : NULL;
-
-    if (!data || fread(data, 1, (size_t)length, file) != (size_t)length)
-    {
-        free(data);
-        fclose(file);
-        return NULL;
-    }
-
-    fclose(file);
 
     if (length < 8 || memcmp(data, "mdf", 4) != 0)
     {

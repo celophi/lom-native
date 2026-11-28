@@ -1,4 +1,6 @@
 #include "window/launcher_window.h"
+#include "lom/launcher/common/files_provider.h"
+#include "services/launcher_dialogs.h"
 
 #include "pages/progress_page.h"
 #include "pages/ready_page.h"
@@ -9,7 +11,8 @@
 #include <QDir>
 
 #include <filesystem>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <string>
 #include <system_error>
 
@@ -25,7 +28,7 @@ constexpr char write_probe_name[] = ".lom-write-check";
  */
 bool writable_directory(const std::filesystem::path& directory) {
     std::error_code code;
-    std::filesystem::create_directories(directory, code);
+    files_provider().create_directories(directory, code);
 
     if (code) {
         return false;
@@ -33,14 +36,15 @@ bool writable_directory(const std::filesystem::path& directory) {
 
     const std::filesystem::path probe = directory / write_probe_name;
     {
-        std::ofstream out(probe, std::ios::binary);
+        const auto out_file = files_provider().open_write(probe, std::ios::binary);
+        std::ostream& out = *out_file;
 
         if (!out) {
             return false;
         }
     }
 
-    std::filesystem::remove(probe, code);
+    files_provider().remove(probe, code);
     return true;
 }
 }
@@ -63,7 +67,7 @@ void LauncherWindow::validate_installation(bool full_check) {
 
     std::error_code code;
     const bool receipt_ok =
-        installation.kind == Installation::Kind::External || std::filesystem::exists(installation.data_path.parent_path() / DiscImporter::receipt_file, code);
+        installation.kind == Installation::Kind::External || files_provider().exists(installation.data_path.parent_path() / DiscImporter::receipt_file, code);
     const std::filesystem::path snapshot_file = paths_.snapshot_file(installation.data_path, installation.manifest_sha256);
     const std::optional<FileSnapshot> trusted = full_check ? std::nullopt : FileSnapshot::load(snapshot_file);
     auto result = std::make_shared<FolderVerifier::Result>();
@@ -127,7 +131,7 @@ void LauncherWindow::choose_image() {
         start_directory = QDir::homePath();
     }
 
-    const QString chosen = services_.dialogs->choose_disc_image(this, start_directory);
+    const QString chosen = LauncherDialogs(*services_.dialogs).choose_disc_image(this, start_directory);
 
     if (chosen.isEmpty()) {
         return;
@@ -187,8 +191,8 @@ void LauncherWindow::identify_image(const std::filesystem::path& path) {
     };
 
     const ReleaseCatalog* catalog = &catalog_;
-    const Clock* clock = services_.clock;
-    RandomSource* random = services_.random;
+    const ClockProvider* clock = services_.clock;
+    RandomProvider* random = services_.random;
     task_->start([identification, path, catalog, clock, random](const Progress& progress) {
         *identification = DiscImporter(*catalog, *clock, *random).identify(path, progress);
     });
@@ -246,8 +250,8 @@ void LauncherWindow::install_image(const DiscImporter::Identification& identific
     };
 
     const ReleaseCatalog* catalog = &catalog_;
-    const Clock* clock = services_.clock;
-    RandomSource* random = services_.random;
+    const ClockProvider* clock = services_.clock;
+    RandomProvider* random = services_.random;
     const FileManifest expected = *manifest;
     const DiscImporter::Identification accepted = identification;
     task_->start([result, catalog, clock, random, expected, accepted, root](const Progress& progress) {
@@ -260,7 +264,7 @@ void LauncherWindow::choose_folder() {
         return;
     }
 
-    const QString chosen = services_.dialogs->choose_game_folder(this);
+    const QString chosen = LauncherDialogs(*services_.dialogs).choose_game_folder(this);
 
     if (!chosen.isEmpty()) {
         verify_folder(AppPaths::to_path(chosen));
@@ -341,7 +345,7 @@ void LauncherWindow::verify_folder(const std::filesystem::path& path) {
 }
 
 bool LauncherWindow::change_games_root(QWidget* parent) {
-    const QString chosen = services_.dialogs->choose_games_root(parent, AppPaths::to_text(games_root()));
+    const QString chosen = LauncherDialogs(*services_.dialogs).choose_games_root(parent, AppPaths::to_text(games_root()));
 
     if (chosen.isEmpty()) {
         return false;

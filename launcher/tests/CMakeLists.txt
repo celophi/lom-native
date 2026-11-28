@@ -10,6 +10,7 @@ endif()
 
 add_library(lom_launcher_test_support STATIC
     support/disc_fixture.cpp
+    support/files_provider_fake.cpp
     support/synthetic_card.cpp
     support/synthetic_disc.cpp
     support/test_harness.cpp)
@@ -31,7 +32,8 @@ add_executable(lom-launcher-unit-tests
     unit/sha1_test.cpp
     unit/sha256_test.cpp
     unit/update_package_test.cpp
-    unit/zip_writer_test.cpp)
+    unit/zip_writer_test.cpp
+    support/fake_disk_each_test.cpp)
 target_link_libraries(lom-launcher-unit-tests PRIVATE lom_launcher_test_support GTest::gtest_main)
 target_compile_options(lom-launcher-unit-tests PRIVATE ${LOM_LAUNCHER_WARNINGS})
 
@@ -39,14 +41,14 @@ set(LOM_LAUNCHER_TEST_IMAGE "" CACHE FILEPATH
     "User-supplied US disc image (CUE or BIN) for real-disc launcher checks; empty skips them")
 
 if(COMMAND lom_add_test)
-    lom_add_test(NAME launcher-unit TIER 0 COMMAND lom-launcher-unit-tests)
+    lom_add_test(NAME launcher-unit TIER 0 KIND unit COMMAND lom-launcher-unit-tests)
     if(LOM_LAUNCHER_TEST_IMAGE)
-        lom_add_test(NAME launcher-real-image TIER 2 LABELS disc
+        lom_add_test(NAME launcher-real-image TIER 2 KIND integration LABELS disc
             COMMAND lom-disc-tool identify "${LOM_LAUNCHER_TEST_IMAGE}"
                 --catalog "${LOM_LAUNCHER_DATA_DIR}/supported-discs.json")
     endif()
     if(LOM_DISC_ROOT)
-        lom_add_test(NAME launcher-real-folder TIER 2 TIMEOUT 900
+        lom_add_test(NAME launcher-real-folder TIER 2 KIND integration TIMEOUT 900
             COMMAND lom-disc-tool verify-folder @DISC@
                 --catalog "${LOM_LAUNCHER_DATA_DIR}/supported-discs.json")
     endif()
@@ -89,15 +91,27 @@ if(TARGET lom-launcher)
     target_compile_options(lom-launcher-specs PRIVATE ${LOM_LAUNCHER_WARNINGS})
 
     add_executable(lom-launcher-fake-game providers/fake_game.cpp)
-    add_executable(lom-launcher-provider-checks providers/process_runner_contract.cpp providers/update_installer_contract.cpp)
-    target_link_libraries(lom-launcher-provider-checks PRIVATE lom_launcher_app_lib GTest::gtest)
+    add_executable(lom-launcher-provider-checks
+        providers/contract_main.cpp
+        providers/clock_provider_contract.cpp
+        providers/desktop_provider_contract.cpp
+        providers/download_provider_contract.cpp
+        providers/file_dialogs_provider_contract.cpp
+        providers/file_lock_provider_contract.cpp
+        providers/files_provider_contract.cpp
+        providers/process_runner_provider_contract.cpp
+        providers/random_provider_contract.cpp
+        providers/tools_provider_contract.cpp
+        providers/update_feed_provider_contract.cpp)
+    set_target_properties(lom-launcher-provider-checks PROPERTIES AUTOMOC ON)
+    target_link_libraries(lom-launcher-provider-checks PRIVATE lom_launcher_app_lib lom_launcher_test_support GTest::gtest)
     target_compile_options(lom-launcher-provider-checks PRIVATE ${LOM_LAUNCHER_WARNINGS})
     target_compile_definitions(lom-launcher-provider-checks PRIVATE LOM_FAKE_GAME="$<TARGET_FILE:lom-launcher-fake-game>")
     add_dependencies(lom-launcher-provider-checks lom-launcher-fake-game)
 
     if(COMMAND lom_add_test)
-        lom_add_test(NAME launcher-specs TIER 0 COMMAND lom-launcher-specs ENV QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=)
-        lom_add_test(NAME launcher-providers TIER 0 COMMAND lom-launcher-provider-checks)
+        lom_add_test(NAME launcher-specs TIER 0 KIND behavior COMMAND lom-launcher-specs ENV QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=)
+        lom_add_test(NAME launcher-providers TIER 0 KIND contract COMMAND lom-launcher-provider-checks ENV QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=)
     else()
         add_test(NAME launcher-specs COMMAND lom-launcher-specs)
         set_tests_properties(launcher-specs PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QPA_PLATFORMTHEME=")

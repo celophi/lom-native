@@ -26,5 +26,5 @@ LOM_SPEC(OpenSaveFolderSpecification, "Opening the save folder should show it in
     press("openSavesButton");
 
     EXPECT_EQ(opened_folders, std::vector<QString>{shown(data_directory / "cards")});
-    EXPECT_TRUE(std::filesystem::is_directory(data_directory / "cards" / "slot0"));
+    EXPECT_TRUE(disk::is_directory(data_directory / "cards" / "slot0"));
 }

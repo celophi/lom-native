@@ -170,8 +170,8 @@ void LauncherWindow::show_whats_new() {
         return;
     }
 
-    services_.updates->fetch_releases([this](const UpdateFeed::Response& response) {
-        QString error = response.error;
+    services_.updates->fetch_releases([this](const UpdateFeedProvider::Response& response) {
+        QString error = UpdateChecker::feed_error(response, services_.issue_repository);
         const auto releases = response.ok ? ReleaseHistory::interpret(response.body, &error) : std::nullopt;
 
         if (releases) {
@@ -188,7 +188,7 @@ void LauncherWindow::show_whats_new_after_update() {
         return;
     }
 
-    services_.updates->fetch_releases([this](const UpdateFeed::Response& response) {
+    services_.updates->fetch_releases([this](const UpdateFeedProvider::Response& response) {
         const auto releases = response.ok ? ReleaseHistory::interpret(response.body, nullptr) : std::nullopt;
 
         if (!releases) {

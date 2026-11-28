@@ -16,8 +16,8 @@ class QPushButton;
 
 namespace lom::launcher {
 
-class Desktop;
-class FileDialogs;
+class DesktopProvider;
+class FileDialogsProvider;
 
 class ModsDialog : public QDialog {
     Q_OBJECT
@@ -42,7 +42,7 @@ class ModsDialog : public QDialog {
      * @param desktop Opens the mods folder.
      * @param parent The launcher's window.
      */
-    ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& desktop, QWidget* parent);
+    ModsDialog(ModLibrary library, FileDialogsProvider& dialogs, DesktopProvider& desktop, QWidget* parent);
 
     /**
      * @brief Close the window, first saving a seed that was typed but not yet
@@ -121,8 +121,8 @@ class ModsDialog : public QDialog {
     int selected_row() const;
 
     ModLibrary library_;
-    FileDialogs& dialogs_;
-    Desktop& desktop_;
+    FileDialogsProvider& dialogs_;
+    DesktopProvider& desktop_;
     std::vector<ModEntry> entries_;
     QListWidget* list_ = nullptr;
     QLabel* empty_ = nullptr;

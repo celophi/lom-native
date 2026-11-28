@@ -2,22 +2,28 @@
 #define LOM_LAUNCHER_LAUNCHER_SPEC_H
 
 #include "../../support/disc_fixture.h"
+#include "../../support/disk.h"
+#include "../../support/files_provider_fake.h"
 #include "lom/launcher/common/json.h"
-#include "mocks/mock_clock.h"
-#include "mocks/mock_desktop.h"
-#include "mocks/mock_file_dialogs.h"
-#include "mocks/mock_process_runner.h"
-#include "mocks/mock_random_source.h"
-#include "mocks/mock_update_feed.h"
-#include "mocks/mock_update_installer.h"
-#include "services/process_runner.h"
-#include "services/update_feed.h"
+#include "mocks/clock_provider_mock.h"
+#include "mocks/desktop_provider_mock.h"
+#include "mocks/download_provider_mock.h"
+#include "mocks/file_dialogs_provider_mock.h"
+#include "mocks/file_lock_provider_mock.h"
+#include "mocks/process_runner_provider_mock.h"
+#include "mocks/random_provider_mock.h"
+#include "mocks/tools_provider_mock.h"
+#include "mocks/update_feed_provider_mock.h"
+#include "services/process_runner_provider.h"
+#include "services/update_feed_provider.h"
 #include "services/update_installer.h"
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include <QByteArray>
 #include <QString>
+#include <QStringList>
 #include <QUrl>
 
 #include <atomic>
@@ -29,6 +35,7 @@
 #include <string>
 #include <vector>
 
+class QProgressDialog;
 class QWidget;
 
 namespace lom::launcher {
@@ -36,8 +43,17 @@ class LauncherWindow;
 }
 
 namespace lom::launcher::test {
-class LauncherSpec : public ::testing::Test {
+struct LauncherSpecDisk {
+    FilesProviderFake files_provider_fake;
+};
+
+class LauncherSpec : public LauncherSpecDisk, public ::testing::Test {
   public:
+    struct ProgramRun {
+        QString program;
+        QStringList arguments;
+    };
+
     static constexpr char version[] = "0.4.0";
     static constexpr std::int64_t default_now = 1792065600;
 
@@ -60,35 +76,44 @@ class LauncherSpec : public ::testing::Test {
     QString remaster_folder_choice;
     QString mod_folder_choice;
     bool update_feed_configured = true;
-    UpdateFeed::Response update_response;
-    UpdateFeed::Response releases_response;
+    UpdateFeedProvider::Response update_response;
+    UpdateFeedProvider::Response releases_response;
     bool installer_configured = true;
     bool can_update_itself = false;
-    bool install_finishes = true;
-    UpdateInstaller::Outcome install_outcome{true, false, QString()};
+    UpdateInstaller::Target update_target;
+    QByteArray release_package;
+    QByteArray release_checksums;
+    bool download_finishes = true;
+    QString download_error;
+    std::function<void(const ProgramRun& run)> tool_does;
+    int tool_exit_code = 0;
+    QString tool_output;
     bool restart_starts = true;
     bool game_fails_to_start = false;
+    bool save_folder_in_use = false;
     QString game_start_failure;
     std::int64_t now = default_now;
 
-    ::testing::NiceMock<MockFileDialogs>* file_dialogs_mock = nullptr;
-    ::testing::NiceMock<MockProcessRunner>* process_runner_mock = nullptr;
-    ::testing::NiceMock<MockUpdateFeed>* update_feed_mock = nullptr;
-    ::testing::NiceMock<MockDesktop>* desktop_mock = nullptr;
-    ::testing::NiceMock<MockUpdateInstaller>* installer_mock = nullptr;
-    ::testing::NiceMock<MockClock> clock_mock;
-    ::testing::NiceMock<MockRandomSource> random_mock;
+    ::testing::NiceMock<FileDialogsProviderMock>* file_dialogs_provider_mock = nullptr;
+    ::testing::NiceMock<ProcessRunnerProviderMock>* process_runner_provider_mock = nullptr;
+    ::testing::NiceMock<UpdateFeedProviderMock>* update_feed_provider_mock = nullptr;
+    ::testing::NiceMock<DesktopProviderMock>* desktop_provider_mock = nullptr;
+    ::testing::NiceMock<FileLockProviderMock>* file_lock_provider_mock = nullptr;
+    ::testing::NiceMock<DownloadProviderMock>* download_provider_mock = nullptr;
+    ::testing::NiceMock<ToolsProviderMock>* tools_provider_mock = nullptr;
+    ::testing::NiceMock<ClockProviderMock> clock_provider_mock;
+    ::testing::NiceMock<RandomProviderMock> random_provider_mock;
 
-    std::vector<ProcessRunner::Request> game_launches;
+    std::vector<ProcessRunnerProvider::Request> game_launches;
     std::vector<QString> opened_folders;
     std::vector<QUrl> opened_pages;
     int update_requests = 0;
     int release_list_requests = 0;
-    std::vector<UpdateInstaller::Request> installs;
-    std::function<void(const UpdateInstaller::Outcome&)> unfinished_install;
-    int install_cancels = 0;
-    int restarts = 0;
-    int clean_ups = 0;
+    std::vector<QUrl> downloads;
+    std::function<void(const DownloadProvider::Done&)> unfinished_download;
+    int download_cancels = 0;
+    std::vector<ProgramRun> tool_runs;
+    std::vector<ProgramRun> restarts;
     std::vector<QString> messages;
 
     /**
@@ -122,6 +147,13 @@ class LauncherSpec : public ::testing::Test {
      * @param button Button text.
      */
     void given_the_next_message_is_answered_with(const QString& button);
+
+    /**
+     * @brief Answer the next progress dialog the launcher shows. Other answers never go to a progress dialog, and one
+     *        left unanswered stays open, since closing it would cancel what it shows.
+     * @param answer Called with the dialog once it is open.
+     */
+    void given_the_next_progress_is_answered(std::function<void(QProgressDialog* progress)> answer);
 
     /**
      * @brief Open the launcher on the profile and wait until it settles.
@@ -221,6 +253,14 @@ class LauncherSpec : public ::testing::Test {
      */
     static QString native(const QString& path);
 
+    /**
+     * @brief A SHA256SUMS line for a release file.
+     * @param bytes The file's bytes.
+     * @param name Its name.
+     * @return The line.
+     */
+    static QByteArray checksum_line(const QByteArray& bytes, const QString& name);
+
     static const char* const game_program;
 
     std::filesystem::path profile;
@@ -235,19 +275,27 @@ class LauncherSpec : public ::testing::Test {
      */
     std::filesystem::path given_the_remaster_is_in_steam() {
         const std::filesystem::path folder = steam_directory / "steamapps" / "common" / "Legend of Mana";
-        std::filesystem::create_directories(folder / "windata" / "hdmap");
+        disk::create_directories(folder / "windata" / "hdmap");
         return folder;
     }
 
   private:
-    std::unique_ptr<::testing::NiceMock<MockFileDialogs>> owned_file_dialogs_;
-    std::unique_ptr<::testing::NiceMock<MockProcessRunner>> owned_process_runner_;
-    std::unique_ptr<::testing::NiceMock<MockUpdateFeed>> owned_update_feed_;
-    std::unique_ptr<::testing::NiceMock<MockDesktop>> owned_desktop_;
-    std::unique_ptr<::testing::NiceMock<MockUpdateInstaller>> owned_installer_;
+    std::unique_ptr<::testing::NiceMock<FileDialogsProviderMock>> owned_file_dialogs_;
+    std::unique_ptr<::testing::NiceMock<ProcessRunnerProviderMock>> owned_process_runner_;
+    std::unique_ptr<::testing::NiceMock<UpdateFeedProviderMock>> owned_update_feed_;
+    std::unique_ptr<::testing::NiceMock<DesktopProviderMock>> owned_desktop_;
+    std::unique_ptr<::testing::NiceMock<FileLockProviderMock>> owned_locks_;
+    std::unique_ptr<::testing::NiceMock<DownloadProviderMock>> owned_downloads_;
+    std::unique_ptr<::testing::NiceMock<ToolsProviderMock>> owned_tools_;
     bool game_running_ = false;
+    int downloads_on_their_way_ = 0;
     std::atomic<std::uint32_t> random_counter_{0};
-    std::deque<std::function<void(QWidget*)>> dialog_answers_;
+    struct DialogAnswer {
+        bool progress = false;
+        std::function<void(QWidget*)> answer;
+    };
+
+    std::deque<DialogAnswer> dialog_answers_;
     std::unique_ptr<LauncherWindow> window_;
 };
 

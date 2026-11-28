@@ -2,6 +2,8 @@
 #include "lom_native_audio_categories.h"
 #include "lom_native_cd.h"
 #include "remaster_internal.h"
+#include "remaster_files_provider.h"
+#include "../cd/disc_files_provider.h"
 
 #include "common.h"
 #include "main/audio/akao.h"
@@ -115,20 +117,16 @@ static void read_song_table(void)
 {
     const char* disc = lom_native_cd_get_disc_root();
     const char* root = lom_native_remaster_root();
+    const LomDiscFilesProvider* disc_files = lom_disc_files_provider();
     char path[PATH_SIZE];
 
     for (int n = 0; n < 100; ++n)
     {
+        size_t size = 0;
         snprintf(path, sizeof(path), "%s/SND_SOTO/MUSICS%02d.SET", disc, n);
-        FILE* file = fopen(path, "rb");
-        unsigned char head[18];
+        unsigned char* head = disc_files->read(disc_files->context, path, &size);
 
-        if (!file)
-        {
-            continue;
-        }
-
-        if (fread(head, 1, sizeof(head), file) == sizeof(head) && memcmp(head + 12, "AKAO", 4) == 0)
+        if (head && size >= 18 && memcmp(head + 12, "AKAO", 4) == 0)
         {
             unsigned id = head[16] | (unsigned)head[17] << 8;
 
@@ -138,7 +136,7 @@ static void read_song_table(void)
             }
         }
 
-        fclose(file);
+        free(head);
     }
 
     for (int id = 1; id < SONG_IDS; ++id)
@@ -149,13 +147,8 @@ static void read_song_table(void)
         }
 
         snprintf(path, sizeof(path), "%s/sound/music%s.psb", root, s_numbers[id]);
-        FILE* file = fopen(path, "rb");
 
-        if (file)
-        {
-            fclose(file);
-        }
-        else
+        if (!lom_remaster_files_provider()->exists(lom_remaster_files_provider()->context, path))
         {
             s_numbers[id][0] = 0;
         }

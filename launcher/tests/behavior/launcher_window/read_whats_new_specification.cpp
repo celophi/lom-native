@@ -156,7 +156,7 @@ LOM_SPEC(ReadWhatsNewSpecification, "Opening the version I opened last time shou
 }
 
 LOM_SPEC(ReadWhatsNewSpecification, "Opening the launcher for the first time should not show what's new") {
-    std::filesystem::remove(config_directory / "launcher.json");
+    disk::remove(config_directory / "launcher.json");
 
     open_launcher();
     press("noticeAcceptButton");

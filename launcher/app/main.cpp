@@ -1,3 +1,5 @@
+#include "services/qt_file_lock_provider.h"
+#include "lom/launcher/common/files_provider.h"
 #include "window/app_paths.h"
 #include "window/launcher_window.h"
 #include "window/launcher_services.h"
@@ -6,7 +8,6 @@
 
 #include <QApplication>
 #include <QDateTime>
-#include <QFile>
 #include <QMutex>
 #include <QRect>
 #include <QTextStream>
@@ -15,6 +16,7 @@
 
 #include <functional>
 #include <memory>
+#include <ostream>
 #include <system_error>
 
 namespace {
@@ -26,7 +28,7 @@ constexpr qint64 max_log_bytes = 1024 * 1024;
 constexpr int after_update_wait_ms = 15000;
 constexpr int after_update_retry_ms = 250;
 
-QFile* log_file = nullptr;
+std::unique_ptr<std::ostream> log_file;
 QMutex log_mutex;
 
 /**
@@ -40,9 +42,9 @@ void write_log(QtMsgType type, const QMessageLogContext& context, const QString&
     static const char* const levels[] = {"debug", "warning", "critical", "fatal", "info"};
     const QMutexLocker locker(&log_mutex);
 
-    if (log_file != nullptr && log_file->isOpen()) {
-        QTextStream out(log_file);
-        out << QDateTime::currentDateTime().toString(Qt::ISODate) << ' ' << levels[type] << ' ' << message << '\n';
+    if (log_file && *log_file) {
+        *log_file << QDateTime::currentDateTime().toString(Qt::ISODate).toStdString() << ' ' << levels[type] << ' ' << message.toStdString() << '\n';
+        log_file->flush();
     }
 }
 
@@ -52,11 +54,12 @@ void write_log(QtMsgType type, const QMessageLogContext& context, const QString&
  */
 void open_log(const AppPaths& paths) {
     std::error_code code;
-    std::filesystem::create_directories(paths.logs_directory(), code);
-    log_file = new QFile(AppPaths::to_text(paths.launcher_log_file()));
-    const QIODevice::OpenMode mode = log_file->size() > max_log_bytes ? QIODevice::WriteOnly | QIODevice::Truncate : QIODevice::Append;
+    files_provider().create_directories(paths.logs_directory(), code);
+    const std::uintmax_t size = files_provider().file_size(paths.launcher_log_file(), code);
+    const bool restart = !code && size > std::uintmax_t(max_log_bytes);
+    log_file = files_provider().open_write(paths.launcher_log_file(), restart ? std::ios::trunc : std::ios::app);
 
-    if (log_file->open(mode | QIODevice::Text)) {
+    if (*log_file) {
         qInstallMessageHandler(write_log);
     }
 }
@@ -78,7 +81,8 @@ int main(int argc, char** argv) {
     QGuiApplication::setDesktopFileName(QStringLiteral(LOM_APP_ID));
 
     const AppPaths paths = AppPaths::standard();
-    SingleInstance instance(paths.data_directory(), nullptr);
+    QtFileLockProvider locks;
+    SingleInstance instance(paths.data_directory(), locks, nullptr);
     bool acquired = instance.acquire();
 
     if (!acquired && QApplication::arguments().contains(QString::fromLatin1(UpdateInstaller::after_update_argument))) {

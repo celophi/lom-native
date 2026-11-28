@@ -1,8 +1,10 @@
 #include "lom/launcher/saves/memory_card.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include <algorithm>
 #include <cstring>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <system_error>
 
 namespace lom::launcher {
@@ -88,7 +90,7 @@ bool read_name(const std::uint8_t* frame, std::string& name) {
 
 MemoryCard::Status MemoryCard::load(const std::filesystem::path& path) {
     std::error_code code;
-    const std::uintmax_t size = std::filesystem::file_size(path, code);
+    const std::uintmax_t size = files_provider().file_size(path, code);
 
     if (code) {
         error_ = "cannot read the memory card file";
@@ -100,7 +102,9 @@ MemoryCard::Status MemoryCard::load(const std::filesystem::path& path) {
         return Status::WrongSize;
     }
 
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = files_provider().open_read(path, std::ios::binary);
+
+    std::istream& in = *in_file;
     std::vector<std::uint8_t> bytes(static_cast<std::size_t>(size));
     in.read(reinterpret_cast<char*>(bytes.data()), std::streamsize(size));
 

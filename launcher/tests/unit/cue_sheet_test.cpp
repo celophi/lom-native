@@ -1,4 +1,5 @@
 #include "../support/disc_fixture.h"
+#include "../support/disk.h"
 #include "../support/test_harness.h"
 #include "lom/launcher/disc/disc_image.h"
 
@@ -24,7 +25,7 @@ class CueSheetParsing : public ::testing::TestWithParam<Sheet> {};
 TEST_P(CueSheetParsing, opens_or_rejects_the_sheet) {
     const DiscFixture fixture = DiscFixture::create(TestHarness::instance().scratch_directory());
     const std::filesystem::path sheet = fixture.cue.parent_path() / "sheet.cue";
-    std::ofstream(sheet, std::ios::binary) << GetParam().text;
+    *disk::write(sheet, std::ios::binary) << GetParam().text;
     DiscImage image;
     EXPECT_EQ(image.open(sheet), GetParam().expected);
 }

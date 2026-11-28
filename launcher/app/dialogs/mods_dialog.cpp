@@ -1,6 +1,8 @@
 #include "dialogs/mods_dialog.h"
-#include "services/desktop.h"
-#include "services/file_dialogs.h"
+#include "lom/launcher/common/files_provider.h"
+#include "services/launcher_dialogs.h"
+#include "services/desktop_provider.h"
+#include "services/file_dialogs_provider.h"
 #include "window/app_paths.h"
 #include "window/theme.h"
 #include "window/ui_text.h"
@@ -65,7 +67,7 @@ QString row_text(const ModEntry& entry) {
 
 }
 
-ModsDialog::ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& desktop, QWidget* parent)
+ModsDialog::ModsDialog(ModLibrary library, FileDialogsProvider& dialogs, DesktopProvider& desktop, QWidget* parent)
     : QDialog(parent), library_(std::move(library)), dialogs_(dialogs), desktop_(desktop) {
     setWindowTitle(ui_text::mods_title);
     setMinimumWidth(dialog_width);
@@ -167,7 +169,7 @@ ModsDialog::ModsDialog(ModLibrary library, FileDialogs& dialogs, Desktop& deskto
     connect(remove_, &QPushButton::clicked, this, &ModsDialog::remove_mod);
     connect(open_folder, &QPushButton::clicked, this, [this]() {
         std::error_code ignored;
-        std::filesystem::create_directories(library_.folder(), ignored);
+        files_provider().create_directories(library_.folder(), ignored);
         desktop_.open_folder(AppPaths::to_text(library_.folder()));
     });
     connect(seed_, &QLineEdit::editingFinished, this, &ModsDialog::save_seed);
@@ -354,7 +356,7 @@ void ModsDialog::move(int step) {
 }
 
 void ModsDialog::add_mod() {
-    const QString chosen = dialogs_.choose_mod_folder(this);
+    const QString chosen = LauncherDialogs(dialogs_).choose_mod_folder(this);
 
     if (chosen.isEmpty()) {
         return;

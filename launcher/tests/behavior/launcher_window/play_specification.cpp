@@ -69,7 +69,7 @@ LOM_SPEC(PlaySpecification, "Play should not pass the Remaster's folder when it'
 LOM_SPEC(PlaySpecification, "Play should pass the Remaster folder the player chose over Steam's") {
     given_the_remaster_is_in_steam();
     const std::filesystem::path chosen = std::filesystem::u8path(profile.u8string() + "/elsewhere/Legend of Mana");
-    std::filesystem::create_directories(chosen / "windata" / "hdmap");
+    disk::create_directories(chosen / "windata" / "hdmap");
     given_the_game_is_set_up_from(folder, R"("remaster_root": "{profile}/elsewhere/Legend of Mana")");
     open_launcher();
 
@@ -88,7 +88,7 @@ LOM_SPEC(PlaySpecification, "Play should hide the launcher while the game runs")
 }
 
 LOM_SPEC(PlaySpecification, "Play should explain that the game could not start when the game program is missing") {
-    std::filesystem::remove(program_directory / game_program);
+    disk::remove(program_directory / game_program);
     open_launcher();
 
     press("playButton");
@@ -96,6 +96,17 @@ LOM_SPEC(PlaySpecification, "Play should explain that the game could not start w
     EXPECT_EQ(heading(), "The game could not start");
     EXPECT_THAT(text_of("problemBody"), StartsWithText("The game program was not found next to the launcher."));
     EXPECT_TRUE(launcher().isVisible());
+    EXPECT_TRUE(game_launches.empty());
+}
+
+LOM_SPEC(PlaySpecification, "Play should explain that another copy of the game is using the save folder when its lock is taken") {
+    save_folder_in_use = true;
+    open_launcher();
+
+    press("playButton");
+
+    EXPECT_EQ(heading(), "The game could not start");
+    EXPECT_THAT(text_of("problemBody"), StartsWithText("Another copy of the game is already using this save folder."));
     EXPECT_TRUE(game_launches.empty());
 }
 
@@ -116,8 +127,8 @@ LOM_SPEC(PlaySpecification, "Play should create the default save folder with bot
 
     press("playButton");
 
-    EXPECT_TRUE(std::filesystem::is_directory(data_directory / "cards" / "slot0"));
-    EXPECT_TRUE(std::filesystem::is_directory(data_directory / "cards" / "slot1"));
+    EXPECT_TRUE(disk::is_directory(data_directory / "cards" / "slot0"));
+    EXPECT_TRUE(disk::is_directory(data_directory / "cards" / "slot1"));
 }
 
 LOM_SPEC(PlaySpecification, "Play should explain that the save folder is not available when a chosen save folder is missing") {
@@ -131,11 +142,11 @@ LOM_SPEC(PlaySpecification, "Play should explain that the save folder is not ava
 
     EXPECT_EQ(heading(), "Your save folder is not available");
     EXPECT_TRUE(game_launches.empty());
-    EXPECT_FALSE(std::filesystem::exists(profile / "USB drive"));
+    EXPECT_FALSE(disk::exists(profile / "USB drive"));
 }
 
 LOM_SPEC(PlaySpecification, "Play should let the game save in the save folder I chose") {
-    std::filesystem::create_directories(profile / "My saves");
+    disk::create_directories(profile / "My saves");
     given_settings(R"({"schema": 1, "ownership_notice_acknowledged": true, "theme": "light", "save_roots": {"us": "{profile}/My saves"},
         "active_installation": {"kind": "external", "data_path": "{profile}/Legend of Mana", "release": "us",
             "manifest_sha256": "{manifest}", "source_sha1": "", "installation_id": ""}})");

@@ -1,4 +1,5 @@
 #include "mod_scripts.h"
+#include "mod_files_provider.h"
 #include "mod_manifest.h"
 #include "lom_native_mod_disc.h"
 #include "lom_native_mod_game.h"
@@ -21,8 +22,6 @@ extern "C"
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <fstream>
-#include <sstream>
 
 namespace lom::mods
 {
@@ -82,17 +81,7 @@ ModScripts* owner(lua_State* state)
  */
 bool read_file(const std::filesystem::path& path, std::string& text)
 {
-    std::ifstream input(path, std::ios::binary);
-
-    if (!input)
-    {
-        return false;
-    }
-
-    std::ostringstream bytes;
-    bytes << input.rdbuf();
-    text = bytes.str();
-    return true;
+    return lom::mods::mod_files_provider().read(path, text);
 }
 
 /**

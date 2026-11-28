@@ -33,7 +33,7 @@ LOM_SPEC(ChangeGameFilesLocationSpecification, "Changing the game files folder s
 }
 
 LOM_SPEC(ChangeGameFilesLocationSpecification, "Changing the game files folder should keep the previous folder when the chosen one is not writable") {
-    std::ofstream(chosen) << "not a folder";
+    *disk::write(chosen) << "not a folder";
     open_launcher();
 
     press("changeDestinationButton");

@@ -50,8 +50,8 @@ struct ReportBugSpecification : LauncherSpec {
      * @param text Contents.
      */
     static void write(const std::filesystem::path& path, const std::string& text) {
-        std::filesystem::create_directories(path.parent_path());
-        std::ofstream(path, std::ios::binary | std::ios::trunc) << text;
+        disk::create_directories(path.parent_path());
+        *disk::write(path, std::ios::binary | std::ios::trunc) << text;
     }
 
     /**
@@ -75,7 +75,8 @@ struct ReportBugSpecification : LauncherSpec {
      * @return Each file's checksum and size, by name.
      */
     static std::map<std::string, ZipEntry> zip_entries(const std::filesystem::path& path) {
-        std::ifstream in(path, std::ios::binary);
+        const auto in_file = disk::read(path, std::ios::binary);
+        std::istream& in = *in_file;
         const std::string bytes((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
         std::map<std::string, ZipEntry> entries;
 
@@ -130,7 +131,7 @@ LOM_SPEC(ReportBugSpecification, "Reporting a bug should save the run's logs and
     EXPECT_EQ(launcher().findChild<QPushButton*>("problemPrimaryButton")->text(), "Report this bug");
     press("problemPrimaryButton");
 
-    ASSERT_TRUE(std::filesystem::exists(report_zip()));
+    ASSERT_TRUE(disk::exists(report_zip()));
     const std::map<std::string, ZipEntry> entries = zip_entries(report_zip());
     EXPECT_EQ(entries.count("report.txt"), 1u);
     EXPECT_EQ(entries.count("game/game-20261015-120000.log"), 1u);
@@ -192,7 +193,7 @@ LOM_SPEC(ReportBugSpecification, "Reporting a bug should be offered when the gam
     EXPECT_EQ(heading(), "The game could not start its graphics");
     press("problemPrimaryButton");
 
-    EXPECT_TRUE(std::filesystem::exists(report_zip()));
+    EXPECT_TRUE(disk::exists(report_zip()));
     EXPECT_EQ(heading(), "Bug report saved");
 }
 
@@ -215,7 +216,7 @@ LOM_SPEC(ReportBugSpecification, "Reporting a bug from Help should say there's n
     choose_help("Report a bug");
 
     EXPECT_EQ(heading(), "There's nothing to report yet");
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "bug-reports"));
+    EXPECT_FALSE(disk::exists(data_directory / "bug-reports"));
     EXPECT_TRUE(opened_pages.empty());
 }
 
@@ -250,8 +251,8 @@ LOM_SPEC(ReportBugSpecification, "Playing should keep the last ten runs' logs an
     open_launcher();
     press("playButton");
 
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "logs" / "game-20261001-080000.log"));
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "logs" / "game-20261001-080000-system.txt"));
-    EXPECT_TRUE(std::filesystem::exists(data_directory / "logs" / "game-20261002-080000.log"));
-    EXPECT_TRUE(std::filesystem::exists(data_directory / "logs" / "game-20261002-080000-system.txt"));
+    EXPECT_FALSE(disk::exists(data_directory / "logs" / "game-20261001-080000.log"));
+    EXPECT_FALSE(disk::exists(data_directory / "logs" / "game-20261001-080000-system.txt"));
+    EXPECT_TRUE(disk::exists(data_directory / "logs" / "game-20261002-080000.log"));
+    EXPECT_TRUE(disk::exists(data_directory / "logs" / "game-20261002-080000-system.txt"));
 }

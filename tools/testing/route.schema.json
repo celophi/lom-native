@@ -60,7 +60,7 @@
       "maximum": 7
     },
     "mods": {
-      "description": "Run with a set of test mods: the name of a folder under tests/mods, with its mods.ini. Without it, a route runs with no mods at all, whatever the person running the tests has installed.",
+      "description": "Run with a set of test mods: the name of a folder under tests/support/mods, with its mods.ini. Without it, a route runs with no mods at all, whatever the person running the tests has installed.",
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]*$"
     },

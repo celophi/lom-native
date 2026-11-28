@@ -31,7 +31,7 @@ constexpr int column_status = 2;
 }
 
 CardImportDialog::CardImportDialog(const MemoryCard& card, const ReleaseCatalog& catalog, std::string release_id, std::filesystem::path save_root,
-                                   const Clock& clock, RandomSource& random, QWidget* parent)
+                                   const ClockProvider& clock, RandomProvider& random, QWidget* parent)
     : QDialog(parent), catalog_(catalog), clock_(clock), random_(random), release_id_(std::move(release_id)), save_root_(std::move(save_root)) {
     setWindowTitle(ui_text::card_import_title);
     setMinimumWidth(dialog_width);

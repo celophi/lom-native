@@ -20,7 +20,7 @@ struct OpenLauncherSpecification : LauncherSpec {};
 }
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should show the ownership notice when this user has never acknowledged it") {
-    std::filesystem::remove(config_directory / "launcher.json");
+    disk::remove(config_directory / "launcher.json");
 
     open_launcher();
 
@@ -56,7 +56,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should show Ready to p
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should explain that the game files are not available when the extracted folder is missing") {
     const auto folder = given_an_extracted_folder("Legend of Mana");
     given_the_game_is_set_up_from(folder);
-    std::filesystem::remove_all(folder);
+    disk::remove_all(folder);
 
     open_launcher();
 
@@ -67,7 +67,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should explain that th
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should explain that the game files have changed when a file in the extracted folder was modified") {
     const auto folder = given_an_extracted_folder("Legend of Mana");
     given_the_game_is_set_up_from(folder);
-    std::ofstream(folder / "BIN" / "TINY.BIN", std::ios::binary | std::ios::trunc) << "XY";
+    *disk::write(folder / "BIN" / "TINY.BIN", std::ios::binary | std::ios::trunc) << "XY";
 
     open_launcher();
 
@@ -78,7 +78,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should explain that th
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should keep the remembered game files when they fail the check") {
     const auto folder = given_an_extracted_folder("Legend of Mana");
     given_the_game_is_set_up_from(folder);
-    std::filesystem::remove_all(folder);
+    disk::remove_all(folder);
 
     open_launcher();
 
@@ -88,7 +88,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should keep the rememb
 }
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should reset damaged settings and say so when the settings file is unreadable") {
-    std::ofstream(config_directory / "launcher.json", std::ios::trunc) << "{ not json";
+    *disk::write(config_directory / "launcher.json", std::ios::trunc) << "{ not json";
 
     open_launcher();
 
@@ -140,7 +140,7 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should use the dark th
 }
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should ask for legal ownership and discourage piracy when the notice was never acknowledged") {
-    std::filesystem::remove(config_directory / "launcher.json");
+    disk::remove(config_directory / "launcher.json");
 
     open_launcher();
 
@@ -153,28 +153,29 @@ LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should ask for legal o
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should remove temporary files left by an interrupted extraction") {
     const std::filesystem::path leftover = data_directory / "games" / ".staging" / "1792000000-000001" / "data";
-    std::filesystem::create_directories(leftover);
-    std::ofstream(leftover / "SLUS_999.99") << "partial";
+    disk::create_directories(leftover);
+    *disk::write(leftover / "SLUS_999.99") << "partial";
 
     open_launcher();
 
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "games" / ".staging"));
+    EXPECT_FALSE(disk::exists(data_directory / "games" / ".staging"));
 }
 
 LOM_SPEC(OpenLauncherSpecification, "Opening the launcher should keep a copy of the settings file when it is unreadable") {
-    std::ofstream(config_directory / "launcher.json", std::ios::trunc) << "{ not json";
+    *disk::write(config_directory / "launcher.json", std::ios::trunc) << "{ not json";
 
     open_launcher();
 
     std::vector<std::filesystem::path> kept;
 
-    for (const auto& entry : std::filesystem::directory_iterator(config_directory)) {
-        if (entry.path().filename().u8string().rfind("launcher.json.corrupt-", 0) == 0) {
-            kept.push_back(entry.path());
+    for (const lom::launcher::FileEntry& entry : disk::list(config_directory)) {
+        if (entry.path.filename().u8string().rfind("launcher.json.corrupt-", 0) == 0) {
+            kept.push_back(entry.path);
         }
     }
 
     ASSERT_EQ(kept.size(), 1u);
-    std::ifstream in(kept.front());
+    const auto in_file = disk::read(kept.front());
+    std::istream& in = *in_file;
     EXPECT_EQ(std::string((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>()), "{ not json");
 }

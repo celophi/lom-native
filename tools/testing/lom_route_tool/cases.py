@@ -138,7 +138,7 @@ def case_plan(case: Case, args: argparse.Namespace, expected: dict | None) -> tu
 def run_runner(args: argparse.Namespace, folder: Path, plan: Path, mods: str | None = None) -> tuple[int, bool]:
     """Run the route runner on a plan, headless, with the route's own cards, logging to runner.log.
 
-    Mods come only from the route's own set under tests/mods, when it names one, and never from the mods folder of
+    Mods come only from the route's own set under tests/support/mods, when it names one, and never from the mods folder of
     whoever runs the tests. Returns (exit code, whether it hung)."""
     env = os.environ.copy()
     env["LOM_CARD_ROOT"] = str(folder / "cards")

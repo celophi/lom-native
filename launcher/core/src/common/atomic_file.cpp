@@ -1,8 +1,10 @@
 #include "lom/launcher/common/atomic_file.h"
+#include "lom/launcher/common/files_provider.h"
 
-#include <chrono>
-#include <fstream>
-#include <random>
+#include "lom/launcher/common/random_provider.h"
+
+#include <istream>
+#include <ostream>
 #include <system_error>
 
 namespace lom::launcher {
@@ -17,10 +19,8 @@ constexpr char temporary_marker[] = ".tmp-";
  * @return Temporary path in the same directory.
  */
 std::filesystem::path temporary_sibling(const std::filesystem::path& path) {
-    std::random_device device;
-    const auto stamp = std::chrono::steady_clock::now().time_since_epoch().count();
     std::filesystem::path temporary = path;
-    temporary += temporary_marker + std::to_string(stamp) + "-" + std::to_string(device());
+    temporary += temporary_marker + std::to_string(RandomProvider::system().next()) + "-" + std::to_string(RandomProvider::system().next());
     return temporary;
 }
 
@@ -30,7 +30,7 @@ bool AtomicFile::write(const std::filesystem::path& path, const std::string& con
     std::error_code code;
 
     if (path.has_parent_path()) {
-        std::filesystem::create_directories(path.parent_path(), code);
+        files_provider().create_directories(path.parent_path(), code);
 
         if (code) {
             if (error != nullptr) {
@@ -43,28 +43,31 @@ bool AtomicFile::write(const std::filesystem::path& path, const std::string& con
 
     const std::filesystem::path temporary = temporary_sibling(path);
 
+    bool written = false;
+
     {
-        std::ofstream out(temporary, std::ios::binary | std::ios::trunc);
+        const auto out_file = files_provider().open_write(temporary, std::ios::binary | std::ios::trunc);
+        std::ostream& out = *out_file;
         out.write(contents.data(), std::streamsize(contents.size()));
         out.flush();
-
-        if (!out) {
-            out.close();
-            std::filesystem::remove(temporary, code);
-
-            if (error != nullptr) {
-                *error = "cannot write " + temporary.u8string();
-            }
-
-            return false;
-        }
+        written = static_cast<bool>(out);
     }
 
-    std::filesystem::rename(temporary, path, code);
+    if (!written) {
+        files_provider().remove(temporary, code);
+
+        if (error != nullptr) {
+            *error = "cannot write " + temporary.u8string();
+        }
+
+        return false;
+    }
+
+    files_provider().rename(temporary, path, code);
 
     if (code) {
         std::error_code ignored;
-        std::filesystem::remove(temporary, ignored);
+        files_provider().remove(temporary, ignored);
 
         if (error != nullptr) {
             *error = "cannot replace " + path.u8string() + ": " + code.message();
@@ -78,7 +81,7 @@ bool AtomicFile::write(const std::filesystem::path& path, const std::string& con
 
 std::optional<std::string> AtomicFile::read(const std::filesystem::path& path, std::string* error) {
     std::error_code code;
-    const std::uintmax_t size = std::filesystem::file_size(path, code);
+    const std::uintmax_t size = files_provider().file_size(path, code);
 
     if (code) {
         if (error != nullptr) {
@@ -96,7 +99,8 @@ std::optional<std::string> AtomicFile::read(const std::filesystem::path& path, s
         return std::nullopt;
     }
 
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = files_provider().open_read(path, std::ios::binary);
+    std::istream& in = *in_file;
     std::string contents(std::size_t(size), '\0');
     in.read(contents.data(), std::streamsize(size));
 

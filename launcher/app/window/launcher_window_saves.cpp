@@ -1,4 +1,6 @@
 #include "window/launcher_window.h"
+#include "lom/launcher/common/files_provider.h"
+#include "services/launcher_dialogs.h"
 
 #include "dialogs/card_import_dialog.h"
 #include "lom/launcher/saves/save_folder.h"
@@ -20,7 +22,7 @@ void LauncherWindow::browse_saves() {
         return;
     }
 
-    const QString chosen = services_.dialogs->choose_save_folder(this, AppPaths::to_text(save_root()));
+    const QString chosen = LauncherDialogs(*services_.dialogs).choose_save_folder(this, AppPaths::to_text(save_root()));
 
     if (!chosen.isEmpty()) {
         use_save_root(AppPaths::to_path(chosen));
@@ -103,7 +105,7 @@ void LauncherWindow::open_saves() {
     const ReleaseCatalog::Release* release = active_release();
     std::error_code code;
 
-    if (release != nullptr && !std::filesystem::exists(root, code) && root == paths_.default_save_root(release->id)) {
+    if (release != nullptr && !files_provider().exists(root, code) && root == paths_.default_save_root(release->id)) {
         SaveFolder::initialize(root, nullptr);
     }
 
@@ -117,7 +119,7 @@ void LauncherWindow::import_card() {
         return;
     }
 
-    const QString chosen = services_.dialogs->choose_memory_card(this);
+    const QString chosen = LauncherDialogs(*services_.dialogs).choose_memory_card(this);
 
     if (chosen.isEmpty()) {
         return;

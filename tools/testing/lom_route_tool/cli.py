@@ -139,7 +139,7 @@ def build_parser() -> argparse.ArgumentParser:
         command.add_argument("--replay-only", action="store_true",
                              help="don't check the plan against the game data (for planted-fault runs, where the data is deliberately changed)")
         command.add_argument("--jobs", type=int, default=1, help="how many routes to run at once (each is its own game process)")
-        command.add_argument("--mods", help="run every route with this mod set from tests/mods instead of its own; baselines won't match")
+        command.add_argument("--mods", help="run every route with this mod set from tests/support/mods instead of its own; baselines won't match")
         command.add_argument("--stop-at-failure", action="store_true", help="don't start any more routes once one fails (routes already running finish)")
         command.add_argument("--baselines", type=Path,
                              help="read and write baselines in this folder, named by route id, instead of next to the routes "
@@ -152,7 +152,7 @@ def build_parser() -> argparse.ArgumentParser:
     suite.add_argument("--routes", type=Path, default=ROUTES_ROOT, help="where the routes are (default tests/routes)")
     suite.add_argument("--set", type=Path, nargs="+", help="only the routes in these generated sets")
     suite.add_argument("--jobs", type=int, default=6, help="how many routes to run at once")
-    suite.add_argument("--mods", help="run every route with this mod set from tests/mods instead of its own; baselines won't match")
+    suite.add_argument("--mods", help="run every route with this mod set from tests/support/mods instead of its own; baselines won't match")
     suite.add_argument("--repeat", type=int, default=1, help="run everything this many times; a route that doesn't pass every time is unstable")
     suite.add_argument("--cache", type=Path, help="where the scorecard keeps the disc counts between runs")
     suite.add_argument("--backlog", type=Path, help="write the scorecard items neither covered nor explained here")

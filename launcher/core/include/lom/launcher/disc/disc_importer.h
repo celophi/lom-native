@@ -1,11 +1,11 @@
 #ifndef LOM_LAUNCHER_DISC_IMPORTER_H
 #define LOM_LAUNCHER_DISC_IMPORTER_H
 
-#include "lom/launcher/common/clock.h"
+#include "lom/launcher/common/clock_provider.h"
 #include "lom/launcher/disc/file_snapshot.h"
 #include "lom/launcher/disc/installation.h"
 #include "lom/launcher/common/progress.h"
-#include "lom/launcher/common/random_source.h"
+#include "lom/launcher/common/random_provider.h"
 #include "lom/launcher/disc/release_catalog.h"
 
 #include <cstdint>
@@ -70,7 +70,7 @@ class DiscImporter {
      * @param clock Time source for installation names and receipts; must outlive the importer.
      * @param random Random source for installation names; must outlive the importer.
      */
-    explicit DiscImporter(const ReleaseCatalog& catalog, const Clock& clock = Clock::system(), RandomSource& random = RandomSource::system());
+    explicit DiscImporter(const ReleaseCatalog& catalog, const ClockProvider& clock = ClockProvider::system(), RandomProvider& random = RandomProvider::system());
 
     /**
      * @brief Classify and hash an image, then look up its identity.
@@ -106,8 +106,8 @@ class DiscImporter {
 
   private:
     const ReleaseCatalog& catalog_;
-    const Clock& clock_;
-    RandomSource& random_;
+    const ClockProvider& clock_;
+    RandomProvider& random_;
 };
 
 }

@@ -1,0 +1,61 @@
+{
+ "about": "Calls that still go around a provider, checked by tools/testing/provider_check.py, which needs this to match exactly. Each says why. It should shrink as they move behind a provider.",
+ "providers": {
+  "remaster files provider": {
+   "src/remaster/remaster_movies.c:lom_native_remaster_movie_path": {
+    "calls": [
+     "fopen"
+    ],
+    "why": "Checks the Remaster's movie is there, then FFmpeg opens it by its path itself, so a fake provider can't serve it yet."
+   },
+   "src/remaster/remaster_text_scenes.c:dump_scene_strings": {
+    "calls": [
+     "fopen"
+    ],
+    "why": "Writes the scene text it built to a folder for debugging (LOM_REMASTER_TEXT_DUMP), not one of the Remaster's files."
+   }
+  },
+  "disc files provider": {
+   "src/cd/cdrom_native.c:queue_callback_read": {
+    "calls": [
+     "fopen"
+    ],
+    "why": "Streams a file a sector at a time to the game's callback, keeping it open; the disc provider only reads whole files so far."
+   },
+   "src/cd/cdrom_native.c:lom_native_mod_disc_read": {
+    "calls": [
+     "fopen",
+     "stat"
+    ],
+    "why": "Reads a disc file for a mod; still to move behind the disc provider."
+   },
+   "src/cd/cdrom_native.c:list_mod_folder": {
+    "calls": [
+     "opendir",
+     "stat"
+    ],
+    "why": "Lists a disc folder for a mod; the disc provider can't list folders yet."
+   },
+   "src/cd/cdrom_native.c:lom_native_mod_disc_list": {
+    "calls": [
+     "stat"
+    ],
+    "why": "Checks a disc folder is there for a mod; the disc provider can't list folders yet."
+   }
+  },
+  "launcher files provider": {
+   "launcher/app/window/theme.cpp:load_palette": {
+    "calls": [
+     "re:\\bQFile\\b"
+    ],
+    "why": "Reads the theme, a resource built into the launcher (a :/ path), not the disk."
+   },
+   "launcher/app/window/ui_text.cpp:read_translation": {
+    "calls": [
+     "re:\\bQFile\\b"
+    ],
+    "why": "Reads a translation, a resource built into the launcher (a :/ path), not the disk."
+   }
+  }
+ }
+}
