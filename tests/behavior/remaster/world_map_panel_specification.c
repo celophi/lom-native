@@ -99,10 +99,10 @@ SPECIFICATION(draws_the_panel_for_the_trees_growth, "World map panel should draw
 {
     when_the_world_map_draws_its_panel();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == FOURTH_PANEL);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){8, 150, 97, 150, 8, 217, 97, 217}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[0].tpage == 0x0B);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == FOURTH_PANEL);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){8, 150, 97, 150, 8, 217, 97, 217}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].tpage == 0x0B);
 }
 
 /**
@@ -115,7 +115,7 @@ SPECIFICATION(draws_the_last_panel_past_it, "World map panel should draw the Rem
 
     when_the_world_map_draws_its_panel();
 
-    CHECK(s_renderer_fake.pictures[0].colour == LAST_PANEL);
+    CHECK(s_renderer_fake.quads[0].colour == LAST_PANEL);
 }
 
 /**
@@ -127,7 +127,7 @@ SPECIFICATION(draws_the_first_panel_before_growth, "World map panel should draw 
 
     when_the_world_map_draws_its_panel();
 
-    CHECK(s_renderer_fake.pictures[0].colour == FIRST_PANEL);
+    CHECK(s_renderer_fake.quads[0].colour == FIRST_PANEL);
 }
 
 /**
@@ -140,7 +140,7 @@ SPECIFICATION(leaves_the_ps1_panel_when_hd_screens_are_off, "World map panel sho
 
     when_the_world_map_draws_its_panel();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_quad.code == 0x2C);
 }
 

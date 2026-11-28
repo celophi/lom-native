@@ -121,9 +121,9 @@ SPECIFICATION(draws_the_parchment_once, "Save screen background should draw the 
 {
     when_a_save_screen_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == PARCHMENT);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, 0, 320, 0, 0, 224, 320, 224}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == PARCHMENT);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, 0, 320, 0, 0, 224, 320, 224}, sizeof(int[8])) == 0);
     CHECK(s_sprites[1].code != 0x64);
 }
 
@@ -137,7 +137,7 @@ SPECIFICATION(leaves_the_ps1_background, "Save screen background should leave th
 
     when_a_save_screen_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64);
 }
 

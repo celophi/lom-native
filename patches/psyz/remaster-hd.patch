@@ -1,15 +1,16 @@
-Draw the Legend of Mana Remaster's HD art, when the player has the
-Remaster and turns it on. Its room pages: a 2D array texture, a second sampler
-for the drawing shaders (which come from the port's src/gpu/shaders, with
-texture mode 3 for these pages), and a call that queues one HD cell in the
-current batch, so it draws in order with everything else. Its UI pictures: a
-second array texture with mipmaps that the port packs them into, a third
-sampler (texture mode 4), and a call that queues a quad from any part of it.
-The port calls them through src/gpu/hd_textures.h.
+Give the renderer what the Legend of Mana Remaster's HD art needs to be drawn,
+and nothing more: two 2D array textures for the drawing shaders to sample (the
+room pages at binding 1, the UI pictures at binding 2, with a sampler each),
+calls to make, fill, mipmap and drop them, and a call that queues one quad in
+the current batch with the page bits and layer it's given, so it draws in order
+with everything else. Which pictures go where, what fits, how they're blended
+and where cells are on a page are the port's (src/remaster/remaster_hd_art.c),
+which calls these through its HD renderer provider. The drawing shaders come
+from the port's src/gpu/shaders, with texture modes 3 and 4 for these.
 
 --- a/psyz/src/platform/sdl3_gpu.c
 +++ b/psyz/src/platform/sdl3_gpu.c
-@@ -51,8 +51,8 @@
+@@ -49,8 +49,8 @@
  static bool display_rgb24;
  
  #if defined(_WIN32)
@@ -20,7 +21,7 @@ The port calls them through src/gpu/hd_textures.h.
  #include "shaders/clear_vert_dxil.h"
  #include "shaders/clear_frag_dxil.h"
  #define psx_vert psx_vert_dxil
-@@ -64,8 +64,8 @@
+@@ -62,8 +62,8 @@
  #define clear_frag clear_frag_dxil
  #define clear_frag_len clear_frag_dxil_len
  #elif defined(__APPLE__)
@@ -31,7 +32,7 @@ The port calls them through src/gpu/hd_textures.h.
  #include "shaders/clear_vert_msl.h"
  #include "shaders/clear_frag_msl.h"
  #define psx_vert psx_vert_msl
-@@ -77,8 +77,8 @@
+@@ -75,8 +75,8 @@
  #define clear_frag clear_frag_msl
  #define clear_frag_len clear_frag_msl_len
  #else
@@ -42,35 +43,16 @@ The port calls them through src/gpu/hd_textures.h.
  #include "shaders/clear_vert_spv.h"
  #include "shaders/clear_frag_spv.h"
  #define psx_vert psx_vert_spv
-@@ -382,6 +382,280 @@
+@@ -380,6 +380,153 @@
      return pipe;
  }
  
-+#define TPAGE_HD 0x1000
-+#define HD_CELL 64
-+static SDL_GPUTexture* hd_texture = NULL;
++#define HD_TEXTURES 2
++#define IMAGE_LEVELS 5
++static SDL_GPUTexture* hd_textures[HD_TEXTURES];
 +static SDL_GPUTexture* hd_empty = NULL;
 +static SDL_GPUSampler* hd_sampler = NULL;
-+static int hd_layers, hd_size;
-+
-+#define TPAGE_HD_IMAGE 0x0800
-+#define IMAGE_LEVELS 5
-+static SDL_GPUTexture* image_texture = NULL;
 +static SDL_GPUSampler* image_sampler = NULL;
-+static int image_layers, image_size;
-+
-+static SDL_GPUTexture* CreateHdTexture(int size, int layers) {
-+    const SDL_GPUTextureCreateInfo info = {
-+        .type = SDL_GPU_TEXTURETYPE_2D_ARRAY,
-+        .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
-+        .usage = SDL_GPU_TEXTUREUSAGE_SAMPLER,
-+        .width = (Uint32)size,
-+        .height = (Uint32)size,
-+        .layer_count_or_depth = (Uint32)layers,
-+        .num_levels = 1,
-+    };
-+    return SDL_CreateGPUTexture(device, &info);
-+}
 +
 +static bool CreateHdResources(void) {
 +    const SDL_GPUSamplerCreateInfo info = {
@@ -82,7 +64,16 @@ The port calls them through src/gpu/hd_textures.h.
 +        .address_mode_w = SDL_GPU_SAMPLERADDRESSMODE_CLAMP_TO_EDGE,
 +    };
 +    hd_sampler = SDL_CreateGPUSampler(device, &info);
-+    hd_empty = CreateHdTexture(1, 1);
++    const SDL_GPUTextureCreateInfo empty_info = {
++        .type = SDL_GPU_TEXTURETYPE_2D_ARRAY,
++        .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
++        .usage = SDL_GPU_TEXTUREUSAGE_SAMPLER,
++        .width = 1,
++        .height = 1,
++        .layer_count_or_depth = 1,
++        .num_levels = 1,
++    };
++    hd_empty = SDL_CreateGPUTexture(device, &empty_info);
 +    const SDL_GPUSamplerCreateInfo image_info = {
 +        .min_filter = SDL_GPU_FILTER_LINEAR,
 +        .mag_filter = SDL_GPU_FILTER_LINEAR,
@@ -100,151 +91,37 @@ The port calls them through src/gpu/hd_textures.h.
 +    return true;
 +}
 +
-+void lom_hd_textures_release(void) {
++void lom_hd_texture_release(int which) {
 +    Draw_FlushBuffer();
-+    if (hd_texture) {
-+        SDL_ReleaseGPUTexture(device, hd_texture);
-+        hd_texture = NULL;
++    if (hd_textures[which]) {
++        SDL_ReleaseGPUTexture(device, hd_textures[which]);
++        hd_textures[which] = NULL;
 +    }
-+    hd_layers = 0;
-+    hd_size = 0;
 +}
 +
-+int lom_hd_textures_set(int layers, int size) {
-+    lom_hd_textures_release();
-+    if (!device || layers <= 0 || size <= 0) {
-+        return -1;
-+    }
-+    hd_texture = CreateHdTexture(size, layers);
-+    if (!hd_texture) {
-+        ERRORF("HD pages (%d of %dx%d): %s", layers, size, size,
-+               SDL_GetError());
-+        return -1;
-+    }
-+    hd_layers = layers;
-+    hd_size = size;
-+    return 0;
-+}
-+
-+int lom_hd_textures_upload(int layer, const void* rgba) {
-+    if (!hd_texture || layer < 0 || layer >= hd_layers || !rgba) {
-+        return -1;
-+    }
-+    const Uint32 bytes = (Uint32)hd_size * (Uint32)hd_size * 4;
-+    const SDL_GPUTransferBufferCreateInfo transfer_info = {
-+        .usage = SDL_GPU_TRANSFERBUFFERUSAGE_UPLOAD, .size = bytes};
-+    SDL_GPUTransferBuffer* transfer =
-+        SDL_CreateGPUTransferBuffer(device, &transfer_info);
-+    if (!transfer) {
-+        return -1;
-+    }
-+    void* map = SDL_MapGPUTransferBuffer(device, transfer, false);
-+    if (!map) {
-+        SDL_ReleaseGPUTransferBuffer(device, transfer);
-+        return -1;
-+    }
-+    memcpy(map, rgba, bytes);
-+    SDL_UnmapGPUTransferBuffer(device, transfer);
-+    SDL_GPUCommandBuffer* cmd = AcquireCmd();
-+    if (!cmd) {
-+        SDL_ReleaseGPUTransferBuffer(device, transfer);
-+        return -1;
-+    }
-+    SDL_GPUCopyPass* copy = SDL_BeginGPUCopyPass(cmd);
-+    const SDL_GPUTextureTransferInfo src = {
-+        .transfer_buffer = transfer,
-+        .pixels_per_row = (Uint32)hd_size,
-+        .rows_per_layer = (Uint32)hd_size};
-+    const SDL_GPUTextureRegion dst = {
-+        .texture = hd_texture,
-+        .layer = (Uint32)layer,
-+        .w = (Uint32)hd_size,
-+        .h = (Uint32)hd_size,
-+        .d = 1};
-+    SDL_UploadToGPUTexture(copy, &src, &dst, false);
-+    SDL_EndGPUCopyPass(copy);
-+    SDL_ReleaseGPUTransferBuffer(device, transfer);
-+    return 0;
-+}
-+
-+int lom_hd_textures_layers(void) { return hd_layers; }
-+
-+void lom_hd_textures_draw(
-+    const int xy[8], int layer, int cell, unsigned int rgb, int semi,
-+    int tpage) {
-+    static const unsigned short corner_u[4] = {0, HD_CELL, 0, HD_CELL};
-+    static const unsigned short corner_v[4] = {0, 0, HD_CELL, HD_CELL};
-+    if (!hd_texture || layer < 0 || layer >= hd_layers) {
-+        return;
-+    }
-+    Draw_EnsureBufferWillNotOverflow(4, 6);
-+    Vertex* v = vertex_cur;
-+    for (int i = 0; i < 4; i++) {
-+        v[i].x = (short)s11(xy[i * 2]);
-+        v[i].y = (short)s11(xy[i * 2 + 1]);
-+        v[i].u = corner_u[i];
-+        v[i].v = corner_v[i];
-+    }
-+    v[0].r = (unsigned char)(rgb >> 0);
-+    v[0].g = (unsigned char)(rgb >> 8);
-+    v[0].b = (unsigned char)(rgb >> 16);
-+    v[0].a = semi ? 0x80 : 0xFF;
-+    VRGBA(v[1]) = VRGBA(v[2]) = VRGBA(v[3]) = VRGBA(v[0]);
-+    index_cur[0] = n_vertices + 0;
-+    index_cur[1] = n_vertices + 1;
-+    index_cur[2] = n_vertices + 2;
-+    index_cur[3] = n_vertices + 1;
-+    index_cur[4] = n_vertices + 3;
-+    index_cur[5] = n_vertices + 2;
-+    SET_TC_ALL(
-+        v, ((tpage < 0 ? cur_tpage : tpage) & 0x1FF) | TPAGE_HD,
-+        (layer << 8) | (cell & 0xFF));
-+    Draw_EnqueueBuffer(4, 6);
-+}
-+
-+void lom_hd_images_release(void) {
-+    Draw_FlushBuffer();
-+    if (image_texture) {
-+        SDL_ReleaseGPUTexture(device, image_texture);
-+        image_texture = NULL;
-+    }
-+    image_layers = 0;
-+    image_size = 0;
-+}
-+
-+int lom_hd_images_set(int layers, int size) {
-+    lom_hd_images_release();
-+    if (!device || layers <= 0 || size <= 0) {
-+        return -1;
-+    }
++int lom_hd_texture_create(int which, int layers, int size, int levels) {
++    lom_hd_texture_release(which);
 +    const SDL_GPUTextureCreateInfo info = {
 +        .type = SDL_GPU_TEXTURETYPE_2D_ARRAY,
 +        .format = SDL_GPU_TEXTUREFORMAT_R8G8B8A8_UNORM,
 +        .usage = SDL_GPU_TEXTUREUSAGE_SAMPLER |
-+                 SDL_GPU_TEXTUREUSAGE_COLOR_TARGET,
++                 (levels > 1 ? SDL_GPU_TEXTUREUSAGE_COLOR_TARGET : 0),
 +        .width = (Uint32)size,
 +        .height = (Uint32)size,
 +        .layer_count_or_depth = (Uint32)layers,
-+        .num_levels = IMAGE_LEVELS,
++        .num_levels = (Uint32)levels,
 +    };
-+    image_texture = SDL_CreateGPUTexture(device, &info);
-+    if (!image_texture) {
-+        ERRORF("UI images (%d of %dx%d): %s", layers, size, size,
++    hd_textures[which] = device ? SDL_CreateGPUTexture(device, &info) : NULL;
++    if (!hd_textures[which]) {
++        ERRORF("HD texture %d (%d of %dx%d): %s", which, layers, size, size,
 +               SDL_GetError());
 +        return -1;
 +    }
-+    image_layers = layers;
-+    image_size = size;
 +    return 0;
 +}
 +
-+int lom_hd_images_upload(
-+    int layer, int x, int y, int w, int h, const void* rgba) {
-+    if (!image_texture || layer < 0 || layer >= image_layers || !rgba ||
-+        w <= 0 || h <= 0 || x < 0 || y < 0 || x + w > image_size ||
-+        y + h > image_size) {
-+        return -1;
-+    }
++int lom_hd_texture_upload(
++    int which, int layer, int x, int y, int w, int h, const void* pixels) {
 +    Draw_FlushBuffer();
 +    const Uint32 bytes = (Uint32)w * (Uint32)h * 4;
 +    const SDL_GPUTransferBufferCreateInfo transfer_info = {
@@ -259,7 +136,7 @@ The port calls them through src/gpu/hd_textures.h.
 +        SDL_ReleaseGPUTransferBuffer(device, transfer);
 +        return -1;
 +    }
-+    memcpy(map, rgba, bytes);
++    memcpy(map, pixels, bytes);
 +    SDL_UnmapGPUTransferBuffer(device, transfer);
 +    SDL_GPUCommandBuffer* cmd = AcquireCmd();
 +    if (!cmd) {
@@ -272,7 +149,7 @@ The port calls them through src/gpu/hd_textures.h.
 +        .pixels_per_row = (Uint32)w,
 +        .rows_per_layer = (Uint32)h};
 +    const SDL_GPUTextureRegion dst = {
-+        .texture = image_texture,
++        .texture = hd_textures[which],
 +        .layer = (Uint32)layer,
 +        .x = (Uint32)x,
 +        .y = (Uint32)y,
@@ -281,31 +158,31 @@ The port calls them through src/gpu/hd_textures.h.
 +        .d = 1};
 +    SDL_UploadToGPUTexture(copy, &src, &dst, false);
 +    SDL_EndGPUCopyPass(copy);
-+    SDL_GenerateMipmapsForGPUTexture(cmd, image_texture);
 +    SDL_ReleaseGPUTransferBuffer(device, transfer);
 +    return 0;
 +}
 +
-+int lom_hd_images_layers(void) { return image_layers; }
-+
-+void lom_hd_images_draw(
-+    const int xy[8], const int uv[8], int layer, unsigned int rgb, int semi,
-+    int tpage) {
-+    if (!image_texture || layer < 0 || layer >= image_layers) {
-+        return;
++void lom_hd_texture_mipmaps(int which) {
++    SDL_GPUCommandBuffer* cmd = AcquireCmd();
++    if (cmd) {
++        SDL_GenerateMipmapsForGPUTexture(cmd, hd_textures[which]);
 +    }
++}
++
++void lom_hd_quad(const short xy[8], const unsigned short uv[8], unsigned rgba,
++                 int tpage, unsigned flags, unsigned clut) {
 +    Draw_EnsureBufferWillNotOverflow(4, 6);
 +    Vertex* v = vertex_cur;
 +    for (int i = 0; i < 4; i++) {
-+        v[i].x = (short)s11(xy[i * 2]);
-+        v[i].y = (short)s11(xy[i * 2 + 1]);
-+        v[i].u = (unsigned short)uv[i * 2];
-+        v[i].v = (unsigned short)uv[i * 2 + 1];
++        v[i].x = xy[i * 2];
++        v[i].y = xy[i * 2 + 1];
++        v[i].u = uv[i * 2];
++        v[i].v = uv[i * 2 + 1];
 +    }
-+    v[0].r = (unsigned char)(rgb >> 0);
-+    v[0].g = (unsigned char)(rgb >> 8);
-+    v[0].b = (unsigned char)(rgb >> 16);
-+    v[0].a = semi ? 0x80 : 0xFF;
++    v[0].r = (unsigned char)(rgba >> 24);
++    v[0].g = (unsigned char)(rgba >> 16);
++    v[0].b = (unsigned char)(rgba >> 8);
++    v[0].a = (unsigned char)rgba;
 +    VRGBA(v[1]) = VRGBA(v[2]) = VRGBA(v[3]) = VRGBA(v[0]);
 +    index_cur[0] = n_vertices + 0;
 +    index_cur[1] = n_vertices + 1;
@@ -313,17 +190,14 @@ The port calls them through src/gpu/hd_textures.h.
 +    index_cur[3] = n_vertices + 1;
 +    index_cur[4] = n_vertices + 3;
 +    index_cur[5] = n_vertices + 2;
-+    SET_TC_ALL(
-+        v,
-+        ((tpage < 0 ? cur_tpage : tpage) & 0x1FF) | TPAGE_HD | TPAGE_HD_IMAGE,
-+        layer);
++    SET_TC_ALL(v, ((tpage < 0 ? cur_tpage : tpage) & 0x1FF) | flags, clut);
 +    Draw_EnqueueBuffer(4, 6);
 +}
 +
  static bool CreateGpuResources(void) {
      const SDL_GPUTextureCreateInfo render_info = {
          .type = SDL_GPU_TEXTURETYPE_2D,
-@@ -415,6 +689,9 @@
+@@ -413,6 +560,9 @@
          ERRORF("SDL_CreateGPUSampler: %s", SDL_GetError());
          return false;
      }
@@ -333,7 +207,7 @@ The port calls them through src/gpu/hd_textures.h.
  
      const SDL_GPUBufferCreateInfo vbuf_info = {
          .usage = SDL_GPU_BUFFERUSAGE_VERTEX,
-@@ -460,7 +737,7 @@
+@@ -458,7 +608,7 @@
      SDL_GPUShader* psx_vs =
          CreateShader(psx_vert, psx_vert_len, SDL_GPU_SHADERSTAGE_VERTEX, 0, 1);
      SDL_GPUShader* psx_fs = CreateShader(
@@ -342,15 +216,16 @@ The port calls them through src/gpu/hd_textures.h.
      SDL_GPUShader* clear_vs = CreateShader(
          clear_vert, clear_vert_len, SDL_GPU_SHADERSTAGE_VERTEX, 0, 1);
      SDL_GPUShader* clear_fs = CreateShader(
-@@ -1254,6 +1531,28 @@
+@@ -1247,6 +1397,24 @@
              SDL_ReleaseGPUSampler(device, vram_sampler);
              vram_sampler = NULL;
          }
-+        if (hd_texture) {
-+            SDL_ReleaseGPUTexture(device, hd_texture);
-+            hd_texture = NULL;
++        for (int i = 0; i < HD_TEXTURES; i++) {
++            if (hd_textures[i]) {
++                SDL_ReleaseGPUTexture(device, hd_textures[i]);
++                hd_textures[i] = NULL;
++            }
 +        }
-+        hd_layers = 0;
 +        if (hd_empty) {
 +            SDL_ReleaseGPUTexture(device, hd_empty);
 +            hd_empty = NULL;
@@ -359,11 +234,6 @@ The port calls them through src/gpu/hd_textures.h.
 +            SDL_ReleaseGPUSampler(device, hd_sampler);
 +            hd_sampler = NULL;
 +        }
-+        if (image_texture) {
-+            SDL_ReleaseGPUTexture(device, image_texture);
-+            image_texture = NULL;
-+        }
-+        image_layers = 0;
 +        if (image_sampler) {
 +            SDL_ReleaseGPUSampler(device, image_sampler);
 +            image_sampler = NULL;
@@ -371,7 +241,7 @@ The port calls them through src/gpu/hd_textures.h.
          if (vbuf) {
              SDL_ReleaseGPUBuffer(device, vbuf);
              vbuf = NULL;
-@@ -2236,9 +2535,13 @@
+@@ -2224,9 +2392,13 @@
      SDL_BindGPUVertexBuffers(pass, 0, &vb, 1);
      const SDL_GPUBufferBinding ib = {.buffer = ibuf};
      SDL_BindGPUIndexBuffer(pass, &ib, SDL_GPU_INDEXELEMENTSIZE_16BIT);
@@ -380,9 +250,9 @@ The port calls them through src/gpu/hd_textures.h.
 -    SDL_BindGPUFragmentSamplers(pass, 0, &sampler_binding, 1);
 +    const SDL_GPUTextureSamplerBinding sampler_bindings[3] = {
 +        {.texture = vram_sample, .sampler = vram_sampler},
-+        {.texture = hd_texture ? hd_texture : hd_empty,
++        {.texture = hd_textures[0] ? hd_textures[0] : hd_empty,
 +         .sampler = hd_sampler},
-+        {.texture = image_texture ? image_texture : hd_empty,
++        {.texture = hd_textures[1] ? hd_textures[1] : hd_empty,
 +         .sampler = image_sampler}};
 +    SDL_BindGPUFragmentSamplers(pass, 0, sampler_bindings, 3);
      const float offset_ubo[6] = {

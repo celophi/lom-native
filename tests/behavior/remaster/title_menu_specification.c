@@ -93,10 +93,10 @@ SPECIFICATION(draws_new_game_chosen, "Title menu should draw the Remaster's New 
 {
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == NEW_GAME_WORDS);
-    CHECK(s_renderer_fake.pictures[0].rgb == 0x808080);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){137, 164, 197, 164, 137, 174, 197, 174}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == NEW_GAME_WORDS);
+    CHECK(s_renderer_fake.quads[0].rgb == 0x808080);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){137, 164, 197, 164, 137, 174, 197, 174}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -111,10 +111,10 @@ SPECIFICATION(dims_continue_when_not_chosen, "Title menu should dim the Remaster
 
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == CONTINUE_WORDS);
-    CHECK(s_renderer_fake.pictures[0].rgb == 0x505050);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){137, 176, 197, 176, 137, 186, 197, 186}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == CONTINUE_WORDS);
+    CHECK(s_renderer_fake.quads[0].rgb == 0x505050);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){137, 176, 197, 176, 137, 186, 197, 186}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -130,9 +130,9 @@ SPECIFICATION(draws_the_cursor_frame_shown, "Title menu should draw the frame of
 
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == CURSOR_FRAME_3);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){120, 157, 136, 157, 120, 173, 136, 173}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == CURSOR_FRAME_3);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){120, 157, 136, 157, 120, 173, 136, 173}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -147,9 +147,9 @@ SPECIFICATION(centres_the_copyright, "Title menu should centre the Remaster's co
 
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == COPYRIGHT);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){62, 201, 242, 201, 62, 213, 242, 213}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == COPYRIGHT);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){62, 201, 242, 201, 62, 213, 242, 213}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -162,7 +162,7 @@ SPECIFICATION(leaves_the_ps1_menu_when_hd_screens_are_off, "Title menu should le
 
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_quad.code == 0x2C && s_quad.x0 == 0x88 && s_quad.y0 == 0xA0);
 }
 
@@ -176,7 +176,7 @@ SPECIFICATION(leaves_the_ps1_menu_without_the_backdrop, "Title menu should leave
 
     when_the_title_draws_part_of_its_menu();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_quad.code == 0x2C);
 }
 

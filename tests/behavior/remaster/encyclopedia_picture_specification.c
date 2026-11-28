@@ -77,9 +77,9 @@ SPECIFICATION(draws_the_painting, "Encyclopedia picture should draw the Remaster
 {
     when_the_encyclopedia_draws_a_pages_picture();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == PAINTING);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){166, 54, 267, 54, 166, 180, 267, 180}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == PAINTING);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){166, 54, 267, 54, 166, 180, 267, 180}, sizeof(int[8])) == 0);
     CHECK(s_sprites[1].code != 0x64 && s_sprites[2].code != 0x64);
 }
 
@@ -93,7 +93,7 @@ SPECIFICATION(leaves_pages_without_a_painting, "Encyclopedia picture should leav
 
     when_the_encyclopedia_draws_a_pages_picture();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64);
 }
 
@@ -107,7 +107,7 @@ SPECIFICATION(leaves_the_ps1_picture_when_hd_screens_are_off, "Encyclopedia pict
 
     when_the_encyclopedia_draws_a_pages_picture();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64);
 }
 

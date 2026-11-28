@@ -75,6 +75,7 @@ set(LOM_NATIVE_PORT_SOURCES
     src/remaster/remaster_music.c
     src/remaster/remaster_menu.c
     src/remaster/remaster_cards.c
+    src/remaster/remaster_hd_art.c
     src/remaster/remaster_hd_text.c
     src/remaster/remaster_files_provider.c
     src/cd/disc_files_provider.c

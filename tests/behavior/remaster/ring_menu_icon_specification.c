@@ -205,9 +205,9 @@ SPECIFICATION(draws_the_icon, "Ring menu icon should draw the Remaster's icon fr
 {
     when_the_menu_draws_an_icon();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == ITEM_ICON);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){40, 60, 74, 60, 40, 76, 74, 76}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == ITEM_ICON);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){40, 60, 74, 60, 40, 76, 74, 76}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -220,8 +220,8 @@ SPECIFICATION(draws_some_icons_further_right, "Ring menu icon should draw the eq
 
     when_the_menu_draws_an_icon();
 
-    CHECK(s_renderer_fake.pictures[0].colour == EQUIP_ICON);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){42, 60, 76, 60, 42, 76, 76, 76}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].colour == EQUIP_ICON);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){42, 60, 76, 60, 42, 76, 76, 76}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -235,7 +235,7 @@ SPECIFICATION(draws_the_list_icon_in_the_second_column, "Ring menu icon should d
 
     when_the_menu_draws_an_icon();
 
-    CHECK(s_renderer_fake.pictures[0].colour == WEAPON_LIST_ICON);
+    CHECK(s_renderer_fake.quads[0].colour == WEAPON_LIST_ICON);
 }
 
 /**
@@ -248,7 +248,7 @@ SPECIFICATION(draws_the_german_icon, "Ring menu icon should draw the German icon
 
     when_the_menu_draws_an_icon();
 
-    CHECK(s_renderer_fake.pictures[0].colour == GERMAN_ICONS);
+    CHECK(s_renderer_fake.quads[0].colour == GERMAN_ICONS);
 }
 
 /**
@@ -261,7 +261,7 @@ SPECIFICATION(leaves_the_ps1_icon_when_hd_screens_are_off, "Ring menu icon shoul
 
     when_the_menu_draws_an_icon();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 

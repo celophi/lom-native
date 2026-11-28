@@ -173,45 +173,30 @@ SPECIFICATION(uses_the_launchers_settings, "Starting the game should use the par
 }
 
 /**
- * @brief Given a renderer that can't draw the Remaster's pictures; when the game starts; then it says the HD screens
- *        can't be shown, while the HD backgrounds and the Remaster's text still can.
+ * @brief Given a renderer that can't draw the Remaster's HD art; when the game starts; then it says neither the HD
+ *        screens nor the HD backgrounds can be shown, while the Remaster's text still can.
  */
-SPECIFICATION(says_hd_screens_cant_be_shown, "Starting the game should say HD screens can't be shown when the renderer can't draw pictures")
+SPECIFICATION(says_hd_art_cant_be_shown, "Starting the game should say HD screens and backgrounds can't be shown when the renderer can't draw HD art")
 {
-    hd_renderer_provider_fake_without_pictures(&s_renderer_fake);
+    hd_renderer_provider_fake_without_hd(&s_renderer_fake);
 
     when_the_game_starts();
 
     CHECK(!lom_native_remaster_hd_ui_supported());
-    CHECK(lom_native_remaster_hd_supported());
+    CHECK(!lom_native_remaster_hd_supported());
     CHECK(lom_native_remaster_text_in_use() == LOM_REMASTER_TEXT_ENGLISH);
 }
 
 /**
- * @brief Given a renderer that can't draw the HD backgrounds; when the game starts; then it says they can't be shown,
- *        while the HD screens still can.
+ * @brief Given the defaults, a renderer that can draw HD art; when the game starts; then it says the HD screens and
+ *        the HD backgrounds can both be shown.
  */
-SPECIFICATION(says_hd_backgrounds_cant_be_shown, "Starting the game should say HD backgrounds can't be shown when the renderer can't draw them")
+SPECIFICATION(says_hd_art_can_be_shown, "Starting the game should say HD screens and backgrounds can be shown when the renderer can draw HD art")
 {
-    hd_renderer_provider_fake_without_backgrounds(&s_renderer_fake);
-
     when_the_game_starts();
 
-    CHECK(!lom_native_remaster_hd_supported());
     CHECK(lom_native_remaster_hd_ui_supported());
-}
-
-/**
- * @brief Given a renderer that can't show HD movies; when the game starts; then it says they can't be played.
- */
-SPECIFICATION(says_hd_movies_cant_be_played, "Starting the game should say HD movies can't be played when the renderer can't show them")
-{
-    hd_renderer_provider_fake_without_movies(&s_renderer_fake);
-
-    when_the_game_starts();
-
-    CHECK(!lom_native_remaster_hd_movies_supported());
-    CHECK(lom_native_remaster_hd_ui_supported());
+    CHECK(lom_native_remaster_hd_supported());
 }
 
 int main(int argc, char** argv)

@@ -88,11 +88,11 @@ SPECIFICATION(draws_the_wall_and_the_small_map, "World select picture should dra
 {
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 2);
-    CHECK(s_renderer_fake.pictures[0].colour == WALL);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, 0, 128, 0, 0, 224, 128, 224}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[1].colour == SMALL_MAP);
-    CHECK(memcmp(s_renderer_fake.pictures[1].xy, (int[8]){96, 48, 128, 48, 96, 168, 128, 168}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 2);
+    CHECK(s_renderer_fake.quads[0].colour == WALL);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, 0, 128, 0, 0, 224, 128, 224}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[1].colour == SMALL_MAP);
+    CHECK(memcmp(s_renderer_fake.quads[1].xy, (int[8]){96, 48, 128, 48, 96, 168, 128, 168}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -106,9 +106,9 @@ SPECIFICATION(draws_only_the_wall_past_the_small_map, "World select picture shou
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == WALL);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){256, 0, 320, 0, 256, 224, 320, 224}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == WALL);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){256, 0, 320, 0, 256, 224, 320, 224}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -124,9 +124,9 @@ SPECIFICATION(draws_the_land_map, "World select picture should draw the Remaster
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == LAND);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){-64, -112, 64, -112, -64, 144, 64, 144}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == LAND);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){-64, -112, 64, -112, -64, 144, 64, 144}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -141,9 +141,9 @@ SPECIFICATION(draws_the_cursor_frame, "World select picture should draw the Rema
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == FRAME);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){101, 53, 221, 53, 101, 171, 221, 171}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == FRAME);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){101, 53, 221, 53, 101, 171, 221, 171}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -158,7 +158,7 @@ SPECIFICATION(drops_the_cursor_shadow, "World select picture should draw no shad
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code != 0x64);
 }
 
@@ -173,7 +173,7 @@ SPECIFICATION(leaves_the_hero_to_the_ps1, "World select picture should leave the
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 
@@ -187,7 +187,7 @@ SPECIFICATION(leaves_the_ps1_when_hd_screens_are_off, "World select picture shou
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 
@@ -201,7 +201,7 @@ SPECIFICATION(leaves_the_ps1_world_map_without_the_small_map, "World select pict
 
     when_world_select_draws_a_sprite();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 

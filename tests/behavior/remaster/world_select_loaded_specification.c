@@ -71,7 +71,7 @@ SPECIFICATION(loads_the_art_up_front, "World select should give the renderer all
     when_world_select_loads();
 
     CHECK(s_renderer_fake.upload_count == 4);
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(remaster_files_provider_fake_find(&s_files_fake, WORLD_SELECT_FILE)->reads == 1);
 }
 

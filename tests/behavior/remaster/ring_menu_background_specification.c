@@ -205,9 +205,9 @@ SPECIFICATION(draws_the_background_once, "Ring menu background should draw the R
 {
     when_the_menu_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == MENU_BACKGROUND);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, -8, 320, -8, 0, 232, 320, 232}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == MENU_BACKGROUND);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, -8, 320, -8, 0, 232, 320, 232}, sizeof(int[8])) == 0);
     CHECK(s_sprites[1].code != 0x64);
 }
 
@@ -221,7 +221,7 @@ SPECIFICATION(leaves_the_ps1_background_in_the_ring, "Ring menu background shoul
 
     when_the_menu_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64);
 }
 

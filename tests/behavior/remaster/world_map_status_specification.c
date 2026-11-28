@@ -121,8 +121,8 @@ SPECIFICATION(draws_the_days_name, "World map status should draw the day's name 
 {
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.pictures[0].colour == s_english_day_names[3]);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){168, 20, 264, 20, 168, 52, 264, 52}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].colour == s_english_day_names[3]);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){168, 20, 264, 20, 168, 52, 264, 52}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -135,7 +135,7 @@ SPECIFICATION(draws_the_days_name_in_german, "World map status should draw the d
 
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.pictures[0].colour == GERMAN_NAMES);
+    CHECK(s_renderer_fake.quads[0].colour == GERMAN_NAMES);
 }
 
 /**
@@ -146,11 +146,11 @@ SPECIFICATION(draws_the_spirit_over_its_shell, "World map status should draw the
 {
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.picture_count == 3);
-    CHECK(s_renderer_fake.pictures[1].colour == SHELL_COLOUR);
-    CHECK(memcmp(s_renderer_fake.pictures[1].xy, (int[8]){262, 14, 310, 14, 262, 70, 310, 70}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[2].colour == JINN);
-    CHECK(memcmp(s_renderer_fake.pictures[2].xy, (int[8]){270, 28, 303, 28, 270, 56, 303, 56}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 3);
+    CHECK(s_renderer_fake.quads[1].colour == SHELL_COLOUR);
+    CHECK(memcmp(s_renderer_fake.quads[1].xy, (int[8]){262, 14, 310, 14, 262, 70, 310, 70}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[2].colour == JINN);
+    CHECK(memcmp(s_renderer_fake.quads[2].xy, (int[8]){270, 28, 303, 28, 270, 56, 303, 56}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -162,7 +162,7 @@ SPECIFICATION(draws_the_days_own_spirit, "World map status should draw the spiri
 
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.pictures[2].colour == DRYAD);
+    CHECK(s_renderer_fake.quads[2].colour == DRYAD);
 }
 
 /**
@@ -176,8 +176,8 @@ SPECIFICATION(fades_the_spirit_as_the_ps1_does, "World map status should fade th
 
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.pictures[2].rgb == 0x404040);
-    CHECK(s_renderer_fake.pictures[2].semi == 1);
+    CHECK(s_renderer_fake.quads[2].rgb == 0x404040);
+    CHECK(s_renderer_fake.quads[2].alpha == 0x80);
 }
 
 /**
@@ -190,7 +190,7 @@ SPECIFICATION(leaves_the_ps1_status_when_hd_screens_are_off, "World map status s
 
     when_the_world_map_draws_its_status();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[DAY_NAME].code == 0x64 && s_sprites[SHELL].code == 0x64 && s_sprites[SPIRIT].code == 0x64);
 }
 

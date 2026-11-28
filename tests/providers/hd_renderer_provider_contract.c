@@ -16,6 +16,11 @@
 #define GREEN 0x00FF00
 #define SCALE 2
 #define COMMAND 0x1F
+#define PAGES 0
+#define PICTURES 1
+#define PAGE_BITS 0x1000
+#define PICTURE_BITS 0x1800
+#define OPAQUE_AS_IT_IS 0x808080FFu
 
 static void (*s_draw)(void);
 
@@ -111,32 +116,33 @@ static unsigned char* picture_of(int w, int h, unsigned char red, unsigned char 
 }
 
 /**
- * @brief Draw the red picture over one square and the green one over the next.
+ * @brief Queue the red picture over one square and the green one over the next, as quads of the pictures' texture.
  */
 static void draw_the_two_pictures(void)
 {
     const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
-    renderer->images_draw(renderer->context, (const int[8]){10, 10, 26, 10, 10, 26, 26, 26}, (const int[8]){0, 0, 16, 0, 0, 16, 16, 16}, 0, 0x808080, 0,
-                          -1);
-    renderer->images_draw(renderer->context, (const int[8]){40, 10, 56, 10, 40, 26, 56, 26}, (const int[8]){16, 0, 32, 0, 16, 16, 32, 16}, 0, 0x808080, 0,
-                          -1);
+    renderer->quad(renderer->context, (const short[8]){10, 10, 26, 10, 10, 26, 26, 26}, (const unsigned short[8]){0, 0, 16, 0, 0, 16, 16, 16},
+                   OPAQUE_AS_IT_IS, -1, PICTURE_BITS, 0);
+    renderer->quad(renderer->context, (const short[8]){40, 10, 56, 10, 40, 26, 56, 26}, (const unsigned short[8]){16, 0, 32, 0, 16, 16, 32, 16},
+                   OPAQUE_AS_IT_IS, -1, PICTURE_BITS, 0);
 }
 
 /**
- * @brief Draw the first page's first cell over a square.
+ * @brief Queue the first page's first cell over a square, as a quad of the pages' texture.
  */
 static void draw_the_first_cell(void)
 {
     const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
-    renderer->textures_draw(renderer->context, (const int[8]){100, 100, 116, 100, 100, 116, 116, 116}, 0, 0x00, 0x808080, 0, -1);
+    renderer->quad(renderer->context, (const short[8]){100, 100, 116, 100, 100, 116, 116, 116}, (const unsigned short[8]){0, 0, 64, 0, 0, 64, 64, 64},
+                   OPAQUE_AS_IT_IS, -1, PAGE_BITS, 0);
 }
 
 /**
- * @brief Check the renderer's picture calls keep what's uploaded where it went and draw it where they're told, as the
- *        fake does, and refuse what doesn't fit.
- * @note Given a layer with a red picture uploaded at its top left and a green one beside it; when each is drawn over
- *       its own square of the screen; then each square shows its picture's color, and an upload past the layer's
- *       edge or to a layer that isn't there is refused.
+ * @brief Check the renderer keeps what's uploaded to the pictures' texture where it went, and that a quad with the
+ *        pictures' bits shows the part of the layer its texture coordinates say, as the fake takes it to.
+ * @note Given the pictures' texture with a red square uploaded at its top left and a green one beside it; when each is
+ *       queued as a quad over its own square of the screen; then each square shows its picture's colour and the space
+ *       between them nothing.
  */
 static void draws_pictures_where_it_is_told(void)
 {
@@ -144,30 +150,30 @@ static void draws_pictures_where_it_is_told(void)
     unsigned char* red = picture_of(16, 16, 255, 0, 0);
     unsigned char* green = picture_of(16, 16, 0, 255, 0);
 
-    CHECK(renderer->images_set && renderer->images_upload && renderer->images_draw && renderer->images_release);
-    CHECK(renderer->images_set(renderer->context, 4, LAYER_SIZE) == 0);
-    CHECK(renderer->images_upload(renderer->context, 0, 0, 0, 16, 16, red) == 0);
-    CHECK(renderer->images_upload(renderer->context, 0, 16, 0, 16, 16, green) == 0);
-    CHECK(renderer->images_upload(renderer->context, 0, LAYER_SIZE - 8, 0, 16, 16, red) != 0);
-    CHECK(renderer->images_upload(renderer->context, 4, 0, 0, 16, 16, red) != 0);
-
+    CHECK(renderer->texture_create && renderer->texture_upload && renderer->texture_mipmaps && renderer->texture_release && renderer->quad);
+    CHECK(renderer->texture_create(renderer->context, PICTURES, 4, LAYER_SIZE, 5) == 0);
+    CHECK(renderer->texture_upload(renderer->context, PICTURES, 0, 0, 0, 16, 16, red) == 0);
+    CHECK(renderer->texture_upload(renderer->context, PICTURES, 0, 16, 0, 16, 16, green) == 0);
+    renderer->texture_mipmaps(renderer->context, PICTURES);
     Psyz_GpuExeque();
     DrawSync(0);
+
     draw_while_running_a_command(draw_the_two_pictures);
 
     CHECK(drawn_at(18, 18) == RED);
     CHECK(drawn_at(48, 18) == GREEN);
     CHECK(drawn_at(32, 18) == 0);
 
-    renderer->images_release(renderer->context);
+    renderer->texture_release(renderer->context, PICTURES);
     free(red);
     free(green);
 }
 
 /**
- * @brief Check the renderer's background calls draw a cell of an uploaded page where they're told, as the fake does.
- * @note Given a page whose first cell is green; when that cell is drawn over a square of the screen; then the square
- *       shows green, and an upload to a page that isn't there is refused.
+ * @brief Check a quad with the pages' bits shows the cell of the page it names, as the Remaster's backgrounds take it
+ *        to.
+ * @note Given the pages' texture with a page whose first cell is green; when that cell is queued as a quad over a
+ *       square of the screen; then the square shows green.
  */
 static void draws_background_cells_where_it_is_told(void)
 {
@@ -182,35 +188,17 @@ static void draws_background_cells_where_it_is_told(void)
         }
     }
 
-    CHECK(renderer->textures_set && renderer->textures_upload && renderer->textures_draw && renderer->textures_release);
-    CHECK(renderer->textures_set(renderer->context, 1, PAGE_SIZE) == 0);
-    CHECK(renderer->textures_upload(renderer->context, 0, page) == 0);
-    CHECK(renderer->textures_upload(renderer->context, 1, page) != 0);
-
+    CHECK(renderer->texture_create(renderer->context, PAGES, 1, PAGE_SIZE, 1) == 0);
+    CHECK(renderer->texture_upload(renderer->context, PAGES, 0, 0, 0, PAGE_SIZE, PAGE_SIZE, page) == 0);
     Psyz_GpuExeque();
     DrawSync(0);
+
     draw_while_running_a_command(draw_the_first_cell);
 
     CHECK(drawn_at(108, 108) == GREEN);
 
-    renderer->textures_release(renderer->context);
+    renderer->texture_release(renderer->context, PAGES);
     free(page);
-}
-
-/**
- * @brief Check the renderer has the movie calls the fake stands in for, and starts an HD movie of the Remaster's size.
- * @note Given the renderer; when an HD movie starts, shows a frame and ends; then starting it succeeds.
- */
-static void starts_an_hd_movie(void)
-{
-    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
-    unsigned char* frame = picture_of(1280, 720, 0, 0, 255);
-
-    CHECK(renderer->movie_begin && renderer->movie_frame && renderer->movie_end);
-    CHECK(renderer->movie_begin(renderer->context, 1280, 720) == 0);
-    renderer->movie_frame(renderer->context, frame);
-    renderer->movie_end(renderer->context);
-    free(frame);
 }
 
 int main(void)
@@ -219,7 +207,6 @@ int main(void)
     Psyz_GpuRegisterCommandHandler(COMMAND, run_the_draws, NULL);
     draws_pictures_where_it_is_told();
     draws_background_cells_where_it_is_told();
-    starts_an_hd_movie();
-    puts("hd-renderer-provider: draws HD pictures and backgrounds where it's told, and starts HD movies");
+    puts("hd-renderer-provider: keeps HD textures and draws quads of them where it's told");
     return 0;
 }

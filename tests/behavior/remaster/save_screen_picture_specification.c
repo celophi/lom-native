@@ -117,9 +117,9 @@ SPECIFICATION(draws_the_chosen_row, "Save screen picture should stretch the Rema
 {
     when_a_save_screen_draws_a_picture();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == CHOSEN_ROW);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){24, 48, 296, 48, 24, 70, 296, 70}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == CHOSEN_ROW);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){24, 48, 296, 48, 24, 70, 296, 70}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -131,7 +131,7 @@ SPECIFICATION(draws_the_dark_row, "Save screen picture should draw the Remaster'
 
     when_a_save_screen_draws_a_picture();
 
-    CHECK(s_renderer_fake.pictures[0].colour == DARK_ROW);
+    CHECK(s_renderer_fake.quads[0].colour == DARK_ROW);
 }
 
 /**
@@ -143,7 +143,7 @@ SPECIFICATION(draws_the_heroines_face, "Save screen picture should draw the Rema
 
     when_a_save_screen_draws_a_picture();
 
-    CHECK(s_renderer_fake.pictures[0].colour == HEROINE);
+    CHECK(s_renderer_fake.quads[0].colour == HEROINE);
 }
 
 /**
@@ -155,7 +155,7 @@ SPECIFICATION(draws_the_down_arrow, "Save screen picture should draw the Remaste
 
     when_a_save_screen_draws_a_picture();
 
-    CHECK(s_renderer_fake.pictures[0].colour == ARROW_DOWN);
+    CHECK(s_renderer_fake.quads[0].colour == ARROW_DOWN);
 }
 
 /**
@@ -168,7 +168,7 @@ SPECIFICATION(leaves_the_ps1_pictures, "Save screen picture should leave the PS1
 
     when_a_save_screen_draws_a_picture();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 

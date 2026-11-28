@@ -8,17 +8,11 @@ extern "C"
 
     typedef struct LomHdRendererProvider
     {
-        int (*textures_set)(void* context, int layers, int size);
-        int (*textures_upload)(void* context, int layer, const void* rgba);
-        void (*textures_release)(void* context);
-        void (*textures_draw)(void* context, const int xy[8], int layer, int cell, unsigned int rgb, int semi, int tpage);
-        int (*images_set)(void* context, int layers, int size);
-        int (*images_upload)(void* context, int layer, int x, int y, int w, int h, const void* rgba);
-        void (*images_release)(void* context);
-        void (*images_draw)(void* context, const int xy[8], const int uv[8], int layer, unsigned int rgb, int semi, int tpage);
-        int (*movie_begin)(void* context, unsigned width, unsigned height);
-        void (*movie_frame)(void* context, const void* rgba);
-        void (*movie_end)(void* context);
+        int (*texture_create)(void* context, int which, int layers, int size, int levels);
+        int (*texture_upload)(void* context, int which, int layer, int x, int y, int w, int h, const void* pixels);
+        void (*texture_mipmaps)(void* context, int which);
+        void (*texture_release)(void* context, int which);
+        void (*quad)(void* context, const short xy[8], const unsigned short uv[8], unsigned rgba, int tpage, unsigned flags, unsigned clut);
         void* context;
     } LomHdRendererProvider;
 
@@ -26,23 +20,19 @@ extern "C"
      * @brief The provider in use for the renderer's HD drawing: the renderer's
      *        own, unless a test put in its own.
      * @return The provider. Each call takes its @c context first, then what
-     *         src/gpu/hd_textures.h and src/gpu/hd_movie.h say:
-     *         @c textures_* hold and draw the HD backgrounds' pages,
-     *         @c images_* the HD screens' pictures, and @c movie_* show an HD
-     *         movie's frames. Pages and pictures are uploaded as the
-     *         Remaster's files hold them: blue, green, red, then alpha. A
-     *         renderer only takes a draw while it's running a GPU command,
-     *         which is how the Remaster's draws are made. A call is NULL when
-     *         the renderer can't do it, so the Remaster's code can tell what
-     *         it can draw.
+     *         src/gpu/hd_textures.h says: make, fill, mipmap and drop one of
+     *         the renderer's two HD textures, and queue one quad in its batch.
+     *         They're all NULL when the renderer can't draw HD art.
      * @note This is the HD drawing's provider: the one place the port reaches
-     *       the renderer's HD calls, kept as thin as it can be. Everything
-     *       above it (which pictures, where, in what order) is the port's own
-     *       code, which tests run for real with a provider of their own that
-     *       keeps what's uploaded and drawn in memory
-     *       (tests/support/gpu/hd_renderer_provider_fake.h).
-     *       tools/testing/provider_check.py keeps the Remaster's and the
-     *       movies' code from going around it.
+     *       the renderer's HD calls, each a straight pass-through to the GPU,
+     *       which is as low as the renderer can be reached and still be
+     *       replaced. Everything above it (which pictures go where, what fits,
+     *       how they're blended, where cells are on a page) is the port's own
+     *       code, in src/remaster/remaster_hd_art.c, which tests run for real
+     *       with a provider of their own that keeps what's uploaded and queued
+     *       in memory (tests/support/gpu/hd_renderer_provider_fake.h).
+     *       tools/testing/provider_check.py keeps the rest of the port from
+     *       going around it.
      */
     const LomHdRendererProvider* lom_hd_renderer_provider(void);
 

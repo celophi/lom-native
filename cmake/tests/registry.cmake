@@ -138,6 +138,8 @@ lom_add_test(NAME separation-check TIER 0 KIND static NO_HEADLESS LABELS platfor
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/separation_check.py")
 lom_add_test(NAME provider-check TIER 0 KIND static NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/provider_check.py")
+lom_add_test(NAME spec-check TIER 0 KIND static NO_HEADLESS LABELS platform
+    COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/spec_check.py")
 lom_add_test(NAME test-check TIER 0 KIND static NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/test_check.py" "${CMAKE_BINARY_DIR}/test-targets.json")
 lom_add_test(NAME comment-check TIER 0 KIND static NO_HEADLESS LABELS lint

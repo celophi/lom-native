@@ -106,6 +106,80 @@ extern "C"
     int lom_remaster_picture_ready(const char* file, const char* label, int* w, int* h);
 
     /**
+     * @brief Make room for the HD backgrounds' pages in the renderer, dropping
+     *        any before (remaster_hd_art.c).
+     * @param layers How many pages.
+     * @param size Each page's width and height.
+     * @return 0, or -1 when the renderer can't.
+     */
+    int lom_remaster_pages_set(int layers, int size);
+
+    /**
+     * @brief Fill one of the HD backgrounds' pages.
+     * @param layer The page.
+     * @param rgba Its pixels, as the Remaster stores them.
+     * @return 0, or -1 for a page there's no room for or the renderer
+     *         refusing it.
+     */
+    int lom_remaster_pages_upload(int layer, const void* rgba);
+
+    /** @brief Drop the HD backgrounds' pages. */
+    void lom_remaster_pages_release(void);
+
+    /**
+     * @brief Draw one cell of an HD background's page, in order with the rest
+     *        of the frame.
+     * @param xy The cell's four points: top left, top right, bottom left,
+     *        bottom right.
+     * @param layer The page.
+     * @param cell The cell on it: its row in the high four bits, its column in
+     *        the low four.
+     * @param rgb The tile's color, as the PS1 has it (0x808080 draws the cell
+     *        as it is).
+     * @param semi Nonzero to blend it.
+     * @param tpage The texture page word whose blend mode it uses, or -1 for
+     *        the current one.
+     */
+    void lom_remaster_pages_draw(const int xy[8], int layer, int cell, unsigned rgb, int semi, int tpage);
+
+    /**
+     * @brief Make room for the HD screens' pictures in the renderer, dropping
+     *        any before.
+     * @param layers How many layers.
+     * @param size Each layer's width and height.
+     * @return 0, or -1 when the renderer can't.
+     */
+    int lom_remaster_pictures_set(int layers, int size);
+
+    /**
+     * @brief Fill part of a layer of the HD screens' pictures.
+     * @param layer The layer.
+     * @param x Where the pixels go.
+     * @param y The same, down.
+     * @param w How wide they are.
+     * @param h How tall.
+     * @param rgba The pixels, as the Remaster stores them.
+     * @return 0, or -1 when they don't fit or the renderer refuses them.
+     */
+    int lom_remaster_pictures_upload(int layer, int x, int y, int w, int h, const void* rgba);
+
+    /** @brief Drop the HD screens' pictures. */
+    void lom_remaster_pictures_release(void);
+
+    /**
+     * @brief Draw part of a layer of the HD screens' pictures, in order with
+     *        the rest of the frame.
+     * @param xy The four points it goes over.
+     * @param uv The layer's pixels at those points.
+     * @param layer The layer.
+     * @param rgb The color it's drawn with, as the PS1 has it.
+     * @param semi Nonzero to blend it.
+     * @param tpage The texture page word whose blend mode it uses, or -1 for
+     *        the current one.
+     */
+    void lom_remaster_pictures_draw(const int xy[8], const int uv[8], int layer, unsigned rgb, int semi, int tpage);
+
+    /**
      * @brief Get ready to draw part of one of the Remaster's pictures over
      *        four points on the screen (remaster_ui.c).
      * @param file Its PSB file.

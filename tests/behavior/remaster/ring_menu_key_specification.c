@@ -205,13 +205,13 @@ SPECIFICATION(draws_the_key_cap, "Ring menu key should draw the Remaster's key c
 {
     when_the_menu_draws_a_key_cap();
 
-    CHECK(s_renderer_fake.picture_count == 3);
-    CHECK(s_renderer_fake.pictures[0].colour == KEY_LEFT);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){20, 200, 24, 200, 20, 212, 24, 212}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[1].colour == KEY_MIDDLE);
-    CHECK(memcmp(s_renderer_fake.pictures[1].xy, (int[8]){24, 200, 40, 200, 24, 212, 40, 212}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[2].colour == KEY_RIGHT);
-    CHECK(memcmp(s_renderer_fake.pictures[2].xy, (int[8]){40, 200, 44, 200, 40, 212, 44, 212}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 3);
+    CHECK(s_renderer_fake.quads[0].colour == KEY_LEFT);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){20, 200, 24, 200, 20, 212, 24, 212}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[1].colour == KEY_MIDDLE);
+    CHECK(memcmp(s_renderer_fake.quads[1].xy, (int[8]){24, 200, 40, 200, 24, 212, 40, 212}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[2].colour == KEY_RIGHT);
+    CHECK(memcmp(s_renderer_fake.quads[2].xy, (int[8]){40, 200, 44, 200, 40, 212, 44, 212}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -224,7 +224,7 @@ SPECIFICATION(leaves_the_ps1_prompts_in_the_ring, "Ring menu key should leave th
 
     when_the_menu_draws_a_key_cap();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64);
 }
 

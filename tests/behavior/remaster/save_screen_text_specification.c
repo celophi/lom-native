@@ -126,9 +126,9 @@ SPECIFICATION(writes_in_the_remasters_font, "Save screen text should write a row
     when_a_save_screen_writes_its_words();
 
     CHECK(s_written);
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == hd_renderer_fake_written(0xFFFFFF));
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){60, 91, 111, 91, 60, 103, 111, 103}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == hd_renderer_fake_written(0xFFFFFF));
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){60, 91, 111, 91, 60, 103, 111, 103}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -140,7 +140,7 @@ SPECIFICATION(ends_right_aligned_words_there, "Save screen text should end right
 
     when_a_save_screen_writes_its_words();
 
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){9, 91, 60, 91, 9, 103, 60, 103}, sizeof(int[8])) == 0);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){9, 91, 60, 91, 9, 103, 60, 103}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -152,7 +152,7 @@ SPECIFICATION(dims_the_card_not_chosen, "Save screen text should write the card 
 
     when_a_save_screen_writes_its_words();
 
-    CHECK(s_renderer_fake.pictures[0].colour == hd_renderer_fake_written(0x8A7848));
+    CHECK(s_renderer_fake.quads[0].colour == hd_renderer_fake_written(0x8A7848));
 }
 
 /**
@@ -166,7 +166,7 @@ SPECIFICATION(leaves_words_the_font_cant_write, "Save screen text should leave t
     when_a_save_screen_writes_its_words();
 
     CHECK(!s_written);
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
 }
 
 /**

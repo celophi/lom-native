@@ -124,10 +124,10 @@ SPECIFICATION(draws_the_cleared_banner, "World map label should draw the Remaste
 {
     when_the_world_map_draws_a_lands_name();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == CLEARED_BANNER);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){92, 48, 172, 48, 92, 68, 172, 68}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[0].semi == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == CLEARED_BANNER);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){92, 48, 172, 48, 92, 68, 172, 68}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].alpha == 0xFF);
 }
 
 /**
@@ -140,7 +140,7 @@ SPECIFICATION(draws_the_not_cleared_banner, "World map label should draw the Rem
 
     when_the_world_map_draws_a_lands_name();
 
-    CHECK(s_renderer_fake.pictures[0].colour == NOT_CLEARED_BANNER);
+    CHECK(s_renderer_fake.quads[0].colour == NOT_CLEARED_BANNER);
 }
 
 /**
@@ -153,7 +153,7 @@ SPECIFICATION(draws_the_artifacts_banner, "World map label should draw the artif
 
     when_the_world_map_draws_a_lands_name();
 
-    CHECK(s_renderer_fake.pictures[0].colour == ARTIFACT_BANNER);
+    CHECK(s_renderer_fake.quads[0].colour == ARTIFACT_BANNER);
 }
 
 /**
@@ -166,7 +166,7 @@ SPECIFICATION(draws_the_japanese_banner, "World map label should draw the Japane
 
     when_the_world_map_draws_a_lands_name();
 
-    CHECK(s_renderer_fake.pictures[0].colour == JAPANESE_BANNER);
+    CHECK(s_renderer_fake.quads[0].colour == JAPANESE_BANNER);
 }
 
 /**
@@ -179,7 +179,7 @@ SPECIFICATION(leaves_the_ps1_name_when_hd_screens_are_off, "World map label shou
 
     when_the_world_map_draws_a_lands_name();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x66);
 }
 

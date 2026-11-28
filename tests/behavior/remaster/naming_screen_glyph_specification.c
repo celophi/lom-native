@@ -113,9 +113,9 @@ SPECIFICATION(draws_the_typewriter, "Naming screen glyph should draw the Remaste
 {
     when_the_naming_screen_draws_a_glyph();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == TYPEWRITER);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){120, 150, 184, 150, 120, 206, 184, 206}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == TYPEWRITER);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){120, 150, 184, 150, 120, 206, 184, 206}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -129,8 +129,8 @@ SPECIFICATION(draws_the_paper, "Naming screen glyph should draw the Remaster's p
 
     when_the_naming_screen_draws_a_glyph();
 
-    CHECK(s_renderer_fake.pictures[0].colour == PAPER);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){61, 30, 251, 30, 61, 63, 251, 63}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].colour == PAPER);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){61, 30, 251, 30, 61, 63, 251, 63}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -143,7 +143,7 @@ SPECIFICATION(draws_no_buttons, "Naming screen glyph should draw nothing for a b
 
     when_the_naming_screen_draws_a_glyph();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code != 0x64 && s_sprites[1].code != 0x64);
 }
 
@@ -174,7 +174,7 @@ SPECIFICATION(moves_the_tabs_left, "Naming screen glyph should move the PS1's ta
 
     when_the_naming_screen_draws_a_glyph();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].x0 == 60 && s_sprites[1].x0 == 68);
 }
 
@@ -188,7 +188,7 @@ SPECIFICATION(leaves_the_ps1_glyphs_in_the_ps1_layout, "Naming screen glyph shou
 
     when_the_naming_screen_draws_a_glyph();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64 && s_sprites[0].x0 == 120);
 }
 

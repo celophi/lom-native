@@ -105,9 +105,9 @@ SPECIFICATION(draws_the_background_once, "Naming screen background should draw t
 {
     when_the_naming_screen_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == ENGLISH_BACKGROUND);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, 0, 320, 0, 0, 224, 320, 224}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == ENGLISH_BACKGROUND);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, 0, 320, 0, 0, 224, 320, 224}, sizeof(int[8])) == 0);
     CHECK(s_sprites[1].code != 0x64);
 }
 
@@ -121,7 +121,7 @@ SPECIFICATION(draws_the_german_background, "Naming screen background should draw
 
     when_the_naming_screen_draws_its_background();
 
-    CHECK(s_renderer_fake.pictures[0].colour == GERMAN_BACKGROUND);
+    CHECK(s_renderer_fake.quads[0].colour == GERMAN_BACKGROUND);
 }
 
 /**
@@ -134,7 +134,7 @@ SPECIFICATION(leaves_the_ps1_background_in_the_ps1_layout, "Naming screen backgr
 
     when_the_naming_screen_draws_its_background();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprites[0].code == 0x64 && s_sprites[1].code == 0x64);
 }
 

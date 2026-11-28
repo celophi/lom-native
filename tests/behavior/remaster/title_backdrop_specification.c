@@ -93,14 +93,14 @@ SPECIFICATION(draws_the_background_and_the_english_logo, "Title backdrop should 
 {
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 2 * STRIPS);
-    CHECK(s_renderer_fake.pictures[0].colour == BACKGROUND);
-    CHECK(s_renderer_fake.pictures[1].colour == ENGLISH_LOGO);
-    CHECK(s_renderer_fake.pictures[8].colour == BACKGROUND);
-    CHECK(s_renderer_fake.pictures[9].colour == ENGLISH_LOGO);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, 0, 64, 0, 0, 224, 64, 224}, sizeof(int[8])) == 0);
-    CHECK(memcmp(s_renderer_fake.pictures[1].xy, (int[8]){0, 0, 64, 0, 0, 224, 64, 224}, sizeof(int[8])) == 0);
-    CHECK(memcmp(s_renderer_fake.pictures[8].xy, (int[8]){256, 0, 320, 0, 256, 224, 320, 224}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 2 * STRIPS);
+    CHECK(s_renderer_fake.quads[0].colour == BACKGROUND);
+    CHECK(s_renderer_fake.quads[1].colour == ENGLISH_LOGO);
+    CHECK(s_renderer_fake.quads[8].colour == BACKGROUND);
+    CHECK(s_renderer_fake.quads[9].colour == ENGLISH_LOGO);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, 0, 64, 0, 0, 224, 64, 224}, sizeof(int[8])) == 0);
+    CHECK(memcmp(s_renderer_fake.quads[1].xy, (int[8]){0, 0, 64, 0, 0, 224, 64, 224}, sizeof(int[8])) == 0);
+    CHECK(memcmp(s_renderer_fake.quads[8].xy, (int[8]){256, 0, 320, 0, 256, 224, 320, 224}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -113,9 +113,9 @@ SPECIFICATION(draws_the_japanese_logo, "Title backdrop should draw the Japanese 
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 2 * STRIPS);
-    CHECK(s_renderer_fake.pictures[0].colour == BACKGROUND);
-    CHECK(s_renderer_fake.pictures[1].colour == JAPANESE_LOGO);
+    CHECK(s_renderer_fake.quad_count == 2 * STRIPS);
+    CHECK(s_renderer_fake.quads[0].colour == BACKGROUND);
+    CHECK(s_renderer_fake.quads[1].colour == JAPANESE_LOGO);
 }
 
 /**
@@ -128,7 +128,7 @@ SPECIFICATION(draws_the_korean_logo, "Title backdrop should draw the Korean logo
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.pictures[1].colour == KOREAN_LOGO);
+    CHECK(s_renderer_fake.quads[1].colour == KOREAN_LOGO);
 }
 
 /**
@@ -141,7 +141,7 @@ SPECIFICATION(draws_the_english_logo_for_french, "Title backdrop should draw the
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.pictures[1].colour == ENGLISH_LOGO);
+    CHECK(s_renderer_fake.quads[1].colour == ENGLISH_LOGO);
 }
 
 /**
@@ -154,7 +154,7 @@ SPECIFICATION(leaves_the_ps1_backdrop_when_hd_screens_are_off, "Title backdrop s
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_strips[0].code == 0x2C);
     CHECK(s_strips[4].x0 == 256 && s_strips[4].x3 == 320 && s_strips[4].y3 == 224);
 }
@@ -170,21 +170,21 @@ SPECIFICATION(leaves_the_ps1_backdrop_without_the_logo, "Title backdrop should l
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_strips[0].code == 0x2C);
 }
 
 /**
- * @brief Given a renderer that can't draw the Remaster's pictures; when the title draws its backdrop; then the PS1's
+ * @brief Given a renderer that can't draw HD art; when the title draws its backdrop; then the PS1's
  *        backdrop is left as the game built it.
  */
-SPECIFICATION(leaves_the_ps1_backdrop_without_pictures, "Title backdrop should leave the PS1's backdrop when the renderer can't draw pictures")
+SPECIFICATION(leaves_the_ps1_backdrop_without_hd_art, "Title backdrop should leave the PS1's backdrop when the renderer can't draw HD art")
 {
-    hd_renderer_provider_fake_without_pictures(&s_renderer_fake);
+    hd_renderer_provider_fake_without_hd(&s_renderer_fake);
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_strips[0].code == 0x2C);
 }
 
@@ -198,7 +198,7 @@ SPECIFICATION(leaves_the_ps1_backdrop_without_the_remaster, "Title backdrop shou
 
     when_the_title_draws_its_backdrop();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_strips[0].code == 0x2C);
 }
 

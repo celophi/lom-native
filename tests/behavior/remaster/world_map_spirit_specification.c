@@ -112,9 +112,9 @@ SPECIFICATION(draws_the_matching_frame, "World map spirit should draw the Remast
 {
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == GNOME_FRAME_5);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){202, 102, 222, 102, 202, 122, 222, 122}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == GNOME_FRAME_5);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){202, 102, 222, 102, 202, 122, 222, 122}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -130,9 +130,9 @@ SPECIFICATION(draws_the_full_orb, "World map spirit should draw the Remaster's f
 
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == GNOME_FULL);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){202, 102, 215, 102, 202, 114, 215, 114}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == GNOME_FULL);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){202, 102, 215, 102, 202, 114, 215, 114}, sizeof(int[8])) == 0);
 }
 
 /**
@@ -149,7 +149,7 @@ SPECIFICATION(draws_salamanders_full_orb, "World map spirit should draw Salamand
 
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.pictures[0].colour == SALAMANDER_FULL);
+    CHECK(s_renderer_fake.quads[0].colour == SALAMANDER_FULL);
 }
 
 /**
@@ -165,9 +165,9 @@ SPECIFICATION(darkens_the_empty_orb, "World map spirit should darken the Remaste
 
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == EMPTY_ORB);
-    CHECK(s_renderer_fake.pictures[0].rgb == 0x404040);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == EMPTY_ORB);
+    CHECK(s_renderer_fake.quads[0].rgb == 0x404040);
 }
 
 /**
@@ -183,7 +183,7 @@ SPECIFICATION(leaves_unused_orbs_to_the_ps1, "World map spirit should leave the 
 
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 
@@ -197,7 +197,7 @@ SPECIFICATION(leaves_the_ps1_spirit_when_hd_screens_are_off, "World map spirit s
 
     when_the_world_map_draws_a_spirit();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_sprite.code == 0x64);
 }
 

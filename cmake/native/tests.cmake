@@ -55,7 +55,7 @@ foreach(test IN ITEMS completion audio-output-edges)
     string(REPLACE "-" "_" file "${test}")
     set(target lom-movie-${test}-component)
     add_executable(${target} tests/component/movie_${file}_component.c src/core/game_loop.c ${LOM_GAME_CONTEXT_SOURCE}
-        src/gpu/draw_labels.c src/gpu/hd_renderer_provider.c)
+        src/gpu/draw_labels.c)
     target_compile_definitions(${target} PRIVATE __psyz VERSION_US LOM_NATIVE=1 _POSIX_C_SOURCE=200809L)
     target_compile_options(${target} PRIVATE -ffunction-sections -fdata-sections)
     target_include_directories(${target} BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES}

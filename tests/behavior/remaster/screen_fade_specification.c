@@ -78,10 +78,10 @@ SPECIFICATION(darkens_in_proportion, "Screen fade should darken everything in pr
     when_a_screen_fades();
 
     CHECK(s_drawn);
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == 0x0000007Fu);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){0, 0, 320, 0, 0, 240, 320, 240}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[0].rgb == 0x808080 && s_renderer_fake.pictures[0].semi == 0);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == 0x0000007Fu);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){0, 0, 320, 0, 0, 240, 320, 240}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].rgb == 0x808080 && s_renderer_fake.quads[0].alpha == 0xFF);
 }
 
 /**
@@ -93,7 +93,7 @@ SPECIFICATION(goes_to_black, "Screen fade should draw solid black when it's all 
 
     when_a_screen_fades();
 
-    CHECK(s_renderer_fake.pictures[0].colour == 0x000000FFu);
+    CHECK(s_renderer_fake.quads[0].colour == 0x000000FFu);
 }
 
 /**
@@ -107,7 +107,7 @@ SPECIFICATION(fades_without_hd_screens, "Screen fade should still darken in prop
     when_a_screen_fades();
 
     CHECK(s_drawn);
-    CHECK(s_renderer_fake.pictures[0].colour == 0x0000007Fu);
+    CHECK(s_renderer_fake.quads[0].colour == 0x0000007Fu);
 }
 
 /**
@@ -121,7 +121,7 @@ SPECIFICATION(draws_nothing_unfaded, "Screen fade should leave the PS1's fade wh
     when_a_screen_fades();
 
     CHECK(!s_drawn);
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
 }
 
 /**
@@ -151,11 +151,11 @@ SPECIFICATION(leaves_the_ps1_fade_without_the_remaster, "Screen fade should leav
 }
 
 /**
- * @brief Given a renderer that can't draw pictures; when a screen fades halfway; then the PS1's fade is left.
+ * @brief Given a renderer that can't draw HD art; when a screen fades halfway; then the PS1's fade is left.
  */
-SPECIFICATION(leaves_the_ps1_fade_without_pictures, "Screen fade should leave the PS1's fade when the renderer can't draw pictures")
+SPECIFICATION(leaves_the_ps1_fade_without_hd_art, "Screen fade should leave the PS1's fade when the renderer can't draw HD art")
 {
-    hd_renderer_provider_fake_without_pictures(&s_renderer_fake);
+    hd_renderer_provider_fake_without_hd(&s_renderer_fake);
 
     when_a_screen_fades();
 

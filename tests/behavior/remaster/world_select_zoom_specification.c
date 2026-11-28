@@ -78,10 +78,10 @@ SPECIFICATION(stretches_the_small_map, "World select zoom should stretch the Rem
 {
     when_world_select_draws_the_zoom();
 
-    CHECK(s_renderer_fake.picture_count == 1);
-    CHECK(s_renderer_fake.pictures[0].colour == SMALL_MAP);
-    CHECK(memcmp(s_renderer_fake.pictures[0].xy, (int[8]){60, 30, 260, 30, 60, 200, 260, 200}, sizeof(int[8])) == 0);
-    CHECK(s_renderer_fake.pictures[0].tpage == 0x2C);
+    CHECK(s_renderer_fake.quad_count == 1);
+    CHECK(s_renderer_fake.quads[0].colour == SMALL_MAP);
+    CHECK(memcmp(s_renderer_fake.quads[0].xy, (int[8]){60, 30, 260, 30, 60, 200, 260, 200}, sizeof(int[8])) == 0);
+    CHECK(s_renderer_fake.quads[0].tpage == 0x2C);
 }
 
 /**
@@ -94,7 +94,7 @@ SPECIFICATION(leaves_the_ps1_zoom_when_hd_screens_are_off, "World select zoom sh
 
     when_world_select_draws_the_zoom();
 
-    CHECK(s_renderer_fake.picture_count == 0);
+    CHECK(s_renderer_fake.quad_count == 0);
     CHECK(s_quad.code == 0x2C);
 }
 
