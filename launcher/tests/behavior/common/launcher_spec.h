@@ -35,6 +35,7 @@
 #include <string>
 #include <vector>
 
+class QProgressDialog;
 class QWidget;
 
 namespace lom::launcher {
@@ -146,6 +147,13 @@ class LauncherSpec : public LauncherSpecDisk, public ::testing::Test {
      * @param button Button text.
      */
     void given_the_next_message_is_answered_with(const QString& button);
+
+    /**
+     * @brief Answer the next progress dialog the launcher shows. Other answers never go to a progress dialog, and one
+     *        left unanswered stays open, since closing it would cancel what it shows.
+     * @param answer Called with the dialog once it is open.
+     */
+    void given_the_next_progress_is_answered(std::function<void(QProgressDialog* progress)> answer);
 
     /**
      * @brief Open the launcher on the profile and wait until it settles.
@@ -280,8 +288,14 @@ class LauncherSpec : public LauncherSpecDisk, public ::testing::Test {
     std::unique_ptr<::testing::NiceMock<DownloadProviderMock>> owned_downloads_;
     std::unique_ptr<::testing::NiceMock<ToolsProviderMock>> owned_tools_;
     bool game_running_ = false;
+    int downloads_on_their_way_ = 0;
     std::atomic<std::uint32_t> random_counter_{0};
-    std::deque<std::function<void(QWidget*)>> dialog_answers_;
+    struct DialogAnswer {
+        bool progress = false;
+        std::function<void(QWidget*)> answer;
+    };
+
+    std::deque<DialogAnswer> dialog_answers_;
     std::unique_ptr<LauncherWindow> window_;
 };
 

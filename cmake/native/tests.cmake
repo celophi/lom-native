@@ -161,9 +161,11 @@ lom_native_runtime_test(lom-gte-tables-integration tests/integration/gte_tables_
 add_executable(lom-japanese-balance-component tests/component/japanese_balance_component.c)
 target_compile_definitions(lom-japanese-balance-component PRIVATE VERSION_US)
 target_link_libraries(lom-japanese-balance-component PRIVATE lom_switches)
-add_executable(lom-gte-tables-jp-integration tests/integration/gte_tables_integration.c)
-target_compile_definitions(lom-gte-tables-jp-integration PRIVATE __psyz VERSION_JP LOM_NATIVE=1)
-target_link_libraries(lom-gte-tables-jp-integration PRIVATE lom_native_runtime_jp lom_native_port_jp)
+if(LOM_DISC_ROOT_JP)
+    add_executable(lom-gte-tables-jp-integration tests/integration/gte_tables_integration.c)
+    target_compile_definitions(lom-gte-tables-jp-integration PRIVATE __psyz VERSION_JP LOM_NATIVE=1)
+    target_link_libraries(lom-gte-tables-jp-integration PRIVATE lom_native_runtime_jp lom_native_port_jp)
+endif()
 
 lom_native_runtime_test(lom-field-lands-component tests/component/field_lands_component.c FIELD)
 

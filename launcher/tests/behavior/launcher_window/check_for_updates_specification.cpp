@@ -281,9 +281,7 @@ LOM_SPEC(CheckForUpdatesSpecification, "Cancelling the download should stop it w
     download_finishes = false;
     open_launcher();
     given_the_next_message_is_answered_with("Download and install");
-    given_the_next_dialog_is_answered([](QWidget* dialog) {
-        auto* progress = qobject_cast<QProgressDialog*>(dialog);
-        ASSERT_NE(progress, nullptr);
+    given_the_next_progress_is_answered([](QProgressDialog* progress) {
         auto* cancel = progress->findChild<QPushButton*>();
         ASSERT_NE(cancel, nullptr);
         cancel->click();
@@ -399,14 +397,14 @@ LOM_SPEC(CheckForUpdatesSpecification, "Download and install should copy a Mac a
 
     const QString staging = shown(profile / "Applications" / ".lom-native-update");
     ASSERT_EQ(tool_runs.size(), 3u);
-    EXPECT_EQ(tool_runs[0].program, shown("/usr/bin/hdiutil"));
+    EXPECT_EQ(tool_runs[0].program, shown(std::filesystem::path("/usr/bin") / "hdiutil"));
     EXPECT_EQ(tool_runs[0].arguments, (QStringList{"attach", shown(profile / "Applications" / ".lom-native-update" / mac_package.toStdString()), "-nobrowse",
                                                    "-readonly", "-noautoopen", "-mountpoint", shown(profile / "Applications" / ".lom-native-update" / "mount")}));
-    EXPECT_EQ(tool_runs[1].program, shown("/usr/bin/ditto"));
+    EXPECT_EQ(tool_runs[1].program, shown(std::filesystem::path("/usr/bin") / "ditto"));
     EXPECT_EQ(tool_runs[1].arguments,
               (QStringList{shown(profile / "Applications" / ".lom-native-update" / "mount" / "Legend of Mana Native.app"),
                            shown(profile / "Applications" / ".lom-native-update" / "Legend of Mana Native.app")}));
-    EXPECT_EQ(tool_runs[2].program, shown("/usr/bin/hdiutil"));
+    EXPECT_EQ(tool_runs[2].program, shown(std::filesystem::path("/usr/bin") / "hdiutil"));
     EXPECT_EQ(tool_runs[2].arguments, (QStringList{"detach", shown(profile / "Applications" / ".lom-native-update" / "mount"), "-force"}));
     EXPECT_EQ(disk::contents(profile / "Applications" / "Legend of Mana Native.app" / "Contents" / "Info.plist"), "the new launcher");
 }

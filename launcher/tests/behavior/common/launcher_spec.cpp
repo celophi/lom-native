@@ -20,6 +20,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QPlainTextEdit>
+#include <QProgressDialog>
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QTextEdit>
@@ -184,7 +185,10 @@ LauncherSpec::LauncherSpec()
                 return;
             }
 
+            downloads_on_their_way_++;
             QTimer::singleShot(0, [this, checksums, received = std::move(received), progress = std::move(progress), done = std::move(done)]() {
+                downloads_on_their_way_--;
+
                 if (!checksums && !download_error.isEmpty()) {
                     done({false, false, download_error});
                     return;
@@ -268,7 +272,13 @@ void LauncherSpec::given_the_game_is_set_up_from(const std::filesystem::path& fo
 }
 
 void LauncherSpec::given_the_next_dialog_is_answered(std::function<void(QWidget* dialog)> answer) {
-    dialog_answers_.push_back(std::move(answer));
+    dialog_answers_.push_back({false, std::move(answer)});
+}
+
+void LauncherSpec::given_the_next_progress_is_answered(std::function<void(QProgressDialog* progress)> answer) {
+    dialog_answers_.push_back({true, [answer = std::move(answer)](QWidget* dialog) {
+                                   answer(qobject_cast<QProgressDialog*>(dialog));
+                               }});
 }
 
 void LauncherSpec::given_the_next_message_is_answered_with(const QString& button) {
@@ -323,11 +333,13 @@ LauncherWindow& LauncherSpec::open_launcher() {
             messages.push_back(box->text());
         }
 
-        if (!dialog_answers_.empty()) {
-            auto answer = std::move(dialog_answers_.front());
+        const bool progress = qobject_cast<QProgressDialog*>(dialog) != nullptr;
+
+        if (!dialog_answers_.empty() && dialog_answers_.front().progress == progress) {
+            auto answer = std::move(dialog_answers_.front().answer);
             dialog_answers_.pop_front();
             answer(dialog);
-        } else if (auto* closable = qobject_cast<QDialog*>(dialog)) {
+        } else if (auto* closable = qobject_cast<QDialog*>(dialog); closable != nullptr && !progress) {
             closable->reject();
         }
     });
@@ -380,11 +392,16 @@ QByteArray LauncherSpec::checksum_line(const QByteArray& bytes, const QString& n
 }
 
 void LauncherSpec::settle() {
-    for (int round = 0; round < 3; round++) {
+    constexpr int quiet_rounds = 3;
+    constexpr int most_rounds = 2000;
+    int quiet = 0;
+
+    for (int round = 0; round < most_rounds && quiet < quiet_rounds; round++) {
         window_->wait_for_work();
         QApplication::processEvents(QEventLoop::AllEvents);
         QThread::msleep(poll_interval_ms);
         QApplication::processEvents(QEventLoop::AllEvents);
+        quiet = downloads_on_their_way_ > 0 ? 0 : quiet + 1;
     }
 }
 
