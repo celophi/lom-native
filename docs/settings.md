@@ -20,7 +20,7 @@ Remaster and Mods.
 
 **Fullscreen** is off by default. F4 does the same.
 
-**Widescreen** is off by default. With it on, towns, dungeons, fights and the world map show more of the world on each side, at 16:9. The world map keeps its corners where they were, the way the Remaster does. Places without the art for it, the menus and the movies stay 4:3 (apart from the Remaster's movies, below), and during a fight nobody can walk into the extra space. The title screen and the wall map you place your home on at the start are wide only with the Remaster's art (below), and so is name entry, which then takes the Remaster's layout.
+**Widescreen** is off by default. With it on, towns, dungeons, fights and the world map show more of the world on each side, at 16:9. The world map keeps its corners where they were, the way the Remaster does. Places without the art for it, the menus and the movies stay 4:3 (apart from the Remaster's movies, below), and during a fight nobody can walk into the extra space. The title screen and the wall map you place your home on at the start are wide only with the Remaster's art (below), and so are name entry and the game's menu, which then take the Remaster's layout.
 
 **Restore display defaults** puts these back: Sharp, 1x, 4:3, in a window.
 
@@ -77,6 +77,7 @@ With it, F1's Remaster page has a switch for all of it, **Use the Remaster**, an
 - **Name entry**. Naming your hero, pets and golems on the Remaster's screen: its background, with the buttons in a column (the Remaster's keyboard button deletes a letter, as the PS1's arrow does, and shows the arrow), its typewriter and paper, and the tabs moved onto the wood. Up and down move through the buttons there. It's painted for a wide screen, so only with Widescreen on; in 4:3 it's the PS1's.
 - **Wall map**. The wall map you place your home on at the start, wide with Widescreen on.
 - **World map**. The world map's Mana Tree panel, spirits, and day and land names. The lands stay the PS1's.
+- **Game menu**. The game's menu with the Remaster's tab icons. With Widescreen on it also takes the Remaster's background and layout: the characters and item lists in a column down the side, the open one's pages in a second column next to it, Return in its own box below, and the pages laid out wider. Up and down move through a column, right goes from a tab into its pages and left goes back. The L1 and R1, and L2 and R2, prompts are the Remaster's: key caps named as it names them (LB and RB, LT and RT) with what the buttons do. That's with the North American disc only, since the Remaster's words for them can't be shown on the Japanese one.
 - **Movies**. The Remaster's high-definition opening, endings and staff roll in place of the PS1's, from the next movie. They're 16:9, so with Widescreen off they're letterboxed. The short movies inside scenes stay the PS1's.
 - **Music**. The Remaster's recordings of the soundtrack, from the next song. Under it, **Recordings** picks its original soundtrack or the arranged one.
 - **Sound effects**. The Remaster's recordings of the sound effects.

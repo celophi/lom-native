@@ -6,6 +6,15 @@ extern "C"
 {
 #endif
 
+    enum
+    {
+        LOM_MENU_PROMPT_STATUS_VIEW,
+        LOM_MENU_PROMPT_WEAPON,
+        LOM_MENU_PROMPT_ARMOR,
+        LOM_MENU_PROMPT_INSTRUMENT,
+        LOM_MENU_PROMPT_COUNT
+    };
+
     /**
      * @brief Draw one of FIELD's actor or effect sprites.
      * @param list The drawing list entry for its depth.
@@ -157,6 +166,71 @@ extern "C"
      *        the letters, so they're stepped through up and down.
      */
     int lom_draw_gname_column(void);
+
+    /** @brief Start the game's menu, deciding whether it's laid out as the Remaster's. */
+    void lom_draw_menu_begin(void);
+
+    /** @brief End the game's menu. */
+    void lom_draw_menu_end(void);
+
+    /** @brief Start one of the menu's frames, wide or not. */
+    void lom_draw_menu_frame(void);
+
+    /** @brief Nonzero when the menu's tabs are in two columns, the Remaster's layout. */
+    int lom_draw_menu_columns(void);
+
+    /**
+     * @brief Where a tab goes in the two-column layout.
+     * @param column 0 or 1 for the columns, 2 for Return's box.
+     * @param row Its row.
+     * @param x Set to its left on the screen.
+     * @param y Set to its top.
+     */
+    void lom_draw_menu_tab_xy(int column, int row, int* x, int* y);
+
+    /**
+     * @brief Draw the menu's frame sprites, which the game has built and
+     *        linked, so a renderer can draw them from other art.
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_draw_menu_background(void* code, int stride, int count);
+
+    /**
+     * @brief Draw one of the menu's icons, which the game has built and
+     *        linked, so a renderer can draw it from other art.
+     * @param code The icon's sprite's code word.
+     * @param sprites How many sprites: 2 with its highlight or shadow, else 1.
+     * @param stride How far the second one's code word is, in bytes.
+     * @param icon The icon.
+     * @param mirror Nonzero when it repeats the open page at the top of the
+     *        second column.
+     */
+    void lom_draw_menu_icon(void* code, int sprites, int stride, int icon, int mirror);
+
+    /**
+     * @brief Draw a button's key cap with its name in the menu, from four
+     *        sprites the game has built and linked (the name's first, so it's
+     *        drawn over the cap's three), so a renderer can draw it from other
+     *        art.
+     * @param code The first sprite's code word.
+     * @param stride How far each next one's is, in bytes.
+     * @param x The cap's left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @param name The button's name.
+     */
+    void lom_draw_menu_key(void* code, int stride, int x, int y, int w, int h, const char* name);
+
+    /**
+     * @brief The words beside a button prompt in the menu, in the game's own
+     *        text, or NULL to show the PS1's button icons.
+     * @param which LOM_MENU_PROMPT_*.
+     * @return The text.
+     */
+    const unsigned char* lom_draw_menu_prompt(int which);
 
     /** @brief How far across name entry's tabs and the label above them are moved. */
     int lom_draw_gname_tab_shift(void);

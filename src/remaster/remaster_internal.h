@@ -224,6 +224,18 @@ extern "C"
     int lom_remaster_gname_cursor_at(int position, int* x, int* y);
 
     /**
+     * @brief Which of the Remaster's tab icons draws one of the menu's, and
+     *        where (remaster_menu.c).
+     * @param icon The menu's icon.
+     * @param mirror Nonzero for the second column's first row.
+     * @param rect The icon's sprite: x, y, width and height.
+     * @param part Set to the file, the picture's label and the four points;
+     *        its area is unused.
+     * @return 1 when it's a tab icon the Remaster has, otherwise 0.
+     */
+    int lom_remaster_menu_icon_part(int icon, int mirror, const int rect[4], LomRemasterPart* part);
+
+    /**
      * @brief Where the Remaster's art for the world map's day name comes from
      *        and goes (remaster_screens.c).
      * @param language The names' language, a LOM_REMASTER_TEXT_* other than

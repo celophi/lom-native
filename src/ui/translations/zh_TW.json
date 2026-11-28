@@ -143,6 +143,8 @@
   "wall_map_help": "開頭放置家園的牆上地圖，為寬螢幕繪製得更寬。",
   "world_map_label": "世界地圖",
   "world_map_help": "世界地圖上的瑪娜之樹面板、精靈，以及日子和土地的名稱。土地仍是 PS1 的。",
+  "game_menu_label": "遊戲選單",
+  "game_menu_help": "用重製版的標籤圖示顯示遊戲選單。開啟寬螢幕時也採用重製版的背景和版面，標籤在側邊排成兩列。",
   "movies_label": "影片",
   "remaster_music_label": "音樂",
   "remaster_music_help": "用重製版的原聲錄音代替 PS1 的音樂。從下一首曲子開始生效。",

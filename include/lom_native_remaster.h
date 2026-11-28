@@ -52,6 +52,7 @@ extern "C"
         LOM_REMASTER_SWITCH_ARRANGED,
         LOM_REMASTER_SWITCH_EFFECTS,
         LOM_REMASTER_SWITCH_TEXT,
+        LOM_REMASTER_SWITCH_MENU,
         LOM_REMASTER_SWITCH_COUNT
     };
 
@@ -168,7 +169,8 @@ extern "C"
 
     /**
      * @brief Set the switches of every repainted picture at once: faces,
-     *        encyclopedia, title, name entry, world select and world map.
+     *        encyclopedia, title, name entry, world select, world map and the
+     *        game's menu.
      */
     void lom_native_remaster_set_hd_ui(int enabled);
 
@@ -328,6 +330,80 @@ extern "C"
      * @return Nonzero when it's the Remaster's.
      */
     int lom_remaster_gname_begin(void);
+
+    /**
+     * @brief Start the game's menu (MENU): its tabs are the Remaster's when
+     *        its Menu switch is on and their art can be drawn, and it's laid
+     *        out as the Remaster's, wide, with Widescreen on too, since its
+     *        background is painted for a wide frame.
+     * @return Nonzero when it's laid out as the Remaster's.
+     */
+    int lom_remaster_menu_begin(void);
+
+    /**
+     * @brief Where a tab's icon goes in the Remaster's menu layout
+     *        (lom_draw_menu_tab_xy).
+     * @param column 0 or 1 for the columns, 2 for Return's box.
+     * @param row Its row in the column.
+     * @param x Set to the icon's left.
+     * @param y Set to its top.
+     */
+    void lom_remaster_menu_tab_xy(int column, int row, int* x, int* y);
+
+    /** @brief End the game's menu, back to the PS1's. */
+    void lom_remaster_menu_end(void);
+
+    /** @brief Nonzero while the game's menu is laid out as the Remaster's, with its tabs in two columns. */
+    int lom_remaster_menu_columns(void);
+
+    /** @brief Start one of the menu's frames: wide when it's laid out as the Remaster's, otherwise the original view. */
+    void lom_remaster_menu_frame(void);
+
+    /**
+     * @brief Draw the Remaster's background over the menu's frame sprites
+     *        (lom_draw_menu_background), over the whole wide screen with
+     *        the 8 lines above and below the PS1's picture.
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_remaster_menu_background(void* code, int stride, int count);
+
+    /**
+     * @brief Draw one of the menu's tab icons as the Remaster's
+     *        (lom_draw_menu_icon). Other icons stay the PS1's.
+     * @param code The icon's sprite's code word.
+     * @param sprites How many sprites: 2 with its highlight or shadow, else 1.
+     * @param stride How far the second one's code word is, in bytes.
+     * @param icon The icon.
+     * @param mirror Nonzero for the second column's first row, which repeats
+     *        the page its column is under.
+     */
+    void lom_remaster_menu_icon(void* code, int sprites, int stride, int icon, int mirror);
+
+    /**
+     * @brief Draw a button's key cap as the Remaster's (lom_draw_menu_key): the
+     *        button's name, and the cap's left and right ends with its middle
+     *        stretched between them.
+     * @param code The first of the four sprites' code words: the name's, then
+     *        the cap's three, so the name is drawn over the cap.
+     * @param stride How far each next one's is, in bytes.
+     * @param x The cap's left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @param name The button's name, a few capital letters.
+     */
+    void lom_remaster_menu_key(void* code, int stride, int x, int y, int w, int h, const char* name);
+
+    /**
+     * @brief The Remaster's words beside a button prompt (lom_draw_menu_prompt),
+     *        in the language of the game's text, as the game's own text.
+     * @param which LOM_MENU_PROMPT_*.
+     * @return The text, or NULL while the menu isn't the Remaster's layout or
+     *         the Remaster has no words for it in that language.
+     */
+    const unsigned char* lom_remaster_menu_prompt(int which);
 
     /** @brief End a name entry, back to the PS1's layout. */
     void lom_remaster_gname_end(void);

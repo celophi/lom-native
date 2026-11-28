@@ -143,6 +143,8 @@
   "wall_map_help": "开头放置家园的墙上地图，为宽屏绘制得更宽。",
   "world_map_label": "世界地图",
   "world_map_help": "世界地图上的玛娜之树面板、精灵，以及日子和土地的名称。土地仍是 PS1 的。",
+  "game_menu_label": "游戏菜单",
+  "game_menu_help": "用重制版的标签图标显示游戏菜单。开启宽屏时也采用重制版的背景和布局，标签在侧边排成两列。",
   "movies_label": "影片",
   "remaster_music_label": "音乐",
   "remaster_music_help": "用重制版的原声录音代替 PS1 的音乐。从下一首曲子开始生效。",

@@ -94,6 +94,51 @@ void lom_draw_gname_cursor(int position, int* x, int* y)
     lom_remaster_gname_cursor(position, x, y);
 }
 
+void lom_draw_menu_begin(void)
+{
+    lom_remaster_menu_begin();
+}
+
+void lom_draw_menu_end(void)
+{
+    lom_remaster_menu_end();
+}
+
+void lom_draw_menu_frame(void)
+{
+    lom_remaster_menu_frame();
+}
+
+int lom_draw_menu_columns(void)
+{
+    return lom_remaster_menu_columns();
+}
+
+void lom_draw_menu_tab_xy(int column, int row, int* x, int* y)
+{
+    lom_remaster_menu_tab_xy(column, row, x, y);
+}
+
+void lom_draw_menu_background(void* code, int stride, int count)
+{
+    lom_remaster_menu_background(code, stride, count);
+}
+
+void lom_draw_menu_icon(void* code, int sprites, int stride, int icon, int mirror)
+{
+    lom_remaster_menu_icon(code, sprites, stride, icon, mirror);
+}
+
+void lom_draw_menu_key(void* code, int stride, int x, int y, int w, int h, const char* name)
+{
+    lom_remaster_menu_key(code, stride, x, y, w, h, name);
+}
+
+const unsigned char* lom_draw_menu_prompt(int which)
+{
+    return lom_remaster_menu_prompt(which);
+}
+
 void lom_draw_wsel_zoom(void* code)
 {
     lom_remaster_wsel_zoom(code);

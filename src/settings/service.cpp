@@ -38,6 +38,7 @@ constexpr RemasterSwitch remaster_switches[] = {
     {LOM_REMASTER_SWITCH_ARRANGED, &Preferences::arranged_music},
     {LOM_REMASTER_SWITCH_EFFECTS, &Preferences::remaster_effects},
     {LOM_REMASTER_SWITCH_TEXT, &Preferences::remaster_text},
+    {LOM_REMASTER_SWITCH_MENU, &Preferences::hd_menu},
 };
 
 static_assert(std::size(remaster_switches) == LOM_REMASTER_SWITCH_COUNT, "a preference for each of the Remaster's switches");

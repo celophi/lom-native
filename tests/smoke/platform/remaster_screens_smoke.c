@@ -322,6 +322,36 @@ static void name_entry_takes_the_remasters_pictures_and_layout(void)
     CHECK(lom_remaster_gname_cursor_at(1, &x, &y) == 0 && x == 84 && y == 104);
 }
 
+/**
+ * @brief The menu's tab icons: each PS1 icon takes its Remaster picture, at
+ *        the PS1 icon's top left but for the few drawn further right, with the
+ *        LIST or STATUS version for the second column's repeat. The tabs go
+ *        in two columns out in a wide frame's left side, with Return below.
+ */
+static void menu_tabs_take_their_icons_and_places(void)
+{
+    LomRemasterPart part;
+    const int rect[4] = {10, 20, 32, 16};
+    int x = 0;
+    int y = 0;
+
+    CHECK(lom_remaster_menu_icon_part(11, 0, rect, &part));
+    CHECK(!strcmp(part.file, "micon_en.psb.m") && !strcmp(part.label, "weapon"));
+    covers(&part, 10, 20, 44, 36);
+    CHECK(lom_remaster_menu_icon_part(11, 1, rect, &part) && !strcmp(part.label, "weapon_list"));
+    CHECK(lom_remaster_menu_icon_part(13, 0, rect, &part) && !strcmp(part.label, "instr"));
+    covers(&part, 13, 20, 47, 36);
+    CHECK(lom_remaster_menu_icon_part(24, 1, rect, &part) && !strcmp(part.label, "event"));
+    CHECK(!lom_remaster_menu_icon_part(99, 0, rect, &part));
+
+    lom_remaster_menu_tab_xy(0, 2, &x, &y);
+    CHECK(x == -36 && y == 38);
+    lom_remaster_menu_tab_xy(1, 0, &x, &y);
+    CHECK(x == 10 && y == 0);
+    lom_remaster_menu_tab_xy(2, 5, &x, &y);
+    CHECK(x == -11 && y == 203);
+}
+
 int main(void)
 {
     wsel_pictures_come_from_where_they_were_lined_up();
@@ -331,6 +361,7 @@ int main(void)
     spirits_and_strengths_come_from_their_frames();
     title_backdrop_comes_from_the_background_and_logo();
     name_entry_takes_the_remasters_pictures_and_layout();
+    menu_tabs_take_their_icons_and_places();
     puts("remaster-screens: WSEL, the world map, the title and name entry take the Remaster's art from where it was lined up");
     return 0;
 }

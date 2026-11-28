@@ -19,6 +19,7 @@
 #include "overlays/field/field_text.h"
 #include "lom_native_frames.h"
 #include "lom_native_draw_labels.h"
+#include "lom_native_draw.h"
 
 #if defined(VERSION_JP)
 #define MENU_PLAYTIME_SEPARATOR ","
@@ -45,6 +46,35 @@ s32 menu_build_ability_nav_entries(void);
 s32 menu_lookup_item_nibble(const FieldItemRecord* item, u32 index);
 s32 menu_build_special_technique_nav_entries(void);
 s32 menu_remove_technique_skills(void);
+static void menu_columns_promote(void);
+static void menu_columns_place_content(void);
+static s32 menu_frame_y(s32 frame_parity);
+static s32 menu_list_hand_shift(void);
+static s32 menu_button_prompt(void** packet_cursor, OT_TYPE* ot, const MenuContentItem* item);
+static void menu_columns_buffers(RECT* clear_rect);
+static void menu_columns_clear_bands(void);
+static void menu_full_drawing(DRAWENV* draw_env, s32 draw_y);
+static s32 menu_title_x(void);
+static s32 menu_columns_navigate(void);
+static s32 menu_column_xy(s32 node_index, s32* x, s32* y);
+static void* menu_draw_columns(void* prim_buf, OT_TYPE* ot);
+
+static s32 g_menu_icon_mirror;
+
+#define MENU_TITLE_X 0xAC
+#define MENU_TITLE_Y 0xC
+#define MENU_COLUMNS_TITLE_X 212
+#define MENU_HELP_X 0xA0
+#define MENU_HELP_Y 0xCA
+#define MENU_COLUMNS_HELP_X 71
+#define MENU_COLUMNS_HELP_RIGHT 362
+#define MENU_COLUMNS_HELP_ROOM 300
+#define MENU_HELP_ROOM 300
+#define MENU_HELP_HALF_LINE 6
+#define MENU_HELP_BYTES 0x100
+#define MENU_COLUMNS_COUNTER_X 280
+#define MENU_COLUMNS_COUNTER_Y 14
+#define MENU_SCREEN_BAND ((SCREEN_HEIGHT - VRAM_DRAW_HEIGHT) / 2)
 
 s32 menu_run_unchecked(RenderContext* render_buffers)
 {
@@ -67,6 +97,12 @@ s32 menu_run_unchecked(RenderContext* render_buffers)
     lom_graphics_default_display(&g_menu_draw_buf_base[1].disp_env, 0, VRAM_BACK_DISP_Y, SCREEN_WIDTH, SCREEN_HEIGHT);
     lom_graphics_default_drawing(&g_menu_draw_buf_base[0].draw_env, 0, SCREEN_HEIGHT, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
     lom_graphics_default_drawing(&g_menu_draw_buf_base[1].draw_env, 0, VRAM_BACK_DRAW_Y, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+
+    if (lom_draw_menu_columns())
+    {
+        menu_columns_buffers(&clear_rect);
+    }
+
     draw_env_buffers = g_menu_draw_buf_base;
     draw_env_buffers[1].draw_env.dtd = 0;
     draw_env_buffers[0].draw_env.dtd = 0;
@@ -98,6 +134,7 @@ s32 menu_run_unchecked(RenderContext* render_buffers)
     {
         draw_buffer = next_buffer;
         lom_graphics_clear_list(draw_buffer->ot, RENDER_CONTEXT_OT_ENTRY_COUNT);
+        lom_draw_menu_frame();
         draw_buffer->prim_cursor = &draw_buffer->ot[RENDER_CONTEXT_OT_ENTRY_COUNT];
         field_text_reset_scratch();
         {
@@ -157,11 +194,27 @@ s32 menu_run_unchecked(RenderContext* render_buffers)
     return g_menu_transition_code;
 }
 
+/**
+ * @brief Run the menu once its overlay is checked.
+ * @param render_buffers The two render contexts.
+ * @return The transition code menu_run_unchecked returns.
+ * @note The port decides around it whether it's laid out as the Remaster's (lom_draw_menu_begin).
+ */
 s32 menu_run(RenderContext* render_buffers)
 {
-    lom_overlay_require(6, "MENU");
+    s32 transition;
 
-    return menu_run_unchecked(render_buffers);
+    lom_overlay_require(6, "MENU");
+    lom_draw_menu_begin();
+    transition = menu_run_unchecked(render_buffers);
+
+    if (lom_draw_menu_columns())
+    {
+        menu_columns_clear_bands();
+    }
+
+    lom_draw_menu_end();
+    return transition;
 }
 
 /**
@@ -376,6 +429,7 @@ void* menu_build_text_run(SPRT* sprite_cursor, OT_TYPE* ot, u8* src, s32 text_co
 
 /**
  * @brief Builds and queues the GPU packet sequence for the menu grid.
+ * @note The port hands the sprites to lom_draw_menu_background, for the Remaster's.
  * @param render_ctx Render context providing the packet buffer and ordering table;
  */
 void menu_build_grid(RenderContext* render_ctx)
@@ -383,6 +437,7 @@ void menu_build_grid(RenderContext* render_ctx)
     RECT texture_window;
     s32 sprite_index;
     SPRT* sprite;
+    SPRT* first_sprite;
     const MenuGridSpriteDef* sprite_def;
     u_long* packet_cursor;
     RenderContext* first_ctx = render_ctx;
@@ -400,6 +455,7 @@ void menu_build_grid(RenderContext* render_ctx)
     sprite_def = (const MenuGridSpriteDef*)g_menu_glyph_src;
     packet_cursor += PRIM_WORDS(DR_TWIN);
     sprite = (SPRT*)packet_cursor;
+    first_sprite = sprite;
 
     for (sprite_index = 0; sprite_index < MENU_GRID_SPRITE_COUNT; sprite_index++, sprite++, sprite_def++)
     {
@@ -423,6 +479,7 @@ void menu_build_grid(RenderContext* render_ctx)
     }
 
     packet_cursor = (u_long*)sprite;
+    lom_draw_menu_background((u8*)first_sprite + __builtin_offsetof(P_TAG, r0), sizeof(SPRT), MENU_GRID_SPRITE_COUNT);
 
     lom_gpu_set_wh(&texture_window, MENU_GRID_TEXTURE_WINDOW_SIZE, MENU_GRID_TEXTURE_WINDOW_SIZE);
     texture_window.x = 0;
@@ -698,8 +755,7 @@ void menu_update_slots(RenderContext* render_ctx)
 
     if (g_menu_help_text != 0)
     {
-        render_ctx->prim_cursor = field_draw_text(render_ctx->prim_cursor, &render_ctx->ot[MENU_FRAME_OT_INDEX], g_menu_help_text, FIELD_TEXT_COLOR_MENU, 0xA0,
-                                                  0xCA, FIELD_TEXT_ALIGN_CENTER);
+        render_ctx->prim_cursor = menu_draw_help(render_ctx->prim_cursor, &render_ctx->ot[MENU_FRAME_OT_INDEX], g_menu_help_text);
     }
 }
 
@@ -803,12 +859,7 @@ void menu_draw_window(MenuSlot* slot, RenderContext* render_ctx, MenuRect* rect,
 
         draw_env = &content_draw_env;
         content_draw_x = rect->x + 8;
-        content_draw_y = rect->y + 16;
-
-        if (render_ctx->frame_parity != 0)
-        {
-            content_draw_y = rect->y + SCREEN_HEIGHT + 8;
-        }
+        content_draw_y = rect->y + menu_frame_y(render_ctx->frame_parity) + 8;
 
         lom_graphics_default_drawing(draw_env, content_draw_x, content_draw_y, rect->w - MENU_WINDOW_MIN_HEIGHT, rect->h - MENU_WINDOW_MIN_HEIGHT);
         lom_gpu_init_drawing_packet((DR_ENV*)packet_cursor, draw_env);
@@ -1423,6 +1474,11 @@ void menu_node_tree_init(void)
         g_menu_companion_node = MENU_NODE_BUTTONS_CHARACTER_1;
     }
 
+    if (lom_draw_menu_columns())
+    {
+        menu_columns_promote();
+    }
+
     layout_y = 0;
     node_index = 0;
     zero_value = 0;
@@ -1574,7 +1630,78 @@ s32 menu_layout_node(s32 node_index, s32 base_pos)
 }
 
 /**
+ * @brief Where in VRAM a frame's picture starts, its y 0.
+ * @param frame_parity Which of the two frames.
+ * @return The VRAM y.
+ * @note The PS1 draws 224 of the 240 lines the screen shows, 8 down. Its two frames' screens, at 0 and 232, overlap
+ *       by those 8 lines, so in the port's two-column layout, which draws all 240, the second frame's is 8 lower.
+ */
+static s32 menu_frame_y(s32 frame_parity)
+{
+    if (frame_parity == 0)
+    {
+        return VRAM_BACK_DRAW_Y;
+    }
+
+    return lom_draw_menu_columns() ? SCREEN_HEIGHT + MENU_SCREEN_BAND : SCREEN_HEIGHT;
+}
+
+/**
+ * @brief For the port's two-column layout, place the two frames' screens apart, at 0 and 240, each drawn all 240 lines
+ *        (menu_frame_y).
+ * @param clear_rect What's cleared at the start, set to cover both.
+ */
+static void menu_columns_buffers(RECT* clear_rect)
+{
+    lom_gpu_set_rect(clear_rect, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 2);
+    lom_graphics_fill(clear_rect, 0, 0, 0);
+    lom_gpu_set_rect(&g_menu_draw_buf_base[0].clear_rect, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_gpu_set_rect(&g_menu_draw_buf_base[1].clear_rect, 0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+    lom_graphics_default_display(&g_menu_draw_buf_base[1].disp_env, 0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
+    menu_full_drawing(&g_menu_draw_buf_base[0].draw_env, menu_frame_y(1));
+    menu_full_drawing(&g_menu_draw_buf_base[1].draw_env, menu_frame_y(0));
+}
+
+/**
+ * @brief After the port's two-column layout, clear the lines it drew that the rest of the game doesn't: the 8 above and
+ *        below each frame's 224 (menu_frame_y). The screen shows them, and the field never draws there, so what the
+ *        menu left would show above and below the room.
+ */
+static void menu_columns_clear_bands(void)
+{
+    RECT band;
+
+    lom_gpu_set_rect(&band, 0, 0, SCREEN_WIDTH, MENU_SCREEN_BAND);
+    lom_graphics_fill(&band, 0, 0, 0);
+    lom_gpu_set_rect(&band, 0, SCREEN_HEIGHT - MENU_SCREEN_BAND, SCREEN_WIDTH, MENU_SCREEN_BAND * 2);
+    lom_graphics_fill(&band, 0, 0, 0);
+    lom_gpu_set_rect(&band, 0, SCREEN_HEIGHT * 2 - MENU_SCREEN_BAND * 2, SCREEN_WIDTH, MENU_SCREEN_BAND * 2);
+    lom_graphics_fill(&band, 0, 0, 0);
+    lom_graphics_wait(0);
+}
+
+/**
+ * @brief Set up drawing over the whole frame: the PS1's 224 lines, or in the port's two-column layout all 240 the
+ *        screen shows, as the Remaster's menu fills the screen. Its coordinates stay the PS1's, so the 8 lines above
+ *        and below are y -8 to 0 and 224 to 232.
+ * @param draw_env Set up.
+ * @param draw_y Where the frame's picture starts in VRAM (menu_frame_y).
+ */
+static void menu_full_drawing(DRAWENV* draw_env, s32 draw_y)
+{
+    lom_graphics_default_drawing(draw_env, 0, draw_y, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+
+    if (lom_draw_menu_columns())
+    {
+        draw_env->clip.y -= MENU_SCREEN_BAND;
+        draw_env->clip.h = SCREEN_HEIGHT;
+    }
+}
+
+/**
  * @brief Draw the menu frame layers and optionally dispatch navigation input.
+ * @note In the port, with the tabs in two columns (lom_draw_menu_columns) they're drawn over the whole frame, without the
+ *       tree's scroll arrows.
  * @param packet_cursor Primitive buffer location for the frame.
  * @param ot_entry Ordering-table entry for the frame primitives.
  * @param frame_parity Selects the active double-buffered VRAM page.
@@ -1595,8 +1722,8 @@ u8* menu_draw_frame(u8* packet_cursor, OT_TYPE* ot_entry, s32 frame_parity, s32 
     actuator_state = MENU_CONTROLLER_ACTUATORS;
 
     draw_env_packet = menu_draw_scene_content(packet_cursor, ot_entry);
-    draw_y = frame_parity ? SCREEN_HEIGHT : VRAM_BACK_DRAW_Y;
-    lom_graphics_default_drawing(&draw_env, 0, draw_y, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    draw_y = menu_frame_y(frame_parity);
+    menu_full_drawing(&draw_env, draw_y);
     lom_gpu_init_drawing_packet(draw_env_packet, &draw_env);
     lom_gpu_link(ot_entry, draw_env_packet);
 
@@ -1648,16 +1775,24 @@ u8* menu_draw_frame(u8* packet_cursor, OT_TYPE* ot_entry, s32 frame_parity, s32 
     }
 
     node_tree_end = menu_draw_node_tree(frame_cursor, ot_entry);
-    frame_cursor = menu_emit_tree_scroll_arrows(node_tree_end, ot_entry - 1);
+    frame_cursor = lom_draw_menu_columns() ? (u8*)node_tree_end : menu_emit_tree_scroll_arrows(node_tree_end, ot_entry - 1);
 
     draw_mode = (DR_TPAGE*)frame_cursor;
     lom_gpu_init_tpage_packet(draw_mode, 0, 0, MENU_GRID_TPAGE);
     lom_gpu_link(ot_entry, draw_mode);
     draw_env_packet = (DR_ENV*)(draw_mode + 1);
 
-    draw_y = frame_parity ? SCREEN_HEIGHT + MENU_TREE_DRAW_Y_OFFSET : VRAM_BACK_DRAW_Y + MENU_TREE_DRAW_Y_OFFSET;
+    draw_y = menu_frame_y(frame_parity) + MENU_TREE_DRAW_Y_OFFSET;
     frame_end = (u8*)(draw_env_packet + 1);
-    lom_graphics_default_drawing(&draw_env, MENU_TREE_DRAW_X, draw_y, MENU_TREE_DRAW_WIDTH, MENU_TREE_DRAW_HEIGHT);
+
+    if (lom_draw_menu_columns())
+    {
+        menu_full_drawing(&draw_env, draw_y - MENU_TREE_DRAW_Y_OFFSET);
+    }
+    else
+    {
+        lom_graphics_default_drawing(&draw_env, MENU_TREE_DRAW_X, draw_y, MENU_TREE_DRAW_WIDTH, MENU_TREE_DRAW_HEIGHT);
+    }
     lom_gpu_init_drawing_packet(draw_env_packet, &draw_env);
     lom_gpu_link(ot_entry, draw_env_packet);
 
@@ -1682,6 +1817,11 @@ void menu_handle_node_input(void)
     nav_index = menu_find_nav_node_index(g_menu_active_node);
 
     if (nav_index == (-1))
+    {
+        return;
+    }
+
+    if (lom_draw_menu_columns() && menu_columns_navigate())
     {
         return;
     }
@@ -1768,7 +1908,9 @@ void menu_handle_node_input(void)
         active_node = nodes + g_menu_active_node;
         active_node->u2.word |= MENU_NODE_ANIM_FRAMES_MASK;
 
-        if (active_node->u2.s.parent_idx == MENU_NONE)
+        if ((active_node->u2.s.parent_idx == MENU_NONE) &&
+            !(lom_draw_menu_columns() &&
+              (g_menu_active_node == MENU_NODE_WEAPONS || g_menu_active_node == MENU_NODE_ARMOR || g_menu_active_node == MENU_NODE_INSTRUMENTS)))
         {
             g_menu_item_ptr = 0;
             g_menu_weapon_item = 0;
@@ -1828,6 +1970,18 @@ void menu_handle_node_input(void)
         }
 
         g_content_cursor_x = menu_nav_x(active_node->idx_nav.nav_x_packed) + MENU_CONTENT_CURSOR_X_OFFSET;
+
+        if (lom_draw_menu_columns())
+        {
+            s32 tab_x;
+            s32 tab_y;
+
+            if (menu_column_xy(g_menu_active_node, &tab_x, &tab_y))
+            {
+                g_content_cursor_x = tab_x - MENU_CONTENT_CURSOR_X_OFFSET;
+                g_content_cursor_y = tab_y;
+            }
+        }
 
         if (active_node->content_id != MENU_NONE)
         {
@@ -3586,6 +3740,11 @@ void* menu_draw_scene_content(void* packet_cursor, OT_TYPE* ot_entry)
                         }
                     }
 
+                    if (menu_button_prompt(&packet_cursor, ot_entry, content_item))
+                    {
+                        icon_id = MENU_ICON_NONE;
+                    }
+
                     if (icon_id != MENU_ICON_NONE)
                     {
                         packet_cursor = menu_emit_draw_mode_primitive(
@@ -4830,18 +4989,19 @@ void* menu_draw_scene_content(void* packet_cursor, OT_TYPE* ot_entry)
 
                 if (title != NULL && *title != 0)
                 {
-                    packet_cursor = field_draw_text(packet_cursor, ot_entry, title, FIELD_TEXT_COLOR_MENU, 0xAC, 0xC, FIELD_TEXT_ALIGN_CENTER);
+                    packet_cursor =
+                        field_draw_text(packet_cursor, ot_entry, title, FIELD_TEXT_COLOR_MENU, menu_title_x(), MENU_TITLE_Y, FIELD_TEXT_ALIGN_CENTER);
                 }
             }
             else if (g_menu_scene_type == MENU_NODE_BACKFIELD)
             {
                 packet_cursor = field_draw_text(packet_cursor, ot_entry, menu_text_entry(menu_text_table_base(MENU_TEXT_MESSAGES), MENU_MESSAGE_EVENT_LIST),
-                                                FIELD_TEXT_COLOR_MENU, 0xAC, 0xC, FIELD_TEXT_ALIGN_CENTER);
+                                                FIELD_TEXT_COLOR_MENU, menu_title_x(), MENU_TITLE_Y, FIELD_TEXT_ALIGN_CENTER);
             }
             else if (g_menu_scene_type != -1)
             {
                 packet_cursor = field_draw_text(packet_cursor, ot_entry, menu_text_entry(menu_text_table_base(MENU_TEXT_MESSAGES), node->label_id),
-                                                FIELD_TEXT_COLOR_MENU, 0xAC, 0xC, FIELD_TEXT_ALIGN_CENTER);
+                                                FIELD_TEXT_COLOR_MENU, menu_title_x(), MENU_TITLE_Y, FIELD_TEXT_ALIGN_CENTER);
             }
 
             switch (g_menu_scene_type)
@@ -4854,8 +5014,8 @@ void* menu_draw_scene_content(void* packet_cursor, OT_TYPE* ot_entry)
             case MENU_NODE_INSTRUMENT_ITEM_STATUS:
             {
                 void* number_cursor;
-                pos.x = 0x88;
-                pos.y = 0x28;
+                pos.x = lom_draw_menu_columns() ? MENU_COLUMNS_COUNTER_X : 0x88;
+                pos.y = lom_draw_menu_columns() ? MENU_COLUMNS_COUNTER_Y : 0x28;
 
                 if (g_menu_page_count != 0)
                 {
@@ -5250,6 +5410,8 @@ void* menu_emit_tree_scroll_arrows(SPRT* sprite, OT_TYPE* ot_entry)
  */
 void* menu_draw_active_node_cursor(void* packet_cursor, OT_TYPE* ot_entry, s32 draw_label)
 {
+    s32 tab_x;
+    s32 tab_y;
     u16 nav_x_packed;
     u8 nav_y_high;
     s32 nav_y_low;
@@ -5276,13 +5438,19 @@ void* menu_draw_active_node_cursor(void* packet_cursor, OT_TYPE* ot_entry, s32 d
         cursor_y = MENU_CURSOR_Y_MAX;
     }
 
-    packet_cursor = menu_emit_cursor(packet_cursor, ot_entry, menu_nav_x(nav_x_packed) + MENU_CONTENT_CURSOR_X_OFFSET, cursor_y, 1);
+    if (lom_draw_menu_columns() && menu_column_xy(g_menu_active_node, &tab_x, &tab_y))
+    {
+        packet_cursor = menu_emit_cursor(packet_cursor, ot_entry, tab_x - MENU_CONTENT_CURSOR_X_OFFSET, tab_y, 1);
+    }
+    else
+    {
+        packet_cursor = menu_emit_cursor(packet_cursor, ot_entry, menu_nav_x(nav_x_packed) + MENU_CONTENT_CURSOR_X_OFFSET, cursor_y, 1);
+    }
 
     if (draw_label != 0)
     {
         label_table = menu_text_table_base(MENU_TEXT_GENERAL);
-        packet_cursor = field_draw_text(packet_cursor, ot_entry, menu_text_entry(label_table, g_menu_nodes[g_menu_active_node].label_id), FIELD_TEXT_COLOR_MENU,
-                                        0xA0, 0xCA, FIELD_TEXT_ALIGN_CENTER);
+        packet_cursor = menu_draw_help(packet_cursor, ot_entry, menu_text_entry(label_table, g_menu_nodes[g_menu_active_node].label_id));
     }
 
     return packet_cursor;
@@ -5679,6 +5847,11 @@ void* menu_draw_node_tree(void* prim_buf, OT_TYPE* ot)
     s32 node_index;
     s32 scroll_step;
 
+    if (lom_draw_menu_columns())
+    {
+        return menu_draw_columns(prim_buf, ot);
+    }
+
     g_menu_nav_count = 0;
 
     for (node_index = 0; node_index < MENU_NODE_COUNT; node_index++)
@@ -5702,6 +5875,710 @@ void* menu_draw_node_tree(void* prim_buf, OT_TYPE* ot)
     }
 
     return prim_buf;
+}
+
+static const u8 g_menu_column_order[] = {MENU_NODE_HERO_STATUS,
+                                         MENU_NODE_GUEST_HERO_STATUS,
+                                         MENU_NODE_GUEST_PARTNER_STATUS,
+                                         MENU_NODE_PET_STATUS,
+                                         MENU_NODE_PET_STATUS_UNUSED,
+                                         MENU_NODE_GOLEM_STATUS,
+                                         MENU_NODE_WEAPONS,
+                                         MENU_NODE_ARMOR,
+                                         MENU_NODE_INSTRUMENTS,
+                                         MENU_NODE_ITEMS,
+                                         MENU_NODE_BACKFIELD,
+                                         MENU_NODE_GAME_ENVIRONMENT};
+
+#define MENU_COLUMN_ROOTS ((s32)(sizeof(g_menu_column_order) / sizeof(g_menu_column_order[0])))
+#define MENU_COLUMN_FIRST 0
+#define MENU_COLUMN_SECOND 1
+#define MENU_COLUMN_RETURN 2
+
+#define MENU_PROMPT_L1 0x4C
+#define MENU_PROMPT_L2 0x4D
+#define MENU_PROMPT_R1 0x4E
+#define MENU_PROMPT_R2 0x4F
+#define MENU_LIST_HAND_SHIFT 4
+#define MENU_KEY_W 11
+#define MENU_KEY_H 8
+#define MENU_KEY_TOP 5
+#define MENU_KEY_GAP 6
+#define MENU_PROMPT_GAP 6
+#define MENU_PROMPT_TEXT_TOP 3
+#define MENU_PROMPTS_APART 12
+
+/**
+ * @brief How far left of the PS1's place the hand points at a list's rows. The PS1's 16-pixel hand starts 12 pixels
+ *        before the names, so its tip covers their first letter; in the port's two-column layout it ends where they
+ *        start.
+ * @return The pixels.
+ */
+static s32 menu_list_hand_shift(void)
+{
+    return lom_draw_menu_columns() ? MENU_LIST_HAND_SHIFT : 0;
+}
+
+/**
+ * @brief Whether a page is a character's Status page, with the portrait.
+ * @param node The page.
+ * @return Nonzero when it is.
+ */
+static s32 menu_status_page(s32 node)
+{
+    return node == MENU_NODE_HERO_STATUS || node == MENU_NODE_GUEST_HERO_STATUS || node == MENU_NODE_GUEST_PARTNER_STATUS || node == MENU_NODE_PET_STATUS ||
+           node == MENU_NODE_PET_STATUS_UNUSED;
+}
+
+/**
+ * @brief Draw one of the Remaster's key caps with a button's name on it (lom_draw_menu_key).
+ * @param packet_cursor Primitive write cursor.
+ * @param ot Ordering-table entry.
+ * @param name The button's name.
+ * @param x The cap's left.
+ * @param y Its top.
+ * @return Updated primitive write cursor.
+ */
+static void* menu_draw_key(void* packet_cursor, OT_TYPE* ot, const char* name, s32 x, s32 y)
+{
+    SPRT* sprites = (SPRT*)packet_cursor;
+    s32 index;
+
+    for (index = 0; index < 4; index++)
+    {
+        SET_BGR0_PACKED(&sprites[index], GPU_TINT_NEUTRAL);
+        lom_gpu_init_sprite(&sprites[index]);
+        lom_gpu_set_xy0(&sprites[index], x, y);
+        lom_gpu_set_wh(&sprites[index], MENU_KEY_W, MENU_KEY_H);
+        lom_gpu_link(ot, &sprites[index]);
+    }
+
+    lom_draw_menu_key((u8*)sprites + __builtin_offsetof(P_TAG, r0), sizeof(SPRT), x, y, MENU_KEY_W, MENU_KEY_H, name);
+    return sprites + 4;
+}
+
+/**
+ * @brief The words for the item lists' L2 and R2 on a page: Change Weapon, Armor or Instrument.
+ * @param node The page.
+ * @return LOM_MENU_PROMPT_*, or -1 when the page has no L2 and R2.
+ */
+static s32 menu_item_prompt(s32 node)
+{
+    if (node == MENU_NODE_WEAPON_STATUS || node == MENU_NODE_WEAPON_ITEM_STATUS)
+    {
+        return LOM_MENU_PROMPT_WEAPON;
+    }
+
+    if (node == MENU_NODE_ARMOR_STATUS || node == MENU_NODE_ARMOR_ITEM_STATUS)
+    {
+        return LOM_MENU_PROMPT_ARMOR;
+    }
+
+    if (node == MENU_NODE_INSTRUMENT_STATUS || node == MENU_NODE_INSTRUMENT_ITEM_STATUS)
+    {
+        return LOM_MENU_PROMPT_INSTRUMENT;
+    }
+
+    return -1;
+}
+
+/**
+ * @brief In the port's two-column layout, draw the PS1's L1, R1, L2 and R2 icons as the Remaster's prompts: each pair
+ *        of buttons' key caps, named as the Remaster names them (LB and RB, LT and RT), and what they do in its
+ *        brown, Change Status View from the left and, on the item lists' Status pages, Change Weapon, Armor or
+ *        Instrument to the right edge. Both are drawn for the L1 icon; the others draw nothing.
+ * @param packet_cursor Primitive write cursor, moved on past what's drawn.
+ * @param ot Ordering-table entry.
+ * @param item The icon's content item.
+ * @return Nonzero when the icon is replaced this way.
+ * @note Without the Remaster's words (on the Japanese disc) the icons stay the PS1's. The Remaster shows none on the
+ *       characters' Status pages, where they would sit on the portrait. In the PS1's letters both can be too wide
+ *       for the row (in French); then Change Status View keeps only its keys.
+ */
+static s32 menu_button_prompt(void** packet_cursor, OT_TYPE* ot, const MenuContentItem* item)
+{
+    const u8 action = item->action_type;
+    const s32 right = menu_item_prompt(g_menu_scene_type);
+    const u8* left_text = lom_draw_menu_prompt(LOM_MENU_PROMPT_STATUS_VIEW);
+    const u8* right_text = right >= 0 ? lom_draw_menu_prompt(right) : NULL;
+    const s32 keys = 2 * MENU_KEY_W + MENU_KEY_GAP + MENU_PROMPT_GAP;
+    s32 limit = MENU_COLUMNS_HELP_RIGHT;
+    s32 x;
+    s32 y;
+    s32 key_y;
+
+    if (!lom_draw_menu_columns() || action < MENU_PROMPT_L1 || action > MENU_PROMPT_R2 || left_text == NULL || (right >= 0 && right_text == NULL))
+    {
+        return 0;
+    }
+
+    if (action != MENU_PROMPT_L1 || menu_status_page(g_menu_scene_type))
+    {
+        return 1;
+    }
+
+    y = MENU_CONTENT_Y(item) + MENU_PROMPT_TEXT_TOP;
+    key_y = MENU_CONTENT_Y(item) + MENU_KEY_TOP;
+
+    if (right_text != NULL)
+    {
+        SPRT* first = (SPRT*)*packet_cursor;
+        *packet_cursor = field_draw_text(*packet_cursor, ot, (u8*)right_text, FIELD_TEXT_COLOR_DEFAULT, MENU_COLUMNS_HELP_RIGHT, y, FIELD_TEXT_ALIGN_RIGHT);
+        limit = first->x0 - keys;
+        *packet_cursor = menu_draw_key(*packet_cursor, ot, "LT", limit, key_y);
+        *packet_cursor = menu_draw_key(*packet_cursor, ot, "RT", limit + MENU_KEY_W + MENU_KEY_GAP, key_y);
+        limit -= MENU_PROMPTS_APART;
+    }
+
+    x = MENU_CONTENT_X(item);
+
+    {
+        const OT_TYPE head = *ot;
+        void* const start = *packet_cursor;
+        u8* const end = field_draw_text(start, ot, (u8*)left_text, FIELD_TEXT_COLOR_DEFAULT, x + keys, y, FIELD_TEXT_ALIGN_LEFT);
+        const SPRT* last = (const SPRT*)((DR_TPAGE*)end - 1) - 1;
+
+        if (end != start && last->x0 + last->w > limit)
+        {
+            *ot = head;
+        }
+        else
+        {
+            *packet_cursor = end;
+        }
+    }
+
+    *packet_cursor = menu_draw_key(*packet_cursor, ot, "LB", x, key_y);
+    *packet_cursor = menu_draw_key(*packet_cursor, ot, "RB", x + MENU_KEY_W + MENU_KEY_GAP, key_y);
+    return 1;
+}
+
+/**
+ * @brief For the port's two-column layout, as the Remaster's: Weapons, Armor and Instruments become tabs of their own in
+ *        the first column, with their pages under them, and Items keeps only Artifacts.
+ */
+static void menu_columns_promote(void)
+{
+    static const u8 lists[] = {MENU_NODE_WEAPONS, MENU_NODE_ARMOR, MENU_NODE_INSTRUMENTS};
+    s32 list;
+    s32 child;
+
+    for (list = 0; list < (s32)sizeof(lists); list++)
+    {
+        MenuNode* node = &g_menu_nodes[lists[list]];
+        node->u2.s.parent_idx = MENU_NONE;
+        node->u2.bits.depth = 0;
+        node->u2.bits.active = 1;
+
+        for (child = 0; child < MENU_MAX_CHILDREN; child++)
+        {
+            if (node->layout.s.children[child] != MENU_NONE)
+            {
+                g_menu_nodes[node->layout.s.children[child]].u2.bits.depth = 1;
+            }
+        }
+    }
+
+    g_menu_nodes[MENU_NODE_ITEMS].layout.s.children[0] = MENU_NODE_ARTIFACTS;
+    g_menu_nodes[MENU_NODE_ITEMS].layout.s.children[1] = MENU_NONE;
+    g_menu_nodes[MENU_NODE_ITEMS].layout.s.children[2] = MENU_NONE;
+    g_menu_nodes[MENU_NODE_ITEMS].layout.s.children[3] = MENU_NONE;
+    menu_columns_place_content();
+}
+
+/**
+ * @brief Where a page's title is centred: over the page, which in the port's two-column layout is wider, as the
+ *        Remaster's.
+ * @return Its x.
+ */
+static s32 menu_title_x(void)
+{
+    return lom_draw_menu_columns() ? MENU_COLUMNS_TITLE_X : MENU_TITLE_X;
+}
+
+/**
+ * @brief Bytes one character of encoded text takes.
+ * @param text The character.
+ * @return 1, 2 for a double-byte one, or 3 for one of the port's wide ones.
+ */
+static s32 menu_text_char_bytes(const u8* text)
+{
+    return (*text == 0x1F && text[1] >= LOM_NATIVE_TEXT_WIDE_LEAD && lom_native_text_in_use()) ? 3 : ENCODED_TEXT_IS_DOUBLE_BYTE_LEAD(*text) ? 2 : 1;
+}
+
+/**
+ * @brief Where to break a help line that's too wide in two: the space nearest the middle, or with no space (in
+ *        Japanese) the character nearest it.
+ * @param text The line.
+ * @return Bytes in the first line.
+ */
+static s32 menu_help_break(const u8* text)
+{
+    const s32 half = menu_encoded_length(text) / 2;
+    s32 best = -1;
+    const u8* p;
+
+    for (p = text; *p != 0; p += menu_text_char_bytes(p))
+    {
+        const s32 at = (s32)(p - text);
+
+        if (*p == ' ' && (best < 0 || abs(at - half) < abs(best - half)))
+        {
+            best = at;
+        }
+    }
+
+    if (best > 0)
+    {
+        return best;
+    }
+
+    for (p = text; *p != 0 && p - text < half; p += menu_text_char_bytes(p))
+    {
+    }
+
+    return (s32)(p - text);
+}
+
+/**
+ * @brief Draw the help line under the page: centred as the PS1's, or in the port's two-column layout as the
+ *        Remaster's, from the page's left edge, or centred under the wider page in Japanese.
+ * @param packet_cursor Primitive write cursor.
+ * @param ot_entry Ordering-table entry.
+ * @param text The line.
+ * @return Updated primitive write cursor.
+ * @note The Remaster's text is often longer than the PS1's, and in the PS1's letters a line can be wider than the
+ *       box. One that is goes on two lines, broken near the middle. The PS1's own text is drawn as it always was.
+ */
+void* menu_draw_help(void* packet_cursor, OT_TYPE* ot_entry, u8* text)
+{
+    s32 x = MENU_HELP_X;
+    s32 align = FIELD_TEXT_ALIGN_CENTER;
+    s32 room = MENU_HELP_ROOM;
+    SPRT* sprites = (SPRT*)packet_cursor;
+    s32 count;
+    s32 width = 0;
+    s32 index;
+    DR_TPAGE* tpage;
+
+    if (!lom_draw_menu_columns() && !lom_native_text_in_use())
+    {
+        return field_draw_text(packet_cursor, ot_entry, text, FIELD_TEXT_COLOR_MENU, MENU_HELP_X, MENU_HELP_Y, FIELD_TEXT_ALIGN_CENTER);
+    }
+
+    if (lom_draw_menu_columns())
+    {
+#if defined(VERSION_JP)
+        x = MENU_COLUMNS_TITLE_X;
+        room = MENU_COLUMNS_HELP_ROOM;
+#else
+        x = MENU_COLUMNS_HELP_X;
+        align = FIELD_TEXT_ALIGN_LEFT;
+        room = MENU_COLUMNS_HELP_RIGHT - MENU_COLUMNS_HELP_X;
+#endif
+    }
+
+    if (*text == 0)
+    {
+        return packet_cursor;
+    }
+
+    count = field_text_build_sprites(sprites, text, FIELD_TEXT_COLOR_MENU);
+
+    for (index = 0; index < count; index++)
+    {
+        width += sprites[index].w;
+    }
+
+    if (width > room)
+    {
+        u8 first[MENU_HELP_BYTES];
+        const s32 split = menu_help_break(text);
+        const s32 length = menu_encoded_length(text);
+
+        if (split > 0 && split < length && length < MENU_HELP_BYTES)
+        {
+            memcpy(first, text, (size_t)split);
+            first[split] = 0;
+            packet_cursor = field_draw_text(packet_cursor, ot_entry, first, FIELD_TEXT_COLOR_MENU, x, MENU_HELP_Y - MENU_HELP_HALF_LINE, align);
+            return field_draw_text(packet_cursor, ot_entry, text + split + (text[split] == ' '), FIELD_TEXT_COLOR_MENU, x, MENU_HELP_Y + MENU_HELP_HALF_LINE,
+                                   align);
+        }
+    }
+
+    if (align == FIELD_TEXT_ALIGN_CENTER)
+    {
+        x -= width / 2;
+    }
+
+    for (index = 0; index < count; index++)
+    {
+        SPRT* sprite = &sprites[index];
+        const s32 advance = sprite->w;
+
+        SET_BGR0_PACKED(sprite, GPU_TINT_NEUTRAL);
+        lom_gpu_init_sprite(sprite);
+        lom_gpu_set_xy0(sprite, x, MENU_HELP_Y);
+        x += advance;
+        lom_gpu_link(ot_entry, sprite);
+    }
+
+    tpage = (DR_TPAGE*)(sprites + count);
+    lom_gpu_init_tpage_packet(tpage, 0, 0, FIELD_UI_TPAGE(GPU_BLEND_HALF));
+    lom_gpu_link(ot_entry, tpage);
+    return tpage + 1;
+}
+
+#define MENU_CONTENT_GROUPS 34
+#define MENU_STATUS_GRID_TOP 112
+#define MENU_STATUS_GRID_BOTTOM 145
+#define MENU_STATUS_GRID_LEFT 40
+#define MENU_STATUS_GRID_STEP 58
+#define MENU_STATUS_GRID_SPREAD 14
+#define MENU_STATUS_GRID_SECOND_ICON 121
+#define MENU_STATUS_LUCRE_Y 186
+#define MENU_STATUS_LUCRE_LEFT 250
+#define MENU_STATUS_LUCRE_SHIFT 20
+#define MENU_OPTION_PROMPT_X 256
+#define MENU_OPTION_PROMPT_Y 22
+#define MENU_OPTION_PROMPT_ACTION 67
+
+/**
+ * @brief Spread a Status page's grid of stats over the wider page, 72 pixels a column as the Remaster's rather than 58,
+ *        and move Lucre right to line up with it.
+ * @param items The page's content.
+ * @param count How many items.
+ * @note A table that's spread already, or isn't laid out as expected, has no icon where the PS1's second column
+ *       starts and is left alone.
+ */
+static void menu_columns_spread_status(MenuContentItem* items, s32 count)
+{
+    s32 index;
+    s32 found = 0;
+
+    for (index = 0; index < count; index++)
+    {
+        if (items[index].y >= MENU_STATUS_GRID_TOP && items[index].y <= MENU_STATUS_GRID_BOTTOM &&
+            MENU_CONTENT_X(&items[index]) == MENU_STATUS_GRID_SECOND_ICON)
+        {
+            found = 1;
+        }
+    }
+
+    for (index = 0; found && index < count; index++)
+    {
+        MenuContentItem* item = &items[index];
+        const s32 x = MENU_CONTENT_X(item);
+        s32 shift = 0;
+
+        if (item->y >= MENU_STATUS_GRID_TOP && item->y <= MENU_STATUS_GRID_BOTTOM && x >= MENU_STATUS_GRID_LEFT)
+        {
+            shift = (x - MENU_STATUS_GRID_LEFT) / MENU_STATUS_GRID_STEP * MENU_STATUS_GRID_SPREAD;
+        }
+        else if (item->y == MENU_STATUS_LUCRE_Y && x >= MENU_STATUS_LUCRE_LEFT)
+        {
+            shift = MENU_STATUS_LUCRE_SHIFT;
+        }
+
+        item->packed_x = (u16)((item->packed_x & ~MENU_CONTENT_X_MASK) | ((x + shift) & MENU_CONTENT_X_MASK));
+    }
+}
+
+/**
+ * @brief For the port's two-column layout: place the pages' content on the wider page as the Remaster does. The
+ *        Status pages' stats spread out, and the item lists' OPTION prompt stays beside the title, which is centred
+ *        further right.
+ * @note The content is the overlay's own data, loaded with it each time the menu opens. Each change looks for the
+ *       item where the PS1 has it, so content placed already is left alone.
+ */
+static void menu_columns_place_content(void)
+{
+    static const u8 status_pages[] = {MENU_NODE_HERO_STATUS, MENU_NODE_GUEST_HERO_STATUS, MENU_NODE_GUEST_PARTNER_STATUS, MENU_NODE_PET_STATUS,
+                                      MENU_NODE_PET_STATUS_UNUSED};
+    s32 table;
+    s32 index;
+
+    for (table = 0; table < MENU_NODE_COUNT; table++)
+    {
+        MenuContentItem* items = g_menu_content_table[table];
+        s32 count;
+        s32 page;
+
+        if (items == NULL || items == (MenuContentItem*)1 || g_menu_content_group_ids[table] >= MENU_CONTENT_GROUPS)
+        {
+            continue;
+        }
+
+        count = g_menu_content_item_counts[g_menu_content_group_ids[table]];
+
+        for (page = 0; page < (s32)sizeof(status_pages); page++)
+        {
+            if (g_menu_nodes[status_pages[page]].idx_nav.s.self_idx == table)
+            {
+                menu_columns_spread_status(items, count);
+            }
+        }
+
+        for (index = 0; index < count; index++)
+        {
+            MenuContentItem* item = &items[index];
+
+            if (MENU_CONTENT_X(item) == MENU_OPTION_PROMPT_X && item->y == MENU_OPTION_PROMPT_Y && item->action_type == MENU_OPTION_PROMPT_ACTION)
+            {
+                item->packed_x = (u16)((item->packed_x & ~MENU_CONTENT_X_MASK) | (MENU_OPTION_PROMPT_X + MENU_COLUMNS_TITLE_X - MENU_TITLE_X));
+            }
+        }
+    }
+}
+
+/**
+ * @brief The first column's tabs, in the Remaster's order: the characters, then the item lists, the diary and the
+ *        settings. Return has its own box.
+ * @param roots Set to the tabs.
+ * @return How many.
+ */
+static s32 menu_column_roots(u8* roots)
+{
+    s32 order;
+    s32 count = 0;
+
+    for (order = 0; order < MENU_COLUMN_ROOTS; order++)
+    {
+        const MenuNode* node = &g_menu_nodes[g_menu_column_order[order]];
+
+        if (node->u2.s.parent_idx == MENU_NONE && (node->u2.s.flags & MENU_NODE_FLAG_ACTIVE))
+        {
+            roots[count++] = g_menu_column_order[order];
+        }
+    }
+
+    return count;
+}
+
+/**
+ * @brief The first column's tab that's open, whose pages the second column shows.
+ * @return The tab, or MENU_NONE.
+ */
+static s32 menu_column_open_root(void)
+{
+    u8 roots[MENU_COLUMN_ROOTS];
+    s32 count = menu_column_roots(roots);
+    s32 index;
+
+    for (index = 0; index < count; index++)
+    {
+        if (g_menu_nodes[roots[index]].u2.bits.expanded)
+        {
+            return roots[index];
+        }
+    }
+
+    return MENU_NONE;
+}
+
+/**
+ * @brief Where a tab is in the two-column layout.
+ * @param node_index The tab.
+ * @param x Set to its icon's left on the screen.
+ * @param y Set to its top.
+ * @return 1 when it's shown, otherwise 0.
+ */
+static s32 menu_column_xy(s32 node_index, s32* x, s32* y)
+{
+    u8 roots[MENU_COLUMN_ROOTS];
+    s32 count;
+    s32 index;
+    s32 open;
+
+    if (node_index == MENU_NODE_BROWSE_ALL)
+    {
+        lom_draw_menu_tab_xy(MENU_COLUMN_RETURN, 0, x, y);
+        return 1;
+    }
+
+    count = menu_column_roots(roots);
+
+    for (index = 0; index < count; index++)
+    {
+        if (roots[index] == node_index)
+        {
+            lom_draw_menu_tab_xy(MENU_COLUMN_FIRST, index, x, y);
+            return 1;
+        }
+    }
+
+    open = menu_column_open_root();
+
+    for (index = 0; open != MENU_NONE && index < MENU_MAX_CHILDREN; index++)
+    {
+        if (g_menu_nodes[open].layout.s.children[index] == node_index)
+        {
+            lom_draw_menu_tab_xy(MENU_COLUMN_SECOND, index + 1, x, y);
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Draw one tab in the two-column layout, and step its select animation as the tree does.
+ * @param node_index The tab.
+ * @param column Its column.
+ * @param row Its row.
+ * @param mirror Nonzero for the second column's first row, which repeats the open tab.
+ * @param prim_buf Primitive-buffer cursor.
+ * @param ot Ordering-table entry.
+ * @return Primitive-buffer cursor after it.
+ */
+static void* menu_draw_column_tab(s32 node_index, s32 column, s32 row, s32 mirror, void* prim_buf, OT_TYPE* ot)
+{
+    MenuNode* node = &g_menu_nodes[node_index];
+    u32 animation_frames = (node->u2.word >> 2) & 3;
+    s32 x;
+    s32 y;
+
+    lom_draw_menu_tab_xy(column, row, &x, &y);
+    g_menu_icon_mirror = mirror;
+    prim_buf = menu_emit_icon_sprite(prim_buf, ot, node->icon_id, x, y, 1, animation_frames != 0, g_menu_scene_type == node_index, (node->u2.word >> 6) & 3);
+    g_menu_icon_mirror = 0;
+
+    if (!mirror && animation_frames != 0)
+    {
+        node->u2.word = (node->u2.word & (u16)~MENU_NODE_ANIM_FRAMES_MASK) | (((animation_frames - 1) & 3) << 2);
+    }
+
+    return prim_buf;
+}
+
+/**
+ * @brief Draw the tabs in two columns, as the Remaster lays them out: the first column's tabs, the open one's pages in
+ *        the second under a repeat of it, and Return in its box. The tabs are listed for navigation in that order.
+ * @param prim_buf Primitive-buffer cursor.
+ * @param ot Ordering-table entry.
+ * @return Primitive-buffer cursor after them.
+ */
+static void* menu_draw_columns(void* prim_buf, OT_TYPE* ot)
+{
+    u8 roots[MENU_COLUMN_ROOTS];
+    s32 count = menu_column_roots(roots);
+    s32 open = menu_column_open_root();
+    s32 index;
+    s32 child;
+
+    g_menu_nav_count = 0;
+
+    for (index = 0; index < count; index++)
+    {
+        g_menu_nav_nodes[g_menu_nav_count++] = roots[index];
+        prim_buf = menu_draw_column_tab(roots[index], MENU_COLUMN_FIRST, index, 0, prim_buf, ot);
+
+        if (roots[index] != open)
+        {
+            continue;
+        }
+
+        prim_buf = menu_draw_column_tab(open, MENU_COLUMN_SECOND, 0, 1, prim_buf, ot);
+
+        for (child = 0; child < MENU_MAX_CHILDREN && g_menu_nodes[open].layout.s.children[child] != MENU_NONE; child++)
+        {
+            g_menu_nav_nodes[g_menu_nav_count++] = g_menu_nodes[open].layout.s.children[child];
+            prim_buf = menu_draw_column_tab(g_menu_nodes[open].layout.s.children[child], MENU_COLUMN_SECOND, child + 1, 0, prim_buf, ot);
+        }
+    }
+
+    g_menu_nav_nodes[g_menu_nav_count++] = MENU_NODE_BROWSE_ALL;
+    prim_buf = menu_draw_column_tab(MENU_NODE_BROWSE_ALL, MENU_COLUMN_RETURN, 0, 0, prim_buf, ot);
+    g_menu_redraw_state = 0;
+    g_menu_scroll_pos = 0;
+    g_menu_content_height = 0;
+    return prim_buf;
+}
+
+/**
+ * @brief Move between the tabs in the two-column layout: up and down within a column, Return below the first; right
+ *        from the open tab into its pages and left back. Right anywhere else opens the tab, as on the PS1.
+ * @return 1 when it moved, otherwise 0 for the usual handling.
+ */
+static s32 menu_columns_navigate(void)
+{
+    u8 roots[MENU_COLUMN_ROOTS + 1];
+    u8 children[MENU_MAX_CHILDREN];
+    s32 count;
+    s32 child_count = 0;
+    s32 open;
+    s32 index;
+    s32 active = g_menu_active_node;
+
+    if (!(g_pad_input & (PAD_BTN_UP | PAD_BTN_DOWN | PAD_BTN_LEFT | PAD_BTN_RIGHT)))
+    {
+        return 0;
+    }
+
+    count = menu_column_roots(roots);
+    roots[count++] = MENU_NODE_BROWSE_ALL;
+    open = menu_column_open_root();
+
+    while (open != MENU_NONE && child_count < MENU_MAX_CHILDREN && g_menu_nodes[open].layout.s.children[child_count] != MENU_NONE)
+    {
+        children[child_count] = g_menu_nodes[open].layout.s.children[child_count];
+        child_count++;
+    }
+
+    for (index = 0; index < count && roots[index] != active; index++)
+    {
+    }
+
+    if (index < count)
+    {
+        if (g_pad_input & PAD_BTN_UP)
+        {
+            active = roots[(index + count - 1) % count];
+        }
+        else if (g_pad_input & PAD_BTN_DOWN)
+        {
+            active = roots[(index + 1) % count];
+        }
+        else if ((g_pad_input & PAD_BTN_RIGHT) && active == open && child_count != 0)
+        {
+            active = children[0];
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else
+    {
+        for (index = 0; index < child_count && children[index] != active; index++)
+        {
+        }
+
+        if (index == child_count)
+        {
+            active = roots[0];
+        }
+        else if (g_pad_input & PAD_BTN_UP)
+        {
+            active = children[(index + child_count - 1) % child_count];
+        }
+        else if (g_pad_input & PAD_BTN_DOWN)
+        {
+            active = children[(index + 1) % child_count];
+        }
+        else if (g_pad_input & PAD_BTN_LEFT)
+        {
+            active = open;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    g_menu_active_node = active;
+    menu_play_se(SFX_CURSOR, AKAO_SFX_DEFAULT_VOLUME);
+    return 1;
 }
 
 /**
@@ -5822,6 +6699,7 @@ void* menu_draw_node_recursive(s32 node_index, void* prim_buf, OT_TYPE* ot)
  * @param active Nonzero for an opaque secondary sprite; zero enables its semitransparency.
  * @param style_bits Packed node style bits; currently unused.
  * @return Next free primitive-buffer address.
+ * @note The port hands the sprites to lom_draw_menu_icon, for the Remaster's tab icons.
  */
 void* menu_emit_icon_sprite(void* prim_buf, OT_TYPE* ot, s32 icon_id, s32 x, s32 y, s32 secondary_offset, s32 animation_offset, s32 active, s32 style_bits)
 {
@@ -5865,6 +6743,7 @@ void* menu_emit_icon_sprite(void* prim_buf, OT_TYPE* ot, s32 icon_id, s32 x, s32
         sprite++;
     }
 
+    lom_draw_menu_icon((u8*)prim_buf + __builtin_offsetof(P_TAG, r0), secondary_offset != 0 ? 2 : 1, sizeof(SPRT), icon_id, g_menu_icon_mirror);
     return sprite;
 }
 
@@ -5962,9 +6841,9 @@ void* scroll_list_draw(void* prim_buf, OT_TYPE* ot, ScrollListState* state, u32*
         }
     }
 
-    prim_buf = menu_emit_cursor(prim_buf, ot, (4 - view_origin->x) - state->scroll_x,
+    prim_buf = menu_emit_cursor(prim_buf, ot, (4 - view_origin->x) - state->scroll_x - menu_list_hand_shift(),
                                 ((entries[state->navigation.fields.selected_index] & MENU_ITEM_NAV_POSITION_MASK) - view_origin->y) - state->scroll_y, active);
-    g_menu_default_view_pos.x = (state->base_x + ((4 - (u32)view_origin->x) - state->scroll_x)) + 8;
+    g_menu_default_view_pos.x = (state->base_x + ((4 - (u32)view_origin->x) - state->scroll_x)) + 8 - menu_list_hand_shift();
     g_menu_default_view_pos.y =
         (state->base_y + (((entries[state->navigation.fields.selected_index] & MENU_ITEM_NAV_POSITION_MASK) - view_origin->y) - state->scroll_y)) + 8;
     return prim_buf;

@@ -23,6 +23,7 @@
 #define PLACEMENTS 1024
 #define PATH_SIZE 4096
 #define MAX_CHAIN 8
+#define TEXT_GREY 0xD8
 
 typedef struct
 {
@@ -191,6 +192,127 @@ static void copy_texture(const LomPsb* psb, size_t texture, unsigned char* pixel
 }
 
 /**
+ * @brief Read one letter's place in a font's pictures, and its picture.
+ * @param psb The font.
+ * @param code The font's letters.
+ * @param source Its pictures.
+ * @param c The letter.
+ * @param rect Set to where it is in its picture: x, y, width and height.
+ * @param pixels Set to the picture, one alpha byte a pixel.
+ * @param stride Set to the picture's width.
+ * @return 0, or -1 when the font doesn't have it.
+ */
+static int font_letter(const LomPsb* psb, size_t code, size_t source, char c, int rect[4], const unsigned char** pixels, int* stride)
+{
+    const char key[2] = {c, 0};
+    size_t letter, image, value;
+    size_t bytes;
+    const char* type;
+
+    if (lom_psb_member(psb, code, key, &letter) != 0 || lom_psb_item(psb, source, (size_t)member_int(psb, letter, "id"), &image) != 0 ||
+        lom_psb_member(psb, image, "type", &value) != 0 || !(type = lom_psb_string(psb, value)) || strcmp(type, "A8") != 0 ||
+        lom_psb_member(psb, image, "pixel", &value) != 0 || lom_psb_chunk(psb, value, pixels, &bytes) != 0)
+    {
+        return -1;
+    }
+
+    rect[0] = member_int(psb, letter, "x");
+    rect[1] = member_int(psb, letter, "y");
+    rect[2] = member_int(psb, letter, "w");
+    rect[3] = member_int(psb, letter, "h");
+    *stride = member_int(psb, image, "width");
+    return rect[0] < 0 || rect[1] < 0 || rect[2] <= 0 || rect[3] <= 0 || *stride <= 0 || (size_t)(rect[1] + rect[3]) * (size_t)*stride > bytes ||
+                   rect[0] + rect[2] > *stride
+               ? -1
+               : 0;
+}
+
+/**
+ * @brief Draw a few capital letters in one of the Remaster's fonts as a
+ *        picture: light grey, centred in a box, scaled to a height.
+ * @param psb The font.
+ * @param label What to draw and how, "text|box width|box height|letter
+ *        height", in pixels.
+ * @param w Set to the picture's width, the box's.
+ * @param h Set to its height.
+ * @return The pixels, with a margin, which the caller frees, or NULL.
+ * @note For the button names on the Remaster's key caps, which it writes on
+ *       them in a plain font rather than keeping as pictures.
+ */
+static unsigned char* load_text(const LomPsb* psb, const char* label, int* w, int* h)
+{
+    char text[16];
+    int box_w = 0, box_h = 0, size = 0;
+    size_t code, source;
+
+    if (sscanf(label, "%15[^|]|%d|%d|%d", text, &box_w, &box_h, &size) != 4 || box_w <= 0 || box_h <= 0 || size <= 0 || box_w + 2 * MARGIN > LAYER_SIZE ||
+        box_h + 2 * MARGIN > LAYER_SIZE || lom_psb_member(psb, psb->root, "code", &code) != 0 || lom_psb_member(psb, psb->root, "source", &source) != 0)
+    {
+        return NULL;
+    }
+
+    const size_t count = strlen(text);
+    int rects[16][4], strides[16], tallest = 0, width = 0;
+    const unsigned char* atlases[16];
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (font_letter(psb, code, source, text[i], rects[i], &atlases[i], &strides[i]) != 0)
+        {
+            return NULL;
+        }
+
+        tallest = rects[i][3] > tallest ? rects[i][3] : tallest;
+    }
+
+    if (!count || !tallest)
+    {
+        return NULL;
+    }
+
+    const int gap = (size + 4) / 8;
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        width += (rects[i][2] * size + tallest / 2) / tallest + (i + 1 < count ? gap : 0);
+    }
+
+    const int slot_w = box_w + 2 * MARGIN;
+    unsigned char* pixels = calloc((size_t)slot_w * (size_t)(box_h + 2 * MARGIN), 4);
+    int left = (box_w - width) / 2;
+    const int bottom = (box_h + size) / 2;
+
+    for (size_t i = 0; pixels && i < count; ++i)
+    {
+        const int gw = (rects[i][2] * size + tallest / 2) / tallest, gh = (rects[i][3] * size + tallest / 2) / tallest;
+
+        for (int y = 0; y < gh; ++y)
+        {
+            for (int x = 0; x < gw; ++x)
+            {
+                const int dx = left + x, dy = bottom - gh + y;
+
+                if (dx < 0 || dy < 0 || dx >= box_w || dy >= box_h)
+                {
+                    continue;
+                }
+
+                const int sx = rects[i][0] + x * rects[i][2] / gw, sy = rects[i][1] + y * rects[i][3] / gh;
+                unsigned char* p = pixels + ((size_t)(MARGIN + dy) * (size_t)slot_w + (size_t)(MARGIN + dx)) * 4;
+                p[0] = p[1] = p[2] = TEXT_GREY;
+                p[3] = atlases[i][(size_t)sy * (size_t)strides[i] + (size_t)sx];
+            }
+        }
+
+        left += gw + gap;
+    }
+
+    *w = box_w;
+    *h = box_h;
+    return pixels;
+}
+
+/**
  * @brief Load one of the Remaster's pictures, or one labeled part of it, as
  *        RGBA pixels. The last file opened stays open for the next call.
  * @param file Its PSB file.
@@ -204,6 +326,12 @@ static unsigned char* load_picture(const char* file, const char* label, int* w, 
     const LomPsb* psb = open_picture_file(file);
     unsigned char* pixels = NULL;
     size_t list, item, textures;
+
+    if (psb && label && strchr(label, '|') && (pixels = load_text(psb, label, w, h)) != NULL)
+    {
+        premultiply(pixels, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
+        return pixels;
+    }
 
     if (!psb || lom_psb_member(psb, psb->root, "imageList", &list) != 0)
     {

@@ -23,8 +23,8 @@ class FakeGame : public MenuBackend
     bool pause = false;
 
     bool remaster = false;
-    bool switches[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, false, true, true};
-    bool shown[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, true, true, true};
+    bool switches[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, false, true, true, true};
+    bool shown[LOM_REMASTER_SWITCH_COUNT] = {true, true, true, true, true, true, true, true, true, true, true, true, true, true};
     int language = LOM_REMASTER_TEXT_ENGLISH;
     std::vector<std::pair<std::string, std::string>> mods;
     std::vector<std::string> mod_ids;
@@ -689,9 +689,9 @@ static void remaster_page_switches_each_part_under_one()
     menu.point(MenuCategory::Audio, 0);
     CHECK(menu.rows().size() == 7);
 
-    const char* const parts[] = {"Use the Remaster", "Backgrounds",   "Faces",     "Encyclopedia", "Title screen",
-                                 "Name entry",       "Wall map",      "World map", "Movies",       "Music",
-                                 "Recordings",       "Sound effects", "Text",      "Language",     "Restore Remaster defaults"};
+    const char* const parts[] = {
+        "Use the Remaster", "Backgrounds", "Faces", "Encyclopedia", "Title screen",  "Name entry", "Wall map", "World map",
+        "Game menu",        "Movies",      "Music", "Recordings",   "Sound effects", "Text",       "Language", "Restore Remaster defaults"};
     menu.point(MenuCategory::Remaster, 0);
     std::vector<MenuRow> rows = menu.rows();
     CHECK(rows.size() == std::size(parts));
@@ -705,7 +705,7 @@ static void remaster_page_switches_each_part_under_one()
                                                                                                               : MenuRow::Kind::Switch));
     }
 
-    CHECK(rows[0].on && rows[5].on && rows[10].value == "Original" && rows[13].value == "English");
+    CHECK(rows[0].on && rows[5].on && rows[8].on && rows[11].value == "Original" && rows[14].value == "English");
 
     menu.point(MenuCategory::Remaster, 5);
     press(menu, MenuInput::Select);
@@ -713,26 +713,32 @@ static void remaster_page_switches_each_part_under_one()
     press(menu, MenuInput::Right);
     CHECK(game.switches[LOM_REMASTER_SWITCH_NAME_ENTRY]);
 
-    menu.point(MenuCategory::Remaster, 10);
+    menu.point(MenuCategory::Remaster, 8);
+    press(menu, MenuInput::Select);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_MENU] && !menu.rows()[8].on && menu.rows()[7].on && menu.rows()[9].on);
+    press(menu, MenuInput::Select);
+    CHECK(game.switches[LOM_REMASTER_SWITCH_MENU]);
+
+    menu.point(MenuCategory::Remaster, 11);
     press(menu, MenuInput::Right);
-    CHECK(game.switches[LOM_REMASTER_SWITCH_ARRANGED] && menu.rows()[10].value == "Arranged");
+    CHECK(game.switches[LOM_REMASTER_SWITCH_ARRANGED] && menu.rows()[11].value == "Arranged");
     press(menu, MenuInput::Left);
     CHECK(!game.switches[LOM_REMASTER_SWITCH_ARRANGED]);
 
-    menu.point(MenuCategory::Remaster, 13);
+    menu.point(MenuCategory::Remaster, 14);
     press(menu, MenuInput::Left);
-    CHECK(game.language == LOM_REMASTER_TEXT_CHINESE_TRADITIONAL && menu.rows()[13].value == "Chinese (Traditional)");
+    CHECK(game.language == LOM_REMASTER_TEXT_CHINESE_TRADITIONAL && menu.rows()[14].value == "Chinese (Traditional)");
     press(menu, MenuInput::Right);
     CHECK(game.language == LOM_REMASTER_TEXT_ENGLISH);
     press(menu, MenuInput::Right);
-    CHECK(game.language == LOM_REMASTER_TEXT_GERMAN && menu.rows()[13].value == "German");
+    CHECK(game.language == LOM_REMASTER_TEXT_GERMAN && menu.rows()[14].value == "German");
 
-    menu.point(MenuCategory::Remaster, 9);
+    menu.point(MenuCategory::Remaster, 10);
     press(menu, MenuInput::Select);
-    CHECK(!game.switches[LOM_REMASTER_SWITCH_MUSIC] && menu.rows().size() == std::size(parts) - 1 && menu.rows()[10].label == "Sound effects");
-    menu.point(MenuCategory::Remaster, 11);
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_MUSIC] && menu.rows().size() == std::size(parts) - 1 && menu.rows()[11].label == "Sound effects");
+    menu.point(MenuCategory::Remaster, 12);
     press(menu, MenuInput::Select);
-    CHECK(!game.switches[LOM_REMASTER_SWITCH_TEXT] && menu.rows().size() == std::size(parts) - 2 && menu.rows()[11].label == "Text");
+    CHECK(!game.switches[LOM_REMASTER_SWITCH_TEXT] && menu.rows().size() == std::size(parts) - 2 && menu.rows()[12].label == "Text");
 
     menu.point(MenuCategory::Remaster, 0);
     press(menu, MenuInput::Select);
@@ -751,8 +757,8 @@ static void remaster_page_switches_each_part_under_one()
     game.shown[LOM_REMASTER_SWITCH_FACES] = false;
     game.shown[LOM_REMASTER_SWITCH_TEXT] = false;
     menu.point(MenuCategory::Remaster, 0);
-    CHECK(menu.rows().size() == std::size(parts) - 3 && menu.rows()[2].label == "Encyclopedia" && menu.rows()[10].label == "Sound effects" &&
-          menu.rows()[11].label == "Restore Remaster defaults");
+    CHECK(menu.rows().size() == std::size(parts) - 3 && menu.rows()[2].label == "Encyclopedia" && menu.rows()[11].label == "Sound effects" &&
+          menu.rows()[12].label == "Restore Remaster defaults");
 }
 
 /**
