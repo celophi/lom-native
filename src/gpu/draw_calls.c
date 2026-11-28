@@ -114,6 +114,16 @@ int lom_draw_fade(void* code, int brightness, int x, int y, int w, int h)
     return lom_remaster_fade(code, brightness, x, y, w, h);
 }
 
+int lom_draw_menu_hd(void)
+{
+    return lom_remaster_menu_hd();
+}
+
+int lom_draw_menu_text(void* code, const unsigned char* text, int colour, int x, int baseline, int align, int* left, int* width)
+{
+    return lom_remaster_menu_text(code, text, colour, x, baseline, align, left, width);
+}
+
 void lom_draw_gname_background(void* code, int stride, int count)
 {
     lom_remaster_gname_background(code, stride, count);

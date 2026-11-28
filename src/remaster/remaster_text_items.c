@@ -215,8 +215,107 @@ static unsigned char* read_item_parts(const unsigned char** table, size_t* size)
 }
 
 /**
+ * @brief Add the names of the weapons, armor and instruments the game names
+ *        itself (Earthsplitter, Sweet Revenge and the like), found by their
+ *        English name: an item keeps the name it was given in the save, which
+ *        is its English one on the North American disc, often with its spaces
+ *        taken out to fit ("PegasusHelm"), so both are looked for.
+ * @param names The table to fill, ITEM_NAMES long.
+ * @note After the templates, so their names win where both have one. The
+ *       Remaster's English is read from its own file, so the language being
+ *       built stays open for remaster_word.
+ */
+static void add_named_items(ItemName* names)
+{
+    static const char* const groups[] = {"wpn", "arm", "ist"};
+    char path[PATH_SIZE];
+    size_t size = 0;
+    LomPsb english;
+
+    snprintf(path, sizeof(path), "%s/text/%s.psb.m", lom_native_remaster_root(), remaster_text_languages[LOM_REMASTER_TEXT_ENGLISH]);
+    unsigned char* data = lom_remaster_load(path, &size);
+
+    if (!data || lom_psb_open(&english, data, size) != 0)
+    {
+        free(data);
+        return;
+    }
+
+    for (size_t g = 0; g < sizeof(groups) / sizeof(groups[0]); ++g)
+    {
+        size_t object;
+
+        if (lom_psb_member(&english, english.root, groups[g], &object) != 0)
+        {
+            continue;
+        }
+
+        for (size_t i = 0; i < lom_psb_members(&english, object); ++i)
+        {
+            const char* key;
+            size_t value;
+            const char* text;
+            char word[128];
+            unsigned char ps1[MAX_STRING_BYTES];
+
+            if (lom_psb_member_at(&english, object, i, &key, &value) != 0 || !(text = lom_psb_string(&english, value)))
+            {
+                continue;
+            }
+
+            const char* end = strstr(text, "▼");
+            const size_t length = end ? (size_t)(end - text) : strlen(text);
+
+            if (length == 0 || length >= sizeof(word))
+            {
+                continue;
+            }
+
+            memcpy(word, text, length);
+            word[length] = 0;
+            const int n = remaster_text_convert(word, ps1, sizeof(ps1));
+            unsigned char ps1_spaced[MAX_STRING_BYTES];
+
+            if (n <= 1)
+            {
+                continue;
+            }
+
+            memcpy(ps1_spaced, ps1, (size_t)n);
+
+            size_t squeezed = 0;
+
+            for (int c = 0; c < n - 1; ++c)
+            {
+                if (ps1[c] != ' ')
+                {
+                    ps1[squeezed++] = ps1[c];
+                }
+            }
+
+            if (n > 1 && remaster_word(groups[g], key, word, sizeof(word)))
+            {
+                if ((size_t)(n - 1) <= ITEM_NAME_BYTES)
+                {
+                    add_item_name(names, item_hash(ps1_spaced, (size_t)(n - 1)), word);
+                }
+
+                if (squeezed != (size_t)(n - 1) && squeezed <= ITEM_NAME_BYTES)
+                {
+                    add_item_name(names, item_hash(ps1, squeezed), word);
+                }
+            }
+        }
+    }
+
+    lom_psb_close(&english);
+    free(data);
+}
+
+/**
  * @brief Build the table of item names in a language: the items the game names
- *        from a template, then every material and type a made item can have.
+ *        from a template, then every material and type a made item can have,
+ *        then the items it names itself (add_named_items).
  * @param language LOM_REMASTER_TEXT_*.
  * @param names The table to fill, ITEM_NAMES long.
  */
@@ -288,6 +387,7 @@ static void build_item_names(int language, ItemName* names)
     }
 
     free(scene);
+    add_named_items(names);
 }
 
 const unsigned char* lom_native_text_item_name(const unsigned char* name)

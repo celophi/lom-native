@@ -20,6 +20,7 @@
 #include "lom_native_frames.h"
 #include "lom_native_draw_labels.h"
 #include "lom_native_draw.h"
+#include "common/hd_text.h"
 
 #if defined(VERSION_JP)
 #define MENU_PLAYTIME_SEPARATOR ","
@@ -6037,8 +6038,14 @@ static s32 menu_button_prompt(void** packet_cursor, OT_TYPE* ot, const MenuConte
         void* const start = *packet_cursor;
         u8* const end = field_draw_text(start, ot, (u8*)left_text, FIELD_TEXT_COLOR_DEFAULT, x + keys, y, FIELD_TEXT_ALIGN_LEFT);
         const SPRT* last = (const SPRT*)((DR_TPAGE*)end - 1) - 1;
+        int text_left = 0;
+        int text_width = 0;
+        const s32 right_edge = lom_draw_menu_hd() && lom_draw_menu_text(NULL, left_text, FIELD_TEXT_COLOR_DEFAULT, x + keys, y + HD_TEXT_PS1_ASCENT,
+                                                                        FIELD_TEXT_ALIGN_LEFT, &text_left, &text_width)
+                                   ? text_left + text_width
+                                   : last->x0 + last->w;
 
-        if (end != start && last->x0 + last->w > limit)
+        if (end != start && right_edge > limit)
         {
             *ot = head;
         }
@@ -6183,11 +6190,23 @@ void* menu_draw_help(void* packet_cursor, OT_TYPE* ot_entry, u8* text)
         return packet_cursor;
     }
 
-    count = field_text_build_sprites(sprites, text, FIELD_TEXT_COLOR_MENU);
-
-    for (index = 0; index < count; index++)
+    if (lom_draw_menu_hd() && lom_draw_menu_text(NULL, text, FIELD_TEXT_COLOR_MENU, x, MENU_HELP_Y + HD_TEXT_PS1_ASCENT, align, NULL, &width))
     {
-        width += sprites[index].w;
+        if (width <= room)
+        {
+            return field_draw_text(packet_cursor, ot_entry, text, FIELD_TEXT_COLOR_MENU, x, MENU_HELP_Y, align);
+        }
+
+        count = 0;
+    }
+    else
+    {
+        count = field_text_build_sprites(sprites, text, FIELD_TEXT_COLOR_MENU);
+
+        for (index = 0; index < count; index++)
+        {
+            width += sprites[index].w;
+        }
     }
 
     if (width > room)

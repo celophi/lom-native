@@ -382,6 +382,48 @@ extern "C"
     int lom_remaster_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style);
 
     /**
+     * @brief Write a line of the game's text in the Remaster's fonts over a
+     *        sprite: the language's font (its Japanese, Korean or Chinese one,
+     *        or its own), at its own size, in a colour, with the PS1's colour
+     *        changes along the line in the PS1's text palette.
+     * @param code The sprite's code word, or NULL only to measure it.
+     * @param text The game's text.
+     * @param fill The line's colour, 0xRRGGBB.
+     * @param shadow Its shadow's.
+     * @param palette_y Which of the PS1's text palettes the colour changes
+     *        along the line are from: its row in video memory.
+     * @param x Its left, right or middle (@p align).
+     * @param baseline Its baseline.
+     * @param align LOM_CARDS_ALIGN_*.
+     * @param left Set to its left, or NULL.
+     * @param width Set to its width, or NULL.
+     * @return Nonzero when it can be written (it's drawn when @p code isn't
+     *         NULL); 0 when the fonts can't write it, as with the Japanese
+     *         disc's own text.
+     */
+    int lom_remaster_text_place(void* code, const unsigned char* text, unsigned fill, unsigned shadow, int palette_y, int x, int baseline, int align, int* left,
+                                int* width);
+
+    /** @brief Nonzero while the game's menu is drawn with the Remaster's art, and so its text in the Remaster's fonts. */
+    int lom_remaster_menu_hd(void);
+
+    /**
+     * @brief Write a line of the menu's text in the Remaster's fonts
+     *        (lom_draw_menu_text), in one of the PS1's text colours.
+     * @param code The sprite's code word, or NULL only to measure it.
+     * @param text The game's text.
+     * @param colour The PS1's text style: FIELD_TEXT_COLOR_* (0 to 7) from
+     *        one palette, 8 to 15 the same from the other.
+     * @param x Its left, right or middle.
+     * @param baseline Its baseline.
+     * @param align LOM_CARDS_ALIGN_*.
+     * @param left Set to its left, or NULL.
+     * @param width Set to its width, or NULL.
+     * @return Nonzero when it's written; 0 to draw it in the PS1's font.
+     */
+    int lom_remaster_menu_text(void* code, const unsigned char* text, int colour, int x, int baseline, int align, int* left, int* width);
+
+    /**
      * @brief Darken the screen for a fade to black in proportion, as the
      *        Remaster fades, over a sprite the game has built (lom_draw_fade).
      * @param code The sprite's code word.

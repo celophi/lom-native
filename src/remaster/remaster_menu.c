@@ -265,6 +265,11 @@ void lom_remaster_menu_end(void)
     s_columns = 0;
 }
 
+int lom_remaster_menu_hd(void)
+{
+    return s_icons;
+}
+
 int lom_remaster_menu_columns(void)
 {
     return s_columns;

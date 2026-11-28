@@ -2,7 +2,6 @@
 #include "remaster_internal.h"
 #include "lom_native_draw.h"
 #include "lom_native_widescreen.h"
-#include "remaster_text.h"
 
 #include <stddef.h>
 #include <stdio.h>
@@ -18,15 +17,7 @@
 #define HD_W 1440
 #define HD_H 1008
 #define HD_SCREEN_W 1920
-#define TEXT_FONT "system/font/font_us.psb.m"
-#define TEXT_ASCENT 42
-#define TEXT_BYTES 96
-#define LABEL_BYTES 128
-#define PACKED_FIRST 0x14
-#define BOLD_FIRST 0x80
-#define BOLD_LAST 0xDE
-#define BOLD_OFFSET 0x60
-#define OPEN_QUOTE 0x201C
+#define CARDS_PALETTE_Y 511
 
 typedef struct
 {
@@ -133,104 +124,6 @@ void lom_remaster_cards_picture(void* code, int picture, int x, int y, int w, in
 }
 
 /**
- * @brief Add a character to UTF-8 being put together.
- * @param c The character, a Unicode code point.
- * @param out The UTF-8.
- * @param at Where it goes, moved past it.
- * @param room Bytes at @p out.
- * @return 0, or -1 when it doesn't fit.
- */
-static int put_utf8(uint32_t c, char* out, size_t* at, size_t room)
-{
-    if (c == 0 || *at + 4 >= room)
-    {
-        return -1;
-    }
-
-    if (c < 0x80)
-    {
-        out[(*at)++] = (char)c;
-    }
-    else if (c < 0x800)
-    {
-        out[(*at)++] = (char)(0xC0 | c >> 6);
-        out[(*at)++] = (char)(0x80 | (c & 0x3F));
-    }
-    else
-    {
-        out[(*at)++] = (char)(0xE0 | c >> 12);
-        out[(*at)++] = (char)(0x80 | ((c >> 6) & 0x3F));
-        out[(*at)++] = (char)(0x80 | (c & 0x3F));
-    }
-
-    return 0;
-}
-
-/**
- * @brief Turn the game's text into UTF-8 for the Remaster's font: its letters, the bolder capitals and letters names
- *        are written in (0x80 on), the PS1 font's extra accented letters, and the letter pairs and short words it packs
- *        into one character (0x14 " the", 0x16 "in", and so on).
- * @param text The game's text.
- * @param out Where the UTF-8 goes.
- * @param room Bytes at @p out.
- * @return 0, or -1 when it has something else (Japanese, Korean or Chinese
- *         text, a symbol) or doesn't fit.
- */
-static int text_utf8(const unsigned char* text, char* out, size_t room)
-{
-    static const char* const packed[] = {" the", " you", "in", " to ", "'s ", NULL, NULL, " and ", "is ", " so", " it"};
-    size_t at = 0;
-
-    for (const unsigned char* p = text; *p; ++p)
-    {
-        uint32_t c = *p;
-
-        if (c >= PACKED_FIRST && c < PACKED_FIRST + sizeof(packed) / sizeof(packed[0]) && packed[c - PACKED_FIRST])
-        {
-            for (const char* q = packed[c - PACKED_FIRST]; *q; ++q)
-            {
-                if (put_utf8((unsigned char)*q, out, &at, room) != 0)
-                {
-                    return -1;
-                }
-            }
-
-            continue;
-        }
-
-        if (c == TEXT_EXTRA)
-        {
-            if (p[1] == 0)
-            {
-                return -1;
-            }
-
-            c = remaster_text_letter_code(*++p);
-        }
-        else if (c == GLYPH_OPEN_QUOTE)
-        {
-            c = OPEN_QUOTE;
-        }
-        else if (c >= BOLD_FIRST && c <= BOLD_LAST)
-        {
-            c -= BOLD_OFFSET;
-        }
-        else if (c < 0x20 || c > 0x7E)
-        {
-            return -1;
-        }
-
-        if (put_utf8(c, out, &at, room) != 0)
-        {
-            return -1;
-        }
-    }
-
-    out[at] = 0;
-    return at ? 0 : -1;
-}
-
-/**
  * @note The Remaster writes its save screens in its own font, at the font's
  *       size: the rows in white with a dark shadow, the screen's name dark
  *       with a light one, and here a dimmer brown for the card that isn't
@@ -240,33 +133,11 @@ static int text_utf8(const unsigned char* text, char* out, size_t room)
 int lom_remaster_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style)
 {
     static const unsigned colours[LOM_CARDS_TEXT_COUNT][2] = {{0xFFFFFF, 0x403020}, {0x3C3830, 0xF0E4A0}, {0x8A7848, 0xF0E4A0}, {0x9A9488, 0x201810}};
-    char utf8[TEXT_BYTES];
-    char label[LABEL_BYTES];
-    int w = 0, h = 0;
 
-    if (!code || !text || !s_on || style < 0 || style >= LOM_CARDS_TEXT_COUNT || text_utf8(text, utf8, sizeof(utf8)) != 0)
+    if (!code || !s_on || style < 0 || style >= LOM_CARDS_TEXT_COUNT)
     {
         return 0;
     }
 
-    snprintf(label, sizeof(label), "#%06X#%06X#%s", colours[style][0], colours[style][1], utf8);
-
-    if (!lom_remaster_picture_ready(TEXT_FONT, label, &w, &h))
-    {
-        return 0;
-    }
-
-    const int pw = (w * PS1_W + HD_W / 2) / HD_W, ph = (h * PS1_H + HD_H / 2) / HD_H;
-    const int left = align == LOM_CARDS_ALIGN_RIGHT ? x - pw : align == LOM_CARDS_ALIGN_CENTER ? x - pw / 2 : x;
-    const int top = baseline - (TEXT_ASCENT * PS1_H + HD_H / 2) / HD_H;
-    const int xy[8] = {left, top, left + pw, top, left, top + ph, left + pw, top + ph};
-    const int placement = lom_remaster_picture_place(TEXT_FONT, label, NULL, xy, -1, -1);
-
-    if (placement < 0)
-    {
-        return 0;
-    }
-
-    lom_remaster_picture_command(code, SPRITE_WORDS, placement);
-    return 1;
+    return lom_remaster_text_place(code, text, colours[style][0], colours[style][1], CARDS_PALETTE_Y, x, baseline, align, NULL, NULL);
 }

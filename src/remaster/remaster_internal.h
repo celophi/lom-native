@@ -236,6 +236,15 @@ extern "C"
     int lom_remaster_menu_icon_part(int icon, int mirror, const int rect[4], LomRemasterPart* part);
 
     /**
+     * @brief A colour in video memory as the game last loaded it there, for
+     *        the PS1's palettes.
+     * @param x Its x.
+     * @param y Its y.
+     * @return It as 0xRRGGBB, or 0 before anything's loaded.
+     */
+    unsigned lom_remaster_vram_colour(int x, int y);
+
+    /**
      * @brief Where the Remaster's art for the world map's day name comes from
      *        and goes (remaster_screens.c).
      * @param language The names' language, a LOM_REMASTER_TEXT_* other than

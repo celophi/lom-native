@@ -19,12 +19,18 @@
 #define LAYERS 4
 #define LAYER_SIZE 2048
 #define MARGIN 8
-#define MAX_IMAGES 256
+#define MAX_IMAGES 1024
 #define PLACEMENTS 1024
 #define PATH_SIZE 4096
 #define MAX_CHAIN 8
 #define TEXT_GREY 0xD8
 #define LINE_SHADOW 3
+#define LINE_HEIGHT 52
+#define LINE_BASELINE 42
+#define LINE_COLOURS 10
+#define LINE_COLOUR '\x01'
+#define FONTS_OPEN 4
+#define TEXT_FONT_LATIN "system/font/font_us.psb.m"
 #define FADE_LABEL "@fade"
 #define FADE_STEPS 32
 #define FADE_SIZE 4
@@ -33,7 +39,7 @@
 
 typedef struct
 {
-    char key[192];
+    char key[400];
     int layer;
     int x, y, w, h;
     unsigned stamp;
@@ -345,62 +351,169 @@ static void blend_pixel(unsigned char* p, unsigned rgb, unsigned alpha)
 }
 
 /**
- * @brief Draw a line of text in one of the Remaster's fonts as a picture, at
- *        the font's own size, which is the Remaster's at 1080 lines: each
- *        letter its width along, on the font's baseline, with a drop shadow.
- * @param psb The font.
- * @param label "#RRGGBB#SSSSSS#text": the colour, the shadow's, and the text
- *        in UTF-8.
- * @param w Set to the picture's width.
- * @param h Set to its height, the font's line and the shadow's drop.
- * @return The pixels, with a margin, which the caller frees, or NULL when the
- *         font doesn't have one of the letters.
+ * @brief Open one of the Remaster's fonts, keeping the last few open: their
+ *        files are big, and a line can use two of them.
+ * @param file The font's PSB file.
+ * @return The font, or NULL when it can't be read.
  */
-static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, int* h)
+static const LomPsb* open_font(const char* file)
 {
-    unsigned colour = 0, shadow = 0;
-    int used = 0;
-    size_t code, source;
+    static struct
+    {
+        char file[PATH_SIZE];
+        unsigned char* data;
+        LomPsb psb;
+        unsigned used;
+    } fonts[FONTS_OPEN];
 
-    if (sscanf(label, "#%6x#%6x#%n", &colour, &shadow, &used) != 2 || used == 0 || lom_psb_member(psb, psb->root, "code", &code) != 0 ||
-        lom_psb_member(psb, psb->root, "source", &source) != 0)
+    static unsigned s_used;
+    int slot = 0;
+
+    for (int i = 0; i < FONTS_OPEN; ++i)
+    {
+        if (fonts[i].data && strcmp(fonts[i].file, file) == 0)
+        {
+            fonts[i].used = ++s_used;
+            return &fonts[i].psb;
+        }
+
+        if (fonts[i].used < fonts[slot].used)
+        {
+            slot = i;
+        }
+    }
+
+    if (fonts[slot].data)
+    {
+        lom_psb_close(&fonts[slot].psb);
+        free(fonts[slot].data);
+        fonts[slot].data = NULL;
+    }
+
+    char path[PATH_SIZE];
+    size_t size = 0;
+    snprintf(path, sizeof(path), "%s/%s", lom_native_remaster_root(), file);
+    fonts[slot].data = lom_remaster_load(path, &size);
+
+    if (fonts[slot].data && lom_psb_open(&fonts[slot].psb, fonts[slot].data, size) != 0)
+    {
+        free(fonts[slot].data);
+        fonts[slot].data = NULL;
+    }
+
+    if (!fonts[slot].data)
     {
         return NULL;
     }
 
-    const char* text = label + used;
-    int width = 0, line = 0, baseline = 0;
+    snprintf(fonts[slot].file, sizeof(fonts[slot].file), "%s", file);
+    fonts[slot].used = ++s_used;
+    return &fonts[slot].psb;
+}
 
-    for (const char* p = text; *p;)
+typedef struct
+{
+    const LomPsb* psb;
+    size_t letter;
+    int rect[4];
+    const unsigned char* atlas;
+    int stride;
+} FontGlyph;
+
+/**
+ * @brief Find a letter in the first of the fonts that has it.
+ * @param fonts The fonts, in order, some NULL.
+ * @param count How many.
+ * @param key The letter, in UTF-8.
+ * @param glyph Set to where it is.
+ * @return 0, or -1 when none has it.
+ */
+static int find_glyph(const LomPsb* const fonts[], int count, const char* key, FontGlyph* glyph)
+{
+    for (int i = 0; i < count; ++i)
+    {
+        size_t code, source;
+
+        if (fonts[i] && lom_psb_member(fonts[i], fonts[i]->root, "code", &code) == 0 && lom_psb_member(fonts[i], fonts[i]->root, "source", &source) == 0 &&
+            font_letter(fonts[i], code, source, key, glyph->rect, &glyph->atlas, &glyph->stride) == 0 &&
+            lom_psb_member(fonts[i], code, key, &glyph->letter) == 0)
+        {
+            glyph->psb = fonts[i];
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+/**
+ * @brief Draw a line of text in the Remaster's fonts as a picture, at the
+ *        fonts' own size, which is the Remaster's at 1080 lines: each letter
+ *        its width along, on the baseline, with a drop shadow, in colours that
+ *        can change along the line.
+ * @param file The language's font; letters it doesn't have come from the
+ *        Remaster's own (TEXT_FONT_LATIN).
+ * @param label "%" then the colours, each fill and shadow as RRGGBBRRGGBB,
+ *        then "|" and the text in UTF-8, in which LINE_COLOUR and a digit
+ *        switches to that colour.
+ * @param w Set to the picture's width.
+ * @param h Set to its height, the fonts' line and the shadow's drop.
+ * @return The pixels, with a margin, which the caller frees, or NULL when no
+ *         font has one of the letters.
+ */
+static unsigned char* load_line(const char* file, const char* label, int* w, int* h)
+{
+    unsigned colours[LINE_COLOURS][2] = {{0}};
+    int count = 0;
+    const char* p = label + 1;
+
+    while (*p && *p != '|' && count < LINE_COLOURS && sscanf(p, "%6x%6x", &colours[count][0], &colours[count][1]) == 2)
+    {
+        ++count;
+        p += 12;
+    }
+
+    if (*p != '|' || count == 0)
+    {
+        return NULL;
+    }
+
+    const char* text = p + 1;
+    const LomPsb* const fonts[2] = {open_font(file), strcmp(file, TEXT_FONT_LATIN) != 0 ? open_font(TEXT_FONT_LATIN) : NULL};
+    int width = 0;
+
+    for (const char* q = text; *q;)
     {
         char key[8];
         int bytes = 1;
-        size_t letter;
-        int rect[4], stride;
-        const unsigned char* atlas;
+        FontGlyph glyph;
 
-        while (p[bytes] && ((unsigned char)p[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+        if (*q == LINE_COLOUR)
+        {
+            q += q[1] ? 2 : 1;
+            continue;
+        }
+
+        while (q[bytes] && ((unsigned char)q[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
         {
             ++bytes;
         }
 
-        memcpy(key, p, (size_t)bytes);
+        memcpy(key, q, (size_t)bytes);
         key[bytes] = 0;
 
-        if (font_letter(psb, code, source, key, rect, &atlas, &stride) != 0 || lom_psb_member(psb, code, key, &letter) != 0)
+        if (find_glyph(fonts, 2, key, &glyph) != 0)
         {
             return NULL;
         }
 
-        width += member_int(psb, letter, "width");
-        line = member_int(psb, letter, "height");
-        baseline = member_int(psb, letter, "b") - member_int(psb, letter, "a");
-        p += bytes;
+        width += member_int(glyph.psb, glyph.letter, "width");
+        q += bytes;
     }
 
-    const int pw = width + LINE_SHADOW, ph = line + LINE_SHADOW;
+    const int pw = width + LINE_SHADOW, ph = LINE_HEIGHT + LINE_SHADOW;
 
-    if (width <= 0 || line <= 0 || pw + 2 * MARGIN > LAYER_SIZE || ph + 2 * MARGIN > LAYER_SIZE)
+    if (width <= 0 || pw + 2 * MARGIN > LAYER_SIZE)
     {
         return NULL;
     }
@@ -411,34 +524,39 @@ static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, in
     for (int pass = 0; pixels && pass < 2; ++pass)
     {
         const int shift = pass == 0 ? LINE_SHADOW : 0;
-        const unsigned rgb = pass == 0 ? shadow : colour;
-        int left = 0;
+        int left = 0, colour = 0;
 
-        for (const char* p = text; *p;)
+        for (const char* q = text; *q;)
         {
             char key[8];
             int bytes = 1;
-            size_t letter;
-            int rect[4], stride;
-            const unsigned char* atlas;
+            FontGlyph glyph;
 
-            while (p[bytes] && ((unsigned char)p[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+            if (*q == LINE_COLOUR)
+            {
+                const int next = q[1] ? q[1] - '0' : 0;
+                colour = next >= 0 && next < count ? next : 0;
+                q += q[1] ? 2 : 1;
+                continue;
+            }
+
+            while (q[bytes] && ((unsigned char)q[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
             {
                 ++bytes;
             }
 
-            memcpy(key, p, (size_t)bytes);
+            memcpy(key, q, (size_t)bytes);
             key[bytes] = 0;
-            font_letter(psb, code, source, key, rect, &atlas, &stride);
-            lom_psb_member(psb, code, key, &letter);
-            const int top = baseline - member_int(psb, letter, "b") + shift;
+            find_glyph(fonts, 2, key, &glyph);
+            const int top = LINE_BASELINE - member_int(glyph.psb, glyph.letter, "b") + shift;
+            const unsigned rgb = colours[colour][pass == 0 ? 1 : 0];
 
-            for (int y = 0; y < rect[3]; ++y)
+            for (int y = 0; y < glyph.rect[3]; ++y)
             {
-                for (int x = 0; x < rect[2]; ++x)
+                for (int x = 0; x < glyph.rect[2]; ++x)
                 {
                     const int dx = left + x + shift, dy = top + y;
-                    const unsigned alpha = atlas[(size_t)(rect[1] + y) * (size_t)stride + (size_t)(rect[0] + x)];
+                    const unsigned alpha = glyph.atlas[(size_t)(glyph.rect[1] + y) * (size_t)glyph.stride + (size_t)(glyph.rect[0] + x)];
 
                     if (alpha && dx >= 0 && dy >= 0 && dx < pw && dy < ph)
                     {
@@ -448,8 +566,8 @@ static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, in
                 }
             }
 
-            left += member_int(psb, letter, "width");
-            p += bytes;
+            left += member_int(glyph.psb, glyph.letter, "width");
+            q += bytes;
         }
     }
 
@@ -503,15 +621,21 @@ static unsigned char* load_picture(const char* file, const char* label, int* w, 
         return load_fade(label, w, h);
     }
 
+    if (label && label[0] == '%')
+    {
+        unsigned char* line = load_line(file, label, w, h);
+
+        if (line)
+        {
+            premultiply(line, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
+        }
+
+        return line;
+    }
+
     const LomPsb* psb = open_picture_file(file);
     unsigned char* pixels = NULL;
     size_t list, item, textures;
-
-    if (psb && label && label[0] == '#' && (pixels = load_line(psb, label, w, h)) != NULL)
-    {
-        premultiply(pixels, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
-        return pixels;
-    }
 
     if (psb && label && strchr(label, '|') && (pixels = load_text(psb, label, w, h)) != NULL)
     {
@@ -1466,4 +1590,16 @@ int lom_remaster_fade(void* code, int brightness, int x, int y, int w, int h)
     lom_remaster_picture_style(placement, 0x808080, 0);
     lom_remaster_picture_command(code, 4, placement);
     return 1;
+}
+
+unsigned lom_remaster_vram_colour(int x, int y)
+{
+    if (!s_vram)
+    {
+        return 0;
+    }
+
+    const uint16_t word = s_vram[(y & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + (x & (VRAM_WIDTH - 1))];
+    const unsigned r = (word & 0x1F) * 255 / 31, g = ((word >> 5) & 0x1F) * 255 / 31, b = ((word >> 10) & 0x1F) * 255 / 31;
+    return r << 16 | g << 8 | b;
 }

@@ -516,6 +516,11 @@ static int shrink(uint32_t c, uint16_t rows[12], unsigned char* width)
     return 1;
 }
 
+uint32_t remaster_text_wide_char(int index)
+{
+    return index >= 0 && index < s_wide_count ? s_wide_chars[index] : 0;
+}
+
 int remaster_text_wide_code(uint32_t c)
 {
     unsigned slot = (c * 2654435761u) & (WIDE_HASH - 1);

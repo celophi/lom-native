@@ -248,6 +248,24 @@ extern "C"
      */
     int lom_draw_fade(void* code, int brightness, int x, int y, int w, int h);
 
+    /** @brief Nonzero while the game's menu writes its text in the Remaster's fonts. */
+    int lom_draw_menu_hd(void);
+
+    /**
+     * @brief Write a line of the menu's text in the Remaster's fonts, over a
+     *        sprite the game has built but not linked.
+     * @param code The sprite's code word, or NULL only to measure it.
+     * @param text The game's text.
+     * @param colour The PS1's text style, as field_draw_text takes it.
+     * @param x Its left, right or middle (@p align).
+     * @param baseline Its baseline.
+     * @param align LOM_CARDS_ALIGN_*, which match FIELD_TEXT_ALIGN_*.
+     * @param left Set to its left, or NULL.
+     * @param width Set to its width, or NULL.
+     * @return Nonzero when it's written; 0 to draw it in the PS1's font.
+     */
+    int lom_draw_menu_text(void* code, const unsigned char* text, int colour, int x, int baseline, int align, int* left, int* width);
+
     /**
      * @brief Draw name entry's fixed background sprites, which the game has
      *        built and linked, so a renderer can draw them from other art.
