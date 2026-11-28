@@ -2,7 +2,7 @@
 #include "lom_native_cd.h"
 #include "remaster_internal.h"
 #include "remaster_files_provider.h"
-#include "../gpu/hd_textures.h"
+#include "../gpu/hd_renderer_provider.h"
 #include "common/memory_map.h"
 
 #define u_long LomPsyzULong
@@ -428,8 +428,9 @@ static int load_pages(const char* name, const LomPsb* map)
     }
 
     lom_psb_close(&images);
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
 
-    if (result || lom_hd_textures_set((int)pages, PAGE_SIZE))
+    if (result || !renderer->textures_set || renderer->textures_set(renderer->context, (int)pages, PAGE_SIZE))
     {
         if (owned)
         {
@@ -512,7 +513,8 @@ void lom_remaster_map_ready(const unsigned short* lookup)
         }
 
         premultiply(pixels, bytes);
-        lom_hd_textures_upload(page, pixels);
+        const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+        renderer->textures_upload(renderer->context, page, pixels);
     }
 
     drop_pages();
@@ -725,7 +727,12 @@ static int32_t use_hd_map(unsigned char* data, int32_t size, size_t room, const 
             fprintf(stderr, "[lom-native] The Remaster's %s couldn't be used; the room keeps the PS1's art.\n", name);
         }
 
-        lom_hd_textures_release();
+        const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+
+        if (renderer->textures_release)
+        {
+            renderer->textures_release(renderer->context);
+        }
     }
 
     if (map_data)
@@ -777,9 +784,11 @@ static int32_t replace_map(int32_t resource, unsigned char* data, int32_t size, 
 
     if (!lom_native_remaster_hd_backgrounds() || !lom_native_remaster_hd_supported() || !s_records)
     {
-        if (lom_hd_textures_release)
+        const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+
+        if (renderer->textures_release)
         {
-            lom_hd_textures_release();
+            renderer->textures_release(renderer->context);
         }
 
         return size;
@@ -944,7 +953,8 @@ static void draw_cell(const int xy[8], uint32_t code, uint32_t cell, int tpage)
 {
     const unsigned flags = code >> 24;
     const unsigned rgb = flags & 1 ? 0x808080 : code & 0xFFFFFF;
-    lom_hd_textures_draw(xy, (int)(cell >> 8 & 0xFF), (int)(cell & 0xFF), rgb, flags & 2, tpage);
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    renderer->textures_draw(renderer->context, xy, (int)(cell >> 8 & 0xFF), (int)(cell & 0xFF), rgb, flags & 2, tpage);
 }
 
 /**

@@ -1,6 +1,5 @@
 #include "lom_native_remaster.h"
-#include "../gpu/hd_textures.h"
-#include "../gpu/hd_movie.h"
+#include "../gpu/hd_renderer_provider.h"
 
 #include <stdio.h>
 
@@ -58,7 +57,8 @@ int lom_native_remaster_uses(int which)
 
 int lom_native_remaster_hd_supported(void)
 {
-    return lom_hd_textures_set && lom_hd_textures_upload && lom_hd_textures_draw && lom_hd_textures_release;
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    return renderer->textures_set && renderer->textures_upload && renderer->textures_draw && renderer->textures_release;
 }
 
 void lom_native_remaster_set_hd_backgrounds(int enabled)
@@ -104,7 +104,8 @@ int lom_native_remaster_effects(void)
 
 int lom_native_remaster_hd_ui_supported(void)
 {
-    return lom_hd_images_set && lom_hd_images_upload && lom_hd_images_draw && lom_hd_images_release;
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    return renderer->images_set && renderer->images_upload && renderer->images_draw && renderer->images_release;
 }
 
 void lom_native_remaster_set_hd_ui(int enabled)
@@ -117,7 +118,8 @@ void lom_native_remaster_set_hd_ui(int enabled)
 
 int lom_native_remaster_hd_movies_supported(void)
 {
-    return lom_hd_movie_begin && lom_hd_movie_frame && lom_hd_movie_end;
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    return renderer->movie_begin && renderer->movie_frame && renderer->movie_end;
 }
 
 void lom_native_remaster_set_hd_movies(int enabled)

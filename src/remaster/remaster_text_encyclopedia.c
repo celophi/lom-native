@@ -1,6 +1,7 @@
 #include "lom_native_remaster.h"
 #include "lom_native_text.h"
 #include "remaster_text.h"
+#include "../cd/disc_files_provider.h"
 #include "lom_native_cd.h"
 #include "lom_native_env.h"
 #include "common/memory_map.h"
@@ -356,26 +357,17 @@ static unsigned char* read_page_file(int resource, long* size)
     }
 
     snprintf(path, sizeof(path), "%s/%s", root, name);
-    FILE* file = fopen(path, "rb");
+    const LomDiscFilesProvider* disc_files = lom_disc_files_provider();
+    size_t length = 0;
+    unsigned char* data = disc_files->read(disc_files->context, path, &length);
 
-    if (!file)
+    if (!data || length <= 0x40)
     {
-        return NULL;
-    }
-
-    fseek(file, 0, SEEK_END);
-    *size = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    unsigned char* data = *size > 0x40 ? malloc((size_t)*size) : NULL;
-
-    if (!data || fread(data, 1, (size_t)*size, file) != (size_t)*size)
-    {
-        fclose(file);
         free(data);
         return NULL;
     }
 
-    fclose(file);
+    *size = (long)length;
     return data;
 }
 

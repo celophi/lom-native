@@ -31,6 +31,8 @@ ROOT = Path(__file__).resolve().parents[2]
 ALLOW_LIST = ROOT / "tools" / "testing" / "provider_allow.json"
 TESTS_CMAKE = ROOT / "cmake" / "native" / "tests.cmake"
 FILE_CALLS = ("fopen", "freopen", "_wfopen", "open", "opendir", "stat", "lstat", "_wstat", "access", "CreateFileA", "CreateFileW")
+HD_RENDERER_CALLS = tuple(f"lom_hd_{part}_{call}" for part in ("textures", "images") for call in ("set", "upload", "release", "draw", "layers")) + (
+    "lom_hd_movie_begin", "lom_hd_movie_frame", "lom_hd_movie_end")
 PROVIDERS = [
     {
         "name": "remaster files provider",
@@ -39,6 +41,22 @@ PROVIDERS = [
         "fake": "tests/support/platform/remaster_files_provider_fake.h",
         "covers": ["src/remaster/*.c"],
         "calls": FILE_CALLS,
+    },
+    {
+        "name": "disc files provider",
+        "provider": ["src/cd/disc_files_provider.c"],
+        "contract_test": "tests/providers/disc_files_provider_contract.c",
+        "fake": "tests/support/cd/disc_files_provider_fake.h",
+        "covers": ["src/cd/*.c"],
+        "calls": FILE_CALLS,
+    },
+    {
+        "name": "hd renderer provider",
+        "provider": ["src/gpu/hd_renderer_provider.c"],
+        "contract_test": "tests/providers/hd_renderer_provider_contract.c",
+        "fake": "tests/support/gpu/hd_renderer_provider_fake.h",
+        "covers": ["src/remaster/*.c", "src/movie/*.c"],
+        "calls": HD_RENDERER_CALLS,
     },
 ]
 FUNCTION_START = re.compile(r"^(?:static\s+|inline\s+|const\s+|unsigned\s+|struct\s+)*[A-Za-z_][\w\s\*]*?\b([A-Za-z_]\w*)\s*\([^;]*$")

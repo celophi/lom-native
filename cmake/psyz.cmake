@@ -49,7 +49,8 @@ include(src/ui/notices.cmake)
 target_link_libraries(psyz PUBLIC lom_switches lom_notices)
 target_sources(psyz PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/src/gpu/widescreen.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/remaster/remaster_settings.c")
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/remaster/remaster_settings.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/gpu/hd_renderer_provider.c")
 
 if(PSYZ_RENDERER STREQUAL "sdl3_gpu")
     add_library(lom_native_presentation STATIC src/gpu/presentation.c src/gpu/xbr.c src/gpu/crossfade.c src/gpu/hd_movie_layout.c)

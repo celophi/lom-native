@@ -27,7 +27,7 @@
 #include "movie_decoder.h"
 #include "movie_source.h"
 #include "movie_audio_output.h"
-#include "../gpu/hd_movie.h"
+#include "../gpu/hd_renderer_provider.h"
 
 #define LOM_NATIVE_INTRO_MOVIE_RESOURCE 0x16A0
 #define LOM_NATIVE_MOVIE_WIDTH 320
@@ -360,7 +360,9 @@ static int open_hd_movie(MoviePlayback* movie, unsigned int movie_index)
         return -1;
     }
 
-    if (lom_hd_movie_begin(LOM_NATIVE_MOVIE_HD_WIDTH, LOM_NATIVE_MOVIE_HD_HEIGHT) != 0)
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+
+    if (!renderer->movie_begin || renderer->movie_begin(renderer->context, LOM_NATIVE_MOVIE_HD_WIDTH, LOM_NATIVE_MOVIE_HD_HEIGHT) != 0)
     {
         lom_movie_decoder_close(movie->video_pipe, movie->video_child, 1);
         movie->video_pipe = NULL;
@@ -398,7 +400,8 @@ static void close_hd_movie(MoviePlayback* movie, int cancel)
         movie->sound_path[0] = '\0';
     }
 
-    lom_hd_movie_end();
+    const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+    renderer->movie_end(renderer->context);
 }
 
 /**
@@ -592,7 +595,8 @@ static int show_movie(MoviePlayback* movie)
     {
         if (movie->hd)
         {
-            lom_hd_movie_frame(movie->video_frame);
+            const LomHdRendererProvider* renderer = lom_hd_renderer_provider();
+            renderer->movie_frame(renderer->context, movie->video_frame);
         }
         else
         {

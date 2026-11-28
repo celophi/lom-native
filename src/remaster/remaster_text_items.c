@@ -1,6 +1,7 @@
 #include "lom_native_remaster.h"
 #include "lom_native_text.h"
 #include "remaster_text.h"
+#include "../cd/disc_files_provider.h"
 #include "lom_native_cd.h"
 #include "common/memory_map.h"
 #include "common/saved_game.h"
@@ -170,27 +171,17 @@ static unsigned char* read_item_parts(const unsigned char** table, size_t* size)
     }
 
     snprintf(path, sizeof(path), "%s/ANA/MAPINFO/MHM_ALC0.IMG", root);
-    FILE* file = fopen(path, "rb");
+    const LomDiscFilesProvider* disc_files = lom_disc_files_provider();
+    size_t length = 0;
+    unsigned char* data = disc_files->read(disc_files->context, path, &length);
 
-    if (!file)
+    if (!data || length <= 0x28)
     {
-        return NULL;
-    }
-
-    fseek(file, 0, SEEK_END);
-    const long length = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    unsigned char* data = length > 0x28 ? malloc((size_t)length) : NULL;
-
-    if (!data || fread(data, 1, (size_t)length, file) != (size_t)length)
-    {
-        fclose(file);
         free(data);
         return NULL;
     }
 
-    fclose(file);
-    *size = (size_t)length;
+    *size = length;
 
     const uint32_t records = remaster_text_read_word(data + 0x10), next = remaster_text_read_word(data + 0x14);
 

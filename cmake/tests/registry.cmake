@@ -96,6 +96,20 @@ function(lom_add_test)
     endif()
 endfunction()
 
+function(lom_add_specifications)
+    cmake_parse_arguments(S "" "NAME;TIER;SOURCE;TARGET" "LABELS" ${ARGN})
+    if(NOT TARGET ${S_TARGET})
+        return()
+    endif()
+    set(source "${CMAKE_CURRENT_SOURCE_DIR}/${S_SOURCE}")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${source}")
+    file(STRINGS "${source}" specifications REGEX "^SPECIFICATION\\(")
+    list(LENGTH specifications count)
+    foreach(number RANGE 1 ${count})
+        lom_add_test(NAME ${S_NAME}-${number} TIER ${S_TIER} NO_HEADLESS TIMEOUT 60 LABELS ${S_LABELS} COMMAND ${S_TARGET} ${number})
+    endforeach()
+endfunction()
+
 add_library(lom_native_test_clock OBJECT "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/session/test_clock.c")
 get_property(lom_test_targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
 foreach(target IN LISTS lom_test_targets)
@@ -135,7 +149,16 @@ lom_add_test(NAME native-stubs-jp TIER 0 KIND static NO_HEADLESS LABELS platform
 lom_add_test(NAME crash-report TIER 0 NO_HEADLESS LABELS platform COMMAND lom-crash-report-integration)
 lom_add_test(NAME remaster-files TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-test)
 lom_add_test(NAME remaster-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-provider-contract)
+lom_add_test(NAME disc-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-disc-files-provider-contract)
 lom_add_test(NAME remaster-screens TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-screens-test)
+foreach(specification IN ITEMS encyclopedia_picture item_name ring_menu_background ring_menu_icon ring_menu_key ring_menu_open
+        save_screen_background save_screen_open save_screen_picture save_screen_text scene_text screen_fade start_the_game naming_screen_background naming_screen_glyph naming_screen_open
+        title_backdrop title_menu world_select_loaded world_select_picture world_select_zoom
+        world_map_label world_map_panel world_map_spirit world_map_status)
+    string(REPLACE "_" "-" name "${specification}")
+    lom_add_specifications(NAME remaster-${name} TIER 0 LABELS remaster TARGET lom-remaster-${name}-specification
+        SOURCE tests/behavior/remaster/${specification}_specification.c)
+endforeach()
 lom_add_test(NAME remaster-movies TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-movies-integration)
 foreach(case IN ITEMS size newest count)
     lom_add_test(NAME session-prune-${case} TIER 0 NO_HEADLESS LABELS platform session
@@ -229,6 +252,7 @@ if(TARGET lom-menu-render-integration)
     lom_add_test(NAME menu-quit TIER 1 GPU CLOCK paced TIMEOUT 60 LABELS input COMMAND lom-menu-quit-integration)
 endif()
 lom_add_test(NAME title-entry TIER 1 GPU TIMEOUT 300 COMMAND lom-title-entry-integration @DISC@)
+lom_add_test(NAME hd-renderer-provider TIER 1 GPU LABELS platform COMMAND lom-hd-renderer-provider-contract)
 lom_add_test(NAME keyboard-controls TIER 1 GPU COMMAND lom-keyboard-controls-component @OUT@)
 lom_add_test(NAME controller-rumble TIER 1 GPU TIMEOUT 120 LABELS input
     COMMAND lom-controller-rumble-component)

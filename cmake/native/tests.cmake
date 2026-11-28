@@ -31,7 +31,17 @@ lom_native_runtime_test(lom-session-switches-integration tests/integration/sessi
 lom_native_runtime_test(lom-song-render tests/support/tools/song_render.c)
 lom_native_runtime_test(lom-remaster-files-test tests/unit/remaster_files_test.c)
 lom_native_runtime_test(lom-remaster-files-provider-contract tests/providers/remaster_files_provider_contract.c)
+lom_native_runtime_test(lom-hd-renderer-provider-contract tests/providers/hd_renderer_provider_contract.c)
+lom_native_runtime_test(lom-disc-files-provider-contract tests/providers/disc_files_provider_contract.c)
 lom_native_runtime_test(lom-remaster-screens-test tests/unit/remaster_screens_test.c)
+foreach(specification IN ITEMS encyclopedia_picture item_name ring_menu_background ring_menu_icon ring_menu_key ring_menu_open
+        save_screen_background save_screen_open save_screen_picture save_screen_text scene_text screen_fade start_the_game naming_screen_background naming_screen_glyph naming_screen_open
+        title_backdrop title_menu world_select_loaded world_select_picture world_select_zoom
+        world_map_label world_map_panel world_map_spirit world_map_status)
+    string(REPLACE "_" "-" name "${specification}")
+    lom_native_runtime_test(lom-remaster-${name}-specification tests/behavior/remaster/${specification}_specification.c)
+    target_compile_definitions(lom-remaster-${name}-specification PRIVATE _POSIX_C_SOURCE=200809L)
+endforeach()
 lom_native_runtime_test(lom-remaster-movies-integration tests/integration/remaster_movies_integration.c)
 lom_native_runtime_test(lom-crash-report-integration tests/integration/crash_report_integration.c)
 lom_native_runtime_test(lom-field-cd-wait-component tests/component/field_cd_wait_component.c)
@@ -45,7 +55,7 @@ foreach(test IN ITEMS completion audio-output-edges)
     string(REPLACE "-" "_" file "${test}")
     set(target lom-movie-${test}-component)
     add_executable(${target} tests/component/movie_${file}_component.c src/core/game_loop.c ${LOM_GAME_CONTEXT_SOURCE}
-        src/gpu/draw_labels.c)
+        src/gpu/draw_labels.c src/gpu/hd_renderer_provider.c)
     target_compile_definitions(${target} PRIVATE __psyz VERSION_US LOM_NATIVE=1 _POSIX_C_SOURCE=200809L)
     target_compile_options(${target} PRIVATE -ffunction-sections -fdata-sections)
     target_include_directories(${target} BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES}
