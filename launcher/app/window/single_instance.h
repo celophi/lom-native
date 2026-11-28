@@ -1,6 +1,7 @@
 #ifndef LOM_LAUNCHER_SINGLE_INSTANCE_H
 #define LOM_LAUNCHER_SINGLE_INSTANCE_H
 
+#include "services/file_lock_provider.h"
 #include <QObject>
 #include <QString>
 
@@ -8,7 +9,6 @@
 #include <memory>
 
 class QLocalServer;
-class QLockFile;
 
 namespace lom::launcher {
 class SingleInstance : public QObject {
@@ -18,9 +18,10 @@ class SingleInstance : public QObject {
     /**
      * @brief Prepare the guard for a per-user data directory.
      * @param data_directory Per-user launcher data directory.
+     * @param locks What takes the launcher's lock; must outlive it.
      * @param parent Owner.
      */
-    SingleInstance(const std::filesystem::path& data_directory, QObject* parent);
+    SingleInstance(const std::filesystem::path& data_directory, FileLockProvider& locks, QObject* parent);
 
     /**
      * @brief Release the guard.
@@ -40,7 +41,9 @@ class SingleInstance : public QObject {
     void activation_requested();
 
   private:
-    std::unique_ptr<QLockFile> lock_;
+    FileLockProvider& locks_;
+    std::filesystem::path lock_path_;
+    std::unique_ptr<FileLockProvider::Lock> lock_;
     QLocalServer* server_ = nullptr;
     QString server_name_;
 };

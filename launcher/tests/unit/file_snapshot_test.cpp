@@ -1,4 +1,6 @@
 #include "../support/disc_fixture.h"
+#include "../support/disk.h"
+#include "../support/fake_disk_each_test.h"
 #include "../support/test_harness.h"
 #include "lom/launcher/disc/disc_importer.h"
 #include "lom/launcher/disc/file_snapshot.h"
@@ -24,11 +26,9 @@ constexpr std::size_t sha256_hex_length = 64;
  * @param path File.
  */
 void flip_last_byte(const std::filesystem::path& path) {
-    std::fstream file(path, std::ios::binary | std::ios::in | std::ios::out);
-    file.seekg(-1, std::ios::end);
-    const char byte = char(file.get() ^ 1);
-    file.seekp(-1, std::ios::end);
-    file.put(byte);
+    std::string bytes = disk::contents(path);
+    bytes.back() = char(bytes.back() ^ 1);
+    *disk::write(path) << bytes;
 }
 
 class FileSnapshotTest : public ::testing::Test {
@@ -49,7 +49,7 @@ class FileSnapshotTest : public ::testing::Test {
         const auto installed =
             importer.install(importer.identify(fixture.cue, Progress()), fixture.manifest, fixture.directory / ("games-" + name), Progress());
         const std::filesystem::path copy = fixture.directory / name;
-        std::filesystem::copy(installed.installation.data_path, copy, std::filesystem::copy_options::recursive);
+        disk::copy(installed.installation.data_path, copy, std::filesystem::copy_options::recursive);
         return copy;
     }
 
@@ -82,17 +82,17 @@ TEST_F(FileSnapshotTest, unchanged_files_are_not_hashed_again) {
 TEST_F(FileSnapshotTest, only_a_file_with_a_new_modification_time_is_hashed_again) {
     const std::filesystem::path changed_file = folder / "MOVIE" / "OPEN.STR";
     flip_last_byte(changed_file);
-    std::filesystem::last_write_time(changed_file, std::filesystem::last_write_time(changed_file) + std::chrono::hours(1));
+    fake_disk().set_last_write_time(changed_file, disk::last_write_time(changed_file) + std::chrono::hours(1));
 
     const auto again = FolderVerifier::check(folder, fixture.manifest, &first.snapshot, Progress());
     EXPECT_EQ(again.status, Status::UnknownContents);
     ASSERT_EQ(again.mismatched.size(), 1u);
     EXPECT_EQ(again.mismatched[0], "MOVIE/OPEN.STR");
-    EXPECT_EQ(again.hashed_bytes, std::filesystem::file_size(changed_file));
+    EXPECT_EQ(again.hashed_bytes, disk::file_size(changed_file));
 }
 
 TEST_F(FileSnapshotTest, a_missing_file_is_found_without_hashing) {
-    std::filesystem::remove(folder / "BIN" / "TINY.BIN");
+    disk::remove(folder / "BIN" / "TINY.BIN");
     const auto again = FolderVerifier::check(folder, fixture.manifest, &first.snapshot, Progress());
     EXPECT_EQ(again.status, Status::UnknownContents);
     EXPECT_EQ(again.missing.size(), 1u);

@@ -18,7 +18,7 @@ struct ChooseSaveFolderSpecification : LauncherSpec {
      */
     ChooseSaveFolderSpecification() {
         given_the_game_is_set_up_from(given_an_extracted_folder("Legend of Mana"));
-        std::filesystem::create_directories(saves);
+        disk::create_directories(saves);
         save_folder_choice = shown(saves);
     }
 
@@ -37,7 +37,7 @@ LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should remember 
 }
 
 LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should offer its parent folder when a memory card slot folder is chosen") {
-    std::filesystem::create_directories(saves / "slot0");
+    disk::create_directories(saves / "slot0");
     save_folder_choice = shown(saves / "slot0");
     open_launcher();
 
@@ -48,7 +48,7 @@ LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should offer its
 }
 
 LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should keep the previous folder when the folder holds saves from another edition") {
-    std::filesystem::create_directories(saves / "slot0");
+    disk::create_directories(saves / "slot0");
     SyntheticDisc::write(saves / "slot0" / "BISLPS-021700-1", SyntheticCard::save(7));
     open_launcher();
 
@@ -71,7 +71,7 @@ LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should keep the 
 }
 
 LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should accept a folder that already holds saves for this edition") {
-    std::filesystem::create_directories(saves / "slot0");
+    disk::create_directories(saves / "slot0");
     SyntheticDisc::write(saves / "slot0" / "BASLUS-010130-1", SyntheticCard::save(7));
     open_launcher();
 
@@ -81,8 +81,8 @@ LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should accept a 
 }
 
 LOM_SPEC(ChooseSaveFolderSpecification, "Choosing a save folder should keep the previous folder when a slot holds a file that isn't a save") {
-    std::filesystem::create_directories(saves / "slot1");
-    std::ofstream(saves / "slot1" / "notes.txt") << "notes";
+    disk::create_directories(saves / "slot1");
+    *disk::write(saves / "slot1" / "notes.txt") << "notes";
     open_launcher();
 
     press("browseSavesButton");

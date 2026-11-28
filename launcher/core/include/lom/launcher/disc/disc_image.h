@@ -5,7 +5,9 @@
 
 #include <cstdint>
 #include <filesystem>
-#include <fstream>
+#include <istream>
+#include <memory>
+#include <sstream>
 #include <string>
 
 namespace lom::launcher {
@@ -92,7 +94,7 @@ class DiscImage {
     Status open_data(const std::filesystem::path& path, bool require_raw);
 
     std::filesystem::path data_file_;
-    std::ifstream stream_;
+    std::unique_ptr<std::istream> stream_ = std::make_unique<std::istringstream>();
     Representation representation_ = Representation::Unknown;
     std::uint64_t data_bytes_ = 0;
     std::filesystem::file_time_type modified_{};

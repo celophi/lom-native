@@ -1,4 +1,5 @@
 #include "disc_fixture.h"
+#include "disk.h"
 
 #include "lom/launcher/disc/disc_image.h"
 #include "lom/launcher/disc/iso9660_reader.h"
@@ -52,7 +53,8 @@ DiscFixture DiscFixture::create(const std::filesystem::path& root) {
     SyntheticDisc::write(fixture.bin, raw);
     SyntheticDisc::write(fixture.iso, cooked);
     {
-        std::ofstream cue(fixture.cue);
+        const auto cue_file = disk::write(fixture.cue);
+        std::ostream& cue = *cue_file;
         cue << "FILE \"Test Disc (USA).bin\" BINARY\n  TRACK 01 MODE2/2352\n    INDEX 01 00:00:00\n";
     }
 
@@ -81,7 +83,8 @@ DiscFixture DiscFixture::create(const std::filesystem::path& root) {
     const std::filesystem::path data = root / "data";
     SyntheticDisc::write(data / manifest_name, {});
     {
-        std::ofstream out(data / manifest_name, std::ios::binary | std::ios::trunc);
+        const auto out_file = disk::write(data / manifest_name, std::ios::binary | std::ios::trunc);
+        std::ostream& out = *out_file;
         out << fixture.manifest.to_json().dump(true);
     }
 
@@ -114,7 +117,8 @@ DiscFixture DiscFixture::create(const std::filesystem::path& root) {
     catalog["releases"].push_back(jp);
     fixture.catalog_path = data / "supported-discs.json";
     {
-        std::ofstream out(fixture.catalog_path, std::ios::binary | std::ios::trunc);
+        const auto out_file = disk::write(fixture.catalog_path, std::ios::binary | std::ios::trunc);
+        std::ostream& out = *out_file;
         out << catalog.dump(true);
     }
 

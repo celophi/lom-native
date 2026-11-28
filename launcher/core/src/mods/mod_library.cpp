@@ -1,7 +1,9 @@
 #include "lom/launcher/mods/mod_library.h"
+#include "lom/launcher/common/files_provider.h"
 #include "lom/launcher/common/atomic_file.h"
 #include "lom/launcher/common/json.h"
 #include "mod_manifest.h"
+#include "mod_files_provider.h"
 
 #include <algorithm>
 #include <cstdlib>
@@ -10,6 +12,84 @@
 #include <system_error>
 
 namespace lom::launcher {
+
+namespace {
+
+class LauncherModFiles : public mods::ModFilesProvider {
+  public:
+    /**
+     * @brief Read a mod's file through the launcher's files provider.
+     * @param path The file.
+     * @param bytes Set to what's in it.
+     * @return True when it could be read.
+     */
+    bool read(const std::filesystem::path& path, std::string& bytes) override {
+        const auto stream = files_provider().open_read(path, std::ios::binary);
+
+        if (!*stream) {
+            return false;
+        }
+
+        std::ostringstream all;
+        all << stream->rdbuf();
+        bytes = all.str();
+        return true;
+    }
+
+    /**
+     * @brief Measure a mod's file through the launcher's files provider.
+     * @param path The file.
+     * @return Its size, or nothing when it isn't there.
+     */
+    std::optional<std::uintmax_t> size(const std::filesystem::path& path) override {
+        std::error_code code;
+        const std::uintmax_t bytes = files_provider().file_size(path, code);
+        return code ? std::nullopt : std::optional<std::uintmax_t>(bytes);
+    }
+
+    /**
+     * @brief Check a mod's file through the launcher's files provider.
+     * @param path The file.
+     * @return Whether it's there.
+     */
+    bool is_file(const std::filesystem::path& path) override {
+        std::error_code code;
+        return files_provider().is_regular_file(path, code);
+    }
+
+    /**
+     * @brief Check a folder through the launcher's files provider.
+     * @param path The folder.
+     * @return Whether it's there.
+     */
+    bool is_folder(const std::filesystem::path& path) override {
+        std::error_code code;
+        return files_provider().is_directory(path, code);
+    }
+
+    /**
+     * @brief List a mod's files through the launcher's files provider.
+     * @param folder The mod's folder.
+     * @param files Set to its files, relative to it.
+     * @return True when it could be listed.
+     */
+    bool files_under(const std::filesystem::path& folder, std::vector<std::filesystem::path>& files) override {
+        std::error_code code;
+
+        for (const FileEntry& entry : files_provider().list(folder, true, code)) {
+            if (entry.regular) {
+                files.push_back(entry.path.lexically_relative(folder));
+            }
+        }
+
+        return !code;
+    }
+};
+
+LauncherModFiles launcher_mod_files;
+const bool mod_files_go_through_the_launcher = (mods::use_mod_files_provider(&launcher_mod_files), true);
+
+}
 
 namespace {
 
@@ -77,9 +157,9 @@ std::vector<std::string> mod_folders(const std::filesystem::path& folder) {
         return names;
     }
 
-    for (auto item = std::filesystem::directory_iterator(folder, failed); !failed && item != std::filesystem::directory_iterator(); item.increment(failed)) {
-        if (item->is_directory(failed)) {
-            names.push_back(item->path().filename().string());
+    for (const FileEntry& item : files_provider().list(folder, false, failed)) {
+        if (item.directory) {
+            names.push_back(item.path.filename().string());
         }
     }
 
@@ -322,7 +402,7 @@ std::optional<std::string> ModLibrary::source_id(const std::filesystem::path& so
 
 bool ModLibrary::installed(const std::string& id) const {
     std::error_code ignored;
-    return mods::valid_mod_id(id) && std::filesystem::is_directory(folder_ / id, ignored);
+    return mods::valid_mod_id(id) && files_provider().is_directory(folder_ / id, ignored);
 }
 
 std::optional<std::string> ModLibrary::add(const std::filesystem::path& source, bool replace, std::string& error) const {
@@ -335,7 +415,7 @@ std::optional<std::string> ModLibrary::add(const std::filesystem::path& source, 
     std::error_code failed;
     const std::filesystem::path target = folder_ / *id;
 
-    if (std::filesystem::equivalent(source, target, failed)) {
+    if (files_provider().equivalent(source, target, failed)) {
         return id;
     }
 
@@ -345,7 +425,7 @@ std::optional<std::string> ModLibrary::add(const std::filesystem::path& source, 
             return std::nullopt;
         }
 
-        std::filesystem::remove_all(target, failed);
+        files_provider().remove_all(target, failed);
 
         if (failed) {
             error = "the installed " + *id + " couldn't be replaced: " + failed.message();
@@ -353,12 +433,12 @@ std::optional<std::string> ModLibrary::add(const std::filesystem::path& source, 
         }
     }
 
-    std::filesystem::create_directories(folder_, failed);
-    std::filesystem::copy(source, target, std::filesystem::copy_options::recursive, failed);
+    files_provider().create_directories(folder_, failed);
+    files_provider().copy(source, target, std::filesystem::copy_options::recursive, failed);
 
     if (failed) {
         std::error_code ignored;
-        std::filesystem::remove_all(target, ignored);
+        files_provider().remove_all(target, ignored);
         error = "it couldn't be copied into the mods folder: " + failed.message();
         return std::nullopt;
     }
@@ -369,7 +449,7 @@ std::optional<std::string> ModLibrary::add(const std::filesystem::path& source, 
 bool ModLibrary::remove(const std::string& id, std::string& error) const {
     std::error_code ignored;
 
-    if (!installed(id) && mods::valid_mod_id(id) && !bundled_.empty() && std::filesystem::is_directory(bundled_ / id, ignored)) {
+    if (!installed(id) && mods::valid_mod_id(id) && !bundled_.empty() && files_provider().is_directory(bundled_ / id, ignored)) {
         error = id + " comes with lom-native as an example, so it can be turned off but not removed";
         return false;
     }
@@ -380,7 +460,7 @@ bool ModLibrary::remove(const std::string& id, std::string& error) const {
     }
 
     std::error_code failed;
-    std::filesystem::remove_all(folder_ / id, failed);
+    files_provider().remove_all(folder_ / id, failed);
 
     if (failed) {
         error = id + " couldn't be removed: " + failed.message();

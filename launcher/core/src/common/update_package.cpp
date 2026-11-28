@@ -1,7 +1,9 @@
 #include "lom/launcher/common/update_package.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include <cctype>
 #include <sstream>
+#include <algorithm>
 #include <system_error>
 #include <vector>
 
@@ -66,20 +68,20 @@ std::string failure(const char* what, const std::filesystem::path& path, const s
 bool swap_in(const std::filesystem::path& target, const std::filesystem::path& replacement, std::string* error) {
     std::error_code code;
     const std::filesystem::path old = leftover(target);
-    std::filesystem::remove_all(old, code);
-    std::filesystem::rename(target, old, code);
+    files_provider().remove_all(old, code);
+    files_provider().rename(target, old, code);
 
     if (code) {
         *error = failure("move aside", target, code);
         return false;
     }
 
-    std::filesystem::rename(replacement, target, code);
+    files_provider().rename(replacement, target, code);
 
     if (code) {
         *error = failure("put in place", target, code);
         std::error_code ignored;
-        std::filesystem::rename(old, target, ignored);
+        files_provider().rename(old, target, ignored);
         return false;
     }
 
@@ -141,7 +143,7 @@ bool UpdatePackage::replace_file(const std::filesystem::path& target, const std:
     }
 
     std::error_code ignored;
-    std::filesystem::remove(leftover(target), ignored);
+    files_provider().remove(leftover(target), ignored);
     return true;
 }
 
@@ -155,9 +157,9 @@ bool UpdatePackage::replace_folder(const std::filesystem::path& target, const st
     std::error_code code;
     std::vector<std::filesystem::path> files;
 
-    for (std::filesystem::recursive_directory_iterator it(replacement, code), end; !code && it != end; it.increment(code)) {
-        if (it->is_regular_file(code)) {
-            files.push_back(it->path());
+    for (const FileEntry& entry : files_provider().list(replacement, true, code)) {
+        if (entry.regular) {
+            files.push_back(entry.path);
         }
     }
 
@@ -170,17 +172,17 @@ bool UpdatePackage::replace_folder(const std::filesystem::path& target, const st
     const auto undo = [&placed]() {
         for (auto it = placed.rbegin(); it != placed.rend(); ++it) {
             std::error_code ignored;
-            std::filesystem::rename(it->destination, it->source, ignored);
+            files_provider().rename(it->destination, it->source, ignored);
 
             if (it->kept_old) {
-                std::filesystem::rename(leftover(it->destination), it->destination, ignored);
+                files_provider().rename(leftover(it->destination), it->destination, ignored);
             }
         }
     };
 
     for (const std::filesystem::path& source : files) {
         Placed step{source, target / std::filesystem::relative(source, replacement)};
-        std::filesystem::create_directories(step.destination.parent_path(), code);
+        files_provider().create_directories(step.destination.parent_path(), code);
 
         if (code) {
             *error = failure("make", step.destination.parent_path(), code);
@@ -188,10 +190,10 @@ bool UpdatePackage::replace_folder(const std::filesystem::path& target, const st
             return false;
         }
 
-        if (std::filesystem::exists(step.destination, code)) {
+        if (files_provider().exists(step.destination, code)) {
             std::error_code ignored;
-            std::filesystem::remove(leftover(step.destination), ignored);
-            std::filesystem::rename(step.destination, leftover(step.destination), code);
+            files_provider().remove(leftover(step.destination), ignored);
+            files_provider().rename(step.destination, leftover(step.destination), code);
 
             if (code) {
                 *error = failure("move aside", step.destination, code);
@@ -202,14 +204,14 @@ bool UpdatePackage::replace_folder(const std::filesystem::path& target, const st
             step.kept_old = true;
         }
 
-        std::filesystem::rename(step.source, step.destination, code);
+        files_provider().rename(step.source, step.destination, code);
 
         if (code) {
             *error = failure("put in place", step.destination, code);
 
             if (step.kept_old) {
                 std::error_code ignored;
-                std::filesystem::rename(leftover(step.destination), step.destination, ignored);
+                files_provider().rename(leftover(step.destination), step.destination, ignored);
             }
 
             undo();
@@ -228,26 +230,36 @@ bool UpdatePackage::replace_bundle(const std::filesystem::path& target, const st
 
 void UpdatePackage::remove_leftovers(const std::filesystem::path& target) {
     std::error_code code;
-    std::filesystem::remove_all(leftover(target), code);
+    files_provider().remove_all(leftover(target), code);
 
-    if (!std::filesystem::is_directory(target, code)) {
+    if (!files_provider().is_directory(target, code)) {
         return;
     }
 
     std::vector<std::filesystem::path> old;
     const std::string suffix = leftover_suffix;
 
-    for (std::filesystem::recursive_directory_iterator it(target, code), end; !code && it != end; it.increment(code)) {
-        const std::string name = it->path().filename().u8string();
+    for (const FileEntry& entry : files_provider().list(target, true, code)) {
+        const std::string name = entry.path.filename().u8string();
 
         if (name.size() > suffix.size() && name.compare(name.size() - suffix.size(), suffix.size(), suffix) == 0) {
-            old.push_back(it->path());
-            it.disable_recursion_pending();
+            old.push_back(entry.path);
         }
     }
 
+    std::sort(old.begin(), old.end());
+    std::vector<std::filesystem::path> outermost;
+
     for (const std::filesystem::path& path : old) {
-        std::filesystem::remove_all(path, code);
+        const std::string inside = outermost.empty() ? std::string() : outermost.back().generic_u8string() + "/";
+
+        if (outermost.empty() || path.generic_u8string().compare(0, inside.size(), inside) != 0) {
+            outermost.push_back(path);
+        }
+    }
+
+    for (const std::filesystem::path& path : outermost) {
+        files_provider().remove_all(path, code);
     }
 }
 

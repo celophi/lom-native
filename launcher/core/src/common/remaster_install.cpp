@@ -1,7 +1,9 @@
 #include "lom/launcher/common/remaster_install.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include <cstdlib>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <sstream>
 #include <system_error>
 
@@ -21,7 +23,7 @@ constexpr char path_key[] = "\"path\"";
  */
 bool folder_exists(const std::filesystem::path& path) {
     std::error_code code;
-    return std::filesystem::is_directory(path, code);
+    return files_provider().is_directory(path, code);
 }
 
 /** The quoted value after position @p from in a vdf line, with its \\ escapes undone. */
@@ -90,7 +92,8 @@ std::vector<std::filesystem::path> steam_libraries(const std::vector<std::filesy
     }
 
     for (const auto& root : steam_roots) {
-        std::ifstream file(root / "steamapps" / library_file, std::ios::binary);
+        const auto file_file = files_provider().open_read(root / "steamapps" / library_file, std::ios::binary);
+        std::istream& file = *file_file;
 
         if (!file) {
             continue;

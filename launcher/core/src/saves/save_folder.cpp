@@ -1,11 +1,12 @@
 #include "lom/launcher/saves/save_folder.h"
+#include "lom/launcher/common/random_provider.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/atomic_file.h"
 #include "lom/launcher/disc/release_catalog.h"
 
-#include <chrono>
-#include <fstream>
-#include <random>
+#include <istream>
+#include <ostream>
 #include <system_error>
 #include <vector>
 
@@ -22,11 +23,11 @@ constexpr char write_probe_prefix[] = ".lom-write-check-";
  * @return True when a probe file could be created and removed.
  */
 bool directory_writable(const std::filesystem::path& directory) {
-    std::random_device device;
-    const std::filesystem::path probe = directory / (write_probe_prefix + std::to_string(device()));
+    const std::filesystem::path probe = directory / (write_probe_prefix + std::to_string(RandomProvider::system().next()));
 
     {
-        std::ofstream out(probe, std::ios::binary);
+        const auto out_file = files_provider().open_write(probe, std::ios::binary);
+        std::ostream& out = *out_file;
 
         if (!out) {
             return false;
@@ -34,7 +35,7 @@ bool directory_writable(const std::filesystem::path& directory) {
     }
 
     std::error_code code;
-    std::filesystem::remove(probe, code);
+    files_provider().remove(probe, code);
     return true;
 }
 
@@ -44,13 +45,13 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
     Inspection result;
     std::error_code code;
 
-    if (!std::filesystem::exists(root, code)) {
+    if (!files_provider().exists(root, code)) {
         result.status = Status::Missing;
         result.error = "the folder is not available";
         return result;
     }
 
-    if (!std::filesystem::is_directory(root, code)) {
+    if (!files_provider().is_directory(root, code)) {
         result.status = Status::NotADirectory;
         result.error = "the selected path is not a folder";
         return result;
@@ -69,11 +70,11 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
     for (int slot = 0; slot < slot_count; slot++) {
         const std::filesystem::path directory = slot_directory(root, slot);
 
-        if (!std::filesystem::exists(directory, code)) {
+        if (!files_provider().exists(directory, code)) {
             continue;
         }
 
-        if (!std::filesystem::is_directory(directory, code)) {
+        if (!files_provider().is_directory(directory, code)) {
             result.status = Status::GameCannotRead;
             result.error = directory.filename().u8string() + " is not a folder";
             return result;
@@ -81,14 +82,14 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
 
         std::uint64_t used_blocks = 0;
 
-        for (const auto& entry : std::filesystem::directory_iterator(directory, code)) {
-            const std::string file_name = entry.path().filename().u8string();
+        for (const FileEntry& entry : files_provider().list(directory, false, code)) {
+            const std::string file_name = entry.path.filename().u8string();
 
             if (file_name.empty() || file_name[0] == '.') {
                 continue;
             }
 
-            const std::uint64_t bytes = entry.is_regular_file(code) && !entry.is_symlink(code) ? entry.file_size(code) : 0;
+            const std::uint64_t bytes = entry.regular && !entry.symlink ? entry.size : 0;
 
             if (code || !valid_card_name(file_name) || bytes == 0 || bytes % block_bytes != 0) {
                 result.status = Status::GameCannotRead;
@@ -105,7 +106,7 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
             if (const ReleaseCatalog::Release* release = catalog.by_card_filename(file_name)) {
                 save.release_id = release->id;
                 std::vector<std::uint8_t> contents;
-                save.status = AtomicFile::read_bytes(entry.path(), contents) ? LomSave::validate(contents.data(), contents.size()) : LomSave::Status::WrongSize;
+                save.status = AtomicFile::read_bytes(entry.path, contents) ? LomSave::validate(contents.data(), contents.size()) : LomSave::Status::WrongSize;
             }
 
             result.saves.push_back(save);
@@ -137,7 +138,7 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
     for (int slot = 0; slot < slot_count; slot++) {
         const std::filesystem::path directory = slot_directory(root, slot);
 
-        if (std::filesystem::exists(directory, code) && !directory_writable(directory)) {
+        if (files_provider().exists(directory, code) && !directory_writable(directory)) {
             slots_writable = false;
         }
     }
@@ -155,7 +156,7 @@ SaveFolder::Inspection SaveFolder::inspect(const std::filesystem::path& root, co
 bool SaveFolder::initialize(const std::filesystem::path& root, std::string* error) {
     for (int slot = 0; slot < slot_count; slot++) {
         std::error_code code;
-        std::filesystem::create_directories(slot_directory(root, slot), code);
+        files_provider().create_directories(slot_directory(root, slot), code);
 
         if (code) {
             if (error != nullptr) {

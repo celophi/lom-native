@@ -1,9 +1,9 @@
 #ifndef LOM_LAUNCHER_CARD_IMPORT_DIALOG_H
 #define LOM_LAUNCHER_CARD_IMPORT_DIALOG_H
 
-#include "lom/launcher/common/clock.h"
+#include "lom/launcher/common/clock_provider.h"
 #include "lom/launcher/saves/memory_card.h"
-#include "lom/launcher/common/random_source.h"
+#include "lom/launcher/common/random_provider.h"
 #include "lom/launcher/saves/save_importer.h"
 
 #include <QDialog>
@@ -36,8 +36,8 @@ class CardImportDialog : public QDialog {
      * @param random Random source for backup names; must outlive the dialog.
      * @param parent Parent widget.
      */
-    CardImportDialog(const MemoryCard& card, const ReleaseCatalog& catalog, std::string release_id, std::filesystem::path save_root, const Clock& clock,
-                     RandomSource& random, QWidget* parent);
+    CardImportDialog(const MemoryCard& card, const ReleaseCatalog& catalog, std::string release_id, std::filesystem::path save_root, const ClockProvider& clock,
+                     RandomProvider& random, QWidget* parent);
 
     /**
      * @brief Report how many Legend of Mana saves the card holds.
@@ -62,8 +62,8 @@ class CardImportDialog : public QDialog {
     void import_selected();
 
     const ReleaseCatalog& catalog_;
-    const Clock& clock_;
-    RandomSource& random_;
+    const ClockProvider& clock_;
+    RandomProvider& random_;
     std::string release_id_;
     std::filesystem::path save_root_;
     std::vector<MemoryCard::File> saves_;

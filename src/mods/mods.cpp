@@ -7,15 +7,16 @@
 #include "lom_native_portable.h"
 #include "lom_native_switches.h"
 #include "lom/launcher/common/sha256.h"
+#include "mod_files_provider.h"
 #include "mod_manifest.h"
 #include "mod_scripts.h"
 
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>
-#include <fstream>
 #include <map>
 #include <memory>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -102,16 +103,14 @@ std::filesystem::path mods_folder()
  */
 std::filesystem::path find_mod(const std::filesystem::path& folder, const std::string& id)
 {
-    std::error_code missing;
-
-    if (std::filesystem::is_directory(folder / id, missing))
+    if (lom::mods::mod_files_provider().is_folder(folder / id))
     {
         return folder / id;
     }
 
     const char* bundled = lom_native_env_value(LOM_ENV_BUNDLED_MODS_DIR);
 
-    if (bundled && std::filesystem::is_directory(std::filesystem::path(bundled) / id, missing))
+    if (bundled && lom::mods::mod_files_provider().is_folder(std::filesystem::path(bundled) / id))
     {
         return std::filesystem::path(bundled) / id;
     }
@@ -155,7 +154,9 @@ bool parse_seed(const std::string& text, std::uint32_t& seed)
 std::vector<std::string> enabled_ids(const std::filesystem::path& folder)
 {
     std::vector<std::string> ids;
-    std::ifstream list(folder / enabled_list_name);
+    std::string text;
+    lom::mods::mod_files_provider().read(folder / enabled_list_name, text);
+    std::istringstream list(text);
     std::string line;
 
     while (std::getline(list, line))

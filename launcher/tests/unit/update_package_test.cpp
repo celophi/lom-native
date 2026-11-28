@@ -1,4 +1,5 @@
 #include "lom/launcher/common/update_package.h"
+#include "../support/disk.h"
 
 #include <gtest/gtest.h>
 
@@ -10,6 +11,7 @@
 namespace {
 
 using namespace lom::launcher;
+namespace disk = lom::launcher::test::disk;
 
 constexpr char digest_a[] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 constexpr char digest_b[] = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
@@ -20,8 +22,8 @@ constexpr char digest_b[] = "0123456789abcdef0123456789abcdef0123456789abcdef012
  * @param text What goes in it.
  */
 void write(const std::filesystem::path& path, const std::string& text) {
-    std::filesystem::create_directories(path.parent_path());
-    std::ofstream(path, std::ios::binary) << text;
+    disk::create_directories(path.parent_path());
+    *disk::write(path, std::ios::binary) << text;
 }
 
 /**
@@ -30,7 +32,8 @@ void write(const std::filesystem::path& path, const std::string& text) {
  * @return What's in it, or empty when it's missing.
  */
 std::string read(const std::filesystem::path& path) {
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = disk::read(path, std::ios::binary);
+    std::istream& in = *in_file;
     return std::string(std::istreambuf_iterator<char>(in), std::istreambuf_iterator<char>());
 }
 
@@ -42,16 +45,15 @@ class UpdatePackageFiles : public ::testing::Test {
     void SetUp() override {
         root = std::filesystem::temp_directory_path() /
                ("lom-update-package-" + std::string(::testing::UnitTest::GetInstance()->current_test_info()->name()));
-        std::filesystem::remove_all(root);
-        std::filesystem::create_directories(root);
+        disk::remove_all(root);
+        disk::create_directories(root);
     }
 
     /**
      * @brief Delete the test's folder.
      */
     void TearDown() override {
-        std::error_code ignored;
-        std::filesystem::remove_all(root, ignored);
+        disk::remove_all(root);
     }
 
     std::filesystem::path root;
@@ -95,8 +97,8 @@ TEST_F(UpdatePackageFiles, replaces_a_file_and_removes_the_old_one) {
     ASSERT_TRUE(UpdatePackage::replace_file(root / "app.AppImage", root / "new.AppImage", &error)) << error;
 
     EXPECT_EQ(read(root / "app.AppImage"), "new");
-    EXPECT_FALSE(std::filesystem::exists(root / "new.AppImage"));
-    EXPECT_FALSE(std::filesystem::exists(root / "app.AppImage.old-update"));
+    EXPECT_FALSE(disk::exists(root / "new.AppImage"));
+    EXPECT_FALSE(disk::exists(root / "app.AppImage.old-update"));
 }
 
 TEST_F(UpdatePackageFiles, keeps_the_old_file_when_the_new_one_is_missing) {
@@ -139,7 +141,7 @@ TEST_F(UpdatePackageFiles, puts_a_folder_back_when_a_new_file_cant_go_in) {
     EXPECT_FALSE(error.empty());
     EXPECT_EQ(read(root / "install" / "a.exe"), "old a");
     EXPECT_EQ(read(root / "install" / "blocked"), "a file where the new version has a folder");
-    EXPECT_FALSE(std::filesystem::exists(root / "install" / "a.exe.old-update"));
+    EXPECT_FALSE(disk::exists(root / "install" / "a.exe.old-update"));
 }
 
 TEST_F(UpdatePackageFiles, replaces_a_bundle_keeping_the_old_one_beside_it) {
@@ -160,7 +162,7 @@ TEST_F(UpdatePackageFiles, removes_what_an_update_left_beside_and_inside_the_tar
 
     UpdatePackage::remove_leftovers(root / "Legend of Mana Native.app");
 
-    EXPECT_FALSE(std::filesystem::exists(root / "Legend of Mana Native.app.old-update"));
-    EXPECT_FALSE(std::filesystem::exists(root / "Legend of Mana Native.app" / "Contents" / "MacOS" / "game.old-update"));
+    EXPECT_FALSE(disk::exists(root / "Legend of Mana Native.app.old-update"));
+    EXPECT_FALSE(disk::exists(root / "Legend of Mana Native.app" / "Contents" / "MacOS" / "game.old-update"));
     EXPECT_EQ(read(root / "Legend of Mana Native.app" / "Contents" / "Info.plist"), "new bundle");
 }

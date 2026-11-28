@@ -1,4 +1,5 @@
 #include "test_harness.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include <gtest/gtest.h>
 
@@ -44,7 +45,8 @@ std::filesystem::path TestHarness::scratch_directory() {
     }
 
     const std::filesystem::path directory = root_ / (name + "-" + std::to_string(counter_++));
-    std::filesystem::create_directories(directory);
+    std::error_code code;
+    files_provider().create_directories(directory, code);
     return directory;
 }
 
@@ -52,7 +54,7 @@ void TestHarness::remove_all() {
     std::error_code code;
 
     if (!root_.empty()) {
-        std::filesystem::remove_all(root_, code);
+        files_provider().remove_all(root_, code);
     }
 }
 

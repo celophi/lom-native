@@ -23,11 +23,12 @@ struct ChooseDiscImageSpecification : LauncherSpec {
      * @return The altered image.
      */
     std::filesystem::path an_altered_image() {
-        std::ifstream in(edition.bin, std::ios::binary);
+        const auto in_file = disk::read(edition.bin, std::ios::binary);
+        std::istream& in = *in_file;
         std::vector<char> bytes((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
         bytes[bytes.size() - 10] ^= 1;
         const std::filesystem::path altered = profile / "Modified Disc.bin";
-        std::ofstream(altered, std::ios::binary).write(bytes.data(), std::streamsize(bytes.size()));
+        disk::write(altered, std::ios::binary)->write(bytes.data(), std::streamsize(bytes.size()));
         return altered;
     }
 
@@ -63,7 +64,7 @@ struct ChooseDiscImageSpecification : LauncherSpec {
      */
     std::filesystem::path a_cue_sheet(const std::string& text) {
         const std::filesystem::path path = edition.bin.parent_path() / "Edited.cue";
-        std::ofstream(path, std::ios::binary) << text;
+        *disk::write(path, std::ios::binary) << text;
         return path;
     }
 
@@ -73,11 +74,10 @@ struct ChooseDiscImageSpecification : LauncherSpec {
      * @return Number of regular files.
      */
     static std::size_t files_under(const std::filesystem::path& folder) {
-        std::error_code code;
         std::size_t count = 0;
 
-        for (auto it = std::filesystem::recursive_directory_iterator(folder, code); it != std::filesystem::recursive_directory_iterator(); ++it) {
-            count += it->is_regular_file() ? 1 : 0;
+        for (const lom::launcher::FileEntry& entry : disk::list(folder, true)) {
+            count += entry.regular ? 1 : 0;
         }
 
         return count;
@@ -132,12 +132,13 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should extract eve
     press("browseImageButton");
 
     const std::filesystem::path data = std::filesystem::u8path(expand(installed_data));
-    EXPECT_EQ(std::filesystem::file_size(data / "SYSTEM.CNF"), 38);
-    EXPECT_EQ(std::filesystem::file_size(data / "SLUS_999.99"), 6000);
-    EXPECT_EQ(std::filesystem::file_size(data / "BIN" / "FIELD.BIN"), 5000);
-    EXPECT_EQ(std::filesystem::file_size(data / "BIN" / "TINY.BIN"), 1);
-    EXPECT_EQ(std::filesystem::file_size(data / "MOVIE" / "OPEN.STR"), 10240);
-    std::ifstream field(data / "BIN" / "FIELD.BIN", std::ios::binary);
+    EXPECT_EQ(disk::file_size(data / "SYSTEM.CNF"), 38);
+    EXPECT_EQ(disk::file_size(data / "SLUS_999.99"), 6000);
+    EXPECT_EQ(disk::file_size(data / "BIN" / "FIELD.BIN"), 5000);
+    EXPECT_EQ(disk::file_size(data / "BIN" / "TINY.BIN"), 1);
+    EXPECT_EQ(disk::file_size(data / "MOVIE" / "OPEN.STR"), 10240);
+    const auto field_file = disk::read(data / "BIN" / "FIELD.BIN", std::ios::binary);
+    std::istream& field = *field_file;
     const std::vector<std::uint8_t> bytes((std::istreambuf_iterator<char>(field)), std::istreambuf_iterator<char>());
     EXPECT_EQ(bytes, SyntheticDisc::pattern(5000, 2));
 }
@@ -211,7 +212,7 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should explain tha
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should explain that a disc file is missing when the CUE's BIN is not beside it") {
-    std::filesystem::remove(edition.bin);
+    disk::remove(edition.bin);
     open_launcher();
 
     press("browseImageButton");
@@ -226,7 +227,7 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should stay on the
     press("browseImageButton");
 
     EXPECT_EQ(heading(), "Welcome");
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "games" / "us"));
+    EXPECT_FALSE(disk::exists(data_directory / "games" / "us"));
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should keep the current game when the new image is unsupported") {
@@ -245,7 +246,7 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should keep the cu
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should explain that the game files folder can't be used when it is not writable") {
-    std::ofstream(profile / "not-a-folder") << "x";
+    *disk::write(profile / "not-a-folder") << "x";
     given_settings(R"({"schema": 1, "ownership_notice_acknowledged": true, "theme": "light", "games_root": "{profile}/not-a-folder"})");
     open_launcher();
 
@@ -261,7 +262,7 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should extract int
     press("browseImageButton");
 
     EXPECT_EQ(heading(), "Ready to play");
-    EXPECT_TRUE(std::filesystem::exists(std::filesystem::u8path(expand("{profile}/Games drive/us/{sha1}/1792065600-000001/data/SLUS_999.99"))));
+    EXPECT_TRUE(disk::exists(std::filesystem::u8path(expand("{profile}/Games drive/us/{sha1}/1792065600-000001/data/SLUS_999.99"))));
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should accept the BIN file when it is chosen instead of the CUE") {
@@ -274,10 +275,11 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should accept the 
 }
 
 LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should show Unsupported game version when the BIN is cut short inside the game files") {
-    std::ifstream in(edition.bin, std::ios::binary);
+    const auto in_file = disk::read(edition.bin, std::ios::binary);
+    std::istream& in = *in_file;
     std::vector<char> bytes((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     bytes.resize(bytes.size() / 2 / raw_sector_bytes * raw_sector_bytes);
-    std::ofstream(profile / "Incomplete.bin", std::ios::binary).write(bytes.data(), std::streamsize(bytes.size()));
+    disk::write(profile / "Incomplete.bin", std::ios::binary)->write(bytes.data(), std::streamsize(bytes.size()));
     disc_image_choice = shown(profile / "Incomplete.bin");
     open_launcher();
 
@@ -375,5 +377,5 @@ LOM_SPEC(ChooseDiscImageSpecification, "Choosing a disc image should leave no te
     press("browseImageButton");
 
     EXPECT_EQ(heading(), "Ready to play");
-    EXPECT_FALSE(std::filesystem::exists(data_directory / "games" / ".staging"));
+    EXPECT_FALSE(disk::exists(data_directory / "games" / ".staging"));
 }

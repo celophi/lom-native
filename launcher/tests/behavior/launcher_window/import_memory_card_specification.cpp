@@ -70,7 +70,8 @@ struct ImportMemoryCardSpecification : LauncherSpec {
      * @return Bytes.
      */
     static std::vector<std::uint8_t> bytes_of(const std::filesystem::path& path) {
-        std::ifstream in(path, std::ios::binary);
+        const auto in_file = disk::read(path, std::ios::binary);
+        std::istream& in = *in_file;
         return std::vector<std::uint8_t>((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     }
 
@@ -110,7 +111,7 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should leave th
 }
 
 LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should show saves already in the save folder as already there and offer no import") {
-    std::filesystem::create_directories(slot0);
+    disk::create_directories(slot0);
     SyntheticDisc::write(slot0 / first_save, SyntheticCard::save(1));
     SyntheticDisc::write(slot0 / second_save, SyntheticCard::save(2));
     open_launcher();
@@ -140,7 +141,7 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should show sav
 }
 
 LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should keep the existing save when a different save has the same name") {
-    std::filesystem::create_directories(slot0);
+    disk::create_directories(slot0);
     SyntheticDisc::write(slot0 / first_save, SyntheticCard::save(99));
     open_launcher();
     given_the_import_is_confirmed(false);
@@ -152,7 +153,7 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should keep the
 }
 
 LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should back up and replace the existing save when I choose to replace it") {
-    std::filesystem::create_directories(slot0);
+    disk::create_directories(slot0);
     SyntheticDisc::write(slot0 / first_save, SyntheticCard::save(99));
     open_launcher();
     given_the_import_is_confirmed(true);
@@ -171,8 +172,8 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should not impo
 
     press("importCardButton");
 
-    EXPECT_TRUE(std::filesystem::exists(slot0 / first_save));
-    EXPECT_FALSE(std::filesystem::exists(slot0 / "BISLPS-021700-1"));
+    EXPECT_TRUE(disk::exists(slot0 / first_save));
+    EXPECT_FALSE(disk::exists(slot0 / "BISLPS-021700-1"));
 }
 
 LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should explain that the card can't be read when it is a DexDrive file") {
@@ -224,12 +225,12 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should show a d
     press("importCardButton");
 
     EXPECT_EQ(shown_statuses, QStringList({QString(first_save) + ": Damaged", QString(second_save) + ": Ready to import"}));
-    EXPECT_FALSE(std::filesystem::exists(slot0 / first_save));
+    EXPECT_FALSE(disk::exists(slot0 / first_save));
     EXPECT_EQ(bytes_of(slot0 / second_save), SyntheticCard::save(2));
 }
 
 LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should explain that memory card 1 is full and import nothing when the saves don't fit") {
-    std::filesystem::create_directories(slot0);
+    disk::create_directories(slot0);
 
     for (int i = 2; i <= 8; i++) {
         SyntheticDisc::write(slot0 / ("BASLUS-01013" + std::to_string(i) + "-" + std::to_string(i + 1)), SyntheticCard::save(40 + std::uint32_t(i)));
@@ -256,6 +257,6 @@ LOM_SPEC(ImportMemoryCardSpecification, "Importing a memory card should explain 
     press("importCardButton");
 
     EXPECT_EQ(dialog_messages, QStringList({"Memory card 1 does not have enough free blocks for these saves."}));
-    EXPECT_FALSE(std::filesystem::exists(slot0 / first_save));
-    EXPECT_FALSE(std::filesystem::exists(slot0 / second_save));
+    EXPECT_FALSE(disk::exists(slot0 / first_save));
+    EXPECT_FALSE(disk::exists(slot0 / second_save));
 }

@@ -1,4 +1,5 @@
 #include "mod_manifest.h"
+#include "mod_files_provider.h"
 #include "lom/launcher/common/json.h"
 #include "lom/launcher/common/sha256.h"
 #include "lom_native_switches.h"
@@ -32,17 +33,7 @@ constexpr char script_extension[] = ".lua";
  */
 bool read_file(const std::filesystem::path& path, std::string& text)
 {
-    std::ifstream input(path, std::ios::binary);
-
-    if (!input)
-    {
-        return false;
-    }
-
-    std::ostringstream bytes;
-    bytes << input.rdbuf();
-    text = bytes.str();
-    return true;
+    return mod_files_provider().read(path, text);
 }
 
 /**
@@ -502,7 +493,6 @@ bool read_scripts(const Json& manifest, const std::filesystem::path& folder, Mod
         }
 
         const std::string& path = script.as_string();
-        std::error_code ignored;
 
         if (path.size() <= sizeof(script_extension) - 1 || path.compare(path.size() - (sizeof(script_extension) - 1), std::string::npos, script_extension) != 0)
         {
@@ -510,7 +500,7 @@ bool read_scripts(const Json& manifest, const std::filesystem::path& folder, Mod
             return false;
         }
 
-        if (!std::filesystem::is_regular_file(folder / path, ignored))
+        if (!mod_files_provider().is_file(folder / path))
         {
             error = "its script " + path + " is missing";
             return false;
@@ -974,14 +964,15 @@ bool valid_mod_id(const std::string& id)
 std::optional<ModManifest> read_manifest(const std::filesystem::path& folder, const std::string& game, std::string& error)
 {
     const std::filesystem::path path = folder / manifest_name;
-    std::error_code failed;
-    const std::uintmax_t size = std::filesystem::file_size(path, failed);
+    const std::optional<std::uintmax_t> found = mod_files_provider().size(path);
 
-    if (failed)
+    if (!found)
     {
         error = "it has no mod.json";
         return std::nullopt;
     }
+
+    const std::uintmax_t size = *found;
 
     std::string text;
 
@@ -1067,19 +1058,9 @@ std::optional<ModManifest> read_manifest(const std::filesystem::path& folder, co
 
 std::string mod_digest(const std::filesystem::path& folder)
 {
-    std::error_code failed;
     std::vector<std::filesystem::path> files;
 
-    for (auto entry = std::filesystem::recursive_directory_iterator(folder, failed); !failed && entry != std::filesystem::recursive_directory_iterator();
-         entry.increment(failed))
-    {
-        if (entry->is_regular_file(failed))
-        {
-            files.push_back(std::filesystem::relative(entry->path(), folder, failed));
-        }
-    }
-
-    if (failed)
+    if (!mod_files_provider().files_under(folder, files))
     {
         return {};
     }

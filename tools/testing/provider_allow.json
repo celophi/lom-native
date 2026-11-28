@@ -42,6 +42,20 @@
     ],
     "why": "Checks a disc folder is there for a mod; the disc provider can't list folders yet."
    }
+  },
+  "launcher files provider": {
+   "launcher/app/window/theme.cpp:load_palette": {
+    "calls": [
+     "re:\\bQFile\\b"
+    ],
+    "why": "Reads the theme, a resource built into the launcher (a :/ path), not the disk."
+   },
+   "launcher/app/window/ui_text.cpp:read_translation": {
+    "calls": [
+     "re:\\bQFile\\b"
+    ],
+    "why": "Reads a translation, a resource built into the launcher (a :/ path), not the disk."
+   }
   }
  }
 }

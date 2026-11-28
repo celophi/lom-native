@@ -1,4 +1,5 @@
 #include "../support/disc_fixture.h"
+#include "../support/disk.h"
 #include "../support/synthetic_disc.h"
 #include "../support/test_harness.h"
 #include "lom/launcher/disc/disc_image.h"
@@ -36,7 +37,7 @@ TEST_F(DiscImageTest, reads_an_iso_as_cooked_sectors) {
 
 TEST_F(DiscImageTest, reads_a_raw_image_as_raw_whatever_its_extension) {
     const std::filesystem::path renamed = fixture.directory / "raw-named.ISO";
-    std::filesystem::copy_file(fixture.bin, renamed);
+    disk::copy_file(fixture.bin, renamed);
     EXPECT_EQ(image.open(renamed), DiscImage::Status::Ok);
     EXPECT_EQ(image.representation(), DiscImage::Representation::RawSectors);
 }

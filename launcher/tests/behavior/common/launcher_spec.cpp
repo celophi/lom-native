@@ -1,4 +1,5 @@
 #include "launcher_spec.h"
+#include "window/ui_text.h"
 
 #include "../../support/test_harness.h"
 
@@ -6,6 +7,8 @@
 #include "window/app_paths.h"
 #include "window/launcher_services.h"
 #include "window/launcher_window.h"
+#include "lom/launcher/common/sha256.h"
+#include "lom/launcher/common/update_package.h"
 #include "lom/launcher/disc/disc_importer.h"
 #include "pages/page_builder.h"
 
@@ -27,6 +30,7 @@
 #include <cstdio>
 #include <deque>
 #include <fstream>
+#include <optional>
 
 namespace lom::launcher::test {
 
@@ -80,18 +84,19 @@ void replace_all(std::string& text, const std::string& placeholder, const std::s
 
 LauncherSpec::LauncherSpec()
     : edition(DiscFixture::create(TestHarness::instance().scratch_directory() / "edition")), profile(edition.directory.parent_path() / "profile"),
-      owned_file_dialogs_(std::make_unique<NiceMock<MockFileDialogs>>()), owned_process_runner_(std::make_unique<NiceMock<MockProcessRunner>>()),
-      owned_update_feed_(std::make_unique<NiceMock<MockUpdateFeed>>()), owned_desktop_(std::make_unique<NiceMock<MockDesktop>>()),
-      owned_installer_(std::make_unique<NiceMock<MockUpdateInstaller>>()) {
+      owned_file_dialogs_(std::make_unique<NiceMock<FileDialogsProviderMock>>()), owned_process_runner_(std::make_unique<NiceMock<ProcessRunnerProviderMock>>()),
+      owned_update_feed_(std::make_unique<NiceMock<UpdateFeedProviderMock>>()), owned_desktop_(std::make_unique<NiceMock<DesktopProviderMock>>()),
+      owned_locks_(std::make_unique<NiceMock<FileLockProviderMock>>()), owned_downloads_(std::make_unique<NiceMock<DownloadProviderMock>>()),
+      owned_tools_(std::make_unique<NiceMock<ToolsProviderMock>>()) {
     config_directory = profile / "config";
     data_directory = profile / "data";
     program_directory = profile / "program";
-    std::filesystem::create_directories(program_directory);
-    std::ofstream(program_directory / runtime_file) << "stand-in game program";
+    disk::create_directories(program_directory);
+    *disk::write(program_directory / runtime_file) << "stand-in game program";
     qunsetenv("LOM_GAME_EXECUTABLE");
     qunsetenv("LOM_LAUNCHER_DATA");
     steam_directory = profile / "steam";
-    std::filesystem::create_directories(steam_directory);
+    disk::create_directories(steam_directory);
     qputenv("LOM_STEAM_ROOT", AppPaths::to_text(steam_directory).toUtf8());
 
     disc_image_choice = AppPaths::to_text(edition.cue);
@@ -102,105 +107,129 @@ LauncherSpec::LauncherSpec()
     game_start_failure = QStringLiteral("No such file or directory");
     given_settings(default_settings);
 
-    file_dialogs_mock = owned_file_dialogs_.get();
-    ON_CALL(*file_dialogs_mock, choose_disc_image(_, _)).WillByDefault([this]() {
-        return disc_image_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_game_folder(_)).WillByDefault([this]() {
-        return game_folder_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_games_root(_, _)).WillByDefault([this]() {
-        return games_root_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_save_folder(_, _)).WillByDefault([this]() {
-        return save_folder_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_remaster_folder(_, _)).WillByDefault([this]() {
-        return remaster_folder_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_mod_folder(_)).WillByDefault([this]() {
-        return mod_folder_choice;
-    });
-    ON_CALL(*file_dialogs_mock, choose_memory_card(_)).WillByDefault([this]() {
-        return memory_card_choice;
+    file_lock_provider_mock = owned_locks_.get();
+    ON_CALL(*file_lock_provider_mock, try_lock(_)).WillByDefault([this](const std::filesystem::path&) -> std::unique_ptr<FileLockProvider::Lock> {
+        return save_folder_in_use ? nullptr : std::make_unique<FileLockProvider::Lock>();
     });
 
-    process_runner_mock = owned_process_runner_.get();
-    ON_CALL(*process_runner_mock, start(_)).WillByDefault([this](const ProcessRunner::Request& request) {
+    file_dialogs_provider_mock = owned_file_dialogs_.get();
+    ON_CALL(*file_dialogs_provider_mock, choose_file(_, _, _, _)).WillByDefault([this](QWidget*, const QString& title, const QString&, const QString&) {
+        return title == ui_text::card_dialog_title ? memory_card_choice : disc_image_choice;
+    });
+    ON_CALL(*file_dialogs_provider_mock, choose_folder(_, _, _)).WillByDefault([this](QWidget*, const QString& title, const QString&) {
+        return title == ui_text::save_dialog_title       ? save_folder_choice
+               : title == ui_text::games_root_dialog_title ? games_root_choice
+               : title == ui_text::remaster_dialog_title   ? remaster_folder_choice
+               : title == ui_text::mod_dialog_title        ? mod_folder_choice
+                                                          : game_folder_choice;
+    });
+
+    process_runner_provider_mock = owned_process_runner_.get();
+    ON_CALL(*process_runner_provider_mock, start(_)).WillByDefault([this](const ProcessRunnerProvider::Request& request) {
         game_launches.push_back(request);
         game_running_ = !game_fails_to_start;
-        QTimer::singleShot(0, process_runner_mock, [this]() {
+        QTimer::singleShot(0, process_runner_provider_mock, [this]() {
             if (game_fails_to_start) {
-                emit process_runner_mock->failed(game_start_failure);
+                emit process_runner_provider_mock->failed(game_start_failure);
             } else {
-                emit process_runner_mock->started();
+                emit process_runner_provider_mock->started();
             }
         });
     });
-    ON_CALL(*process_runner_mock, running()).WillByDefault([this]() {
+    ON_CALL(*process_runner_provider_mock, running()).WillByDefault([this]() {
         return game_running_;
     });
 
-    update_feed_mock = owned_update_feed_.get();
-    ON_CALL(*update_feed_mock, fetch_latest_release(_)).WillByDefault([this](std::function<void(const UpdateFeed::Response&)> done) {
+    update_feed_provider_mock = owned_update_feed_.get();
+    ON_CALL(*update_feed_provider_mock, fetch_latest_release(_)).WillByDefault([this](std::function<void(const UpdateFeedProvider::Response&)> done) {
         update_requests++;
         QTimer::singleShot(0, [this, done = std::move(done)]() {
             done(update_response);
         });
     });
-    ON_CALL(*update_feed_mock, fetch_releases(_)).WillByDefault([this](std::function<void(const UpdateFeed::Response&)> done) {
+    ON_CALL(*update_feed_provider_mock, fetch_releases(_)).WillByDefault([this](std::function<void(const UpdateFeedProvider::Response&)> done) {
         release_list_requests++;
         QTimer::singleShot(0, [this, done = std::move(done)]() {
             done(releases_response);
         });
     });
 
-    desktop_mock = owned_desktop_.get();
-    ON_CALL(*desktop_mock, open_folder(_)).WillByDefault([this](const QString& folder) {
+    desktop_provider_mock = owned_desktop_.get();
+    ON_CALL(*desktop_provider_mock, open_folder(_)).WillByDefault([this](const QString& folder) {
         opened_folders.push_back(folder);
     });
-    ON_CALL(*desktop_mock, open_url(_)).WillByDefault([this](const QUrl& url) {
+    ON_CALL(*desktop_provider_mock, open_url(_)).WillByDefault([this](const QUrl& url) {
         opened_pages.push_back(url);
     });
 
-    installer_mock = owned_installer_.get();
-    ON_CALL(*installer_mock, package_name(_)).WillByDefault([this](const QString& version) {
-        return can_update_itself ? QStringLiteral("lom-native-%1-linux-x86_64.AppImage").arg(version) : QString();
-    });
-    ON_CALL(*installer_mock, install(_, _, _))
-        .WillByDefault([this](const UpdateInstaller::Request& request, std::function<void(const UpdateInstaller::Progress&)> progress,
-                              std::function<void(const UpdateInstaller::Outcome&)> done) {
-            installs.push_back(request);
-            progress({1, 2, false});
+    update_target.kind = UpdatePackage::Kind::AppImage;
+    update_target.path = profile / "Applications" / "Legend of Mana Native.AppImage";
+    update_target.staging = profile / "Applications" / ".lom-native-update";
+    update_target.program = AppPaths::to_text(update_target.path);
+    update_target.arguments = {QStringLiteral("--after-update")};
+    files_provider_fake.add_file(update_target.path, "the old launcher");
+    release_package = "the new launcher";
+    release_checksums = checksum_line("the ffmpeg source", "ffmpeg-source.tar.xz") + checksum_line(release_package, "lom-native-0.5.0-linux-x86_64.AppImage");
 
-            if (install_finishes) {
-                progress({0, 0, true});
-                done(install_outcome);
-            } else {
-                unfinished_install = std::move(done);
+    download_provider_mock = owned_downloads_.get();
+    ON_CALL(*download_provider_mock, get(_, _, _, _))
+        .WillByDefault([this](const QUrl& url, std::function<void(const QByteArray&)> received, std::function<void(qint64, qint64)> progress,
+                              std::function<void(const DownloadProvider::Done&)> done) {
+            downloads.push_back(url);
+            const bool checksums = url.fileName() == QLatin1String(UpdatePackage::checksums_name);
+
+            if (!checksums && !download_finishes) {
+                progress(1, 2);
+                unfinished_download = std::move(done);
+                return;
             }
-        });
-    ON_CALL(*installer_mock, cancel()).WillByDefault([this]() {
-        install_cancels++;
 
-        if (unfinished_install) {
-            auto done = std::move(unfinished_install);
-            unfinished_install = nullptr;
+            QTimer::singleShot(0, [this, checksums, received = std::move(received), progress = std::move(progress), done = std::move(done)]() {
+                if (!checksums && !download_error.isEmpty()) {
+                    done({false, false, download_error});
+                    return;
+                }
+
+                const QByteArray body = checksums ? release_checksums : release_package;
+                received(body);
+                progress(body.size(), body.size());
+                done({true, false, QString()});
+            });
+        });
+    ON_CALL(*download_provider_mock, cancel()).WillByDefault([this]() {
+        download_cancels++;
+
+        if (unfinished_download) {
+            auto done = std::move(unfinished_download);
+            unfinished_download = nullptr;
             done({false, true, QString()});
         }
     });
-    ON_CALL(*installer_mock, restart()).WillByDefault([this]() {
-        restarts++;
+
+    tools_provider_mock = owned_tools_.get();
+    ON_CALL(*tools_provider_mock, run(_, _, _)).WillByDefault([this](const QString& program, const QStringList& arguments, int) {
+        tool_runs.push_back({program, arguments});
+
+        if (tool_does) {
+            tool_does(tool_runs.back());
+        }
+
+        ToolsProvider::Run run;
+        run.started = true;
+        run.finished = true;
+        run.exit_code = tool_exit_code;
+        run.output = tool_output;
+        return run;
+    });
+    ON_CALL(*tools_provider_mock, start_detached(_, _)).WillByDefault([this](const QString& program, const QStringList& arguments) {
+        restarts.push_back({program, arguments});
         return restart_starts;
     });
-    ON_CALL(*installer_mock, clean_up()).WillByDefault([this]() {
-        clean_ups++;
-    });
 
-    ON_CALL(clock_mock, now_unix_seconds()).WillByDefault([this]() {
+    ON_CALL(clock_provider_mock, now_unix_seconds()).WillByDefault([this]() {
         return now;
     });
-    ON_CALL(random_mock, next()).WillByDefault([this]() {
+    ON_CALL(random_provider_mock, next()).WillByDefault([this]() {
         return ++random_counter_;
     });
 }
@@ -217,8 +246,8 @@ LauncherSpec::~LauncherSpec() {
 }
 
 void LauncherSpec::given_settings(const std::string& json) {
-    std::filesystem::create_directories(config_directory);
-    std::ofstream(config_directory / "launcher.json", std::ios::binary | std::ios::trunc) << expand(json);
+    disk::create_directories(config_directory);
+    *disk::write(config_directory / "launcher.json", std::ios::binary | std::ios::trunc) << expand(json);
 }
 
 std::filesystem::path LauncherSpec::given_an_extracted_folder(const std::string& name) {
@@ -226,8 +255,8 @@ std::filesystem::path LauncherSpec::given_an_extracted_folder(const std::string&
     const DiscImporter importer(edition.catalog);
     const auto installed = importer.install(importer.identify(edition.cue, Progress()), edition.manifest, scratch, Progress());
     const std::filesystem::path folder = profile / name;
-    std::filesystem::copy(installed.installation.data_path, folder, std::filesystem::copy_options::recursive);
-    std::filesystem::remove_all(scratch);
+    disk::copy(installed.installation.data_path, folder, std::filesystem::copy_options::recursive);
+    disk::remove_all(scratch);
     return folder;
 }
 
@@ -265,13 +294,18 @@ LauncherWindow& LauncherSpec::open_launcher() {
     }
 
     services.desktop = std::move(owned_desktop_);
+    services.locks = std::move(owned_locks_);
 
     if (installer_configured) {
-        services.installer = std::move(owned_installer_);
+        services.downloads = std::move(owned_downloads_);
+        services.tools = std::move(owned_tools_);
+        services.installer = std::make_unique<UpdateInstaller>(can_update_itself ? std::optional<UpdateInstaller::Target>(update_target) : std::nullopt,
+                                                               *services.downloads, *services.tools, nullptr);
     }
+
     services.issue_repository = QStringLiteral("example/lom");
-    services.clock = &clock_mock;
-    services.random = &random_mock;
+    services.clock = &clock_provider_mock;
+    services.random = &random_provider_mock;
 
     const AppPaths paths(config_directory, data_directory, edition.catalog_path.parent_path(), program_directory);
     window_ = std::make_unique<LauncherWindow>(paths, std::move(services), QString::fromLatin1(version));
@@ -339,6 +373,12 @@ void LauncherSpec::choose_help(const QString& entry) {
     ADD_FAILURE() << "The Help menu has no entry \"" << entry.toStdString() << "\"";
 }
 
+QByteArray LauncherSpec::checksum_line(const QByteArray& bytes, const QString& name) {
+    Sha256 hash;
+    hash.update(bytes.constData(), std::size_t(bytes.size()));
+    return QByteArray::fromStdString(hash.hex_digest()) + "  " + name.toUtf8() + "\n";
+}
+
 void LauncherSpec::settle() {
     for (int round = 0; round < 3; round++) {
         window_->wait_for_work();
@@ -350,13 +390,13 @@ void LauncherSpec::settle() {
 
 void LauncherSpec::the_game_exits(int exit_code) {
     game_running_ = false;
-    emit process_runner_mock->finished(exit_code, false);
+    emit process_runner_provider_mock->finished(exit_code, false);
     settle();
 }
 
 void LauncherSpec::the_game_crashes(int exit_code) {
     game_running_ = false;
-    emit process_runner_mock->finished(exit_code, true);
+    emit process_runner_provider_mock->finished(exit_code, true);
     settle();
 }
 
@@ -386,7 +426,8 @@ QString LauncherSpec::text_of(const char* object_name) const {
 }
 
 Json LauncherSpec::read_json(const std::filesystem::path& path) const {
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = disk::read(path, std::ios::binary);
+    std::istream& in = *in_file;
     const std::string text((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     const auto document = Json::parse(text, nullptr);
     return document ? *document : Json();

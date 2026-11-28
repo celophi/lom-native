@@ -1,4 +1,5 @@
 #include "window/launcher_window.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/mods/mod_library.h"
 #include "lom/launcher/saves/save_folder.h"
@@ -38,11 +39,11 @@ void prune_game_logs(const std::filesystem::path& directory) {
     std::vector<std::string> runs;
     std::error_code code;
 
-    for (const auto& entry : std::filesystem::directory_iterator(directory, code)) {
-        const std::string run = BugReport::run_of(entry.path().filename().u8string());
+    for (const FileEntry& entry : files_provider().list(directory, false, code)) {
+        const std::string run = BugReport::run_of(entry.path.filename().u8string());
 
         if (!run.empty()) {
-            files.push_back(entry.path());
+            files.push_back(entry.path);
             runs.push_back(run);
         }
     }
@@ -58,7 +59,7 @@ void prune_game_logs(const std::filesystem::path& directory) {
 
     for (const std::filesystem::path& file : files) {
         if (BugReport::run_of(file.filename().u8string()) < oldest_kept) {
-            std::filesystem::remove(file, code);
+            files_provider().remove(file, code);
         }
     }
 }

@@ -1,9 +1,10 @@
 #include "lom/launcher/common/launcher_settings.h"
+#include "lom/launcher/common/clock_provider.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/atomic_file.h"
 #include "lom/launcher/common/json.h"
 
-#include <chrono>
 #include <system_error>
 
 namespace lom::launcher {
@@ -45,7 +46,7 @@ std::filesystem::path path_member(const Json& document, const char* key) {
 LauncherSettings::LoadStatus LauncherSettings::load(const std::filesystem::path& path, std::string* error) {
     std::error_code code;
 
-    if (!std::filesystem::exists(path, code)) {
+    if (!files_provider().exists(path, code)) {
         return LoadStatus::Missing;
     }
 
@@ -62,10 +63,10 @@ LauncherSettings::LoadStatus LauncherSettings::load(const std::filesystem::path&
             problem = "the settings file is not a JSON object";
         }
 
-        const auto stamp = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        const auto stamp = ClockProvider::system().now_unix_seconds();
         std::filesystem::path aside = path;
         aside += corrupt_suffix + std::to_string(stamp);
-        std::filesystem::rename(path, aside, code);
+        files_provider().rename(path, aside, code);
 
         if (error != nullptr) {
             *error = problem + (code ? "" : "; the unreadable file was kept as " + aside.filename().u8string());
@@ -139,7 +140,7 @@ LauncherSettings::LoadStatus LauncherSettings::load(const std::filesystem::path&
 std::string LauncherSettings::read_language(const std::filesystem::path& path) {
     std::error_code code;
 
-    if (!std::filesystem::exists(path, code)) {
+    if (!files_provider().exists(path, code)) {
         return std::string();
     }
 

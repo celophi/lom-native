@@ -1,4 +1,5 @@
 #include "window/app_paths.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/sha256.h"
 
@@ -56,7 +57,7 @@ std::filesystem::path find_resources(const std::filesystem::path& program) {
     std::error_code code;
 
     for (const std::filesystem::path& candidate : {program / resource_directory_name, program / shared_resources / resource_directory_name}) {
-        if (std::filesystem::exists(candidate / catalog_name, code)) {
+        if (files_provider().exists(candidate / catalog_name, code)) {
             return candidate;
         }
     }
@@ -97,9 +98,9 @@ AppPaths AppPaths::standard() {
 AppPaths AppPaths::for_program(const std::filesystem::path& program) {
     std::error_code code;
 
-    if (std::filesystem::exists(program / portable_marker, code)) {
+    if (files_provider().exists(program / portable_marker, code)) {
         const std::filesystem::path user = program / portable_folder;
-        std::filesystem::create_directories(user, code);
+        files_provider().create_directories(user, code);
         return AppPaths(user, user, find_resources(program), program);
     }
 
@@ -186,7 +187,7 @@ std::filesystem::path AppPaths::game_executable(const std::string& runtime) cons
     for (const std::filesystem::path& directory : game_directories(program_directory_)) {
         const std::filesystem::path candidate = directory / (runtime + executable_suffix);
 
-        if (std::filesystem::is_regular_file(candidate, code)) {
+        if (files_provider().is_regular_file(candidate, code)) {
             return candidate;
         }
     }

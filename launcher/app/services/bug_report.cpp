@@ -1,4 +1,5 @@
 #include "services/bug_report.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/zip_writer.h"
 #include "window/app_paths.h"
@@ -10,7 +11,8 @@
 #include <QUrlQuery>
 
 #include <algorithm>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <iterator>
 #include <system_error>
 #include <vector>
@@ -53,7 +55,8 @@ bool ends_with(const std::string& text, const std::string& suffix) {
  * @return Contents, or nothing if it can't be read.
  */
 std::optional<std::string> read_file(const std::filesystem::path& path, std::uintmax_t tail = 0) {
-    std::ifstream in(path, std::ios::binary);
+    const auto in_file = files_provider().open_read(path, std::ios::binary);
+    std::istream& in = *in_file;
 
     if (!in) {
         return std::nullopt;
@@ -187,10 +190,9 @@ class Bundle {
         std::error_code code;
         std::vector<std::filesystem::path> files;
 
-        for (auto it = std::filesystem::recursive_directory_iterator(folder, code); !code && it != std::filesystem::recursive_directory_iterator();
-             it.increment(code)) {
-            if (it->is_regular_file(code)) {
-                files.push_back(it->path());
+        for (const FileEntry& entry : files_provider().list(folder, true, code)) {
+            if (entry.regular) {
+                files.push_back(entry.path);
             }
         }
 
@@ -235,8 +237,8 @@ std::optional<std::filesystem::path> BugReport::latest_run(const std::filesystem
     std::string newest;
     std::error_code code;
 
-    for (const auto& entry : std::filesystem::directory_iterator(logs_directory, code)) {
-        const std::string run = run_of(entry.path().filename().u8string());
+    for (const FileEntry& entry : files_provider().list(logs_directory, false, code)) {
+        const std::string run = run_of(entry.path.filename().u8string());
 
         if (!run.empty() && run > newest) {
             newest = run;
@@ -260,9 +262,9 @@ std::optional<BugReport::Result> BugReport::build(const Inputs& inputs, QString*
 
     std::vector<std::filesystem::path> run_files;
 
-    for (const auto& entry : std::filesystem::directory_iterator(logs, code)) {
-        if (run_of(entry.path().filename().u8string()) == run) {
-            run_files.push_back(entry.path());
+    for (const FileEntry& entry : files_provider().list(logs, false, code)) {
+        if (run_of(entry.path.filename().u8string()) == run) {
+            run_files.push_back(entry.path);
         }
     }
 
@@ -288,18 +290,19 @@ std::optional<BugReport::Result> BugReport::build(const Inputs& inputs, QString*
         const QString session = keyed_line(*system, session_key);
         const std::filesystem::path session_folder = AppPaths::to_path(session);
 
-        if (!session.isEmpty() && std::filesystem::is_directory(session_folder, code)) {
+        if (!session.isEmpty() && files_provider().is_directory(session_folder, code)) {
             bundle.add_folder("session/", session_folder);
         }
     }
 
-    std::filesystem::create_directories(inputs.output_directory, code);
+    files_provider().create_directories(inputs.output_directory, code);
     const QString stamp = QDateTime::fromSecsSinceEpoch(inputs.now, QTimeZone::UTC).toString(QString::fromLatin1(zip_time_format));
     result.zip = inputs.output_directory / std::filesystem::u8path(zip_prefix + stamp.toStdString() + zip_suffix);
     const std::string archive = bundle.finish();
-    std::ofstream out(result.zip, std::ios::binary | std::ios::trunc);
+    const auto out_file = files_provider().open_write(result.zip, std::ios::binary | std::ios::trunc);
+    std::ostream& out = *out_file;
 
-    if (!out || !out.write(archive.data(), std::streamsize(archive.size())) || !(out.close(), out)) {
+    if (!out || !out.write(archive.data(), std::streamsize(archive.size())) || !out.flush()) {
         *error = QString::fromStdString(result.zip.u8string());
         return std::nullopt;
     }

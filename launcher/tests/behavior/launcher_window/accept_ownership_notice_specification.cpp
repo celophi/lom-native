@@ -16,7 +16,7 @@ struct AcceptOwnershipNoticeSpecification : LauncherSpec {
      * @brief Start from a profile that has never acknowledged the notice.
      */
     AcceptOwnershipNoticeSpecification() {
-        std::filesystem::remove(config_directory / "launcher.json");
+        disk::remove(config_directory / "launcher.json");
     }
 };
 
@@ -43,8 +43,8 @@ LOM_SPEC(AcceptOwnershipNoticeSpecification, "Accepting the ownership notice sho
 
 LOM_SPEC(AcceptOwnershipNoticeSpecification,
          "Accepting the ownership notice should explain the failure and not claim it was saved when settings cannot be written") {
-    std::filesystem::remove_all(config_directory);
-    std::ofstream(config_directory) << "a file where the folder should be";
+    disk::remove_all(config_directory);
+    *disk::write(config_directory) << "a file where the folder should be";
 
     open_launcher();
 

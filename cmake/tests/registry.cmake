@@ -152,6 +152,7 @@ lom_add_test(NAME crash-report TIER 0 NO_HEADLESS LABELS platform COMMAND lom-cr
 lom_add_test(NAME remaster-files TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-test)
 lom_add_test(NAME remaster-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-provider-contract)
 lom_add_test(NAME disc-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-disc-files-provider-contract)
+lom_add_test(NAME mod-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-mod-files-provider-contract)
 lom_add_test(NAME remaster-screens TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-screens-test)
 foreach(specification IN ITEMS encyclopedia_picture item_name ring_menu_background ring_menu_icon ring_menu_key ring_menu_open
         save_screen_background save_screen_open save_screen_picture save_screen_text scene_text screen_fade start_the_game naming_screen_background naming_screen_glyph naming_screen_open

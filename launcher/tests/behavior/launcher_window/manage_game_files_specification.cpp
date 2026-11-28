@@ -161,7 +161,7 @@ LOM_SPEC(ManageGameFilesSpecification, "Game files should show where the Remaste
 
 LOM_SPEC(ManageGameFilesSpecification, "Choosing the Remaster's folder in Game files should be saved and used") {
     const std::filesystem::path chosen = profile / "elsewhere" / "Legend of Mana";
-    std::filesystem::create_directories(chosen / "windata" / "hdmap");
+    disk::create_directories(chosen / "windata" / "hdmap");
     remaster_folder_choice = shown(chosen);
     given_the_game_is_set_up_from(folder);
     open_launcher();

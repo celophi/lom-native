@@ -250,6 +250,9 @@ endforeach()
 
 include(cmake/tests/routes.cmake)
 
+add_executable(lom-mod-files-provider-contract tests/providers/mod_files_provider_contract.cpp)
+target_link_libraries(lom-mod-files-provider-contract PRIVATE lom_mod_manifest)
+
 add_executable(lom-mods-specification tests/behavior/mods_specification.cpp src/core/random_native.c src/core/portable.c)
 target_include_directories(lom-mods-specification PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(lom-mods-specification PRIVATE lom_mods)

@@ -1,4 +1,5 @@
 #include "lom/launcher/disc/file_snapshot.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/atomic_file.h"
 #include "lom/launcher/disc/file_manifest.h"
@@ -29,8 +30,8 @@ std::optional<FileSnapshot> FileSnapshot::capture(const std::filesystem::path& r
     for (const FileManifest::Entry& entry : manifest.entries) {
         const std::filesystem::path file = root / std::filesystem::u8path(entry.path);
         std::error_code code;
-        const std::uintmax_t bytes = std::filesystem::file_size(file, code);
-        const auto modified = std::filesystem::last_write_time(file, code);
+        const std::uintmax_t bytes = files_provider().file_size(file, code);
+        const auto modified = files_provider().last_write_time(file, code);
 
         if (code || bytes != entry.bytes) {
             return std::nullopt;

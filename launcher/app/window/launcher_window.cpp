@@ -1,4 +1,5 @@
 #include "window/launcher_window.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "pages/notice_page.h"
 #include "pages/problem_page.h"
@@ -92,7 +93,7 @@ LauncherWindow::LauncherWindow(AppPaths paths, LauncherServices services, QStrin
     });
     menu->addAction(ui_text::open_logs, this, [this]() {
         std::error_code code;
-        std::filesystem::create_directories(paths_.logs_directory(), code);
+        files_provider().create_directories(paths_.logs_directory(), code);
         services_.desktop->open_folder(AppPaths::to_text(paths_.logs_directory()));
     });
     menu->addAction(ui_text::report_a_bug, this, &LauncherWindow::report_latest_run);
@@ -140,8 +141,8 @@ LauncherWindow::LauncherWindow(AppPaths paths, LauncherServices services, QStrin
     whats_new_ = new WhatsNewPanel(central);
 
     task_ = new BackgroundTask(this);
-    game_ = new GameProcess(*services_.processes, this);
-    updates_ = new UpdateChecker(services_.updates.get(), version_, this);
+    game_ = new GameProcess(*services_.processes, *services_.locks, this);
+    updates_ = new UpdateChecker(services_.updates.get(), version_, services_.issue_repository, this);
 
     connect(theme_toggle_, &QToolButton::clicked, this, &LauncherWindow::toggle_theme);
     connect(notice_, &NoticePage::accepted, this, &LauncherWindow::accept_notice);
@@ -329,6 +330,10 @@ QString LauncherWindow::banner() const {
 }
 
 void LauncherWindow::wait_for_work() {
+    if (services_.installer) {
+        services_.installer->wait_for_work();
+    }
+
     while (task_->running()) {
         task_->wait();
         QCoreApplication::processEvents(QEventLoop::AllEvents);

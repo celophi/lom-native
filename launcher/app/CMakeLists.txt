@@ -32,13 +32,17 @@ add_library(lom_launcher_app_lib STATIC
     dialogs/mods_dialog.cpp
     services/game_process.cpp
     services/bug_report.cpp
-    services/github_update_feed.cpp
-    services/native_file_dialogs.cpp
-    services/process_runner.cpp
-    services/qt_process_runner.cpp
+    services/github_update_feed_provider.cpp
+    services/launcher_dialogs.cpp
+    services/native_file_dialogs_provider.cpp
+    services/process_runner_provider.cpp
+    services/qt_file_lock_provider.cpp
+    services/qt_process_runner_provider.cpp
     services/release_history.cpp
-    services/system_desktop.cpp
-    services/system_update_installer.cpp
+    services/system_desktop_provider.cpp
+    services/update_installer.cpp
+    services/qt_download_provider.cpp
+    services/qt_tools_provider.cpp
     services/update_checker.cpp)
 target_include_directories(lom_launcher_app_lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 target_link_libraries(lom_launcher_app_lib PUBLIC lom_launcher_core Qt6::Widgets Qt6::Network)

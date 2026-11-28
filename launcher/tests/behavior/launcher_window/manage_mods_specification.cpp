@@ -166,7 +166,7 @@ LOM_SPEC(ManageModsSpecification, "Adding a mod should copy its folder in under 
         EXPECT_EQ(list->item(0)->checkState(), Qt::Unchecked);
     });
 
-    EXPECT_TRUE(std::filesystem::exists(mods / "cool-mod" / "mod.json"));
+    EXPECT_TRUE(disk::exists(mods / "cool-mod" / "mod.json"));
     EXPECT_EQ(enabled_list(), "");
 }
 
@@ -188,7 +188,7 @@ LOM_SPEC(ManageModsSpecification, "Removing a mod should ask, then delete its fo
     });
     press("modsButton");
 
-    EXPECT_FALSE(std::filesystem::exists(mods / "unwanted"));
+    EXPECT_FALSE(disk::exists(mods / "unwanted"));
     EXPECT_EQ(enabled_list(), "");
 }
 

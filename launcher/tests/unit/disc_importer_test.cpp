@@ -1,4 +1,5 @@
 #include "../support/disc_fixture.h"
+#include "../support/disk.h"
 #include "../support/test_harness.h"
 #include "lom/launcher/disc/disc_importer.h"
 
@@ -22,14 +23,7 @@ constexpr std::size_t sha1_hex_length = 40;
  * @return Number of entries, or zero when absent.
  */
 std::size_t entry_count(const std::filesystem::path& path) {
-    std::error_code code;
-    std::size_t count = 0;
-
-    for (auto it = std::filesystem::recursive_directory_iterator(path, code); it != std::filesystem::recursive_directory_iterator(); ++it) {
-        count++;
-    }
-
-    return count;
+    return lom::launcher::test::disk::list(path, true).size();
 }
 
 class DiscImporterTest : public ::testing::Test {

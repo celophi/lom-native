@@ -1,4 +1,5 @@
 #include "lom/launcher/saves/save_importer.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/atomic_file.h"
 #include "lom/launcher/saves/lom_save.h"
@@ -6,7 +7,8 @@
 #include "lom/launcher/saves/save_folder.h"
 
 #include <algorithm>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <system_error>
 
 namespace lom::launcher {
@@ -25,7 +27,8 @@ struct Placed {
  */
 bool write_verified(const std::filesystem::path& path, const std::vector<std::uint8_t>& bytes) {
     {
-        std::ofstream out(path, std::ios::binary | std::ios::trunc);
+        const auto out_file = files_provider().open_write(path, std::ios::binary | std::ios::trunc);
+        std::ostream& out = *out_file;
         out.write(reinterpret_cast<const char*>(bytes.data()), std::streamsize(bytes.size()));
 
         if (!out) {
@@ -45,7 +48,7 @@ constexpr std::uint32_t operation_suffix_range = 1000000;
  * @param random Random source.
  * @return Time-based identifier with a random suffix.
  */
-std::string operation_id(const Clock& clock, RandomSource& random) {
+std::string operation_id(const ClockProvider& clock, RandomProvider& random) {
     return std::to_string(clock.now_unix_seconds()) + "-" + std::to_string(random.next() % operation_suffix_range);
 }
 
@@ -56,10 +59,10 @@ std::string operation_id(const Clock& clock, RandomSource& random) {
 void roll_back(const std::vector<Placed>& placed) {
     for (auto item = placed.rbegin(); item != placed.rend(); ++item) {
         std::error_code code;
-        std::filesystem::remove(item->destination, code);
+        files_provider().remove(item->destination, code);
 
         if (!item->backup.empty()) {
-            std::filesystem::copy_file(item->backup, item->destination, std::filesystem::copy_options::overwrite_existing, code);
+            files_provider().copy_file(item->backup, item->destination, std::filesystem::copy_options::overwrite_existing, code);
         }
     }
 }
@@ -71,18 +74,18 @@ SaveImporter::Plan SaveImporter::plan(const std::filesystem::path& root, int slo
     const std::filesystem::path directory = SaveFolder::slot_directory(root, slot);
     std::error_code code;
 
-    for (const auto& entry : std::filesystem::directory_iterator(directory, code)) {
-        const std::string name = entry.path().filename().u8string();
+    for (const FileEntry& entry : files_provider().list(directory, false, code)) {
+        const std::string name = entry.path.filename().u8string();
 
-        if (!name.empty() && name[0] != '.' && entry.is_regular_file(code)) {
-            plan.blocks_used += int(entry.file_size(code) / SaveFolder::block_bytes);
+        if (!name.empty() && name[0] != '.' && entry.regular) {
+            plan.blocks_used += int(entry.size / SaveFolder::block_bytes);
         }
     }
 
     for (const MemoryCard::File& file : files) {
         const std::filesystem::path existing = directory / std::filesystem::u8path(file.name);
 
-        if (!std::filesystem::exists(existing, code)) {
+        if (!files_provider().exists(existing, code)) {
             plan.new_names.push_back(file.name);
             plan.blocks_needed += file.blocks;
             continue;
@@ -102,7 +105,7 @@ SaveImporter::Plan SaveImporter::plan(const std::filesystem::path& root, int slo
 
 SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int slot, const std::vector<MemoryCard::File>& files,
                                           const std::set<std::string>& replace, const ReleaseCatalog& catalog, const std::string& release_id,
-                                          const Clock& clock, RandomSource& random) {
+                                          const ClockProvider& clock, RandomProvider& random) {
     Result result;
 
     for (const MemoryCard::File& file : files) {
@@ -142,7 +145,7 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
             to_write.push_back(&file);
         } else if (conflicting && replace.count(file.name) != 0) {
             std::error_code code;
-            const auto existing_bytes = std::filesystem::file_size(SaveFolder::slot_directory(root, slot) / std::filesystem::u8path(file.name), code);
+            const auto existing_bytes = files_provider().file_size(SaveFolder::slot_directory(root, slot) / std::filesystem::u8path(file.name), code);
             blocks_after += file.blocks - int(existing_bytes / SaveFolder::block_bytes);
             to_write.push_back(&file);
         } else if (conflicting) {
@@ -167,7 +170,7 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
     const std::filesystem::path staging = root / staging_directory / id;
     const std::filesystem::path backups = root / backups_directory / id / ("slot" + std::to_string(slot));
     std::error_code code;
-    std::filesystem::create_directories(staging, code);
+    files_provider().create_directories(staging, code);
 
     if (code) {
         result.status = Result::Status::DestinationUnavailable;
@@ -177,7 +180,7 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
 
     for (const MemoryCard::File* file : to_write) {
         if (!write_verified(staging / std::filesystem::u8path(file->name), file->bytes)) {
-            std::filesystem::remove_all(staging, code);
+            files_provider().remove_all(staging, code);
             result.status = Result::Status::DestinationUnavailable;
             result.error = "cannot write " + file->name + " (the disk may be full)";
             return result;
@@ -191,13 +194,13 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
         Placed item;
         item.destination = directory / std::filesystem::u8path(file->name);
 
-        if (std::filesystem::exists(item.destination, code)) {
-            std::filesystem::create_directories(backups, code);
+        if (files_provider().exists(item.destination, code)) {
+            files_provider().create_directories(backups, code);
             item.backup = backups / std::filesystem::u8path(file->name);
 
-            if (code || !std::filesystem::copy_file(item.destination, item.backup, std::filesystem::copy_options::overwrite_existing, code)) {
+            if (code || !files_provider().copy_file(item.destination, item.backup, std::filesystem::copy_options::overwrite_existing, code)) {
                 roll_back(placed);
-                std::filesystem::remove_all(staging, code);
+                files_provider().remove_all(staging, code);
                 result.status = Result::Status::Failed;
                 result.error = "cannot back up " + file->name;
                 return result;
@@ -206,11 +209,11 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
             result.backup_directory = backups;
         }
 
-        std::filesystem::rename(staging / std::filesystem::u8path(file->name), item.destination, code);
+        files_provider().rename(staging / std::filesystem::u8path(file->name), item.destination, code);
 
         if (code) {
             roll_back(placed);
-            std::filesystem::remove_all(staging, code);
+            files_provider().remove_all(staging, code);
             result.status = Result::Status::Failed;
             result.error = "cannot place " + file->name + ": " + code.message();
             return result;
@@ -220,8 +223,8 @@ SaveImporter::Result SaveImporter::commit(const std::filesystem::path& root, int
         result.imported++;
     }
 
-    std::filesystem::remove_all(staging, code);
-    std::filesystem::remove(root / staging_directory, code);
+    files_provider().remove_all(staging, code);
+    files_provider().remove(root / staging_directory, code);
     result.status = Result::Status::Imported;
     return result;
 }

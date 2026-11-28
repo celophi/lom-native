@@ -1,17 +1,17 @@
 #ifndef LOM_LAUNCHER_GAME_PROCESS_H
 #define LOM_LAUNCHER_GAME_PROCESS_H
 
+#include "services/file_lock_provider.h"
 #include <QObject>
 #include <QString>
 
 #include <filesystem>
 #include <memory>
 
-class QLockFile;
 
 namespace lom::launcher {
 
-class ProcessRunner;
+class ProcessRunnerProvider;
 
 class GameProcess : public QObject {
     Q_OBJECT
@@ -35,9 +35,10 @@ class GameProcess : public QObject {
     /**
      * @brief Create an idle monitor.
      * @param runner Process boundary; must outlive the monitor.
+     * @param locks What locks the save folder; must outlive the monitor.
      * @param parent Owner.
      */
-    GameProcess(ProcessRunner& runner, QObject* parent);
+    GameProcess(ProcessRunnerProvider& runner, FileLockProvider& locks, QObject* parent);
 
     /**
      * @brief Release the save lock.
@@ -116,8 +117,9 @@ class GameProcess : public QObject {
      */
     void release_lock();
 
-    ProcessRunner& runner_;
-    std::unique_ptr<QLockFile> lock_;
+    ProcessRunnerProvider& runner_;
+    FileLockProvider& locks_;
+    std::unique_ptr<FileLockProvider::Lock> lock_;
     std::filesystem::path log_file_;
     std::filesystem::path remaster_root_;
     std::filesystem::path mods_directory_;

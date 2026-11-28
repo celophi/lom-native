@@ -1,4 +1,5 @@
 #include "lom/launcher/disc/disc_importer.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "disc/file_digest.h"
 #include "lom/launcher/common/atomic_file.h"
@@ -8,7 +9,8 @@
 #include "lom/launcher/common/json.h"
 
 #include <cstdio>
-#include <fstream>
+#include <istream>
+#include <ostream>
 #include <set>
 #include <system_error>
 
@@ -36,7 +38,7 @@ constexpr std::uint32_t installation_suffix_mask = 0xFFFFFF;
  * @param random Random source for the suffix.
  * @return Identifier made of the UTC time in seconds and a random suffix.
  */
-std::string new_installation_id(std::int64_t seconds, RandomSource& random) {
+std::string new_installation_id(std::int64_t seconds, RandomProvider& random) {
     char suffix[8];
     std::snprintf(suffix, sizeof(suffix), "%06x", unsigned(random.next() & installation_suffix_mask));
     return std::to_string(seconds) + "-" + suffix;
@@ -80,7 +82,7 @@ DiscImporter::Identification::Status open_failure(DiscImage::Status status) {
  */
 void remove_quietly(const std::filesystem::path& path) {
     std::error_code code;
-    std::filesystem::remove_all(path, code);
+    files_provider().remove_all(path, code);
 }
 
 /**
@@ -113,7 +115,7 @@ std::vector<std::string> file_list_differences(const Iso9660Reader& reader, cons
 
 }
 
-DiscImporter::DiscImporter(const ReleaseCatalog& catalog, const Clock& clock, RandomSource& random) : catalog_(catalog), clock_(clock), random_(random) {
+DiscImporter::DiscImporter(const ReleaseCatalog& catalog, const ClockProvider& clock, RandomProvider& random) : catalog_(catalog), clock_(clock), random_(random) {
 }
 
 DiscImporter::Identification DiscImporter::identify(const std::filesystem::path& selected, const Progress& progress) const {
@@ -206,7 +208,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
     }
 
     std::error_code code;
-    std::filesystem::create_directories(games_root, code);
+    files_provider().create_directories(games_root, code);
 
     if (code) {
         result.status = InstallResult::Status::DestinationUnavailable;
@@ -215,7 +217,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
     }
 
     result.required_bytes = required_space(manifest);
-    const std::filesystem::space_info space = std::filesystem::space(games_root, code);
+    const std::filesystem::space_info space = files_provider().space(games_root, code);
 
     if (!code && space.available < result.required_bytes) {
         result.status = InstallResult::Status::InsufficientSpace;
@@ -250,7 +252,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
     const std::string installation_id = new_installation_id(clock_.now_unix_seconds(), random_);
     const std::filesystem::path staging = games_root / staging_directory / installation_id;
     const std::filesystem::path staging_data = staging / data_directory;
-    std::filesystem::create_directories(staging_data, code);
+    files_provider().create_directories(staging_data, code);
 
     if (code) {
         result.status = InstallResult::Status::DestinationUnavailable;
@@ -264,8 +266,9 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
 
     for (const Iso9660Reader::File& file : reader.files()) {
         const std::filesystem::path output = staging_data / std::filesystem::u8path(file.path);
-        std::filesystem::create_directories(output.parent_path(), code);
-        std::ofstream out(output, std::ios::binary | std::ios::trunc);
+        files_provider().create_directories(output.parent_path(), code);
+        auto out_file = files_provider().open_write(output, std::ios::binary | std::ios::trunc);
+        std::ostream& out = *out_file;
 
         if (code || !out) {
             remove_quietly(staging);
@@ -279,7 +282,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
 
         while (remaining > 0) {
             if (progress.cancelled()) {
-                out.close();
+                out_file.reset();
                 remove_quietly(staging);
                 result.status = InstallResult::Status::Cancelled;
                 return result;
@@ -288,7 +291,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
             DiscImage::SectorKind kind = DiscImage::SectorKind::Mode2Form1;
 
             if (!image.read_user_data(lba, sector, &kind) || kind == DiscImage::SectorKind::Mode2Form2) {
-                out.close();
+                out_file.reset();
                 remove_quietly(staging);
                 result.status = InstallResult::Status::ExtractionFailed;
                 result.error = file.path + ": " + (kind == DiscImage::SectorKind::Mode2Form2 ? "unsupported Form 2 sector" : image.error());
@@ -303,9 +306,11 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
             progress.report(Progress::Stage::Extracting, written, total);
         }
 
-        out.close();
+        out.flush();
+        const bool saved = static_cast<bool>(out);
+        out_file.reset();
 
-        if (!out) {
+        if (!saved) {
             remove_quietly(staging);
             result.status = InstallResult::Status::DestinationUnavailable;
             result.error = "cannot write " + output.u8string() + " (the disk may be full)";
@@ -367,10 +372,10 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
 
     const std::filesystem::path release_directory = games_root / release->id / release->raw_sha1;
     const std::filesystem::path final_directory = release_directory / installation_id;
-    std::filesystem::create_directories(release_directory, code);
+    files_provider().create_directories(release_directory, code);
 
     if (!code) {
-        std::filesystem::rename(staging, final_directory, code);
+        files_provider().rename(staging, final_directory, code);
     }
 
     if (code) {
@@ -380,7 +385,7 @@ DiscImporter::InstallResult DiscImporter::install(const Identification& identifi
         return result;
     }
 
-    std::filesystem::remove(games_root / staging_directory, code);
+    files_provider().remove(games_root / staging_directory, code);
     result.status = InstallResult::Status::Installed;
     result.installation.kind = Installation::Kind::Managed;
     result.installation.data_path = final_directory / data_directory;

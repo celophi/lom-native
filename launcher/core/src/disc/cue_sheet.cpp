@@ -1,4 +1,5 @@
 #include "lom/launcher/disc/cue_sheet.h"
+#include "lom/launcher/common/files_provider.h"
 
 #include "lom/launcher/common/atomic_file.h"
 #include "common/text_case.h"
@@ -81,7 +82,7 @@ std::filesystem::path resolve_track_file(const std::filesystem::path& base, cons
     const std::filesystem::path direct = base / std::filesystem::u8path(name);
     std::error_code code;
 
-    if (std::filesystem::exists(direct, code)) {
+    if (files_provider().exists(direct, code)) {
         return direct;
     }
 
@@ -89,9 +90,9 @@ std::filesystem::path resolve_track_file(const std::filesystem::path& base, cons
     std::filesystem::path found;
     int matches = 0;
 
-    for (const auto& entry : std::filesystem::directory_iterator(direct.parent_path(), code)) {
-        if (ascii_upper(entry.path().filename().u8string()) == wanted) {
-            found = entry.path();
+    for (const FileEntry& entry : files_provider().list(direct.parent_path(), false, code)) {
+        if (ascii_upper(entry.path.filename().u8string()) == wanted) {
+            found = entry.path;
             matches++;
         }
     }
@@ -103,7 +104,7 @@ std::filesystem::path resolve_track_file(const std::filesystem::path& base, cons
 
 CueSheet::Status CueSheet::load(const std::filesystem::path& path) {
     std::error_code code;
-    const std::uintmax_t size = std::filesystem::file_size(path, code);
+    const std::uintmax_t size = files_provider().file_size(path, code);
 
     if (code) {
         error_ = "cannot read the CUE file";
