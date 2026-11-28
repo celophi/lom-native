@@ -145,6 +145,8 @@
   "world_map_help": "Auf der Weltkarte die Tafel mit dem Mana-Baum, die Geister und die Namen der Tage und Länder. Die Länder bleiben die der PS1.",
   "game_menu_label": "Spielmenü",
   "game_menu_help": "Das Menü des Spiels mit den Reitersymbolen des Remasters. Mit Breitbild übernimmt es auch den Hintergrund und das Layout des Remasters, mit den Reitern in zwei Spalten an der Seite.",
+  "saves_label": "Speicherbildschirme",
+  "saves_help": "Laden und Speichern auf dem Bildschirm des Remasters: sein Hintergrund und eine Zeile für jeden Spielstand mit dem Gesicht des Helden, der Spielzeit, dem Ort und dem Namen. Nur mit Breitbild: Er ist für einen breiten Bildschirm gemalt, in 4:3 ist es der der PS1.",
   "movies_label": "Filme",
   "remaster_music_label": "Musik",
   "remaster_music_help": "Die Aufnahmen des Soundtracks aus dem Remaster statt der Musik der PS1. Gilt ab dem nächsten Lied.",

@@ -110,6 +110,14 @@ int remaster_text_char_breaks(uint32_t c);
 int remaster_text_letter_index(uint32_t c);
 
 /**
+ * @brief The character one of the PS1 font's extra characters stands for, the
+ *        other way from remaster_text_letter_index.
+ * @param index Its index past the end of the PS1 font (after TEXT_EXTRA).
+ * @return Its Unicode code point, or 0 when there's no such character.
+ */
+uint32_t remaster_text_letter_code(int index);
+
+/**
  * @brief Keep only the [ps4] part of a string that has [ps4], [switch] and
  *        [pc] versions, since its button names are the PlayStation's.
  * @param s The string.

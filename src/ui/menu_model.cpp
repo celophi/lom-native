@@ -124,6 +124,9 @@ LOM_MENU_TEXT(wall_map_label, "Wall map");
 LOM_MENU_TEXT(wall_map_help, "The wall map you place your home on at the start, painted wide for Widescreen.");
 LOM_MENU_TEXT(world_map_label, "World map");
 LOM_MENU_TEXT(world_map_help, "The world map's Mana Tree panel, spirits, and day and land names. The lands stay the PS1's.");
+LOM_MENU_TEXT(saves_label, "Save screens");
+LOM_MENU_TEXT(saves_help, "Loading and saving on the Remaster's screen: its background, and a row for each save with the hero's face, play time, "
+                          "place and name. Only with Widescreen on: it's painted for a wide screen, so in 4:3 it's the PS1's.");
 LOM_MENU_TEXT(game_menu_label, "Game menu");
 LOM_MENU_TEXT(game_menu_help, "The game's menu with the Remaster's tab icons. With Widescreen on it also takes the Remaster's background and layout, "
                               "with the tabs in two columns down the side.");
@@ -168,6 +171,7 @@ const RemasterPart remaster_parts[] = {
     {LOM_REMASTER_SWITCH_WORLD_SELECT, wall_map_label, wall_map_help},
     {LOM_REMASTER_SWITCH_WORLD_MAP, world_map_label, world_map_help},
     {LOM_REMASTER_SWITCH_MENU, game_menu_label, game_menu_help},
+    {LOM_REMASTER_SWITCH_SAVES, saves_label, saves_help},
     {LOM_REMASTER_SWITCH_MOVIES, movies_label, hd_movies_help},
     {LOM_REMASTER_SWITCH_MUSIC, remaster_music_label, remaster_music_help},
     {LOM_REMASTER_SWITCH_EFFECTS, remaster_effects_label, remaster_effects_help},

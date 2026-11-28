@@ -145,6 +145,8 @@
   "world_map_help": "Sur la carte du monde, le panneau de l'Arbre Mana, les esprits et les noms des jours et des terres. Les terres restent celles de la PS1.",
   "game_menu_label": "Menu du jeu",
   "game_menu_help": "Le menu du jeu avec les icônes d'onglet du Remaster. Avec l'écran large, il prend aussi le fond et la disposition du Remaster, avec les onglets sur deux colonnes sur le côté.",
+  "saves_label": "Écrans de sauvegarde",
+  "saves_help": "Charger et sauvegarder sur l'écran du Remaster : son fond, et une ligne par sauvegarde avec le visage du héros, le temps de jeu, le lieu et le nom. Seulement avec l'écran large : il est peint pour un écran large, donc en 4:3 c'est celui de la PS1.",
   "movies_label": "Vidéos",
   "remaster_music_label": "Musique",
   "remaster_music_help": "Les enregistrements de la bande originale du Remaster à la place de la musique de la PS1. S'applique à partir du morceau suivant.",

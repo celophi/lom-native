@@ -17,6 +17,34 @@ extern "C"
 
     enum
     {
+        LOM_CARDS_ROW_DARK,
+        LOM_CARDS_ROW_SELECTED,
+        LOM_CARDS_FACE_HERO,
+        LOM_CARDS_FACE_HEROINE,
+        LOM_CARDS_ARROW_UP,
+        LOM_CARDS_ARROW_DOWN,
+        LOM_CARDS_WINDOW,
+        LOM_CARDS_PICTURE_COUNT
+    };
+
+    enum
+    {
+        LOM_CARDS_TEXT_ROW,
+        LOM_CARDS_TEXT_TITLE,
+        LOM_CARDS_TEXT_DIM,
+        LOM_CARDS_TEXT_FAINT,
+        LOM_CARDS_TEXT_COUNT
+    };
+
+    enum
+    {
+        LOM_CARDS_ALIGN_LEFT,
+        LOM_CARDS_ALIGN_RIGHT,
+        LOM_CARDS_ALIGN_CENTER
+    };
+
+    enum
+    {
         LOM_TITLE_MENU_COPYRIGHT,
         LOM_TITLE_MENU_ITEM,
         LOM_TITLE_MENU_CURSOR
@@ -157,6 +185,53 @@ extern "C"
      * @param selected For an item, nonzero when it's the one chosen.
      */
     void lom_draw_title_menu(void* code, int part, int index, int selected);
+
+    /** @brief Start a save or load screen, deciding whether it's laid out as the Remaster's. */
+    void lom_draw_cards_begin(void);
+
+    /** @brief End a save or load screen. */
+    void lom_draw_cards_end(void);
+
+    /** @brief Nonzero when the save and load screens are laid out as the Remaster's. */
+    int lom_draw_cards_on(void);
+
+    /** @brief Start one of a save or load screen's frames, wide or not. */
+    void lom_draw_cards_frame(void);
+
+    /**
+     * @brief Draw a save or load screen's backdrop sprites, which the game has
+     *        built and linked, so a renderer can draw them from other art.
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_draw_cards_background(void* code, int stride, int count);
+
+    /**
+     * @brief Draw one of the pictures of the Remaster's save and load screens
+     *        over a sprite the game has built and linked.
+     * @param code The sprite's code word.
+     * @param picture LOM_CARDS_*.
+     * @param x Where it goes: its left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     */
+    void lom_draw_cards_picture(void* code, int picture, int x, int y, int w, int h);
+
+    /**
+     * @brief Write a line of a save or load screen's text in the Remaster's
+     *        font, over a sprite the game has built but not linked.
+     * @param code The sprite's code word.
+     * @param text The game's text.
+     * @param x Where: its left, right or middle (@p align).
+     * @param baseline The line's baseline.
+     * @param align LOM_CARDS_ALIGN_*.
+     * @param style LOM_CARDS_TEXT_*.
+     * @return Nonzero when it's written; 0 to draw it in the PS1's font, as
+     *         when the Remaster's font can't write it.
+     */
+    int lom_draw_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style);
 
     /**
      * @brief Draw name entry's fixed background sprites, which the game has

@@ -623,6 +623,54 @@ int lom_native_card_open(const char* path, int flags)
     return i + 1;
 }
 
+int lom_native_card_peek(const char* path, void* data, int size)
+{
+    const char* name;
+    const int slot = split_path(path, &name);
+
+    if (slot < 0 || !data || size <= 0)
+    {
+        return -1;
+    }
+
+    const int dir = open_slot(slot);
+
+    if (dir < 0)
+    {
+        return -1;
+    }
+
+    const int fd = card_slot_open_file(dir, name, O_RDONLY);
+    card_slot_close(dir);
+
+    if (fd < 0)
+    {
+        return -1;
+    }
+
+    int done = 0;
+
+    while (done < size)
+    {
+        const ssize_t n = read(fd, (char*)data + done, (size_t)(size - done));
+
+        if (n < 0 && errno == EINTR)
+        {
+            continue;
+        }
+
+        if (n <= 0)
+        {
+            break;
+        }
+
+        done += (int)n;
+    }
+
+    close(fd);
+    return done == size ? size : -1;
+}
+
 int lom_native_card_close(int handle)
 {
     if (handle < 1 || handle > HANDLE_COUNT || !handles[handle - 1].active)

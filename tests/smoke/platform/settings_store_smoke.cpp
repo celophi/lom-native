@@ -147,8 +147,8 @@ int main(int argc, char** argv)
     CHECK(store.save(next, PreferenceStore::SaveReason::Changed));
 
     CHECK(defaults.remaster && defaults.hd_backgrounds && defaults.hd_faces && defaults.hd_encyclopedia && defaults.hd_title && defaults.hd_name_entry &&
-          defaults.hd_world_select && defaults.hd_world_map && defaults.hd_menu && defaults.hd_movies && defaults.remaster_music && !defaults.arranged_music &&
-          defaults.remaster_effects && defaults.remaster_text && defaults.text_language == 1);
+          defaults.hd_world_select && defaults.hd_world_map && defaults.hd_menu && defaults.hd_saves && defaults.hd_movies && defaults.remaster_music &&
+          !defaults.arranged_music && defaults.remaster_effects && defaults.remaster_text && defaults.text_language == 1);
     auto remaster = next;
     remaster.remaster = false;
     remaster.hd_backgrounds = false;
@@ -159,6 +159,7 @@ int main(int argc, char** argv)
     remaster.hd_world_select = false;
     remaster.hd_world_map = false;
     remaster.hd_menu = false;
+    remaster.hd_saves = false;
     remaster.hd_movies = false;
     remaster.remaster_music = false;
     remaster.arranged_music = true;
@@ -174,8 +175,8 @@ int main(int argc, char** argv)
     CHECK(SDL_SaveFile(path.c_str(), old_choices.data(), old_choices.size()));
     const auto carried = reload.load(path, defaults);
     CHECK(!carried.hd_faces && !carried.hd_encyclopedia && !carried.hd_title && !carried.hd_name_entry && !carried.hd_world_select && !carried.hd_world_map &&
-          !carried.hd_menu && carried.hd_backgrounds && carried.remaster_music && carried.arranged_music && carried.remaster_effects && carried.remaster_text &&
-          carried.text_language == 3);
+          !carried.hd_menu && !carried.hd_saves && carried.hd_backgrounds && carried.remaster_music && carried.arranged_music && carried.remaster_effects &&
+          carried.remaster_text && carried.text_language == 3);
     const std::string old_defaults = old_remaster_defaults;
     CHECK(SDL_SaveFile(path.c_str(), old_defaults.data(), old_defaults.size()));
     CHECK(reload.load(path, defaults) == defaults);
@@ -205,8 +206,8 @@ int main(int argc, char** argv)
     CHECK(loaded.audio.master.volume == main_full_volume && loaded.audio.master.muted);
     CHECK(loaded.display.resolution == 0);
     CHECK(!loaded.display.widescreen);
-    CHECK(loaded.remaster && loaded.hd_backgrounds && loaded.hd_faces && loaded.hd_world_map && loaded.hd_menu && loaded.hd_movies && loaded.remaster_music &&
-          !loaded.arranged_music && loaded.remaster_text && loaded.text_language == 1);
+    CHECK(loaded.remaster && loaded.hd_backgrounds && loaded.hd_faces && loaded.hd_world_map && loaded.hd_menu && loaded.hd_saves && loaded.hd_movies &&
+          loaded.remaster_music && !loaded.arranged_music && loaded.remaster_text && loaded.text_language == 1);
     CHECK(loaded.audio.categories == defaults.audio.categories);
     std::puts(success_message);
 }

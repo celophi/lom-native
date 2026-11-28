@@ -46,6 +46,7 @@ constexpr char hd_name_entry_key[] = "hd_name_entry=";
 constexpr char hd_world_select_key[] = "hd_world_select=";
 constexpr char hd_world_map_key[] = "hd_world_map=";
 constexpr char hd_menu_key[] = "hd_menu=";
+constexpr char hd_saves_key[] = "hd_saves=";
 constexpr char hd_movies_key[] = "hd_movies=";
 constexpr char remaster_music_key[] = "remaster_music=";
 constexpr char arranged_music_key[] = "arranged_music=";
@@ -117,6 +118,7 @@ constexpr Field fields[] = {
      [](Preferences& p, int v) { p.hd_world_select = v != 0; }},
     {hd_world_map_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_world_map}; }, [](Preferences& p, int v) { p.hd_world_map = v != 0; }},
     {hd_menu_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_menu}; }, [](Preferences& p, int v) { p.hd_menu = v != 0; }},
+    {hd_saves_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_saves}; }, [](Preferences& p, int v) { p.hd_saves = v != 0; }},
     {hd_movies_key, boolean_value_count, [](const Preferences& p) { return int{p.hd_movies}; }, [](Preferences& p, int v) { p.hd_movies = v != 0; }},
     {remaster_music_key, boolean_value_count, [](const Preferences& p) { return int{p.remaster_music}; },
      [](Preferences& p, int v) { p.remaster_music = v != 0; }},
@@ -143,8 +145,8 @@ constexpr Field fields[] = {
 };
 
 constexpr Field old_fields[] = {
-    {old_hd_pictures_key, boolean_value_count, nullptr,
-     [](Preferences& p, int v) { p.hd_faces = p.hd_encyclopedia = p.hd_title = p.hd_name_entry = p.hd_world_select = p.hd_world_map = p.hd_menu = v != 0; }},
+    {old_hd_pictures_key, boolean_value_count, nullptr, [](Preferences& p, int v)
+     { p.hd_faces = p.hd_encyclopedia = p.hd_title = p.hd_name_entry = p.hd_world_select = p.hd_world_map = p.hd_menu = p.hd_saves = v != 0; }},
     {old_soundtrack_key, soundtrack_value_count, nullptr,
      [](Preferences& p, int v)
      {

@@ -145,6 +145,8 @@
   "world_map_help": "En el mapa del mundo, el panel del Árbol de Maná, los espíritus y los nombres de los días y las tierras. Las tierras siguen siendo las de PS1.",
   "game_menu_label": "Menú del juego",
   "game_menu_help": "El menú del juego con los iconos de pestaña del Remaster. Con la pantalla panorámica también toma el fondo y la disposición del Remaster, con las pestañas en dos columnas a un lado.",
+  "saves_label": "Pantallas de guardado",
+  "saves_help": "Cargar y guardar en la pantalla del Remaster: su fondo y una fila por partida con la cara del héroe, el tiempo de juego, el lugar y el nombre. Solo con la pantalla panorámica: está pintada para una pantalla ancha, así que en 4:3 es la de PS1.",
   "movies_label": "Vídeos",
   "remaster_music_label": "Música",
   "remaster_music_help": "Las grabaciones de la banda sonora del Remaster en lugar de la música de PS1. Se aplica desde la siguiente canción.",

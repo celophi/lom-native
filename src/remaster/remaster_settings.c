@@ -6,14 +6,14 @@
 
 static char s_root[4096];
 static int s_found;
-static int s_switches[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1};
+static int s_switches[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1};
 static int s_text_language = LOM_REMASTER_TEXT_ENGLISH;
 
 _Static_assert(sizeof(s_switches) / sizeof(s_switches[0]) == LOM_REMASTER_SWITCH_COUNT, "a starting value for each switch");
 
 static const int s_picture_switches[] = {LOM_REMASTER_SWITCH_FACES,      LOM_REMASTER_SWITCH_ENCYCLOPEDIA, LOM_REMASTER_SWITCH_TITLE,
                                          LOM_REMASTER_SWITCH_NAME_ENTRY, LOM_REMASTER_SWITCH_WORLD_SELECT, LOM_REMASTER_SWITCH_WORLD_MAP,
-                                         LOM_REMASTER_SWITCH_MENU};
+                                         LOM_REMASTER_SWITCH_MENU,       LOM_REMASTER_SWITCH_SAVES};
 
 static int s_text_supported = 1;
 

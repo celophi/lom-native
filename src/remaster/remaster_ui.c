@@ -24,10 +24,12 @@
 #define PATH_SIZE 4096
 #define MAX_CHAIN 8
 #define TEXT_GREY 0xD8
+#define LINE_SHADOW 3
+#define LINE_SHADOW_ALPHA 160
 
 typedef struct
 {
-    char key[96];
+    char key[192];
     int layer;
     int x, y, w, h;
     unsigned stamp;
@@ -196,15 +198,14 @@ static void copy_texture(const LomPsb* psb, size_t texture, unsigned char* pixel
  * @param psb The font.
  * @param code The font's letters.
  * @param source Its pictures.
- * @param c The letter.
+ * @param key The letter, in UTF-8.
  * @param rect Set to where it is in its picture: x, y, width and height.
  * @param pixels Set to the picture, one alpha byte a pixel.
  * @param stride Set to the picture's width.
  * @return 0, or -1 when the font doesn't have it.
  */
-static int font_letter(const LomPsb* psb, size_t code, size_t source, char c, int rect[4], const unsigned char** pixels, int* stride)
+static int font_letter(const LomPsb* psb, size_t code, size_t source, const char* key, int rect[4], const unsigned char** pixels, int* stride)
 {
-    const char key[2] = {c, 0};
     size_t letter, image, value;
     size_t bytes;
     const char* type;
@@ -257,7 +258,9 @@ static unsigned char* load_text(const LomPsb* psb, const char* label, int* w, in
 
     for (size_t i = 0; i < count; ++i)
     {
-        if (font_letter(psb, code, source, text[i], rects[i], &atlases[i], &strides[i]) != 0)
+        const char key[2] = {text[i], 0};
+
+        if (font_letter(psb, code, source, key, rects[i], &atlases[i], &strides[i]) != 0)
         {
             return NULL;
         }
@@ -313,6 +316,145 @@ static unsigned char* load_text(const LomPsb* psb, const char* label, int* w, in
 }
 
 /**
+ * @brief Blend a colour over a picture's pixel by an amount.
+ * @param p The pixel, straight RGBA.
+ * @param rgb The colour, 0xRRGGBB.
+ * @param alpha How much, 0 to 255.
+ */
+static void blend_pixel(unsigned char* p, unsigned rgb, unsigned alpha)
+{
+    const unsigned out = alpha + p[3] * (255 - alpha) / 255;
+
+    if (out == 0)
+    {
+        return;
+    }
+
+    const unsigned colour[3] = {rgb & 0xFF, (rgb >> 8) & 0xFF, (rgb >> 16) & 0xFF};
+
+    for (int c = 0; c < 3; ++c)
+    {
+        p[c] = (unsigned char)((colour[c] * alpha + p[c] * p[3] * (255 - alpha) / 255) / out);
+    }
+
+    p[3] = (unsigned char)out;
+}
+
+/**
+ * @brief Draw a line of text in one of the Remaster's fonts as a picture, at
+ *        the font's own size, which is the Remaster's at 1080 lines: each
+ *        letter its width along, on the font's baseline, with a drop shadow.
+ * @param psb The font.
+ * @param label "#RRGGBB#SSSSSS#text": the colour, the shadow's, and the text
+ *        in UTF-8.
+ * @param w Set to the picture's width.
+ * @param h Set to its height, the font's line and the shadow's drop.
+ * @return The pixels, with a margin, which the caller frees, or NULL when the
+ *         font doesn't have one of the letters.
+ */
+static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, int* h)
+{
+    unsigned colour = 0, shadow = 0;
+    int used = 0;
+    size_t code, source;
+
+    if (sscanf(label, "#%6x#%6x#%n", &colour, &shadow, &used) != 2 || used == 0 || lom_psb_member(psb, psb->root, "code", &code) != 0 ||
+        lom_psb_member(psb, psb->root, "source", &source) != 0)
+    {
+        return NULL;
+    }
+
+    const char* text = label + used;
+    int width = 0, line = 0, baseline = 0;
+
+    for (const char* p = text; *p;)
+    {
+        char key[8];
+        int bytes = 1;
+        size_t letter;
+        int rect[4], stride;
+        const unsigned char* atlas;
+
+        while (p[bytes] && ((unsigned char)p[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+        {
+            ++bytes;
+        }
+
+        memcpy(key, p, (size_t)bytes);
+        key[bytes] = 0;
+
+        if (font_letter(psb, code, source, key, rect, &atlas, &stride) != 0 || lom_psb_member(psb, code, key, &letter) != 0)
+        {
+            return NULL;
+        }
+
+        width += member_int(psb, letter, "width");
+        line = member_int(psb, letter, "height");
+        baseline = member_int(psb, letter, "b") - member_int(psb, letter, "a");
+        p += bytes;
+    }
+
+    const int pw = width + LINE_SHADOW, ph = line + LINE_SHADOW;
+
+    if (width <= 0 || line <= 0 || pw + 2 * MARGIN > LAYER_SIZE || ph + 2 * MARGIN > LAYER_SIZE)
+    {
+        return NULL;
+    }
+
+    const int slot_w = pw + 2 * MARGIN;
+    unsigned char* pixels = calloc((size_t)slot_w * (size_t)(ph + 2 * MARGIN), 4);
+
+    for (int pass = 0; pixels && pass < 2; ++pass)
+    {
+        const int shift = pass == 0 ? LINE_SHADOW : 0;
+        const unsigned rgb = pass == 0 ? shadow : colour;
+        int left = 0;
+
+        for (const char* p = text; *p;)
+        {
+            char key[8];
+            int bytes = 1;
+            size_t letter;
+            int rect[4], stride;
+            const unsigned char* atlas;
+
+            while (p[bytes] && ((unsigned char)p[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+            {
+                ++bytes;
+            }
+
+            memcpy(key, p, (size_t)bytes);
+            key[bytes] = 0;
+            font_letter(psb, code, source, key, rect, &atlas, &stride);
+            lom_psb_member(psb, code, key, &letter);
+            const int top = baseline - member_int(psb, letter, "b") + shift;
+
+            for (int y = 0; y < rect[3]; ++y)
+            {
+                for (int x = 0; x < rect[2]; ++x)
+                {
+                    const int dx = left + x + shift, dy = top + y;
+                    const unsigned alpha = atlas[(size_t)(rect[1] + y) * (size_t)stride + (size_t)(rect[0] + x)];
+
+                    if (alpha && dx >= 0 && dy >= 0 && dx < pw && dy < ph)
+                    {
+                        blend_pixel(pixels + ((size_t)(MARGIN + dy) * (size_t)slot_w + (size_t)(MARGIN + dx)) * 4, rgb,
+                                    pass == 0 ? alpha * LINE_SHADOW_ALPHA / 255 : alpha);
+                    }
+                }
+            }
+
+            left += member_int(psb, letter, "width");
+            p += bytes;
+        }
+    }
+
+    *w = pw;
+    *h = ph;
+    return pixels;
+}
+
+/**
  * @brief Load one of the Remaster's pictures, or one labeled part of it, as
  *        RGBA pixels. The last file opened stays open for the next call.
  * @param file Its PSB file.
@@ -326,6 +468,12 @@ static unsigned char* load_picture(const char* file, const char* label, int* w, 
     const LomPsb* psb = open_picture_file(file);
     unsigned char* pixels = NULL;
     size_t list, item, textures;
+
+    if (psb && label && label[0] == '#' && (pixels = load_line(psb, label, w, h)) != NULL)
+    {
+        premultiply(pixels, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
+        return pixels;
+    }
 
     if (psb && label && strchr(label, '|') && (pixels = load_text(psb, label, w, h)) != NULL)
     {

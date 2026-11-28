@@ -53,6 +53,7 @@ extern "C"
         LOM_REMASTER_SWITCH_EFFECTS,
         LOM_REMASTER_SWITCH_TEXT,
         LOM_REMASTER_SWITCH_MENU,
+        LOM_REMASTER_SWITCH_SAVES,
         LOM_REMASTER_SWITCH_COUNT
     };
 
@@ -328,6 +329,57 @@ extern "C"
      * @param selected For an item, nonzero when it's the one chosen.
      */
     void lom_remaster_title_menu(void* code, int part, int index, int selected);
+
+    /**
+     * @brief Start a save or load screen (lom_draw_cards_begin): it's the
+     *        Remaster's when its Save screens are on, Widescreen is on and its
+     *        pictures can be drawn.
+     * @return Nonzero when it is.
+     */
+    int lom_remaster_cards_begin(void);
+
+    /** @brief End a save or load screen. */
+    void lom_remaster_cards_end(void);
+
+    /** @brief Nonzero while a save or load screen is the Remaster's. */
+    int lom_remaster_cards_on(void);
+
+    /** @brief Start one of a save or load screen's frames: wide when it's the Remaster's. */
+    void lom_remaster_cards_frame(void);
+
+    /**
+     * @brief Draw the Remaster's save screen background over a save or load
+     *        screen's backdrop sprites (lom_draw_cards_background).
+     * @param code The first sprite's code word.
+     * @param stride How far each next sprite's is, in bytes.
+     * @param count How many sprites.
+     */
+    void lom_remaster_cards_background(void* code, int stride, int count);
+
+    /**
+     * @brief Draw one of the Remaster's save screen pictures over a sprite
+     *        (lom_draw_cards_picture).
+     * @param code The sprite's code word.
+     * @param picture LOM_CARDS_*.
+     * @param x Its left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     */
+    void lom_remaster_cards_picture(void* code, int picture, int x, int y, int w, int h);
+
+    /**
+     * @brief Write a line of a save or load screen's text in the Remaster's
+     *        font over a sprite (lom_draw_cards_text).
+     * @param code The sprite's code word.
+     * @param text The game's text.
+     * @param x Its left, right or middle.
+     * @param baseline Its baseline.
+     * @param align LOM_CARDS_ALIGN_*.
+     * @param style LOM_CARDS_TEXT_*.
+     * @return Nonzero when it's written.
+     */
+    int lom_remaster_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style);
 
     /** @brief Nonzero when the title's backdrop is the Remaster's, which is painted wide enough for a wide frame. */
     int lom_remaster_title_wide(void);

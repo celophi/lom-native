@@ -74,6 +74,41 @@ void lom_draw_title_menu(void* code, int part, int index, int selected)
     lom_remaster_title_menu(code, part, index, selected);
 }
 
+void lom_draw_cards_begin(void)
+{
+    lom_remaster_cards_begin();
+}
+
+void lom_draw_cards_end(void)
+{
+    lom_remaster_cards_end();
+}
+
+int lom_draw_cards_on(void)
+{
+    return lom_remaster_cards_on();
+}
+
+void lom_draw_cards_frame(void)
+{
+    lom_remaster_cards_frame();
+}
+
+void lom_draw_cards_background(void* code, int stride, int count)
+{
+    lom_remaster_cards_background(code, stride, count);
+}
+
+void lom_draw_cards_picture(void* code, int picture, int x, int y, int w, int h)
+{
+    lom_remaster_cards_picture(code, picture, x, y, w, h);
+}
+
+int lom_draw_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style)
+{
+    return lom_remaster_cards_text(code, text, x, baseline, align, style);
+}
+
 void lom_draw_gname_background(void* code, int stride, int count)
 {
     lom_remaster_gname_background(code, stride, count);
