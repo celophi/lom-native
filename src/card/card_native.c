@@ -274,9 +274,57 @@ static void place_listing(void)
     }
 }
 
+#if defined(VERSION_JP)
+#define OWN_SAVE_PREFIX "BISLPS-02170"
+#define OTHER_SAVE_PREFIX "BASLUS-01013"
+#define OTHER_SAVE_TITLE "\x82\x6c\x82\x60\x82\x6d\x82\x60"
+#else
+#define OWN_SAVE_PREFIX "BASLUS-01013"
+#define OTHER_SAVE_PREFIX "BISLPS-02170"
+#define OTHER_SAVE_TITLE "\x90\xb9\x8c\x95\x93\x60\x90\xe0"
+#endif
+#define SAVE_TITLE_AT 4
+
+/**
+ * @brief Check whether a card file is a save of the other version of the game: named as its saves are, or named as
+ *        this one's but with its title ("ＭＡＮＡ" for the North American version, "聖剣伝説" for the Japanese), as a
+ *        save copied over and renamed. The versions keep different things in a save, so loading one in the other
+ *        breaks the game later; the save screens don't show them.
+ * @param dir The card's folder.
+ * @param name The file's name.
+ * @return Nonzero when it is.
+ */
+static int other_version_save(int dir, const char* name)
+{
+    char header[SAVE_TITLE_AT + sizeof(OTHER_SAVE_TITLE) - 1];
+
+    if (!strncmp(name, OTHER_SAVE_PREFIX, sizeof(OTHER_SAVE_PREFIX) - 1))
+    {
+        return 1;
+    }
+
+    if (strncmp(name, OWN_SAVE_PREFIX, sizeof(OWN_SAVE_PREFIX) - 1))
+    {
+        return 0;
+    }
+
+    int fd = card_slot_open_file(dir, name, O_RDONLY);
+
+    if (fd < 0)
+    {
+        return 0;
+    }
+
+    const ssize_t n = read(fd, header, sizeof(header));
+    close(fd);
+    return n == (ssize_t)sizeof(header) && !memcmp(header, "SC", 2) && !memcmp(header + SAVE_TITLE_AT, OTHER_SAVE_TITLE, sizeof(OTHER_SAVE_TITLE) - 1);
+}
+
 /**
  * @brief List a card's files, sorted by name, with each one's size and where
- *        its blocks would start on a real card.
+ *        its blocks would start on a real card. The other version's saves
+ *        aren't listed (other_version_save), though their blocks still count
+ *        as used.
  * @param slot 0 or 1.
  * @return How many blocks are used, or -1 when the card can't be read.
  */
@@ -324,6 +372,12 @@ static int read_listing(int slot)
         {
             failed = 1;
             break;
+        }
+
+        if (other_version_save(fd, ent->d_name))
+        {
+            errno = 0;
+            continue;
         }
 
         LomNativeCardEntry* e = &listing[listing_count++];

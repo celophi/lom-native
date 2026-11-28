@@ -20,6 +20,7 @@
 #include "lom_native_frames.h"
 #include "lom_native_draw_labels.h"
 #include "lom_native_draw.h"
+#include "lom_native_ps1_memory.h"
 #include "common/hd_text.h"
 
 #if defined(VERSION_JP)
@@ -3373,7 +3374,8 @@ static inline void* menu_draw_content_text(void* packet_cursor, OT_TYPE* ot, u8*
  * @param ot_entry Ordering-table entry passed to render helpers.
  * @return Updated GPU packet cursor after drawing.
  * @note JP tests the category 0 item's effect flags for actions 0x22-0x29 without
- *       first checking that the item exists.
+ *       first checking that the item exists; with none (no weapon) the PS1 reads RAM address 0, and so does the port
+ *       (LOM_PS1_OR_RAM0).
  */
 void* menu_draw_scene_content(void* packet_cursor, OT_TYPE* ot_entry)
 {
@@ -3575,7 +3577,7 @@ void* menu_draw_scene_content(void* packet_cursor, OT_TYPE* ot_entry)
                         s32 action;
                         action = content_item->action_type;
 
-                        if (((g_menu_weapon_item->status_flags >> (action - MENU_ICON_SELECT_WEAPON_FLAG_FIRST)) & 1) != 0)
+                        if (((LOM_PS1_OR_RAM0(g_menu_weapon_item)->status_flags >> (action - MENU_ICON_SELECT_WEAPON_FLAG_FIRST)) & 1) != 0)
                         {
                             icon_id = action + (MENU_ICON_SPIRIT_FIRST - MENU_ICON_SELECT_WEAPON_FLAG_FIRST);
                         }
