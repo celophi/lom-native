@@ -1,0 +1,27 @@
+{
+ "about": "Calls that still go around a provider, checked by tools/testing/provider_check.py, which needs this to match exactly. Each says why. It should shrink as they move behind a provider.",
+ "providers": {
+  "remaster files provider": {
+   "src/remaster/remaster_movies.c:lom_native_remaster_movie_path": {
+    "calls": ["fopen"],
+    "why": "Checks the Remaster's movie is there, then FFmpeg opens it by its path itself, so a fake provider can't serve it yet."
+   },
+   "src/remaster/remaster_music.c:read_song_table": {
+    "calls": ["fopen"],
+    "why": "Reads the disc's MUSICS sets, not the Remaster's files: that's the disc's boundary, which has no provider yet."
+   },
+   "src/remaster/remaster_text_encyclopedia.c:read_page_file": {
+    "calls": ["fopen"],
+    "why": "Reads one of the disc's encyclopedia pages, not the Remaster's files: the disc's boundary."
+   },
+   "src/remaster/remaster_text_items.c:read_item_parts": {
+    "calls": ["fopen"],
+    "why": "Reads the disc's workshop names of materials and types, not the Remaster's files: the disc's boundary."
+   },
+   "src/remaster/remaster_text_scenes.c:dump_scene_strings": {
+    "calls": ["fopen"],
+    "why": "Writes the scene text it built to a folder for debugging (LOM_REMASTER_TEXT_DUMP), not one of the Remaster's files."
+   }
+  }
+ }
+}

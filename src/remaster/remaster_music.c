@@ -2,6 +2,7 @@
 #include "lom_native_audio_categories.h"
 #include "lom_native_cd.h"
 #include "remaster_internal.h"
+#include "remaster_files_provider.h"
 
 #include "common.h"
 #include "main/audio/akao.h"
@@ -149,13 +150,8 @@ static void read_song_table(void)
         }
 
         snprintf(path, sizeof(path), "%s/sound/music%s.psb", root, s_numbers[id]);
-        FILE* file = fopen(path, "rb");
 
-        if (file)
-        {
-            fclose(file);
-        }
-        else
+        if (!lom_remaster_files_provider()->exists(lom_remaster_files_provider()->context, path))
         {
             s_numbers[id][0] = 0;
         }

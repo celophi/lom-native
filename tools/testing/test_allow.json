@@ -1,0 +1,51 @@
+{
+ "about": "What tools/testing/test_check.py lets through, which has to match exactly and should only shrink. component: the old white-box tests, each with what it reaches into; none are added, and each one goes when it's rewritten as a behavioral or unit test. behavior_wraps: behavioral tests that fake something outside us with --wrap because it has no provider yet.",
+ "component": {
+  "tests/component/akao_irq_component.c": "Reaches into the AKAO driver's internal state to check the sound effect volume, fades and reverb.",
+  "tests/component/akao_noise_opcodes_component.c": "Runs single AKAO opcodes on the driver's internal channels.",
+  "tests/component/akao_stream_component.c": "Uses the AKAO driver's internals, and wraps lom_native_akao_stream_fail to catch a refused stream.",
+  "tests/component/spu_completion_component.c": "Reads AKAO's and PSY-Z's internal globals, and wraps PSY-Z's kernel calls.",
+  "tests/component/field_actions_component.c": "Calls FIELD's internal functions and tables, and wraps the CD queue.",
+  "tests/component/field_actor_component.c": "Calls FIELD's internal actor functions and tables, and wraps lom_native_rand.",
+  "tests/component/field_cd_wait_component.c": "Wraps lom_native_field_fail to catch FIELD stopping on a CD wait.",
+  "tests/component/field_collision_component.c": "Calls FIELD's internal collision functions.",
+  "tests/component/field_golem_party_component.c": "Calls FIELD's internal script operations and tables.",
+  "tests/component/field_heap_component.c": "Calls FIELD's internal functions, and wraps the CD queue.",
+  "tests/component/field_lands_component.c": "Calls FIELD's internal script operations.",
+  "tests/component/field_music_stream_component.c": "Calls FIELD's internal music stream, and wraps AKAO and lom_native_field_fail.",
+  "tests/component/field_party_component.c": "Calls FIELD's internal functions, and wraps LoadImage and the CD queue.",
+  "tests/component/field_resources_component.c": "Calls FIELD's functions by address, and wraps LoadImage and DrawSync.",
+  "tests/component/field_services_component.c": "Calls FIELD's functions, and wraps akao_upload_bank.",
+  "tests/component/field_slots_component.c": "Calls FIELD's internal actor tables.",
+  "tests/component/japanese_balance_component.c": "Includes src/field/field_japanese_balance.c to reach its static functions.",
+  "tests/component/movie_audio_output_edges_component.c": "Includes movie_native.c, and wraps the movie audio queue and malloc to force failures.",
+  "tests/component/movie_completion_component.c": "Includes movie_native.c, and wraps the movie decoder's close and frame reads.",
+  "tests/component/controller_callback_component.c": "Uses the controller code's internal header, and wraps the port's pad and vertical blank calls.",
+  "tests/component/controller_multitap_slot_a_component.c": "Uses the controller code's internal header.",
+  "tests/component/controller_rumble_component.c": "Uses the controller code's internal header, and wraps lom_native_PadSetAct.",
+  "tests/component/keyboard_controls_component.c": "Uses the controller code's internal header, and wraps SDL's keyboard calls.",
+  "tests/component/title_input_component.c": "Uses TITLE's internal header, and wraps akao_play_sfx."
+ },
+ "behavior_wraps": {
+  "tests/behavior/audio_categories_specification.c": {
+   "wraps": ["Psyz_CdPullSamples"],
+   "why": "Feeds known CD audio samples in; the CD audio has no provider yet."
+  },
+  "tests/behavior/cd_audio_matrix_specification.c": {
+   "wraps": ["CD_vol", "CdMix"],
+   "why": "Watches the CD audio mix the port gives PSY-Z; PSY-Z's CD audio has no provider yet."
+  },
+  "tests/behavior/movie_audio_output_sdl_specification.c": {
+   "wraps": ["SDL_DestroyAudioStream", "SDL_PutAudioStreamData", "SDL_SetAudioStreamGetCallback"],
+   "why": "Stands in for SDL's audio stream to see what the movie audio sends it; SDL audio has no provider yet."
+  },
+  "tests/behavior/settings_runtime_specification.cpp": {
+   "wraps": ["SDL_GetKeyboardState"],
+   "why": "Presses keys without a keyboard; SDL input has no provider yet."
+  },
+  "tests/behavior/settings_store_specification.cpp": {
+   "wraps": ["SDL_RenamePath"],
+   "why": "Makes saving the settings fail; SDL's file calls have no provider yet."
+  }
+ }
+}

@@ -9,7 +9,7 @@ A few were made by one-off scripts instead: the `events/` routes (a scene's own 
 Nothing can make them again, so they're committed. If you change one, treat it like changing any other test.
 
 - `saves/` has the starting saves: a new game in the bedroom, the same after the opening (built, and the card the game itself wrote at the end of `newgame/opening-save`), and the `chain-*` saves the story-chain routes start from. The generators start from the new-game one too.
-- `home/`, `newgame/`, `domina/`, `wmap/events/`, `wmap/esl/` (the world map coming back from Lucemia), `<area>/events/` and `<area>/story-chain/` are the tests themselves, and so are `always-run/` and `widescreen/`, which test those features, and `mods/`, where each route runs with a set of mods from `tests/mods/`.
+- `home/`, `newgame/`, `domina/`, `wmap/events/`, `wmap/esl/` (the world map coming back from Lucemia), `<area>/events/` and `<area>/story-chain/` are the tests themselves, and so are `always-run/` and `widescreen/`, which test those features, and `mods/`, where each route runs with a set of mods from `tests/support/mods/`.
 
 The Japanese game's routes are in `../jp/`, hand-written too. They only run when the build knows where your Japanese disc is.
 

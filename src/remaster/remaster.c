@@ -1,6 +1,7 @@
 #include "lom_native_remaster.h"
 #include "lom_native_cd.h"
 #include "remaster_internal.h"
+#include "remaster_files_provider.h"
 #include "../gpu/hd_textures.h"
 #include "common/memory_map.h"
 
@@ -15,7 +16,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/stat.h>
 
 #define PATH_SIZE 4096
 #define PAGE_SIZE 1024
@@ -60,8 +60,8 @@ static unsigned s_record_count;
  */
 static int is_directory(const char* path)
 {
-    struct stat st;
-    return stat(path, &st) == 0 && (st.st_mode & S_IFMT) == S_IFDIR;
+    const LomRemasterFilesProvider* files = lom_remaster_files_provider();
+    return files->is_folder(files->context, path);
 }
 
 /**

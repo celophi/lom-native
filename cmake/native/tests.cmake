@@ -1,15 +1,15 @@
-add_executable(lom-unit-decode-smoke tests/smoke/platform/unit_decode_smoke.c)
-target_compile_definitions(lom-unit-decode-smoke PRIVATE __psyz VERSION_US)
-target_link_libraries(lom-unit-decode-smoke PRIVATE lom_native_runtime lom_native_port)
+add_executable(lom-unit-decode-integration tests/integration/unit_decode_integration.c)
+target_compile_definitions(lom-unit-decode-integration PRIVATE __psyz VERSION_US)
+target_link_libraries(lom-unit-decode-integration PRIVATE lom_native_runtime lom_native_port)
 
 add_library(lom_native_psyz_gte_contract OBJECT tests/support/sdk/psyz_gte_contract.c)
 target_link_libraries(lom_native_psyz_gte_contract PRIVATE psyz)
-add_executable(lom-sdk-abi-smoke tests/smoke/platform/sdk_abi_smoke.c
+add_executable(lom-sdk-abi-test tests/unit/sdk_abi_test.c
     $<TARGET_OBJECTS:lom_native_psyz_gte_contract>)
-target_compile_definitions(lom-sdk-abi-smoke PRIVATE __psyz VERSION_US)
-target_compile_options(lom-sdk-abi-smoke PRIVATE -fno-builtin)
-target_include_directories(lom-sdk-abi-smoke BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
-target_link_libraries(lom-sdk-abi-smoke PRIVATE lom_native_port)
+target_compile_definitions(lom-sdk-abi-test PRIVATE __psyz VERSION_US)
+target_compile_options(lom-sdk-abi-test PRIVATE -fno-builtin)
+target_include_directories(lom-sdk-abi-test BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
+target_link_libraries(lom-sdk-abi-test PRIVATE lom_native_port)
 
 function(lom_native_runtime_test target)
     cmake_parse_arguments(PARSE_ARGV 1 test "FIELD" "" "WRAP")
@@ -25,25 +25,26 @@ function(lom_native_runtime_test target)
     endif()
 endfunction()
 
-lom_native_runtime_test(lom-cd-stream-smoke tests/smoke/media/cd_stream_smoke.c)
-lom_native_runtime_test(lom-session-prune-smoke tests/smoke/platform/session_prune_smoke.c)
-lom_native_runtime_test(lom-session-switches-smoke tests/smoke/platform/session_switches_smoke.c)
+lom_native_runtime_test(lom-cd-stream-integration tests/integration/cd_stream_integration.c)
+lom_native_runtime_test(lom-session-prune-integration tests/integration/session_prune_integration.c)
+lom_native_runtime_test(lom-session-switches-integration tests/integration/session_switches_integration.c)
 lom_native_runtime_test(lom-song-render tests/support/tools/song_render.c)
-lom_native_runtime_test(lom-remaster-files-smoke tests/smoke/platform/remaster_files_smoke.c)
-lom_native_runtime_test(lom-remaster-screens-smoke tests/smoke/platform/remaster_screens_smoke.c)
-lom_native_runtime_test(lom-remaster-movies-smoke tests/smoke/platform/remaster_movies_smoke.c)
-lom_native_runtime_test(lom-crash-report-smoke tests/smoke/platform/crash_report_smoke.c)
-lom_native_runtime_test(lom-field-cd-wait-smoke tests/smoke/field/field_cd_wait_smoke.c)
-target_compile_definitions(lom-field-cd-wait-smoke PRIVATE lom_native_field_fail=__wrap_lom_native_field_fail)
-target_link_options(lom-field-cd-wait-smoke PRIVATE -Wl,--wrap=lom_native_field_fail)
-lom_native_runtime_test(lom-cd-smoke tests/smoke/media/cd_resource_smoke.c)
-lom_native_runtime_test(lom-cd-callback-smoke tests/smoke/media/cd_callback_smoke.c)
-lom_native_runtime_test(lom-cd-audio-matrix-smoke tests/smoke/media/cd_audio_matrix_smoke.c WRAP CdMix CD_vol)
+lom_native_runtime_test(lom-remaster-files-test tests/unit/remaster_files_test.c)
+lom_native_runtime_test(lom-remaster-files-provider-contract tests/providers/remaster_files_provider_contract.c)
+lom_native_runtime_test(lom-remaster-screens-test tests/unit/remaster_screens_test.c)
+lom_native_runtime_test(lom-remaster-movies-integration tests/integration/remaster_movies_integration.c)
+lom_native_runtime_test(lom-crash-report-integration tests/integration/crash_report_integration.c)
+lom_native_runtime_test(lom-field-cd-wait-component tests/component/field_cd_wait_component.c)
+target_compile_definitions(lom-field-cd-wait-component PRIVATE lom_native_field_fail=__wrap_lom_native_field_fail)
+target_link_options(lom-field-cd-wait-component PRIVATE -Wl,--wrap=lom_native_field_fail)
+lom_native_runtime_test(lom-cd-resource-integration tests/integration/cd_resource_integration.c)
+lom_native_runtime_test(lom-cd-callback-integration tests/integration/cd_callback_integration.c)
+lom_native_runtime_test(lom-cd-audio-matrix-specification tests/behavior/cd_audio_matrix_specification.c WRAP CdMix CD_vol)
 
 foreach(test IN ITEMS completion audio-output-edges)
     string(REPLACE "-" "_" file "${test}")
-    set(target lom-movie-${test}-smoke)
-    add_executable(${target} tests/smoke/media/movie_${file}_smoke.c src/core/game_loop.c ${LOM_GAME_CONTEXT_SOURCE}
+    set(target lom-movie-${test}-component)
+    add_executable(${target} tests/component/movie_${file}_component.c src/core/game_loop.c ${LOM_GAME_CONTEXT_SOURCE}
         src/gpu/draw_labels.c)
     target_compile_definitions(${target} PRIVATE __psyz VERSION_US LOM_NATIVE=1 _POSIX_C_SOURCE=200809L)
     target_compile_options(${target} PRIVATE -ffunction-sections -fdata-sections)
@@ -52,12 +53,12 @@ foreach(test IN ITEMS completion audio-output-edges)
     target_link_options(${target} PRIVATE ${LOM_LINK_GC_SECTIONS})
     set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
 endforeach()
-target_sources(lom-movie-completion-smoke PRIVATE src/movie/movie_decoder.c ${LOM_MOVIE_PROCESS_SOURCE})
-target_link_libraries(lom-movie-completion-smoke PRIVATE lom_switches)
+target_sources(lom-movie-completion-component PRIVATE src/movie/movie_decoder.c ${LOM_MOVIE_PROCESS_SOURCE})
+target_link_libraries(lom-movie-completion-component PRIVATE lom_switches)
 if(WIN32)
-    target_sources(lom-movie-completion-smoke PRIVATE tests/support/media/movie_test_win32.c)
+    target_sources(lom-movie-completion-component PRIVATE tests/support/media/movie_test_win32.c)
 endif()
-target_link_options(lom-movie-completion-smoke PRIVATE
+target_link_options(lom-movie-completion-component PRIVATE
     -Wl,--wrap=lom_movie_decoder_close -Wl,--wrap=lom_movie_decoder_read_frame)
 
 add_library(lom_movie_audio_output_edge_owner OBJECT src/movie/movie_audio_output.c)
@@ -68,9 +69,9 @@ target_include_directories(lom_movie_audio_output_edge_owner PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/movie"
     $<TARGET_PROPERTY:SDL3::SDL3,INTERFACE_INCLUDE_DIRECTORIES>)
 set_property(TARGET lom_movie_audio_output_edge_owner PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
-target_sources(lom-movie-audio-output-edges-smoke PRIVATE
+target_sources(lom-movie-audio-output-edges-component PRIVATE
     src/movie/movie_audio.c src/movie/movie_audio_fifo.c $<TARGET_OBJECTS:lom_movie_audio_output_edge_owner>)
-target_link_options(lom-movie-audio-output-edges-smoke PRIVATE
+target_link_options(lom-movie-audio-output-edges-component PRIVATE
     -Wl,--wrap=lom_movie_audio_fifo_put -Wl,--wrap=lom_movie_audio_fifo_pull)
 
 add_library(lom_movie_audio_voice_oracle OBJECT
@@ -79,123 +80,123 @@ add_library(lom_movie_audio_voice_oracle OBJECT
 target_compile_definitions(lom_movie_audio_voice_oracle PRIVATE ${LOM_NATIVE_GAME_DEFINITIONS})
 target_compile_options(lom_movie_audio_voice_oracle PRIVATE ${LOM_NATIVE_GAME_OPTIONS})
 target_include_directories(lom_movie_audio_voice_oracle BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
-add_executable(lom-movie-audio-rematrix-smoke
-    tests/smoke/media/movie_audio_rematrix_smoke.c
+add_executable(lom-movie-audio-rematrix-test
+    tests/unit/movie_audio_rematrix_test.c
     src/movie/movie_audio.c
     src/movie/movie_audio_fifo.c
     $<TARGET_OBJECTS:lom_movie_audio_voice_oracle>)
-target_include_directories(lom-movie-audio-rematrix-smoke PRIVATE
+target_include_directories(lom-movie-audio-rematrix-test PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/movie")
-target_link_options(lom-movie-audio-rematrix-smoke PRIVATE ${LOM_LINK_GC_SECTIONS})
-foreach(target IN ITEMS lom_movie_audio_voice_oracle lom-movie-audio-rematrix-smoke)
+target_link_options(lom-movie-audio-rematrix-test PRIVATE ${LOM_LINK_GC_SECTIONS})
+foreach(target IN ITEMS lom_movie_audio_voice_oracle lom-movie-audio-rematrix-test)
     set_property(TARGET ${target} PROPERTY INTERPROCEDURAL_OPTIMIZATION FALSE)
 endforeach()
 if(WIN32)
-    foreach(target IN ITEMS lom-movie-completion-smoke lom-movie-audio-output-edges-smoke lom-movie-audio-rematrix-smoke)
+    foreach(target IN ITEMS lom-movie-completion-component lom-movie-audio-output-edges-component lom-movie-audio-rematrix-test)
         target_link_options(${target} PRIVATE "LINKER:-Xlink=-force:unresolved")
     endforeach()
 endif()
 
 find_package(Threads REQUIRED)
-lom_native_runtime_test(lom-spu-completion-smoke tests/smoke/audio/spu_completion_smoke.c tests/support/sdk/spu_completion_fixture.c)
-target_compile_definitions(lom-spu-completion-smoke PRIVATE _POSIX_C_SOURCE=200809L)
-target_include_directories(lom-spu-completion-smoke BEFORE PRIVATE "${LOM_PSYZ_DIR}/psyz/include")
-target_link_libraries(lom-spu-completion-smoke PRIVATE Threads::Threads)
-target_link_options(lom-spu-completion-smoke PRIVATE
+lom_native_runtime_test(lom-spu-completion-component tests/component/spu_completion_component.c tests/support/sdk/spu_completion_fixture.c)
+target_compile_definitions(lom-spu-completion-component PRIVATE _POSIX_C_SOURCE=200809L)
+target_include_directories(lom-spu-completion-component BEFORE PRIVATE "${LOM_PSYZ_DIR}/psyz/include")
+target_link_libraries(lom-spu-completion-component PRIVATE Threads::Threads)
+target_link_options(lom-spu-completion-component PRIVATE
     -Wl,--wrap=SpuSetTransferCallback -Wl,--wrap=psyz_log -Wl,--wrap=ResetCallback
     -Wl,--wrap=DMACallback -Wl,--wrap=WaitEvent)
 
-lom_native_runtime_test(lom-akao-mmio-retrigger-smoke tests/smoke/audio/akao_mmio_retrigger_smoke.c)
-target_compile_definitions(lom-akao-mmio-retrigger-smoke PRIVATE _GNU_SOURCE)
-target_include_directories(lom-akao-mmio-retrigger-smoke BEFORE PRIVATE "${LOM_PSYZ_DIR}/psyz/include")
+lom_native_runtime_test(lom-akao-mmio-retrigger-test tests/unit/akao_mmio_retrigger_test.c)
+target_compile_definitions(lom-akao-mmio-retrigger-test PRIVATE _GNU_SOURCE)
+target_include_directories(lom-akao-mmio-retrigger-test BEFORE PRIVATE "${LOM_PSYZ_DIR}/psyz/include")
 
-lom_native_runtime_test(lom-akao-noise-opcodes-smoke tests/smoke/audio/akao_noise_opcodes_smoke.c)
-target_compile_definitions(lom-akao-noise-opcodes-smoke PRIVATE _POSIX_C_SOURCE=200809L)
+lom_native_runtime_test(lom-akao-noise-opcodes-component tests/component/akao_noise_opcodes_component.c)
+target_compile_definitions(lom-akao-noise-opcodes-component PRIVATE _POSIX_C_SOURCE=200809L)
 
-lom_native_runtime_test(lom-akao-irq-smoke tests/smoke/audio/akao_irq_smoke.c tests/probes/audio/akao_sfx_volume_probe.c tests/probes/audio/akao_category_probe.c)
-target_compile_definitions(lom-akao-irq-smoke PRIVATE _POSIX_C_SOURCE=200809L)
+lom_native_runtime_test(lom-akao-irq-component tests/component/akao_irq_component.c tests/support/audio/akao_sfx_volume_probe.c tests/support/audio/akao_category_probe.c)
+target_compile_definitions(lom-akao-irq-component PRIVATE _POSIX_C_SOURCE=200809L)
 
-lom_native_runtime_test(lom-akao-stream-smoke tests/smoke/audio/akao_stream_smoke.c WRAP lom_native_akao_stream_fail)
+lom_native_runtime_test(lom-akao-stream-component tests/component/akao_stream_component.c WRAP lom_native_akao_stream_fail)
 
-lom_native_runtime_test(lom-card-smoke tests/smoke/platform/card_smoke.c)
-target_compile_definitions(lom-card-smoke PRIVATE _POSIX_C_SOURCE=200809L)
+lom_native_runtime_test(lom-card-integration tests/integration/card_integration.c)
+target_compile_definitions(lom-card-integration PRIVATE _POSIX_C_SOURCE=200809L)
 
-lom_native_runtime_test(lom-keyboard-controls-smoke tests/smoke/platform/keyboard_controls_smoke.c tests/support/platform/lom_native_display.c WRAP SDL_HasKeyboard SDL_GetKeyboardState)
-lom_native_runtime_test(lom-controller-multitap-slot-a-smoke tests/smoke/platform/controller_multitap_slot_a_smoke.c)
-lom_native_runtime_test(lom-controller-rumble-smoke tests/smoke/platform/controller_rumble_smoke.c tests/support/platform/lom_native_display.c)
-target_include_directories(lom-controller-rumble-smoke PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/platform")
-target_link_options(lom-controller-rumble-smoke PRIVATE -Wl,--wrap=SDL_HasKeyboard -Wl,--wrap=lom_native_PadSetAct)
+lom_native_runtime_test(lom-keyboard-controls-component tests/component/keyboard_controls_component.c tests/support/platform/lom_native_display.c WRAP SDL_HasKeyboard SDL_GetKeyboardState)
+lom_native_runtime_test(lom-controller-multitap-slot-a-component tests/component/controller_multitap_slot_a_component.c)
+lom_native_runtime_test(lom-controller-rumble-component tests/component/controller_rumble_component.c tests/support/platform/lom_native_display.c)
+target_include_directories(lom-controller-rumble-component PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/platform")
+target_link_options(lom-controller-rumble-component PRIVATE -Wl,--wrap=SDL_HasKeyboard -Wl,--wrap=lom_native_PadSetAct)
 add_library(lom-controller-callback-fixture SHARED tests/support/platform/controller_callback_fixture.c)
 add_library(lom_native_controller_only OBJECT "${LOM_DECOMP_DIR}/src/main/controller.c")
 target_compile_definitions(lom_native_controller_only PRIVATE ${LOM_NATIVE_GAME_DEFINITIONS})
 target_compile_options(lom_native_controller_only PRIVATE ${LOM_NATIVE_GAME_OPTIONS})
 target_include_directories(lom_native_controller_only BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
-add_executable(lom-controller-callback-smoke tests/smoke/platform/controller_callback_smoke.c
+add_executable(lom-controller-callback-component tests/component/controller_callback_component.c
     src/input/controller_psyq.c src/input/controller_rumble.c src/input/input_boundary.c src/core/boundary.c
     src/core/time_boundary.c src/core/game_loop.c ${LOM_GAME_CONTEXT_SOURCE} src/gpu/draw_labels.c
     $<TARGET_OBJECTS:lom_native_controller_only>)
-target_compile_definitions(lom-controller-callback-smoke PRIVATE __psyz VERSION_US LOM_NATIVE=1)
-target_compile_options(lom-controller-callback-smoke PRIVATE -ffunction-sections -fdata-sections)
-target_include_directories(lom-controller-callback-smoke BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
-target_link_libraries(lom-controller-callback-smoke PRIVATE lom_native_memory ${CMAKE_DL_LIBS})
-target_link_options(lom-controller-callback-smoke PRIVATE ${LOM_LINK_GC_SECTIONS})
+target_compile_definitions(lom-controller-callback-component PRIVATE __psyz VERSION_US LOM_NATIVE=1)
+target_compile_options(lom-controller-callback-component PRIVATE -ffunction-sections -fdata-sections)
+target_include_directories(lom-controller-callback-component BEFORE PRIVATE ${LOM_NATIVE_GAME_INCLUDES})
+target_link_libraries(lom-controller-callback-component PRIVATE lom_native_memory ${CMAKE_DL_LIBS})
+target_link_options(lom-controller-callback-component PRIVATE ${LOM_LINK_GC_SECTIONS})
 foreach(boundary IN ITEMS VSyncCallback PadInitDirect PadStartCom PadStopCom PadChkVsync PadGetState)
-    target_link_options(lom-controller-callback-smoke PRIVATE "-Wl,--wrap=lom_native_${boundary}")
+    target_link_options(lom-controller-callback-component PRIVATE "-Wl,--wrap=lom_native_${boundary}")
 endforeach()
-add_dependencies(lom-controller-callback-smoke lom-controller-callback-fixture)
+add_dependencies(lom-controller-callback-component lom-controller-callback-fixture)
 
-lom_native_runtime_test(lom-field-services-smoke tests/smoke/field/field_services_smoke.c WRAP akao_upload_bank)
+lom_native_runtime_test(lom-field-services-component tests/component/field_services_component.c WRAP akao_upload_bank)
 
-lom_native_runtime_test(lom-gte-tables-smoke tests/smoke/field/gte_tables_smoke.c)
-add_executable(lom-japanese-balance-smoke tests/smoke/field/japanese_balance_smoke.c)
-target_compile_definitions(lom-japanese-balance-smoke PRIVATE VERSION_US)
-target_link_libraries(lom-japanese-balance-smoke PRIVATE lom_switches)
-add_executable(lom-gte-tables-jp-smoke tests/smoke/field/gte_tables_smoke.c)
-target_compile_definitions(lom-gte-tables-jp-smoke PRIVATE __psyz VERSION_JP LOM_NATIVE=1)
-target_link_libraries(lom-gte-tables-jp-smoke PRIVATE lom_native_runtime_jp lom_native_port_jp)
+lom_native_runtime_test(lom-gte-tables-integration tests/integration/gte_tables_integration.c)
+add_executable(lom-japanese-balance-component tests/component/japanese_balance_component.c)
+target_compile_definitions(lom-japanese-balance-component PRIVATE VERSION_US)
+target_link_libraries(lom-japanese-balance-component PRIVATE lom_switches)
+add_executable(lom-gte-tables-jp-integration tests/integration/gte_tables_integration.c)
+target_compile_definitions(lom-gte-tables-jp-integration PRIVATE __psyz VERSION_JP LOM_NATIVE=1)
+target_link_libraries(lom-gte-tables-jp-integration PRIVATE lom_native_runtime_jp lom_native_port_jp)
 
-lom_native_runtime_test(lom-field-lands-smoke tests/smoke/field/field_lands_smoke.c FIELD)
+lom_native_runtime_test(lom-field-lands-component tests/component/field_lands_component.c FIELD)
 
-lom_native_runtime_test(lom-field-heap-smoke tests/smoke/field/field_heap_smoke.c FIELD WRAP cdrom_queue_read)
+lom_native_runtime_test(lom-field-heap-component tests/component/field_heap_component.c FIELD WRAP cdrom_queue_read)
 
-lom_native_runtime_test(lom-wmap-callback-tables-smoke tests/smoke/wmap/wmap_callback_tables_smoke.c)
+lom_native_runtime_test(lom-wmap-callback-tables-integration tests/integration/wmap_callback_tables_integration.c)
 
-lom_native_runtime_test(lom-overlay-smoke tests/smoke/platform/overlay_smoke.c)
+lom_native_runtime_test(lom-overlay-integration tests/integration/overlay_integration.c)
 
-lom_native_runtime_test(lom-title-input-smoke tests/smoke/title/title_input_smoke.c)
-target_include_directories(lom-title-input-smoke BEFORE PRIVATE "${LOM_DECOMP_DIR}/src")
-target_link_options(lom-title-input-smoke PRIVATE -Wl,--wrap=akao_play_sfx)
+lom_native_runtime_test(lom-title-input-component tests/component/title_input_component.c)
+target_include_directories(lom-title-input-component BEFORE PRIVATE "${LOM_DECOMP_DIR}/src")
+target_link_options(lom-title-input-component PRIVATE -Wl,--wrap=akao_play_sfx)
 
-lom_native_runtime_test(lom-field-golem-party-smoke tests/smoke/field/field_golem_party_smoke.c FIELD)
+lom_native_runtime_test(lom-field-golem-party-component tests/component/field_golem_party_component.c FIELD)
 
-lom_native_runtime_test(lom-field-music-stream-smoke tests/smoke/field/field_music_stream_smoke.c)
-target_compile_definitions(lom-field-music-stream-smoke PRIVATE _GNU_SOURCE)
-target_link_options(lom-field-music-stream-smoke PRIVATE
+lom_native_runtime_test(lom-field-music-stream-component tests/component/field_music_stream_component.c)
+target_compile_definitions(lom-field-music-stream-component PRIVATE _GNU_SOURCE)
+target_link_options(lom-field-music-stream-component PRIVATE
     -Wl,--wrap=akao_play_song -Wl,--wrap=akao_spu_wait -Wl,--wrap=lom_native_field_fail)
 
-lom_native_runtime_test(lom-field-actions-smoke tests/smoke/field/field_actions_smoke.c FIELD WRAP cdrom_queue_read cdrom_wait_queue_empty)
+lom_native_runtime_test(lom-field-actions-component tests/component/field_actions_component.c FIELD WRAP cdrom_queue_read cdrom_wait_queue_empty)
 
-lom_native_runtime_test(lom-field-slots-smoke tests/smoke/field/field_slots_smoke.c FIELD)
+lom_native_runtime_test(lom-field-slots-component tests/component/field_slots_component.c FIELD)
 
-lom_native_runtime_test(lom-field-collision-smoke tests/smoke/field/field_collision_smoke.c FIELD)
+lom_native_runtime_test(lom-field-collision-component tests/component/field_collision_component.c FIELD)
 
-lom_native_runtime_test(lom-field-resources-smoke tests/smoke/field/field_resources_smoke.c FIELD WRAP LoadImage DrawSync)
+lom_native_runtime_test(lom-field-resources-component tests/component/field_resources_component.c FIELD WRAP LoadImage DrawSync)
 
-lom_native_runtime_test(lom-field-party-smoke tests/smoke/field/field_party_smoke.c FIELD WRAP LoadImage cdrom_queue_read cdrom_wait_queue_empty)
+lom_native_runtime_test(lom-field-party-component tests/component/field_party_component.c FIELD WRAP LoadImage cdrom_queue_read cdrom_wait_queue_empty)
 
-lom_native_runtime_test(lom-field-actor-smoke tests/smoke/field/field_actor_smoke.c tests/smoke/field/field_idle_oracle.c FIELD WRAP lom_native_rand)
+lom_native_runtime_test(lom-field-actor-component tests/component/field_actor_component.c tests/support/oracles/field_idle_oracle.c FIELD WRAP lom_native_rand)
 
-add_executable(lom-title-entry-smoke
-    tests/smoke/title/title_entry_smoke.c
+add_executable(lom-title-entry-integration
+    tests/integration/title_entry_integration.c
     tests/support/platform/lom_native_gp0_hash.c
 )
-target_compile_definitions(lom-title-entry-smoke PRIVATE __psyz VERSION_US)
-target_include_directories(lom-title-entry-smoke PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/platform")
-target_link_libraries(lom-title-entry-smoke PRIVATE lom_native_runtime lom_native_port)
+target_compile_definitions(lom-title-entry-integration PRIVATE __psyz VERSION_US)
+target_include_directories(lom-title-entry-integration PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/platform")
+target_link_libraries(lom-title-entry-integration PRIVATE lom_native_runtime lom_native_port)
 
-add_executable(lom-field-map-decode-smoke tests/smoke/field/field_map_decode_smoke.c)
-target_compile_definitions(lom-field-map-decode-smoke PRIVATE __psyz VERSION_US)
-target_link_libraries(lom-field-map-decode-smoke PRIVATE lom_native_runtime lom_native_port)
+add_executable(lom-field-map-decode-integration tests/integration/field_map_decode_integration.c)
+target_compile_definitions(lom-field-map-decode-integration PRIVATE __psyz VERSION_US)
+target_link_libraries(lom-field-map-decode-integration PRIVATE lom_native_runtime lom_native_port)
 
 foreach(version IN ITEMS us jp)
     string(TOUPPER "${version}" version_define)
@@ -239,6 +240,6 @@ endforeach()
 
 include(cmake/tests/routes.cmake)
 
-add_executable(lom-mods-smoke tests/smoke/platform/mods_smoke.cpp src/core/random_native.c src/core/portable.c)
-target_include_directories(lom-mods-smoke PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(lom-mods-smoke PRIVATE lom_mods)
+add_executable(lom-mods-specification tests/behavior/mods_specification.cpp src/core/random_native.c src/core/portable.c)
+target_include_directories(lom-mods-specification PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(lom-mods-specification PRIVATE lom_mods)

@@ -12,7 +12,7 @@
         "src/gpu/shaders/xbr_msl.h",
         "src/gpu/shaders/xbr_spv.h",
         "src/mods/japanese_balance_data.inc",
-        "tests/smoke/platform/remaster_fixture.h"
+        "tests/support/platform/remaster_fixture.h"
     ],
     "skipped_folders": [
         ".git",

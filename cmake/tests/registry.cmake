@@ -6,15 +6,37 @@ set(LOM_DISC_ROOT "" CACHE PATH "Your extracted Legend of Mana disc, for tests t
 set(LOM_DISC_ROOT_JP "" CACHE PATH "Your extracted Japanese Legend of Mana disc, for the Japanese game's tests")
 set(LOM_TEST_RESULTS "${CMAKE_BINARY_DIR}/test-results" CACHE PATH "Where test folders go, unless LOM_TEST_RUN_DIR is set")
 set(LOM_TEST_RUNNER "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/run_test.py")
+set(LOM_TEST_KINDS unit contract behavior integration component static e2e)
+set(LOM_TEST_TARGET_KINDS test unit contract contract specification behavior integration integration component component)
+set(LOM_TEST_TARGET_PATTERN "^lom-.+-(test|contract|specification|integration|component)$")
+
+function(lom_test_kind_of target out)
+    set(kind "")
+    if(target MATCHES "${LOM_TEST_TARGET_PATTERN}")
+        list(FIND LOM_TEST_TARGET_KINDS "${CMAKE_MATCH_1}" at)
+        math(EXPR at "${at} + 1")
+        list(GET LOM_TEST_TARGET_KINDS ${at} kind)
+    endif()
+    set(${out} "${kind}" PARENT_SCOPE)
+endfunction()
 
 function(lom_add_test)
-    cmake_parse_arguments(T "GPU;NO_HEADLESS;PACED_ONLY" "NAME;TIER;TIMEOUT;EXPECT_EXIT;CLOCK;CAPTURE_ENV;DISC" "COMMAND;LABELS;ENV" ${ARGN})
+    cmake_parse_arguments(T "GPU;NO_HEADLESS;PACED_ONLY" "NAME;TIER;KIND;TIMEOUT;EXPECT_EXIT;CLOCK;CAPTURE_ENV;DISC" "COMMAND;LABELS;ENV" ${ARGN})
     if(NOT T_NAME OR T_TIER STREQUAL "" OR NOT T_COMMAND)
         message(FATAL_ERROR "lom_add_test needs NAME, TIER and COMMAND")
     endif()
 
     list(POP_FRONT T_COMMAND program)
+    lom_test_kind_of("${program}" kind)
+    if(NOT T_KIND)
+        set(T_KIND "${kind}")
+    endif()
+    if(NOT T_KIND IN_LIST LOM_TEST_KINDS)
+        message(FATAL_ERROR "${T_NAME}: say what kind of test it is, with KIND (one of ${LOM_TEST_KINDS}), or build it as a target named for its kind, like lom-${T_NAME}-test")
+    endif()
+    set(target "")
     if(TARGET ${program})
+        set(target ${program})
         set(program "$<TARGET_FILE:${program}>")
     elseif(program MATCHES "^lom-")
         return()
@@ -49,7 +71,10 @@ function(lom_add_test)
     add_test(NAME ${T_NAME} COMMAND ${runner} -- ${program} ${T_COMMAND})
 
     string(REGEX MATCH "^[a-z0-9]+" subsystem "${T_NAME}")
-    set(labels t${T_TIER} ${subsystem} ${T_LABELS})
+    if(subsystem IN_LIST LOM_TEST_KINDS)
+        set(subsystem "")
+    endif()
+    set(labels t${T_TIER} ${T_KIND} ${subsystem} ${T_LABELS})
     if(T_GPU)
         list(APPEND labels gpu)
     endif()
@@ -65,131 +90,187 @@ function(lom_add_test)
     if(T_PACED_ONLY)
         set_property(TEST ${T_NAME} PROPERTY RUN_SERIAL TRUE)
     endif()
+    if(target)
+        list(JOIN labels "," joined)
+        set_property(GLOBAL APPEND PROPERTY LOM_TEST_RUNS "${target}|${T_NAME}|${joined}")
+    endif()
 endfunction()
 
 add_library(lom_native_test_clock OBJECT "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/session/test_clock.c")
 get_property(lom_test_targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
 foreach(target IN LISTS lom_test_targets)
     get_target_property(type ${target} TYPE)
-    if(type STREQUAL "EXECUTABLE" AND target MATCHES "^lom-.*-smoke$")
+    if(type STREQUAL "EXECUTABLE" AND target MATCHES "${LOM_TEST_TARGET_PATTERN}")
         target_sources(${target} PRIVATE $<TARGET_OBJECTS:lom_native_test_clock>)
     endif()
 endforeach()
 
-if(TARGET lom-gte-register-transfer-smoke)
+if(TARGET lom-gte-register-transfer-test)
     lom_add_test(NAME gte-register-transfer TIER 0 NO_HEADLESS TIMEOUT 30 LABELS sdk gte
-        COMMAND lom-gte-register-transfer-smoke)
+        COMMAND lom-gte-register-transfer-test)
 endif()
-if(TARGET lom-gte-screen-offset-smoke)
+if(TARGET lom-gte-screen-offset-test)
     lom_add_test(NAME gte-screen-offset TIER 0 NO_HEADLESS TIMEOUT 30 LABELS sdk gte
-        COMMAND lom-gte-screen-offset-smoke)
+        COMMAND lom-gte-screen-offset-test)
 endif()
-if(TARGET lom-gte-color-alias-smoke)
+if(TARGET lom-gte-color-alias-test)
     lom_add_test(NAME gte-color-alias TIER 0 NO_HEADLESS TIMEOUT 60 LABELS sdk gte
-        COMMAND lom-gte-color-alias-smoke)
+        COMMAND lom-gte-color-alias-test)
 endif()
 
-lom_add_test(NAME movie-decoder TIER 0 NO_HEADLESS COMMAND lom-movie-decoder-smoke)
-lom_add_test(NAME portable TIER 0 NO_HEADLESS LABELS platform COMMAND lom-portable-smoke)
-lom_add_test(NAME separation-check TIER 0 NO_HEADLESS LABELS platform
+lom_add_test(NAME movie-decoder TIER 0 NO_HEADLESS COMMAND lom-movie-decoder-integration)
+lom_add_test(NAME portable TIER 0 NO_HEADLESS LABELS platform COMMAND lom-portable-integration)
+lom_add_test(NAME separation-check TIER 0 KIND static NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/separation_check.py")
-lom_add_test(NAME comment-check TIER 0 NO_HEADLESS LABELS lint
+lom_add_test(NAME provider-check TIER 0 KIND static NO_HEADLESS LABELS platform
+    COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/provider_check.py")
+lom_add_test(NAME test-check TIER 0 KIND static NO_HEADLESS LABELS platform
+    COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/test_check.py" "${CMAKE_BINARY_DIR}/test-targets.json")
+lom_add_test(NAME comment-check TIER 0 KIND static NO_HEADLESS LABELS lint
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/lint/check_comments.py")
-lom_add_test(NAME native-stubs TIER 0 NO_HEADLESS LABELS platform
+lom_add_test(NAME native-stubs TIER 0 KIND static NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/native_stubs_check.py" "${LOM_NATIVE_STUBS}")
-lom_add_test(NAME native-stubs-jp TIER 0 NO_HEADLESS LABELS platform
+lom_add_test(NAME native-stubs-jp TIER 0 KIND static NO_HEADLESS LABELS platform
     COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/testing/native_stubs_check.py" "${LOM_NATIVE_STUBS_jp}")
-lom_add_test(NAME crash-report TIER 0 NO_HEADLESS LABELS platform COMMAND lom-crash-report-smoke)
-lom_add_test(NAME remaster-files TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-smoke)
-lom_add_test(NAME remaster-screens TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-screens-smoke)
-lom_add_test(NAME remaster-movies TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-movies-smoke)
+lom_add_test(NAME crash-report TIER 0 NO_HEADLESS LABELS platform COMMAND lom-crash-report-integration)
+lom_add_test(NAME remaster-files TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-test)
+lom_add_test(NAME remaster-files-provider TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-files-provider-contract)
+lom_add_test(NAME remaster-screens TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-screens-test)
+lom_add_test(NAME remaster-movies TIER 0 NO_HEADLESS LABELS platform COMMAND lom-remaster-movies-integration)
 foreach(case IN ITEMS size newest count)
     lom_add_test(NAME session-prune-${case} TIER 0 NO_HEADLESS LABELS platform session
-        COMMAND lom-session-prune-smoke ${case})
+        COMMAND lom-session-prune-integration ${case})
 endforeach()
 foreach(case IN ITEMS record replay v4 old)
     lom_add_test(NAME session-switches-${case} TIER 0 NO_HEADLESS LABELS platform session
-        COMMAND lom-session-switches-smoke ${case})
+        COMMAND lom-session-switches-integration ${case})
 endforeach()
 lom_add_test(NAME session-switches-unknown TIER 0 NO_HEADLESS EXPECT_EXIT 2 LABELS platform session
-    COMMAND lom-session-switches-smoke unknown)
+    COMMAND lom-session-switches-integration unknown)
 foreach(case IN ITEMS switches refused scripts dice api examples notices surface cards games relations toggles options api5 seeds files artifacts)
     lom_add_test(NAME mods-${case} TIER 0 NO_HEADLESS LABELS platform mods
-        COMMAND lom-mods-smoke ${case} "${CMAKE_CURRENT_SOURCE_DIR}/tests/mods" "${CMAKE_CURRENT_SOURCE_DIR}/launcher/data/mods")
+        COMMAND lom-mods-specification ${case} "${CMAKE_CURRENT_SOURCE_DIR}/tests/support/mods" "${CMAKE_CURRENT_SOURCE_DIR}/launcher/data/mods")
 endforeach()
 lom_add_test(NAME movie-completion TIER 0 NO_HEADLESS TIMEOUT 30 LABELS movie decoder
-    COMMAND lom-movie-completion-smoke)
+    COMMAND lom-movie-completion-component)
 lom_add_test(NAME movie-audio-output-sdl TIER 0 TIMEOUT 30
-    COMMAND lom-movie-audio-output-sdl-smoke)
+    COMMAND lom-movie-audio-output-sdl-specification)
 lom_add_test(NAME movie-audio-rematrix TIER 0 NO_HEADLESS TIMEOUT 30
-    COMMAND lom-movie-audio-rematrix-smoke)
+    COMMAND lom-movie-audio-rematrix-test)
 lom_add_test(NAME movie-audio-output-edges TIER 0 NO_HEADLESS TIMEOUT 30
-    COMMAND lom-movie-audio-output-edges-smoke)
+    COMMAND lom-movie-audio-output-edges-component)
 
-if(TARGET lom-cd-audio-matrix-smoke)
+if(TARGET lom-cd-audio-matrix-specification)
     lom_add_test(NAME cd-audio-matrix TIER 0 NO_HEADLESS TIMEOUT 30 LABELS cd sdk
-        COMMAND lom-cd-audio-matrix-smoke)
+        COMMAND lom-cd-audio-matrix-specification)
 endif()
-if(TARGET lom-controller-callback-smoke AND TARGET lom-controller-callback-fixture)
+if(TARGET lom-controller-callback-component AND TARGET lom-controller-callback-fixture)
     lom_add_test(NAME controller-callback TIER 0 NO_HEADLESS TIMEOUT 60
-        COMMAND lom-controller-callback-smoke $<TARGET_FILE:lom-controller-callback-fixture>)
+        COMMAND lom-controller-callback-component $<TARGET_FILE:lom-controller-callback-fixture>)
 endif()
 
 lom_add_test(NAME spu-completion TIER 0 NO_HEADLESS TIMEOUT 60 LABELS spu sdk
-    COMMAND lom-spu-completion-smoke)
+    COMMAND lom-spu-completion-component)
 lom_add_test(NAME root-counter TIER 0 NO_HEADLESS TIMEOUT 60 LABELS sdk audio
-    COMMAND lom-root-counter-smoke)
+    COMMAND lom-root-counter-test)
 
-foreach(name IN ITEMS sdk-abi upstream psyz random card field-collision
-        field-resources field-actor field-party field-golem-party field-actions field-slots field-heap
-        field-services akao-mmio-retrigger
-        spu-voice-end spu-noise-pmon spu-counter-interleave spu-live-adsr audio-categories title-input)
-    lom_add_test(NAME ${name} TIER 0 COMMAND lom-${name}-smoke)
+foreach(target IN ITEMS lom-sdk-abi-test lom-upstream-test lom-psyz-test lom-random-test lom-card-integration
+        lom-field-collision-component lom-field-resources-component lom-field-actor-component
+        lom-field-party-component lom-field-golem-party-component lom-field-actions-component
+        lom-field-slots-component lom-field-heap-component lom-field-services-component lom-akao-mmio-retrigger-test
+        lom-spu-voice-end-test lom-spu-noise-pmon-test lom-spu-counter-interleave-test lom-spu-live-adsr-test
+        lom-audio-categories-specification lom-title-input-component)
+    string(REGEX REPLACE "^lom-(.*)-[a-z]+$" "\\1" name "${target}")
+    lom_add_test(NAME ${name} TIER 0 COMMAND ${target})
 endforeach()
 
-lom_add_test(NAME akao-irq TIER 0 CLOCK paced PACED_ONLY COMMAND lom-akao-irq-smoke @DISC@)
-lom_add_test(NAME audio-clock TIER 0 CLOCK paced PACED_ONLY COMMAND lom-audio-clock-smoke)
+lom_add_test(NAME akao-irq TIER 0 CLOCK paced PACED_ONLY COMMAND lom-akao-irq-component @DISC@)
+lom_add_test(NAME audio-clock TIER 0 CLOCK paced PACED_ONLY COMMAND lom-audio-clock-integration)
 
-if(TARGET lom-settings-store-smoke)
+if(TARGET lom-settings-store-specification)
     lom_add_test(NAME settings-store TIER 0 TIMEOUT 30 LABELS input
-        COMMAND lom-settings-store-smoke @DIR@)
+        COMMAND lom-settings-store-specification @DIR@)
     lom_add_test(NAME settings-runtime TIER 0 TIMEOUT 30 LABELS input
-        COMMAND lom-settings-runtime-smoke @DIR@)
+        COMMAND lom-settings-runtime-specification @DIR@)
     lom_add_test(NAME menu-model TIER 0 NO_HEADLESS TIMEOUT 30 LABELS input
-        COMMAND lom-menu-model-smoke)
+        COMMAND lom-menu-model-specification)
     lom_add_test(NAME menu-glyphs TIER 0 NO_HEADLESS TIMEOUT 30 LABELS input
-        COMMAND lom-menu-glyphs-smoke)
+        COMMAND lom-menu-glyphs-test)
     lom_add_test(NAME menu-text TIER 0 NO_HEADLESS TIMEOUT 30 LABELS input
-        COMMAND lom-menu-text-smoke)
+        COMMAND lom-menu-text-test)
 endif()
 
-lom_add_test(NAME cd-callback TIER 0 NO_HEADLESS COMMAND lom-cd-callback-smoke @DISC@)
-foreach(name IN ITEMS cd cd-stream overlay wmap-callback-tables akao-noise-opcodes akao-stream field-cd-wait
-        field-music-stream field-lands unit-decode field-map-decode gte-tables japanese-balance)
-    lom_add_test(NAME ${name} TIER 0 COMMAND lom-${name}-smoke @DISC@)
+lom_add_test(NAME cd-callback TIER 0 NO_HEADLESS COMMAND lom-cd-callback-integration @DISC@)
+lom_add_test(NAME cd TIER 0 COMMAND lom-cd-resource-integration @DISC@)
+foreach(target IN ITEMS lom-cd-stream-integration lom-overlay-integration lom-wmap-callback-tables-integration
+        lom-akao-noise-opcodes-component lom-akao-stream-component lom-field-cd-wait-component
+        lom-field-music-stream-component lom-field-lands-component lom-unit-decode-integration
+        lom-field-map-decode-integration lom-gte-tables-integration lom-japanese-balance-component)
+    string(REGEX REPLACE "^lom-(.*)-[a-z]+$" "\\1" name "${target}")
+    lom_add_test(NAME ${name} TIER 0 COMMAND ${target} @DISC@)
 endforeach()
 if(LOM_DISC_ROOT_JP)
-    lom_add_test(NAME gte-tables-jp TIER 0 DISC "${LOM_DISC_ROOT_JP}" COMMAND lom-gte-tables-jp-smoke @DISC@)
-    lom_add_test(NAME japanese-balance-data TIER 0 NO_HEADLESS LABELS mods
+    lom_add_test(NAME gte-tables-jp TIER 0 DISC "${LOM_DISC_ROOT_JP}" COMMAND lom-gte-tables-jp-integration @DISC@)
+    lom_add_test(NAME japanese-balance-data TIER 0 KIND static NO_HEADLESS LABELS mods
         COMMAND ${Python3_EXECUTABLE} "${CMAKE_CURRENT_SOURCE_DIR}/tools/build/make_japanese_balance.py" @DISC@ "${LOM_DISC_ROOT_JP}" --check)
 endif()
 
-if(TARGET lom-controller-multitap-slot-a-smoke)
+if(TARGET lom-controller-multitap-slot-a-component)
     lom_add_test(NAME controller-multitap-slot-a TIER 0 GPU CLOCK virtual TIMEOUT 60 LABELS input sdk
-        COMMAND lom-controller-multitap-slot-a-smoke)
+        COMMAND lom-controller-multitap-slot-a-component)
 endif()
-foreach(name IN ITEMS gpu-tpage gpu-subtract gpu-polygon-limits xbr)
-    lom_add_test(NAME ${name} TIER 1 GPU COMMAND lom-${name}-smoke)
+foreach(target IN ITEMS lom-gpu-tpage-integration lom-gpu-subtract-integration lom-gpu-polygon-limits-integration
+        lom-xbr-integration)
+    string(REGEX REPLACE "^lom-(.*)-[a-z]+$" "\\1" name "${target}")
+    lom_add_test(NAME ${name} TIER 1 GPU COMMAND ${target})
 endforeach()
-if(TARGET lom-menu-render-smoke)
-    lom_add_test(NAME menu-render TIER 1 GPU LABELS input COMMAND lom-menu-render-smoke @OUT@)
-    lom_add_test(NAME menu-quit TIER 1 GPU CLOCK paced TIMEOUT 60 LABELS input COMMAND lom-menu-quit-smoke)
+if(TARGET lom-menu-render-integration)
+    lom_add_test(NAME menu-render TIER 1 GPU LABELS input COMMAND lom-menu-render-integration @OUT@)
+    lom_add_test(NAME menu-quit TIER 1 GPU CLOCK paced TIMEOUT 60 LABELS input COMMAND lom-menu-quit-integration)
 endif()
-lom_add_test(NAME title-entry TIER 1 GPU TIMEOUT 300 COMMAND lom-title-entry-smoke @DISC@)
-lom_add_test(NAME keyboard-controls TIER 1 GPU COMMAND lom-keyboard-controls-smoke @OUT@)
+lom_add_test(NAME title-entry TIER 1 GPU TIMEOUT 300 COMMAND lom-title-entry-integration @DISC@)
+lom_add_test(NAME keyboard-controls TIER 1 GPU COMMAND lom-keyboard-controls-component @OUT@)
 lom_add_test(NAME controller-rumble TIER 1 GPU TIMEOUT 120 LABELS input
-    COMMAND lom-controller-rumble-smoke)
+    COMMAND lom-controller-rumble-component)
 
 if(COMMAND lom_add_route_tests)
     lom_add_route_tests()
 endif()
+
+set(manifest "{}")
+get_property(runs GLOBAL PROPERTY LOM_TEST_RUNS)
+get_property(targets DIRECTORY PROPERTY BUILDSYSTEM_TARGETS)
+foreach(target IN LISTS targets)
+    get_target_property(type ${target} TYPE)
+    if(NOT type STREQUAL "EXECUTABLE" OR NOT target MATCHES "${LOM_TEST_TARGET_PATTERN}")
+        continue()
+    endif()
+    set(entry "{}")
+    foreach(property IN ITEMS SOURCES LINK_OPTIONS COMPILE_DEFINITIONS)
+        get_target_property(values ${target} ${property})
+        set(array "[]")
+        if(values)
+            foreach(value IN LISTS values)
+                string(JSON length LENGTH "${array}")
+                string(REPLACE "\\" "\\\\" value "${value}")
+                string(REPLACE "\"" "\\\"" value "${value}")
+                string(JSON array SET "${array}" ${length} "\"${value}\"")
+            endforeach()
+        endif()
+        string(JSON entry SET "${entry}" "${property}" "${array}")
+    endforeach()
+    set(array "[]")
+    foreach(run IN LISTS runs)
+        string(REPLACE "|" ";" run "${run}")
+        list(GET run 0 run_target)
+        if(run_target STREQUAL target)
+            list(GET run 1 run_name)
+            list(GET run 2 run_labels)
+            string(JSON length LENGTH "${array}")
+            string(JSON array SET "${array}" ${length} "{\"name\": \"${run_name}\", \"labels\": \"${run_labels}\"}")
+        endif()
+    endforeach()
+    string(JSON entry SET "${entry}" "TESTS" "${array}")
+    string(JSON manifest SET "${manifest}" "${target}" "${entry}")
+endforeach()
+file(WRITE "${CMAKE_BINARY_DIR}/test-targets.json" "${manifest}\n")

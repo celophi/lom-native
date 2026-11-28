@@ -39,14 +39,14 @@ set(LOM_LAUNCHER_TEST_IMAGE "" CACHE FILEPATH
     "User-supplied US disc image (CUE or BIN) for real-disc launcher checks; empty skips them")
 
 if(COMMAND lom_add_test)
-    lom_add_test(NAME launcher-unit TIER 0 COMMAND lom-launcher-unit-tests)
+    lom_add_test(NAME launcher-unit TIER 0 KIND unit COMMAND lom-launcher-unit-tests)
     if(LOM_LAUNCHER_TEST_IMAGE)
-        lom_add_test(NAME launcher-real-image TIER 2 LABELS disc
+        lom_add_test(NAME launcher-real-image TIER 2 KIND integration LABELS disc
             COMMAND lom-disc-tool identify "${LOM_LAUNCHER_TEST_IMAGE}"
                 --catalog "${LOM_LAUNCHER_DATA_DIR}/supported-discs.json")
     endif()
     if(LOM_DISC_ROOT)
-        lom_add_test(NAME launcher-real-folder TIER 2 TIMEOUT 900
+        lom_add_test(NAME launcher-real-folder TIER 2 KIND integration TIMEOUT 900
             COMMAND lom-disc-tool verify-folder @DISC@
                 --catalog "${LOM_LAUNCHER_DATA_DIR}/supported-discs.json")
     endif()
@@ -96,8 +96,8 @@ if(TARGET lom-launcher)
     add_dependencies(lom-launcher-provider-checks lom-launcher-fake-game)
 
     if(COMMAND lom_add_test)
-        lom_add_test(NAME launcher-specs TIER 0 COMMAND lom-launcher-specs ENV QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=)
-        lom_add_test(NAME launcher-providers TIER 0 COMMAND lom-launcher-provider-checks)
+        lom_add_test(NAME launcher-specs TIER 0 KIND behavior COMMAND lom-launcher-specs ENV QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=)
+        lom_add_test(NAME launcher-providers TIER 0 KIND contract COMMAND lom-launcher-provider-checks)
     else()
         add_test(NAME launcher-specs COMMAND lom-launcher-specs)
         set_tests_properties(launcher-specs PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QPA_PLATFORMTHEME=")
