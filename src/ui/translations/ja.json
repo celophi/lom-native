@@ -136,7 +136,7 @@
   "encyclopedia_label": "事典",
   "encyclopedia_help": "事典の絵を、描き直されたものにします。",
   "title_screen_label": "タイトル画面",
-  "title_screen_help": "タイトル画面の背景とロゴです。ワイド画面向けに横長に描かれています。",
+  "title_screen_help": "タイトル画面の背景とロゴ（ワイド画面向けに横長に描かれています）、メニューと著作権表示です。",
   "name_entry_label": "名前入力",
   "name_entry_help": "主人公、ペット、ゴーレムの名前をリマスターの画面で付けます。ワイド画面がオンのときだけです。横長に描かれているため、4:3 ではPS1の画面になります。",
   "wall_map_label": "壁の地図",

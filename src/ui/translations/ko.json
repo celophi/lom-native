@@ -136,7 +136,7 @@
   "encyclopedia_label": "백과사전",
   "encyclopedia_help": "백과사전 그림을 새로 그린 그림으로 표시합니다.",
   "title_screen_label": "타이틀 화면",
-  "title_screen_help": "타이틀 화면의 배경과 로고입니다. 와이드 화면에 맞게 넓게 그려져 있습니다.",
+  "title_screen_help": "타이틀 화면의 배경과 로고(와이드 화면에 맞게 넓게 그려져 있습니다), 메뉴와 저작권 표시입니다.",
   "name_entry_label": "이름 입력",
   "name_entry_help": "주인공, 펫, 골렘의 이름을 리마스터의 화면에서 짓습니다. 와이드 화면이 켜져 있을 때만입니다. 넓은 화면용으로 그려져 있어 4:3에서는 PS1 화면입니다.",
   "wall_map_label": "벽 지도",

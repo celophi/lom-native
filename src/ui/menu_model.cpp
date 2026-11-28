@@ -116,7 +116,7 @@ LOM_MENU_TEXT(faces_help, "The faces in conversations, repainted.");
 LOM_MENU_TEXT(encyclopedia_label, "Encyclopedia");
 LOM_MENU_TEXT(encyclopedia_help, "The encyclopedia's pictures, repainted.");
 LOM_MENU_TEXT(title_screen_label, "Title screen");
-LOM_MENU_TEXT(title_screen_help, "The title screen's background and logo, painted wide for Widescreen.");
+LOM_MENU_TEXT(title_screen_help, "The title screen's background and logo, painted wide for Widescreen, and its menu and copyright line.");
 LOM_MENU_TEXT(name_entry_label, "Name entry");
 LOM_MENU_TEXT(name_entry_help, "Naming your hero, pets and golems on the Remaster's screen. Only with Widescreen on: it's painted for a wide screen, "
                                "so in 4:3 it's the PS1's.");

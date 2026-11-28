@@ -136,7 +136,7 @@
   "encyclopedia_label": "百科",
   "encyclopedia_help": "百科的圖片，使用重新繪製的版本。",
   "title_screen_label": "標題畫面",
-  "title_screen_help": "標題畫面的背景和標誌，為寬螢幕繪製得更寬。",
+  "title_screen_help": "標題畫面的背景和標誌（為寬螢幕繪製得更寬），以及選單和版權行。",
   "name_entry_label": "名字輸入",
   "name_entry_help": "在重製版的畫面中為主角、寵物和魔像取名。僅在開啟寬螢幕時：它是為寬螢幕繪製的，所以在 4:3 時是 PS1 的畫面。",
   "wall_map_label": "牆上地圖",

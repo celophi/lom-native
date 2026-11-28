@@ -136,7 +136,7 @@
   "encyclopedia_label": "Enciclopedia",
   "encyclopedia_help": "Las imágenes de la enciclopedia, repintadas.",
   "title_screen_label": "Pantalla de título",
-  "title_screen_help": "El fondo y el logotipo de la pantalla de título, pintados anchos para la pantalla panorámica.",
+  "title_screen_help": "El fondo y el logotipo de la pantalla de título, pintados anchos para la pantalla panorámica, y su menú y la línea de copyright.",
   "name_entry_label": "Entrada de nombre",
   "name_entry_help": "Poner nombre a tu héroe, tus mascotas y tus gólems en la pantalla del Remaster. Solo con pantalla panorámica: está pintada para una pantalla ancha, así que en 4:3 es la de PS1.",
   "wall_map_label": "Mapa de la pared",

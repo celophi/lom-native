@@ -73,7 +73,7 @@ With it, F1's Remaster page has a switch for all of it, **Use the Remaster**, an
 - **Backgrounds**. The Remaster's repainted backgrounds, from the next room you enter. Set Internal resolution to 4x to see all of their detail.
 - **Faces**. The repainted faces in conversations.
 - **Encyclopedia**. The encyclopedia's repainted pictures.
-- **Title screen**. The title screen's background and logo, wide with Widescreen on. The menu and the copyright line stay the PS1's.
+- **Title screen**. The title screen's background and logo, wide with Widescreen on, and its menu, cursor and copyright line. With the Japanese disc the menu's words stay its own, since the Remaster's are in English.
 - **Name entry**. Naming your hero, pets and golems on the Remaster's screen: its background, with the buttons in a column (the Remaster's keyboard button deletes a letter, as the PS1's arrow does, and shows the arrow), its typewriter and paper, and the tabs moved onto the wood. Up and down move through the buttons there. It's painted for a wide screen, so only with Widescreen on; in 4:3 it's the PS1's.
 - **Wall map**. The wall map you place your home on at the start, wide with Widescreen on.
 - **World map**. The world map's Mana Tree panel, spirits, and day and land names. The lands stay the PS1's.

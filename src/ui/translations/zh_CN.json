@@ -136,7 +136,7 @@
   "encyclopedia_label": "百科",
   "encyclopedia_help": "百科的图片，使用重新绘制的版本。",
   "title_screen_label": "标题画面",
-  "title_screen_help": "标题画面的背景和标志，为宽屏绘制得更宽。",
+  "title_screen_help": "标题画面的背景和标志（为宽屏绘制得更宽），以及菜单和版权行。",
   "name_entry_label": "名字输入",
   "name_entry_help": "在重制版的画面中为主角、宠物和魔像取名。仅在开启宽屏时：它是为宽屏绘制的，所以在 4:3 时是 PS1 的画面。",
   "wall_map_label": "墙上地图",

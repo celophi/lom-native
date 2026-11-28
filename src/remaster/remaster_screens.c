@@ -1,6 +1,7 @@
 #include "lom_native_remaster.h"
 #include "remaster_internal.h"
 #include "lom_native_widescreen.h"
+#include "lom_native_draw.h"
 
 #include <stddef.h>
 #include <stdint.h>
@@ -732,6 +733,14 @@ void lom_remaster_wmap_spirit(void* code, int spirit, int kind)
 #define TITLE_FILE "system/image/title/title.psb.m"
 #define TITLE_BACKGROUND "background"
 #define TITLE_LAYERS 2
+#define TITLE_COPYRIGHT "copyright_all"
+#define TITLE_CURSOR "cursor"
+#define TITLE_CURSOR_SIZE 16
+#define TITLE_ITEM_LEFT 1
+#define TITLE_ITEM_MIDDLE 9
+#define TITLE_COPYRIGHT_CENTRE 52
+#define TITLE_COPYRIGHT_MIDDLE 7
+#define TITLE_ITEM_DIM 0x505050
 
 static const int s_title_ps1[4] = {0, 0, 320, 224};
 static const int s_title_hd[4] = {240, 36, 1440, 1008};
@@ -754,9 +763,8 @@ static const char* title_logo(int language)
  *       Remaster's is a background, painted wide, with a logo in each
  *       language drawn over it, each a whole frame, and both line up with the
  *       PS1's picture at 4.5 times, as WSEL's wall does. Its logo sits higher
- *       than the PS1's, above the menu and the copyright line, which the PS1
- *       still draws: the Remaster only has pictures of its menu for its Asian
- *       languages.
+ *       than the PS1's, above the menu and the copyright line
+ *       (lom_remaster_title_menu).
  */
 int lom_remaster_title_parts(int language, const int rect[4], int margin, LomRemasterPart parts[], int max)
 {
@@ -811,6 +819,125 @@ void lom_remaster_title_backdrop(void* code, int stride, int count)
 int lom_remaster_title_wide(void)
 {
     return title_art_ready();
+}
+
+/**
+ * @brief One of the Remaster's title pictures' size on the PS1's screen, as
+ *        it's drawn at 4.5 times.
+ * @param label The picture.
+ * @param w Set to its width.
+ * @param h Set to its height.
+ * @return Nonzero when it can be drawn.
+ */
+static int title_picture_size(const char* label, int* w, int* h)
+{
+    int hd_w = 0, hd_h = 0;
+
+    if (!lom_remaster_picture_ready(TITLE_FILE, label, &hd_w, &hd_h))
+    {
+        return 0;
+    }
+
+    *w = (hd_w * 2 + 4) / 9;
+    *h = (hd_h * 2 + 4) / 9;
+    return *w > 0 && *h > 0;
+}
+
+/**
+ * @note The Remaster's menu words, cursor and copyright line are drawn at the
+ *       same size as the PS1's, which they replace one for one: the words from
+ *       the left of the PS1's and on their middle, dimmed when not chosen as
+ *       the PS1 dims them; the cursor's four frames over the PS1's; and the
+ *       copyright line on the middle of the PS1's. Its words are the ones it
+ *       draws for its Asian languages, in English; elsewhere it writes the
+ *       same in its font. The Japanese disc's words stay its own.
+ */
+void lom_remaster_title_menu(void* code, int part, int index, int selected)
+{
+    static const char* const items[] = {"new_game_asia", "load_game_asia"};
+    uint32_t* words = code;
+    const char* label;
+    int w = 0, h = 0;
+
+    if (!code || !title_art_ready())
+    {
+        return;
+    }
+
+    const int x0 = (int16_t)(words[1] & 0xFFFF), y0 = (int16_t)(words[1] >> 16);
+    int x, y;
+    int area[4] = {0, 0, 0, 0};
+    const int* part_area = NULL;
+
+    switch (part)
+    {
+    case LOM_TITLE_MENU_COPYRIGHT:
+        label = TITLE_COPYRIGHT;
+
+        if (!title_picture_size(label, &w, &h))
+        {
+            return;
+        }
+
+        x = x0 + TITLE_COPYRIGHT_CENTRE - w / 2;
+        y = y0 + TITLE_COPYRIGHT_MIDDLE - h / 2;
+        break;
+
+    case LOM_TITLE_MENU_ITEM:
+#if defined(VERSION_JP)
+        return;
+#else
+        if (index < 0 || index >= (int)(sizeof(items) / sizeof(items[0])))
+        {
+            return;
+        }
+
+        label = items[index];
+
+        if (!title_picture_size(label, &w, &h))
+        {
+            return;
+        }
+
+        x = x0 + TITLE_ITEM_LEFT;
+        y = y0 + TITLE_ITEM_MIDDLE - h / 2;
+        break;
+#endif
+
+    case LOM_TITLE_MENU_CURSOR:
+        label = TITLE_CURSOR;
+
+        if (!lom_remaster_picture_ready(TITLE_FILE, label, NULL, NULL))
+        {
+            return;
+        }
+
+        area[0] = (int)(words[2] & 0xFF);
+        area[2] = TITLE_CURSOR_SIZE;
+        area[3] = TITLE_CURSOR_SIZE;
+        part_area = area;
+        x = x0;
+        y = y0;
+        w = TITLE_CURSOR_SIZE;
+        h = TITLE_CURSOR_SIZE;
+        break;
+
+    default:
+        return;
+    }
+
+    const int xy[8] = {x, y, x + w, y, x, y + h, x + w, y + h};
+    const int placement = lom_remaster_picture_place(TITLE_FILE, label, part_area, xy, -1, -1);
+
+    if (placement >= 0 && part == LOM_TITLE_MENU_ITEM && !selected)
+    {
+        lom_remaster_picture_style(placement, TITLE_ITEM_DIM, -1);
+    }
+
+    if (placement >= 0)
+    {
+        lom_remaster_picture_command(words, QUAD_WORDS, placement);
+    }
 }
 
 #define GNAME_FILE "name_input.psb.m"

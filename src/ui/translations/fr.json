@@ -136,7 +136,7 @@
   "encyclopedia_label": "Encyclopédie",
   "encyclopedia_help": "Les images de l'encyclopédie, repeintes.",
   "title_screen_label": "Écran titre",
-  "title_screen_help": "Le fond et le logo de l'écran titre, peints en large pour l'écran large.",
+  "title_screen_help": "Le fond et le logo de l'écran titre, peints en large pour l'écran large, ainsi que son menu et la ligne de copyright.",
   "name_entry_label": "Saisie du nom",
   "name_entry_help": "Nommer votre héros, vos animaux et vos golems sur l'écran du Remaster. Seulement avec l'écran large : il est peint pour un écran large, donc en 4:3 c'est celui de la PS1.",
   "wall_map_label": "Carte murale",

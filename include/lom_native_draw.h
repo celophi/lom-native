@@ -15,6 +15,13 @@ extern "C"
         LOM_MENU_PROMPT_COUNT
     };
 
+    enum
+    {
+        LOM_TITLE_MENU_COPYRIGHT,
+        LOM_TITLE_MENU_ITEM,
+        LOM_TITLE_MENU_CURSOR
+    };
+
     /**
      * @brief Draw one of FIELD's actor or effect sprites.
      * @param list The drawing list entry for its depth.
@@ -140,6 +147,16 @@ extern "C"
      * @param count How many quads.
      */
     void lom_draw_title_backdrop(void* code, int stride, int count);
+
+    /**
+     * @brief Draw a part of the title screen's menu, which the game has built
+     *        and linked as one quad, so a renderer can draw it from other art.
+     * @param code The quad's code word.
+     * @param part LOM_TITLE_MENU_*.
+     * @param index For an item, which: 0 New Game, 1 Continue.
+     * @param selected For an item, nonzero when it's the one chosen.
+     */
+    void lom_draw_title_menu(void* code, int part, int index, int selected);
 
     /**
      * @brief Draw name entry's fixed background sprites, which the game has

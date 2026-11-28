@@ -69,6 +69,11 @@ void lom_draw_title_backdrop(void* code, int stride, int count)
     lom_remaster_title_backdrop(code, stride, count);
 }
 
+void lom_draw_title_menu(void* code, int part, int index, int selected)
+{
+    lom_remaster_title_menu(code, part, index, selected);
+}
+
 void lom_draw_gname_background(void* code, int stride, int count)
 {
     lom_remaster_gname_background(code, stride, count);

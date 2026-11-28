@@ -319,6 +319,16 @@ extern "C"
      */
     void lom_remaster_title_backdrop(void* code, int stride, int count);
 
+    /**
+     * @brief Draw a part of the title's menu as the Remaster's
+     *        (lom_draw_title_menu): its words, cursor or copyright line.
+     * @param code The quad's code word.
+     * @param part LOM_TITLE_MENU_*.
+     * @param index For an item, which: 0 New Game, 1 Continue.
+     * @param selected For an item, nonzero when it's the one chosen.
+     */
+    void lom_remaster_title_menu(void* code, int part, int index, int selected);
+
     /** @brief Nonzero when the title's backdrop is the Remaster's, which is painted wide enough for a wide frame. */
     int lom_remaster_title_wide(void);
 

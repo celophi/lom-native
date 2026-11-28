@@ -540,7 +540,8 @@ void menu_cursor_up(void)
 /**
  * @brief Draw the menu header, the enabled items, and the animated cursor.
  * @param ctx Active title display buffer.
- * @note Item quads use texture row slot + 1; the selected item uses CLUT 1, the others CLUT 2.
+ * @note Item quads use texture row slot + 1; the selected item uses CLUT 1, the others CLUT 2. The port hands each quad
+ *       to lom_draw_title_menu, for the Remaster's art.
  * @see decomp.me (100%) https://decomp.me/scratch/qegw7
  */
 void render_title_menu_items(TitleMenuContext* ctx)
@@ -559,6 +560,7 @@ void render_title_menu_items(TitleMenuContext* ctx)
     ot_head = ctx->screen.ot;
     first_prim = ctx->screen.prim_cursor;
     prim = emit_menu_item_quad(ot_head, first_prim, 0, TITLE_MENU_HEADER_X, 0xC8, 0, 0x80, 1);
+    lom_draw_title_menu((u8*)first_prim + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_COPYRIGHT, 0, 0);
     item_x = 0x88;
     item_y = 0xA0;
     visible_index = 0;
@@ -570,7 +572,9 @@ void render_title_menu_items(TitleMenuContext* ctx)
 
         if (item_visible)
         {
+            u8* item_quad = prim;
             prim = (u8*)emit_menu_item_quad(ot_head, prim, slot + 1, item_x, item_y, 0, 0x80, (g_title_visible_item_rank == visible_index) ? 1 : 2);
+            lom_draw_title_menu(item_quad + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_ITEM, slot, g_title_visible_item_rank == visible_index);
             item_y += 0xC;
             visible_index++;
             prim += 0x28;
@@ -581,6 +585,7 @@ void render_title_menu_items(TitleMenuContext* ctx)
 
     result =
         emit_menu_item_quad(ot_head, prim, 7, 0x78, g_title_visible_item_rank * 12 + 0x9D, g_cursor_blink_u_offsets[(g_title_anim_frame >> 2) & 3], 0x10, 0);
+    lom_draw_title_menu(prim + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_CURSOR, 0, 0);
 
     ctx->screen.prim_cursor = result;
     g_title_anim_frame++;
