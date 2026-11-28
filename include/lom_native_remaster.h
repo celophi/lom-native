@@ -381,6 +381,20 @@ extern "C"
      */
     int lom_remaster_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style);
 
+    /**
+     * @brief Darken the screen for a fade to black in proportion, as the
+     *        Remaster fades, over a sprite the game has built (lom_draw_fade).
+     * @param code The sprite's code word.
+     * @param brightness How bright the screen still is, the fade's level:
+     *        0x100 for not faded at all, 0 for black.
+     * @param x The faded area's left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @return Nonzero when the Remaster is in use and it's drawn this way.
+     */
+    int lom_remaster_fade(void* code, int brightness, int x, int y, int w, int h);
+
     /** @brief Nonzero when the title's backdrop is the Remaster's, which is painted wide enough for a wide frame. */
     int lom_remaster_title_wide(void);
 

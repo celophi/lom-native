@@ -25,6 +25,10 @@
 #define MAX_CHAIN 8
 #define TEXT_GREY 0xD8
 #define LINE_SHADOW 3
+#define FADE_LABEL "@fade"
+#define FADE_STEPS 32
+#define FADE_SIZE 4
+#define FADE_NEUTRAL_LEVEL 0x100
 #define LINE_SHADOW_ALPHA 160
 
 typedef struct
@@ -455,6 +459,35 @@ static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, in
 }
 
 /**
+ * @brief Make a small black picture as see-through as a fade to black is
+ *        far along: drawn over the screen it darkens everything in
+ *        proportion, as the Remaster fades, where the PS1 takes the same
+ *        amount off every colour.
+ * @param label FADE_LABEL and how far, 0 to FADE_STEPS.
+ * @param w Set to its width.
+ * @param h Set to its height.
+ * @return The pixels, with a margin, which the caller frees.
+ */
+static unsigned char* load_fade(const char* label, int* w, int* h)
+{
+    const int step = atoi(label + sizeof(FADE_LABEL) - 1);
+    const int alpha = (step < 0 ? 0 : step > FADE_STEPS ? FADE_STEPS : step) * 255 / FADE_STEPS;
+    unsigned char* pixels = calloc((size_t)(FADE_SIZE + 2 * MARGIN) * (size_t)(FADE_SIZE + 2 * MARGIN), 4);
+
+    for (int y = 0; pixels && y < FADE_SIZE; ++y)
+    {
+        for (int x = 0; x < FADE_SIZE; ++x)
+        {
+            pixels[((size_t)(MARGIN + y) * (size_t)(FADE_SIZE + 2 * MARGIN) + (size_t)(MARGIN + x)) * 4 + 3] = (unsigned char)alpha;
+        }
+    }
+
+    *w = FADE_SIZE;
+    *h = FADE_SIZE;
+    return pixels;
+}
+
+/**
  * @brief Load one of the Remaster's pictures, or one labeled part of it, as
  *        RGBA pixels. The last file opened stays open for the next call.
  * @param file Its PSB file.
@@ -465,6 +498,11 @@ static unsigned char* load_line(const LomPsb* psb, const char* label, int* w, in
  */
 static unsigned char* load_picture(const char* file, const char* label, int* w, int* h)
 {
+    if (label && strncmp(label, FADE_LABEL, sizeof(FADE_LABEL) - 1) == 0)
+    {
+        return load_fade(label, w, h);
+    }
+
     const LomPsb* psb = open_picture_file(file);
     unsigned char* pixels = NULL;
     size_t list, item, textures;
@@ -1405,4 +1443,27 @@ int lom_gpu_prim_filter(const unsigned int* words, int available, unsigned int t
     const unsigned flags = words[0] >> 24;
     lom_hd_images_draw(prim.xy, prim.uv, image->layer, flags & 1 ? 0x808080 : words[0] & 0xFFFFFF, flags & 2, prim.page);
     return prim.used;
+}
+
+int lom_remaster_fade(void* code, int brightness, int x, int y, int w, int h)
+{
+    if (!code || brightness < 0 || brightness >= FADE_NEUTRAL_LEVEL || !lom_native_remaster_found() || !lom_native_remaster_switch(LOM_REMASTER_SWITCH_ALL))
+    {
+        return 0;
+    }
+
+    char label[16];
+    snprintf(label, sizeof(label), "%s%d", FADE_LABEL, ((FADE_NEUTRAL_LEVEL - brightness) * FADE_STEPS + FADE_NEUTRAL_LEVEL / 2) / FADE_NEUTRAL_LEVEL);
+    const int inside[4] = {1, 1, FADE_SIZE - 2, FADE_SIZE - 2};
+    const int xy[8] = {x, y, x + w, y, x, y + h, x + w, y + h};
+    const int placement = lom_remaster_picture_place("fade", label, inside, xy, -1, -1);
+
+    if (placement < 0)
+    {
+        return 0;
+    }
+
+    lom_remaster_picture_style(placement, 0x808080, 0);
+    lom_remaster_picture_command(code, 4, placement);
+    return 1;
 }

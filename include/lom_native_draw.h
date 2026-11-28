@@ -234,6 +234,21 @@ extern "C"
     int lom_draw_cards_text(void* code, const unsigned char* text, int x, int baseline, int align, int style);
 
     /**
+     * @brief Draw a fade to black over a sprite the game has built but not
+     *        linked, darkening in proportion rather than as the PS1, which
+     *        takes the same amount off every colour.
+     * @param code The sprite's code word.
+     * @param brightness The fade's level: 0x100 not faded, 0 black.
+     * @param x The faded area's left.
+     * @param y Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @return Nonzero when it's drawn this way (with the Remaster in use);
+     *         0 to draw the PS1's fade.
+     */
+    int lom_draw_fade(void* code, int brightness, int x, int y, int w, int h);
+
+    /**
      * @brief Draw name entry's fixed background sprites, which the game has
      *        built and linked, so a renderer can draw them from other art.
      * @param code The first sprite's code word.

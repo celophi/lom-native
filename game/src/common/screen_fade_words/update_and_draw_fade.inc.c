@@ -1,3 +1,4 @@
+#include "common/screen_fade_remaster.h"
 #include "common/screen_fade_words.h"
 #include "lom_native_gpu_packets.h"
 #include "lom_native_widescreen.h"
@@ -30,6 +31,14 @@ void update_and_draw_fade(ScreenFrame* frame)
 
     if (!((g_fade_current.red == FADE_NEUTRAL) && (g_fade_current.green == FADE_NEUTRAL) && (g_fade_current.blue == FADE_NEUTRAL)))
     {
+        void* faded = screen_fade_remaster(primitive, ot, g_fade_current.red, g_fade_current.green, g_fade_current.blue);
+
+        if (faded != NULL)
+        {
+            frame->prim_cursor = faded;
+            return;
+        }
+
         if (g_fade_current.red >= FADE_ADDITIVE_THRESHOLD)
         {
             primitive->tile.r0 = g_fade_current.red - FADE_ADDITIVE_BIAS;

@@ -109,6 +109,11 @@ int lom_draw_cards_text(void* code, const unsigned char* text, int x, int baseli
     return lom_remaster_cards_text(code, text, x, baseline, align, style);
 }
 
+int lom_draw_fade(void* code, int brightness, int x, int y, int w, int h)
+{
+    return lom_remaster_fade(code, brightness, x, y, w, h);
+}
+
 void lom_draw_gname_background(void* code, int stride, int count)
 {
     lom_remaster_gname_background(code, stride, count);

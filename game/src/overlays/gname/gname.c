@@ -1,3 +1,4 @@
+#include "common/screen_fade_remaster.h"
 #include "overlays/field/field_text.h"
 #include "overlays/gname/gname.h"
 #include "common/encoded_text.h"
@@ -558,6 +559,14 @@ static void render_fade_overlay(RenderContext* render_ctx)
 
     if ((g_fade_current.red != FADE_NEUTRAL) || (g_fade_current.green != FADE_NEUTRAL) || (g_fade_current.blue != FADE_NEUTRAL))
     {
+        void* faded = screen_fade_remaster(packet_cursor, ot_entry, g_fade_current.red, g_fade_current.green, g_fade_current.blue);
+
+        if (faded != NULL)
+        {
+            render_ctx->prim_cursor = faded;
+            return;
+        }
+
         if (g_fade_current.red >= FADE_ADDITIVE_THRESHOLD)
         {
             lom_gpu_set_rgb0((TILE*)packet_cursor, g_fade_current.red - FADE_ADDITIVE_BIAS, g_fade_current.green - FADE_ADDITIVE_BIAS,

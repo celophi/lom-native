@@ -87,4 +87,6 @@ With it, F1's Remaster page has a switch for all of it, **Use the Remaster**, an
 
 Settings from before these switches carry over: HD pictures turned off turns off every picture's switch, and a soundtrack, sound effects or text you'd picked from the Remaster stays picked.
 
+With the Remaster in use, fading to black between screens darkens the whole picture evenly, as the Remaster's fades do. The PS1 takes the same amount off every colour, which turns the Remaster's brighter art red and leaves white text showing after the rest has gone.
+
 With Widescreen on too, rooms the Remaster painted wider show its extra art at the sides. In a few rooms the Remaster moved walls a little to fit its new art, and with Backgrounds on you play those rooms its way.
