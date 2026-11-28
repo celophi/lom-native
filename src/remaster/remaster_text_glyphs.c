@@ -516,6 +516,11 @@ static int shrink(uint32_t c, uint16_t rows[12], unsigned char* width)
     return 1;
 }
 
+uint32_t remaster_text_wide_char(int index)
+{
+    return index >= 0 && index < s_wide_count ? s_wide_chars[index] : 0;
+}
+
 int remaster_text_wide_code(uint32_t c)
 {
     unsigned slot = (c * 2654435761u) & (WIDE_HASH - 1);
@@ -614,6 +619,11 @@ int lom_native_text_glyph_width(int code)
     }
 
     return code >= LOM_NATIVE_TEXT_WIDE_BASE ? s_wide_widths[code - LOM_NATIVE_TEXT_WIDE_BASE] : s_widths[code - 0x100];
+}
+
+uint32_t remaster_text_letter_code(int index)
+{
+    return index >= 0 && (size_t)index < LETTERS ? s_letters[index].code_point : 0;
 }
 
 int remaster_text_letter_index(uint32_t c)

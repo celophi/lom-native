@@ -9,6 +9,8 @@
 #include "lom_native_time.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
+#include "../../common/card_menu/card_menu_remaster_text.inc.c"
 
 #define CLOAD_ICON_SET_BUFFER ((CloadIconSetHeader*)LOAD_BUFFER_ADDRESS)
 
@@ -53,7 +55,8 @@ typedef struct
  * @param front_buffer Nonzero when drawing into the buffer whose draw area starts at y = SCREEN_HEIGHT.
  * @param draw_fill Nonzero to emit the outline and fill packets.
  * @return Advanced primitive-buffer cursor.
- * @note The contents are clipped CLOAD_FRAME_BORDER pixels inside the frame; the
+ * @note In the port's Remaster layout a filled frame is the Remaster's window (card_menu_draw_remaster_window).
+ *       The contents are clipped CLOAD_FRAME_BORDER pixels inside the frame; the
  *       clip is one row taller than h - 2 * CLOAD_FRAME_BORDER (see CLOAD_WINDOW_HEIGHT).
  */
 void* cload_emit_window_frame(void* prim, OT_TYPE* ot, s32 x, s32 y, s32 w, s32 h, s32 front_buffer, s32 draw_fill)
@@ -81,6 +84,11 @@ void* cload_emit_window_frame(void* prim, OT_TYPE* ot, s32 x, s32 y, s32 w, s32 
     lom_gpu_link(ot, env_packet);
 
     next_prim = env_packet + 1;
+
+    if (draw_fill != 0 && lom_draw_cards_on())
+    {
+        return card_menu_draw_remaster_window(next_prim, ot, x, y, w, h);
+    }
 
     if (draw_fill != 0)
     {
@@ -559,11 +567,13 @@ void cload_load_icon_resources(void)
  * @param sprite First sprite packet to fill.
  * @param ot Ordering-table entry the packets are linked into.
  * @return Primitive-buffer cursor after the last texture-page packet.
+ * @note The port hands the sprites to lom_draw_cards_background, for the Remaster's art.
  */
 void* cload_draw_backdrop(SPRT* sprite, OT_TYPE* ot)
 {
     s32 i;
     DR_TPAGE* draw_mode;
+    SPRT* first = sprite;
 
     for (i = 0; i < CLOAD_ICON_SET_IMAGE_COUNT; i++)
     {
@@ -592,6 +602,7 @@ void* cload_draw_backdrop(SPRT* sprite, OT_TYPE* ot)
         sprite = (SPRT*)(draw_mode + 1);
     }
 
+    lom_draw_cards_background((u8*)first + __builtin_offsetof(P_TAG, r0), sizeof(SPRT) + sizeof(DR_TPAGE), CLOAD_ICON_SET_IMAGE_COUNT);
     return sprite;
 }
 

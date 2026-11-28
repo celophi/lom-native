@@ -9,11 +9,21 @@
  * @param x_offset Horizontal offset; screen X is derived from it.
  * @param y_offset Vertical offset.
  * @return The updated primitive pointer.
+ * @note An overlay that defines CARD_MENU_LABEL_REMASTER_TEXT(prim, ot, text, x, y, chosen) draws it that way in the
+ *       port's Remaster layout, without the backing tile.
  */
 void* card_menu_draw_card_slot1_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
 {
     RECT unused;
     TILE* tile;
+
+#ifdef CARD_MENU_LABEL_REMASTER_TEXT
+    if (lom_draw_cards_on())
+    {
+        return CARD_MENU_LABEL_REMASTER_TEXT(prim, ot, CARD_MENU_TEXT_AT(g_card_menu_text_card_slot1_label, CARD_MENU_TEXT_CARD_SLOT1_LABEL),
+                                             -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, -y_offset, !(g_card_slot == 0));
+    }
+#endif
 
     if (g_card_slot == 0)
     {

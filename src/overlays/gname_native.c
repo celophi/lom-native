@@ -3,11 +3,24 @@
 #include "lom_native_game_loop.h"
 #include "lom_native_overlay.h"
 
+#include "lom_native_remaster.h"
+#include "lom_native_widescreen.h"
+
 #include <libgpu.h>
 #include <psyz.h>
 
+/**
+ * @brief GNAME's ClearOTagR, at the start of each of its frames: wide when
+ *        it's laid out as the Remaster's, which is painted wide, and
+ *        otherwise the original view, whatever the screen it was opened from
+ *        drew.
+ * @param ordering_table The ordering table.
+ * @param entry_count Its length.
+ * @return The ordering table.
+ */
 void* lom_native_gname_ClearOTagR(void* ordering_table, int entry_count)
 {
+    lom_native_widescreen_begin_frame(lom_remaster_gname_layout());
     return ClearOTagR(ordering_table, entry_count);
 }
 

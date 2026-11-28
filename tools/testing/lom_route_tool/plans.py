@@ -522,4 +522,6 @@ def make_plan(route_path: Path, route: dict, disc: Path) -> str:
         header.append(TITLE_LINES[route["title"]])
     if route.get("card_other_game"):
         header.append("card_browse")
+    if route.get("widescreen"):
+        header.append("start_widescreen")
     return "\n".join(header + planner.lines) + "\n"

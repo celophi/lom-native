@@ -13,7 +13,10 @@ extern "C"
     /**
      * @brief Run GNAME's name entry with the port's types. A companion's
      *        name (source 3) is cancelled before GNAME starts when there's no
-     *        name history, or no pet or golem has joined yet.
+     *        name history, or no pet or golem has joined yet. It's laid out
+     *        as the Remaster's when that's in use (lom_remaster_gname_begin),
+     *        drawn wide, and the next screen's transition fades it wide
+     *        (screen_transition).
      * @param render_buffers GNAME's two render contexts.
      * @param initial_name The name it goes back to when the player resets it.
      * @param active_name The name being edited.

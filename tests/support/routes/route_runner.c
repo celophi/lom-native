@@ -1357,7 +1357,7 @@ int main(int argc, char** argv)
         return EXIT_SETUP;
     }
 
-    if (getenv(WIDESCREEN_VARIABLE))
+    if (getenv(WIDESCREEN_VARIABLE) || g_run.start_widescreen)
     {
         lom_native_widescreen_set_enabled(1);
     }

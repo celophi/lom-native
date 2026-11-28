@@ -1,4 +1,6 @@
 #include "lom_native_title_hooks.h"
+#include "lom_native_remaster.h"
+#include "lom_native_widescreen.h"
 
 #include <libgpu.h>
 #include "lom_native_draw_labels.h"
@@ -28,4 +30,9 @@ DRAWENV* lom_native_title_PutDrawEnv(DRAWENV* env)
     PutDrawEnv(env);
     lom_native_title_note_draw_env(env->clip.y);
     return env;
+}
+
+void lom_native_title_begin_frame(int menu)
+{
+    lom_native_widescreen_begin_frame(menu && lom_native_widescreen_enabled() && lom_remaster_title_wide());
 }

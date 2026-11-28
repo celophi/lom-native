@@ -43,6 +43,18 @@ extern "C"
 
     /** @brief Go back to the original view, when leaving the screen that drew wide. */
     void lom_native_widescreen_reset(void);
+
+    /**
+     * @brief Stretch a flat, untextured primitive that covers the screen's
+     *        width over the wide frame's sides too: points at the left edge
+     *        or past it move out by the margin, and so do points at the right
+     *        edge or past it. Does nothing when the frame isn't wide.
+     * @param code The primitive's code word.
+     * @param points How many points it has.
+     * @param stride How many words from one point to the next: 1 for a flat
+     *        polygon, 2 for a shaded one.
+     */
+    void lom_native_widescreen_stretch(void* code, int points, int stride);
 #ifdef __cplusplus
 }
 #endif

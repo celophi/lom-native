@@ -95,6 +95,222 @@ extern "C"
     void lom_remaster_ui_initialize(void);
 
     /**
+     * @brief Load one of the Remaster's pictures into the pictures' texture,
+     *        if it isn't there already (remaster_ui.c).
+     * @param file Its PSB file, under the Remaster's data folder.
+     * @param label Its part's label, or NULL for the whole picture.
+     * @param w Set to its width, if it can be drawn and this isn't NULL.
+     * @param h Set to its height, the same way.
+     * @return Nonzero when it can be drawn.
+     */
+    int lom_remaster_picture_ready(const char* file, const char* label, int* w, int* h);
+
+    /**
+     * @brief Get ready to draw part of one of the Remaster's pictures over
+     *        four points on the screen (remaster_ui.c).
+     * @param file Its PSB file.
+     * @param label Its part's label, or NULL.
+     * @param part The part of it, as x, y, width and height in its pixels, or
+     *        NULL for all of it.
+     * @param xy The points, x then y: top left, top right, bottom left, bottom
+     *        right.
+     * @param tpage The texture page word whose blend mode it uses, or -1 for
+     *        the current one.
+     * @param after A placement this one draws after, in the same command, or
+     *        -1 for none.
+     * @return The placement, for lom_remaster_picture_command, or -1 when it
+     *         can't be drawn.
+     */
+    int lom_remaster_picture_place(const char* file, const char* label, const int part[4], const int xy[8], int tpage, int after);
+
+    /**
+     * @brief Turn a primitive the game built into a draw of a placement and
+     *        what's chained after it, keeping its color and blending. The
+     *        primitive's words past the fourth become no-ops.
+     * @param code The primitive's code word.
+     * @param words How many words it has from its code word on.
+     * @param placement What lom_remaster_picture_place returned, or -1 to draw
+     *        nothing.
+     */
+    void lom_remaster_picture_command(void* code, int words, int placement);
+
+    /**
+     * @brief Draw a placement with its own color or blending, instead of the
+     *        primitive's it's drawn for (remaster_ui.c).
+     * @param placement What lom_remaster_picture_place returned.
+     * @param rgb The color, 0x808080 to draw it as it is, or -1 for the
+     *        primitive's.
+     * @param semi 1 to blend it the way the texture page says, 0 to draw it
+     *        over what's there, or -1 for the primitive's choice.
+     */
+    void lom_remaster_picture_style(int placement, int rgb, int semi);
+
+    /**
+     * @brief Find where a 4-bit picture in video memory has anything drawn,
+     *        from the copy kept of what the game uploaded (remaster_ui.c).
+     * @param page_x The texture page's left, in video memory's 16-bit words.
+     * @param page_y Its top.
+     * @param u The picture's left on the page, in texels.
+     * @param v Its top.
+     * @param w Its width.
+     * @param h Its height.
+     * @param bounds Set to the part with texels that aren't color 0, as x, y,
+     *        width and height from @p u and @p v.
+     * @return 0, or -1 when it's all color 0 or there's no copy.
+     */
+    int lom_remaster_vram_bounds(int page_x, int page_y, int u, int v, int w, int h, int bounds[4]);
+
+    typedef struct
+    {
+        char file[96];
+        char label[32];
+        int area[4];
+        int xy[8];
+    } LomRemasterPart;
+
+    /**
+     * @brief Where the Remaster's art for one sprite of one of WSEL's pictures
+     *        comes from and goes (remaster_screens.c): each repainted picture
+     *        the sprite covers, in the order they're drawn.
+     * @param picture Which picture (WSEL_SPRITE_*).
+     * @param x Where the picture's top left is on the screen.
+     * @param y The same, down.
+     * @param rect The sprite: x, y, width and height on the screen.
+     * @param margin The wide frame's margin, or 0.
+     * @param parts Set to the parts: the file, the picture's label, the part
+     *        of it (x, y, width, height) and the four points it covers.
+     * @param max Room in @p parts.
+     * @return How many parts, 0 when the Remaster has no art for it.
+     */
+    int lom_remaster_wsel_parts(int picture, int x, int y, const int rect[4], int margin, LomRemasterPart parts[], int max);
+
+    /**
+     * @brief Where the Remaster's art for one quad of the title's backdrop
+     *        comes from and goes (remaster_screens.c): its background, then its
+     *        logo.
+     * @param language The logo's language, a LOM_REMASTER_TEXT_* other than
+     *        LOM_REMASTER_TEXT_PS1.
+     * @param rect The quad: x, y, width and height on the screen.
+     * @param margin The wide frame's margin, or 0.
+     * @param parts Set to the parts, as lom_remaster_wsel_parts.
+     * @param max Room in @p parts.
+     * @return How many parts, 0 when the quad is off the backdrop.
+     */
+    int lom_remaster_title_parts(int language, const int rect[4], int margin, LomRemasterPart parts[], int max);
+
+    /**
+     * @brief Which of the Remaster's pictures draws one of name entry's
+     *        glyphs, and where (remaster_screens.c): the whole picture, over
+     *        the glyph's box moved to where the PS1's picture sits in it.
+     * @param glyph The glyph.
+     * @param rect The glyph's sprite: x, y, width and height on the screen.
+     * @param part Set to the file, the picture's label and the four points;
+     *        its area is unused.
+     * @return 1 when the Remaster has a picture for the glyph, otherwise 0.
+     */
+    int lom_remaster_gname_part(int glyph, const int rect[4], LomRemasterPart* part);
+
+    /**
+     * @brief Where name entry's cursor points at a button or a tab in the
+     *        Remaster's layout (remaster_screens.c): left of the button in the
+     *        painted column, or the tab moved onto the wood.
+     * @param position The cursor's position in name entry's table: 2 to 5 for
+     *        the buttons, 6 to 9 for the tabs.
+     * @param x The PS1's x, set to the Remaster layout's.
+     * @param y The same, down.
+     * @return 1 when the position is a button or a tab, otherwise 0, leaving
+     *         them as they are.
+     */
+    int lom_remaster_gname_cursor_at(int position, int* x, int* y);
+
+    /**
+     * @brief Which of the Remaster's tab icons draws one of the menu's, and
+     *        where (remaster_menu.c).
+     * @param icon The menu's icon.
+     * @param mirror Nonzero for the second column's first row.
+     * @param rect The icon's sprite: x, y, width and height.
+     * @param part Set to the file, the picture's label and the four points;
+     *        its area is unused.
+     * @return 1 when it's a tab icon the Remaster has, otherwise 0.
+     */
+    int lom_remaster_menu_icon_part(int icon, int mirror, const int rect[4], LomRemasterPart* part);
+
+    /**
+     * @brief A colour in video memory as the game last loaded it there, for
+     *        the PS1's palettes.
+     * @param x Its x.
+     * @param y Its y.
+     * @return It as 0xRRGGBB, or 0 before anything's loaded.
+     */
+    unsigned lom_remaster_vram_colour(int x, int y);
+
+    /**
+     * @brief Where the Remaster's art for the world map's day name comes from
+     *        and goes (remaster_screens.c).
+     * @param language The names' language, a LOM_REMASTER_TEXT_* other than
+     *        LOM_REMASTER_TEXT_PS1.
+     * @param u The PS1 sprite's texture position across.
+     * @param v And down, which says the day.
+     * @param rect The sprite: x, y, width and height on the screen.
+     * @param part Set to the file, the part of its picture and the points.
+     * @return 0, or -1 when there's no art for it.
+     */
+    int lom_remaster_day_name_part(int language, int u, int v, const int rect[4], LomRemasterPart* part);
+
+    /**
+     * @brief Where the Remaster's art for the world map's shell, or the day's
+     *        spirit in it, comes from and goes (remaster_screens.c).
+     * @param shell Nonzero for the shell, zero for the spirit.
+     * @param u The PS1 sprite's texture position across.
+     * @param v And down, which say the day.
+     * @param rect The sprite: x, y, width and height on the screen.
+     * @param part Set to the file, the picture's label, the part of it and the
+     *        points.
+     * @return 0, or -1 when there's no art for it.
+     */
+    int lom_remaster_kameo_part(int shell, int u, int v, const int rect[4], LomRemasterPart* part);
+
+    /**
+     * @brief The Remaster's banner file for a land's name on the world map
+     *        (remaster_screens.c).
+     * @param language The names' language, a LOM_REMASTER_TEXT_* other than
+     *        LOM_REMASTER_TEXT_PS1.
+     * @param selection The land, or 64 plus it for its artifact's name.
+     * @param clut_row The PS1 name's palette row, which says whether the land
+     *        is cleared.
+     * @param file Set to the file.
+     * @param size Room in @p file.
+     * @return 0, or -1 when there's no banner for it.
+     */
+    int lom_remaster_land_name_file(int language, int selection, int clut_row, char* file, size_t size);
+
+    /**
+     * @brief Where a land name's banner goes: centered on the PS1's name, at
+     *        the Remaster's 4.5 times (remaster_screens.c).
+     * @param text Where the PS1's name has anything drawn: x, y, width and
+     *        height on the screen.
+     * @param w The banner's width, in its pixels.
+     * @param h Its height.
+     * @param xy Set to the four points it covers.
+     */
+    void lom_remaster_land_name_xy(const int text[4], int w, int h, int xy[8]);
+
+    /**
+     * @brief Where the Remaster's art for a world map spirit or its strength
+     *        comes from and goes (remaster_screens.c).
+     * @param spirit Which spirit, in the game's order.
+     * @param kind LOM_REMASTER_WMAP_SPIRIT_*.
+     * @param u The PS1 sprite's texture position across.
+     * @param v And down, which say the frame or the strength.
+     * @param rect The sprite: x, y, width and height on the screen.
+     * @param part Set to the file, the picture's label, the part of it (width
+     *        0 for all of it) and the points.
+     * @param shade Set to how dark to draw it, 0x80 as it's painted.
+     * @return 0, or -1 when there's no art for it.
+     */
+    int lom_remaster_spirit_part(int spirit, int kind, int u, int v, const int rect[4], LomRemasterPart* part, int* shade);
+
+    /**
      * @brief Say whether the Remaster was found (remaster_settings.c).
      * @param root Its data folder, or NULL when it wasn't found.
      */

@@ -7,7 +7,8 @@ const char* const route_step_names[] = {"enter",      "exit",  "walk",       "ta
 
 /**
  * @brief Read a plan line that sets something for the whole run: its frame
- *        limit, browsing the card, or how the title screen is gone through.
+ *        limit, browsing the card, how the title screen is gone through, or
+ *        starting with Widescreen on.
  * @param line The line.
  * @param word Its first word.
  * @return 1 when it was one of those, otherwise 0.
@@ -17,6 +18,12 @@ static int read_run_setting(const char* line, const char* word)
     if (!strcmp(word, "limit"))
     {
         sscanf(line, "%*s %u", &g_run.vblank_limit);
+        return 1;
+    }
+
+    if (!strcmp(word, "start_widescreen"))
+    {
+        g_run.start_widescreen = 1;
         return 1;
     }
 

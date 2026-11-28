@@ -46,6 +46,17 @@ const char* lom_native_card_root(void);
 int lom_native_card_open(const char* path, int flags);
 
 /**
+ * @brief Read the start of a card file without opening it for the game: no
+ *        handle, no I/O event and nothing remembered from it, for the port to
+ *        look at a save while the game goes on with the card.
+ * @param path "bu00:NAME" for slot 1 or "bu10:NAME" for slot 2.
+ * @param data Where the bytes go.
+ * @param size How many.
+ * @return @p size, or -1 when the file can't be read or is shorter.
+ */
+int lom_native_card_peek(const char* path, void* data, int size);
+
+/**
  * @brief Close a card file.
  * @param handle The handle lom_native_card_open gave.
  * @return 0, or -1 for a handle that isn't open.

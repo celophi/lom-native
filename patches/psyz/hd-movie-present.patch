@@ -1,0 +1,14 @@
+While a movie of the port's own plays (the Remaster's HD movies), draw its
+frame over the window in place of the game's picture, at the window's
+resolution, before the menu goes on top.
+
+--- a/psyz/src/platform/sdl3_gpu.c
++++ b/psyz/src/platform/sdl3_gpu.c
+@@ -1450,6 +1450,7 @@
+                 lom_present_blit(&presentation, device, cmd, src, swapchain,
+                                  dst, game_aspect, n);
+             }
++            lom_hd_movie_present(device, cmd, swapchain, sc_w, sc_h);
+             lom_native_menu_draw(cmd, swapchain, sc_w, sc_h);
+             if (overlay_frame_cb) {
+                 overlay_frame_cb();

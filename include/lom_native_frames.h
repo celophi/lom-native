@@ -25,6 +25,15 @@ extern "C"
     void lom_native_title_DrawOTag(void* ordering_table);
 
     /**
+     * @brief Start one of TITLE's frames, before any of its drawing: wide for
+     *        the title menu when Widescreen is on and its backdrop is the
+     *        Remaster's, which is painted wide, and otherwise the original
+     *        view, since the rest of TITLE's screens aren't.
+     * @param menu Nonzero for one of the title menu's frames.
+     */
+    void lom_native_title_begin_frame(int menu);
+
+    /**
      * @brief TITLE's PutDispEnv: show the buffer, and note for the tests which
      *        of the two it was.
      * @param env The DISPENV.

@@ -7,6 +7,8 @@
 #include "lom_native_input.h"
 #include "lom_native_sound.h"
 #include "lom_native_time.h"
+#include "lom_native_draw.h"
+#include "lom_native_widescreen.h"
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
@@ -414,6 +416,44 @@ void wmap_init_state(void)
 }
 
 /**
+ * @brief In a wide frame, add a copy of a backdrop strip on each side of the
+ *        two the PS1 draws, so the strip's repeating pattern covers the wide
+ *        frame's sides too. The copies are a pattern's width, 320 pixels,
+ *        apart, so they never overlap.
+ * @param pair The strip's two copies, already linked.
+ */
+static void wmap_widen_backdrop_strip(POLY_FT4* pair[2])
+{
+    POLY_FT4* packet;
+    POLY_FT4* lower;
+    POLY_FT4* higher;
+    s32 side;
+
+    if (lom_native_widescreen_margin() == 0)
+    {
+        return;
+    }
+
+    lower = pair[0]->x0 < pair[1]->x0 ? pair[0] : pair[1];
+    higher = lower == pair[0] ? pair[1] : pair[0];
+
+    for (side = 0; side < 2; side++)
+    {
+        packet = g_wmap_current_frame->packet_cursor;
+        *packet = side == 0 ? *lower : *higher;
+        packet->x0 = packet->x2 = packet->x0 + (side == 0 ? -SCREEN_WIDTH : SCREEN_WIDTH);
+        packet->x1 = packet->x3 = packet->x1 + (side == 0 ? -SCREEN_WIDTH : SCREEN_WIDTH);
+        lom_gpu_link(&g_wmap_current_frame->ordering_table[177], packet);
+
+        if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
+        {
+            g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(POLY_FT4);
+            g_wmap_current_frame->packet_cursor += sizeof(POLY_FT4);
+        }
+    }
+}
+
+/**
  * @brief Fade and scroll the textured backdrop, or draw its color gradient.
  * @param initialize Callback initialization flag; unused.
  * @return One to keep the callback active.
@@ -428,6 +468,7 @@ s32 wmap_draw_backdrop(s32 initialize)
     s32 back_x;
     s32 wrapped_back_x;
     s32 strip;
+    POLY_FT4* pair[2];
 
     if (g_wmap_backdrop_level != g_wmap_backdrop_target_level)
     {
@@ -463,6 +504,7 @@ s32 wmap_draw_backdrop(s32 initialize)
             for (strip = 0; strip < 4; strip++)
             {
                 packet = g_wmap_current_frame->packet_cursor;
+                pair[0] = packet;
                 *packet = g_wmap_backdrop_front_quads[strip];
                 front_x = packet->x0 + SCREEN_WIDTH;
                 wrapped_x = (front_x + g_wmap_backdrop_scroll) % WMAP_BACKDROP_WRAP_WIDTH;
@@ -479,6 +521,7 @@ s32 wmap_draw_backdrop(s32 initialize)
                 }
 
                 packet = g_wmap_current_frame->packet_cursor;
+                pair[1] = packet;
                 *packet = g_wmap_backdrop_front_quads[strip];
                 wrapped_x = (packet->x0 + g_wmap_backdrop_scroll) % WMAP_BACKDROP_WRAP_WIDTH;
                 packet->x0 = packet->x2 = wrapped_x - SCREEN_WIDTH;
@@ -492,6 +535,8 @@ s32 wmap_draw_backdrop(s32 initialize)
                     g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(POLY_FT4);
                     g_wmap_current_frame->packet_cursor += sizeof(POLY_FT4);
                 }
+
+                wmap_widen_backdrop_strip(pair);
             }
 
             if (!(g_wmap_frame_count & 3))
@@ -503,6 +548,7 @@ s32 wmap_draw_backdrop(s32 initialize)
         for (strip = 0; strip < 4; strip++)
         {
             packet = g_wmap_current_frame->packet_cursor;
+            pair[0] = packet;
             *packet = g_wmap_backdrop_back_quads[strip];
             back_x = packet->x0 + 0x8140;
             wrapped_x = (back_x - g_wmap_backdrop_scroll) % WMAP_BACKDROP_WRAP_WIDTH;
@@ -518,6 +564,7 @@ s32 wmap_draw_backdrop(s32 initialize)
             }
 
             packet = g_wmap_current_frame->packet_cursor;
+            pair[1] = packet;
             *packet = g_wmap_backdrop_back_quads[strip];
             wrapped_back_x = packet->x0 + 0x8000;
             wrapped_x = (wrapped_back_x - g_wmap_backdrop_scroll) % WMAP_BACKDROP_WRAP_WIDTH;
@@ -531,6 +578,8 @@ s32 wmap_draw_backdrop(s32 initialize)
                 g_wmap_packet_bytes += GPU_PS1_PACKET_SIZE(POLY_FT4);
                 g_wmap_current_frame->packet_cursor += sizeof(POLY_FT4);
             }
+
+            wmap_widen_backdrop_strip(pair);
         }
 #if !defined(VERSION_JP)
         return 1;
@@ -686,6 +735,7 @@ s32 wmap_draw_backdrop(s32 initialize)
 
         gradient = g_wmap_current_frame->packet_cursor;
         *gradient = g_wmap_backdrop_gradient;
+        lom_native_widescreen_stretch(WMAP_PACKET_CODE(gradient), 4, 2);
         lom_gpu_link(&g_wmap_current_frame->ordering_table[177], g_wmap_current_frame->packet_cursor);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
@@ -747,6 +797,7 @@ s32 wmap_update_screen_fade(s32 initialize)
         }
 
         lom_gpu_link(&g_wmap_current_frame->ordering_table[WMAP_SCREEN_FADE_OT_INDEX], g_wmap_current_frame->packet_cursor);
+        lom_draw_wmap_panel(WMAP_PACKET_CODE(packet), wmap_get_land_count_tier());
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {

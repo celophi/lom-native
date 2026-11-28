@@ -93,57 +93,39 @@ class MenuBackend
     virtual bool remaster_found() const = 0;
 
     /**
-     * @brief Check whether the renderer can draw the Remaster's backgrounds.
-     * @return True when it can.
+     * @brief Check whether one of the Remaster's switches has anything to do
+     *        here: the renderer can draw its part, and this game can show the
+     *        Remaster's text.
+     * @param which LOM_REMASTER_SWITCH_*.
+     * @return True when its row shows.
      */
-    virtual bool hd_backgrounds_available() const = 0;
+    virtual bool remaster_switch_available(int which) const = 0;
 
     /**
-     * @brief Check whether rooms are drawn with the Remaster's backgrounds.
-     * @return True when they are.
+     * @brief Read one of the Remaster's switches, as it's set.
+     * @param which LOM_REMASTER_SWITCH_*.
+     * @return True when it's on.
      */
-    virtual bool hd_backgrounds() const = 0;
+    virtual bool remaster_switch(int which) const = 0;
 
     /**
-     * @brief Turn the Remaster's backgrounds on or off, from the next room.
+     * @brief Turn one of the Remaster's switches on or off, from its part's
+     *        next room, screen, song, effect or scene.
+     * @param which LOM_REMASTER_SWITCH_*.
      * @param value True for on.
      */
-    virtual void set_hd_backgrounds(bool value) = 0;
+    virtual void set_remaster_switch(int which, bool value) = 0;
 
     /**
-     * @brief Check whether the renderer can draw the Remaster's pictures.
-     * @return True when it can.
-     */
-    virtual bool hd_ui_available() const = 0;
-
-    /**
-     * @brief Check whether the Remaster's pictures are drawn.
-     * @return True when they are.
-     */
-    virtual bool hd_ui() const = 0;
-
-    /**
-     * @brief Turn the Remaster's pictures on or off.
-     * @param value True for on.
-     */
-    virtual void set_hd_ui(bool value) = 0;
-
-    /**
-     * @brief Read which text the scenes use.
-     * @return LOM_REMASTER_TEXT_*.
+     * @brief Read the Remaster's language the Text switch uses.
+     * @return A LOM_REMASTER_TEXT_* other than the PS1's.
      */
     virtual int text_language() const = 0;
 
     /**
-     * @brief Check whether this game can show the Remaster's text; the
-     *        Japanese one can't, so it has no Text row.
-     * @return True when it can.
-     */
-    virtual bool text_available() const = 0;
-
-    /**
-     * @brief Choose which text the scenes use, from the next scene.
-     * @param value LOM_REMASTER_TEXT_*.
+     * @brief Choose the Remaster's language for the Text switch, from the
+     *        next scene.
+     * @param value A LOM_REMASTER_TEXT_* other than the PS1's.
      */
     virtual void set_text_language(int value) = 0;
 
@@ -216,31 +198,6 @@ class MenuBackend
      * @return True when there's one to show.
      */
     virtual bool game_seed(std::string& seed) const = 0;
-
-    /**
-     * @brief Read where the music comes from.
-     * @return LOM_REMASTER_MUSIC_*.
-     */
-    virtual int soundtrack() const = 0;
-
-    /**
-     * @brief Choose where the music comes from, from the next song.
-     * @param value LOM_REMASTER_MUSIC_*.
-     */
-    virtual void set_soundtrack(int value) = 0;
-
-    /**
-     * @brief Check whether sound effects come from the Remaster's recordings.
-     * @return True when they do.
-     */
-    virtual bool remaster_effects() const = 0;
-
-    /**
-     * @brief Choose the PS1's sound effects or the Remaster's, from the next
-     *        effect.
-     * @param value True for the Remaster's.
-     */
-    virtual void set_remaster_effects(bool value) = 0;
 
     /**
      * @brief Close the menu and carry on playing.
@@ -361,6 +318,7 @@ enum class MenuCategory
     Audio,
     Controls,
     General,
+    Remaster,
     Mods,
     Quit,
 };
@@ -384,6 +342,7 @@ struct MenuRow
     bool on = false;
     int mod_toggle = -1;
     int mod_option = -1;
+    int remaster_switch = -1;
     bool child = false;
     int percent = 0;
     bool dimmed = false;
@@ -523,17 +482,36 @@ class MenuModel
     void change(const MenuRow& row, int step);
 
     /**
-     * @brief Add the Display rows, with the Remaster's when it's found.
+     * @brief Add the Display rows.
      * @param rows Where they go.
      */
     void add_display_rows(std::vector<MenuRow>& rows) const;
 
     /**
-     * @brief Add the Audio rows: each volume and its mute, and the Remaster's
-     *        when it's found.
+     * @brief Add the Audio rows: each volume and its mute.
      * @param rows Where they go.
      */
     void add_audio_rows(std::vector<MenuRow>& rows) const;
+
+    /**
+     * @brief Add the Remaster rows, as Mods lays a mod out: the switch that
+     *        turns all of it on or off, each part's switch under it while it's
+     *        on, the arranged soundtrack's and the text's language under
+     *        theirs while they're on, and a row to put them back. Without the
+     *        Remaster, a line saying how to link it.
+     * @param rows Where they go.
+     */
+    void add_remaster_rows(std::vector<MenuRow>& rows) const;
+
+    /**
+     * @brief Change one of the Remaster rows' settings.
+     * @param row The row.
+     * @param step -1 or 1; a switch toggles either way.
+     */
+    void change_remaster(const MenuRow& row, int step);
+
+    /** @brief Turn all of the Remaster's switches back on, with the original recordings and English text. */
+    void restore_remaster();
 
     /**
      * @brief Add the Controls rows for the player chosen: their pad, and a row

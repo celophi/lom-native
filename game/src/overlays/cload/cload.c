@@ -14,6 +14,8 @@
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
+#include "../../common/card_menu/card_menu_remaster_text.inc.c"
 
 #if defined(VERSION_JP)
 #define CLOAD_CARD_SLOT0_LABEL_X 32
@@ -40,6 +42,10 @@
 #define CLOAD_DETAILS_Y 160
 
 #define CLOAD_SCROLL_ARROW_UP_Y CLOAD_LIST_Y
+#define CLOAD_REMASTER_TITLE_Y 6
+#define CLOAD_REMASTER_CARD_LABEL_Y 186
+#define CLOAD_REMASTER_TITLE_BASELINE 12
+#define CLOAD_REMASTER_LABEL_BASELINE 11
 #define CLOAD_SCROLL_ARROW_DOWN_Y (CLOAD_LIST_Y + CLOAD_LIST_HEIGHT - 12)
 
 s32 cload_main_unchecked(void)
@@ -69,11 +75,20 @@ s32 cload_main_unchecked(void)
     return g_cload_result;
 }
 
+/**
+ * @brief Run the load screen once its overlay is checked.
+ * @return The result cload_main_unchecked returns.
+ * @note The port decides around it whether it's laid out as the Remaster's (lom_draw_cards_begin).
+ */
 s32 cload_main(void)
 {
-    lom_overlay_require(18, "CLOAD");
+    s32 result;
 
-    return cload_main_unchecked();
+    lom_overlay_require(18, "CLOAD");
+    lom_draw_cards_begin();
+    result = cload_main_unchecked();
+    lom_draw_cards_end();
+    return result;
 }
 
 /**
@@ -103,6 +118,7 @@ void cload_run_menu_loop(void)
     {
         ordering_table = &frame->ordering_table[FIELD_FADE_OT_INDEX];
         lom_graphics_clear_list(ordering_table, CLOAD_OT_SIZE);
+        lom_draw_cards_frame();
         frame->primitive_cursor = g_cload_primitive_buffers[buffer_index];
         field_update_input_repeat();
         dpad_input = g_pad_input & PAD_BTN_DPAD;
@@ -203,7 +219,7 @@ void cload_build_ui_elements(void)
     element->attr.bits.state = CARD_MENU_ELEMENT_OPEN;
     element->attr.bits.transition_step = 1;
     element->attr.bits.x = CLOAD_TITLE_X;
-    element->attr.bits.y = CLOAD_TITLE_Y;
+    element->attr.bits.y = lom_draw_cards_on() ? CLOAD_REMASTER_TITLE_Y : CLOAD_TITLE_Y;
     element->size.bits.flag = 0;
     CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CLOAD_TITLE_WIDTH);
     element->size.bits.width_high = CLOAD_TITLE_WIDTH >> 8;
@@ -214,7 +230,7 @@ void cload_build_ui_elements(void)
     element->attr.bits.transition_step = 1;
     element->attr.bits.x = CLOAD_CARD_SLOT0_LABEL_X;
     element->draw = cload_draw_card_slot0_label;
-    element->attr.bits.y = CLOAD_CARD_LABEL_Y;
+    element->attr.bits.y = lom_draw_cards_on() ? CLOAD_REMASTER_CARD_LABEL_Y : CLOAD_CARD_LABEL_Y;
     element->size.bits.flag = 0;
     CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
     element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
@@ -225,7 +241,7 @@ void cload_build_ui_elements(void)
     element->attr.bits.transition_step = 1;
     element->attr.bits.x = CLOAD_CARD_SLOT1_LABEL_X;
     element->draw = cload_draw_card_slot1_label;
-    element->attr.bits.y = CLOAD_CARD_LABEL_Y;
+    element->attr.bits.y = lom_draw_cards_on() ? CLOAD_REMASTER_CARD_LABEL_Y : CLOAD_CARD_LABEL_Y;
     element->size.bits.flag = 0;
     CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
     element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
@@ -567,6 +583,11 @@ void* cload_draw_entry_list(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset)
 
         entry_index = 0;
 
+        if (lom_draw_cards_on())
+        {
+            break;
+        }
+
         if (entry_state > 0)
         {
             s32 list_x;
@@ -675,6 +696,12 @@ void* cload_draw_header_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offse
 {
     RECT unused;
 
+    if (lom_draw_cards_on())
+    {
+        return card_menu_draw_hd_text(prim, ot, CARD_MENU_TEXT_AT(g_cload_text_load, CARD_MENU_TEXT_LOAD_TITLE), -x_offset + CLOAD_TITLE_WIDTH / 2,
+                                      CLOAD_REMASTER_TITLE_BASELINE - y_offset, FIELD_TEXT_ALIGN_CENTER, LOM_CARDS_TEXT_TITLE);
+    }
+
     return field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_cload_text_load, CARD_MENU_TEXT_LOAD_TITLE), FIELD_TEXT_COLOR_MENU, -x_offset + CLOAD_TITLE_WIDTH / 2,
                            -y_offset, FIELD_TEXT_ALIGN_CENTER);
 }
@@ -699,6 +726,12 @@ void* cload_draw_card_slot0_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_o
     if (g_card_slot != 0)
     {
         color = FIELD_TEXT_COLOR_MENU_DIM;
+    }
+
+    if (lom_draw_cards_on())
+    {
+        return card_menu_draw_hd_text(prim, ot, text, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, CLOAD_REMASTER_LABEL_BASELINE - y_offset,
+                                      FIELD_TEXT_ALIGN_CENTER, (g_card_slot != 0) ? LOM_CARDS_TEXT_DIM : LOM_CARDS_TEXT_TITLE);
     }
 
     return field_draw_text(prim, ot, text, color, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
@@ -726,6 +759,12 @@ void* cload_draw_card_slot1_label(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_o
         color = FIELD_TEXT_COLOR_MENU_DIM;
     }
 
+    if (lom_draw_cards_on())
+    {
+        return card_menu_draw_hd_text(prim, ot, text, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, CLOAD_REMASTER_LABEL_BASELINE - y_offset,
+                                      FIELD_TEXT_ALIGN_CENTER, (g_card_slot == 0) ? LOM_CARDS_TEXT_DIM : LOM_CARDS_TEXT_TITLE);
+    }
+
     return field_draw_text(prim, ot, text, color, -x_offset + CARD_MENU_CARD_LABEL_TEXT_X, -y_offset, FIELD_TEXT_ALIGN_CENTER);
 }
 
@@ -749,7 +788,7 @@ void* cload_draw_selected_entry_details(OT_TYPE* ot, void* prim, s32 x_offset, s
 
     result = prim;
 
-    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NONE)
+    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NONE || lom_draw_cards_on())
     {
         return result;
     }
@@ -981,6 +1020,9 @@ CardMenuElement* cload_alloc_element(void)
     return g_card_menu_element_pool;
 }
 
+#define CARD_MENU_REMASTER_TEXT_TABLE (&g_card_menu_text_table)
+#include "../../common/card_menu/card_menu_remaster_rows.inc.c"
+
 /**
  * @brief Advance and draw the eight pool elements for one frame.
  *
@@ -1005,7 +1047,8 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* frame)
     prim = frame->primitive_cursor;
     ot = &frame->ordering_table[FIELD_FADE_OT_INDEX];
 
-    if ((g_card_entry_state < CARD_MENU_ENTRY_COUNT_LIMIT) && (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state == CARD_MENU_ELEMENT_OPEN))
+    if (!lom_draw_cards_on() && (g_card_entry_state < CARD_MENU_ENTRY_COUNT_LIMIT) &&
+        (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state == CARD_MENU_ELEMENT_OPEN))
     {
         if ((g_card_entry_state * CARD_MENU_ENTRY_ROW_HEIGHT) > (g_card_menu_scroll_y + CLOAD_LIST_HEIGHT))
         {
@@ -1102,6 +1145,7 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* frame)
         }
     }
 
+    prim = card_menu_draw_remaster_rows(prim, ot);
     prim = cload_draw_backdrop(prim, ot);
     frame->primitive_cursor = prim;
 }

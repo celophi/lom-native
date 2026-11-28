@@ -7,6 +7,8 @@
 #include "lom_native_time.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
+#include "../../common/card_menu/card_menu_remaster_text.inc.c"
 
 #if defined(VERSION_JP)
 #define CARDA_CARD_SLOT0_LABEL_X 44
@@ -21,6 +23,14 @@
 #define CARDA_TITLE_Y 10
 #define CARDA_TITLE_WIDTH 112
 #define CARDA_TITLE_HEIGHT FIELD_TEXT_LINE_SPACING
+#define CARDA_REMASTER_TITLE_Y 6
+#define CARDA_REMASTER_CARD_LABEL_Y 186
+#define CARDA_FRAME_CLIP_INSET 2
+#define CARDA_REMASTER_TITLE_BASELINE 12
+#define CARDA_REMASTER_LABEL_BASELINE 11
+#define CARD_MENU_LABEL_REMASTER_TEXT(prim, ot, text, x, y, chosen)                                                                                            \
+    card_menu_draw_hd_text((prim), (ot), (text), (x), (y) + CARDA_REMASTER_LABEL_BASELINE, FIELD_TEXT_ALIGN_CENTER,                                            \
+                           (chosen) ? LOM_CARDS_TEXT_TITLE : LOM_CARDS_TEXT_DIM)
 
 #define CARDA_POCKETSTATION_TITLE_X 32
 #define CARDA_POCKETSTATION_TITLE_Y 34
@@ -48,6 +58,7 @@ typedef struct
 #define CARDA_PET_TRANSFER (&((CardPetResource*)g_carda_save_blob)->transfer)
 
 static void* carda_draw_selected_entry_details(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offset);
+static void* carda_draw_title_text(void* prim, OT_TYPE* ot, u8* text, s32 x, s32 y);
 static void carda_build_ui_elements(void);
 static void card_menu_update_card_sequence(void);
 static void card_menu_handle_input(void);
@@ -103,9 +114,25 @@ void carda_init_unchecked(void* work, s32 mode)
 
 s32 carda_update_frame_unchecked(FieldRenderHalf* render);
 
+/**
+ * @brief Open the save or load screen once its overlay is checked.
+ * @param work Scratch memory for the save file.
+ * @param mode CARDA_MODE_*.
+ * @note The port decides first whether it's laid out as the Remaster's (lom_draw_cards_begin); the PocketStation's
+ *       screens stay the PS1's.
+ */
 void carda_init(void* work, s32 mode)
 {
     lom_overlay_require(12, "CARDA");
+
+    if (CARDA_IS_POCKETSTATION_MODE(mode))
+    {
+        lom_draw_cards_end();
+    }
+    else
+    {
+        lom_draw_cards_begin();
+    }
 
     carda_init_unchecked(work, mode);
 }
@@ -121,6 +148,12 @@ s32 carda_update_frame(FieldRenderHalf* frame)
     frame->display_rect.y = frame->draw_env.clip.y >= 240;
     s32 result = carda_update_frame_unchecked(frame);
     frame->display_rect.y = display_y;
+
+    if (result != 0)
+    {
+        lom_draw_cards_end();
+    }
+
     return result;
 }
 
@@ -204,7 +237,7 @@ static void carda_build_ui_elements(void)
         element->draw = carda_draw_title;
         element->attr.bits.transition_step = 1;
         element->attr.bits.x = CARDA_TITLE_X;
-        element->attr.bits.y = CARDA_TITLE_Y;
+        element->attr.bits.y = lom_draw_cards_on() ? CARDA_REMASTER_TITLE_Y : CARDA_TITLE_Y;
         element->size.bits.width_high = CARDA_TITLE_WIDTH >> 8;
         element->size.bits.height = CARDA_TITLE_HEIGHT;
         CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARDA_TITLE_WIDTH);
@@ -213,7 +246,7 @@ static void carda_build_ui_elements(void)
         element->draw = card_menu_draw_card_slot0_label;
         element->attr.bits.transition_step = 1;
         element->attr.bits.x = CARDA_CARD_SLOT0_LABEL_X;
-        element->attr.bits.y = CARDA_CARD_LABEL_BROWSER_Y;
+        element->attr.bits.y = lom_draw_cards_on() ? CARDA_REMASTER_CARD_LABEL_Y : CARDA_CARD_LABEL_BROWSER_Y;
         element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
         element->size.bits.height = CARD_MENU_CARD_LABEL_HEIGHT;
         CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
@@ -222,7 +255,7 @@ static void carda_build_ui_elements(void)
         element->draw = card_menu_draw_card_slot1_label;
         element->attr.bits.transition_step = 1;
         element->attr.bits.x = CARDA_CARD_SLOT1_LABEL_X;
-        element->attr.bits.y = CARDA_CARD_LABEL_BROWSER_Y;
+        element->attr.bits.y = lom_draw_cards_on() ? CARDA_REMASTER_CARD_LABEL_Y : CARDA_CARD_LABEL_BROWSER_Y;
         element->size.bits.width_high = CARD_MENU_CARD_LABEL_WIDTH >> 8;
         element->size.bits.height = CARD_MENU_CARD_LABEL_HEIGHT;
         CARD_MENU_SET_ELEMENT_WIDTH_LOW(element, CARD_MENU_CARD_LABEL_WIDTH);
@@ -692,6 +725,11 @@ static void* carda_draw_entry_list(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_
 
         i = 0;
 
+        if (lom_draw_cards_on())
+        {
+            break;
+        }
+
         if (i < g_card_entry_state)
         {
             s32 list_x;
@@ -800,6 +838,25 @@ static void* carda_draw_entry_list(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_
 }
 
 /**
+ * @brief Draw the screen's name, centred: in the Remaster's font on its strip in the port's Remaster layout.
+ * @param prim Primitive-buffer cursor.
+ * @param ot Ordering table the text is linked into.
+ * @param text The name.
+ * @param x Its middle.
+ * @param y Its top, the PS1's.
+ * @return Advanced primitive-buffer cursor.
+ */
+static void* carda_draw_title_text(void* prim, OT_TYPE* ot, u8* text, s32 x, s32 y)
+{
+    if (lom_draw_cards_on())
+    {
+        return card_menu_draw_hd_text(prim, ot, text, x, y + CARDA_REMASTER_TITLE_BASELINE, FIELD_TEXT_ALIGN_CENTER, LOM_CARDS_TEXT_TITLE);
+    }
+
+    return field_draw_text(prim, ot, text, FIELD_TEXT_COLOR_NORMAL, x, y, FIELD_TEXT_ALIGN_CENTER);
+}
+
+/**
  * @brief Draw the title of the current mode: "Save", "Load" or Ring Ring Land.
  * @param ot Ordering table the text is linked into.
  * @param prim Primitive-buffer cursor.
@@ -818,13 +875,13 @@ static void* carda_draw_title(OT_TYPE* ot, void* prim, s32 x_offset, s32 y_offse
     }
     else if (g_card_menu_mode == CARDA_MODE_LOAD)
     {
-        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_carda_text_load_title, CARD_MENU_TEXT_LOAD_TITLE), FIELD_TEXT_COLOR_NORMAL,
-                               -x_offset + CARDA_TITLE_WIDTH / 2, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        prim = carda_draw_title_text(prim, ot, CARD_MENU_TEXT_AT(g_carda_text_load_title, CARD_MENU_TEXT_LOAD_TITLE), -x_offset + CARDA_TITLE_WIDTH / 2,
+                                     -y_offset);
     }
     else
     {
-        prim = field_draw_text(prim, ot, CARD_MENU_TEXT_AT(g_carda_text_save_title, CARD_MENU_TEXT_SAVE_TITLE), FIELD_TEXT_COLOR_NORMAL,
-                               -x_offset + CARDA_TITLE_WIDTH / 2, -y_offset, FIELD_TEXT_ALIGN_CENTER);
+        prim = carda_draw_title_text(prim, ot, CARD_MENU_TEXT_AT(g_carda_text_save_title, CARD_MENU_TEXT_SAVE_TITLE), -x_offset + CARDA_TITLE_WIDTH / 2,
+                                     -y_offset);
     }
 
     return prim;
@@ -858,7 +915,7 @@ static void* carda_draw_selected_entry_details(OT_TYPE* ot, void* prim, s32 x_of
 
     result = prim;
 
-    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NONE)
+    if (g_card_menu_selection_status == CARD_MENU_SELECTION_NONE || lom_draw_cards_on())
     {
         return result;
     }
@@ -1066,6 +1123,66 @@ static void* carda_draw_selected_entry_details(OT_TYPE* ot, void* prim, s32 x_of
 
 #include "../../common/card_menu/card_menu_alloc_element.inc.c"
 
+#define CARD_MENU_REMASTER_TEXT_TABLE (&g_carda_text_checking_card)
+#define CARD_MENU_REMASTER_EXTRA_LABEL(name, table)                                                                                                            \
+    (strncmp(g_card_full_entry_name, (name), CARDA_CARD_FULL_ENTRY_NAME_LENGTH) == 0 ? CARD_MENU_TEXT_BY_OFFSET((table), g_carda_text_card_full_label) : NULL)
+#include "../../common/card_menu/card_menu_remaster_rows.inc.c"
+
+/**
+ * @brief Draw an element's window: the field's menu frame, or in the port's Remaster layout only its clip area, with
+ *        the Remaster's window for the prompts (card_menu_draw_remaster_window).
+ * @param prim Primitive-buffer cursor.
+ * @param ot Ordering-table entry.
+ * @param x The window's left.
+ * @param y Its top.
+ * @param width Its width.
+ * @param height Its height.
+ * @param display_y Nonzero when drawing into the area at SCREEN_HEIGHT.
+ * @param modal Nonzero for the prompt.
+ * @return Advanced primitive-buffer cursor.
+ */
+static void* carda_draw_element_frame(void* prim, OT_TYPE* ot, s32 x, s32 y, s32 width, s32 height, s32 display_y, s32 modal)
+{
+    DRAWENV draw_env;
+
+    if (!lom_draw_cards_on() || g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].draw != carda_draw_entry_list)
+    {
+        return field_draw_menu_frame(prim, ot, x, y, width, height, display_y, modal);
+    }
+
+    lom_graphics_default_drawing(&draw_env, x + CARDA_FRAME_CLIP_INSET, y + (display_y != 0 ? SCREEN_HEIGHT : VRAM_BACK_DRAW_Y) + CARDA_FRAME_CLIP_INSET,
+                                 width - CARDA_FRAME_CLIP_INSET * 2, height - CARDA_FRAME_CLIP_INSET * 2);
+    lom_gpu_init_drawing_packet(prim, &draw_env);
+    lom_gpu_link(ot, prim);
+    prim = (DR_ENV*)prim + 1;
+    return modal ? card_menu_draw_remaster_window(prim, ot, x, y, width, height) : prim;
+}
+
+/**
+ * @brief In the port's Remaster layout, draw the Remaster's save screen background behind the screen's windows, over
+ *        the room (lom_draw_cards_background).
+ * @param prim Primitive-buffer cursor.
+ * @param ot Ordering-table entry.
+ * @return Advanced primitive-buffer cursor.
+ */
+static void* carda_draw_remaster_background(void* prim, OT_TYPE* ot)
+{
+    SPRT* sprite = prim;
+
+    if (!lom_draw_cards_on())
+    {
+        return prim;
+    }
+
+    SET_BGR0_PACKED(sprite, GPU_TINT_NEUTRAL);
+    lom_gpu_init_sprite(sprite);
+    lom_gpu_set_xy0(sprite, 0, 0);
+    lom_gpu_set_wh(sprite, SCREEN_WIDTH, VRAM_DRAW_HEIGHT);
+    lom_gpu_link(ot, sprite);
+    lom_draw_cards_background((u8*)sprite + __builtin_offsetof(P_TAG, r0), sizeof(SPRT), 1);
+    return sprite + 1;
+}
+
 /**
  * @brief Advance and draw the pool elements for one frame.
  *
@@ -1091,7 +1208,7 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* render)
     prim = render->primitive_cursor;
     ot = render->ordering_table;
 
-    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].draw == carda_draw_entry_list)
+    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].draw == carda_draw_entry_list && !lom_draw_cards_on())
     {
         if ((g_card_entry_state < CARD_MENU_ENTRY_COUNT_LIMIT) && (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].attr.bits.state == CARD_MENU_ELEMENT_OPEN))
         {
@@ -1147,9 +1264,9 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* render)
                 scaled_height = (element->size.bits.height * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
                 prim = element->draw(ot, prim, (card_menu_element_width(element) - scaled_width) / 2, (element->size.bits.height - scaled_height) / 2);
                 opening_x = element->attr.bits.x;
-                prim = field_draw_menu_frame(prim, ot, opening_x + (card_menu_element_width(element) - scaled_width) / 2,
-                                             element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
-                                             render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
+                prim = carda_draw_element_frame(prim, ot, opening_x + (card_menu_element_width(element) - scaled_width) / 2,
+                                                element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
+                                                render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
                 element->attr.bits.transition_step++;
 
                 if (element->attr.bits.transition_step == CARD_MENU_ELEMENT_TRANSITION_STEPS)
@@ -1162,8 +1279,8 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* render)
 
             case CARD_MENU_ELEMENT_OPEN:
                 prim = element->draw(ot, prim, 0, 0);
-                prim = field_draw_menu_frame(prim, ot, element->attr.bits.x, element->attr.bits.y, card_menu_element_width(element), element->size.bits.height,
-                                             render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
+                prim = carda_draw_element_frame(prim, ot, element->attr.bits.x, element->attr.bits.y, card_menu_element_width(element),
+                                                element->size.bits.height, render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
                 if (element->attr.bits.transition_step != 0)
                 {
                     element->attr.bits.transition_step--;
@@ -1177,9 +1294,9 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* render)
                 scaled_height = (element->size.bits.height * element->attr.bits.transition_step) / CARD_MENU_ELEMENT_TRANSITION_STEPS;
                 prim = element->draw(ot, prim, (card_menu_element_width(element) - scaled_width) / 2, (element->size.bits.height - scaled_height) / 2);
                 closing_x = element->attr.bits.x;
-                prim = field_draw_menu_frame(prim, ot, closing_x + (card_menu_element_width(element) - scaled_width) / 2,
-                                             element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
-                                             render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
+                prim = carda_draw_element_frame(prim, ot, closing_x + (card_menu_element_width(element) - scaled_width) / 2,
+                                                element->attr.bits.y + (element->size.bits.height - scaled_height) / 2, scaled_width, scaled_height,
+                                                render->display_rect.y, i == CARD_MENU_ELEMENT_MODAL);
                 element->attr.bits.transition_step--;
 
                 if (element->attr.bits.transition_step == 0)
@@ -1202,6 +1319,12 @@ void card_menu_update_and_draw_elements(FieldRenderHalf* render)
                 break;
             }
         }
+    }
+
+    if (g_card_menu_element_pool[CARD_MENU_ELEMENT_MAIN].draw == carda_draw_entry_list)
+    {
+        prim = card_menu_draw_remaster_rows(prim, ot);
+        prim = carda_draw_remaster_background(prim, ot);
     }
 
     render->primitive_cursor = prim;

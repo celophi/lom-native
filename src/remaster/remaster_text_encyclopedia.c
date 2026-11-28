@@ -910,7 +910,7 @@ int lom_native_text_encyclopedia(int resource, const unsigned char* const ps1[12
         return 0;
     }
 
-    const int hd = lom_native_remaster_hd_ui();
+    const int hd = lom_native_remaster_uses(LOM_REMASTER_SWITCH_ENCYCLOPEDIA);
 
     if (resource != s_page_resource || language != s_page_language || hd != s_page_hd)
     {

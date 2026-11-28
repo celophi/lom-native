@@ -406,6 +406,7 @@ typedef struct
     int title_back;
     int title_idle;
     int card_browse;
+    int start_widescreen;
     unsigned vblanks;
     Phase phase;
     unsigned phase_start;

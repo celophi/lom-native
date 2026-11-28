@@ -6,6 +6,7 @@
 #include "lom_native_game_loop.h"
 
 #include "lom_native_cd.h"
+#include "lom_native_remaster.h"
 
 #include "main/controller.h"
 #include "common/pad.h"
@@ -26,6 +27,7 @@
 #include "movie_decoder.h"
 #include "movie_source.h"
 #include "movie_audio_output.h"
+#include "../gpu/hd_movie.h"
 
 #define LOM_NATIVE_INTRO_MOVIE_RESOURCE 0x16A0
 #define LOM_NATIVE_MOVIE_WIDTH 320
@@ -39,8 +41,18 @@
 #define LOM_NATIVE_MOVIE_PATH_MAX 4096
 #define LOM_NATIVE_MOVIE_PIXELS ((size_t)LOM_NATIVE_MOVIE_WIDTH * LOM_NATIVE_MOVIE_HEIGHT)
 #define LOM_NATIVE_MOVIE_FRAME_BYTES (LOM_NATIVE_MOVIE_PIXELS * 3u)
+#define LOM_NATIVE_MOVIE_PS1_RATE 15
+#define LOM_NATIVE_MOVIE_HD_WIDTH 1920
+#define LOM_NATIVE_MOVIE_HD_HEIGHT 1080
+#define LOM_NATIVE_MOVIE_HD_FRAME_VSYNCS 2
+#define LOM_NATIVE_MOVIE_HD_SLACK_FRAMES (30 * LOM_MOVIE_HD_RATE)
+#define LOM_NATIVE_MOVIE_HD_AUDIO_BYTES (LOM_NATIVE_MOVIE_AUDIO_RATE / LOM_MOVIE_HD_RATE * LOM_NATIVE_MOVIE_AUDIO_CHANNELS * sizeof(short))
+
+_Static_assert(LOM_NATIVE_MOVIE_HD_AUDIO_BYTES <= LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME, "a Remaster movie frame's sound fits the chunk");
 
 static unsigned int s_frame_limit;
+
+static const unsigned int retail_frame_limits[] = {2098, 2473, 1318, 5368, 898};
 
 static unsigned int s_presented_frames;
 
@@ -109,10 +121,14 @@ static SDL_AudioStream* open_movie_audio_stream(void)
  * @param output Where it plays.
  * @param audio_file The movie's sound, as 16-bit stereo PCM.
  * @param audio_chunk Room for one frame's worth.
+ * @param frame_bytes One video frame's worth, in bytes.
+ * @param pad_last Nonzero to pad a short last frame with silence, for the
+ *        Remaster's movies, whose sound doesn't end on a frame; the PS1's
+ *        does.
  * @return 1 when it queued it, 0 at the end of the sound, or -1 when it fails
  *        or the sound ends partway through a frame.
  */
-static int queue_movie_audio_frame(LomMovieAudioOutput* output, FILE* audio_file, unsigned char* audio_chunk)
+static int queue_movie_audio_frame(LomMovieAudioOutput* output, FILE* audio_file, unsigned char* audio_chunk, size_t frame_bytes, int pad_last)
 {
     size_t audio_bytes;
 
@@ -122,17 +138,22 @@ static int queue_movie_audio_frame(LomMovieAudioOutput* output, FILE* audio_file
         return -1;
     }
 
-    audio_bytes = fread(audio_chunk, 1, LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME, audio_file);
+    audio_bytes = fread(audio_chunk, 1, frame_bytes, audio_file);
 
     if (audio_bytes == 0)
     {
         return feof(audio_file) ? 0 : -1;
     }
 
-    if (audio_bytes != LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME)
+    if (audio_bytes != frame_bytes && pad_last)
     {
-        fprintf(stderr, "[lom-native] Movie ended with a partial PCM audio frame (%zu/%zu bytes).\n", audio_bytes,
-                (size_t)LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME);
+        memset(audio_chunk + audio_bytes, 0, frame_bytes - audio_bytes);
+        audio_bytes = frame_bytes;
+    }
+
+    if (audio_bytes != frame_bytes)
+    {
+        fprintf(stderr, "[lom-native] Movie ended with a partial PCM audio frame (%zu/%zu bytes).\n", audio_bytes, frame_bytes);
         return -1;
     }
 
@@ -151,15 +172,17 @@ static int queue_movie_audio_frame(LomMovieAudioOutput* output, FILE* audio_file
  * @param output Where it plays.
  * @param audio_file The movie's sound.
  * @param audio_chunk Room for one frame's worth.
+ * @param frame_bytes One video frame's worth, in bytes.
+ * @param pad_last As queue_movie_audio_frame.
  * @return 0, or -1 when the sound is shorter than that.
  */
-static int prebuffer_movie_audio(LomMovieAudioOutput* output, FILE* audio_file, unsigned char* audio_chunk)
+static int prebuffer_movie_audio(LomMovieAudioOutput* output, FILE* audio_file, unsigned char* audio_chunk, size_t frame_bytes, int pad_last)
 {
     unsigned int frame;
 
     for (frame = 0; frame < LOM_NATIVE_MOVIE_AUDIO_PREBUFFER_FRAMES; frame++)
     {
-        if (queue_movie_audio_frame(output, audio_file, audio_chunk) != 1)
+        if (queue_movie_audio_frame(output, audio_file, audio_chunk, frame_bytes, pad_last) != 1)
         {
             fprintf(stderr, "[lom-native] Movie does not contain the %u audio frames required for AKAO-style priming.\n",
                     LOM_NATIVE_MOVIE_AUDIO_PREBUFFER_FRAMES);
@@ -195,6 +218,12 @@ typedef struct
     unsigned char* video_frame;
     u16* video_pixels;
     FILE* audio_file;
+    pid_t audio_child;
+    char sound_path[LOM_NATIVE_MOVIE_PATH_MAX];
+    int hd;
+    size_t frame_bytes;
+    size_t audio_bytes;
+    unsigned int frame_vsyncs;
     SDL_AudioStream* audio_stream;
     LomMovieAudioOutput* audio_output;
     unsigned char audio_chunk[LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME];
@@ -214,7 +243,6 @@ typedef struct
  */
 static int open_movie(MoviePlayback* movie, unsigned int movie_index)
 {
-    static const unsigned int retail_frame_limits[] = {2098, 2473, 1318, 5368, 898};
     char movie_path[LOM_NATIVE_MOVIE_PATH_MAX];
 
     if (movie_index >= sizeof(retail_frame_limits) / sizeof(retail_frame_limits[0]))
@@ -254,13 +282,133 @@ static int open_movie(MoviePlayback* movie, unsigned int movie_index)
     }
 
     movie->audio_file = movie->prepared.audio_pcm;
+    movie->frame_bytes = LOM_NATIVE_MOVIE_FRAME_BYTES;
+    movie->audio_bytes = LOM_NATIVE_MOVIE_AUDIO_BYTES_PER_VIDEO_FRAME;
+    movie->frame_vsyncs = LOM_NATIVE_MOVIE_FRAME_VSYNCS;
     return 0;
+}
+
+/**
+ * @brief Find where a Remaster movie's sound is: its own track, written to a
+ *        temporary file, when it has one, otherwise the movie itself.
+ * @param movie The movie, which keeps the temporary file's path to delete.
+ * @param movie_index Which movie.
+ * @param path The movie's file.
+ * @return The file to decode its sound from.
+ */
+static const char* open_hd_sound(MoviePlayback* movie, unsigned int movie_index, const char* path)
+{
+    FILE* track = NULL;
+
+    if (lom_movie_temp_file(movie->sound_path, sizeof(movie->sound_path), &track) != 0)
+    {
+        movie->sound_path[0] = '\0';
+        return path;
+    }
+
+    const int written = lom_native_remaster_movie_sound(movie_index, track);
+    fclose(track);
+
+    if (written == 1)
+    {
+        return movie->sound_path;
+    }
+
+    if (written < 0)
+    {
+        fprintf(stderr, "[lom-native] Could not read the Remaster's sound for its movie %s.\n", lom_native_remaster_movie_file(movie_index));
+    }
+
+    remove(movie->sound_path);
+    movie->sound_path[0] = '\0';
+    return path;
+}
+
+/**
+ * @brief Start playing the Remaster's movie in place of the disc's, when HD
+ *        movies are on and it's there: decode its picture and its sound, and
+ *        have the renderer show its frames at the window's resolution. The
+ *        Remaster's movies are the PS1's remastered and as long, so they end
+ *        when the game expects; they're decoded at a steady 30 frames a
+ *        second, two vertical blanks each, and a test's frame limit, counted
+ *        in the PS1's 15 a second, is doubled to match.
+ * @param movie Filled in.
+ * @param movie_index Which movie.
+ * @return 0, or -1 when the Remaster's movie doesn't play, with nothing left
+ *         to clean up, so the disc's plays instead.
+ */
+static int open_hd_movie(MoviePlayback* movie, unsigned int movie_index)
+{
+    char path[LOM_NATIVE_MOVIE_PATH_MAX];
+
+    if (!lom_native_remaster_movie_path(movie_index, path, sizeof(path)))
+    {
+        return -1;
+    }
+
+    movie->index = movie_index;
+    movie->hd = 1;
+    movie->limit = s_frame_limit * (LOM_MOVIE_HD_RATE / LOM_NATIVE_MOVIE_PS1_RATE);
+    movie->frame_bytes = (size_t)LOM_NATIVE_MOVIE_HD_WIDTH * LOM_NATIVE_MOVIE_HD_HEIGHT * 4u;
+    movie->audio_bytes = LOM_NATIVE_MOVIE_HD_AUDIO_BYTES;
+    movie->frame_vsyncs = LOM_NATIVE_MOVIE_HD_FRAME_VSYNCS;
+    movie->video_pipe = lom_movie_decoder_open_hd(path, movie->limit, LOM_NATIVE_MOVIE_HD_WIDTH, LOM_NATIVE_MOVIE_HD_HEIGHT, &movie->video_child);
+
+    if (movie->video_pipe == NULL)
+    {
+        fprintf(stderr, "[lom-native] Could not start ffmpeg for the Remaster's movie %s; playing the disc's.\n", path);
+        return -1;
+    }
+
+    if (lom_hd_movie_begin(LOM_NATIVE_MOVIE_HD_WIDTH, LOM_NATIVE_MOVIE_HD_HEIGHT) != 0)
+    {
+        lom_movie_decoder_close(movie->video_pipe, movie->video_child, 1);
+        movie->video_pipe = NULL;
+        return -1;
+    }
+
+    movie->audio_file = lom_movie_decoder_open_audio(open_hd_sound(movie, movie_index, path), LOM_NATIVE_MOVIE_AUDIO_RATE, &movie->audio_child);
+    fprintf(stderr, "[lom-native] The Remaster's movie %s.\n", lom_native_remaster_movie_file(movie_index));
+    return 0;
+}
+
+/**
+ * @brief Stop decoding a Remaster movie's sound, delete its track's
+ *        temporary file and stop showing its frames.
+ * @param movie The movie.
+ * @param cancel Nonzero to stop ffmpeg first, for a movie that didn't play to
+ *        its end.
+ */
+static void close_hd_movie(MoviePlayback* movie, int cancel)
+{
+    if (!movie->hd)
+    {
+        return;
+    }
+
+    if (movie->audio_file != NULL)
+    {
+        lom_movie_decoder_close(movie->audio_file, movie->audio_child, cancel);
+        movie->audio_file = NULL;
+    }
+
+    if (movie->sound_path[0] != '\0')
+    {
+        remove(movie->sound_path);
+        movie->sound_path[0] = '\0';
+    }
+
+    lom_hd_movie_end();
 }
 
 /**
  * @brief Pause the game's sound and start the movie's: open a stream, set up
  *        its output and queue the first frames. When no stream opens, the movie
- *        plays silent and the game's sound comes back on.
+ *        plays silent, the game's sound comes back on and a Remaster movie's
+ *        sound decoder is stopped. The output holds the whole movie's sound,
+ *        since nothing may play it as it goes (a test run's); a Remaster
+ *        movie's is sized from the disc's, twice the frames at 30 a second,
+ *        with room for the few seconds longer some run.
  * @param movie The movie.
  * @return 0, or -1 when the sound can't be set up.
  */
@@ -277,11 +425,21 @@ static int start_movie_audio(MoviePlayback* movie)
     if (movie->audio_stream == NULL)
     {
         Psyz_AudioUnpause();
+
+        if (movie->hd)
+        {
+            lom_movie_decoder_close(movie->audio_file, movie->audio_child, 1);
+        }
+
         movie->audio_file = NULL;
         return 0;
     }
 
-    size_t capacity = ((size_t)movie->limit + LOM_NATIVE_MOVIE_AUDIO_PREBUFFER_FRAMES) * LOM_NATIVE_MOVIE_AUDIO_FRAMES_PER_VIDEO_FRAME;
+    const size_t sound_frames = movie->audio_bytes / (LOM_NATIVE_MOVIE_AUDIO_CHANNELS * sizeof(short));
+    const size_t video_frames =
+        movie->hd ? (size_t)retail_frame_limits[movie->index] * (LOM_MOVIE_HD_RATE / LOM_NATIVE_MOVIE_PS1_RATE) + LOM_NATIVE_MOVIE_HD_SLACK_FRAMES
+                  : (size_t)movie->limit;
+    size_t capacity = (video_frames + LOM_NATIVE_MOVIE_AUDIO_PREBUFFER_FRAMES) * sound_frames;
     movie->audio_output = lom_movie_audio_output_create(movie->audio_stream, capacity, lom_native_akao_movie_audio_gains());
 
     if (movie->audio_output == NULL)
@@ -293,7 +451,7 @@ static int start_movie_audio(MoviePlayback* movie)
         return -1;
     }
 
-    return prebuffer_movie_audio(movie->audio_output, movie->audio_file, movie->audio_chunk);
+    return prebuffer_movie_audio(movie->audio_output, movie->audio_file, movie->audio_chunk, movie->audio_bytes, movie->hd);
 }
 
 /**
@@ -314,6 +472,7 @@ static LomNativeMovieStatus abandon_movie(MoviePlayback* movie)
         Psyz_AudioUnpause();
     }
 
+    close_hd_movie(movie, 1);
     lom_movie_decoder_close(movie->video_pipe, movie->video_child, 1);
     lom_movie_cleanup_source(&movie->prepared);
     return LOM_NATIVE_MOVIE_ERROR;
@@ -344,7 +503,7 @@ static void convert_movie_frame(const unsigned char* rgb, u16* pixels)
  */
 static int play_movie_audio_frame(MoviePlayback* movie, int* started)
 {
-    if (queue_movie_audio_frame(movie->audio_output, movie->audio_file, movie->audio_chunk) < 0)
+    if (queue_movie_audio_frame(movie->audio_output, movie->audio_file, movie->audio_chunk, movie->audio_bytes, movie->hd) < 0)
     {
         return -1;
     }
@@ -428,12 +587,20 @@ static int show_movie(MoviePlayback* movie)
     setRECT(&upload_rect[1], 0, LOM_NATIVE_MOVIE_HEIGHT, LOM_NATIVE_MOVIE_WIDTH, LOM_NATIVE_MOVIE_HEIGHT);
     SetDispMask(0);
 
-    while ((movie->read_result = lom_movie_decoder_read_frame(movie->video_pipe, movie->video_frame, LOM_NATIVE_MOVIE_FRAME_BYTES)),
-           (movie->bytes_read = movie->read_result.bytes) == LOM_NATIVE_MOVIE_FRAME_BYTES && movie->read_result.error == 0)
+    while ((movie->read_result = lom_movie_decoder_read_frame(movie->video_pipe, movie->video_frame, movie->frame_bytes)),
+           (movie->bytes_read = movie->read_result.bytes) == movie->frame_bytes && movie->read_result.error == 0)
     {
-        convert_movie_frame(movie->video_frame, movie->video_pixels);
-        LoadImage(&upload_rect[page], (LomPsyzULong*)movie->video_pixels);
-        DrawSync(0);
+        if (movie->hd)
+        {
+            lom_hd_movie_frame(movie->video_frame);
+        }
+        else
+        {
+            convert_movie_frame(movie->video_frame, movie->video_pixels);
+            LoadImage(&upload_rect[page], (LomPsyzULong*)movie->video_pixels);
+            DrawSync(0);
+        }
+
         PutDispEnv(&display_env[page]);
         SetDispMask(1);
 
@@ -442,7 +609,7 @@ static int show_movie(MoviePlayback* movie)
             return -1;
         }
 
-        for (int vsync = 0; vsync < LOM_NATIVE_MOVIE_FRAME_VSYNCS; vsync++)
+        for (unsigned int vsync = 0; vsync < movie->frame_vsyncs; vsync++)
         {
             VSync(0);
         }
@@ -510,14 +677,15 @@ static LomNativeMovieStatus finish_movie(MoviePlayback* movie)
         Psyz_AudioUnpause();
     }
 
+    close_hd_movie(movie, 1);
     lom_movie_cleanup_source(&movie->prepared);
 
-    if (movie->bytes_read != 0 && movie->bytes_read != LOM_NATIVE_MOVIE_FRAME_BYTES)
+    if (movie->bytes_read != 0 && movie->bytes_read != movie->frame_bytes)
     {
         fprintf(stderr,
                 "[lom-native] Movie ended with a partial RGB24 frame (%zu/%zu bytes) after %u frames: "
                 "eof=%d read error=%d (%s), ffmpeg wait status=0x%X wait error=%d close error=%d.\n",
-                movie->bytes_read, (size_t)LOM_NATIVE_MOVIE_FRAME_BYTES, movie->frame_count, movie->read_result.eof, movie->read_result.error,
+                movie->bytes_read, movie->frame_bytes, movie->frame_count, movie->read_result.eof, movie->read_result.error,
                 movie->read_result.error ? strerror(movie->read_result.error) : "-", close_result.wait_status, close_result.wait_error,
                 close_result.stream_error);
         return LOM_NATIVE_MOVIE_ERROR;
@@ -543,7 +711,7 @@ static LomNativeMovieStatus finish_movie(MoviePlayback* movie)
         return LOM_NATIVE_MOVIE_ERROR;
     }
 
-    if (!movie->skipped && movie->frame_count < movie->limit)
+    if (!movie->skipped && movie->limit != 0 && movie->frame_count < movie->limit)
     {
         fprintf(stderr, "[lom-native] Movie RGB24 stream ended early after %u/%u frames.\n", movie->frame_count, movie->limit);
         return LOM_NATIVE_MOVIE_ERROR;
@@ -563,9 +731,14 @@ LomNativeMovieStatus lom_native_movie_play(unsigned int movie_index)
         return LOM_NATIVE_MOVIE_SKIPPED;
     }
 
-    if (open_movie(&movie, movie_index) != 0)
+    if (open_hd_movie(&movie, movie_index) != 0)
     {
-        return LOM_NATIVE_MOVIE_ERROR;
+        memset(&movie, 0, sizeof(movie));
+
+        if (open_movie(&movie, movie_index) != 0)
+        {
+            return LOM_NATIVE_MOVIE_ERROR;
+        }
     }
 
     if (start_movie_audio(&movie) != 0)
@@ -573,7 +746,7 @@ LomNativeMovieStatus lom_native_movie_play(unsigned int movie_index)
         return abandon_movie(&movie);
     }
 
-    movie.video_frame = malloc(LOM_NATIVE_MOVIE_FRAME_BYTES);
+    movie.video_frame = malloc(movie.frame_bytes);
     movie.video_pixels = malloc(LOM_NATIVE_MOVIE_PIXELS * sizeof(*movie.video_pixels));
 
     if (movie.video_frame == NULL || movie.video_pixels == NULL || show_movie(&movie) != 0)

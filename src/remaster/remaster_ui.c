@@ -19,13 +19,27 @@
 #define LAYERS 4
 #define LAYER_SIZE 2048
 #define MARGIN 8
-#define MAX_IMAGES 256
-#define PLACEMENTS 256
+#define MAX_IMAGES 1024
+#define PLACEMENTS 1024
 #define PATH_SIZE 4096
+#define MAX_CHAIN 8
+#define TEXT_GREY 0xD8
+#define LINE_SHADOW 3
+#define LINE_HEIGHT 52
+#define LINE_BASELINE 42
+#define LINE_COLOURS 10
+#define LINE_COLOUR '\x01'
+#define FONTS_OPEN 4
+#define TEXT_FONT_LATIN "system/font/font_us.psb.m"
+#define FADE_LABEL "@fade"
+#define FADE_STEPS 32
+#define FADE_SIZE 4
+#define FADE_NEUTRAL_LEVEL 0x100
+#define LINE_SHADOW_ALPHA 160
 
 typedef struct
 {
-    char key[96];
+    char key[400];
     int layer;
     int x, y, w, h;
     unsigned stamp;
@@ -41,6 +55,12 @@ typedef struct
 {
     int layer;
     int uv[8];
+    int xy[8];
+    int has_xy;
+    int tpage;
+    int next;
+    int rgb;
+    int semi;
 } Placement;
 
 static Image s_images[MAX_IMAGES];
@@ -184,6 +204,408 @@ static void copy_texture(const LomPsb* psb, size_t texture, unsigned char* pixel
 }
 
 /**
+ * @brief Read one letter's place in a font's pictures, and its picture.
+ * @param psb The font.
+ * @param code The font's letters.
+ * @param source Its pictures.
+ * @param key The letter, in UTF-8.
+ * @param rect Set to where it is in its picture: x, y, width and height.
+ * @param pixels Set to the picture, one alpha byte a pixel.
+ * @param stride Set to the picture's width.
+ * @return 0, or -1 when the font doesn't have it.
+ */
+static int font_letter(const LomPsb* psb, size_t code, size_t source, const char* key, int rect[4], const unsigned char** pixels, int* stride)
+{
+    size_t letter, image, value;
+    size_t bytes;
+    const char* type;
+
+    if (lom_psb_member(psb, code, key, &letter) != 0 || lom_psb_item(psb, source, (size_t)member_int(psb, letter, "id"), &image) != 0 ||
+        lom_psb_member(psb, image, "type", &value) != 0 || !(type = lom_psb_string(psb, value)) || strcmp(type, "A8") != 0 ||
+        lom_psb_member(psb, image, "pixel", &value) != 0 || lom_psb_chunk(psb, value, pixels, &bytes) != 0)
+    {
+        return -1;
+    }
+
+    rect[0] = member_int(psb, letter, "x");
+    rect[1] = member_int(psb, letter, "y");
+    rect[2] = member_int(psb, letter, "w");
+    rect[3] = member_int(psb, letter, "h");
+    *stride = member_int(psb, image, "width");
+    return rect[0] < 0 || rect[1] < 0 || rect[2] <= 0 || rect[3] <= 0 || *stride <= 0 || (size_t)(rect[1] + rect[3]) * (size_t)*stride > bytes ||
+                   rect[0] + rect[2] > *stride
+               ? -1
+               : 0;
+}
+
+/**
+ * @brief Draw a few capital letters in one of the Remaster's fonts as a
+ *        picture: light grey, centred in a box, scaled to a height.
+ * @param psb The font.
+ * @param label What to draw and how, "text|box width|box height|letter
+ *        height", in pixels.
+ * @param w Set to the picture's width, the box's.
+ * @param h Set to its height.
+ * @return The pixels, with a margin, which the caller frees, or NULL.
+ * @note For the button names on the Remaster's key caps, which it writes on
+ *       them in a plain font rather than keeping as pictures.
+ */
+static unsigned char* load_text(const LomPsb* psb, const char* label, int* w, int* h)
+{
+    char text[16];
+    int box_w = 0, box_h = 0, size = 0;
+    size_t code, source;
+
+    if (sscanf(label, "%15[^|]|%d|%d|%d", text, &box_w, &box_h, &size) != 4 || box_w <= 0 || box_h <= 0 || size <= 0 || box_w + 2 * MARGIN > LAYER_SIZE ||
+        box_h + 2 * MARGIN > LAYER_SIZE || lom_psb_member(psb, psb->root, "code", &code) != 0 || lom_psb_member(psb, psb->root, "source", &source) != 0)
+    {
+        return NULL;
+    }
+
+    const size_t count = strlen(text);
+    int rects[16][4], strides[16], tallest = 0, width = 0;
+    const unsigned char* atlases[16];
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        const char key[2] = {text[i], 0};
+
+        if (font_letter(psb, code, source, key, rects[i], &atlases[i], &strides[i]) != 0)
+        {
+            return NULL;
+        }
+
+        tallest = rects[i][3] > tallest ? rects[i][3] : tallest;
+    }
+
+    if (!count || !tallest)
+    {
+        return NULL;
+    }
+
+    const int gap = (size + 4) / 8;
+
+    for (size_t i = 0; i < count; ++i)
+    {
+        width += (rects[i][2] * size + tallest / 2) / tallest + (i + 1 < count ? gap : 0);
+    }
+
+    const int slot_w = box_w + 2 * MARGIN;
+    unsigned char* pixels = calloc((size_t)slot_w * (size_t)(box_h + 2 * MARGIN), 4);
+    int left = (box_w - width) / 2;
+    const int bottom = (box_h + size) / 2;
+
+    for (size_t i = 0; pixels && i < count; ++i)
+    {
+        const int gw = (rects[i][2] * size + tallest / 2) / tallest, gh = (rects[i][3] * size + tallest / 2) / tallest;
+
+        for (int y = 0; y < gh; ++y)
+        {
+            for (int x = 0; x < gw; ++x)
+            {
+                const int dx = left + x, dy = bottom - gh + y;
+
+                if (dx < 0 || dy < 0 || dx >= box_w || dy >= box_h)
+                {
+                    continue;
+                }
+
+                const int sx = rects[i][0] + x * rects[i][2] / gw, sy = rects[i][1] + y * rects[i][3] / gh;
+                unsigned char* p = pixels + ((size_t)(MARGIN + dy) * (size_t)slot_w + (size_t)(MARGIN + dx)) * 4;
+                p[0] = p[1] = p[2] = TEXT_GREY;
+                p[3] = atlases[i][(size_t)sy * (size_t)strides[i] + (size_t)sx];
+            }
+        }
+
+        left += gw + gap;
+    }
+
+    *w = box_w;
+    *h = box_h;
+    return pixels;
+}
+
+/**
+ * @brief Blend a colour over a picture's pixel by an amount.
+ * @param p The pixel, straight RGBA.
+ * @param rgb The colour, 0xRRGGBB.
+ * @param alpha How much, 0 to 255.
+ */
+static void blend_pixel(unsigned char* p, unsigned rgb, unsigned alpha)
+{
+    const unsigned out = alpha + p[3] * (255 - alpha) / 255;
+
+    if (out == 0)
+    {
+        return;
+    }
+
+    const unsigned colour[3] = {rgb & 0xFF, (rgb >> 8) & 0xFF, (rgb >> 16) & 0xFF};
+
+    for (int c = 0; c < 3; ++c)
+    {
+        p[c] = (unsigned char)((colour[c] * alpha + p[c] * p[3] * (255 - alpha) / 255) / out);
+    }
+
+    p[3] = (unsigned char)out;
+}
+
+/**
+ * @brief Open one of the Remaster's fonts, keeping the last few open: their
+ *        files are big, and a line can use two of them.
+ * @param file The font's PSB file.
+ * @return The font, or NULL when it can't be read.
+ */
+static const LomPsb* open_font(const char* file)
+{
+    static struct
+    {
+        char file[PATH_SIZE];
+        unsigned char* data;
+        LomPsb psb;
+        unsigned used;
+    } fonts[FONTS_OPEN];
+
+    static unsigned s_used;
+    int slot = 0;
+
+    for (int i = 0; i < FONTS_OPEN; ++i)
+    {
+        if (fonts[i].data && strcmp(fonts[i].file, file) == 0)
+        {
+            fonts[i].used = ++s_used;
+            return &fonts[i].psb;
+        }
+
+        if (fonts[i].used < fonts[slot].used)
+        {
+            slot = i;
+        }
+    }
+
+    if (fonts[slot].data)
+    {
+        lom_psb_close(&fonts[slot].psb);
+        free(fonts[slot].data);
+        fonts[slot].data = NULL;
+    }
+
+    char path[PATH_SIZE];
+    size_t size = 0;
+    snprintf(path, sizeof(path), "%s/%s", lom_native_remaster_root(), file);
+    fonts[slot].data = lom_remaster_load(path, &size);
+
+    if (fonts[slot].data && lom_psb_open(&fonts[slot].psb, fonts[slot].data, size) != 0)
+    {
+        free(fonts[slot].data);
+        fonts[slot].data = NULL;
+    }
+
+    if (!fonts[slot].data)
+    {
+        return NULL;
+    }
+
+    snprintf(fonts[slot].file, sizeof(fonts[slot].file), "%s", file);
+    fonts[slot].used = ++s_used;
+    return &fonts[slot].psb;
+}
+
+typedef struct
+{
+    const LomPsb* psb;
+    size_t letter;
+    int rect[4];
+    const unsigned char* atlas;
+    int stride;
+} FontGlyph;
+
+/**
+ * @brief Find a letter in the first of the fonts that has it.
+ * @param fonts The fonts, in order, some NULL.
+ * @param count How many.
+ * @param key The letter, in UTF-8.
+ * @param glyph Set to where it is.
+ * @return 0, or -1 when none has it.
+ */
+static int find_glyph(const LomPsb* const fonts[], int count, const char* key, FontGlyph* glyph)
+{
+    for (int i = 0; i < count; ++i)
+    {
+        size_t code, source;
+
+        if (fonts[i] && lom_psb_member(fonts[i], fonts[i]->root, "code", &code) == 0 && lom_psb_member(fonts[i], fonts[i]->root, "source", &source) == 0 &&
+            font_letter(fonts[i], code, source, key, glyph->rect, &glyph->atlas, &glyph->stride) == 0 &&
+            lom_psb_member(fonts[i], code, key, &glyph->letter) == 0)
+        {
+            glyph->psb = fonts[i];
+            return 0;
+        }
+    }
+
+    return -1;
+}
+
+/**
+ * @brief Draw a line of text in the Remaster's fonts as a picture, at the
+ *        fonts' own size, which is the Remaster's at 1080 lines: each letter
+ *        its width along, on the baseline, with a drop shadow, in colours that
+ *        can change along the line.
+ * @param file The language's font; letters it doesn't have come from the
+ *        Remaster's own (TEXT_FONT_LATIN).
+ * @param label "%" then the colours, each fill and shadow as RRGGBBRRGGBB,
+ *        then "|" and the text in UTF-8, in which LINE_COLOUR and a digit
+ *        switches to that colour.
+ * @param w Set to the picture's width.
+ * @param h Set to its height, the fonts' line and the shadow's drop.
+ * @return The pixels, with a margin, which the caller frees, or NULL when no
+ *         font has one of the letters.
+ */
+static unsigned char* load_line(const char* file, const char* label, int* w, int* h)
+{
+    unsigned colours[LINE_COLOURS][2] = {{0}};
+    int count = 0;
+    const char* p = label + 1;
+
+    while (*p && *p != '|' && count < LINE_COLOURS && sscanf(p, "%6x%6x", &colours[count][0], &colours[count][1]) == 2)
+    {
+        ++count;
+        p += 12;
+    }
+
+    if (*p != '|' || count == 0)
+    {
+        return NULL;
+    }
+
+    const char* text = p + 1;
+    const LomPsb* const fonts[2] = {open_font(file), strcmp(file, TEXT_FONT_LATIN) != 0 ? open_font(TEXT_FONT_LATIN) : NULL};
+    int width = 0;
+
+    for (const char* q = text; *q;)
+    {
+        char key[8];
+        int bytes = 1;
+        FontGlyph glyph;
+
+        if (*q == LINE_COLOUR)
+        {
+            q += q[1] ? 2 : 1;
+            continue;
+        }
+
+        while (q[bytes] && ((unsigned char)q[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+        {
+            ++bytes;
+        }
+
+        memcpy(key, q, (size_t)bytes);
+        key[bytes] = 0;
+
+        if (find_glyph(fonts, 2, key, &glyph) != 0)
+        {
+            return NULL;
+        }
+
+        width += member_int(glyph.psb, glyph.letter, "width");
+        q += bytes;
+    }
+
+    const int pw = width + LINE_SHADOW, ph = LINE_HEIGHT + LINE_SHADOW;
+
+    if (width <= 0 || pw + 2 * MARGIN > LAYER_SIZE)
+    {
+        return NULL;
+    }
+
+    const int slot_w = pw + 2 * MARGIN;
+    unsigned char* pixels = calloc((size_t)slot_w * (size_t)(ph + 2 * MARGIN), 4);
+
+    for (int pass = 0; pixels && pass < 2; ++pass)
+    {
+        const int shift = pass == 0 ? LINE_SHADOW : 0;
+        int left = 0, colour = 0;
+
+        for (const char* q = text; *q;)
+        {
+            char key[8];
+            int bytes = 1;
+            FontGlyph glyph;
+
+            if (*q == LINE_COLOUR)
+            {
+                const int next = q[1] ? q[1] - '0' : 0;
+                colour = next >= 0 && next < count ? next : 0;
+                q += q[1] ? 2 : 1;
+                continue;
+            }
+
+            while (q[bytes] && ((unsigned char)q[bytes] & 0xC0) == 0x80 && bytes < (int)sizeof(key) - 1)
+            {
+                ++bytes;
+            }
+
+            memcpy(key, q, (size_t)bytes);
+            key[bytes] = 0;
+            find_glyph(fonts, 2, key, &glyph);
+            const int top = LINE_BASELINE - member_int(glyph.psb, glyph.letter, "b") + shift;
+            const unsigned rgb = colours[colour][pass == 0 ? 1 : 0];
+
+            for (int y = 0; y < glyph.rect[3]; ++y)
+            {
+                for (int x = 0; x < glyph.rect[2]; ++x)
+                {
+                    const int dx = left + x + shift, dy = top + y;
+                    const unsigned alpha = glyph.atlas[(size_t)(glyph.rect[1] + y) * (size_t)glyph.stride + (size_t)(glyph.rect[0] + x)];
+
+                    if (alpha && dx >= 0 && dy >= 0 && dx < pw && dy < ph)
+                    {
+                        blend_pixel(pixels + ((size_t)(MARGIN + dy) * (size_t)slot_w + (size_t)(MARGIN + dx)) * 4, rgb,
+                                    pass == 0 ? alpha * LINE_SHADOW_ALPHA / 255 : alpha);
+                    }
+                }
+            }
+
+            left += member_int(glyph.psb, glyph.letter, "width");
+            q += bytes;
+        }
+    }
+
+    *w = pw;
+    *h = ph;
+    return pixels;
+}
+
+/**
+ * @brief Make a small black picture as see-through as a fade to black is
+ *        far along: drawn over the screen it darkens everything in
+ *        proportion, as the Remaster fades, where the PS1 takes the same
+ *        amount off every colour.
+ * @param label FADE_LABEL and how far, 0 to FADE_STEPS.
+ * @param w Set to its width.
+ * @param h Set to its height.
+ * @return The pixels, with a margin, which the caller frees.
+ */
+static unsigned char* load_fade(const char* label, int* w, int* h)
+{
+    const int step = atoi(label + sizeof(FADE_LABEL) - 1);
+    const int alpha = (step < 0 ? 0 : step > FADE_STEPS ? FADE_STEPS : step) * 255 / FADE_STEPS;
+    unsigned char* pixels = calloc((size_t)(FADE_SIZE + 2 * MARGIN) * (size_t)(FADE_SIZE + 2 * MARGIN), 4);
+
+    for (int y = 0; pixels && y < FADE_SIZE; ++y)
+    {
+        for (int x = 0; x < FADE_SIZE; ++x)
+        {
+            pixels[((size_t)(MARGIN + y) * (size_t)(FADE_SIZE + 2 * MARGIN) + (size_t)(MARGIN + x)) * 4 + 3] = (unsigned char)alpha;
+        }
+    }
+
+    *w = FADE_SIZE;
+    *h = FADE_SIZE;
+    return pixels;
+}
+
+/**
  * @brief Load one of the Remaster's pictures, or one labeled part of it, as
  *        RGBA pixels. The last file opened stays open for the next call.
  * @param file Its PSB file.
@@ -194,9 +616,32 @@ static void copy_texture(const LomPsb* psb, size_t texture, unsigned char* pixel
  */
 static unsigned char* load_picture(const char* file, const char* label, int* w, int* h)
 {
+    if (label && strncmp(label, FADE_LABEL, sizeof(FADE_LABEL) - 1) == 0)
+    {
+        return load_fade(label, w, h);
+    }
+
+    if (label && label[0] == '%')
+    {
+        unsigned char* line = load_line(file, label, w, h);
+
+        if (line)
+        {
+            premultiply(line, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
+        }
+
+        return line;
+    }
+
     const LomPsb* psb = open_picture_file(file);
     unsigned char* pixels = NULL;
     size_t list, item, textures;
+
+    if (psb && label && strchr(label, '|') && (pixels = load_text(psb, label, w, h)) != NULL)
+    {
+        premultiply(pixels, (size_t)(*w + 2 * MARGIN) * (size_t)(*h + 2 * MARGIN));
+        return pixels;
+    }
 
     if (!psb || lom_psb_member(psb, psb->root, "imageList", &list) != 0)
     {
@@ -516,6 +961,11 @@ static void replace_sprites(void* code, int stride, int count, const Image* imag
     const unsigned index = s_next_placement++ % PLACEMENTS;
     Placement* placement = &s_placements[index];
     placement->layer = image->layer;
+    placement->has_xy = 0;
+    placement->tpage = -1;
+    placement->next = -1;
+    placement->rgb = -1;
+    placement->semi = -1;
 
     for (int i = 0; i < 8; ++i)
     {
@@ -549,21 +999,96 @@ static int draw_picture(const LomPsyzULong* words, int available, void* userdata
         return 0;
     }
 
-    const uint32_t index = (uint32_t)words[2];
-
-    if (index >= PLACEMENTS)
-    {
-        return 4;
-    }
-
-    const Placement* placement = &s_placements[index];
+    uint32_t index = (uint32_t)words[2];
     const uint32_t code = (uint32_t)words[0], top_left = (uint32_t)words[1], bottom_right = (uint32_t)words[3];
     const int x0 = (int16_t)(top_left & 0xFFFF), y0 = (int16_t)(top_left >> 16);
     const int x1 = (int16_t)(bottom_right & 0xFFFF), y1 = (int16_t)(bottom_right >> 16);
     const int points[8] = {x0, y0, x1, y0, x0, y1, x1, y1};
     const unsigned flags = code >> 24;
-    lom_hd_images_draw(points, placement->uv, placement->layer, flags & 1 ? 0x808080 : code & 0xFFFFFF, flags & 2, -1);
+
+    for (int drawn = 0; index < PLACEMENTS && drawn < MAX_CHAIN; ++drawn)
+    {
+        const Placement* placement = &s_placements[index];
+        const unsigned rgb = placement->rgb >= 0 ? (unsigned)placement->rgb : flags & 1 ? 0x808080 : code & 0xFFFFFF;
+        const int semi = placement->semi >= 0 ? placement->semi : (int)(flags & 2);
+        lom_hd_images_draw(placement->has_xy ? placement->xy : points, placement->uv, placement->layer, rgb, semi, placement->tpage);
+        index = placement->next < 0 ? PLACEMENTS : (uint32_t)placement->next;
+    }
+
     return 4;
+}
+
+int lom_remaster_picture_ready(const char* file, const char* label, int* w, int* h)
+{
+    const Image* image = picture(file, label);
+
+    if (image && w && h)
+    {
+        *w = image->w;
+        *h = image->h;
+    }
+
+    return image != NULL;
+}
+
+int lom_remaster_picture_place(const char* file, const char* label, const int part[4], const int xy[8], int tpage, int after)
+{
+    const Image* image = picture(file, label);
+
+    if (!image)
+    {
+        return -1;
+    }
+
+    const int px = part ? part[0] : 0, py = part ? part[1] : 0;
+    const int pw = part ? part[2] : image->w, ph = part ? part[3] : image->h;
+
+    if (px < 0 || py < 0 || pw <= 0 || ph <= 0 || px + pw > image->w || py + ph > image->h)
+    {
+        return -1;
+    }
+
+    const unsigned index = s_next_placement++ % PLACEMENTS;
+    Placement* placement = &s_placements[index];
+    const int u0 = image->x + px, v0 = image->y + py, u1 = u0 + pw, v1 = v0 + ph;
+    const int uv[8] = {u0, v0, u1, v0, u0, v1, u1, v1};
+    memcpy(placement->uv, uv, sizeof(uv));
+    memcpy(placement->xy, xy, sizeof(placement->xy));
+    placement->layer = image->layer;
+    placement->has_xy = 1;
+    placement->tpage = tpage;
+    placement->next = -1;
+    placement->rgb = -1;
+    placement->semi = -1;
+
+    if (after >= 0 && after < PLACEMENTS)
+    {
+        s_placements[after].next = (int)index;
+    }
+
+    return (int)index;
+}
+
+void lom_remaster_picture_style(int placement, int rgb, int semi)
+{
+    if (placement >= 0 && placement < PLACEMENTS)
+    {
+        s_placements[placement].rgb = rgb < 0 ? -1 : rgb & 0xFFFFFF;
+        s_placements[placement].semi = semi < 0 ? -1 : semi != 0;
+    }
+}
+
+void lom_remaster_picture_command(void* code, int words, int placement)
+{
+    uint32_t* w = code;
+    const unsigned op = w[0] >> 24;
+    w[0] = (w[0] & 0xFFFFFF) | (uint32_t)(COMMAND_PICTURE | (op & 3)) << 24;
+    w[2] = placement >= 0 && placement < PLACEMENTS ? (uint32_t)placement : PICTURE_NONE;
+
+    for (int i = 4; i < words; ++i)
+    {
+        w[i] = 0;
+    }
 }
 
 void lom_remaster_ui_initialize(void)
@@ -600,14 +1125,14 @@ static int compare_picture(const void* key, const void* entry)
 }
 
 /**
- * @brief Find the Remaster's picture for an encyclopedia page, when HD pictures
- *        are on.
+ * @brief Find the Remaster's picture for an encyclopedia page, when its
+ *        Encyclopedia switch is on.
  * @param path The page's file on the disc.
  * @return Its entry, or NULL.
  */
 static const EncyclopediaPicture* encyclopedia_entry(const char* path)
 {
-    if (!lom_native_remaster_found() || !lom_native_remaster_hd_ui())
+    if (!lom_native_remaster_found() || !lom_native_remaster_uses(LOM_REMASTER_SWITCH_ENCYCLOPEDIA))
     {
         return NULL;
     }
@@ -748,6 +1273,44 @@ void lom_gpu_image_loaded(int x, int y, int w, int h, const void* data)
             s_vram[((y + row) & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + ((x + column) & (VRAM_WIDTH - 1))] = source[(size_t)row * (size_t)w + (size_t)column];
         }
     }
+}
+
+int lom_remaster_vram_bounds(int page_x, int page_y, int u, int v, int w, int h, int bounds[4])
+{
+    int left = w, top = h, right = -1, bottom = -1;
+
+    if (!s_vram || w <= 0 || h <= 0)
+    {
+        return -1;
+    }
+
+    for (int row = 0; row < h; ++row)
+    {
+        for (int column = 0; column < w; ++column)
+        {
+            const int texel = u + column;
+            const uint16_t word = s_vram[((page_y + v + row) & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + ((page_x + texel / 4) & (VRAM_WIDTH - 1))];
+
+            if ((word >> ((texel & 3) * 4)) & 0xF)
+            {
+                left = column < left ? column : left;
+                right = column > right ? column : right;
+                top = row < top ? row : top;
+                bottom = row > bottom ? row : bottom;
+            }
+        }
+    }
+
+    if (right < 0)
+    {
+        return -1;
+    }
+
+    bounds[0] = left;
+    bounds[1] = top;
+    bounds[2] = right + 1 - left;
+    bounds[3] = bottom + 1 - top;
+    return 0;
 }
 
 /**
@@ -951,7 +1514,7 @@ int lom_gpu_prim_filter(const unsigned int* words, int available, unsigned int t
 {
     FacePrim prim;
 
-    if (!s_vram || !lom_native_remaster_hd_ui() || available < 4 || !read_face_prim(words, available, texpage, &prim))
+    if (!s_vram || !lom_native_remaster_uses(LOM_REMASTER_SWITCH_FACES) || available < 4 || !read_face_prim(words, available, texpage, &prim))
     {
         return 0;
     }
@@ -1004,4 +1567,39 @@ int lom_gpu_prim_filter(const unsigned int* words, int available, unsigned int t
     const unsigned flags = words[0] >> 24;
     lom_hd_images_draw(prim.xy, prim.uv, image->layer, flags & 1 ? 0x808080 : words[0] & 0xFFFFFF, flags & 2, prim.page);
     return prim.used;
+}
+
+int lom_remaster_fade(void* code, int brightness, int x, int y, int w, int h)
+{
+    if (!code || brightness < 0 || brightness >= FADE_NEUTRAL_LEVEL || !lom_native_remaster_found() || !lom_native_remaster_switch(LOM_REMASTER_SWITCH_ALL))
+    {
+        return 0;
+    }
+
+    char label[16];
+    snprintf(label, sizeof(label), "%s%d", FADE_LABEL, ((FADE_NEUTRAL_LEVEL - brightness) * FADE_STEPS + FADE_NEUTRAL_LEVEL / 2) / FADE_NEUTRAL_LEVEL);
+    const int inside[4] = {1, 1, FADE_SIZE - 2, FADE_SIZE - 2};
+    const int xy[8] = {x, y, x + w, y, x, y + h, x + w, y + h};
+    const int placement = lom_remaster_picture_place("fade", label, inside, xy, -1, -1);
+
+    if (placement < 0)
+    {
+        return 0;
+    }
+
+    lom_remaster_picture_style(placement, 0x808080, 0);
+    lom_remaster_picture_command(code, 4, placement);
+    return 1;
+}
+
+unsigned lom_remaster_vram_colour(int x, int y)
+{
+    if (!s_vram)
+    {
+        return 0;
+    }
+
+    const uint16_t word = s_vram[(y & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + (x & (VRAM_WIDTH - 1))];
+    const unsigned r = (word & 0x1F) * 255 / 31, g = ((word >> 5) & 0x1F) * 255 / 31, b = ((word >> 10) & 0x1F) * 255 / 31;
+    return r << 16 | g << 8 | b;
 }

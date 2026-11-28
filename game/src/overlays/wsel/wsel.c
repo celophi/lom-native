@@ -22,6 +22,8 @@
 #include "common/vector.h"
 #include "lom_native_time.h"
 #include "lom_native_frames.h"
+#include "lom_native_draw.h"
+#include "lom_native_widescreen.h"
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
@@ -70,6 +72,10 @@
 #define WSEL_SHADE_ADDITIVE 256
 #define WSEL_SHADE_DARKEN 160
 #define WSEL_SHADE_LIGHTEN 304
+#define WSEL_OVERLAY_EDGE_R 48
+#define WSEL_OVERLAY_EDGE_G 64
+#define WSEL_OVERLAY_EDGE_B 32
+#define WSEL_OVERLAY_HEIGHT 224
 #define WSEL_CURSOR_MOVE_FRAMES 4
 #define WSEL_CURSOR_MIN 16
 #define WSEL_CURSOR_MAX_X 208
@@ -197,6 +203,7 @@ static void* wsel_draw_zoom_quad(POLY_FT4* poly, OT_TYPE* ot, WselQuadCoords* co
 static void* wsel_draw_cell_shading(void* prim, OT_TYPE* ot);
 static void* wsel_draw_shade_tile(TILE* tile, OT_TYPE* ot, s32 x, s32 y, s32 intensity);
 static void* wsel_draw_sprite(SPRT* prim, OT_TYPE* ot, s32 index);
+static void* wsel_draw_overlay_sides(void* prim, OT_TYPE* ot);
 static void wsel_update_input(void);
 static POLY_FT4* wsel_draw_hero(POLY_FT4* poly, OT_TYPE* ot, s32 alternate);
 static void wsel_load_resources(void);
@@ -404,6 +411,7 @@ static void wsel_draw_frame(WselRenderBuffer* buffer)
         }
 
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_OVERLAY);
+        prim = wsel_draw_overlay_sides(prim, ot);
         prim = (u8*)wsel_draw_hero((POLY_FT4*)prim, ot, g_saved_game.layout.characters[FIELD_PARTY_HERO].info.bits.type);
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_MAP);
         break;
@@ -433,6 +441,7 @@ static void wsel_draw_frame(WselRenderBuffer* buffer)
         }
 
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_OVERLAY);
+        prim = wsel_draw_overlay_sides(prim, ot);
         prim = (u8*)wsel_draw_hero((POLY_FT4*)prim, ot, g_saved_game.layout.characters[FIELD_PARTY_HERO].info.bits.type);
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_MAP);
         break;
@@ -457,6 +466,7 @@ static void wsel_draw_frame(WselRenderBuffer* buffer)
 
     case WSEL_STATE_WORLD_MAP:
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_OVERLAY);
+        prim = wsel_draw_overlay_sides(prim, ot);
         prim = (u8*)wsel_draw_hero((POLY_FT4*)prim, ot, g_saved_game.layout.characters[FIELD_PARTY_HERO].info.bits.type);
         prim = wsel_draw_sprite((SPRT*)prim, ot, WSEL_SPRITE_WORLD_MAP);
         break;
@@ -586,6 +596,7 @@ static void* wsel_draw_zoom_quad(POLY_FT4* poly, OT_TYPE* ot, WselQuadCoords* co
     lom_gpu_set_clut(poly, g_wsel_sprites[WSEL_SPRITE_WORLD_MAP].clut_x, g_wsel_sprites[WSEL_SPRITE_WORLD_MAP].clut_y);
     lom_gpu_set_tpage(poly, 1, 1, g_wsel_sprites[WSEL_SPRITE_WORLD_MAP].tpage_x, g_wsel_sprites[WSEL_SPRITE_WORLD_MAP].tpage_y);
     lom_gpu_link(ot, poly);
+    lom_draw_wsel_zoom((u8*)poly + __builtin_offsetof(P_TAG, r0));
     return poly + 1;
 }
 
@@ -732,6 +743,45 @@ static void* wsel_draw_shade_tile(TILE* tile, OT_TYPE* ot, s32 x, s32 y, s32 int
 }
 
 /**
+ * @brief In a wide frame, darken the frame's sides the way the world overlay
+ *        darkens its own edges, which it does evenly, so the wall doesn't get
+ *        lighter past them. The overlay is drawn at double brightness, so its
+ *        edges take 48, 64 and 32 off.
+ * @param prim Next free primitive in the packet buffer.
+ * @param ot Ordering-table entry the primitives are linked into.
+ * @return Next free primitive after the ones written.
+ */
+static void* wsel_draw_overlay_sides(void* prim, OT_TYPE* ot)
+{
+    const s32 margin = lom_native_widescreen_margin();
+    TILE* tile;
+    DR_TPAGE* draw_mode;
+    s32 side;
+
+    if (margin == 0)
+    {
+        return prim;
+    }
+
+    for (side = 0; side < 2; side++)
+    {
+        tile = prim;
+        lom_gpu_init_tile(tile);
+        SET_BGR0(tile, WSEL_OVERLAY_EDGE_R, WSEL_OVERLAY_EDGE_G, WSEL_OVERLAY_EDGE_B);
+        lom_gpu_set_xy0(tile, side == 0 ? -margin : SCREEN_WIDTH, 0);
+        lom_gpu_set_wh(tile, margin, WSEL_OVERLAY_HEIGHT);
+        lom_gpu_set_semi_trans(tile, 1);
+        lom_gpu_link(ot, tile);
+        draw_mode = (DR_TPAGE*)(tile + 1);
+        lom_gpu_init_tpage_packet(draw_mode, 0, 0, lom_gpu_tpage(GPU_TEXTURE_4BIT, GPU_BLEND_SUBTRACT, 0, 0));
+        lom_gpu_link(ot, draw_mode);
+        prim = draw_mode + 1;
+    }
+
+    return prim;
+}
+
+/**
  * @brief Draw one sprite layer as 128x256 SPRT tiles, each preceded by its texture page.
  * @param prim Next free primitive in the packet buffer.
  * @param ot Ordering table entry the primitives are linked into.
@@ -756,6 +806,7 @@ static void* wsel_draw_sprite(SPRT* prim, OT_TYPE* ot, s32 index)
     s32 tpage_y;
     s32 u;
     s32 v;
+    SPRT* pass_start;
 
     sprite = &g_wsel_sprites[index];
 
@@ -776,6 +827,7 @@ static void* wsel_draw_sprite(SPRT* prim, OT_TYPE* ot, s32 index)
 
     for (; passes != 0; passes--)
     {
+        pass_start = prim;
         band_y = y;
         band_height = WSEL_SPRITE_BAND_HEIGHT;
         height_left = sprite->height;
@@ -863,6 +915,8 @@ static void* wsel_draw_sprite(SPRT* prim, OT_TYPE* ot, s32 index)
                 band_y += WSEL_SPRITE_BAND_HEIGHT;
             }
         } while (height_left != 0);
+        lom_draw_wsel_picture((u8*)pass_start + __builtin_offsetof(P_TAG, r0), sizeof(SPRT) + sizeof(DR_TPAGE),
+                              ((u8*)prim - (u8*)pass_start) / (s32)(sizeof(SPRT) + sizeof(DR_TPAGE)), index, index == WSEL_SPRITE_CURSOR && passes == 1, x, y);
         x += WSEL_SHADOW_OFFSET;
         y += WSEL_SHADOW_OFFSET;
         brightness = 0;
@@ -1115,6 +1169,7 @@ static void wsel_load_resources(void)
     wsel_upload_tim(g_wsel_hero_tim_alternate, WSEL_SPRITE_HERO_ALTERNATE);
     wsel_upload_tim(g_wsel_hero_shadow_tim, WSEL_SPRITE_HERO_SHADOW);
     wsel_upload_tim(g_wsel_prompt_tim, WSEL_SPRITE_PROMPT);
+    lom_draw_wsel_loaded();
 }
 
 /**

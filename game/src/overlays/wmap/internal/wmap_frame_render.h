@@ -11,6 +11,7 @@
 #define WMAP_MODEL_TPAGE_XY 400
 #define WMAP_MAP_TILES 26
 #define WMAP_SHADOW_POLYS 184
+#define WMAP_PACKET_CODE(packet) ((u8*)(packet) + __builtin_offsetof(P_TAG, r0))
 
 typedef struct
 {

@@ -73,44 +73,45 @@ bool GameBackend::remaster_found() const
     return lom_native_remaster_found() != 0;
 }
 
-bool GameBackend::hd_backgrounds_available() const
+bool GameBackend::remaster_switch_available(int which) const
 {
-    return lom_native_remaster_hd_supported() != 0;
+    switch (which)
+    {
+    case LOM_REMASTER_SWITCH_BACKGROUNDS:
+        return lom_native_remaster_hd_supported() != 0;
+
+    case LOM_REMASTER_SWITCH_FACES:
+    case LOM_REMASTER_SWITCH_ENCYCLOPEDIA:
+    case LOM_REMASTER_SWITCH_TITLE:
+    case LOM_REMASTER_SWITCH_NAME_ENTRY:
+    case LOM_REMASTER_SWITCH_WORLD_SELECT:
+    case LOM_REMASTER_SWITCH_WORLD_MAP:
+        return lom_native_remaster_hd_ui_supported() != 0;
+
+    case LOM_REMASTER_SWITCH_MOVIES:
+        return lom_native_remaster_hd_movies_supported() != 0;
+
+    case LOM_REMASTER_SWITCH_TEXT:
+        return lom_native_remaster_text_supported() != 0;
+
+    default:
+        return true;
+    }
 }
 
-bool GameBackend::hd_backgrounds() const
+bool GameBackend::remaster_switch(int which) const
 {
-    return lom_native_remaster_hd_backgrounds() != 0;
+    return lom_native_remaster_switch(which) != 0;
 }
 
-void GameBackend::set_hd_backgrounds(bool value)
+void GameBackend::set_remaster_switch(int which, bool value)
 {
-    lom_native_remaster_set_hd_backgrounds(value);
-}
-
-bool GameBackend::hd_ui_available() const
-{
-    return lom_native_remaster_hd_ui_supported() != 0;
-}
-
-bool GameBackend::hd_ui() const
-{
-    return lom_native_remaster_hd_ui() != 0;
-}
-
-void GameBackend::set_hd_ui(bool value)
-{
-    lom_native_remaster_set_hd_ui(value);
+    lom_native_remaster_set_switch(which, value);
 }
 
 int GameBackend::text_language() const
 {
-    return lom_native_remaster_text();
-}
-
-bool GameBackend::text_available() const
-{
-    return lom_native_remaster_text_supported() != 0;
+    return lom_native_remaster_text_language();
 }
 
 int GameBackend::mod_toggle_count() const
@@ -186,27 +187,7 @@ bool GameBackend::game_seed(std::string& seed) const
 
 void GameBackend::set_text_language(int value)
 {
-    lom_native_remaster_set_text(value);
-}
-
-int GameBackend::soundtrack() const
-{
-    return lom_native_remaster_music();
-}
-
-void GameBackend::set_soundtrack(int value)
-{
-    lom_native_remaster_set_music(value);
-}
-
-bool GameBackend::remaster_effects() const
-{
-    return lom_native_remaster_effects() != 0;
-}
-
-void GameBackend::set_remaster_effects(bool value)
-{
-    lom_native_remaster_set_effects(value);
+    lom_native_remaster_set_text_language(value);
 }
 
 void GameBackend::resume()

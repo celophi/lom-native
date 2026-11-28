@@ -1,6 +1,7 @@
 #include "common.h"
 #include <libgpu.h>
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
 
 #include "../internal/wmap_frame_render.h"
 #include "../internal/wmap_land_layout.h"
@@ -73,6 +74,7 @@ void wmap_draw_status_panel(void)
         sprite = g_wmap_current_frame->packet_cursor;
         *sprite = g_wmap_status_panel_template;
         lom_gpu_link(&g_wmap_current_frame->ordering_table[7], sprite);
+        lom_draw_wmap_status(WMAP_PACKET_CODE(sprite), LOM_DRAW_WMAP_SHELL);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -106,6 +108,7 @@ void wmap_draw_status_panel(void)
         }
 
         lom_gpu_link(&g_wmap_current_frame->ordering_table[7], g_wmap_current_frame->packet_cursor);
+        lom_draw_wmap_status(WMAP_PACKET_CODE(sprite), LOM_DRAW_WMAP_DAY_ICON);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -120,6 +123,7 @@ void wmap_draw_status_panel(void)
             sprite = g_wmap_current_frame->packet_cursor;
             *sprite = g_wmap_outgoing_day_icon_sprite;
             lom_gpu_link(&g_wmap_current_frame->ordering_table[7], sprite);
+            lom_draw_wmap_status(WMAP_PACKET_CODE(sprite), LOM_DRAW_WMAP_DAY_ICON);
             SET_BGR0_PACKED(&g_wmap_outgoing_day_name_sprite, *(u32*)&g_wmap_outgoing_day_icon_sprite.r0);
 
             if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
@@ -139,6 +143,7 @@ void wmap_draw_status_panel(void)
         lom_gpu_set_semi_trans(shadow, 1);
         *sprite = *shadow;
         lom_gpu_link(&g_wmap_current_frame->ordering_table[7], g_wmap_current_frame->packet_cursor);
+        lom_draw_wmap_status(WMAP_PACKET_CODE(sprite), LOM_DRAW_WMAP_DAY_NAME);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -151,6 +156,7 @@ void wmap_draw_status_panel(void)
             sprite = g_wmap_current_frame->packet_cursor;
             *sprite = g_wmap_outgoing_day_name_sprite;
             lom_gpu_link(&g_wmap_current_frame->ordering_table[7], g_wmap_current_frame->packet_cursor);
+            lom_draw_wmap_status(WMAP_PACKET_CODE(sprite), LOM_DRAW_WMAP_DAY_NAME);
 
             if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
             {
@@ -290,6 +296,7 @@ void wmap_draw_map_labels(void)
         *sprite = g_wmap_label_sprite;
         lom_gpu_set_semi_trans(sprite, 1);
         lom_gpu_link(&g_wmap_current_frame->ordering_table[3], sprite);
+        lom_draw_wmap_label(WMAP_PACKET_CODE(sprite), g_wmap_label_selection, g_wmap_label_texture_page);
 
         if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
         {
@@ -313,6 +320,7 @@ void wmap_draw_map_labels(void)
         if (g_wmap_outgoing_label_selection != -1)
         {
             lom_gpu_link(&g_wmap_current_frame->ordering_table[3], sprite);
+            lom_draw_wmap_label(WMAP_PACKET_CODE(sprite), g_wmap_outgoing_label_selection, g_wmap_outgoing_label_texture_page);
 
             if (g_wmap_packet_bytes < WMAP_PACKET_LIMIT)
             {

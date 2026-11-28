@@ -1,5 +1,6 @@
 #include "lom_native_widescreen.h"
 #include <psyz.h>
+#include <stdint.h>
 
 #define FIELD_DISPLAY_HEIGHT 240
 
@@ -66,4 +67,31 @@ int lom_native_widescreen_begin_frame(int wide)
 int lom_native_widescreen_margin(void)
 {
     return s_margin;
+}
+
+void lom_native_widescreen_stretch(void* code, int points, int stride)
+{
+    uint32_t* words = code;
+
+    if (!s_margin || !words)
+    {
+        return;
+    }
+
+    for (int i = 0; i < points; ++i)
+    {
+        uint32_t* point = &words[1 + i * stride];
+        int x = (int16_t)(*point & 0xFFFF);
+
+        if (x <= 0)
+        {
+            x -= s_margin;
+        }
+        else if (x >= LOM_WIDESCREEN_ORIGINAL_WIDTH)
+        {
+            x += s_margin;
+        }
+
+        *point = (*point & 0xFFFF0000u) | ((uint32_t)x & 0xFFFF);
+    }
 }

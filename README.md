@@ -6,7 +6,7 @@ It builds and runs on Linux, macOS and Windows, and you can get into the game an
 
 ## Setup
 
-You need your own copy of Legend of Mana, the North American version (SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an already extracted folder. The launcher works out which one you have and runs the matching game. If you have both, set up both, and pick which one to play under Game files. The Japanese one plays as it did in Japan, so Circle confirms and Cross cancels, and its text is always the disc's own Japanese: the Remaster's text options don't apply to it. You also need a graphics card the game can draw with: one with Vulkan on Linux, one with Direct3D 12 on Windows, or any Apple Silicon Mac.
+You need your own copy of Legend of Mana, the North American version (SLUS-01013) or the Japanese one (SLPS-02170), as a disc image or an already extracted folder. The launcher works out which one you have and runs the matching game. If you have both, set up both, and pick which one to play under Game files. The Japanese one plays as it did in Japan, so Circle confirms and Cross cancels, and its text is always the disc's own Japanese: the Remaster's text options don't apply to it. Each version only lists its own saves, since the two keep different things in a save and one loaded in the other breaks later on. You also need a graphics card the game can draw with: one with Vulkan on Linux, one with Direct3D 12 on Windows, or any Apple Silicon Mac.
 
 Grab the latest from the [releases page](https://github.com/celophi/lom-native/releases):
 

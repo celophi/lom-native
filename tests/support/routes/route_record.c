@@ -375,6 +375,13 @@ void route_record_screen(unsigned vblank)
     const char* every = getenv(CAPTURE_EVERY_VARIABLE);
     const long step = every ? strtol(every, NULL, 10) : 0;
 
+    const unsigned long long picture = s_frames ? route_record_screen_picture() : 0;
+
+    if (picture)
+    {
+        fprintf(s_frames, "screen %u picture %016llx\n", vblank, picture);
+    }
+
     if (s_frames && step > 0 && vblank % (unsigned long)step == 0)
     {
         char name[32];

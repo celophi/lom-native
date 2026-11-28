@@ -18,6 +18,7 @@
 #include "lom_native_draw_labels.h"
 #include "lom_native_graphics.h"
 #include "lom_native_gpu_packets.h"
+#include "lom_native_draw.h"
 
 #define TITLE_MENU_ITEM_NEW_GAME 0
 #define TITLE_MENU_ITEM_CONTINUE 1
@@ -159,6 +160,7 @@ void render_menu(TitleMenuContext* context)
     {
         ot_head = current->screen.ot;
         lom_native_title_ClearOTagR(ot_head, FRAME_ORDERING_TABLE_LENGTH);
+        lom_native_title_begin_frame(1);
         current->screen.prim_cursor = current->screen.packets;
         rand();
         lom_time_wait(1);
@@ -234,6 +236,7 @@ s32 run_save_slot_menu(TitleMenuContext* ctx_base)
     {
         ot = current->screen.ot;
         lom_native_title_ClearOTagR(ot, FRAME_ORDERING_TABLE_LENGTH);
+        lom_native_title_begin_frame(0);
         current->screen.prim_cursor = current->screen.packets;
         lom_time_wait(1);
         update_and_draw_fade(&current->screen);
@@ -384,12 +387,14 @@ void start_title_music(void)
 /**
  * @brief Draw the title backdrop as a row of 16-bit texture strips.
  * @param ctx Active title display buffer.
+ * @note The port hands the strips to lom_draw_title_backdrop, for the Remaster's art.
  * @see decomp.me (100%) https://decomp.me/scratch/aKAFU
  */
 void render_title_backdrop(TitleMenuContext* ctx)
 {
     OT_TYPE* ot;
     POLY_FT4* prim;
+    POLY_FT4* first;
     s32 strip_index;
     s32 texture_x;
     s32 right_x;
@@ -397,6 +402,7 @@ void render_title_backdrop(TitleMenuContext* ctx)
     s32 page_x;
 
     prim = (POLY_FT4*)ctx->screen.prim_cursor;
+    first = prim;
     ot = ctx->screen.ot;
     strip_index = 0;
 
@@ -423,6 +429,7 @@ void render_title_backdrop(TitleMenuContext* ctx)
         prim++;
     }
 
+    lom_draw_title_backdrop((u8*)first + __builtin_offsetof(P_TAG, r0), sizeof(POLY_FT4), TITLE_BACKDROP_STRIPS);
     ctx->screen.prim_cursor = (u_long*)prim;
 }
 
@@ -533,7 +540,8 @@ void menu_cursor_up(void)
 /**
  * @brief Draw the menu header, the enabled items, and the animated cursor.
  * @param ctx Active title display buffer.
- * @note Item quads use texture row slot + 1; the selected item uses CLUT 1, the others CLUT 2.
+ * @note Item quads use texture row slot + 1; the selected item uses CLUT 1, the others CLUT 2. The port hands each quad
+ *       to lom_draw_title_menu, for the Remaster's art.
  * @see decomp.me (100%) https://decomp.me/scratch/qegw7
  */
 void render_title_menu_items(TitleMenuContext* ctx)
@@ -552,6 +560,7 @@ void render_title_menu_items(TitleMenuContext* ctx)
     ot_head = ctx->screen.ot;
     first_prim = ctx->screen.prim_cursor;
     prim = emit_menu_item_quad(ot_head, first_prim, 0, TITLE_MENU_HEADER_X, 0xC8, 0, 0x80, 1);
+    lom_draw_title_menu((u8*)first_prim + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_COPYRIGHT, 0, 0);
     item_x = 0x88;
     item_y = 0xA0;
     visible_index = 0;
@@ -563,7 +572,9 @@ void render_title_menu_items(TitleMenuContext* ctx)
 
         if (item_visible)
         {
+            u8* item_quad = prim;
             prim = (u8*)emit_menu_item_quad(ot_head, prim, slot + 1, item_x, item_y, 0, 0x80, (g_title_visible_item_rank == visible_index) ? 1 : 2);
+            lom_draw_title_menu(item_quad + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_ITEM, slot, g_title_visible_item_rank == visible_index);
             item_y += 0xC;
             visible_index++;
             prim += 0x28;
@@ -574,6 +585,7 @@ void render_title_menu_items(TitleMenuContext* ctx)
 
     result =
         emit_menu_item_quad(ot_head, prim, 7, 0x78, g_title_visible_item_rank * 12 + 0x9D, g_cursor_blink_u_offsets[(g_title_anim_frame >> 2) & 3], 0x10, 0);
+    lom_draw_title_menu(prim + __builtin_offsetof(P_TAG, r0), LOM_TITLE_MENU_CURSOR, 0, 0);
 
     ctx->screen.prim_cursor = result;
     g_title_anim_frame++;

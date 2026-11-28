@@ -77,6 +77,16 @@ void draw_icon(ImDrawList* list, MenuCategory category, ImVec2 origin, float siz
 
         break;
 
+    case MenuCategory::Remaster:
+    {
+        const ImVec2 sparkle[] = {box.at(11, 3),  box.at(13, 9.5f), box.at(19.5f, 11.5f), box.at(13, 13.5f),
+                                  box.at(11, 20), box.at(9, 13.5f), box.at(2.5f, 11.5f),  box.at(9, 9.5f)};
+        list->AddPolyline(sparkle, IM_ARRAYSIZE(sparkle), color, ImDrawFlags_Closed, stroke);
+        list->AddLine(box.at(18.5f, 3.5f), box.at(18.5f, 8.5f), color, stroke);
+        list->AddLine(box.at(16, 6), box.at(21, 6), color, stroke);
+        break;
+    }
+
     case MenuCategory::Mods:
     {
         const ImVec2 piece[] = {box.at(5, 9),   box.at(10, 9),  box.at(10, 6.5f), box.at(14, 6.5f), box.at(14, 9),  box.at(19, 9),

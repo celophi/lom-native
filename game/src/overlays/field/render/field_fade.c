@@ -1,3 +1,4 @@
+#include "common/screen_fade_remaster.h"
 #include "common.h"
 #include "../internal/field_calls.h"
 #include "main/display.h"
@@ -57,6 +58,14 @@ void field_update_and_render_fade(FieldRenderHalf* render_half)
     if ((g_field_fade_current.red != FADE_NEUTRAL) || (g_field_fade_current.green != g_field_fade_current.red) ||
         (g_field_fade_current.blue != g_field_fade_current.green))
     {
+        void* faded = screen_fade_remaster(primitive, ordering_table_tag, g_field_fade_current.red, g_field_fade_current.green, g_field_fade_current.blue);
+
+        if (faded != NULL)
+        {
+            render_half->primitive_cursor = faded;
+            return;
+        }
+
         if (g_field_fade_current.red >= FADE_ADDITIVE_THRESHOLD)
         {
             lom_gpu_set_rgb0(&primitive->tile, g_field_fade_current.red - FADE_ADDITIVE_BIAS, g_field_fade_current.green - FADE_ADDITIVE_BIAS,

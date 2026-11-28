@@ -169,7 +169,8 @@
         "overlay-menu-gpu.patch",
         "widescreen-present.patch",
         "capture-internal-resolution.patch",
-        {"patch": "remaster-hd.patch", "when": "hd"}
+        {"patch": "remaster-hd.patch", "when": "hd"},
+        "hd-movie-present.patch"
       ]
     }
   ]

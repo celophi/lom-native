@@ -52,6 +52,14 @@ void route_record_gpu_open(void);
 unsigned long long route_record_picture(void);
 
 /**
+ * @brief The picture fingerprint since the last call, for a screen of its
+ *        own, where FIELD's frames stop; kept apart from the frame's, which
+ *        it doesn't change.
+ * @return Its hash, or 0 when nothing was drawn.
+ */
+unsigned long long route_record_screen_picture(void);
+
+/**
  * @brief The sound fingerprint of the frame so far.
  * @return Its hash.
  */

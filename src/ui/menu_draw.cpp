@@ -260,6 +260,23 @@ void Menu::draw_child_guide(const MenuRow& row, float y, float height, float lef
 }
 
 /**
+ * @brief How tall a row is: its line, and its description when it's focused.
+ * @param row The row.
+ * @param left Its left edge.
+ * @param right Its right edge.
+ * @param focused True when it's the one selected.
+ * @return Its height.
+ */
+float Menu::row_height(const MenuRow& row, float left, float right, bool focused) const
+{
+    const ImVec2 label = text_size(body_font_, label_size, row.label);
+    const float line = std::max(label.y, px(switch_height));
+    const float description_wrap = std::min(right - left - px(row_pad_x) * 2, px(description_size) * description_width_ems);
+    const ImVec2 description = focused && !row.description.empty() ? text_size(body_font_, description_size, row.description, description_wrap) : ImVec2(0, 0);
+    return px(row_pad_y) * 2 + line + (description.y > 0 ? px(6) + description.y : 0);
+}
+
+/**
  * @brief Draw one row: its label, its value and, when it's focused, its
  *        description.
  * @param row The row.
@@ -276,7 +293,7 @@ float Menu::draw_row(const MenuRow& row, int index, float y, float left, float r
     const float line = std::max(label.y, px(switch_height));
     const float description_wrap = std::min(right - left - px(row_pad_x) * 2, px(description_size) * description_width_ems);
     const ImVec2 description = focused && !row.description.empty() ? text_size(body_font_, description_size, row.description, description_wrap) : ImVec2(0, 0);
-    const float height = px(row_pad_y) * 2 + line + (description.y > 0 ? px(6) + description.y : 0);
+    const float height = row_height(row, left, right, focused);
     const ImVec2 min(left, y);
     const ImVec2 max(right, y + height);
 
@@ -373,6 +390,9 @@ float Menu::draw_bindings(const std::vector<MenuRow>& rows, float y, float left,
 
 /**
  * @brief Draw the selected category's rows, or its message when it has none.
+ *        A page taller than the space between the header and the footer
+ *        scrolls, from the top on each new page: to bring the focused row
+ *        into view when the focus moves, and with the mouse wheel.
  */
 void Menu::draw_rows()
 {
@@ -395,6 +415,50 @@ void Menu::draw_rows()
     const std::vector<MenuRow> rows = model_.rows();
     const bool controls = category == MenuCategory::Controls;
     const auto focused = [&](int index) { return model_.in_rows() && model_.row() == index && !model_.confirming_quit(); };
+    const auto row_left = [&](const MenuRow& row) { return row.child ? left + px(child_indent) : left; };
+    const float top = y;
+    const float bottom = layout_.footer_top - px(10);
+
+    if (scroll_category_ != static_cast<int>(category))
+    {
+        scroll_category_ = static_cast<int>(category);
+        scroll_focus_ = -1;
+        rows_scroll_ = 0.0f;
+    }
+
+    if (!controls)
+    {
+        float total = 0.0f, focus_top = -1.0f, focus_bottom = 0.0f;
+
+        for (int i = 0; i < static_cast<int>(rows.size()); ++i)
+        {
+            const float height = row_height(rows[i], row_left(rows[i]), right, focused(i));
+
+            if (focused(i))
+            {
+                focus_top = total;
+                focus_bottom = total + height;
+            }
+
+            total += height + px(row_gap);
+        }
+
+        const float view = bottom - top;
+        const int focus = model_.in_rows() && !model_.confirming_quit() ? model_.row() : -1;
+
+        if (focus_top >= 0.0f && focus != scroll_focus_)
+        {
+            rows_scroll_ = std::min(rows_scroll_, focus_top);
+            rows_scroll_ = std::max(rows_scroll_, focus_bottom - view);
+        }
+
+        scroll_focus_ = focus;
+
+        rows_scroll_ = std::clamp(rows_scroll_, 0.0f, std::max(0.0f, total - px(row_gap) - view));
+        y -= rows_scroll_;
+    }
+
+    list_->PushClipRect(ImVec2(left - px(row_gap), top), ImVec2(right + px(row_gap), bottom), true);
 
     for (int i = 0; i < static_cast<int>(rows.size()); ++i)
     {
@@ -408,12 +472,19 @@ void Menu::draw_rows()
             continue;
         }
 
-        const float row_left = rows[i].child ? left + px(child_indent) : left;
-        const float height = draw_row(rows[i], i, y, row_left, right, focused(i));
+        const float row_x = row_left(rows[i]);
+
+        if (!controls && (y + row_height(rows[i], row_x, right, focused(i)) < top || y > bottom))
+        {
+            y += row_height(rows[i], row_x, right, focused(i)) + px(row_gap);
+            continue;
+        }
+
+        const float height = draw_row(rows[i], i, y, row_x, right, focused(i));
 
         if (rows[i].child)
         {
-            draw_child_guide(rows[i], y, height, left, row_left, i + 1 < static_cast<int>(rows.size()) && rows[i + 1].child);
+            draw_child_guide(rows[i], y, height, left, row_x, i + 1 < static_cast<int>(rows.size()) && rows[i + 1].child);
         }
 
         y += height + px(row_gap);
@@ -431,6 +502,8 @@ void Menu::draw_rows()
     {
         text(body_font_, description_size, ImVec2(left + px(row_pad_x), y + px(10)), danger, message, right - left - px(row_pad_x) * 2);
     }
+
+    list_->PopClipRect();
 }
 
 /**
@@ -473,8 +546,7 @@ void Menu::draw_face_button(SDL_GamepadButton button, ImVec2 center, float radiu
         list_->AddCircle(center, mark, color, 0, stroke);
         break;
     case PadGlyph::Shape::Square:
-        list_->AddRect(ImVec2(center.x - mark * 0.85f, center.y - mark * 0.85f), ImVec2(center.x + mark * 0.85f, center.y + mark * 0.85f), color, 0, 0,
-                       stroke);
+        list_->AddRect(ImVec2(center.x - mark * 0.85f, center.y - mark * 0.85f), ImVec2(center.x + mark * 0.85f, center.y + mark * 0.85f), color, 0, 0, stroke);
         break;
     case PadGlyph::Shape::Triangle:
         list_->AddTriangle(ImVec2(center.x, center.y - mark), ImVec2(center.x + mark, center.y + mark * 0.75f),

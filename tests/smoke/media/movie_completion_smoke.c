@@ -172,6 +172,60 @@ int lom_native_cd_resolve_resource_path(int resource, char* path, size_t bytes)
     return snprintf(path, bytes, "%s", fixture_source) > 0 ? 0 : -1;
 }
 
+/**
+ * @brief No Remaster here, so the disc's movie plays.
+ * @param movie Which movie.
+ * @param path Unused.
+ * @param size Unused.
+ * @return 0.
+ */
+int lom_native_remaster_movie_path(unsigned movie, char* path, unsigned long size)
+{
+    (void)movie;
+    (void)path;
+    (void)size;
+    return 0;
+}
+
+/**
+ * @brief No Remaster here, so no sound of its own.
+ * @param movie Which movie.
+ * @param file Unused.
+ * @return 0.
+ */
+int lom_native_remaster_movie_sound(unsigned movie, FILE* file)
+{
+    (void)movie;
+    (void)file;
+    return 0;
+}
+
+/**
+ * @brief Only a Remaster movie wants a temporary file here, and there isn't one.
+ * @param path Unused.
+ * @param path_size Unused.
+ * @param file_out Unused.
+ * @return -1.
+ */
+int lom_movie_temp_file(char* path, size_t path_size, FILE** file_out)
+{
+    (void)path;
+    (void)path_size;
+    (void)file_out;
+    return -1;
+}
+
+/**
+ * @brief No Remaster here.
+ * @param movie Which movie.
+ * @return NULL.
+ */
+const char* lom_native_remaster_movie_file(unsigned movie)
+{
+    (void)movie;
+    return NULL;
+}
+
 int lom_movie_prepare_file(const char* path, LomPreparedMovie* prepared)
 {
     memset(prepared, 0, sizeof(*prepared));

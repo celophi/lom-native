@@ -1,3 +1,4 @@
+#include "common/screen_fade_remaster.h"
 #include "common/gpu_packet.h"
 #include "common/screen_fade.h"
 #include "lom_native_gpu_packets.h"
@@ -37,6 +38,13 @@ void* render_screen_fade(TILE* tile, OT_TYPE* ordering_table)
     if ((g_screen_fade_current.red != FADE_NEUTRAL) || (g_screen_fade_current.green != g_screen_fade_current.red) ||
         (g_screen_fade_current.blue != g_screen_fade_current.green))
     {
+        void* faded = screen_fade_remaster(tile, ordering_table, g_screen_fade_current.red, g_screen_fade_current.green, g_screen_fade_current.blue);
+
+        if (faded != NULL)
+        {
+            return faded;
+        }
+
         if (g_screen_fade_current.red >= FADE_ADDITIVE_THRESHOLD)
         {
             lom_gpu_set_rgb0(tile, g_screen_fade_current.red - FADE_ADDITIVE_BIAS, g_screen_fade_current.green - FADE_ADDITIVE_BIAS,

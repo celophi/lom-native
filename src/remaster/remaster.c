@@ -1017,6 +1017,7 @@ int lom_native_remaster_initialize(void)
     const char* hd = lom_native_env_value(LOM_ENV_REMASTER_HD);
     const char* music = lom_native_env_value(LOM_ENV_REMASTER_MUSIC);
     const char* ui = lom_native_env_value(LOM_ENV_REMASTER_UI);
+    const char* movies = lom_native_env_value(LOM_ENV_REMASTER_MOVIES);
     const char* text = lom_native_env_value(LOM_ENV_REMASTER_TEXT);
 
     if (text)
@@ -1032,6 +1033,11 @@ int lom_native_remaster_initialize(void)
     if (ui)
     {
         lom_native_remaster_set_hd_ui(atoi(ui));
+    }
+
+    if (movies)
+    {
+        lom_native_remaster_set_hd_movies(atoi(movies));
     }
 
     if (music)

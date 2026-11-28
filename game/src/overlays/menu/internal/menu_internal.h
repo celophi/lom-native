@@ -968,8 +968,10 @@ static inline FieldCharacterRecord* menu_character_record(SavedGameLayout* conte
     return (FieldCharacterRecord*)((u8*)context + (character_slot * MENU_CHARACTER_BLOCK_SIZE + MENU_CHARACTER_RECORD_OFFSET));
 }
 
+void* menu_draw_help(void* packet_cursor, OT_TYPE* ot_entry, u8* text);
+
 /**
- * @brief Draw a content label at the menu's fixed help-text position.
+ * @brief Draw a content label at the menu's fixed help-text position (menu_draw_help).
  * @param packet_cursor First free primitive byte.
  * @param ot Ordering-table entry receiving the text primitives.
  * @param text Encoded text to draw.
@@ -977,7 +979,7 @@ static inline FieldCharacterRecord* menu_character_record(SavedGameLayout* conte
  */
 static inline void* menu_emit_content_label(void* packet_cursor, OT_TYPE* ot, u8* text)
 {
-    return field_draw_text(packet_cursor, ot, text, 1, 0xA0, 0xCA, FIELD_TEXT_ALIGN_CENTER);
+    return menu_draw_help(packet_cursor, ot, text);
 }
 
 /**

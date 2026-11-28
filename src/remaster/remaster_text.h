@@ -92,6 +92,14 @@ void remaster_text_close_font(void);
 int remaster_text_wide_code(uint32_t c);
 
 /**
+ * @brief The character a wide code stands for, the other way from
+ *        remaster_text_wide_code.
+ * @param index The code's index past LOM_NATIVE_TEXT_WIDE_BASE.
+ * @return Its Unicode code point, or 0 when there's no such code.
+ */
+uint32_t remaster_text_wide_char(int index);
+
+/**
  * @brief Say where a line may break around a character, by the rules of
  *        Japanese and Chinese text.
  * @param c The character, as a Unicode code point.
@@ -108,6 +116,14 @@ int remaster_text_char_breaks(uint32_t c);
  *         when there's none.
  */
 int remaster_text_letter_index(uint32_t c);
+
+/**
+ * @brief The character one of the PS1 font's extra characters stands for, the
+ *        other way from remaster_text_letter_index.
+ * @param index Its index past the end of the PS1 font (after TEXT_EXTRA).
+ * @return Its Unicode code point, or 0 when there's no such character.
+ */
+uint32_t remaster_text_letter_code(int index);
 
 /**
  * @brief Keep only the [ps4] part of a string that has [ps4], [switch] and
